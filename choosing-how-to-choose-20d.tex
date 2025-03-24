@@ -1704,11 +1704,20 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	So far, we've used decision theories to judge deterministic picking strategies, $\s$, and probabilistic picking strategies, $\nu$. 
 	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
 	
+	{\color{blue}
+	Since E-Admissibility requires coordinating, and rejects all strategies except for the $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies as the recommendation of E-Admissibility. Can we apply E-Admissibility itself to judge this? 
+	
+	
+	We can try to extend the idea of E-Admissibility to judging imprecise acts to answer how E-Admissibility judges this set of all the $\EU_p$ strategies. 
+	}
+	
 %	A formally equivalent account arises if one thinks of assigning the utility of an imprecise choice function as the set of the utilities of all the compatible actions. 
 %	This might also be proposed as an account of how to specify the utility of a choice function: it is an imprecise matter, the set of the utilities of all the options that are not ruled out. 
 
-	{\color{blue}
-	These are imprecise acts, and it is imprecise what utility they lead to. How might we apply our theories of imprecise probability to judge such acts? 	We understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
+	{\color{violet}
+%		We can 
+%	These are imprecise acts, and it is imprecise what utility they lead to. 
+	How might we apply our theories of imprecise probability to judge such imprecise acts, where its imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
 	For precise acts, E-Admissibility rejects an act when, for every $p$ in $\IP$, there is some alternative act $a'$ that $p$ expects to do better. When extending E-Admissibility to judge imprecise acts, we have to ask what it means for $p$ to expect an imprecise act $\mathbb{A}'$ to do better than $\mathbb{A}$. 
 	
 	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies, or all deterministic picking strategies; a natural application of the idea of imprecise picking strategies. 
@@ -1931,7 +1940,7 @@ Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 
 	
 \begin{definition}
-	$\EU_{\pb(\cdot|-)}:\D'\rightarrow\D$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D).\]
+	$\EU_{\pb(\cdot|-)}:\D'\rightarrow\D$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\].
 \end{definition}
 
 \begin{definition}
@@ -1949,7 +1958,7 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 
 
 \begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\left\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\right\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
 	
 	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$. 
 	
