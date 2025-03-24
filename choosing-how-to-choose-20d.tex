@@ -820,7 +820,8 @@ So a picking strategy $\s$ picks for $\EU_p$ iff $\s(D)$ maximizes expected util
 Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtains its maximum in $D$; so $\EU_p(D)\neq\emptyset$. 
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
-{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.}
+{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.} 
+{\color{blue}We will moreover assume that $\mu$ is always countably additive. }
 
 
 We can now simply apply our notion of expected utility with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
@@ -1592,7 +1593,7 @@ Just considering a single proposition, this will hold, for example, if you might
 Then we have the following result.%
 \footnote{{\color{violet}The assumptions on $\mu^*$ are not required if one instead assumes that $\N$ is convex, which is motivated when one considers randomisations as available options. However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\N$ is also closed, for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
-	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness and is countably additive. Then if $\nu \in \Maximality_\IB(\N)$, then $\nu \text{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$\todoinfo{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\nu \in \Maximality_\IB(\N)$, then $\nu \text{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$\todoinfo{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
 {\color{violet}This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\nu'$, in fact, an $\nu'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\nu')(\omega)>\Exp_{\mu^*}\U(\nu)(\omega)$ for all $\omega$, and thus for all $p$, $\Exp_p[\Exp_{\mu^*}\U(\nu')]>\Exp_p[\Exp_{\mu^*}\U(\nu)]$, i.e., $\Exp_{p\times \mu^*}\U(\nu')>\Exp_{p\times\mu^*}\U(\nu)$, so $\nu\notin\Maximality_\IB(\N)$. 
 	
@@ -1618,7 +1619,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
 	Suppose $\N$ is $\EU$-complete.  
-	Suppose that $\mu^*$ requires almost everywhere decisiveness and is countably additive.
+	Suppose that $\mu^*$ requires almost everywhere decisiveness.
 
 	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}
 	
@@ -1667,7 +1668,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 {\color{violet}Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin it also needs to $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
-		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness and is countably additive. Then if $\nu \in \Maximin_\IB(\N)$, $ \nu \textit{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\nu \in \Maximin_\IB(\N)$, $ \nu \textit{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 		
 		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\nu$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\N)$ (in fact, any $\nu$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\nu$ is regular for $\Maximin_\IP$ then $\nu\notin \Maximin_\IB(\N)$. 
 	\end{proposition}
@@ -1907,7 +1908,7 @@ In \cref{sect:e-admiss} we observed that E-Admissibility and Maximility aren't v
 
 In \cref{sect:nu} we reevaluated what we are judging and instead proposed evaluating not the deterministic picking strategies compatible with the recommendations of the decision theory but instead using probabilistic picking strategies. This might be because you are using a randomisation process, or just that you have uncertainty about how you'll pick which is governed by a precise probability, or simply that how we judge the utility of a choice rule should be given by a mixture of the utilities of the actions that are not ruled out. 
 We noted that all our previous results generalised to this setting and moreover, that the situation became worse for the imprecise decision theories. E-Admissibility now judges as impermissible any regular $\nu$ which picks for it, as it no longer looks like $\EU_p$ for any $p$, at least given some mild assumptions on the credal set. 
-For Maximality, we were able to show something similar, that it deems impermissible any regular $\nu$ that picks for it, although in this case we needed a much stronger assumption: that one's uncertainty over which decision she'll be faced with is governed by a precise probability, along with a broadness assumption that this requires almost everywhere decisiveness and is countably additive. {\color{blue} We saw that these considerations while \textit{prima facie} challenging, are perhaps less worrying or surprising than one might expect.}
+For Maximality, we were able to show something similar, that it deems impermissible any regular $\nu$ that picks for it, although in this case we needed a much stronger assumption: that one's uncertainty over which decision she'll be faced with is governed by a precise probability, along with a broadness assumption that this requires almost everywhere decisiveness. {\color{blue} We saw that these considerations while \textit{prima facie} challenging, are perhaps less worrying or surprising than one might expect.}
 
 %We understand this as a result that these decision theories for imprecise probability do not judge themselves to be optimal. 
 %So if this is how we ask an imprecise decision theory to judge itself, they rule themselves out as impermissible. 
@@ -2442,7 +2443,7 @@ Recall \cref{def:EU-complete} of $\N$ being $\EU$-complete, and observe that Bay
 
 Recall the definition of requires almost everywhere decisiveness from \cref{def:suff spread}.
 \begin{lemma}\label{thm:cct-appln:cts}
-	If ${\mu^*}$ requires almost everywhere decisiveness and countably additive, then $\Uwald(\nu)(\omega):=\Exp_{\mu^*}\U({\nu_{D}})(\omega)=\Exp_{\mu^*}\Exp_{\nu_D}\U(a)(\omega)$ is Bayes continuous. 
+	If ${\mu^*}$ requires almost everywhere decisiveness (and countably additive), then $\Uwald(\nu)(\omega):=\Exp_{\mu^*}\U({\nu_{D}})(\omega)=\Exp_{\mu^*}\Exp_{\nu_D}\U(a)(\omega)$ is Bayes continuous. 
 \end{lemma}
 \begin{proof}
 Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges on $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\nu^{p^*}$ which is Bayes for $p^*$ and $\nu^{p_n}$ which are Bayes for $p_n$, then $\Uwald(\nu^{p_n})(\omega)\longrightarrow\Uwald(\nu^{p^*})(\omega)$. 
