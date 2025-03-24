@@ -1,27 +1,27 @@
-\BOOKMARK [1][-]{section.8}{Risk-sensitive decision theories}{}% 1
-\BOOKMARK [2][-]{subsection.9}{Is it a problem to be self-undermining?}{section.8}% 2
-\BOOKMARK [2][-]{subsection.10}{Responses}{section.8}% 3
-\BOOKMARK [3][-]{subsubsection.11}{Limit the decision theory's scope}{subsection.10}% 4
-\BOOKMARK [3][-]{subsubsection.12}{Change the way of updating credences}{subsection.10}% 5
-\BOOKMARK [3][-]{subsubsection.14}{Uncertainty about decisions}{subsection.10}% 6
-\BOOKMARK [1][-]{section.22}{Expected Utility Theory}{}% 7
-\BOOKMARK [2][-]{subsection.31}{Decision-State Dependence}{section.22}% 8
-\BOOKMARK [1][-]{section.37}{Decision theories for imprecise credences}{}% 9
-\BOOKMARK [2][-]{subsection.39}{-maximin}{section.37}% 10
-\BOOKMARK [3][-]{subsubsection.43}{Uncertainty about decisions}{subsection.39}% 11
-\BOOKMARK [2][-]{subsection.44}{E-Admissibility and Maximality}{section.37}% 12
-\BOOKMARK [3][-]{subsubsection.60}{Maximality}{subsection.44}% 13
-\BOOKMARK [3][-]{subsubsection.63}{Decision-State Dependence}{subsection.44}% 14
-\BOOKMARK [1][-]{section.69}{The utility of using a decision theory}{}% 15
-\BOOKMARK [2][-]{subsection.71}{Probabilistic picking strategies}{section.69}% 16
-\BOOKMARK [3][-]{subsubsection.74}{Expected Utility Theory}{subsection.71}% 17
-\BOOKMARK [3][-]{subsubsection.77}{E-Admissibility}{subsection.71}% 18
-\BOOKMARK [3][-]{subsubsection.84}{Maximality}{subsection.71}% 19
-\BOOKMARK [2][-]{subsection.96}{Alternatives}{section.69}% 20
-\BOOKMARK [3][-]{subsubsection.97}{Imprecise picking strategies}{subsection.96}% 21
-\BOOKMARK [3][-]{subsubsection.99}{Utility of a choice function not given by a picking strategy}{subsection.96}% 22
-\BOOKMARK [1][-]{section.100}{Conclusion}{}% 23
-\BOOKMARK [1][-]{appendix.104}{EU and E-admissibility}{}% 24
+\BOOKMARK [1][-]{section.2}{Risk-sensitive decision theories}{}% 1
+\BOOKMARK [2][-]{subsection.3}{Is it a problem to be self-undermining?}{section.2}% 2
+\BOOKMARK [2][-]{subsection.4}{Responses}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.5}{Limit the decision theory's scope}{subsection.4}% 4
+\BOOKMARK [3][-]{subsubsection.6}{Change the way of updating credences}{subsection.4}% 5
+\BOOKMARK [3][-]{subsubsection.8}{Uncertainty about decisions}{subsection.4}% 6
+\BOOKMARK [1][-]{section.16}{Expected Utility Theory}{}% 7
+\BOOKMARK [2][-]{subsection.25}{Decision-State Dependence}{section.16}% 8
+\BOOKMARK [1][-]{section.31}{Decision theories for imprecise credences}{}% 9
+\BOOKMARK [2][-]{subsection.33}{-maximin}{section.31}% 10
+\BOOKMARK [3][-]{subsubsection.38}{Uncertainty about decisions}{subsection.33}% 11
+\BOOKMARK [2][-]{subsection.39}{E-Admissibility and Maximality}{section.31}% 12
+\BOOKMARK [3][-]{subsubsection.55}{Maximality}{subsection.39}% 13
+\BOOKMARK [3][-]{subsubsection.58}{Decision-State Dependence}{subsection.39}% 14
+\BOOKMARK [1][-]{section.64}{The utility of using a decision theory}{}% 15
+\BOOKMARK [2][-]{subsection.66}{Probabilistic picking strategies}{section.64}% 16
+\BOOKMARK [3][-]{subsubsection.69}{Expected Utility Theory}{subsection.66}% 17
+\BOOKMARK [3][-]{subsubsection.72}{E-Admissibility}{subsection.66}% 18
+\BOOKMARK [3][-]{subsubsection.79}{Maximality}{subsection.66}% 19
+\BOOKMARK [2][-]{subsection.92}{Alternatives}{section.64}% 20
+\BOOKMARK [3][-]{subsubsection.93}{Imprecise picking strategies}{subsection.92}% 21
+\BOOKMARK [3][-]{subsubsection.97}{Utility of a choice function not given by a picking strategy}{subsection.92}% 22
+\BOOKMARK [1][-]{section.98}{Conclusion}{}% 23
+\BOOKMARK [1][-]{appendix.102}{EU and E-admissibility}{}% 24
 \BOOKMARK [1][-]{appendix.117}{Maximality}{}% 25
 \BOOKMARK [2][-]{subsection.118}{Wald theorem}{appendix.117}% 26
 \BOOKMARK [2][-]{subsection.132}{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}{appendix.117}% 27
