@@ -1954,7 +1954,8 @@ The marginal density, $f_\D$, is given by $f_\D(D)=\sum_{\omega\in\Omega}f(\omeg
 Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 
 \begin{definition}
-	For any $D\in\D'$ and any $a\in D$, \[\Exp_{\pb(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
+	For any $D\in\D'$ and any $a\in D$, $\pb(\cdot|D)$ is a probability function over $\Omega$ defined by $\pb(\omega|D)=\frac{f(\omega,D)}{f_\D(D)}$. 
+	So,  \[\Exp_{\pb(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
 \end{definition}
 	
 	
@@ -1964,11 +1965,11 @@ Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 
 	
 \begin{definition}
-	$\EU_{\pb(\cdot|-)}:\D'\rightarrow\D$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\].
+	$\EU_{\pb(\cdot|-)}$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\]when $D\in\D'$, i.e., when $f_\D(D)>0$; and when $D\notin\D'$, we put $\EU_{\pb(\cdot|-)}(D)=D$ (this is arbitrary, and it won't play a role in our result).\todo{I added the when def!!} 
 \end{definition}
 
 \begin{definition}
-A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in EU_{\pb(\cdot|-)}(D)\}=1\]
+A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1\] i.e., for the marginal $\pb_\D$, $\pb_\D\{D\given \s(D)\in\EU_{\pb(\cdot|-)}(D)\}=1$.
 \end{definition}
 
 
@@ -1984,7 +1985,7 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 \begin{proof}
 	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
 	
-	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$. 
+	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$.\todo{this is only true for $D\in\D'$!}
 	
 %	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
 	
@@ -2007,9 +2008,7 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 \end{align}}
 
 	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{\pb(\cdot|D)}[\U(\s(D))]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
-
-
-\end{proof}
+	\end{proof}
 
 \begin{comment}
 \begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
