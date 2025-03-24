@@ -8,20 +8,19 @@
 \BOOKMARK [2][-]{subsection.25}{Decision-State Dependence}{section.16}% 8
 \BOOKMARK [1][-]{section.31}{Decision theories for imprecise credences}{}% 9
 \BOOKMARK [2][-]{subsection.33}{-maximin}{section.31}% 10
-\BOOKMARK [3][-]{subsubsection.38}{Uncertainty about decisions}{subsection.33}% 11
-\BOOKMARK [2][-]{subsection.39}{E-Admissibility and Maximality}{section.31}% 12
-\BOOKMARK [3][-]{subsubsection.54}{Maximality}{subsection.39}% 13
-\BOOKMARK [3][-]{subsubsection.57}{Decision-State Dependence}{subsection.39}% 14
-\BOOKMARK [1][-]{section.63}{The utility of using a decision theory}{}% 15
-\BOOKMARK [2][-]{subsection.65}{Probabilistic picking strategies}{section.63}% 16
-\BOOKMARK [3][-]{subsubsection.68}{Expected Utility Theory}{subsection.65}% 17
-\BOOKMARK [3][-]{subsubsection.71}{E-Admissibility}{subsection.65}% 18
-\BOOKMARK [3][-]{subsubsection.78}{Maximality}{subsection.65}% 19
-\BOOKMARK [2][-]{subsection.91}{Alternatives}{section.63}% 20
-\BOOKMARK [3][-]{subsubsection.92}{Imprecise picking strategies}{subsection.91}% 21
-\BOOKMARK [3][-]{subsubsection.96}{Utility of a choice function not given by a picking strategy}{subsection.91}% 22
-\BOOKMARK [1][-]{section.97}{Conclusion}{}% 23
-\BOOKMARK [1][-]{appendix.101}{EU and E-admissibility}{}% 24
-\BOOKMARK [1][-]{appendix.116}{Maximality}{}% 25
-\BOOKMARK [2][-]{subsection.117}{Wald theorem}{appendix.116}% 26
-\BOOKMARK [2][-]{subsection.131}{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}{appendix.116}% 27
+\BOOKMARK [2][-]{subsection.39}{E-Admissibility and Maximality}{section.31}% 11
+\BOOKMARK [3][-]{subsubsection.54}{Maximality}{subsection.39}% 12
+\BOOKMARK [3][-]{subsubsection.57}{Decision-State Dependence}{subsection.39}% 13
+\BOOKMARK [1][-]{section.64}{The utility of using a decision theory}{}% 14
+\BOOKMARK [2][-]{subsection.66}{Probabilistic picking strategies}{section.64}% 15
+\BOOKMARK [3][-]{subsubsection.69}{Expected Utility Theory}{subsection.66}% 16
+\BOOKMARK [3][-]{subsubsection.72}{E-Admissibility}{subsection.66}% 17
+\BOOKMARK [3][-]{subsubsection.79}{Maximality}{subsection.66}% 18
+\BOOKMARK [2][-]{subsection.92}{Alternatives}{section.64}% 19
+\BOOKMARK [3][-]{subsubsection.93}{Imprecise picking strategies}{subsection.92}% 20
+\BOOKMARK [3][-]{subsubsection.97}{Utility of a choice function not given by a picking strategy}{subsection.92}% 21
+\BOOKMARK [1][-]{section.98}{Conclusion}{}% 22
+\BOOKMARK [1][-]{appendix.102}{EU and E-admissibility}{}% 23
+\BOOKMARK [1][-]{appendix.117}{Maximality}{}% 24
+\BOOKMARK [2][-]{subsection.118}{Wald theorem}{appendix.117}% 25
+\BOOKMARK [2][-]{subsection.132}{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}{appendix.117}% 26
