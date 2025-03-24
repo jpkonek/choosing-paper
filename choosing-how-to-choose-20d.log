@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 14:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1091,116 +1091,116 @@ ne 277.
 [4] [5] [6]
 
 Package natbib Warning: Citation `weisberg2015uui' on page 7 undefined on input
- line 454.
+ line 455.
 
 
 Package natbib Warning: Citation `campbellmoore2020arae' on page 7 undefined on
- input line 460.
+ input line 461.
 
 
 Package natbib Warning: Citation `brown1976ceu' on page 7 undefined on input li
-ne 467.
-
-
-Package natbib Warning: Citation `good1967pte' on page 7 undefined on input lin
-e 467.
-
-
-Package natbib Warning: Citation `wakker1988neuai' on page 7 undefined on input
- line 467.
-
-
-Package natbib Warning: Citation `buchak2010irereg' on page 7 undefined on inpu
-t line 467.
-
-
-Package natbib Warning: Citation `greaves2006jcc' on page 7 undefined on input 
-line 468.
-
-
-Package natbib Warning: Citation `campbellmoore2022aurs' on page 7 undefined on
- input line 468.
-
-
-Package natbib Warning: Citation `buchak2014rr' on page 7 undefined on input li
 ne 468.
 
 
+Package natbib Warning: Citation `good1967pte' on page 7 undefined on input lin
+e 468.
+
+
+Package natbib Warning: Citation `wakker1988neuai' on page 7 undefined on input
+ line 468.
+
+
+Package natbib Warning: Citation `buchak2010irereg' on page 7 undefined on inpu
+t line 468.
+
+
+Package natbib Warning: Citation `greaves2006jcc' on page 7 undefined on input 
+line 469.
+
+
 Package natbib Warning: Citation `campbellmoore2022aurs' on page 7 undefined on
- input line 470.
+ input line 469.
+
+
+Package natbib Warning: Citation `buchak2014rr' on page 7 undefined on input li
+ne 469.
+
+
+Package natbib Warning: Citation `campbellmoore2022aurs' on page 7 undefined on
+ input line 471.
 
 [7]
 
 Package natbib Warning: Citation `campbellmoore2022aurs' on page 8 undefined on
- input line 472.
+ input line 473.
 
 
 Package natbib Warning: Citation `leitgeb2010ojb2' on page 8 undefined on input
- line 472.
+ line 473.
 
 
 Package natbib Warning: Citation `campbellmoore2022aurs' on page 8 undefined on
- input line 472.
+ input line 473.
 
 
 Package natbib Warning: Citation `campbellmoore2020arae' on page 8 undefined on
- input line 472.
+ input line 473.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 472.
+(Font)              scaled to size 8.33606pt on input line 473.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 472.
+(Font)              scaled to size 8.33606pt on input line 473.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 472.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 473.
 
 Package natbib Warning: Citation `armendt1993db' on page 8 undefined on input l
-ine 625.
+ine 626.
 
 
 Package natbib Warning: Citation `mahtani2014db' on page 8 undefined on input l
-ine 625.
+ine 626.
 
 
-Overfull \hbox (0.30542pt too wide) in paragraph at lines 625--627
+Overfull \hbox (0.30542pt too wide) in paragraph at lines 626--628
 \OT1/ppl/m/n/10 per-haps you just think it's un-likely that you'll ever face su
 ch a ne-far-i-ous bookie.
  []
 
+
+Package natbib Warning: Citation `pettigrew2020dutch' on page 8 undefined on in
+put line 629.
+
+
+Package natbib Warning: Citation `schervish1989gm' on page 8 undefined on input
+ line 629.
+
+
+Package natbib Warning: Citation `levinstein2017pgeu' on page 8 undefined on in
+put line 629.
+
 [8]
 
-Package natbib Warning: Citation `pettigrew2020dutch' on page 9 undefined on in
-put line 628.
-
-
-Package natbib Warning: Citation `schervish1989gm' on page 9 undefined on input
- line 628.
-
-
-Package natbib Warning: Citation `levinstein2017pgeu' on page 9 undefined on in
-put line 628.
-
-
 Package natbib Warning: Citation `quiggin1982tau' on page 9 undefined on input 
-line 672.
+line 673.
 
 
 Package natbib Warning: Citation `quiggin1993geut' on page 9 undefined on input
- line 672.
+ line 673.
 
 
 Package natbib Warning: Citation `buchak2014rr' on page 9 undefined on input li
-ne 672.
+ne 673.
 
 
 Package natbib Warning: Citation `wakker2010prospect' on page 9 undefined on in
-put line 675.
+put line 676.
 
 
 Package natbib Warning: Citation `buchak2014rr' on page 9 undefined on input li
-ne 675.
+ne 676.
 
 
-Overfull \hbox (0.13516pt too wide) in paragraph at lines 691--693
+Overfull \hbox (0.13516pt too wide) in paragraph at lines 692--694
 \OT1/ppl/m/n/10 Then risk-weighted ex-pected util-ity the-ory tells you to max-
 i-mize risk-weighted
  []
@@ -1208,165 +1208,165 @@ i-mize risk-weighted
 [9] [10]
 
 Package natbib Warning: Citation `moss2015tse' on page 11 undefined on input li
-ne 762.
+ne 763.
 
 
 Package natbib Warning: Citation `debock2019iar' on page 11 undefined on input 
-line 762.
+line 763.
 
 
 Package natbib Warning: Citation `savage1954fs' on page 11 undefined on input l
-ine 803.
+ine 804.
 
 
 Package natbib Warning: Citation `jeffrey1965lod' on page 11 undefined on input
- line 803.
+ line 804.
 
 
 Package natbib Warning: Citation `stalnaker1972ldl' on page 11 undefined on inp
-ut line 803.
+ut line 804.
 
 
 Package natbib Warning: Citation `gibbard1978ctk' on page 11 undefined on input
- line 803.
+ line 804.
 
 
 Package natbib Warning: Citation `joyce1999fcdt' on page 11 undefined on input 
-line 803.
+line 804.
 
 [11]
 
 Package natbib Warning: Citation `savage1954fs' on page 12 undefined on input l
-ine 859.
+ine 860.
 
 [12]
 
 Package natbib Warning: Citation `walley1991srip' on page 13 undefined on input
- line 900.
+ line 901.
 
 
 Package natbib Warning: Citation `bradley2016ip' on page 13 undefined on input 
-line 900.
+line 901.
 
 LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
-900.
+901.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 908.
+(hyperref)                removing `math shift' on input line 909.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Gamma' on input line 908.
+(hyperref)                removing `\Gamma' on input line 909.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 908.
+(hyperref)                removing `math shift' on input line 909.
 
 
 Package natbib Warning: Citation `ellsberg1961rasa' on page 13 undefined on inp
-ut line 913.
+ut line 914.
 
 [13]
-LaTeX Font Info:    Calculating math sizes for size <5.8408> on input line 951.
+LaTeX Font Info:    Calculating math sizes for size <5.8408> on input line 952.
 
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.08615pt on input line 951.
+(Font)              scaled to size 6.08615pt on input line 952.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 4.62543pt on input line 951.
+(Font)              scaled to size 4.62543pt on input line 952.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 3.65172pt on input line 951.
+(Font)              scaled to size 3.65172pt on input line 952.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.08615pt on input line 951.
+(Font)              scaled to size 6.08615pt on input line 952.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 4.62543pt on input line 951.
+(Font)              scaled to size 4.62543pt on input line 952.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 3.65172pt on input line 951.
+(Font)              scaled to size 3.65172pt on input line 952.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5.8408> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 951.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 952.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <4.43896> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 951.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 952.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <3.50452> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 951.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 952.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 951.
+(Font)              size <5> substituted on input line 952.
 
 [14] [15]
 
 Package natbib Warning: Citation `seidenfeld2007ci' on page 16 undefined on inp
-ut line 1074.
+ut line 1075.
 
 
 Package natbib Warning: Citation `cozman2012' on page 16 undefined on input lin
-e 1074.
+e 1075.
 
 
 Package natbib Warning: Citation `campos1995' on page 16 undefined on input lin
-e 1074.
+e 1075.
 
 
 Package natbib Warning: Citation `cooman:2012:indnatexdesirs' on page 16 undefi
-ned on input line 1074.
+ned on input line 1075.
 
 
 Package natbib Warning: Citation `Moral2005b' on page 16 undefined on input lin
-e 1074.
+e 1075.
 
 
 Package natbib Warning: Citation `debock2015:phdthesis' on page 16 undefined on
- input line 1074.
+ input line 1075.
 
 
 Package natbib Warning: Citation `debock2021:S-independence' on page 16 undefin
-ed on input line 1074.
+ed on input line 1075.
 
 
 Package natbib Warning: Citation `walley1991srip' on page 16 undefined on input
- line 1076.
+ line 1077.
 
 
 Package natbib Warning: Citation `cooman2012' on page 16 undefined on input lin
-e 1076.
+e 1077.
 
 [16]
 
 Package natbib Warning: Citation `debock2019' on page 17 undefined on input lin
-e 1084.
+e 1085.
 
 
-Overfull \hbox (6.36136pt too wide) in paragraph at lines 1083--1085
+Overfull \hbox (6.36136pt too wide) in paragraph at lines 1084--1086
 \OT1/ppl/m/n/10 where $\OML/zplm/m/it/10 g[] \OT1/zplm/m/n/10 : 
  \OMS/zplm/m/n/10 ^^B D ! \U/fplmbb/m/n/10 R$ \OT1/ppl/m/n/10 is the ``cylin-dr
 i-cal ex-ten-sion'' of $\OML/zplm/m/it/10 g$ \OT1/ppl/m/n/10 de-fined by $\OML/
@@ -1376,20 +1376,20 @@ m/m/it/10 D\OT1/zplm/m/n/10 ) =
 
 
 Package natbib Warning: Citation `seidenfeld2007ci' on page 17 undefined on inp
-ut line 1086.
+ut line 1087.
 
 
 Package natbib Warning: Citation `cozman2012' on page 17 undefined on input lin
-e 1086.
+e 1087.
 
 [17]
-Overfull \hbox (19.1656pt too wide) in paragraph at lines 1173--1175
+Overfull \hbox (19.1656pt too wide) in paragraph at lines 1174--1176
 \OT1/ppl/m/n/10 agrees that a given pick-ing strat-egy could \OT1/ppl/m/it/10 p
 os-si-bly \OT1/ppl/m/n/10 sad-dle you with an E-Admissibile
  []
 
 [18] [19]
-Overfull \hbox (31.1124pt too wide) in paragraph at lines 1265--1266
+Overfull \hbox (31.1124pt too wide) in paragraph at lines 1266--1267
 \OT1/ppl/m/n/10 each $\OML/zplm/m/it/10 !$ \OT1/ppl/m/n/10 and $[][]\U/euf/m/n/
 10 U\OT1/zplm/m/n/10 (\OT1/cmss/m/n/10 s[]\OT1/zplm/m/n/10 )(\OML/zplm/m/it/10 
 !\OT1/zplm/m/n/10 ) = \OT1/ppl/m/n/10 6$; so then for ev-ery prob-a-bil-ity $\O
@@ -1398,7 +1398,7 @@ cmss/m/n/10 s[]\OT1/zplm/m/n/10 ) =
  []
 
 
-Overfull \hbox (8.95139pt too wide) detected at line 1281
+Overfull \hbox (8.95139pt too wide) detected at line 1282
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []\OT1/zplm/m/n/10 (\OMS/zplm/m/n/10 9\OML/zplm/m/it/10 b \OMS/zplm/m/n/10 2 \U
@@ -1410,7 +1410,7 @@ m/m/n/10 [\U/euf/m/n/10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 a[]\OT1/zplm/m/n/1
  []
 
 
-Overfull \hbox (0.4365pt too wide) in paragraph at lines 1288--1289
+Overfull \hbox (0.4365pt too wide) in paragraph at lines 1289--1290
 []\OT1/ppl/b/n/10 Proposition 9. []\OT1/ppl/m/it/10 Sup-pose that for ev-ery $\
 OML/zplm/m/it/10 b \OMS/zplm/m/n/10 2 \U/fplmbb/m/n/10 B$\OT1/ppl/m/it/10 , $\O
 ML/zplm/m/it/10 b[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][
@@ -1419,7 +1419,7 @@ ML/zplm/m/it/10 b[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][
  []
 
 
-Overfull \hbox (5.44972pt too wide) in paragraph at lines 1288--1289
+Overfull \hbox (5.44972pt too wide) in paragraph at lines 1289--1290
 \OT1/ppl/m/n/10 1$\OT1/ppl/m/it/10 . That is, for all $\OML/zplm/m/it/10 b \OMS
 /zplm/m/n/10 2 \U/fplmbb/m/n/10 B$\OT1/ppl/m/it/10 , $\OML/zplm/m/it/10 b[]\OMS
 /zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][][][]\OT1/zplm/m/n/10 (
@@ -1427,8 +1427,8 @@ Overfull \hbox (5.44972pt too wide) in paragraph at lines 1288--1289
 0 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 )\OMS/zplm/m/n/10 g \OML/zplm/m/it/10 >
  []
 
-
-Overfull \hbox (9.3013pt too wide) detected at line 1297
+[20]
+Overfull \hbox (9.3013pt too wide) detected at line 1298
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []\OT1/zplm/m/n/10 (\OMS/zplm/m/n/10 8\OML/zplm/m/it/10 a[] \OMS/zplm/m/n/10 2 
@@ -1439,8 +1439,8 @@ m/m/n/10 [\U/euf/m/n/10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 a[]\OT1/zplm/m/n/1
 0 )])\OMS/zplm/m/n/10 g
  []
 
-[20] [21]
-Overfull \hbox (23.50539pt too wide) in paragraph at lines 1456--1457
+[21]
+Overfull \hbox (23.50539pt too wide) in paragraph at lines 1457--1458
 []\OT1/ppl/m/n/10 In the next few sec-tions, we note how our ear-lier re-sults 
 con-cern-ing non-probabilistic
  []
@@ -1448,10 +1448,10 @@ con-cern-ing non-probabilistic
 [22] [23] [24]
 
 Package natbib Warning: Citation `schervish2020finite' on page 25 undefined on 
-input line 1586.
+input line 1592.
 
-
-Overfull \hbox (9.83647pt too wide) in paragraph at lines 1590--1591
+[25]
+Overfull \hbox (9.83647pt too wide) in paragraph at lines 1596--1597
 \OT1/ppl/m/n/10 all $\OML/zplm/m/it/10 !$\OT1/ppl/m/n/10 , and thus for all $\O
 ML/zplm/m/it/10 p$\OT1/ppl/m/n/10 , $[][]\OT1/zplm/m/n/10 [[][]\U/euf/m/n/10 U\
 OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
@@ -1460,35 +1460,26 @@ OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
 /10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 ) \OML/zplm/m/it/10 >
  []
 
-[25]
-Overfull \hbox (50.02072pt too wide) in paragraph at lines 1616--1617
+
+Overfull \hbox (50.02072pt too wide) in paragraph at lines 1622--1623
 \OML/zplm/m/it/10 p \OMS/zplm/m/n/10 2 \U/fplmbb/m/n/10 P$\OT1/ppl/m/it/10 , $\
 OML/zplm/m/it/10 ^^V[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []9\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D []\OMS/zplm/m/n/1
 0 g$ 
  []
 
-[26]
+[26] [27]
 
-Package natbib Warning: Citation `de2014efficient' on page 27 undefined on inpu
-t line 1835.
+Package natbib Warning: Citation `de2014efficient' on page 28 undefined on inpu
+t line 1850.
 
-[27] [28] [29]
-Overfull \hbox (2.7469pt too wide) in paragraph at lines 1952--1953
-[]\OT1/ppl/m/n/10 For any $\OML/zplm/m/it/10 ! \OMS/zplm/m/n/10 2 \OT1/zplm/m/n
-/10 
-$ \OT1/ppl/m/n/10 and $\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 2 D[]$\OT1/ppl/m/n/
-10 , let $\OML/zplm/m/it/10 t[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/ppl/m/
-n/10 , \OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) := [] []$\OT1/ppl/m/n/10 .
- []
+[28] [29] [30] [31]
 
-[30]
-
-Package natbib Warning: Citation `wald1947cct' on page 31 undefined on input li
-ne 2034.
+Package natbib Warning: Citation `wald1947cct' on page 32 undefined on input li
+ne 2049.
 
 
-Overfull \hbox (4.96764pt too wide) in paragraph at lines 2040--2041
+Overfull \hbox (4.96764pt too wide) in paragraph at lines 2055--2056
 \OT1/ppl/m/n/10 vari-able, $\OML/zplm/m/it/10 X \OMS/zplm/m/n/10 2 <[]$\OT1/ppl
 /m/n/10 , i.e., $\OML/zplm/m/it/10 X \OT1/zplm/m/n/10 : 
  \OMS/zplm/m/n/10 ! <$\OT1/ppl/m/n/10 , will also write $\OML/zplm/m/it/10 p\OT
@@ -1498,15 +1489,15 @@ zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 )$
  []
 
 
-Overfull \hbox (15.11557pt too wide) in paragraph at lines 2044--2045
+Overfull \hbox (15.11557pt too wide) in paragraph at lines 2059--2060
 []\OT1/ppl/m/n/10 The util-ity pro-file of an op-tion is $\OMS/zplm/m/n/10 U\OT
 1/zplm/m/n/10 (\OML/zplm/m/it/10 o\OT1/zplm/m/n/10 ) \OMS/zplm/m/n/10 2 <[]$ \O
 T1/ppl/m/n/10 as ex-pected, i.e., $\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OML/zpl
 m/m/it/10 o\OT1/zplm/m/n/10 )(\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
  []
 
-[31]
-Overfull \hbox (19.25816pt too wide) in paragraph at lines 2166--2168
+[32]
+Overfull \hbox (19.25816pt too wide) in paragraph at lines 2181--2183
 \OT1/ppl/m/n/10 such that for each co-or-di-nate, $\OML/zplm/m/it/10 !$\OT1/ppl
 /m/n/10 , $\OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/
 m/n/10 ) [][]\OMS/zplm/m/n/10 ! \OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zpl
@@ -1516,11 +1507,11 @@ S/zplm/m/n/10 2 []\OT1/zplm/m/n/10 ([](\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OMS
  []
 
 
-Package natbib Warning: Citation `aliprantis2006infinite' on page 32 undefined 
-on input line 2192.
+Package natbib Warning: Citation `aliprantis2006infinite' on page 33 undefined 
+on input line 2207.
 
-[32] [33] [34]
-Overfull \hbox (13.38011pt too wide) in paragraph at lines 2415--2417
+[33] [34] [35]
+Overfull \hbox (13.38011pt too wide) in paragraph at lines 2430--2432
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a[]\OMS/zplm/m/n/10 g$\OT1/ppl/m/n/10 . And then $\U/euf/m/n
 /10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )(\OML/zplm/m/it
@@ -1530,20 +1521,20 @@ it/10 a\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) = \OML/zplm/m/it
 m/it/10 a\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
  []
 
-[35] [36]
+[36] [37]
 No file choosing-how-to-choose-20d.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2484.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2484.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2499.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2499.
 (./choosing-how-to-choose-20d.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2484.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2484.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2499.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2499.
 
 Package rerunfilecheck Info: File `choosing-how-to-choose-20d.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: 75BBC8EBE6E59E0734E76CA54A2F3E99;2067.
+(rerunfilecheck)             Checksum: 628785321EAEB26D2F5FCCDA68D743EB;2066.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1551,10 +1542,10 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 23477 strings out of 480608
- 447893 string characters out of 5903631
- 701557 words of memory out of 5000000
- 38649 multiletter control sequences out of 15000+600000
+ 23476 strings out of 480608
+ 447860 string characters out of 5903631
+ 701512 words of memory out of 5000000
+ 38648 multiletter control sequences out of 15000+600000
  655981 words of font info for 402 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,18n,83p,2340b,1027s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1575,10 +1566,10 @@ xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/202
 0/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf
 -dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/urw/palatino/uplri8a.pfb>
-Output written on choosing-how-to-choose-20d.pdf (36 pages, 294696 bytes).
+Output written on choosing-how-to-choose-20d.pdf (37 pages, 296267 bytes).
 PDF statistics:
- 588 PDF objects out of 1000 (max. 8388607)
- 512 compressed objects within 6 object streams
+ 594 PDF objects out of 1000 (max. 8388607)
+ 517 compressed objects within 6 object streams
  175 named destinations out of 1000 (max. 500000)
  325 words of extra memory for PDF output out of 10000 (max. 10000000)
 
