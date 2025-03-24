@@ -147,7 +147,8 @@
 %\tableofcontents
 
 
-\todoinfo[inline]{CCM
+\begin{comment}
+	\todoinfo[inline]{CCM
 	
 Todo/questions:
 \begin{enumerate}
@@ -158,6 +159,7 @@ Todo/questions:
 	\item ...?
 \end{enumerate}
 }
+\end{comment}
 
 %\todoinfo[color=red]{19/2 - I've come to a halt at least today. The imprecise nu etc is still fluffy. not sure if I'll come back to it soon}
 %\todoinfo{from CCM: red text =  delete, but not ready to do so yet. Purple is stuff I'm considering and think would be good to be}
@@ -821,7 +823,7 @@ Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtai
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
 {So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.} 
-{\color{blue}We will moreover assume that $\mu$ is always countably additive. }
+{\color{blue}We will moreover always assume that $\mu$ is countably additive. }
 
 
 We can now simply apply our notion of expected utility with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
