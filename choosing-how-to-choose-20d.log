@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 19:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 19:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1220,7 +1220,7 @@ con-cern-ing non-probabilistic
  []
 
 [22] [23] [24]
-Overfull \hbox (9.83647pt too wide) in paragraph at lines 1621--1622
+Overfull \hbox (9.83647pt too wide) in paragraph at lines 1623--1624
 \OT1/ppl/m/n/10 all $\OML/zplm/m/it/10 !$\OT1/ppl/m/n/10 , and thus for all $\O
 ML/zplm/m/it/10 p$\OT1/ppl/m/n/10 , $[][]\OT1/zplm/m/n/10 [[][]\U/euf/m/n/10 U\
 OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
@@ -1230,20 +1230,20 @@ OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
  []
 
 [25] [26]
-Overfull \hbox (4.52382pt too wide) in paragraph at lines 1753--1754
+Overfull \hbox (4.52382pt too wide) in paragraph at lines 1755--1756
 [][]$ \OT1/ppl/m/n/10 strate-gies that E-Admissibility rec-om-mends. Can we ap-
 ply E-Admissibility
  []
 
 
-Overfull \hbox (13.51659pt too wide) in paragraph at lines 1766--1767
+Overfull \hbox (13.51659pt too wide) in paragraph at lines 1768--1769
 \OT1/ppl/m/n/10 some al-ter-na-tive act $\OML/zplm/m/it/10 a[]$ \OT1/ppl/m/n/10
  that $\OML/zplm/m/it/10 p$ \OT1/ppl/m/n/10 ex-pects to do bet-ter. When ex-ten
 d-ing E-Admissibility
  []
 
 [27] [28] [29] [30] [31]
-Overfull \hbox (4.96764pt too wide) in paragraph at lines 2126--2127
+Overfull \hbox (4.96764pt too wide) in paragraph at lines 2128--2129
 \OT1/ppl/m/n/10 vari-able, $\OML/zplm/m/it/10 X \OMS/zplm/m/n/10 2 <[]$\OT1/ppl
 /m/n/10 , i.e., $\OML/zplm/m/it/10 X \OT1/zplm/m/n/10 : 
  \OMS/zplm/m/n/10 ! <$\OT1/ppl/m/n/10 , will also write $\OML/zplm/m/it/10 p\OT
@@ -1253,7 +1253,7 @@ zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 )$
  []
 
 [32]
-Overfull \hbox (15.11557pt too wide) in paragraph at lines 2130--2131
+Overfull \hbox (15.11557pt too wide) in paragraph at lines 2132--2133
 []\OT1/ppl/m/n/10 The util-ity pro-file of an op-tion is $\OMS/zplm/m/n/10 U\OT
 1/zplm/m/n/10 (\OML/zplm/m/it/10 o\OT1/zplm/m/n/10 ) \OMS/zplm/m/n/10 2 <[]$ \O
 T1/ppl/m/n/10 as ex-pected, i.e., $\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OML/zpl
@@ -1261,7 +1261,7 @@ m/m/it/10 o\OT1/zplm/m/n/10 )(\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
  []
 
 
-Overfull \hbox (19.25816pt too wide) in paragraph at lines 2252--2254
+Overfull \hbox (19.25816pt too wide) in paragraph at lines 2254--2256
 \OT1/ppl/m/n/10 such that for each co-or-di-nate, $\OML/zplm/m/it/10 !$\OT1/ppl
 /m/n/10 , $\OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/
 m/n/10 ) [][]\OMS/zplm/m/n/10 ! \OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zpl
@@ -1271,7 +1271,7 @@ S/zplm/m/n/10 2 []\OT1/zplm/m/n/10 ([](\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OMS
  []
 
 [33] [34] [35]
-Overfull \hbox (13.38011pt too wide) in paragraph at lines 2501--2503
+Overfull \hbox (13.38011pt too wide) in paragraph at lines 2503--2505
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a[]\OMS/zplm/m/n/10 g$\OT1/ppl/m/n/10 . And then $\U/euf/m/n
 /10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )(\OML/zplm/m/it
@@ -1282,12 +1282,12 @@ m/it/10 a\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
  []
 
 [36] [37] (./choosing-how-to-choose-20d.bbl [38] [39]) [40]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2570.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2570.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2572.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2572.
 
 (./choosing-how-to-choose-20d.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2570.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2570.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2572.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2572.
 
 Package rerunfilecheck Info: File `choosing-how-to-choose-20d.out' has not chan
 ged.
@@ -1300,13 +1300,13 @@ LaTeX Font Warning: Size substitutions with differences
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1976 ({)
-### simple group (level 1) entered at line 1975 ({)
+### simple group (level 2) entered at line 1978 ({)
+### simple group (level 1) entered at line 1977 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  23700 strings out of 480608
  452676 string characters out of 5903631
- 713914 words of memory out of 5000000
+ 713912 words of memory out of 5000000
  38815 multiletter control sequences out of 15000+600000
  658235 words of font info for 410 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1329,7 +1329,7 @@ xlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loca
 l/texlive/2020/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texli
 ve/2020/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020
 /texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on choosing-how-to-choose-20d.pdf (40 pages, 327559 bytes).
+Output written on choosing-how-to-choose-20d.pdf (40 pages, 327709 bytes).
 PDF statistics:
  789 PDF objects out of 1000 (max. 8388607)
  706 compressed objects within 8 object streams
