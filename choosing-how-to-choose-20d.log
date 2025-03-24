@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 11:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 12:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -995,66 +995,66 @@ out the day's weather,
 [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Calculating math sizes for size <7.30098> on input line 208
+LaTeX Font Info:    Calculating math sizes for size <7.30098> on input line 206
 .
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.60767pt on input line 208.
+(Font)              scaled to size 7.60767pt on input line 206.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.78177pt on input line 208.
+(Font)              scaled to size 5.78177pt on input line 206.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 4.56464pt on input line 208.
+(Font)              scaled to size 4.56464pt on input line 206.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.60767pt on input line 208.
+(Font)              scaled to size 7.60767pt on input line 206.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.78177pt on input line 208.
+(Font)              scaled to size 5.78177pt on input line 206.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 4.56464pt on input line 208.
+(Font)              scaled to size 4.56464pt on input line 206.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <5.54869> not available
-(Font)              size <6> substituted on input line 208.
+(Font)              size <6> substituted on input line 206.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.38063> not available
-(Font)              size <5> substituted on input line 208.
+(Font)              size <5> substituted on input line 206.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <5.54869> not available
-(Font)              size <6> substituted on input line 208.
+(Font)              size <6> substituted on input line 206.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <4.38063> not available
-(Font)              size <5> substituted on input line 208.
+(Font)              size <5> substituted on input line 206.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7.30098> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 208.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 206.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5.54869> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 208.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 206.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <5.54869> not available
-(Font)              size <6> substituted on input line 208.
+(Font)              size <6> substituted on input line 206.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <4.38063> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 208.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 206.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.38063> not available
-(Font)              size <5> substituted on input line 208.
+(Font)              size <5> substituted on input line 206.
 
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
-11.
+09.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 ) [2]
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <5.54869> not available
-(Font)              size <6> substituted on input line 263.
+(Font)              size <6> substituted on input line 261.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4.38063> not available
-(Font)              size <5> substituted on input line 263.
+(Font)              size <5> substituted on input line 261.
 
 
-Overfull \hbox (4.05534pt too wide) in paragraph at lines 270--272
+Overfull \hbox (4.05534pt too wide) in paragraph at lines 268--270
 \OT1/ppl/m/n/10 choice be-tween 2A and 2B in the Al-lais set up---once we equat
 e $\OML/zplm/m/it/10 ![]$ \OT1/ppl/m/n/10 with $\OML/zplm/m/it/10 ![] \OT1/ppl/
 m/n/10 & \OML/zplm/m/it/10 D[]$\OT1/ppl/m/n/10 ,
@@ -1078,16 +1078,17 @@ Overfull \hbox (0.30542pt too wide) in paragraph at lines 626--628
 ch a ne-far-i-ous bookie.
  []
 
-[8] [9]
+[8]
 Overfull \hbox (0.13516pt too wide) in paragraph at lines 693--695
 \OT1/ppl/m/n/10 Then risk-weighted ex-pected util-ity the-ory tells you to max-
 i-mize risk-weighted
  []
 
-[10] [11] [12]
+[9] [10] [11] [12]
 LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
 899.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 
@@ -1307,7 +1308,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2456.
 
 Package rerunfilecheck Info: File `choosing-how-to-choose-20d.out' has not chan
 ged.
-(rerunfilecheck)             Checksum: 9B31FF76C49771D467A4CE642134CC0E;2071.
+(rerunfilecheck)             Checksum: 01249D358D16F716104BA33326650C16;2068.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1318,10 +1319,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 23672 strings out of 480608
- 452038 string characters out of 5903631
- 707310 words of memory out of 5000000
- 38791 multiletter control sequences out of 15000+600000
+ 23669 strings out of 480608
+ 451983 string characters out of 5903631
+ 706987 words of memory out of 5000000
+ 38789 multiletter control sequences out of 15000+600000
  657252 words of font info for 405 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,18n,84p,2340b,1730s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1344,10 +1345,10 @@ mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020
 dist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/f
 onts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
 pe1/urw/palatino/uplri8a.pfb>
-Output written on choosing-how-to-choose-20d.pdf (39 pages, 331657 bytes).
+Output written on choosing-how-to-choose-20d.pdf (39 pages, 331107 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 695 compressed objects within 7 object streams
- 223 named destinations out of 1000 (max. 500000)
+ 775 PDF objects out of 1000 (max. 8388607)
+ 693 compressed objects within 7 object streams
+ 222 named destinations out of 1000 (max. 500000)
  325 words of extra memory for PDF output out of 10000 (max. 10000000)
 
