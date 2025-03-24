@@ -679,15 +679,15 @@ If $\Omega$ is finite, the risk-weighted expected utility of $a$ can be written 
 %$$
 %Applying the risk function to the probabilities in this formulation gives us the risk-weighted expected utility of $a$:
 $$
-\RExp_{p, r}[\U(a)] = \sum_{u \in \Set{\U(a)(\omega)\given \omega \in \Omega}} (r(p(\U(a) \geq u)) - r(p(\U(a) > u)))\times u
+\RExp_{p, r}[\U(a)] = \sum_{x \in \Set{\U(a)(\omega)\given \omega \in \Omega}} (r(p(\U(a) \geq x)) - r(p(\U(a) > x)))\times x
 $$
-And, more generally, if the utilities are bounded below by $l$ and above by $h$,
+And, more generally, if the utilities are bounded below by $l$ and above by $u$,
 %$$
 %\Exp_p[\U(a)] = \int^h_{l} p(\U(a) > u)\, du
 %$$
 %and
 $$
-\RExp_p[\U(a)] = \int^h_{l} r(p(\U(a) > u))\, du
+\RExp_p[\U(a)] = \int^h_{u} r(p(\U(a) > x))\, dx
 $$
 Then risk-weighted expected utility theory tells you to maximize risk-weighted expected utility.
 
@@ -748,18 +748,18 @@ $\A$ is a non-empty set, the set of all possible acts.
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
 %Note that we are essentially here holding the utility function fixed, for our purposes. 
 
-\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. 
-Instead of assuming that $D$ is finite, we could impose that it is compact, relative to her utilities, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,u]^\Omega$. 
-The set of all decision problems is $\D$. 
+\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all decision problems is $\D$. 
+
+(In fact, all of our results will go through if we instead assume that each $D$ in $\D$ is compact, relative to the utility function, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,u]^\Omega$. But we will continue to assume that decision problems are finite for ease of presentation.)
+
 %That is, $\emptyset \neq D \subseteq \A$. %For example, you might be choosing whether to take an umbrella or not. 
 %$\D$ is a set of decision problems. A decision problem $D$ is a set of acts. That is, $D \subseteq \A$. Again, this needn't include all subsets of $\A$, for we might take only certain decision problems to be possible.
 
 %\emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. We might understand $\c(D)$ as the set of acts in $D$ that the choice function deems permissible or choiceworthy, or rather, those that it does not deem to be bad, or rejects. \todo{should we add back in: ``Examples are $\EU_p$, $\REU_p^r$, $\EAd_\IP$ and $\Maximin_\IP$, as defined throughout the parper. ``}
 
 
-{\color{violet}
-\emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. If $a\notin\c(D)$ then $\c$ deems $a$ to be impermissible in $D$. Some authors take any $a\in\c(D)$ to be rationally permissible \citep[e.g.,][]{moss2015tse} \todo{refs!} although many do not take there to be any positive judgement on actions in the choice set, instead it is simply an option which is not deemed impermissible, unless there is a unique action in the choice set. \todo{REFs}
-}
+{
+\emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. If $a$ is \textit{not} in $\c(D)$ then $\c$ deems $a$ impermissible in $D$. Some authors go further and say that any $a$ in $\c(D)$ is rationally \textit{permissible} \citep[e.g.,][]{moss2015tse}. But others do not. The latter say instead that, if $a$ is in $\c(D)$, then $a$ is not deemed impermissible, but unless $a$ is the only act in $\c(D)$, it does not follow that $a$ is permissible or positively evaluated in any way \citep[e.g.,][]{debock2019iar}.}
 
 %{ \emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. We will understand $\c(D)$ as the set of acts in $D$ that the choice function does not \textit{reject} or deem \textit{rationally impermissible to choose}. If $\c(D)$ contains only a single act, then that act is uniquely \textit{choiceworthy} or \textit{rationally permissible} in $\D$. But \textit{being rejected} is not the dual of \textit{being permissible}. Rather, we think of being rejected or impermissible in $D$ as a negative status. Similarly, we think of being choiceworthy or permissible in $D$ as a positive status. It is possible for an act to lack either status (not possible if the two notions are duals). More on this in sections 3 and 4.}
 
@@ -797,7 +797,7 @@ A picking strategy picks for a choice function $\c$ if it never picks an option 
 %\item\emph{Choice function} A choice function 
 %\end{itemize}
 
-The expected utility of an action $a$, is given by \begin{equation}
+Given a probability function $p$ defined over $\Omega$, the expected utility of an action $a$, by the lights of $p$, is given by \begin{equation}
 	\Exp_p [\U(a)]:=\sum_{\omega\in\Omega}p(\omega)\U(a)(\omega)
 \end{equation}
 If one has (probabilistic) credences given by $p$, expected utility theory says that one should choose an act in $D$ that maximises $\Exp_p[\U(a)]$.\footnote{The version we present here is of the sort described by \citet{savage1954fs}, in which it is assumed that the acts are independent of the states of the world. This assumption is dropped in the evidential decision theory of \citet{jeffrey1965lod} and the causal decision theory of \citet{stalnaker1972ldl, gibbard1978ctk, joyce1999fcdt}.} That is, we define the choice function to which expected utility theory gives rise when coupled with probability function $p$ as follows:
@@ -819,11 +819,11 @@ So a picking strategy $\s$ picks for $\EU_p$ iff $\s(D)$ maximizes expected util
 Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtains its maximum in $D$; so $\EU_p(D)\neq\emptyset$. 
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
-{ So your credences over the joint space, $\Omega\times\D$, is given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.}
+{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.}
 
 
-We just apply our notion of expected utility, now with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
-{ $p\times\mu$.} We are judging a picking strategy by the utility of the acts it requires us to choose, and so we define $\U(\s)(\omega,D):=\U(\s(D))(\omega)$. We can then apply our definition of expected utility and get that any picking strategy that picks for $\EU_p$ maximizes expected utility by the lights of %$p\times \mu$. 
+We can now simply apply our notion of expected utility with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
+{ $p\times\mu$.} We judge a picking strategy by the utility of the acts it requires us to choose, and so we define $\U(\s)(\omega,D):=\U(\s(D))(\omega)$. We can then apply our definition of expected utility and get that any picking strategy that picks for $\EU_p$ maximizes expected utility by the lights of %$p\times \mu$. 
 { $p\times\mu$.}
 \begin{proposition}\label{thm:eu-self-rec}
 	For any $p$, $\mu$, if $\s$ picks for $\EU_p$, then, for any picking strategy $\s'$ in $\S$,
@@ -831,7 +831,7 @@ We just apply our notion of expected utility, now with the credences over $\Omeg
 	That is, if $\s$ picks for $\EU_p$, then $\s\in\EU_{p\times\mu}(\Strategies)$. 
 	\end{proposition}
 (Recall: $\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with %$p\times \mu$. 
-{ $p\times\mu$}, and $\Strategies$ is the set of picking strategies, and so $\EU_{p\times \mu}(\Strategies)$ is the set of all picking strategies that maximizes expected utility by the lights of %$p\times \mu$. 
+{ $p\times\mu$}, and $\Strategies$ is the set of picking strategies, and so $\EU_{p\times \mu}(\Strategies)$ is the set of all picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
 { $p\times\mu$.})
 
 
@@ -843,7 +843,7 @@ What's more, they are the only picking strategies which maximise expected utilit
 If $\c$ is a choice function and $\s$ is a picking strategy, then $\s$ \emph{$\mu$-surely picks for $\c$} iff $\mu\{D \in \D \given \s(D)\in \c(D)\}=1$
 \end{definition}
 %That is, $\mu$ is certain that, for each decision problem $D$, $\s$ picks an act from $D$ that lies in $\c(D)$.
-{\color{violet}That is, $\s$ $\mu$-surely picks for $\c$ just in case you are certain (with probability 1, according to $\mu$), that you'll face a decision problem where what $\s$ picks is compatible with $\c$, i.e., that $\s(D)\in\c(D)$, that $\s$ does not pick an option which $\c$ rejects. }
+{That is, $\s$ $\mu$-surely picks for $\c$ just in case $\mu$ is certain you'll face a decision problem where what $\s$ picks is compatible with $\c$, \textit{i.e.}, $\s(D)\in\c(D)$. That is, $\mu$ is sure that $\s$ does not pick an option that $\c$ rejects. }
 %{ That is, $\s$ $\mu$-surely picks for $\c$ just in case you are certain (probability 1 according to $\mu$) that you will face a decision problem $D$ where $s$ picks an option from the choice set $\c(D)$ (\textit{i.e.} a non-rejected option).}
 
 \begin{proposition}\label{thm:eu-uniquely-optimal}
