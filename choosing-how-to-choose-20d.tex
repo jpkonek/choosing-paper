@@ -1236,7 +1236,7 @@ Does this make E-Admissibility self-undermining?
 
 
  \begin{proposition}\label{thm:max-suff}
-	If $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
+	If $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$ with $p\in\IP$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
 %	
 %	If $\s$ picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$, then $\s$ picks for $\Maximality_{\IB(\cdot|-)}$ and $\s\in \Maximality_\IB(\Strategies)$. 
 	%and is not in $\EAd_\IB(\Strategies)$.
@@ -1734,7 +1734,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	How might we apply our theories of imprecise probability to judge such imprecise acts, where it is imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
 	For precise acts, E-Admissibility rejects an act when, for every $p$ in $\IP$, there is some alternative act $a'$ that $p$ expects to do better. When extending E-Admissibility to judge imprecise acts, we have to ask what it means for $p$ to expect an imprecise act $\mathbb{A}'$ to do better than $\mathbb{A}$. 
 	
-	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies or all $\EU_p$ strategies, our motivating idea for imprecise picking strategies. 
+	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise picking strategy each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies or all $\EU_p$ strategies, our motivating idea for imprecise picking strategies. 
 	
 	Alternatively, one might say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]\geq\Exp_p[\U(a)]$, and there is some $a\in\mathbb{A}$ such that for all $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$.\footnote{Or perhaps this second disjunct should say that there is some $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$ with $\Exp_p[\U(a')]$}
 	This condition generates a version of E-Admissibility for imprecise acts which rules as impermissible the set of all picking strategies for $\EAd_\IP$. 
