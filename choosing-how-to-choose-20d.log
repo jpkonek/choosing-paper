@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 17:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 17:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1291,7 +1291,7 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  23713 strings out of 480608
  452908 string characters out of 5903631
- 714370 words of memory out of 5000000
+ 714362 words of memory out of 5000000
  38825 multiletter control sequences out of 15000+600000
  658235 words of font info for 410 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1314,7 +1314,7 @@ mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020
 /texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fo
 nts/type1/urw/palatino/uplri8a.pfb>
-Output written on choosing-how-to-choose-20d.pdf (40 pages, 327442 bytes).
+Output written on choosing-how-to-choose-20d.pdf (40 pages, 327455 bytes).
 PDF statistics:
  789 PDF objects out of 1000 (max. 8388607)
  706 compressed objects within 8 object streams
