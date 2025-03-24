@@ -1203,8 +1203,8 @@ What all of this shows, one might think, is just that E-Admissibility sees value
 		p & x & 1-x \\
 		\hline
 		\hline
-		a & \text{\pounds 10} & \text{\pounds 10}   \\
-		b_1 & \text{\pounds 0} & \text{\pounds 20} 
+		b & \text{\pounds 10} & \text{\pounds 10}   \\
+		a_1 & \text{\pounds 0} & \text{\pounds 20} 
 	\end{array}\hspace{20mm}
 	\begin{array}{r|cc}
 		D_2 & X & \neg X  \\
@@ -1212,15 +1212,15 @@ What all of this shows, one might think, is just that E-Admissibility sees value
 		p & x & 1-x \\
 		\hline
 		\hline
-		a & \text{\pounds 10} & \text{\pounds 10}   \\
-		b_2 & \text{\pounds 20} & \text{\pounds 0} 
+		b & \text{\pounds 10} & \text{\pounds 10}   \\
+		a_2 & \text{\pounds 20} & \text{\pounds 0} 
 	\end{array}
 	$$
 	
-	Any $\EU$-maximizer will coordinate their choices in $D_1$ and $D_2$ in the following sense: hey will (assuming utility linear in GBP) choose $a$ (reject $b_1$) in $D_1$ just in case they choose $b_2$ (reject $a$) in $D_2$; likewise, they will choose $b_1$ (reject $a$) in $D_1$ just in case they choose $a$ (reject $b_2$) in $D_2$. 
+	Any $\EU$-maximizer will coordinate their choices in $D_1$ and $D_2$ in the following sense: they will (assuming utility linear in GBP) choose $b$ (reject $b_1$) in $D_1$ just in case they choose $a_2$ (reject $b$) in $D_2$; likewise, they will choose $a_1$ (reject $b$) in $D_1$ just in case they choose $b$ (reject $a_2$) in $D_2$. 
 % \todo{unless $p=0.5$!!!}	
 	
-	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a$ to be strictly better than $b_1$, while $p_2$ expects $b_1$ to be strictly better than $a$. In that case, $\EAd_\IP(D_1)=\{a,b_1\}$ and $\EAd_\IP(D_2)=\{a,b_2\}$. You find both options in both options \textit{incomparable}, \textit{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D_1$ and $D_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $a$ in $D_1$ just in case you pick $b_2$ in $D_2$. Likewise, you ought to pick $b_1$ in $D_1$ just in case you pick $a$ in $D_2$. 
+	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $b$ to be strictly better than $a_1$, while $p_2$ expects $a_1$ to be strictly better than $b$. In that case, $\EAd_\IP(D_1)=\{b,a_1\}$ and $\EAd_\IP(D_2)=\{b,a_2\}$. You find both options in both options \textit{incomparable}, \textit{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D_1$ and $D_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $b$ in $D_1$ just in case you pick $a_2$ in $D_2$. Likewise, you ought to pick $a_1$ in $D_1$ just in case you pick $b$ in $D_2$. 
 	
 	
 	
@@ -1577,10 +1577,10 @@ So, at least when we consider regular probabilistic picking strategies, things h
 	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining.
 	For example, if one picks amongst the non-rejected options by randomisation, with a regular randomisation device, then E-Admissibility deems it impermissible. 
 	The defender of E-Admissibility will argue that one shouldn't select by randomisation, and also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
-	Instead, the defender of E-Admissibility will highlight that it sees value in coordinating how you resolve incomparability and randomisation, or anything that amounts to that, just won't do. 
+	Instead, the defender of E-Admissibility will highlight that it sees value in coordinating how you resolve incomparability. Randomisation, or anything that amounts to that, just won't do. 
 	\todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
 	
-	The point is a general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
+	The point is a general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be equivalent to expected utility theory. 
  \todoinfo{this new}
 }
 
@@ -1648,7 +1648,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 {\color{blue}
 	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device, or have uncertainty over how you'll pick in a way which amounts to randomisation; (at least when your opinions over which decision problem you'll be faced with is precise and require almost everywhere decisiveness). 
-	One's account of imprecise decision making has to say something more sophisticated about how one should pick. 
+%	One's account of imprecise decision making has to say something more sophisticated about how one should pick.
 \todo{I rewrote this from JKs comment}}
 %{\color{red}The same sorts of considerations that potentially diffuse this challenge for E-Admissibility also diffuse it for Maximality.}
 
@@ -2008,6 +2008,8 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 
 \begin{proof}
 	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	
+	Suppose $D\in\D'$. 
 	
 	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$.\todo{this is only true for $D\in\D'$!}
 	
