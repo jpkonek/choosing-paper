@@ -1489,7 +1489,7 @@ $$\nu \in \EU_{\pb}(\N) \Leftrightarrow \nu \text{ $\pb$-surely picks for $\EU_{
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
-Since $\EAd_\IB=\bigcup_{\pb\in\IB}\EU_\pb$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
+Since something is in $\EAd_\IB$ iff it is in $\EU_\pb$ for some $\pb\in\IB$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
 If $\nu$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\nu\in\EAd_\IB(\N)$. More generally, if $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$ then $\nu\in\EAd_\IB(\N)$. 
 
@@ -1552,7 +1552,12 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 
 {\color{blue}
-	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining; although the defender of E-Admissibility will argue against this way of understanding the value of E-Admissibility, instead highlighting the importance of coordination encoded in E-Admissibility. \todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
+	
+	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining.
+	For example, if one picks amongst the non-rejected options by randomisation, with a regular randomisation device, then E-Admissibility deems it impermissible. 
+	The defender of E-Admissibility will argue that one shouldn't select by randomisation. And also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
+	Instead, the defender of E-Admissibility will highlight that it sees value in coordinating how you resolve incomparability and randomisation, or anything that amounts to that, just won't do. 
+	\todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
 	
 	The point is also a more general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
  \todoinfo{this new}
@@ -1718,7 +1723,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	{\color{violet}
 %		We can 
 %	These are imprecise acts, and it is imprecise what utility they lead to. 
-	How might we apply our theories of imprecise probability to judge such imprecise acts, where its imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
+	How might we apply our theories of imprecise probability to judge such imprecise acts, where it is imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
 	For precise acts, E-Admissibility rejects an act when, for every $p$ in $\IP$, there is some alternative act $a'$ that $p$ expects to do better. When extending E-Admissibility to judge imprecise acts, we have to ask what it means for $p$ to expect an imprecise act $\mathbb{A}'$ to do better than $\mathbb{A}$. 
 	
 	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies, or all deterministic picking strategies; a natural application of the idea of imprecise picking strategies. 
