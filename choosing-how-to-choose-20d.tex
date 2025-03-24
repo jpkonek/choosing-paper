@@ -968,7 +968,7 @@ Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\ome
 	This example is closely related to another phenomenon: Dutch books, or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples. \todoinfo{REFS!!!!}
 	For instance, we might consider how the agent will choose in $D_1$ and $D_2$, individually, and then combine these choices and observe that the result is dominated---1B-and-2A dominates 1A-and-2B. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D_1$, then $D_2$. And again we can note that 1B-then-2A dominates 1A-then-2B. And we can note that $\Gamma$-Maximin would still have you choose 2A when faced with $D_2$, even if you know you've already chosen 1B when faced with $D_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
 	{\color{blue}
-		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Whilst our formal results are very closely related: any such Dutch book or sequential choice challenge can be seen as a case where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, the philosophical point we are making is different. 
+		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a different philosophical question. \todo{HERE}
 	}
 %However, such examples can always be used to construct instances of undermining evaluations of strategies. Suppose $D_1, \ldots, D_k$ is a sequence of decision problems and your decision theory demands you pick $a_i$ from $D_i$; but suppose further than, if you were to pick $b_i$ from $D_i$ you'd be better off for sure: that is, the total utility of $a_1$-and-\ldots-and-$a_k$ is less than the total utility of $b_1$-and-\ldots-and-$b_k$  at every state of the world. Then, if you are equally confident you'll face each of $D_1, \ldots, D_n$, then, at each world, the expected utility of a strategy that picks $a_i$ when faced with $D_i$ is less than the expected utility of a strategy that picks $b_i$ when faced with $D_i$. 
 }
@@ -987,12 +987,14 @@ Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\ome
 
 
 {
-\subsubsection{Uncertainty about decisions}\label{sect:gamma:other mu}
+%\subsubsection{Uncertainty about decisions}
+\label{sect:gamma:other mu}
 
+Moreover, there is a further question of particular interest in our analysis which goes beyond showing the existence of cases of uncertainty for which the decision theory is undermining, as the Ellsberg case does, or using any instance of the sequential choice or Dutch Book challenges. As discussed in \cref{sect:reu:other mu}, we want a general result saying that for a wide class of ways of being uncertain about what decision you'll be faced with, $\Gamma$-Maximin is undermining.
+% The example we have illustrated with the Ellsberg case, or more generally pointed to using any existing Dutch book or sequential choice challenge, merely gives some way of being uncertain over which decision problem you'll be faced with where $\Gamma$-Maximin undermines its own recommendations. 
+%So far, we have only shown that in this particular way of being uncertain about what decisions you'll face, $\Gamma$-Maximin is self-undermining, declaring the only strategy that picks for it impermissible. As in our discussion in \cref{sect:reu:other mu}, we would like to be able to improve on the results by giving a more general result, which says that, for a wide class of ways of being uncertain, $\Gamma$-Maximin is similarly undermining. 
 
-So far, we have only shown that in this particular way of being uncertain about what decisions you'll face, $\Gamma$-Maximin is self-undermining, declaring the only strategy that picks for it impermissible. As in our discussion in \cref{sect:reu:other mu}, we would like to be able to improve on the results by giving a more general result, which says that, for a wide class of ways of being uncertain, $\Gamma$-Maximin is similarly undermining. 
-
-In fact, we do have a general result if we make a particular assumption: that one's uncertainty over which decision problem she'll be faced with is given by a precise probability which is broad over many decisions. We will discuss the details of this in \cref{sect:nu:Max}. 
+We are able to provide a general result for a wide class of ways of being uncertain over which decision problem you'll be faced with, although not for all. We will discuss the details of this in \cref{sect:nu:Max}. 
 
 %\todoinfo{check the link to the general stuff!!}
 
@@ -1127,8 +1129,8 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %}
 The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, there are strategies that pick for it that it does not deem impermissible.
 
-{\color{red}\todoinfo{I rewrote the start of this. JK to check. }
-Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? 
+{\color{red}
+Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? \todoinfo{I rewrote the start of this. JK to check. }
 A strategy is E-Admissible iff there is some $\pb\in\IB$ which expects it to be optimal.
 We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $\pb$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
 
@@ -1292,7 +1294,7 @@ We will be able to show that if your credence over which decision problem you'll
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
 {\color{red} To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then using the updated credal set to determine which options to reject.}
-todo{We already talked about this earlier! }
+\todo{We already talked about this earlier! }
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
