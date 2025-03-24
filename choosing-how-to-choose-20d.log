@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.4.7)  24 MAR 2025 12:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1078,95 +1078,100 @@ Overfull \hbox (0.30542pt too wide) in paragraph at lines 625--627
 ch a ne-far-i-ous bookie.
  []
 
-[8] [9]
-Overfull \hbox (0.13516pt too wide) in paragraph at lines 692--694
+[8]
+Overfull \hbox (0.13516pt too wide) in paragraph at lines 691--693
 \OT1/ppl/m/n/10 Then risk-weighted ex-pected util-ity the-ory tells you to max-
 i-mize risk-weighted
  []
 
-[10] [11] [12]
+[9] [10] [11] [12]
 LaTeX Font Info:    Trying to load font information for U+fplmbb on input line 
-898.
- (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ufplmbb.fd
+897.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 906.
+(hyperref)                removing `math shift' on input line 905.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Gamma' on input line 906.
+(hyperref)                removing `\Gamma' on input line 905.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 906.
+(hyperref)                removing `math shift' on input line 905.
+
+
+Overfull \vbox (1.9129pt too high) has occurred while \output is active []
+
 
 [13]
-LaTeX Font Info:    Calculating math sizes for size <5.8408> on input line 949.
+LaTeX Font Info:    Calculating math sizes for size <5.8408> on input line 948.
 
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.08615pt on input line 949.
+(Font)              scaled to size 6.08615pt on input line 948.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 4.62543pt on input line 949.
+(Font)              scaled to size 4.62543pt on input line 948.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 3.65172pt on input line 949.
+(Font)              scaled to size 3.65172pt on input line 948.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.08615pt on input line 949.
+(Font)              scaled to size 6.08615pt on input line 948.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 4.62543pt on input line 949.
+(Font)              scaled to size 4.62543pt on input line 948.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 3.65172pt on input line 949.
+(Font)              scaled to size 3.65172pt on input line 948.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5.8408> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 949.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 948.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <4.43896> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 949.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 948.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.43896> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <3.50452> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 949.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 948.
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.50452> not available
-(Font)              size <5> substituted on input line 949.
+(Font)              size <5> substituted on input line 948.
 
 [14] [15]
 
 Package natbib Warning: Citation `campos1995' on page 16 undefined on input lin
-e 1066.
+e 1065.
 
 
 Package natbib Warning: Citation `Moral2005b' on page 16 undefined on input lin
-e 1066.
+e 1065.
 
-[16]
-Overfull \hbox (6.36136pt too wide) in paragraph at lines 1075--1077
+
+Overfull \hbox (6.36136pt too wide) in paragraph at lines 1074--1076
 \OT1/ppl/m/n/10 where $\OML/zplm/m/it/10 g[] \OT1/zplm/m/n/10 : 
  \OMS/zplm/m/n/10 ^^B D ! \U/fplmbb/m/n/10 R$ \OT1/ppl/m/n/10 is the ``cylin-dr
 i-cal ex-ten-sion'' of $\OML/zplm/m/it/10 g$ \OT1/ppl/m/n/10 de-fined by $\OML/
@@ -1174,14 +1179,18 @@ zplm/m/it/10 g[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/ppl/m/n/10 , \OML/zpl
 m/m/it/10 D\OT1/zplm/m/n/10 ) =
  []
 
-[17]
-Overfull \hbox (19.1656pt too wide) in paragraph at lines 1155--1156
+
+Overfull \vbox (1.32375pt too high) has occurred while \output is active []
+
+
+[16] [17]
+Overfull \hbox (19.1656pt too wide) in paragraph at lines 1154--1155
 \OT1/ppl/m/n/10 agrees that a given pick-ing strat-egy could \OT1/ppl/m/it/10 p
 os-si-bly \OT1/ppl/m/n/10 sad-dle you with an E-Admissibile
  []
 
 [18] [19]
-Overfull \hbox (8.95139pt too wide) detected at line 1259
+Overfull \hbox (8.95139pt too wide) detected at line 1258
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []\OT1/zplm/m/n/10 (\OMS/zplm/m/n/10 9\OML/zplm/m/it/10 b \OMS/zplm/m/n/10 2 \U
@@ -1193,7 +1202,7 @@ m/m/n/10 [\U/euf/m/n/10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 a[]\OT1/zplm/m/n/1
  []
 
 
-Overfull \hbox (0.4365pt too wide) in paragraph at lines 1266--1267
+Overfull \hbox (0.4365pt too wide) in paragraph at lines 1265--1266
 []\OT1/ppl/b/n/10 Proposition 9. []\OT1/ppl/m/it/10 Sup-pose that for ev-ery $\
 OML/zplm/m/it/10 b \OMS/zplm/m/n/10 2 \U/fplmbb/m/n/10 B$\OT1/ppl/m/it/10 , $\O
 ML/zplm/m/it/10 b[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][
@@ -1202,7 +1211,7 @@ ML/zplm/m/it/10 b[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][
  []
 
 
-Overfull \hbox (5.44972pt too wide) in paragraph at lines 1266--1267
+Overfull \hbox (5.44972pt too wide) in paragraph at lines 1265--1266
 \OT1/ppl/m/n/10 1$\OT1/ppl/m/it/10 . That is, for all $\OML/zplm/m/it/10 b \OMS
 /zplm/m/n/10 2 \U/fplmbb/m/n/10 B$\OT1/ppl/m/it/10 , $\OML/zplm/m/it/10 b[]\OMS
 /zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j [][][][]\OT1/zplm/m/n/10 (
@@ -1211,7 +1220,7 @@ Overfull \hbox (5.44972pt too wide) in paragraph at lines 1266--1267
  []
 
 
-Overfull \hbox (9.3013pt too wide) detected at line 1275
+Overfull \hbox (9.3013pt too wide) detected at line 1274
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []\OT1/zplm/m/n/10 (\OMS/zplm/m/n/10 8\OML/zplm/m/it/10 a[] \OMS/zplm/m/n/10 2 
@@ -1223,13 +1232,13 @@ m/m/n/10 [\U/euf/m/n/10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 a[]\OT1/zplm/m/n/1
  []
 
 [20] [21]
-Overfull \hbox (23.50539pt too wide) in paragraph at lines 1434--1435
+Overfull \hbox (23.50539pt too wide) in paragraph at lines 1433--1434
 []\OT1/ppl/m/n/10 In the next few sec-tions, we note how our ear-lier re-sults 
 con-cern-ing non-probabilistic
  []
 
 [22] [23] [24]
-Overfull \hbox (9.83647pt too wide) in paragraph at lines 1565--1566
+Overfull \hbox (9.83647pt too wide) in paragraph at lines 1564--1565
 \OT1/ppl/m/n/10 all $\OML/zplm/m/it/10 !$\OT1/ppl/m/n/10 , and thus for all $\O
 ML/zplm/m/it/10 p$\OT1/ppl/m/n/10 , $[][]\OT1/zplm/m/n/10 [[][]\U/euf/m/n/10 U\
 OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
@@ -1239,7 +1248,7 @@ OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )] \OML/zplm/m/it/10 >
  []
 
 
-Overfull \hbox (50.02072pt too wide) in paragraph at lines 1591--1592
+Overfull \hbox (50.02072pt too wide) in paragraph at lines 1590--1591
 \OML/zplm/m/it/10 p \OMS/zplm/m/n/10 2 \U/fplmbb/m/n/10 P$\OT1/ppl/m/it/10 , $\
 OML/zplm/m/it/10 ^^V[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j 
 []9\OML/zplm/m/it/10 a \OMS/zplm/m/n/10 2 \OML/zplm/m/it/10 D []\OMS/zplm/m/n/1
@@ -1247,7 +1256,7 @@ OML/zplm/m/it/10 ^^V[]\OMS/zplm/m/n/10 f\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 j
  []
 
 [25] [26] [27] [28] [29]
-Overfull \hbox (2.7469pt too wide) in paragraph at lines 1927--1928
+Overfull \hbox (2.7469pt too wide) in paragraph at lines 1926--1927
 []\OT1/ppl/m/n/10 For any $\OML/zplm/m/it/10 ! \OMS/zplm/m/n/10 2 \OT1/zplm/m/n
 /10 
 $ \OT1/ppl/m/n/10 and $\OML/zplm/m/it/10 D \OMS/zplm/m/n/10 2 D[]$\OT1/ppl/m/n/
@@ -1256,7 +1265,7 @@ n/10 , \OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) := [] []$\OT1/ppl/m/n/10 .
  []
 
 [30]
-Overfull \hbox (4.96764pt too wide) in paragraph at lines 2015--2016
+Overfull \hbox (4.96764pt too wide) in paragraph at lines 2014--2015
 \OT1/ppl/m/n/10 vari-able, $\OML/zplm/m/it/10 X \OMS/zplm/m/n/10 2 <[]$\OT1/ppl
 /m/n/10 , i.e., $\OML/zplm/m/it/10 X \OT1/zplm/m/n/10 : 
  \OMS/zplm/m/n/10 ! <$\OT1/ppl/m/n/10 , will also write $\OML/zplm/m/it/10 p\OT
@@ -1266,7 +1275,7 @@ zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 )$
  []
 
 
-Overfull \hbox (15.11557pt too wide) in paragraph at lines 2019--2020
+Overfull \hbox (15.11557pt too wide) in paragraph at lines 2018--2019
 []\OT1/ppl/m/n/10 The util-ity pro-file of an op-tion is $\OMS/zplm/m/n/10 U\OT
 1/zplm/m/n/10 (\OML/zplm/m/it/10 o\OT1/zplm/m/n/10 ) \OMS/zplm/m/n/10 2 <[]$ \O
 T1/ppl/m/n/10 as ex-pected, i.e., $\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OML/zpl
@@ -1274,7 +1283,7 @@ m/m/it/10 o\OT1/zplm/m/n/10 )(\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
  []
 
 [31]
-Overfull \hbox (19.25816pt too wide) in paragraph at lines 2141--2143
+Overfull \hbox (19.25816pt too wide) in paragraph at lines 2140--2142
 \OT1/ppl/m/n/10 such that for each co-or-di-nate, $\OML/zplm/m/it/10 !$\OT1/ppl
 /m/n/10 , $\OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/
 m/n/10 ) [][]\OMS/zplm/m/n/10 ! \OML/zplm/m/it/10 X[]\OT1/zplm/m/n/10 (\OML/zpl
@@ -1284,7 +1293,7 @@ S/zplm/m/n/10 2 []\OT1/zplm/m/n/10 ([](\OMS/zplm/m/n/10 U\OT1/zplm/m/n/10 (\OMS
  []
 
 [32] [33] [34]
-Overfull \hbox (13.38011pt too wide) in paragraph at lines 2390--2392
+Overfull \hbox (13.38011pt too wide) in paragraph at lines 2389--2391
 [][]\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 D\OT1/zplm/m/n/10 ) = \OMS/zplm/m/n/10 
 f\OML/zplm/m/it/10 a[]\OMS/zplm/m/n/10 g$\OT1/ppl/m/n/10 . And then $\U/euf/m/n
 /10 U\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 ^^W[]\OT1/zplm/m/n/10 )(\OML/zplm/m/it
@@ -1299,52 +1308,181 @@ m/it/10 a\OT1/zplm/m/n/10 (\OML/zplm/m/it/10 !\OT1/zplm/m/n/10 ) =
 Package natbib Warning: There were undefined citations.
 
 [39]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2459.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2459.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2458.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2458.
  (./choosing-how-to-choose-20d.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2459.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2459.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2458.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2458.
 
-Package rerunfilecheck Info: File `choosing-how-to-choose-20d.out' has not chan
-ged.
-(rerunfilecheck)             Checksum: A4250594EB1FE42BA4AA928D1005EECB;2067.
 
+
+Package rerunfilecheck Warning: File `choosing-how-to-choose-20d.out' has chang
+ed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `choosing-how-to-choose-20d.out':
+(rerunfilecheck)             Before: BDE05AF8D49AD10D5D49A101DFC0B454;2066
+(rerunfilecheck)             After:  83F46F0BFFC75024FD990A335C32D88D;2065.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 2.8097pt have occurred.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 23673 strings out of 480608
- 452110 string characters out of 5903631
- 706971 words of memory out of 5000000
- 38795 multiletter control sequences out of 15000+600000
+ 23713 strings out of 480608
+ 452537 string characters out of 5903631
+ 705047 words of memory out of 5000000
+ 38797 multiletter control sequences out of 15000+600000
  657252 words of font info for 405 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,18n,83p,2340b,1027s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texliv
-e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/
-2020/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2020/texmf-d
-ist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2020/tex
-mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf-
-dist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/f
-onts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
-pe1/urw/palatino/uplri8a.pfb>
-Output written on choosing-how-to-choose-20d.pdf (39 pages, 330212 bytes).
+pdfTeX warning (dest): name{theorem.93} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{definition.86} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.114} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{definition.75} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.127} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.124} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.121} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.91} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.89} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.84} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.61} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.76} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.58} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.66} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.38} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.45} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.51} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.33} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{theorem.31} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.132} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.118} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.117} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.104} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.100} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.99} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.97} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.96} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.83} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.77} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.74} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.71} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.69} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.63} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.60} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.48} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.46} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.42} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.39} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.34} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.23} has been referenced but does not exist,
+ replaced by a fixed one
+
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/
+2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2
+020/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2020/
+texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2020/texmf
+-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2020/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2020/t
+exmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2020/texmf-di
+st/fonts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2020/texmf-dist/fon
+ts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
+1/urw/palatino/uplri8a.pfb>
+Output written on choosing-how-to-choose-20d.pdf (39 pages, 329838 bytes).
 PDF statistics:
- 769 PDF objects out of 1000 (max. 8388607)
- 687 compressed objects within 7 object streams
- 220 named destinations out of 1000 (max. 500000)
+ 815 PDF objects out of 1000 (max. 8388607)
+ 732 compressed objects within 8 object streams
+ 258 named destinations out of 1000 (max. 500000)
  325 words of extra memory for PDF output out of 10000 (max. 10000000)
 
