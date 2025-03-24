@@ -1115,17 +1115,19 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %}
 The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, there are strategies that pick for it that it does not deem impermissible.
 
+{\color{red}\todoinfo{I rewrote the start of this. JK to check. }
+Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? 
+A strategy is E-Admissible iff there is some $\pb\in\IB$ which expects it to be optimal.
+We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $\pb$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
 
-Do we obtain a converse to \cref{thm:ead-suff-indep}?  
-A strategy is E-Admissible iff there is some $\pb\in\IB$ which expects it to be optimal. 
-
-{\color{red} It is worth emphasising, though, that the strength of your irrelevance judgments (whether you make a judgment of epistemic irrelevance or complete independence, for example) makes a big difference to which strategies are permissible by the lights of E-Admissibility. If you treat $\D$ as completely irrelevant to $\Omega$, then we can use \cref{thm:eu-self-rec,thm:eu-uniquely-optimal} to get the following: 
+%{\color{red} It is worth emphasising, though, that the strength of your irrelevance judgments (whether you make a judgment of epistemic irrelevance or complete independence, for example) makes a big difference to which strategies are permissible by the lights of E-Admissibility. If you treat $\D$ as completely irrelevant to $\Omega$, then we can use \cref{thm:eu-self-rec,thm:eu-uniquely-optimal} to get the following: 
 
 \begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. In that case, $\s\in\EAd_\IB(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in\IB$. 
 %	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 
-So the rather strong judgment of complete independence has rather strong implications for your views about picking strategies. The only strategies that are permissible by the lights of E-Admissibility in this case are ones that pick for expected utility theory, \textit{i.e.}, always pick options that maximize $p$-expected utility, for some $p\times \mu\in\IB$.}
+So the rather strong judgment of complete independence has rather strong implications for your views about picking strategies. The only strategies that are permissible by the lights of E-Admissibility in this case are ones that pick for expected utility theory, \textit{i.e.}, always pick options that maximize $p$-expected utility, for some $p\times \mu\in\IB$.
+}
 
 
 \begin{comment}
@@ -1159,10 +1161,12 @@ This is a more general feature: there are always some strategies which picks for
 
 
 %{\color{red}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies. What this reveals is that...}
-E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}, although E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. 
+{\color{blue}
+	E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}, although E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. 
 
-
+Does this make E-Admissibility self-undermining?
 	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \textit{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
+}
 
 {\color{red} One might see this result as a problem for E-Admissibility. If every $\pb$ in $\IB$ agrees that a given picking strategy could \textit{possibly} saddle you with an E-Admissibile but non-$\EU$ option in \textit{some} decision problem or other, then E-Admissibility will reject that strategy. The only picking strategies it does not reject are ones that are certain, according to some $\pb$ in $\IB$, to yield an $\EU$ option in every decision problem. 
 	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \textit{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
@@ -1192,13 +1196,14 @@ E-Admissibility rejects some picking strategies which are compatible with its ow
 	\end{array}
 	$$
 	
-	Any $\EU$-maximizer will coordinate their choices in $D_1$ and $D_2$. They will (assuming utility linear in GBP) choose $a$ (reject $b_1$) in $D_1$ just in case they choose $b_2$ (reject $a$) in $D_2$. Likewise, they will choose $b_1$ (reject $a$) in $D_1$ just in case they choose $a$ (reject $b_2$) in $D_2$. 
+	Any $\EU$-maximizer will coordinate their choices in $D_1$ and $D_2$\todo{unless $p=0.5$!!!}. They will (assuming utility linear in GBP) choose $a$ (reject $b_1$) in $D_1$ just in case they choose $b_2$ (reject $a$) in $D_2$. Likewise, they will choose $b_1$ (reject $a$) in $D_1$ just in case they choose $a$ (reject $b_2$) in $D_2$. 
 	
 	
 	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a$ to be strictly better than $b_1$, while $p_2$ expects $b_1$ to be strictly better than $a$. In that case, $\EAd_\IP(D_1)=\{a,b_1\}$ and $\EAd_\IP(D_2)=\{a,b_2\}$. You find both options in both options incomparable, \textit{i.e.}, not rejected, but also not equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D_1$ and $D_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $a$ in $D_1$ just in case you pick $b_2$ in $D_2$. Likewise, you ought to pick $b_1$ in $D_1$ just in case you pick $a$ in $D_2$. 
 	
 	
-	You might doubt that there is \textit{really} any value in this sort of ``modal coordination.'' (Recall, you will actually only face one of $D_1$ or $D_2$. You are not coordinating across time.) But the fact that E-Admissibility \textit{sees} value in coordinating how you resolve incomparability does not render it self-undermining.
+	
+	You might doubt that there is \textit{really} any value in this sort of ``modal coordination.'' (Recall, you will actually only face one of $D_1$ or $D_2$. You are not coordinating across time.) But the fact that E-Admissibility \textit{sees} value in coordinating how you resolve incomparability does not render it self-undermining.\todo{I like this paragraph a lot!!!!}
 	
 	You might also be perplexed by the sheer quantity of strategies that pick for E-Admissibility but are nonetheless rejected by E-Admissibility. Here it is important to remember that picking for E-Admissibility is simply a matter of being guaranteed to select options that are \textit{not rejected} by E-Admissibility. The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that are not visible at one scale, or level of resolution, might nonetheless become apparent at others. The fact that E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---does not conflict in any way with more pervasive non-rejection at the scale of actions or options, nor is it altogether surprising. 
 }
@@ -1219,7 +1224,7 @@ E-Admissibility rejects some picking strategies which are compatible with its ow
 % unlike in the closely related, for example, paradoxes of sequential choice where one's selections can restrict future 
 %It is fine to select either act when faced with $D_1$ so long as, were one to be faced with $D_2$ one would pick the corresponding action. This is not a way that decision theories are usually presented. Instead it is simply given as a specification of which options are impermissible in each decision problem, i.e., given by a choice function. What this shows us is that the decision theory has to encode more information. 
 %Since we are evaluating strategies as a means of evaluating the decision theory, we might then ask how the decision theory encodes this requirement to coordinate, as they are usually presented simply as giving guidance in the individual decision problems. To build on this idea, we will change to using the decision theory to evaluate not the picking strategies but to evaluate the decision theory itself. 
-\todoinfo{sort out here!!!! I commented out are a huge bunch of stuff we tried to say. }
+\todoinfo{sort out here!!!! I }
 
 	\subsubsection{Maximality}
 	
@@ -1251,10 +1256,11 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 
 And so, like E-Admissibility, Maximality is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: there are always strategies that pick for it that it does not deem impermissible.
 
-Unlike for E-Admissibility, we do not get the converse result. There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless are not $\EU_p$ strategies. This is because a strategy is only ruled out as impermissible if there's a single alternative which is preferable according to every $\pb\in \IB$. 
-This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise. 
+Unlike for E-Admissibility, we do not get the converse result (even under the assumption of complete independence). There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless are not $\EU_p$ strategies. This is because a strategy is only ruled out as impermissible if there's a single alternative which is preferable according to every $\pb\in \IB$. 
+This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise.
+%, as when $\mu$ does assign high enough confidence to facing $D_1$, then it evaluates any strategy as permissible. 
 
-If, however, you think it's precise, and equally likely, that you'll face each of $D_1$ and $D_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D_1)=\mu^*(D_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2A,1B}})(\omega)=6$; so then $\s_{\text{1A,2B}}\notin\Maximality_\IB(\Strategies)$. 
+If, however, you think it's precise, and equally likely, that you'll face each of $D_1$ and $D_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D_1)=\mu^*(D_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2A,1B}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2A,1B}})=6$, so  $\s_{\text{1A,2B}}\notin\Maximality_\IB(\Strategies)$. 
 
 We will be able to show that if your credence over which decision problem you'll be faced with is precise, and also has a further property, that it requires almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we will be able to show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}.
 
@@ -1264,13 +1270,14 @@ We will be able to show that if your credence over which decision problem you'll
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
 {\color{red} To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then using the updated credal set to determine which options to reject.}
+todo{We already talked about this earlier! }
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
 \begin{definition}
 	$$\EAd_{\IB(\cdot|-)}(D) = \Set{a \in D \given (\exists \pb \in \IB)(\forall a' \in D)(\Exp_{\pb(\cdot|D)}[\U(a)]\geq\Exp_{\pb(\cdot|D)}[\U(a')])}
 	$$\end{definition}
-	That is, $\EAd_{\IB(\cdot|-)}=\bigcup_{\pb\in\IB}\EU_{\pb(\cdot|-)}$. We thus have, as a consequence of \cref{thm:eu-dep}: 
+	That is, $\EAd_{\IB(\cdot|-)}(D)=\bigcup_{\pb\in\IB}\EU_{\pb(\cdot|-)}(D)$. We thus have, as a consequence of \cref{thm:eu-dep}: 
 	\begin{proposition}\label{thm:ead-equiv[dep]}
 		$\s\in\EAd_\IB(\Strategies)$ iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in \IB$. 		
 	\end{proposition}
@@ -1523,7 +1530,7 @@ Thus, $\nu$ does not pick for $\EU_p$. It also does not even $\mu$-surely pick f
 
 In fact, if $\IP$ is allowed to be non-convex, we get cases where $\nu$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability which is indifferent between the two actions, and thus, $\nu$ is Bayes for this probability.}
 Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that neither $a_1$ or $a_2$ are rejected. Then for any regular picking strategy for $\EAd_\IP$, $\nu_D$ will give positive probability to both $a_1$ and $a_2$. $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, $\nu$ is not rationally permissible.
-\todo{double check wording of above}
+\todo{double check wording of above. And make it match JKs eg}
 
 
 %And the same will happen for any $\IB$ such that, for each $\seq{p, \mu} \in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}< 1$.
@@ -1542,7 +1549,9 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 
 {\color{blue}
-The point is a general one. If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
+	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining; although the defender of E-Admissibility will argue against this way of understanding the value of E-Admissibility, instead highlighting the importance of coordination encoded in E-Admissibility. \todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
+	
+	The point is also a more general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
  \todoinfo{this new}
 }
 
@@ -1571,7 +1580,8 @@ Just considering a single proposition, this will hold, for example, if you might
 
 %Wald gives us a very strong result linking being Bayes to be 
 
-Then we have the following result.\footnote{{\color{violet}The assumptions on $\mu^*$ are not required if one instead assumes that $\N$ is convex, which is motivated when one considers randomisations as available options. However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\N$ is also closed, for which one needs to allow merely finitely additive randomisations. See SSK}}\todo{reference in ftnte}
+Then we have the following result.%
+\footnote{{\color{violet}The assumptions on $\mu^*$ are not required if one instead assumes that $\N$ is convex, which is motivated when one considers randomisations as available options. However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\N$ is also closed, for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness and is countably additive. Then if $\nu \in \Maximality_\IB(\N)$, then $\nu \text{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$\todoinfo{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
