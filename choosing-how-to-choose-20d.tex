@@ -1555,11 +1555,11 @@ So, at least when we consider regular probabilistic picking strategies, things h
 	
 	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining.
 	For example, if one picks amongst the non-rejected options by randomisation, with a regular randomisation device, then E-Admissibility deems it impermissible. 
-	The defender of E-Admissibility will argue that one shouldn't select by randomisation. And also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
+	The defender of E-Admissibility will argue that one shouldn't select by randomisation, and also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
 	Instead, the defender of E-Admissibility will highlight that it sees value in coordinating how you resolve incomparability and randomisation, or anything that amounts to that, just won't do. 
 	\todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
 	
-	The point is also a more general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
+	The point is a general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
  \todoinfo{this new}
 }
 
@@ -1619,7 +1619,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 	Suppose $\N$ is $\EU$-complete.  
 	Suppose that $\mu^*$ requires almost everywhere decisiveness and is countably additive.
 
-	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$. That is, for all $p\in \IP$, $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}$
+	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}
 	
 	Then, if $\nu$ is regular picking strategy for $\Maximality$ then $\nu\notin \Maximality_\IB(\N)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
@@ -1659,7 +1659,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 %Then, if $\nu$ is regular picking strategy for $\Maximin_\IP$ then $\nu\notin \Maximality_\IB(\N)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 %\end{proposition}
 
-\todoinfo{This needs double checking}
+
 
 {\color{violet}Since $\Gamma$-Maximin is a more restrictive theory than Maximality, we thus also have that the only strategies which are $\Gamma$-Maximin are those which $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
@@ -1708,10 +1708,11 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	
 	\subsubsection{Imprecise picking strategies}\label{IPpicking}
 	So far, we've used decision theories to judge deterministic picking strategies, $\s$, and probabilistic picking strategies, $\nu$. 
-	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
+	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. 
+%	Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
 	
 	{\color{blue}
-	Since E-Admissibility requires coordinating, and rejects all strategies except for the $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies as the recommendation of E-Admissibility. Can we apply E-Admissibility itself to judge this? 
+	Since E-Admissibility requires coordinating, and rejects all strategies except for those which are equivalent to $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies which is the recommendation of E-Admissibility. Can we apply E-Admissibility itself to judge this? 
 	
 	
 	We can try to extend the idea of E-Admissibility to judging imprecise acts to answer how E-Admissibility judges this set of all the $\EU_p$ strategies. 
@@ -1726,12 +1727,14 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	How might we apply our theories of imprecise probability to judge such imprecise acts, where it is imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
 	For precise acts, E-Admissibility rejects an act when, for every $p$ in $\IP$, there is some alternative act $a'$ that $p$ expects to do better. When extending E-Admissibility to judge imprecise acts, we have to ask what it means for $p$ to expect an imprecise act $\mathbb{A}'$ to do better than $\mathbb{A}$. 
 	
-	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies, or all deterministic picking strategies; a natural application of the idea of imprecise picking strategies. 
+	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies or all $\EU_p$ strategies, our motivating idea for imprecise picking strategies. 
 	
-	There is a slight weakening: $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]\geq\Exp_p[\U(a)]$, and there is some $a\in\mathbb{A}$ such that for all $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. 
+	Alternatively, one might say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]\geq\Exp_p[\U(a)]$, and there is some $a\in\mathbb{A}$ such that for all $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$.\footnote{Or perhaps this second disjunct should say that there is some $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$ with $\Exp_p[\U(a')]$}
 	This condition generates a version of E-Admissibility for imprecise acts which rules as impermissible the set of all picking strategies for $\EAd_\IP$. 
 	
-	We get a result paralleling that for precise picking strategies: to avoid being ruled out as impermissible, one's strategy needs to $\mu$-surely be an $\EU_p$ strategy for some $p\times\mu\in\IB$. (Or equivalently for the conditional version.)
+	Using this criterion, we rule out the imprecise picking strategy which consists of the set of all $\EU_p$ strategies, unless they all $\mu$-surely pick for $\EU_p$, for a single $\mu\times p\in\IB$. 
+%	Using this, we rule out any imprecise picking strategy whose members do not all $\mu$-surely pick for $\EU_p$, for a single $p\times\mu\in\IB$.
+%	Using this, we get a result paralleling that for precise picking strategies: to avoid being ruled out as impermissible, one's strategy needs to $\mu$-surely be an $\EU_p$ strategy for some $p\times\mu\in\IB$. (Or equivalently for the conditional version.)
 	If $\mathbb{N}$ is a set of picking strategies, and there is no $p \times \mu$ in $\IB$ such that all strategies in $\mathbb{N}$ $\mu$-surely pick for $\EU_p$; then  each probability $\pb=p\times \mu$ evaluates the precise picking strategy $\{\nu^p\}$, where $\nu^p$ picks for $\EU_p$, be better, in this sense: every $\nu\in\mathbb{N}$, $\Exp_p[\U(\nu)]\leq \Exp_p[\U(\nu^p)]$, and there is some $\nu\in\mathbb{N}$ with $\Exp_p[\U(\nu)]<\Exp_p[\U(\nu^p)]$. 
 %	 
 %	 	It is, however, already strong enough to rule out an imprecise picking strategy for $\EAd_\IP$ which is regular, i.e., where every $\nu\in\mathbb{N}$ is a regular picking strategy for $\EAd_\IP$. This is because, for each $\nu\in\mathbb{N}$, $\Exp_{p\times\mu}[\U(\nu)]\leq\Exp_{p\times\mu}[\U(\nu^p)]$, where $\nu^p$ picks for $\EU_p$, and there is some $\
@@ -1765,7 +1768,10 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 %%We would not expect to obtain similar results for Maximality. Even if we assume that one's probability over which decision she'll be faced with is precise, we don't have 
 %%We would not expect to obtain similar challenges for extending Maximality, as we can only show that each $\nu$ has a $\nu'$ which is preferable, but there's no guarantee. 
 We should not expect to obtain similar results for Maximality.
-When we assume that one's probability over which decision she'll be faced with is precise, we showed that for every $\nu$ which is not $\mu^*$-surely an $\EU_p$ strategy we get some $\nu'$ which every probability $p$ agrees is preferable. But we can't guarantee that given a set of $\nu$s, $\mathbb{N}$, we get any agreement on which $\nu'$ are preferable.
+Consider an imprecise picking strategy consisting of the set of all compatible picking strategies, or even all those which are coordinated and pick for $\EU_p$ for some $p$ in one's credal set. Each probability agrees that the precise picking strategy given by picking in accordance with $\EU_p$ is better, but they disagree about what this precise picking strategy consists of, should it pick for $\EU_{p_1}$ or for $\EU_{p_2}$.
+Maximality thus avoids the charge of evaluating the imprecise picking strategy as impermissible. There can be imprecise picking strategies which are Maximal and which do not all pick for a single $\EU_p$, unlike for E-Admissibility.
+
+%When we assume that one's probability over which decision she'll be faced with is precise, we showed that for every $\nu$ which is not $\mu^*$-surely an $\EU_p$ strategy we get some $\nu'$ which every probability $p$ agrees is preferable. But we can't guarantee that given a set of $\nu$s, $\mathbb{N}$, we get any agreement on which $\nu'$ are preferable.
 
 	}
 	
@@ -1778,10 +1784,15 @@ When we assume that one's probability over which decision she'll be faced with i
 %	In this case, we don't get the self-undermining result we have for E-Admissibility. For some sets $\N$ of probabilistic picking strategies that pick for $\Maximality_\IP$, there will be no alternative set $\N'$ that is deemed determinately better by the lights of each probability function in $\IB$.\todo{RP: do we know this is true?}
 %	}
 %	
-{\color{violet}
+\begin{comment}
+	{\color{blue}
+	So, whilst this approach is a challenge for E-Admissibility, it is an option for Maximality.  
 	So, if picking strategies may be imprecise acts, represented by sets of precise probabilistic picking strategies, then Maximality sometimes evades the charge of being self-undermining. However, it is hard to see how to implement an imprecise picking strategy. Perhaps one could choose by tossing a coin about whose bias you have imprecise probabilities, or perhaps one should just have imprecise probabilistic uncertainty about how one will pick. But to maintain this response, one had better not gain additional information sufficient to make one precise. 
 %	what mechanism one could use for picking between options your choice function does not reject that doesn't amount to randomisation. Moreover, 
 	}
+\end{comment}
+
+\todoinfo{I deleted the Max response! Because I no longer get it...!!!}
 	
 	
 	
