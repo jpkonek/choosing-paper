@@ -1665,14 +1665,14 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 
 
-{\color{violet}Since $\Gamma$-Maximin is a more restrictive theory than Maximality, we thus also have that the only strategies which are $\Gamma$-Maximin are those which $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$. 
+{\color{violet}Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin it also needs to $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness and is countably additive. Then if $\nu \in \Maximin_\IB(\N)$, $ \nu \textit{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 		
 		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\nu$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\N)$ (in fact, any $\nu$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\nu$ is regular for $\Maximin_\IP$ then $\nu\notin \Maximin_\IB(\N)$. 
 	\end{proposition}
 	
-	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
+%	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
 	
 }
 
@@ -1862,9 +1862,12 @@ Maximality thus avoids the charge of evaluating the imprecise picking strategy a
 %
 \subsubsection{Utility of a choice function not given by a picking strategy}
 
-Perhaps one should specify the utility of a choice function in an alternative way, specifying $\U(\c,D,\omega)$ for the various $D$ and $\omega$. Even if we impose that $\U(\c,D,\omega)$ should be a mixture of $\U(a,\omega)$ for $a\in\c(D)$ our results do not follow. For example, if we specify that $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$, then our results clearly do not hold, in fact, then one should be maximally imprecise in every decision problem, setting $\c(D)=D$. 
+Perhaps one should specify the utility of a choice function in an alternative way, specifying $\U(\c,D,\omega)$ for the various $D$ and $\omega$. 
+%Perhaps the utility of adopting a choice function $\c$ isn't governed by randomisation. 
+Even if we impose that $\U(\c,D,\omega)$ should be a mixture of $\U(a,\omega)$ for $a\in\c(D)$ our results do not follow. For example, if we specify that $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$, then our results clearly do not hold, in fact, then one should be maximally imprecise in every decision problem, setting $\c(D)=D$. 
 %An alternative defence is to argue that there's no representation in terms of a mixture of utilities of the non-rejected options. If for example $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$, then our results would not hold, in fact, then one should be maximally imprecise in every decision, setting $\c(D)=D$. 
 This, however, needs more justification. Why should it be evaluated this way?
+Why would this be the right judgement of what utility I will get if I adopt the choice function $\c$?
 Perhaps an approach which says that when there's an imprecise decision set one should do something else to make the decision, for example to consult an expert \citep{de2014efficient}; although we wonder then why the option to consult an expert or gather more evidence wasn't available in the setting up of the decision problem. 
 %A defence by Jasper etc\todo{what?} say that when there's an imprecise decision set one should do something else, for example gather more evidence. We're not sure however, whether that's that helpful. Why wasn't the gathering more evidence option an option that was available in the first setting up of the decision problem? 
 
