@@ -883,13 +883,15 @@ In any decision problem, we must bring one's probability $\pb$ up to speed on th
 We say that %$\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ iff $\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in\EU_{B(\cdot|D)}(D)\}=1$; that is the marginal $\pb_\D\{D\given \s(D)\in\EU_{B(\cdot|D)}(D) \}=1$. 
 $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in EU_{\pb(\cdot|-)}(D)\}=1\]
 \end{definition}
+When $\pb$ has the form $p\times\mu$, these are exactly our original notions of $\EU_p$ and $\s$ $\mu$-surely picking for $\EU_p$. 
 \todoinfo{Check this notation throughout}
 
-We can then show:
+We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
 \begin{proposition}\label{thm:eu-dep}
 	$\s\in\EU_\pb(\Strategies)$ iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.
 \end{proposition}
 }
+
 %It is also important that we assumed that you think that the decision you'll face is independent of the state of the world. It's clear that these results will fail without this assumption. Suppose you might face the decision whether or not to take a bet on whether it is raining or not; if you do, you maximize expected utility by taking the bet; but suppose I arrange things so that you face that decision only if it isn't raining. Then of course the best picking strategy will tell you to not to take the bet. More generally, if you might face a decision problem, and your decision theory recommends an act that does not dominate another available one, i.e., when there is some state in which the other one is better, then if you're only going to face that decision problem in that possibility, then, while uncertain which decision problem you'll face, your decision theory will prefer a picking strategy that picks the other act. 
 %If you're only going to face $D_1$ in world $\omega_1$ and $D_2$ in $\omega_2$, 
 % \todoinfo{check and improve the wording there}
