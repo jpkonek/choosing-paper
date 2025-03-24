@@ -331,7 +331,8 @@ There are at least two ways to argue that being self-undermining tells against a
 %{\color{violet} Now, you might argue that the right decision theory to use is still one which results in }
 %Now, it is possible that a good theory may not be the correct one. 
 %Now, perhaps we shouldn't be looking for a correct theory, as perhaps they have some other flaws. For example, 
-{Now, you might (rightly) point out that correct theories might be flawed in some other way, and as a result, it may be no decisive mark against a self-undermining theory that it is not correct. For example,} it could be impermissible to use a decision theory that gives the correct verdicts if that decision theory were so complex and computationally demanding that it lay beyond the agent's cognitive capacities to use it reliably---not much good using something that gives the right verdicts every time if you can never discover what verdicts it gives. But that is not the case we are considering here. {Indeed, we have assumed that all possible picking strategies are available to the agent. So, in particular, it is within the agent's control to choose a picking strategy that never recommends impermissible acts. This is not beyond the agent's ken. And she can perfectly reliably implement this strategy. That is why we take the outcome of a picking strategy to be the outcome of whichever act it recommends.}
+%{Now, you might (rightly) point out that correct theories might be flawed in some other way, and as a result, it may be no decisive mark against a self-undermining theory that it is not correct. For example,} 
+Perhaps this is not a decisive mark against a self-undermining theory. It could be impermissible to use any decision theory that gives the correct verdicts if, for example, those theories were so complex and computationally demanding that they lay beyond the agent's cognitive capacities to use reliably---not much good using something that gives the right verdicts every time if you can never discover what verdicts it gives. But that is not the case we are considering here. {Indeed, we have assumed that all possible picking strategies are available to the agent. So, in particular, it is within the agent's control to choose a picking strategy that never recommends impermissible acts. This is not beyond the agent's ken. And she can perfectly reliably implement this strategy. That is why we take the outcome of a picking strategy to be the outcome of whichever act it recommends.}
 
 
 It's worth adding that, for those decision theories that permit the Allais preferences, they consider it rationally required of you, at the point when you're uncertain which decision problem you'll face, to pay money if it's possible to thereby to bind yourself to doing something other than what they will recommend when you actually face that decision. Of course, we're used to that in cases of temptation---Ulysses should pay his sailors to bind him to the mast as their ship passes the Sirens---but that's because we think your utilities will change under the pressure of temptation or your probabilities will change in an irrational way or you won't choose rationally on the basis of your utilities and probabilities. Nothing like that is going on here.
@@ -1488,7 +1489,7 @@ $$\nu \in \EU_{\pb}(\N) \Leftrightarrow \nu \text{ $\pb$-surely picks for $\EU_{
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
-Since $\EAd_\IB=\bigcup_{\pb\in\IB}\EU_\pb$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
+Since something is in $\EAd_\IB$ iff it is in $\EU_\pb$ for some $\pb\in\IB$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
 If $\nu$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\nu\in\EAd_\IB(\N)$. More generally, if $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$ then $\nu\in\EAd_\IB(\N)$. 
 
@@ -1551,7 +1552,12 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 
 {\color{blue}
-	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining; although the defender of E-Admissibility will argue against this way of understanding the value of E-Admissibility, instead highlighting the importance of coordination encoded in E-Admissibility. \todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
+	
+	One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies was to judge one's decision theory as a means to her ends, and trying to give a particular judgement of how good it would be to adopt a given decision theory is, rather than simply leaving open a whole range of strategies open. If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining.
+	For example, if one picks amongst the non-rejected options by randomisation, with a regular randomisation device, then E-Admissibility deems it impermissible. 
+	The defender of E-Admissibility will argue that one shouldn't select by randomisation. And also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
+	Instead, the defender of E-Admissibility will highlight that it sees value in coordinating how you resolve incomparability and randomisation, or anything that amounts to that, just won't do. 
+	\todoinfo{yes, this was JKs stuff. I am still spiritially trying to say what I had said. }
 	
 	The point is also a more general one.  If one tries to give any way of scoring, or measuring the utility of choice functions or decision rules at each world, and at each decision problem, then avoid being ruled out as impermissible by the lights of E-Admissibility, it must be evaluated as equivalent to expected utility theory. 
  \todoinfo{this new}
@@ -1704,11 +1710,20 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	So far, we've used decision theories to judge deterministic picking strategies, $\s$, and probabilistic picking strategies, $\nu$. 
 	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
 	
+	{\color{blue}
+	Since E-Admissibility requires coordinating, and rejects all strategies except for the $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies as the recommendation of E-Admissibility. Can we apply E-Admissibility itself to judge this? 
+	
+	
+	We can try to extend the idea of E-Admissibility to judging imprecise acts to answer how E-Admissibility judges this set of all the $\EU_p$ strategies. 
+	}
+	
 %	A formally equivalent account arises if one thinks of assigning the utility of an imprecise choice function as the set of the utilities of all the compatible actions. 
 %	This might also be proposed as an account of how to specify the utility of a choice function: it is an imprecise matter, the set of the utilities of all the options that are not ruled out. 
 
-	{\color{blue}
-	These are imprecise acts, and it is imprecise what utility they lead to. How might we apply our theories of imprecise probability to judge such acts? 	We understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
+	{\color{violet}
+%		We can 
+%	These are imprecise acts, and it is imprecise what utility they lead to. 
+	How might we apply our theories of imprecise probability to judge such imprecise acts, where it is imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. 
 	For precise acts, E-Admissibility rejects an act when, for every $p$ in $\IP$, there is some alternative act $a'$ that $p$ expects to do better. When extending E-Admissibility to judge imprecise acts, we have to ask what it means for $p$ to expect an imprecise act $\mathbb{A}'$ to do better than $\mathbb{A}$. 
 	
 	A first suggestion is to say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$. This is a very hard condition to meet, so very few imprecise acts will be ruled out as impermissible on this basis. This can already rule as impermissible any imprecise act each of whose members is a regular picking strategy for $\EAd_\IP$, but it does not deem impermissible the imprecise act consisting of all picking strategies, or all deterministic picking strategies; a natural application of the idea of imprecise picking strategies. 
@@ -1931,7 +1946,7 @@ Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 
 	
 \begin{definition}
-	$\EU_{\pb(\cdot|-)}:\D'\rightarrow\D$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D).\]
+	$\EU_{\pb(\cdot|-)}:\D'\rightarrow\D$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\].
 \end{definition}
 
 \begin{definition}
@@ -1949,7 +1964,7 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 
 
 \begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\left\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\right\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
 	
 	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$. 
 	
