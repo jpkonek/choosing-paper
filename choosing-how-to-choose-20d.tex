@@ -1575,7 +1575,8 @@ As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility,
 
 For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $\pb\in \IB$ have to agree on a particular alternative as better.
 
-However, if we impose an additional restriction on $\IB$ we can obtain an analogous result: suppose your credence over which decision you'll be faced with is given by a single, \emph{precise} probability, $\mu^*$, and that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. {\color{violet} All our results equally apply when $\IB$ is the convex hull of this, as taking a convex hull doesn't affect which acts are rejected by Maximality. But since $\IP$ being convex implies that this $\{p\times\mu^*\given p\in\IP\}$ is convex (since $\mu^*$ is fixed), we do not bother with presenting this strengthening. }\todoinfo{check!!!}
+However, if we impose an additional restriction on $\IB$ we can obtain an analogous result: suppose your credence over which decision you'll be faced with is given by a single, \emph{precise} probability, $\mu^*$, and that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. {\color{violet} All our results equally apply when $\IB$ is the convex hull of this, as taking a convex hull doesn't affect which acts are rejected by Maximality. But since $\IP$ being convex implies that this $\{p\times\mu^*\given p\in\IP\}$ is convex (since $\mu^*$ is fixed), we do not bother with presenting this strengthening. }
+\todo{check!!!}
 
 
 We will also place a further condition on $\mu^*$:
@@ -1624,8 +1625,11 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 	Then, if $\nu$ is regular picking strategy for $\Maximality$ then $\nu\notin \Maximality_\IB(\N)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
 
-
-{\color{red}The same sorts of considerations that potentially diffuse this challenge for E-Admissibility also diffuse it for Maximality.}
+{\color{blue}
+	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device, or have uncertainty over how you'll pick in a way which amounts to randomisation; (at least when your opinions over which decision problem you'll be faced with is precise and require almost everywhere decisiveness). 
+	One's account of imprecise decision making has to say something more sophisticated about how one should pick. 
+\todo{I rewrote this from JKs comment}}
+%{\color{red}The same sorts of considerations that potentially diffuse this challenge for E-Admissibility also diffuse it for Maximality.}
 
 
 
@@ -1667,6 +1671,9 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 		
 		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\nu$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\N)$ (in fact, any $\nu$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\nu$ is regular for $\Maximin_\IP$ then $\nu\notin \Maximin_\IB(\N)$. 
 	\end{proposition}
+	
+	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
+	
 }
 
 %Since these results only assume that $\N$ is $\EU$-complete, it applies also when $\N$ is $\S$, the deterministic strategies discussed in the first half of the paper.\todo{check if this is already stated elsewhere}
