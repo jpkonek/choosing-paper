@@ -22,6 +22,10 @@
 %\usepackage[USenglish]{babel}
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{multirow}
+
+
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{axiom}{Axiom}
 \newtheorem{metatheorem}[theorem]{Metatheorem}
@@ -85,9 +89,8 @@
 
 % CCM added
 \usepackage[textsize=footnotesize,obeyFinal,backgroundcolor=orange!50,bordercolor=gray!20,linecolor=gray!20]{todonotes} % use "\PassOptionsToPackage{disable}{todonotes}" to disable in a document
-
+\newcommand{\todoinfo}[2][]{\todo[inline,{#1}]{#2}}
 \newcommand{\todoold}[2][]{\todo[backgroundcolor=white,bordercolor=orange!10,linecolor=gray!10, #1,caption={},textcolor=gray]{Pre-rev: #2}}
-
 \newcommand{\comment}[2][]{\todoold[#1]{#2}}
 \newcommand{\todooldinfo}[2][]{\todoold[#1]]{#2}}
 \usepackage{booktabs}  % For improved table formatting
@@ -205,6 +208,96 @@ Yet all is not lost, for this line of thinking nonetheless furnishes us with a t
 \section{Risk-sensitive decision theories}\label{sect:reu}
 
 Expected utility theory rules out as irrational certain natural ways of taking risk into account in decision-making. In particular, as noted above, it rules out the so-called \emph{Allais preferences} \citep{allais1953c}. In response, decision theorists have presented a range of alternatives that permit those preferences \citep{kahneman1979pt,machina1982eua,quiggin1982tau, buchak2014rr}. Let's begin by showing a straightforward way in which any such decision theory is self-undermining.
+
+{\color{violet}\todoinfo{CCM playing with rewriting.}
+	Suppose that you're a financial advisor.
+	You need to offer your client advice about how to choose between these two options, a risky one and a safe one. Let's say the risky one depends on some particular outcome, say whether the market crashes. Let's suppose that you think the odds of the market crashing are $1:10$. 
+	(For simplicity, we will assume that you are adopting the clients utilities to give the guidance).
+	$$
+	\begin{array}{r|cc}
+		\text{Decision problem} & \text{market crashes} &  \text{market does not crash}  \\
+		\hline
+		p & \sfrac{1}{11} & \sfrac{10}{11} \\
+		\hline
+		\hline
+		\text{Safe} & \multicolumn{2}{c}{\text{\pounds 1m}}                           \\
+		\text{Risky} & \text{\pounds 0m}&\text{\pounds 5m}
+	\end{array}
+	$$
+	
+	Perhaps you recommend taking the risky option over the safe option. 
+	
+	Now suppose that you think that the client is only possibly going to be offered this opportunity in the morning, let's say your credence is $11\%$. And otherwise she just gets nothing. You are advising her over what she should pick if offered. Now the decision problem looks like:
+	$$
+	\begin{array}{r|ccc}
+	\multirow{2}{*}{\text{Scenario 1}}	&\multicolumn{2}{c}{\text{choice offered}}&\text{choice not offered}\\
+		& \text{market crashes} &  \text{market does not crash}  \\
+		\hline
+		P &  \sfrac{1}{11} \times \sfrac{11}{100} & \sfrac{10}{11}\times\sfrac{11}{100} & \sfrac{89}{100} \\
+		& = \sfrac{1}{100} & = \sfrac{10}{100} & = \sfrac{89}{00} \\
+		\hline
+		\hline
+		\text{Safe if offered (scenario 1)} & \multicolumn{2}{c}{\text{\pounds 1m}}            &\text{\pounds 0m}               \\
+		\text{Risky if offered (scenario 1)}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 0m}
+	\end{array}
+	$$
+	Here, you plausibly still recommend that if she is offered the choice, she should take the risky option. 
+	
+	But if instead you think that when she's not offered the choice, she is given \pounds 1m rather than nothing. 
+	$$
+	\begin{array}{r|ccc}
+		\multirow{2}{*}{\text{Scenario 2}}	&\multicolumn{2}{c}{\text{choice offered}}&\text{choice not offered}\\
+		& \text{market crashes} &  \text{market does not crash}  \\
+		\hline
+%		P &  \sfrac{1}{11} \times \sfrac{11}{100} & \sfrac{10}{11}\times\sfrac{11}{100} & \sfrac{89}{100} \\
+	P	&  \sfrac{1}{100} & \sfrac{10}{100} &  \sfrac{89}{00} \\
+		\hline
+		\hline
+		\text{Safe if offered (scenario 2)} & \multicolumn{2}{c}{\text{\pounds 1m}}            &\text{\pounds 1m}               \\
+		\text{Risky if offered (scenario 2)}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 1m}
+	\end{array}
+	$$	
+	
+	Expected utility theory says that your evaluation in scenario 1 and scenario 2 should be the same. Whether you recommend taking the risky or the safe option if offered does not depend on the amount you will get if not offered. 
+	This is essentially Savage's Sure Thing Principle. 
+	
+	It is, however, rejected by various alternative theories. The Scenario 1 and Scenario 2 choice are extensionally equivalent to the Allais scenario and the empirically observed preferences are to take the risky option in scenario 1 but the safe option in scenario 2. 
+	
+	What this means as a financial advisor is that if you are in Scenario 2, you are recommending to your client that if she is offered the option to choose, she should select the safe one. However, if she is able to ring you up in the morning and inform you that she has been offered it, you now switch your recommendation and say she should take the risky option.
+	
+	This is an instability in your recommendation. It cannot be resolved by saying that she recommends the safe option, as this would create instability instead in Scenario 1. 
+
+	
+	
+	\bigskip ---
+	
+	This is how we are suggesting to consider what decision theories say about their own recommendations.
+	
+	A decision problem is a set of available acts. A picking strategy selects one of the available acts from each decision problem. Decision theories give guidance on what are sensible ways to pick when faced with various decision problems.
+	
+	A decision theory gives an account of means-end reasoning, specifying how to choose to best trade off the risk and benefits of various actions that may be available. We can also apply a decision theory itself to evaluate various picking strategies. 
+
+	
+	\bigskip 
+
+}
+
+Here are the four gambles over which the Allais preferences are defined
+---for reasons that will become clear, we present them as if they are defined over four possible states of the world, $\omega_1, \ldots, \omega_4$:
+$$
+\begin{array}{r|cccc}
+	& \omega_1 & \omega_2 & \omega_3 & \omega_4 \\
+	\hline
+	P & \sfrac{1}{100} & \sfrac{10}{100} & \sfrac{89}{200} & \sfrac{89}{200} \\
+	\hline
+	\hline
+	\text{1A} & \text{\pounds 1m} & \text{\pounds 1m}  & \text{\pounds 1m} & \text{\pounds 1m}  \\
+	\text{1B} & \text{\pounds 0m} & \text{\pounds 5m}  & \text{\pounds 1m}& \text{\pounds 1m}  \\
+	\text{2A} & \text{\pounds 1m} & \text{\pounds 1m}  & \text{\pounds 0m}  & \text{\pounds 0m}  \\
+	\text{2B} & \text{\pounds 0m} & \text{\pounds 5m}  & \text{\pounds 0m}  & \text{\pounds 0m}  
+\end{array}
+$$
+And the preferences are these: $\text{1A} \succ \text{1B}$ and $\text{2A} \prec \text{2B}$. 
 
 Here are the four gambles over which the Allais preferences are defined---for reasons that will become clear, we present them as if they are defined over four possible states of the world, $\omega_1, \ldots, \omega_4$:
 $$
@@ -768,7 +861,7 @@ In this section, we reassure ourselves that Savage-style expected utility theory
 \emph{Uncertainty } The agent's uncertain beliefs about the world are represented by a single probability function $p$ over $\Omega$. 
 
 \emph{Acts }
-$\A$ is a non-empty set, the set of all possible acts. 
+$\A$ is a non-empty set. The set of all possible acts. 
 
 
 
@@ -789,7 +882,7 @@ $\A$ is a non-empty set, the set of all possible acts.
 
 
 {
-\emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. If $a$ is \textit{not} in $\c(D)$ then $\c$ deems $a$ impermissible in $D$. Some authors go further and say that any $a$ in $\c(D)$ is rationally \textit{permissible} \citep[e.g.,][]{moss2015tse}. But others do not. The latter say instead that, if $a$ is in $\c(D)$, then $a$ is not deemed impermissible, but unless $a$ is the only act in $\c(D)$, it does not follow that $a$ is permissible or positively evaluated in any way \citep[e.g.,][]{debock2019iar}.}
+\emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. If $a$ is \textit{not} in $\c(D)$ then $\c$ deems $a$ impermissible in $D$. Some authors go further and say that any $a$ in $\c(D)$ is rationally \textit{permissible} \citep[e.g.,][]{moss2015tse}. But others do not. They instead say that, if $a$ is in $\c(D)$, then $a$ is not deemed impermissible, but unless $a$ is the only act in $\c(D)$, it does not follow that $a$ is permissible or positively evaluated in any way \citep[e.g.,][]{debock2019iar}.}
 
 %{ \emph{Choice function } A choice function, $\c$, specifies a non-empty subset of each decision problem, so that $\emptyset \neq \c(D) \subseteq D$, for each $D$ in $\D$. We will understand $\c(D)$ as the set of acts in $D$ that the choice function does not \textit{reject} or deem \textit{rationally impermissible to choose}. If $\c(D)$ contains only a single act, then that act is uniquely \textit{choiceworthy} or \textit{rationally permissible} in $\D$. But \textit{being rejected} is not the dual of \textit{being permissible}. Rather, we think of being rejected or impermissible in $D$ as a negative status. Similarly, we think of being choiceworthy or permissible in $D$ as a positive status. It is possible for an act to lack either status (not possible if the two notions are duals). More on this in sections 3 and 4.}
 
