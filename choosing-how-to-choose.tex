@@ -1,4 +1,4 @@
-\documentclass[a4paper,final]{article}
+\documentclass[a4paper]{article}
 \usepackage[pagewise]{lineno}
 \usepackage{amssymb}
 \usepackage{enumerate}
@@ -355,7 +355,10 @@ Of course, we're used to that in cases of act-state dependence. Causal decision 
 
 \subsubsection{Limit the decision theory's scope}
 
-Perhaps the defender of a self-undermining decision theory will say it was never their intention that their theory should be used for these higher-order decisions. They are offering a theory of first-order rational choice; not a fully general theory that covers any sort of decision, including these higher-order decisions between picking strategies. But that can't be right, for these theories are presented by their proponents as universal decision theories. In their descriptions, it is not specified that they are to be applied only in specific cases. And, most importantly, the arguments in favour of the axioms that characterize them---which, in many cases, constitute the arguments for the theory itself---never make reference to the sort of decision you'll face: if they are plausible at all, they are plausible as applied to all decisions. These arguments are truly formal in the sense that the content of the decisions in question is not relevant to our evaluation of their plausibility. If the theory is not supposed to apply to higher-order decisions as well as first-order decisions, the defender of the theory must explain why the axioms are true when they govern preferences between first-order acts, but not when they govern preferences between higher-order acts like picking strategies.
+Perhaps the defender of a self-undermining decision theory will say it was never their intention that their theory should be used for these higher-order decisions. They are offering a theory of first-order rational choice; not a fully general theory that covers any sort of decision, including these higher-order decisions between picking strategies. 
+But that can't be right, for these theories are presented by their proponents as universal decision theories. In their descriptions, it is not specified that they are to be applied only in specific cases. 
+And, most importantly, the arguments in favour of the axioms that characterize them---which, in many cases, constitute the arguments for the theory itself---never make reference to the sort of decision you'll face: if they are plausible at all, they are plausible as applied to all decisions. \todo{Could we make a mixed decision, to show why the risk profile couldn't change?} 
+These arguments are truly formal in the sense that the content of the decisions in question is not relevant to our evaluation of their plausibility. If the theory is not supposed to apply to higher-order decisions as well as first-order decisions, the defender of the theory must explain why the axioms are true when they govern preferences between first-order acts, but not when they govern preferences between higher-order acts like picking strategies.
 
 %\todoinfo{Todo: select part of the buchak quote, from below. Or perhaps just don't bother.//!}
 %{\color{cyan}
@@ -443,8 +446,9 @@ Perhaps the defender of a self-undermining decision theory will say it was never
 
 \subsubsection{Change the way of updating credences}
 
-%{\color{violet} \todoinfo{CCM working on it... !!!}
+
 %We argued that self-undermining decision theories result in a dilemma, offering conflicting advice about what to do when faced with a given decision, should you consult the optimal picking plan and follow its recommendations? Or should you apply the decision theory now you're facing the particular decision problem.
+
 
 There is one way that the defender of these theories could argue against our claim of self-underminingness: they can argue that we have essentially assumed Bayesian conditionalization and argue against conditionalization. 
 
@@ -823,7 +827,7 @@ Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtai
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
 {So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.} 
-{\color{blue}We will moreover always assume that $\mu$ is countably additive. }
+We will moreover always assume that $\mu$ is countably additive. 
 
 
 We can now simply apply our notion of expected utility with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
@@ -866,7 +870,7 @@ It is worth noting that the reasoning that delivers these results only holds whe
 
 %As well as assuming act-state independence, we've also assumed decision-state independence: that is, we've assumed that, from the point of view of your credences over $\Omega \times \D$, the decision you face and the state of the world are independent of one another. We've done this because this is the assumption we made in the case of the Allais- or risk-permitting theories above and we'll make again for the Ellsberg- or ambiguity-permitting theories below. But, in fact, analogues of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} hold even if we don't assume this. If we assume that, when the uncertainty about the decision you face is resolved, and you face that decision, you face it using expected utility theory with the credences you obtain from your credences over $\Omega \times \D$ by updating on the decision problem you face, then the picking strategy that results maximizes expected utility from the point of view of your credences over $\Omega \times \D$.
 
-{\color{violet}
+
 \subsection{Decision-State Dependence}
 
 As well as assuming act-state independence, we've also assumed decision-state independence: that is, we've assumed that, from the point of view of your credences over $\Omega \times \D$, the decision you face and the state of the world are independent of one another, given by $\pb=p\times\mu$. But, in fact, analogues of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} hold even if we don't assume this. 
@@ -890,7 +894,7 @@ We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-unique
 \begin{proposition}\label{thm:eu-dep}
 	$\s\in\EU_\pb(\Strategies)$ iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.
 \end{proposition}
-}
+
 
 %It is also important that we assumed that you think that the decision you'll face is independent of the state of the world. It's clear that these results will fail without this assumption. Suppose you might face the decision whether or not to take a bet on whether it is raining or not; if you do, you maximize expected utility by taking the bet; but suppose I arrange things so that you face that decision only if it isn't raining. Then of course the best picking strategy will tell you to not to take the bet. More generally, if you might face a decision problem, and your decision theory recommends an act that does not dominate another available one, i.e., when there is some state in which the other one is better, then if you're only going to face that decision problem in that possibility, then, while uncertain which decision problem you'll face, your decision theory will prefer a picking strategy that picks the other act. 
 %If you're only going to face $D_1$ in world $\omega_1$ and $D_2$ in $\omega_2$, 
@@ -964,14 +968,13 @@ So we are representing your uncertainty as a set, $\IB$, of (higher-order) proba
 
 Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ in $\Set{\textit{Red}, \textit{Black}, \textit{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1B,2A}})(\omega)=6$ for each $\omega$ in $\Set{\textit{Red}, \textit{Black}, \textit{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1B,2A}})=6$; so $\s_E=\s_{\text{1A,2B}}\notin\Maximin_{\IB}(\S)$. 
 
-{\color{green}
+
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todoinfo{REFS!!!!}
 	For instance, we might consider how the agent will choose in $D_1$ and $D_2$, individually, and then combine these choices and observe that the result is dominated---1B-and-2A dominates 1A-and-2B. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D_1$, then $D_2$. And again we can note that 1B-then-2A dominates 1A-then-2B. And we can note that $\Gamma$-Maximin would still have you choose 2A when faced with $D_2$, even if you know you've already chosen 1B when faced with $D_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
-	{\color{blue}
 		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.
-	}
+
 %However, such examples can always be used to construct instances of undermining evaluations of strategies. Suppose $D_1, \ldots, D_k$ is a sequence of decision problems and your decision theory demands you pick $a_i$ from $D_i$; but suppose further than, if you were to pick $b_i$ from $D_i$ you'd be better off for sure: that is, the total utility of $a_1$-and-\ldots-and-$a_k$ is less than the total utility of $b_1$-and-\ldots-and-$b_k$  at every state of the world. Then, if you are equally confident you'll face each of $D_1, \ldots, D_n$, then, at each world, the expected utility of a strategy that picks $a_i$ when faced with $D_i$ is less than the expected utility of a strategy that picks $b_i$ when faced with $D_i$. 
-}
+
 
 %
 %Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agents uncertainty not only over what the world is like, but also which decision problem she'll be faced with. 
@@ -1072,12 +1075,12 @@ Let's treat E-Admissibility first. Suppose you are uncertain which decision prob
  	Thus, if there is some $p\in\IP$ with some $p\times\mu\in \IB$, then there is some $\s$, namely any $\s$ which picks for $\EU_p$, which picks for $\EAd_\IP$ and which is in $\EAd_\IB(\Strategies)$. 
  \end{proposition}
  
- There are a number of conditions which guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP${\color{violet}, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy which is E-Admissible}. 
- For example, suppose that you have no views whatsoever about which decisions you will face{\color{red},  or the evidential value of information about which decisions you will face}. 
+ There are a number of conditions which guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP$, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy which is E-Admissible.
+ For example, suppose that you have no views whatsoever about which decisions you will face,  or the evidential value of information about which decisions you will face. 
  In that case, your credal set $\IB$ over $\Omega\times\D$ is given by the \textit{natural extension} of $\IP$ to this space, which is the largest (least informative) set of probabilities that extend the probabilities in $\IP$ to $\Omega \times \D$. 
  This is sufficient to guarantee that for every $p\in\IP$ there is some $\mu$ on $\D$ such that $p\times\mu\in \IB$.
  
- {\color{red}
+
  
 Alternatively, suppose that you have a bit of information both about the world and which decision problem you will face. Your uncertainty about the world is given by the credal set $\IP$ over $\Omega$. Your uncertainty about the which decision you will face is given by the credal set $\ID$ over $\D$. Suppose also that you treat information about which decisions you will face as \textit{irrelevant} to which state of the world you are in. 
 
@@ -1095,7 +1098,7 @@ and
 \]
 where $g^+:\Omega\times\D\rightarrow\mathbb{R}$ is the ``cylindrical extension'' of $g$ defined by $g^+(\omega,D)=g(\omega)$ for all $\omega\in\Omega$ and $D\in\D$. As many authors have noted, individual probabilities $\pb$ in the irrelevant natural extension $\IB$ will not in general treat $\D$ as irrelevant to $\Omega$ (\textit{cf.} \cite[pp. 96-7]{debock2019iar}). Nonetheless, $\IB$ itself will do so, in the sense described above. Moreover, $\IB$ will contain any $\pb$ that treats $\D$ as stochastically independent of $\Omega$. This is sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.
 
-Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \textit{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \textit{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $\pb\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies completely independent, \textit{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.}
+Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \textit{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \textit{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $\pb\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies completely independent, \textit{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.
 
 
 
@@ -1129,7 +1132,7 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %}
 The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, there are strategies that pick for it that it does not deem impermissible.
 
-{\color{red}
+
 Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? \todoinfo{I rewrote the start of this. JK to check. }
 A strategy is E-Admissible iff there is some $\pb\in\IB$ which expects it to be optimal.
 We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $\pb$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
@@ -1141,7 +1144,7 @@ We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it 
 \end{proposition}
 
 So the rather strong judgment of complete independence has rather strong implications for your views about picking strategies. The only strategies that are permissible by the lights of E-Admissibility in this case are ones that pick for expected utility theory, \textit{i.e.}, always pick options that maximize $p$-expected utility, for some $p\times \mu\in\IB$.
-}
+
 
 
 \begin{comment}
@@ -1157,7 +1160,7 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 
 
-{\color{violet}	For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D_1)=\{\text{1A,1B}\}$ and $\EAd_\IP(D_2)=\{\text{2A,2B}\}$; so every strategy picks for $\EAd_\IP$. However, the $\s_{\text{1A,2B}}$ strategy, which is the empirically observed strategy, is not an $\EU_p$ strategy for any $p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} I.e., it is not in $\EU_p(\Strategies)$ for any $p$. If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they are $\EU_p$ and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1A,2A}}$. 
+For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D_1)=\{\text{1A,1B}\}$ and $\EAd_\IP(D_2)=\{\text{2A,2B}\}$; so every strategy picks for $\EAd_\IP$. However, the $\s_{\text{1A,2B}}$ strategy, which is the empirically observed strategy, is not an $\EU_p$ strategy for any $p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} I.e., it is not in $\EU_p(\Strategies)$ for any $p$. If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they are $\EU_p$ and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1A,2A}}$. 
 
 
 
@@ -1180,7 +1183,7 @@ This is a more general feature: there are always some strategies which picks for
 %	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \textit{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
 %}
 
-{\color{red} E-Admissibility rejects some picking strategies which are compatible with its own choice set. \cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
+ E-Admissibility rejects some picking strategies which are compatible with its own choice set. \cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
 
 
 
@@ -1230,7 +1233,8 @@ What all of this shows, one might think, is just that E-Admissibility sees value
 
 Moreover, while E-Admissibility's lust for coordination does require decision-makers to \textit{pick as if} their probabilities were imprecise rather than indeterminate, in Levi's sense, this does not mean that they \textit{actually are} imprecise rather than indeterminate. Their credal set need not \textit{actually} represent some true, precise probability which they are unable to identify. This is reflected in their rejection judgments. They often find options genuinely incomparable---not rejected, but not indifferent. No agent with precise probabilities would do so. They are committed to \textit{picking as if} they have some true, precise probability because they value coordination in resolving incomparability.
 
-The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. }
+The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
+
 
 %{\color{blue}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}, although E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. }
 
@@ -1253,7 +1257,7 @@ The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picki
 	\subsubsection{Maximality}
 	
 	
-{\color{red} Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-suff-indep} entails:
+Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-suff-indep} entails:
 
 
  \begin{proposition}\label{thm:max-suff}
@@ -1261,8 +1265,7 @@ The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picki
 %	
 %	If $\s$ picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$, then $\s$ picks for $\Maximality_{\IB(\cdot|-)}$ and $\s\in \Maximality_\IB(\Strategies)$. 
 	%and is not in $\EAd_\IB(\Strategies)$.
-\end{proposition}}
- 
+\end{proposition}
 
 \begin{comment}
 Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-equiv[indep]} entails:
@@ -1293,7 +1296,7 @@ We will be able to show that if your credence over which decision problem you'll
 
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
-{\color{red} To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then using the updated credal set to determine which options to reject.}
+To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then using the updated credal set to determine which options to reject.
 \todo{We already talked about this earlier! }
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
@@ -1321,12 +1324,12 @@ Similarly, for Maximality, we can define:
 	\begin{proposition}\label{thm:max-suff[dep]}
 	If $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in \IB$, then $\s\in\Maximality_\IB(\Strategies)$. 
 \end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
-{\color{red} an analogue of \cref{thm:ead-existence[dep]}} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
+an analogue of \cref{thm:ead-existence[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
 
 
 
-}
+
 %{\color{red} DELETE???
 %
 %
@@ -1425,7 +1428,7 @@ We propose that you might have a precise probability over those permissible acts
 Firstly, you might think that, once your decision theory gives you its choice set, you will pick by applying some randomisation method, such as tossing a coin or rolling a die. Perhaps you think that we are freely selecting amongst various randomisation methods as well as the choice functions to which your decision theory gives rise, or perhaps you think that when selecting a choice function, it simply comes with a specified randomisation method. %This approach gives some pretty concrete guidance about how to turn a collection of available acts into a selection of what to do.% \todoinfo{More about randomisation discussion??}
 
 
-Secondly, you might think that, once your decision theory gives its choice set, you don't know what happens next except that, in the end you do in fact pick a particular act from that set. We then want to represent your uncertainty about how you'll end up picking when you've adopted a particular decision theory whose choice set is not a singleton. And it might just be that your uncertainty over how you'll pick is best represented by a precise probability. {\color{red} (In \cref{IPpicking}, we will extend this to the case where your uncertainty over how you'll pick is imprecise.)}
+Secondly, you might think that, once your decision theory gives its choice set, you don't know what happens next except that, in the end you do in fact pick a particular act from that set. We then want to represent your uncertainty about how you'll end up picking when you've adopted a particular decision theory whose choice set is not a singleton. And it might just be that your uncertainty over how you'll pick is best represented by a precise probability. (In \cref{IPpicking}, we will extend this to the case where your uncertainty over how you'll pick is imprecise.)
 
 %In either of these, what we have is for each choice function $C$ and decision $D$, a probability function $\nu^C_D$ over $C(D)$, the options from $D$ which are not ruled out by $C$ in this decision problem. We can then consider $\U(C,D,\omega)=\Exp_{\nu^C_D} a(\omega)$. 
 
@@ -1477,7 +1480,7 @@ We have thus far been assuming that decision problems $D$ are non-empty finite s
 
 In the next few sections, we note how our earlier results concerning non-probabilistic picking strategies generalize to probabilistic picking strategies.
 \subsubsection{Expected Utility Theory}
-{\color{violet}We will judge whether the decision theory evaluates a probabilistic picking strategy $\nu$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\nu$ is an impermissible picking strategy from a set of picking strategies, $\N$. }
+We will judge whether the decision theory evaluates a probabilistic picking strategy $\nu$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\nu$ is an impermissible picking strategy from a set of picking strategies, $\N$. 
 There are various natural proposals for what is considered in $\N$ depending on one's interpretation and applications of our results. 
 When $\N$ consists just of extremal picking strategies, it is equivalent to our set of (deterministic) picking strategies, $\S$, considered in the first half of the paper. 
 If you think you get to pick by randomisation, and can select any randomisation process, then $\N$ will be the collection of all probabilistic picking strategies.
@@ -1572,10 +1575,10 @@ So, at least when we consider regular probabilistic picking strategies, things h
 %\todoinfo{Was there more in v14b to be brought back??}
 
 
-{\color{blue}
+
 	
 	
-		One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies, was to judge an agent's decision theory as a means to her ends. We wished to give a particular judgement of how good it would be to adopt a given decision theory, rather than simply leaving open a whole range of picking strategies, {\color{red}which represent a range of different ways of implementing that theory.}
+		One motivation for introducing probabilistic picking strategies, and in particular regular probabilistic picking strategies, was to judge an agent's decision theory as a means to her ends. We wished to give a particular judgement of how good it would be to adopt a given decision theory, rather than simply leaving open a whole range of picking strategies, which represent a range of different ways of implementing that theory.
 	If this is how we are trying to judge E-Admissibility, then E-Admissibility is self-undermining.
 	For example, if one picks amongst the non-rejected options by randomisation, with a regular randomisation device, then E-Admissibility deems it impermissible. 
 	The defender of E-Admissibility will argue that one shouldn't select by randomisation, and also shouldn't have uncertainty over how one picks in a way which amounts to randomisation. 
@@ -1584,7 +1587,7 @@ So, at least when we consider regular probabilistic picking strategies, things h
 	
 	The point is a general one.  If you try to give any way of scoring, or measuring the utility of choice functions or decision rules at each world and at each decision problem, then you can only avoid being ruled out as impermissible by the lights of E-Admissibility if your rule is equivalent to expected utility theory. 
 % \todoinfo{this new}
-}
+
 
 \subsubsection{Maximality}\label{sect:nu:Max}
 
@@ -1620,13 +1623,13 @@ Then we have the following result.%
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\nu \in \Maximality_\IB(\N)$, then $\nu \text{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 	\todo{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-{\color{violet}This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\nu'$, in fact, an $\nu'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\nu')(\omega)>\Exp_{\mu^*}\U(\nu)(\omega)$ for all $\omega$, and thus for all $p$, $\Exp_p[\Exp_{\mu^*}\U(\nu')]>\Exp_p[\Exp_{\mu^*}\U(\nu)]$, i.e., $\Exp_{p\times \mu^*}\U(\nu')>\Exp_{p\times\mu^*}\U(\nu)$, so $\nu\notin\Maximality_\IB(\N)$. 
+This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\nu'$, in fact, an $\nu'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\nu')(\omega)>\Exp_{\mu^*}\U(\nu)(\omega)$ for all $\omega$, and thus for all $p$, $\Exp_p[\Exp_{\mu^*}\U(\nu')]>\Exp_p[\Exp_{\mu^*}\U(\nu)]$, i.e., $\Exp_{p\times \mu^*}\U(\nu')>\Exp_{p\times\mu^*}\U(\nu)$, so $\nu\notin\Maximality_\IB(\N)$. 
 	
 %	\todoinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\N$ is convex. }
 	
 %	The assumptions on $\mu^*$ are not required if one instead assumes that $\N$ is convex, which is motivated when one considers randomisations as available options. However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\N$ is also closed, for which one needs to allow merely finitely additive randomisations. \todo{ref to SSK ``what finadd''}
 	
-}
+
 	
 %	 If $\nu$ is not Bayes\todoinfo{here!}
 %	If $\nu$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then by \cref{thm:eu-nu-nec-suff}, $\nu\notin \EU_{p\times\mu^*}(\N)$. We can then use a version of Wald's Complete Class Theorem to show that there is some $\nu'$ where $\Exp_{\mu^*}\U(\nu')(\omega)>\Exp_{\mu^*}\U(\nu)(\omega)$ for all $\omega$, and thus for all $p$, $\EU_{p\times\mu^*}\U(\nu')>\EU_{p\times\mu^*}\U(\nu)$, so $\nu\notin\Maximality_\IB(\N)$. 
@@ -1639,7 +1642,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 
 
-{\color{violet}Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$ surely pick for any $\EU_p$, unless Maximality just collapses to being $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.}
+Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$ surely pick for any $\EU_p$, unless Maximality just collapses to being $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
@@ -1651,12 +1654,12 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 	Then, if $\nu$ is regular picking strategy for $\Maximality$ then $\nu\notin \Maximality_\IB(\N)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
 
-{\color{violet}
+
 	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device, or have uncertainty over how you'll pick in a way which amounts to randomisation; (at least when your opinions over which decision problem you'll be faced with is precise and require almost everywhere decisiveness). 
 	Just as with E-Admissibility, the defender of Maximality will argue that this is the right answer. In cases like this, you should coordinate how you resolve incomparability. The are reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
 	
 	%	One's account of imprecise decision making has to say something more sophisticated about how one should pick.
-\todo{I rewrote this from JKs comment}}
+\todo{I rewrote this from JKs comment}
 %{\color{red}The same sorts of considerations that potentially diffuse this challenge for E-Admissibility also diffuse it for Maximality.}
 
 
@@ -1693,7 +1696,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 
 
 
-{\color{violet}Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin it also needs to $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin it also needs to $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\nu \in \Maximin_\IB(\N)$, $ \nu \textit{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 		
@@ -1702,7 +1705,7 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
 	
-}
+
 
 %Since these results only assume that $\N$ is $\EU$-complete, it applies also when $\N$ is $\S$, the deterministic strategies discussed in the first half of the paper.\todo{check if this is already stated elsewhere}
 
@@ -1732,7 +1735,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 %This version of the result might be the most relevant if you conceive of picking strategies as combining choice rules and randomization procedures. That is, the choice rules narrow down the set of permissible acts, and then the picking strategies assign chances to those permissible acts. In this case, it's plausible that the set of randomization procedures you might be able to use is convex.
 
 
-{\color{blue}
+
 	\paragraph{Uncertainty about decisions}
 	Unlike for the E-Admissibility case, we have had to assume something particular about your uncertainty concerning the decision you'll face: we assume you have precise probabilities over the possible decision problems, and those probabilities are broad enough to ensure that they require almost everywhere decisiveness. It is, however, quite general, applying in a much broader range of cases than particular uncertainty generated from specific cases like the Ellsberg or Allais cases (see \cref{sect:reu:other mu}).
 	
@@ -1740,7 +1743,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	
 %	Like in \cref{sect:reu:other mu}, these results hold when we assume something about your uncertainty concerning the decision you'll face: we assume you have precise probabilities over the possible decision problems, and those probabilities are broad enough to ensure that they require almost everywhere decisiveness. 
 	It seems troubling enough that, should you acquire sufficient evidence to become uncertain about the decision problems you'll face in a way that is represented by precise probabilities, you would have to abandon the decision theory or the picking strategy you're using. 
-}
+
 
 	
 	\subsection{Alternatives}
@@ -1751,17 +1754,17 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. 
 %	Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
 	
-	{\color{blue}
+
 	Since E-Admissibility requires coordinating, and rejects all strategies except for those which are equivalent to $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies that E-Admissibility recommends. Can we apply E-Admissibility itself to judge this proposal? 
 	
 	
 	To do this, we might extend E-Admissibility so that it judges what we might call imprecise acts, where we represent an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. For instance, the set of all the $\EU_p$ strategies is such an imprecise act in the decision problem containing all the possible strategies.
-	}
+
 	
 %	A formally equivalent account arises if one thinks of assigning the utility of an imprecise choice function as the set of the utilities of all the compatible actions. 
 %	This might also be proposed as an account of how to specify the utility of a choice function: it is an imprecise matter, the set of the utilities of all the options that are not ruled out. 
 
-	{\color{violet}
+
 %		We can 
 %	These are imprecise acts, and it is imprecise what utility they lead to. 
 	%How might we apply our theories of imprecise probability to judge such imprecise acts, where it is imprecise what utility they lead to? 	We can understand an imprecise act as a set of acts. 
@@ -1781,9 +1784,9 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 %	 	and thus, $\pb=p\times\mu$ evaluates the precise picking strategy $\{\nu^p\}$ to be better, in this sense; so $\mathbb{N}$ is deemed impermissible by this extension of E-Admissibility.  
 	
 	%\todoinfo{check that again}
-}
 
-	{\color{violet}
+
+
 %	These are imprecise acts, and it is imprecise what utility they lead to. How might we apply our theories of imprecise probability to judge such acts?
 %	
 %	We understand an imprecise act as a set of precise acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. Suppose that $\mathbb{A}$ has the following feature: for every probability $p$ in one's credal set $\IP$, there is some alternative $\mathbb{A}'$, such that $\Exp_p[\U(a)]<\Exp_p[\U(a')]$ for all $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$. Then, we propose that an extension of E-Admissibility to judge imprecise acts would deem $\mathbb{A}$ as impermissible. This is a very hard condition to meet, so only a few imprecise acts are deemed impermissible on this basis.
@@ -1816,7 +1819,7 @@ Maximality thus avoids the charge of evaluating the imprecise picking strategy a
 
 %When we assume that one's probability over which decision she'll be faced with is precise, we showed that for every $\nu$ which is not $\mu^*$-surely an $\EU_p$ strategy we get some $\nu'$ which every probability $p$ agrees is preferable. But we can't guarantee that given a set of $\nu$s, $\mathbb{N}$, we get any agreement on which $\nu'$ are preferable.
 
-	}
+
 	
 	
 %	{\color{green}\todo{RP: added this as a very rough summary of what CCM and I discussed at the whiteboard yesterday.}How might we evaluate them? Suppose $\Uset$ is a utility function that takes an act $a$ and returns not a single utility profile $\U = \langle u_1, \ldots, u_n\rangle$, where $u_i$ gives the utility of $a$ at state $\omega_i$, but a set of such utility profiles. How might we state E-Admissibility for such a conception of utility? Given a credal set $\IP$, we want to say that an act $a$ in a decision problem $D$ is rejected or impermissible if, for every probability $p$ in $\IP$, there is $a'$ in $D$ such that $p$ deems $a'$ better than $a$. But what do we mean when we say $p$ deems $a'$ better than $a$, when the utilities of both acts are represented by sets of utility profiles? One very permissive proposal---that is, a proposal that will lead E-Admissibility more rarely to reject acts---is that $p$ deems $a'$ better than $a$ when it deems $a'$ determinately better than $a$, that is, when for all utility profiles $\U$ in $\Uset(a)$ and all utility profiles $\U'$ in $\Uset(a')$, $\Exp_p[\U'] > \Exp_p[\U]$. In this case, we write $a' \succ_{p, \Uset} a$. So
@@ -1828,11 +1831,11 @@ Maximality thus avoids the charge of evaluating the imprecise picking strategy a
 %	}
 %	
 
-	{\color{blue}
+
 	So, whilst this approach is a challenge for E-Admissibility, it is an option for Maximality.  
 	So, if picking strategies may be imprecise acts, represented by sets of precise probabilistic picking strategies, then Maximality sometimes evades the charge of being self-undermining. However, it is hard to see how to implement an imprecise picking strategy. Perhaps one could choose by tossing a coin about whose bias you have imprecise probabilities, or perhaps one should just have imprecise probabilistic uncertainty about how one will pick. But to maintain this response, one had better not gain additional information sufficient to make one precise. 
 %	what mechanism one could use for picking between options your choice function does not reject that doesn't amount to randomisation. Moreover, 
-	}
+	
 
 %\todoinfo{I deleted the Max response! Because I no longer get it...!!!}
 	
@@ -1924,10 +1927,10 @@ Perhaps an approach which says that when there's an imprecise decision set one s
 
 \section{Conclusion}
 
-{\color{violet}
+
 We proposed to use a decision theory to judge itself, or to judge strategies compatible with its recommendations, and found significant challenges for a host of theories that diverge from expected utility theory. 
 %Our formal analysis often parallels that of existing known challenges for these theories such as diachronic inconsistencies exhibited by Dutch book arguments or paradoxes of sequential choice, but our interpretation of the results is different, understanding it as the decision theory undermining its own recommendations. 
-}
+
 
 In \cref{sect:reu} we showed that risk-weighted expected utility theory, and other theories that accommodate the Allais preferences are self-undermining in a particular way: for any such theory, there are particular ways of being uncertain about which decisions you'll face, where there is a single picking strategy that chooses in line with the recommendations the decision theory would make were you to face each possible decision you might face, and that strategy is not itself acceptable according to the decision theory. These decision theories undermine their own recommendations, recommending instead choosing in a way that the theory itself rejects. We generated these examples on the basis of the Allais preferences---and indeed any failure of the Independence Axiom would do. We then noted that we see the same phenomenon if we know we'll face a binary decision defined over two possible states of the world, and we place a uniform distribution over these different possible decisions; and similarly for a number of beta distributions we might place over them. And so the extent of the self-undermining is reasonably broad, but we don't have a precise general result that shows how broad it is.
 
@@ -1974,8 +1977,8 @@ Another approach which would undermine our results would be to argue that the ut
 To summarise: we have found %significant 
 challenges for any of the decision theories we've considered that depart from expected utility theory. 
 %When we ask a whole range of decision theories how they think one should pick, they pretty systematically recommend picking in accordance with expected utility theory, and thus undermining their own recommendations whenever those recommendations don't collapse into the recommendations of expected utility theory. 
-{\color{blue} When we ask a whole range of decision theories how they think one should pick, they pretty systematically recommend picking in accordance with expected utility theory. For some of the theories we considered (REU, $\Gamma$-maximin), this undermines their own recommendations whenever they don't collapse into the recommendations of expected utility theory. For others (E-Admissibility, Maximality), %it rather reflects a certain value, \textit{viz.}, the value of coordinating how you resolve incomparability across decision problems.
-{\color{red} the situation is less clear. This may simply reflect a deep-seated value for coordinating how to resolve incomparability across decision problems; a value that may be palatable to proponents of those theories. What \textit{is} clear is that decision theorists must face the question of how to pick head on. %must theorise more systematically about how to pick.}}
+When we ask a whole range of decision theories how they think one should pick, they pretty systematically recommend picking in accordance with expected utility theory. For some of the theories we considered (REU, $\Gamma$-maximin), this undermines their own recommendations whenever they don't collapse into the recommendations of expected utility theory. For others (E-Admissibility, Maximality), %it rather reflects a certain value, \textit{viz.}, the value of coordinating how you resolve incomparability across decision problems.
+the situation is less clear. This may simply reflect a deep-seated value for coordinating how to resolve incomparability across decision problems; a value that may be palatable to proponents of those theories. What \textit{is} clear is that decision theorists must face the question of how to pick head on. %must theorise more systematically about how to pick.}}
 \todoinfo{Recheck the conclusion??}
 
 
