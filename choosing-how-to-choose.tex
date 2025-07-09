@@ -176,6 +176,9 @@ But there is another approach, and it has the advantage that it avoids such appe
 	
 Yet all is not lost, for this line of thinking nonetheless furnishes us with a test we can conduct on a theory of decision-making, and while it might not tell in favour of the theory if it passes, it seems to tell against it if it fails. We can ask of the theory: If I were to use you not only to make my normal day-to-day decisions, but also to make the higher-order decision about which decision theory to use, would you recommend yourself? If it would, we call it \textit{self-recommending}; if it wouldn't, we call it \textit{self-undermining}. We claim that no self-undermining decision theory can be correct. This is not to say that a self-recommending theory is thereby adequate---for instance, the theory that says that any available act is rationally permissible is self-recommending, but it is not correct. Nonetheless, we can use this test to winnow the list of candidate decision theories, removing those that fail it.
 
+
+\todo{Let's add something about self-undermining simply being bad. Actually, I see it comes later...}
+
 %\section{What does it mean to be self-undermining?}
 
 %We now try to make the foregoing more precise. Throughout, we assume a finite state space $\Omega$ and a set of possible acts $\A$. A utility function $\ut$ is a function that takes any act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a real number $\ut(a, \omega)$ that gives the utility of $a$ at $\omega$. A \emph{decision problem} $D$ is a finite non-empty set of acts. A \emph{choice function} $C$ takes any decision problem $D$ and returns a non-empty subset $C(D)$ of $D$. A \emph{picking strategy} $\s$ takes any decision problem $D$ and returns a specific act $\s(D)$ in $D$. A \emph{decision theory} is a function that takes in certain representations of an agent's attitudes and returns a choice function. So, for instance, expected utility theory takes in your utility function $u$ and your precise probabilities $p$ over $\Omega$ and returns a choice function $\EU_p$ that selects from any decision problem those acts that maximize expected utility by the lights of your probabilities.% $\EU_p(D) = \Set{a \in D \given (\forall a' \in D)(\Exp_p(\ut(a')) \leq \Exp_p(\ut(a)))}.$
@@ -450,6 +453,7 @@ These arguments are truly formal in the sense that the content of the decisions 
 \subsubsection{Change the way of updating credences}
 
 
+	 \todo{remove or significantly condense this sec?? !!!}
 %We argued that self-undermining decision theories result in a dilemma, offering conflicting advice about what to do when faced with a given decision, should you consult the optimal picking plan and follow its recommendations? Or should you apply the decision theory now you're facing the particular decision problem.
 
 
@@ -467,7 +471,7 @@ Perhaps, if you update your credences in some alternative way, what the decision
 
 
 
-{ But put that to the side. As pointed out in \citet[sec7]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected rather than risk-weighted expected utility. Perhaps the argument we have made here can be turned into an argument against Bayesian conditionalization.}
+{ But put that to the side. As pointed out in \citet[sec7]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility, rather than risk-weighted expected utility. Perhaps the argument we have made here can be turned into an argument against Bayesian conditionalization.}
 
 
 %Whilst we don't know of any defenders of these theories taking this line of argument, as pointed out in \citet[sec7]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected rather than risk-weighted expected utility. And in fact, the argument we have made here can be turned into an argument against Bayesian conditionalization. 
