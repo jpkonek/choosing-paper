@@ -211,11 +211,11 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 
 {\color{violet}\todoinfo{CCM playing with rewriting.}
 	Suppose that you're a financial advisor.
-	You are offering your client advice about how to choose between two options, a risky one and a safe one. Let's say the risky one depends on some particular outcome, say whether the market crashes. Let's suppose that you think the odds of the market crashing are $1:10$. 
+	You are offering your client advice about how to choose between two options, a risky one and a safe one. Let's say the risky one depends on some particular outcome, say whether this particular company goes bust. Let's suppose that you think the odds of the market crashing are $1:10$. 
 	(For simplicity, we will assume that you are adopting the clients utilities to give the guidance).
 	$$
 	\begin{array}{r|cc}
-		\text{Decision problem} & \text{market crashes} &  \text{market does not crash}  \\
+		\text{Decision problem} & \text{goes bust} &  \text{not bust}  \\
 		\hline
 		p & \sfrac{1}{11} & \sfrac{10}{11} \\
 		\hline
@@ -223,9 +223,8 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 		\text{Safe} &\text{\pounds 1m}&\text{\pounds 1m}                      \\
 		\text{Risky} & \text{\pounds 0m}&\text{\pounds 5m}
 	\end{array}
-	$$
-	
-	Perhaps you recommend taking the risky option over the safe option. 
+	$$	
+	Perhaps you recommend taking the safe option over the risky option. 
 	
 	Now, suppose that you think that your client is only possibly going to be offered this decision in the morning, let's say your credence is $11\%$. And otherwise she just gets nothing. 
 	You are advising her over what she should pick if offered. 
@@ -233,7 +232,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	$$
 	\begin{array}{r|ccc}
 	\multirow{2}{*}{\text{Scenario 1}}	&\multicolumn{2}{c}{\text{choice offered}}&\text{choice not offered}\\
-		& \text{market crashes} &  \text{market does not crash}  \\
+		& \text{goes bust} &  \text{not bust}  \\
 		\hline
 		P &  \sfrac{1}{11} \times \sfrac{11}{100} & \sfrac{10}{11}\times\sfrac{11}{100} & \sfrac{89}{100} \\
 		& = \sfrac{1}{100} & = \sfrac{10}{100} & = \sfrac{89}{00} \\
@@ -243,6 +242,8 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 		\text{Risky if offered (scenario 1)}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 0m}
 	\end{array}
 	$$
+	
+	
 	Perhaps you still recommend that if she is offered the choice, she takes the risky option. 
 	Suppose your client has the option of ringing you in the morning to ask what she should do now that she has been offered it. You think she should ring you and do this. 
 	
@@ -250,7 +251,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	$$
 	\begin{array}{r|ccc}
 		\multirow{2}{*}{\text{Scenario 2}}	&\multicolumn{2}{c}{\text{choice offered}}&\text{choice not offered}\\
-		& \text{market crashes} &  \text{market does not crash}  \\
+		& \text{goes bust} &  \text{not bust}  \\
 		\hline
 %		P &  \sfrac{1}{11} \times \sfrac{11}{100} & \sfrac{10}{11}\times\sfrac{11}{100} & \sfrac{89}{100} \\
 	P	&  \sfrac{1}{100} & \sfrac{10}{100} &  \sfrac{89}{00} \\
@@ -277,7 +278,12 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	
 	This is how we are suggesting to consider how decision theories evaluate their own recommendations.
 	
-	A decision problem is a set of available acts. A picking strategy selects one of the available acts from each decision problem. Decision theories give guidance on what are sensible ways to pick when faced with various decision problems.
+	A decision problem is a set of available acts. 
+	Simplifying a bit, a decision theory specifies which act to pick in each decision problem, thus providing what we call a picking strategy. 
+	
+	A decision theory specifies which act to choose in each decision problem, or at least specifies some acts as bad choices. It provides you with a picking strategy 
+	
+	A picking strategy selects one of the available acts from each decision problem. Decision theories give guidance on what are sensible ways to pick when faced with various decision problems.
 	
 	A decision theory gives an account of means-end reasoning, specifying how to choose to best trade off the risk and benefits of various actions that may be available. We can also apply a decision theory itself to evaluate various picking strategies. 
 
