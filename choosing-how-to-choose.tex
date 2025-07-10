@@ -211,7 +211,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 
 {\color{violet}\todoinfo{CCM playing with rewriting.}
 	Suppose that you're a financial advisor.
-	You need to offer your client advice about how to choose between two options, a risky one and a safe one. Let's say the risky one depends on some particular outcome, say whether the market crashes. Let's suppose that you think the odds of the market crashing are $1:10$. 
+	You are offering your client advice about how to choose between two options, a risky one and a safe one. Let's say the risky one depends on some particular outcome, say whether the market crashes. Let's suppose that you think the odds of the market crashing are $1:10$. 
 	(For simplicity, we will assume that you are adopting the clients utilities to give the guidance).
 	$$
 	\begin{array}{r|cc}
@@ -227,7 +227,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	
 	Perhaps you recommend taking the risky option over the safe option. 
 	
-	Now suppose that you think that the client is only possibly going to be offered this opportunity in the morning, let's say your credence is $11\%$. And otherwise she just gets nothing. 
+	Now, suppose that you think that your client is only possibly going to be offered this decision in the morning, let's say your credence is $11\%$. And otherwise she just gets nothing. 
 	You are advising her over what she should pick if offered. 
 	Now the decision problem looks like:
 	$$
@@ -244,7 +244,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	\end{array}
 	$$
 	Perhaps you still recommend that if she is offered the choice, she takes the risky option. 
-	We can put this as advising your client over whether she should follow your own recommendations -- to take the gamble -- or to follow another financial advisor's recommendations, one who recommends sticking with the safe option. 
+	Suppose your client has the option of ringing you in the morning to ask what she should do now that she has been offered it. You think she should ring you and do this. 
 	
 	Now suppose that instead, you think that when she's not offered the choice, she is given \pounds 1m rather than nothing. 
 	$$
@@ -266,11 +266,8 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 	This is essentially Savage's Sure Thing Principle. 
 	
 	It is, however, rejected by various alternative theories. The Scenario 1 and Scenario 2 choice are extensionally equivalent to the Allais scenario and the empirically observed preferences are to take the risky option in scenario 1 but the safe option in scenario 2. 
-	
-	What this means as a financial advisor is that if you are in Scenario 2, you are recommending to your client that if she is offered the option to choose, she should select the safe one. 
-	However, if she is able to ring you up in the morning and inform you that she has been offered it, you now switch your recommendation and say she should take the risky option. Although, there is a sense in which you're advising her not to do that.
-	
-	In scenario 2, whilst you recommend that she takes the risky option when the decision is in play, you think it would be better if she listened to a different financial advisor, one who recommends taking the safe option. 
+		
+	What this means as a financial advisor is that if you are in Scenario 2, you think that it would be better for your client to not ring you up in the morning, once she knows what she's faced with, to check what she should do; she should instead just stick with her safe option, or, put another way, you think she should ring up a different financial advisor, one who will tell her to take the safe option. 
 	
 	This is an instability in your recommendation. It cannot be resolved by saying that she recommends the safe option, as this would create instability instead in Scenario 1. Any decision theory which violates the Sure Thing Principle is susceptible to such cases. 
 
@@ -1434,7 +1431,7 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 	$$\end{definition}
 	That is, $\EAd_{\IB(\cdot|-)}(D)=\bigcup_{\pb\in\IB}\EU_{\pb(\cdot|-)}(D)$. We thus have, as a consequence of \cref{thm:eu-dep}: 
 	\begin{proposition}\label{thm:ead-equiv[dep]}
-		$\s\in\EAd_\IB(\Strategies)$ iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in \IB$. 		
+		$\s\in\EAd_\IB(\Strategies)$ iff for some $\pb$ in $\IB$, $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.
 	\end{proposition}
 	Thus there exists some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ which is not rejected by $\EAd_\IB(\Strategies)$; but there will also be some which are not, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function. 
 		\begin{proposition}\label{thm:ead-existence[dep]}
@@ -1450,7 +1447,7 @@ Similarly, for Maximality, we can define:
 	$$\end{definition}
 	Since $\s\in\EAd_\IB(\S)$ implies $\s\in\Maximality_\IB(\S)$, we obtain, as a consequence of \cref{thm:ead-equiv[dep]}:
 	\begin{proposition}\label{thm:max-suff[dep]}
-	If $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in \IB$, then $\s\in\Maximality_\IB(\Strategies)$. 
+	If for some $\pb$ in $\IB$, $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\s\in\Maximality_\IB(\Strategies)$. 
 \end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
 an analogue of \cref{thm:ead-existence[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
@@ -1641,12 +1638,12 @@ $$\nu \in \EU_{\pb}(\N) \Leftrightarrow \nu \text{ $\pb$-surely picks for $\EU_{
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
-Since something is in $\EAd_\IB$ iff it is in $\EU_\pb$ for some $\pb\in\IB$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
+Since something is in $\EAd_\IB$ iff for some $\pb$ in $\IB$ it is in $\EU_\pb$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
-If $\nu$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\nu\in\EAd_\IB(\N)$. More generally, if $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$ then $\nu\in\EAd_\IB(\N)$. 
+If $\nu$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\nu\in\EAd_\IB(\N)$. More generally, if for some $\pb\in\IB$, $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\nu\in\EAd_\IB(\N)$. 
 
 Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\N$ is $\EU$-complete: 
-$$\nu \in \EAd_\IB(\N) \Leftrightarrow \nu \text{ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, for some $\pb$ in $\IB$.}$$
+$$\nu \in \EAd_\IB(\N) \Leftrightarrow \text{for some $\pb$ in $\IB$, $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.}$$
 %If $\IB$ is strongly complete, then: $\nu \in \EAd_\IB(\N) \Leftrightarrow \nu \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}
 %\end{align}
 
