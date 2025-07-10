@@ -1952,7 +1952,7 @@ Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}.
 Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\textit{Black})>\nicefrac{7}{30}$ rules 1A as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\nu_{D_1}$ picks 1A, by the assumption that it is regular for $\EAd_\IP$. 
 Thus, $\nu$ does not pick for $\EU_p$. It also does not even $\mu$-surely pick for $\EU_p$ if we assume that each $\mu$ assigns positive probability to both $D_1$ and $D_2$. It is thus not E-Admissible. 
 
-In fact, if $\IP$ is allowed to be non-convex, we get cases where $\nu$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability which is indifferent between the two actions, and thus, $\nu$ is Bayes for this probability.}
+In fact, if $\IP$ is allowed to be non-convex, we get cases where $\nu$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability which is indifferent between the two actions, and thus, $\nu$ is Bayes for this probability.}\todo{ref: Bayes for p not defined}
 Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that neither $a_1$ or $a_2$ are rejected. Then for any regular picking strategy for $\EAd_\IP$, $\nu_D$ will give positive probability to both $a_1$ and $a_2$. $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, $\nu$ is not rationally permissible.
 \todoold{double check wording of above. And make it match JKs eg}
 
@@ -1991,9 +1991,9 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility, all $\EU_p$ strategies are evaluated as acceptable according to Maximality. We thus have, as a corollary to \cref{thm:eu-nu-nec-suff}, and extending \cref{thm:max-suff}:
 \begin{proposition}\label{thm:max-nu-suff}
-		If $\nu$ $\mu$-surely picks for $\EU_{p}$ for some $p\times\mu\in \IB$, then $\nu\in\Maximality_\IB(\N)$. 
+		If for some $p\times\mu\in \IB$, $\nu$ $\mu$-surely picks for $\EU_{p}$, then $\nu\in\Maximality_\IB(\N)$. 
 		
-		More generally, if $\nu$ $\mu$-surely picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in \IB$, then $\nu\in\Maximality_\IB(\N)$. 
+		More generally, if for some $\pb\in \IB$, $\nu$ $\mu$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\nu\in\Maximality_\IB(\N)$. 
 \end{proposition}
 
 For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $\pb\in \IB$ have to agree on a particular alternative as better.
@@ -2093,7 +2093,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 
 
-Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin it also needs to $\mu^*$ surely pick for $\EU_p$ for some $p\in\IP$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ for which it $\mu^*$ surely pick for \todo{eg here should we replace?? I did so... changed order of quantifier}$\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\N$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\nu \in \Maximin_\IB(\N)$, $ \nu \textit{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 		
