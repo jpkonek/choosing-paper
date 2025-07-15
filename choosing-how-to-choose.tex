@@ -88,7 +88,7 @@
 %\newcommand\D{\mathsf{DecProblems}}
 \newcommand{\D}{\mathcal{D}}
 
-%\renewcommand\S{\mathsf{PickingStrategies}}
+\renewcommand\S{\mathcal{S}}
 \newcommand\s{\mathsf{s}}
 \renewcommand\c{\mathsf{c}} % choice function
 
@@ -1153,7 +1153,7 @@ These arguments are truly formal in the sense that the content of the decisions 
 %It deems itself rationally impermissible. That just, on the face of it, seems very bad!
 \begin{colored}{violet}
 	
-\subsection{Who's fault is it}
+\subsection{What is being judged}
 
 What we've used the decision theory to evaluate is picking functions. We then associated picking functions with the decision theory. 
 
@@ -1162,9 +1162,24 @@ Decision theories typically specify certain parameters -- credences, utilities, 
 What we have then shown is that choice functions that have certain structure are undermining. 
 For example, endorse the Allais preferences and either are opinionated about the local decision, or a slight sweetening is sufficient to induce such a strict preference and that this is a small enough sweetening to leave the overall Allais preferences unaffected. 
 
-We have then said that this shows that the decision theory recommends using a different decision theory. But that is only the right diagnosis if we hold fixed the parameters of credences, utilities and risk-profile, assuming that they don't change once she knows which decision problem she'll be faced with.
+We have then said that this shows that the decision theory recommends using a different decision theory. But that is only the right diagnosis if we hold fixed the parameters of credences, utilities and risk-profile, assuming that they don't change once she knows which decision problem she'll be faced with. But alternatively one could hold fixed one's decision theory and make conclusions about the other parameters. 
 
-The same kind of argument has been used which instead hold fixed that she makes decisions in accordance with Expected Utility Theory and instead uses these results to judge her credences (Schervish/Levinstein). We could allow her credences to vary depending which decision she is faced with, treating the decision and state as dependent. This is essentially Brown's argument for updating credences by conditionalization. By holding fixed a different decision theory, say risk-weighed expected utiltiy theory of Buchak's, alternative credal update strategies are deemed optimal\todo{hum.. the link to my stuff with B is not super clear as that's importantly epistemic land}. Someone WHO?? is considering varying utilities. Good's Value of Evidence cases instead hold fixed that she'll update by conditionalization and make a decision in accordance with expected utility theory, but judges whether she wants to gather the evidence or avoid it. 
+We can hold fixed Expected Utility Theory and use similar analysis to make judgements about credences. This is essentially done in the approach of Schervish and Levinstein, and one's credences must be probabilistic. 
+We might alternatively think that her credences can vary depending on which decision problem she is faced with, treating the decision and state as dependent. This is Brown's argument for updating credences by conditionalization, holding fixed Expected Utility Theory. 
+Good's Value of Information theorem holds fixed both Expected Utility Theory and conditionalization but considers whether the agent wants to gather or avoid the free evidence. 
+
+Similar analysis could be done by holding fixed a different decision theory, say Buchak's risk-weighted expected utility theory. 
+Showing that the agent sometimes wants to avoid the free evidence, by holding fixed the decision theory and updating by conditionalization \citep{buchak2017trbvi}.
+One might also consider holding fixed that she'll take the evidence but consider what credal update plan is such that the plan judged as optimal will lead to her making decisions in accordance with REU (holding fixed her risk function and utility function).\footnote{See CCM\&BS??}
+
+What this shows is that the target of the criticism of self-undermining choice functions depends on what parameters are held fixed.\todo{doesn't this all then underminine our conclusion that the decision theory is bad??!!}
+
+%The same kind of argument has been used which instead hold fixed that she makes decisions in accordance with Expected Utility Theory and instead uses these results to judge her credences (Schervish/Levinstein). We could allow her credences to vary depending which decision she is faced with, treating the decision and state as dependent and then use this as an argumment evaluating credal update plans. This is essentially Brown's argument for updating credences by conditionalization by holding fixed EUT (see some considerations around it for REUT in REF).
+%Someone WHO?? is considering varying utilities.
+% Good's Value of Evidence cases instead hold fixed that she'll update by conditionalization and make a decision in accordance with expected utility theory, but judges whether she wants to gather the evidence or avoid it. 
+% 
+ 
+
 
 \end{colored}
 \subsubsection{Change the way of updating credences}
@@ -1737,7 +1752,7 @@ So we are representing your uncertainty as a set, $\IB$, of (higher-order) proba
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
 {That is, your credal set is given by $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1B,2A}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1B,2A}})=6$; so $\s_E=\s_{\text{1A,2B}}\notin\Maximin_{\IB}(\S)$. 
+\todo{is it clear that these are the Ellsberg ones not the Allais ones???!!!}Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1B,2A}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1B,2A}})=6$; so $\s_E=\s_{\text{1A,2B}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todooldinfo{REFS!!!!}
@@ -1972,44 +1987,44 @@ What all of this shows, one might think, is just that E-Admissibility sees value
 	
 	$$
 	\begin{array}{r|cc}
-		D^{\mathrm{Ellsberg}}_1 & X & \neg X  \\
+		D^{\mathrm{coord}}_1 & X & \neg X  \\
 		\hline
 		p & x & 1-x \\
 		\hline
 		\hline
-		b & \text{\pounds 10} & \text{\pounds 10}   \\
-		a_1 & \text{\pounds 0} & \text{\pounds 20} 
+		B & \text{\pounds 10} & \text{\pounds 10}   \\
+		1A & \text{\pounds 0} & \text{\pounds 20} 
 	\end{array}\hspace{20mm}
 	\begin{array}{r|cc}
-		D^{\mathrm{Ellsberg}}_2 & X & \neg X  \\
+		D^{\mathrm{coord}}_2 & X & \neg X  \\
 		\hline
 		p & x & 1-x \\
 		\hline
 		\hline
-		b & \text{\pounds 10} & \text{\pounds 10}   \\
-		a_2 & \text{\pounds 20} & \text{\pounds 0} 
+		B & \text{\pounds 10} & \text{\pounds 10}   \\
+		2A & \text{\pounds 20} & \text{\pounds 0} 
 	\end{array}
 	$$
 	
-	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$ in the following sense: they will (assuming utility linear in GBP) choose $b$ (reject $a_1$) in $D^{\mathrm{Ellsberg}}_1$ just in case they choose $a_2$ (reject $b$) in $D^{\mathrm{Ellsberg}}_2$; likewise, they will choose $a_1$ (reject $b$) in $D^{\mathrm{Ellsberg}}_1$ just in case they choose $b$ (reject $a_2$) in $D^{\mathrm{Ellsberg}}_2$. 
+	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$ in the following sense: they will (assuming utility linear in GBP) choose $B$ (reject $1A$) in $D^{\mathrm{coord}}_1$ just in case they choose $2A$ (reject $B$) in $D^{\mathrm{coord}}_2$; likewise, they will choose $1A$ (reject $B$) in $D^{\mathrm{coord}}_1$ just in case they choose $B$ (reject $2A$) in $D^{\mathrm{coord}}_2$. 
 % \todoold{unless $p=0.5$!!!}	
 	
-	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $b$ to be strictly better than $a_1$, while $p_2$ expects $a_1$ to be strictly better than $b$. In that case, $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{b,a_1\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{b,a_2\}$. You find both options in both options \emph{incomparable}, \emph{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $b$ in $D^{\mathrm{Ellsberg}}_1$ just in case you pick $a_2$ in $D^{\mathrm{Ellsberg}}_2$. Likewise, you ought to pick $a_1$ in $D^{\mathrm{Ellsberg}}_1$ just in case you pick $b$ in $D^{\mathrm{Ellsberg}}_2$. 
+	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $B$ to be strictly better than $1A$, while $p_2$ expects $1A$ to be strictly better than $B$. In that case, $\EAd_\IP(D^{\mathrm{coord}}_1)=\{B,1A\}$ and $\EAd_\IP(D^{\mathrm{coord}}_2)=\{B,2A\}$. You find both options in both options \emph{incomparable}, \emph{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $B$ in $D^{\mathrm{coord}}_1$ just in case you pick $2A$ in $D^{\mathrm{coord}}_2$. Likewise, you ought to pick $1A$ in $D^{\mathrm{coord}}_1$ just in case you pick $B$ in $D^{\mathrm{coord}}_2$. 
+\todo{I made the a, b capital to match the other examples we use. But now I am kind of confused. And wonder wehther they need special names to keep them apart tooo? We use 1A to mean: Allais, Ellsberg, this one. I thought of using $A_1$, but we already have the clashing issue for tAllais and Ellsberg... lets sort it out!}	
 	
 	
-	
-	Now, you might doubt that there is \emph{really} any value in this sort of ``modal coordination.'' (Recall, you will actually only face one of $D^{\mathrm{Ellsberg}}_1$ or $D^{\mathrm{Ellsberg}}_2$. You are not coordinating across time.) But the fact that E-Admissibility \emph{sees} value in coordinating how you resolve incomparability does not render it self-undermining.\todoold{I like this paragraph a lot!!!!}
+	Now, you might doubt that there is \emph{really} any value in this sort of ``modal coordination.'' (Recall, you will actually only face one of $D^{\mathrm{coord}}_1$ or $D^{\mathrm{coord}}_2$. You are not coordinating across time.) But the fact that E-Admissibility \emph{sees} value in coordinating how you resolve incomparability does not render it self-undermining.\todoold{I like this paragraph a lot!!!!}
 	
 %	You might also be perplexed by the sheer quantity of strategies that pick for E-Admissibility but are nonetheless rejected by E-Admissibility. Here it is important to remember that picking for E-Admissibility is simply a matter of being guaranteed to select options that are \emph{not rejected} by E-Admissibility. The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that are not visible at one scale, or level of resolution, might nonetheless become apparent at others. The fact that E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---does not conflict in any way with more pervasive non-rejection at the scale of actions or options, nor is it altogether surprising. 
 
 Moreover, while E-Admissibility's lust for coordination does require decision-makers to \emph{pick as if} their probabilities were imprecise rather than indeterminate, in Levi's sense, this does not mean that they \emph{actually are} imprecise rather than indeterminate. Their credal set need not \emph{actually} represent some true, precise probability which they are unable to identify. This is reflected in their rejection judgments. They often find options genuinely incomparable---not rejected, but not indifferent. No agent with precise probabilities would do so. They are committed to \emph{picking as if} they have some true, precise probability because they value coordination in resolving incomparability.
 
-The utility of an option, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
+The utility of an option,\todo{surely an ``action''??} $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
 
 
 %{\color{blue}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}, although E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. }
 
-%{\color{blue}What these show is that for a strategy to be evaluated as E-Admissible it requires coordination across different decision problems. For example, in the Ellsberg case, is fine for one's strategy to pick either act in $D^{\mathrm{Ellsberg}}_1$ so long as it picks the corresponding act in $D^{\mathrm{Ellsberg}}_2$. It does not permit arbitrary picking strategies which are compatible with 
+%{\color{blue}What these show is that for a strategy to be evaluated as E-Admissible it requires coordination across different decision problems. For example, in the coord case, is fine for one's strategy to pick either act in $D^{\mathrm{coord}}_1$ so long as it picks the corresponding act in $D^{\mathrm{coord}}_2$. It does not permit arbitrary picking strategies which are compatible with 
 %If one takes E-Admissibility as a choice function which actively deems any act to be permissible, then it is not clear how such coordination can be imposed. But 
 %}
 %The role of the picking strategies 
