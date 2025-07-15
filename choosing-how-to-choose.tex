@@ -152,6 +152,7 @@
 {\begingroup\color{blue}} % Begin environment
 {\endgroup}              % End environment
 
+
 \usepackage{versions}
 \excludeversion{infversion}
 
@@ -1141,13 +1142,25 @@ These arguments are truly formal in the sense that the content of the decisions 
 %What should one actually do? Conflict!
 
 %It deems itself rationally impermissible. That just, on the face of it, seems very bad!
-
+\begin{colored}{violet}
+	
 \subsection{Who's fault is it}
-What we've really shown is that the picking strategy differs from the initial recommendations. 
 
+What we've used the decision theory to evaluate is picking functions. We then associated picking functions with the decision theory. 
+
+Decision theories typically specify certain parameters -- credences, utilities, and perhaps a risk-profile -- to determine a so-called choice function, which specifies for each decision problem, which actions from it are deemed impermissible. Once we have a choice function, we can specify picking functions that are compatible with it by just checking whether it picks an impermissible action.
+
+What we have then shown is that choice functions that have certain structure are undermining. 
+For example, endorse the Allais preferences and either are opinionated about the local decision, or a slight sweetening is sufficient to induce such a strict preference and that this is a small enough sweetening to leave the overall Allais preferences unaffected. 
+
+We have then said that this shows that the decision theory recommends using a different decision theory. But that is only the right diagnosis if we hold fixed the parameters of credences, utilities and risk-profile, assuming that they don't change once she knows which decision problem she'll be faced with.
+
+The same kind of argument has been used which instead hold fixed that she makes decisions in accordance with Expected Utility Theory and instead uses these results to judge her credences (Schervish/Levinstein). We could allow her credences to vary depending which decision she is faced with, treating the decision and state as dependent. This is essentially Brown's argument for updating credences by conditionalization. By holding fixed a different decision theory, say risk-weighed expected utiltiy theory of Buchak's, alternative credal update strategies are deemed optimal\todo{hum.. the link to my stuff with B is not super clear as that's importantly epistemic land}. Someone WHO?? is considering varying utilities. Good's Value of Evidence cases instead hold fixed that she'll update by conditionalization and make a decision in accordance with expected utility theory, but judges whether she wants to gather the evidence or avoid it. 
+
+\end{colored}
 \subsubsection{Change the way of updating credences}
 	 \todo{remove or significantly condense this sec?? !!!}
-{\color{violet}\todoinfo{CCM trying to condense...}
+{\color{red}\todoinfo{CCM trying to condense...}
 	We have shown that 
 
 	
@@ -1353,8 +1366,19 @@ In that paper, \citet{campbellmoore2022aurs} also consider ``local'' versions of
 In our argument that Allais-permitting decision theories are self-undermining, we used the preferences they permit over the Allais gambles to construct a \emph{particular} way that you might be uncertain about what decisions you'll face and showed that, \emph{in that case}, you judge some alternative picking strategy to be preferable. 
 %{\color{violet}Or, more generally, we noted that one could use any particular failure of the Sure Thing Principle or the Independence Principle to generate a particular such challenge. }
 
-{
-%	But these are only generating a particular way of being uncertain over decisions under which the strategy undermines its own recommendations. 
+\todo{This needs rewriting!!! I've made a start...}
+\begin{colored}
+	{violet} Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$. 
+	
+	Of course this might be the situation you're facing, where you happen to have these credences. Or it could be specifically constructed this way by a nefarious opponent who has set you up: they're going to toss a biased coin to determine what to offer you at the specified probabilities, having chosen these number specifically to demonstrate your inconsistent judgements. 
+	
+	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems. If your particular uncertainty is not one which generates the underminingness, is it really that problematic that were you to be in the particular uncertainty situation your decision theory were undermining, if in your actual situation it judges its own picking strategies as optimal. 
+	
+	
+\end{colored}
+
+\begin{colored}{red}ORIGINAL:
+	%	But these are only generating a particular way of being uncertain over decisions under which the strategy undermines its own recommendations. 
 Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D_1$ is $\sfrac{1}{11}$ and your credence that you'll face $D_2$ is $\sfrac{89}{100}$. 
 %More generally, any strict failure of the Sure Thing Principle or Independence Axiom would generate such an example.
 %\todoold{RP: I had a go at changing: will this work?}can be used to generate such a self-undermining example: if your decision theory leads you to strictly prefer act $a$ to act $b$, but also strictly prefer the mixed act that gives you probability $p$ of getting act $b$ and probability $1-p$ of getting act $c$ to the mixed act that gives you probability $p$ of getting act $b$ and probability $1-p$ of getting act $c$, then we can immediately see that the decision theory is self-undermining. 
@@ -1364,6 +1388,8 @@ But this is not how we're usually uncertain over what decisions we'll face.
 What does this argument show about someone who is uncertain about what decision problems she'll face in an alternative, and more normal, way?\todo{CCM: why is it abnormal? Feels like it can be motivated to me... like in the doctor case. }
 {\color{violet} For example, a spread over a much wider range of possible decisions. }
 
+\end{colored}
+
 This is analogous to a certain standard response to the Dutch book arguments: perhaps you just think it's unlikely that you'll ever face such a nefarious bookie. A common response is to argue that the mere existence of a Dutch book already shows you are irrational because it shows your preferences are inconsistent in a particular way---they judge the same decision differently when it is presented in different way, perhaps.\footnote{Cf. \citep{armendt1993db,mahtani2014db}.} %The set-up in which a bookie approaches you and offers a string of bets merely dramatizes this inconsistency. 
 {The set-up in which an opposing Gambler approaches you, buys and sells bets that you deem fair, and thereby saddles you with a sure loss merely dramatizes this inconsistency.} The argument doesn't assume you'll ever actually meet such a person. We might argue similarly that the mere existence of self-underminingness for some way of being uncertain about what decision you'll faced is already a challenge to the decision theory. Perhaps it shows that it is inconsistent in the same way the Dutch book argument shows non-probabilistic credences are inconsistent.
 
@@ -1372,7 +1398,8 @@ In the case of the Dutch book arguments, \Citet[Sec 6.2]{pettigrew2020dutch} arg
 
 
 
-}
+
+
 
 
 %
