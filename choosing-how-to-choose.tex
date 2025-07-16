@@ -215,7 +215,7 @@ But there is another approach, and it has the advantage that it avoids such appe
 Yet all is not lost, for this line of thinking nonetheless furnishes us with a test we can conduct on a theory of decision-making, and while it might not tell in favour of the theory if it passes, it seems to tell against it if it fails. We can ask of the theory: If I were to use you not only to make my normal day-to-day decisions, but also to make the higher-order decision about which decision theory to use, would you recommend yourself? If it would, we call it \emph{self-recommending}; if it wouldn't, we call it \emph{self-undermining}. We claim that no self-undermining decision theory can be correct. This is not to say that a self-recommending theory is thereby adequate---for instance, the theory that says that any available act is rationally permissible is self-recommending, but it is not correct. Nonetheless, we can use this test to winnow the list of candidate decision theories, removing those that fail it.
 
 
-\todo[inline]{Let's here add a comment that self-undermining simply being bad. I see it comes later, but...}
+\todo[inline]{Let's here add a comment that self-undermining simply being bad. I see it comes later, but... RP: we do say here: `it might not tell in favour of the theory if it passes, it seems to tell against it if it fails' and `no self-undermining decision theory can be correct'?}
 
 %\section{What does it mean to be self-undermining?}
 
@@ -672,7 +672,7 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 
 {\color{violet}
 %
-Here are the four gambles over which the Allais preferences are defined, with the payout of the actions depending on, lets say, the outcome of a lottery with 100 tickets. \todo{gamble vs action??}
+Here are the four options over which the Allais preferences are defined. The payout of each depends on the outcome of a lottery with 100 tickets. \todo{gamble vs action?? RP: I'd say `option'?}
 %$$
 %\begin{array}{r|cccc}
 %	& \text{ticket 1} &\text{ticket 2-11}& \text{ticket 12-100}\\\hline \Tstrut
@@ -697,15 +697,14 @@ $$$$
 	\text{2B} & \text{\pounds 0m} & \text{\pounds 5m}  & \text{\pounds 0m} 
 \end{array}
 $$
-The empirically observed preferences are preferring 1A to 1B in $D^{\mathrm{Allais}}_1$ and 2B to 2A in $D^{\mathrm{Allais}}_2$.
+As Allais notes, many people prefer 1A to 1B in $D^{\mathrm{Allais}}_1$ and 2B to 2A in $D^{\mathrm{Allais}}_2$.
 % $\text{1A} \succ \text{1B}$ and $\text{2A} \prec \text{2B}$. 
-Let's suppose that our agent has a decision theory which endorses these preferences, given parameters such as her credences and utilities.
+Let's suppose that our agent has a decision theory which endorses these preferences, given parameters such as her credences and utilities, and possibly also some representation of her attitudes to risk.
 
 %A decision problem is given by a set of acts which are available in it. 
 %A decision theory is an account of means-end reasoning which, when parameters such as credences and utilities are specified, specifies which options should be picked, or which shouldn't be pic...???
 
-Now, instead consider this decision problem: There are two actions that the agent could take: take a risky bet or the safe course of action. Let's say the outcome of the risky bet depends on whether this particular company goes bust. These actions might be, for example, options for stocks she can invest in. Let's suppose that the agent thinks that the odds of this company going bust are $1:10$. \todo{I'm happy to instead keep the example as one with lottery tickets, now with 11 tickets... And then whether she's offered it is determined by a toss of a biased coin??}
-She is thus be faced with this decision problem:
+Now, consider instead a related decision problem. The two options available to the agent---Safe and Risky---depend on whether a particular company goes bust or not; they might be, for example, options for stocks she can invest in.
 $$
 \begin{array}{r|cc}
 	\text{Decision problem } D^{\mathrm{Allais}}_{\mathrm{local}} & \text{goes bust} &  \text{not bust} \Bstrut\\\hline 
@@ -713,14 +712,13 @@ $$
 	\text{Safe} &\text{\pounds 1m}&\text{\pounds 1m}                      \\
 	\text{Risky} & \text{\pounds 0}&\text{\pounds 5m}
 \end{array}
-$$	
-Perhaps her decision theory prefers Risky over Safe. 
+$$
+%There are two actions that the agent could take: take a risky bet or the safe course of action. Let's say the outcome of the risky bet depends on whether this particular company goes bust. These actions might be, 
+Let's suppose the agent thinks the odds of this company going bust are $1:10$. \todo{I'm happy to instead keep the example as one with lottery tickets, now with 11 tickets... And then whether she's offered it is determined by a toss of a biased coin?? RP: I like it as it is!}
+	
+Perhaps her decision theory prefers Risky to Safe. 
 
-We will now turn to a higher-order decision that the agent might face: a choice amongst various so-called picking strategies. She is unsure which decision problem she will face, and is choosing a strategy for what to pick in each possible decision problem. 
-%She has some credence over various decision problems that she might be faced with.
-
-Perhaps she is leaving instructions for what her stockbroker should do, unsure what will be on offer. 
-Or perhaps she has to choose a proxy to act on her behalf, knowing what they'll pick in each decision problem, but unsure which decision problem will be in play. 
+We will now turn to a higher-order decision that the agent might face.   She is unsure which decision problem she will face, and she must choose a strategy for which option to pick in each possible decision problem. Perhaps she is leaving instructions for what her stockbroker should do, unsure what will be on offer. Or perhaps she has to choose a proxy to act on her behalf, knowing what they'll pick in each decision problem, but unsure which decision problem will be in play. 
 %As she is unavailable to make the decision at the later time. 
 
 
@@ -728,11 +726,11 @@ The form that these options have are what we call \emph{picking strategies}.
 They are functions, $\s$, which select one of the available acts from each (relevant) decision problem. 
 For example, a picking function will specify either Safe or Risky as its pick in $D^{\mathrm{Allais}}_{\mathrm{local}}$.
 
-The choice between picking functions is another kind of decision problem, a higher-order decision. She can make use of her decision theory to determine which picking function to choose, depending on her credences over which decision problem she'll be faced with, and the utility that the picking strategy leads to in each possibility. We will evaluate picking strategies by their fruits: by the utility of what they select when faced with the specified decision problem and given the state of the world.\todo{add an assumption dec-state indep?} 
+The choice between picking functions is another kind of decision problem, a higher-order decision. Our agent can make use of her decision theory to determine which picking function to choose, depending on her credences over which decision problem she'll face, and the utility that the picking strategy leads to in each possibility. We evaluate a picking strategy by its fruits, that is, by the utility of the option it selects when faced with the specified decision problem and given the state of the world.\todo{add an assumption dec-state indep? RP: I think not here, since it's already pretty involved.} 
 
-Suppose that she thinks she might be faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$ or just be given \pounds1m for sure. And suppose that her credence that she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$. She is deciding amongst various picking strategies. 
+Suppose that our agent knows she'll either face $D^{\mathrm{Allais}}_{\mathrm{local}}$ or she'll be given \pounds1m for sure. And suppose her credence that she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$. She is deciding amongst various picking strategies. 
 Here, the only relevant consideration in choosing amongst picking strategies is what they will pick when facing $D^{\mathrm{Allais}}_{\mathrm{local}}$. There are thus two options: $\s_{\mathrm{Safe}}$ or $\s_{\mathrm{Risky}}$, which pick Safe or Risky, respectively, in $D^{\mathrm{Allais}}_{\mathrm{local}}$. 
-The decision amongst picking strategies thus amounts to this decision:
+The decision among picking strategies thus amounts to this decision:
 %	$$
 %\begin{array}{c|ccc}
 %	\multirow{2}{*}{\text{Version 1}}	&\multicolumn{2}{c}{\text{choice offered}}&\text{choice not offered}\\
@@ -763,11 +761,11 @@ The decision amongst picking strategies thus amounts to this decision:
 	\s_{\mathrm{Risky}}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 1m}
 \end{array}
 $$
-This is extensionally equivalent to the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$. Assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but just the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
+But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$! And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but just the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
-Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently to how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one that she knows won't choose in the way she would were she in the situation herself. 
-Given the choice of whether she should tie herself to the mast, and pre-commit to a particular course of action, she is willing to pay money to get that rope.\todo{isn't this making it like the others???}
+Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one that she knows won't choose in the way she would were she in the situation herself. 
+Given the choice of whether she should tie herself to the mast, and pre-commit to a particular course of action, she is willing to pay money to get that rope.\todo{isn't this making it like the others??? RP: which others?}
 
 Her adopted decision theory requires her to pick a picking strategy which is not compatible with its own recommendations. 
 %If our agent, using her decision theory, endorses the Allais preferences and recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$, then her adopted decision theory recommends a picking strategy which is not compatible with its own recommendations. 
@@ -783,12 +781,12 @@ This is \emph{prima facie} bad feature of her decision theory. Your decision the
 \end{quote}
 
 %This is, \emph{prima facie}, a bad-making feature of a decision theory. 
-It is self-undermining, in the sense that given this particular precise probability distribution over the possible decision problems she might face ($11\%$ $D^{\mathrm{Allais}}_{\mathrm{local}}$; $89\%$ sure-\pounds1m), if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
+It is self-undermining, in the sense that given this particular precise probability distribution over the possible decision problems she might face---it's $11\%$ likely she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$, and $89\%$ likely she'll get \pounds 1m for sure---if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
 
 
 
 
-This was all based on the assumption not only that her decision theory endorsed the Allais preferences, but also that it recommended Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. If instead she preferred Safe over Risky in $D^{\mathrm{Allais}}_{\mathrm{local}}$, we can instead consider a different decision problem: Suppose that whilst she still thinks that her credence that she'll be offered $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$, she thinks that if she is not given it, then she is given nothing. 
+This was all based on the assumption not only that her decision theory endorses the Allais preferences, but also that it recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. If instead she prefers Safe over Risky in $D^{\mathrm{Allais}}_{\mathrm{local}}$, we can instead consider a different decision problem: Suppose that, whilst she still thinks that her credence that she'll be offered $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$, she thinks that if she is not offered it, then she is given nothing. 
 Now, she is facing the following decision problem over which picking strategy to select. 
 $$
 \begin{array}{c|ccc}
@@ -802,35 +800,35 @@ This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Al
 
 Thus, if her decision theory endorses the Allais preferences and is opinionated over what to choose in $D^{\mathrm{Allais}}_{\mathrm{local}}$ then it is undermining in the sense that there is some uncertainty over which decision problem she'll face where the decision theory rules its own way of picking as impermissible. 
 
-What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. Neither way of picking is deemed impermissible. Both picking strategies are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on version 1 or version 2, in neither case does she rule out all the picking strategies which are compatible with her recommendations, she just rules out one of them. Whilst this is some sort of underminingness, it is a much weaker one that what we had previously, where it rules out as impermissible all picking strategies compatible with its recommendations (there is only one). \todo{what do we actually say about this?? EAdmiss??}
+What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$? Neither way of picking is deemed impermissible. Both picking strategies are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on whether she faces Version 1 or Version 2, in neither case does she rule out all the picking strategies that are compatible with her recommendations---she just rules out one of them. Whilst her decision theory would then be undermining in some sense, it is much weaker than what we had previously, where the decision theory rules out as impermissible \textit{all} picking strategies compatible with its recommendations (there is only one). \todo{what do we actually say about this?? EAdmiss?? RP: yes, this is covered below. And this is the point of the probabilistic picking strategies.}
 
 
 Decision theories do typically leave some decisions unsettled, where her reasons for picking a course of action have run out. It might be indifferent between various actions or, as we will study later in the paper, find them incomparable.  In acting in the world, an agent does actually need to pick an option, even if her reasons for one or the other have run out. Decision theories often leave open various ways to pick. 
 Picking is a matter of settling on what to do, even if her reasons have run out. This might be distinguished from a stronger notion, that of \emph{choosing}, which \citet{ullman1977}, which is selecting an option based on her reasons. \todo{this para needs improving.} 
 
-The decision theories which endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision, and they would typically say that in cases where one doesn't have a strict preference either way are where she is indifferent between them, and for any slight sweetening is sufficient to make her choose that option. \todo{is this the ``ordering principle''?}
-So then, in this decision, she will prefer Risky-sweetened to Safe:
+The decision theories which endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision, and they would typically say that cases in which an agent doesn't have a strict preference either way between two options are those in which  she is indifferent between them; and, in those cases, and any slight sweetening of one option is sufficient to make her strictly prefer  that. \todo{is this the ``ordering principle''?}
+So then, in this decision, she will prefer Risky$^+$ to Safe:
 $$
 \begin{array}{r|cc}
- D^{\mathrm{Allais}}_{\mathrm{local-sweetened}} & \text{goes bust} &  \text{not bust}  \Bstrut\\\hline
+ D^{\mathrm{Allais}}_{\mathrm{local}^+} & \text{goes bust} &  \text{not bust}  \Bstrut\\\hline
 	p & \sfrac{1}{11} & \sfrac{10}{11}\Bstrut\\\hline\hline\Tstrut
 	\text{Safe} &\text{\pounds 1m}&\text{\pounds 1m}                      \\
-	\text{Risky-sweetened} & \text{\pounds 1}&\text{\pounds 5m+\pounds 1}
+	\text{Risky$^+$} & \text{\pounds 1}&\text{\pounds 5m+\pounds 1}
 \end{array}
-$$ For some small enough sweetening, it is plausible that she will still prefer 1A to 1B-sweetened (this is an Archimadeanicity principle):
+$$ For some small enough sweetening, it is plausible that she will still prefer 1A to 1B$^+$ (this is an Archimedeanicity principle):
 $$
 \begin{array}{r|cccc}
 	& \text{ticket 1} &\text{ticket 2-11}& \text{ticket 12-100}\Bstrut\\\hline
 	p & \sfrac{1}{100} & \sfrac{10}{100} & \sfrac{89}{100} \Bstrut\\\hline\hline\Tstrut
 	\text{1A} & \text{\pounds 1m} & \text{\pounds 1m}  & \text{\pounds 1m} \\
-	\text{1B-sweetened} & \text{\pounds 1} & \text{\pounds 5m+\pounds1}  & \text{\pounds 1m}
+	\text{1B$^+$} & \text{\pounds 1} & \text{\pounds 5m+\pounds1}  & \text{\pounds 1m}
 \end{array}
 $$
-whereby we again have the decision theory deeming it impermissible to pick in accordance with its own recommendations, instead recommending using a different decision theory. 
+And so again, the decision theory deems it impermissible to pick in accordance with its own recommendations; instead it recommends using a different decision theory. 
 
-Any failure of von Neumann-Morgenstern's Independence Principle will generate such a case: if your decision theory deems action $a$ to be preferable to action $b$, but when evaluating an action which tosses a biased coin and selects $a$ (or $b$) if the coin lands Heads and $c$ if the coin lands Tails, the decision theory evaluates the $b$ version to be preferable, then similarly we can generate a way of being uncertain over which decision problem you'll be faced with so that the unique picking strategy which is compatible with the decision theory is itself impermissible according to the theory. 
+Any strict failure of von Neumann-Morgenstern's Independence Principle will also generate a case of undermining. Suppose your decision theory deems option $a$ preferable to option $b$; and suppose further that it prefers the mixed option $b$ if a possibly biased coin lands heads and $c$ if tails to the mixed option $a$ if that coin lands heads and $c$ if tails. Then we can generate a way of being uncertain over which decision problem you'll be faced with so that the unique picking strategy which is compatible with the decision theory is itself impermissible according to the theory. 
 
-These cases are very closely related to Dutch bookability / sequential incoherence / Value of Information failures / ??? Which entail underminingness? What do we know about when they are guaranteed? Might be worth including here... ! \todo{Sort out!}
+These cases are very closely related to Dutch bookability / sequential incoherence / Value of Information failures / ??? Which entail underminingness? What do we know about when they are guaranteed? Might be worth including here... ! \todo{Sort out! RP: I really think this would be adding too much. There are so many Dutch book / sequential incoherence / VoI arguments and versions of them.}
 
 
 }
@@ -979,7 +977,7 @@ It's worth adding that, for those decision theories that permit the Allais prefe
 %Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at the point at which you face whichever first-order decision you do face. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$. In that state of uncertainty, you preferred the picking strategy $\s_2$, since the choice between $\s_1$ and $\s_2$ was extensionally equivalent to the choice between 2A and 2B in the Allais set up. And yet, when you face $D_1$, you prefer to use $\s_1$, for it picks what your decision theory says you should pick. And so which should you actually use? Which of these perspectives is privileged? Standing facing the decision problem $D_1$, you might ask yourself: my decision theory tells me to choose A and not to choose B, but it also tells me that, if I could have chosen how I would choose, it would have told me to choose B and not to choose A---which should I do? And perhaps we think the correct theory of rational choice should not give rise to such dilemmas.
 
 
-{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? }Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$.
+{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? RP: I'd cut the paragraph higher up where we say there's nothing funny going on. At that point, we're just introducing the idea and making the case it's odd prima facie. I think we leave the spelling out of how it's bad for here as well as deflecting the potential responses.}Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$.
 In that state of uncertainty, you preferred the picking strategy $\s_2$, since the choice between $\s_1$ and $\s_2$ was extensionally equivalent to the choice between 2A and 2B in the Allais set up. And yet, when you face $D_1$, you prefer to use $\s_1$, for it picks what your decision theory says you should pick. And so which should you actually use? Which of these perspectives is privileged? Standing facing the decision problem $D_1$, you might ask yourself: my decision theory tells me to choose A and not to choose B, but it also tells me that, if I could have chosen how I would choose, it would have told me to choose B and not to choose A---which should I do?
 
 Of course, we're used to that in cases of act-state dependence. Causal decision theorists say that in Newcomb's problem you should take both boxes, but if you can pay to take a pill to turn yourself into a one-boxer before the prediction is made, then you should. But that's because choosing how to choose, in this case, causes you to face a better decision problem down the line. Nothing like that is going on here. And perhaps we think that, at least when choosing a picking strategy has no causal or evidential impact on which decision problems you will face or the value of the options in those problems, the correct theory of rational choice should not give rise to such dilemmas.}
