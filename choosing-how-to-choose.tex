@@ -197,7 +197,7 @@ Todo/questions:
 }
 \end{comment}
 
-\todo{why are choice funcitons and strategies sf? Why not probpickingstrategies, then. But not sure what letter to use...}
+
 \todo{somewhere need reference to Seidenfeld ``DECISION THEORY WITHOUT
 	"INDEPENDENCE" OR WITHOUT
 	"ORDERING"''}
@@ -215,7 +215,7 @@ But there is another approach, and it has the advantage that it avoids such appe
 Yet all is not lost, for this line of thinking nonetheless furnishes us with a test we can conduct on a theory of decision-making, and while it might not tell in favour of the theory if it passes, it seems to tell against it if it fails. We can ask of the theory: If I were to use you not only to make my normal day-to-day decisions, but also to make the higher-order decision about which decision theory to use, would you recommend yourself? If it would, we call it \emph{self-recommending}; if it wouldn't, we call it \emph{self-undermining}. We claim that no self-undermining decision theory can be correct. This is not to say that a self-recommending theory is thereby adequate---for instance, the theory that says that any available act is rationally permissible is self-recommending, but it is not correct. Nonetheless, we can use this test to winnow the list of candidate decision theories, removing those that fail it.
 
 
-\todo[inline]{Let's here add a comment that self-undermining simply being bad. I see it comes later, but... RP: we do say here: `it might not tell in favour of the theory if it passes, it seems to tell against it if it fails' and `no self-undermining decision theory can be correct'?}
+
 
 %\section{What does it mean to be self-undermining?}
 
@@ -668,11 +668,11 @@ Expected utility theory rules out as irrational certain natural ways of taking r
 
 %\subsection*{v5}
 
-\todoinfo{v5 - others commented out above}
 
-{\color{violet}
+
+%{\color{violet}
 %
-Here are the four options over which the Allais preferences are defined. The payout of each depends on the outcome of a lottery with 100 tickets. \todo{gamble vs action?? RP: I'd say `option'?}
+Here are the four options over which the Allais preferences are defined. The payout of each depends on the outcome of a lottery with 100 tickets. 
 %$$
 %\begin{array}{r|cccc}
 %	& \text{ticket 1} &\text{ticket 2-11}& \text{ticket 12-100}\\\hline \Tstrut
@@ -707,14 +707,14 @@ Let's suppose that our agent has a decision theory which endorses these preferen
 Now, consider instead a related decision problem. The two options available to the agent---Safe and Risky---depend on whether a particular company goes bust or not; they might be, for example, options for stocks she can invest in.
 $$
 \begin{array}{r|cc}
-	\text{Decision problem } D^{\mathrm{Allais}}_{\mathrm{local}} & \text{goes bust} &  \text{not bust} \Bstrut\\\hline 
+	\text{Decision problem } D^{\mathrm{Allais}}_{\mathrm{local}} & \text{goes bust} &  \text{not bust} \Bstrut\\\hline \Tstrut
 	p & \sfrac{1}{11} & \sfrac{10}{11}\Bstrut\\\hline\hline \Tstrut
 	\text{Safe} &\text{\pounds 1m}&\text{\pounds 1m}                      \\
 	\text{Risky} & \text{\pounds 0}&\text{\pounds 5m}
 \end{array}
 $$
 %There are two actions that the agent could take: take a risky bet or the safe course of action. Let's say the outcome of the risky bet depends on whether this particular company goes bust. These actions might be, 
-Let's suppose the agent thinks the odds of this company going bust are $1:10$. \todo{I'm happy to instead keep the example as one with lottery tickets, now with 11 tickets... And then whether she's offered it is determined by a toss of a biased coin?? RP: I like it as it is!}
+Let's suppose the agent thinks the odds of this company going bust are $1:10$.
 	
 Perhaps her decision theory prefers Risky to Safe. 
 
@@ -723,10 +723,10 @@ We will now turn to a higher-order decision that the agent might face.   She is 
 
 
 The form that these options have are what we call \emph{picking strategies}. 
-They are functions, $\s$, which select one of the available acts from each (relevant) decision problem. 
+They are functions, $\s$, which select one of the available options from each (relevant) decision problem. 
 For example, a picking function will specify either Safe or Risky as its pick in $D^{\mathrm{Allais}}_{\mathrm{local}}$.
 
-The choice between picking functions is another kind of decision problem, a higher-order decision. Our agent can make use of her decision theory to determine which picking function to choose, depending on her credences over which decision problem she'll face, and the utility that the picking strategy leads to in each possibility. We evaluate a picking strategy by its fruits, that is, by the utility of the option it selects when faced with the specified decision problem and given the state of the world.\todo{add an assumption dec-state indep? RP: I think not here, since it's already pretty involved.} 
+The choice between picking functions is another kind of decision problem, a higher-order decision. Our agent can make use of her decision theory to determine which picking function to choose, depending on her credences over which decision problem she'll face, and the utility that the picking strategy leads to in each possibility. We evaluate a picking strategy by its fruits, that is, by the utility of the option it selects when faced with the specified decision problem and given the state of the world.
 
 Suppose that our agent knows she'll either face $D^{\mathrm{Allais}}_{\mathrm{local}}$ or she'll be given \pounds1m for sure. And suppose her credence that she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$. She is deciding amongst various picking strategies. 
 Here, the only relevant consideration in choosing amongst picking strategies is what they will pick when facing $D^{\mathrm{Allais}}_{\mathrm{local}}$. There are thus two options: $\s_{\mathrm{Safe}}$ or $\s_{\mathrm{Risky}}$, which pick Safe or Risky, respectively, in $D^{\mathrm{Allais}}_{\mathrm{local}}$. 
@@ -765,15 +765,18 @@ But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
 Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one that she knows won't choose in the way she would were she in the situation herself. 
-Given the choice of whether she should tie herself to the mast, and pre-commit to a particular course of action, she is willing to pay money to get that rope.\todo{isn't this making it like the others??? RP: which others?}
+Given the choice of whether she should tie herself to the mast, and pre-commit to a particular course of action, she is willing to pay money to get that rope.\todo{isn't this making it like the others??? RP: which others? CCM: I meant VoI or sequential choice. }\todo{C: pay money? We haven't shown that... it depends on the Archimadeanicity. }
 
 Her adopted decision theory requires her to pick a picking strategy which is not compatible with its own recommendations. 
 %If our agent, using her decision theory, endorses the Allais preferences and recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$, then her adopted decision theory recommends a picking strategy which is not compatible with its own recommendations. 
 Despite the fact that her decision theory recommends picking Risky, it thinks it would be better to use a decision theory which recommends Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$.
 
-\todo{I moved this para up here}There is no funny business going on here. Learning that you face decision problem $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not, we are supposing, provide any information about whether the company will go bust. We assumed that the decision problem is independent of the state of the world. We are also assuming act-state independence: picking one option or another in $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not tell you anything about which state of the world you're in.
+\begin{colored}{red}
+	%\todo{I moved this para up here}
+There is no funny business going on here. Learning that you face decision problem $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not, we are supposing, provide any information about whether the company will go bust. We assumed that the decision problem is independent of the state of the world. We are also assuming act-state independence: picking one option or another in $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not tell you anything about which state of the world you're in.
+\end{colored}
 
-This is \emph{prima facie} bad feature of her decision theory. Your decision theory makes recommendations both about \emph{picking strategies} and which \emph{actions}\todo{I changed `options' to `actions'} to choose in different decision problems. But these recommendations pull you in different directions. The picking strategy it recommends tells you to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells you to do another thing. There's an instability in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
+This is \emph{prima facie} bad feature of her decision theory. Your decision theory makes recommendations both about \emph{picking strategies} and which \emph{options} to choose in different decision problems. But these recommendations pull you in different directions. The picking strategy it recommends tells you to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells you to do another thing. There's a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
 \begin{quote}
 	It is as if Consumer Bulletin were to advise you that Consumer Reports was a best
 	buy whereas Consumer Bulletin itself was not acceptable; you could not possibly
@@ -800,7 +803,7 @@ This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Al
 
 Thus, if her decision theory endorses the Allais preferences and is opinionated over what to choose in $D^{\mathrm{Allais}}_{\mathrm{local}}$ then it is undermining in the sense that there is some uncertainty over which decision problem she'll face where the decision theory rules its own way of picking as impermissible. 
 
-What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$? Neither way of picking is deemed impermissible. Both picking strategies are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on whether she faces Version 1 or Version 2, in neither case does she rule out all the picking strategies that are compatible with her recommendations---she just rules out one of them. Whilst her decision theory would then be undermining in some sense, it is much weaker than what we had previously, where the decision theory rules out as impermissible \textit{all} picking strategies compatible with its recommendations (there is only one). \todo{what do we actually say about this?? EAdmiss?? RP: yes, this is covered below. And this is the point of the probabilistic picking strategies.}
+What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$? Neither way of picking is deemed impermissible. Both picking strategies are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on the amount she'll receive when not facing $D^{\mathrm{Allais}}_{\mathrm{local}}$, in neither case does she rule out all the picking strategies that are compatible with her recommendations---she just rules out one of them. Whilst her decision theory would then be undermining in some sense, it is much weaker than what we had previously, where the decision theory rules out as impermissible \textit{all} picking strategies compatible with its recommendations (there is only one). \todo{what do we actually say about this?? EAdmiss?? RP: yes, this is covered below. And this is the point of the probabilistic picking strategies.}
 
 
 Decision theories do typically leave some decisions unsettled, where her reasons for picking a course of action have run out. It might be indifferent between various actions or, as we will study later in the paper, find them incomparable.  In acting in the world, an agent does actually need to pick an option, even if her reasons for one or the other have run out. Decision theories often leave open various ways to pick. 
@@ -828,10 +831,15 @@ And so again, the decision theory deems it impermissible to pick in accordance w
 
 Any strict failure of von Neumann-Morgenstern's Independence Principle will also generate a case of undermining. Suppose your decision theory deems option $a$ preferable to option $b$; and suppose further that it prefers the mixed option $b$ if a possibly biased coin lands heads and $c$ if tails to the mixed option $a$ if that coin lands heads and $c$ if tails. Then we can generate a way of being uncertain over which decision problem you'll be faced with so that the unique picking strategy which is compatible with the decision theory is itself impermissible according to the theory. 
 
-These cases are very closely related to Dutch bookability / sequential incoherence / Value of Information failures / ??? Which entail underminingness? What do we know about when they are guaranteed? Might be worth including here... ! \todo{Sort out! RP: I really think this would be adding too much. There are so many Dutch book / sequential incoherence / VoI arguments and versions of them.}
 
 
-}
+\begin{colored}{violet}
+	These cases are formally related to other failures such as Dutch book style challenges, sequential incoherence, or failures of the Value of Information theorem.
+\end{colored}
+
+
+\todo{the original has been commented out below}
+%}
 {\color{red}
 	
 \subsection{Original}
@@ -958,7 +966,16 @@ There are at least two ways to argue that being self-undermining tells against a
 %}
 
 
-\todo{Maybe worth seeing if we can reword. }
+\todo{C: a first attempt to reword}
+\begin{colored}{violet}
+First: A decision theory provides verdicts on which options from each decision problem are impermissible. If it is self-undermining, then one of its verdicts is that picking in accordance with itself is impermissible. Could such a decision theory be correct? If we think that some courses of action are the ones which are actually impermissible for the agent, might the verdicts of such a self-undermining theory be the true ones? Since it judges it to be impermissible to pick in accordance with itself, this would imply that it is in fact impermissible for you to pick in accordance with it.
+
+A decision theory for which it is impermissible for you to pick in accordance with might nonetheless be a good one for you to \emph{adopt} if, for example, the alternative decision theories which give the correct verdicts are all so complex and computationally demanding that they lie beyond the agent's cognitive capacities to use reliably---not much good using something that gives the right verdicts every time if you can never discover what verdicts it gives. In attempting to follow its recommendations, it might lead you further astray than if you'd started with a simpler theory. 
+%But that is not the case we are considering here. It just needed to specify what to do when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, certainly a theory that can be followed. 
+We have assumed that all possible picking strategies are available to the agent. So, in particular, it is within the agent's control to choose a picking strategy which is correct and never picks impermissible options. This is not beyond the agent's ken. And she can perfectly reliably implement this strategy. That is why we take the outcome of a picking strategy to be the outcome of whichever act it recommends.
+\end{colored}
+
+\begin{colored}{red}
 {First: for any decision problem (set of available acts), $D$, a decision theory deems some subset of $D$ to be \emph{rejected} or \emph{rationally impermissible}. Now suppose the decision theory is correct: that is, the acts it declares impermissible are indeed impermissible for the individual. But one of its declarations is that picking strategies that never recommend impermissible acts are themselves impermissible---that's what makes it self-undermining. In that case, you might face a rational dilemma. That is, nature might thrust a sequence of decision problems on you where you rationally \emph{must} do something rationally impermissible. Suppose you face the choice of which picking strategy to use. If you choose a rationally impermissible picking strategy, you (obviously) do something impermissible in that decision problem. If you choose some other picking strategy, then there is some other decision problem where it recommends an impermissible act. If nature thrusts this decision problem on you, then implementing your picking strategy will lead you to pick an impermissible act. So you will have done something impermissible in this latter decision problem. This is a rational dilemma. And it is a particularly pernicious sort of rational dilemma, since it is not generated by any self-referentiality or act-state dependence. If there are no genuine rational dilemmas of this sort, then our initial assumption must be false: the decision theory simply cannot be correct.}
 
 
@@ -970,14 +987,15 @@ There are at least two ways to argue that being self-undermining tells against a
 %Now, perhaps we shouldn't be looking for a correct theory, as perhaps they have some other flaws. For example, 
 %{Now, you might (rightly) point out that correct theories might be flawed in some other way, and as a result, it may be no decisive mark against a self-undermining theory that it is not correct. For example,} 
 Perhaps this is not a decisive mark against a self-undermining theory. It could be impermissible to use any decision theory that gives the correct verdicts if, for example, those theories were so complex and computationally demanding that they lay beyond the agent's cognitive capacities to use reliably---not much good using something that gives the right verdicts every time if you can never discover what verdicts it gives. But that is not the case we are considering here. {Indeed, we have assumed that all possible picking strategies are available to the agent. So, in particular, it is within the agent's control to choose a picking strategy that never recommends impermissible acts. This is not beyond the agent's ken. And she can perfectly reliably implement this strategy. That is why we take the outcome of a picking strategy to be the outcome of whichever act it recommends.}
+\end{colored}
 
-
-It's worth adding that, for those decision theories that permit the Allais preferences, they consider it rationally required of you, at the point when you're uncertain which decision problem you'll face, to pay money if it's possible to thereby to bind yourself to doing something other than what they will recommend when you actually face that decision. Of course, we're used to that in cases of temptation---Ulysses should pay his sailors to bind him to the mast as their ship passes the Sirens---but that's because we think your utilities will change under the pressure of temptation or your probabilities will change in an irrational way or you won't choose rationally on the basis of your utilities and probabilities. Nothing like that is going on here.
+It's worth adding that, for those decision theories that permit the Allais preferences, they consider it rationally required of you, at the point when you're uncertain which decision problem you'll face, to pay money if it's possible to thereby to bind yourself to doing something other than what they will recommend when you actually face that decision\todo{C: we need to add Arch somewhere above!}. Of course, we're used to that in cases of temptation---Ulysses should pay his sailors to bind him to the mast as their ship passes the Sirens---but that's because we think your utilities will change under the pressure of temptation or your probabilities will change in an irrational way or you won't choose rationally on the basis of your utilities and probabilities. Nothing like that is going on here.
 
 %Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at the point at which you face whichever first-order decision you do face. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$. In that state of uncertainty, you preferred the picking strategy $\s_2$, since the choice between $\s_1$ and $\s_2$ was extensionally equivalent to the choice between 2A and 2B in the Allais set up. And yet, when you face $D_1$, you prefer to use $\s_1$, for it picks what your decision theory says you should pick. And so which should you actually use? Which of these perspectives is privileged? Standing facing the decision problem $D_1$, you might ask yourself: my decision theory tells me to choose A and not to choose B, but it also tells me that, if I could have chosen how I would choose, it would have told me to choose B and not to choose A---which should I do? And perhaps we think the correct theory of rational choice should not give rise to such dilemmas.
 
 
-{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? RP: I'd cut the paragraph higher up where we say there's nothing funny going on. At that point, we're just introducing the idea and making the case it's odd prima facie. I think we leave the spelling out of how it's bad for here as well as deflecting the potential responses.}Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$.
+{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? RP: I'd cut the paragraph higher up where we say there's nothing funny going on. At that point, we're just introducing the idea and making the case it's odd prima facie. I think we leave the spelling out of how it's bad for here as well as deflecting the potential responses. C: yes, but I'm not sure exactly how to do that.}
+Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points. Recall the case above in which you were initially uncertain whether you'd face $D_1$ or $D_2$.
 In that state of uncertainty, you preferred the picking strategy $\s_2$, since the choice between $\s_1$ and $\s_2$ was extensionally equivalent to the choice between 2A and 2B in the Allais set up. And yet, when you face $D_1$, you prefer to use $\s_1$, for it picks what your decision theory says you should pick. And so which should you actually use? Which of these perspectives is privileged? Standing facing the decision problem $D_1$, you might ask yourself: my decision theory tells me to choose A and not to choose B, but it also tells me that, if I could have chosen how I would choose, it would have told me to choose B and not to choose A---which should I do?
 
 Of course, we're used to that in cases of act-state dependence. Causal decision theorists say that in Newcomb's problem you should take both boxes, but if you can pay to take a pill to turn yourself into a one-boxer before the prediction is made, then you should. But that's because choosing how to choose, in this case, causes you to face a better decision problem down the line. Nothing like that is going on here. And perhaps we think that, at least when choosing a picking strategy has no causal or evidential impact on which decision problems you will face or the value of the options in those problems, the correct theory of rational choice should not give rise to such dilemmas.}
@@ -1081,9 +1099,11 @@ These arguments are truly formal in the sense that the content of the decisions 
 %It deems itself rationally impermissible. That just, on the face of it, seems very bad!
 \begin{colored}{violet}
 	
-\subsection{What is being judged}
+\subsubsection{Something else is to blame}
 
-What we've used the decision theory to evaluate is picking functions. We then associated picking functions with the decision theory. 
+What we've used the decision theory to evaluate is picking functions. We then associated picking functions with the decision theory to draw the conclusion that the decision theory is self-undermining. 
+
+However, decision theories are only able to be associated with picking functions depending on further parameters -- 
 
 Decision theories typically specify certain parameters -- credences, utilities, and perhaps a risk-profile -- to determine a so-called choice function, which specifies for each decision problem, which actions from it are deemed impermissible. Once we have a choice function, we can specify picking functions that are compatible with it by just checking whether it picks an impermissible action.
 
