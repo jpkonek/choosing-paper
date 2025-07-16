@@ -101,7 +101,7 @@
 \renewcommand\c{\mathsf{c}} % choice function
 
 \newcommand{\prpickstrat}{\mathsf{n}}
-\newcommand\prpickstrategies{\mathcal{N}}
+\newcommand\PrPickStrategies{\mathcal{N}}
 \newcommand{\imprecpickstrat}{\mathbb{N}}
 
 \newcommand{\IB}{\mathbb{B}}
@@ -110,6 +110,7 @@
 \newcommand{\pb}{b}
 %\newcommand{\pb}{}
 %\renewcommand{\color}[2]{}
+\newcommand{\Dom}{\mathsf{Dom}}
 
 
 \renewcommand{\mathsterling}{\text{\normalfont\textsterling}} % to be able to use \pounds in math mode
@@ -1502,9 +1503,10 @@ Now, suppose:
 \item your credence function is $p$, with $p(\omega_1) = 0.1, 0.2, \ldots, 0.8$, or $0.9$ and $p(\omega_2) = 1-p(\omega_1)$;
 \item your risk function is a power function $r_k(x) = x^k$, with $k = 0.5$, $0.6$, $\ldots$, $0.8$, $0.9$, $1.1$, $1.2$, $\ldots$, $1.9$, or $2$;
 \item you know you'll face a choice between just two acts, but you don't know which two acts, and you place a measure $\mu$ over the possible decision problems that takes the utilities of the two acts at the two possibilities to be independent of one another and all distributed according to a beta distribution $\mathrm{Beta}(\alpha, \beta)$ with $\alpha = 1, 2, 3, 4$, or $5$ and $\beta = 1, 2, 3, 4$, or $5$.\end{enumerate}
-Then, let $\s$ be any picking strategy compatible with REU when coupled with $p$ and $r_k$. Then there is an alternative picking strategy $\s^\star$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^\star$ to $\s$. What's more, $\s^\star$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^\star$ so that it is compatible with REU with $p$ and $r_{k^\star}$ for some $k^\star \neq k$. That is, $\s^\star$ is a picking strategy compatible with REU coupled with a different risk-averse risk function. So, uncertain which decision they'll face, someone using REU with this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly different risk function.\footnote{See the Mathematica notebook here for the tools to carry out these calculations [link to notebook from journal page as supplementary material].}%\todooldinfo{link to mathematica}
+Then, let $\s$ be any picking strategy compatible with REU when coupled with $p$ and $r_k$. Then there is an alternative picking strategy $\s^*$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^*$ to $\s$. What's more, $\s^*$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^*$ so that it is compatible with REU with $p$ and $r_{k^*}$ for some $k^* \neq k$. That is, $\s^*$ is a picking strategy compatible with REU coupled with a different risk-averse risk function. So, uncertain which decision they'll face, someone using REU with this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly different risk function.\footnote{See the Mathematica notebook here for the tools to carry out these calculations [link to notebook from journal page as supplementary material].}%\todooldinfo{link to mathematica}
+\todo{we'll need to remember to do that.}
 
-%Second, suppose $0<k<1$. So your risk function $r_k(x) = x^k$ is risk-seeking. And now let $\s$ be any picking strategy compatible with REU with $p$ and $r_k$. Then there is an alternative picking strategy $\s^\star$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^\star$ to $\s$. What's more, $\s^\star$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^\star$ so that it is compatible with REU with $p$ and $r_{k'}$, for some $k < k'$. That is, $\s^\star$ is a picking strategy compatible with REU coupled with a less risk-seeking risk function. So, uncertain which decision they'll face, someone using REU and this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly less risk-inclined risk function.
+%Second, suppose $0<k<1$. So your risk function $r_k(x) = x^k$ is risk-seeking. And now let $\s$ be any picking strategy compatible with REU with $p$ and $r_k$. Then there is an alternative picking strategy $\s^*$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^*$ to $\s$. What's more, $\s^*$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^*$ so that it is compatible with REU with $p$ and $r_{k'}$, for some $k < k'$. That is, $\s^*$ is a picking strategy compatible with REU coupled with a less risk-seeking risk function. So, uncertain which decision they'll face, someone using REU and this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly less risk-inclined risk function.
 
 
 %We have suggestive initial results for REU, but nothing more at this stage. Suppose there are just two states of the world. You have credence 0.3 in the first and 0.7 in the second. And your risk function is a power function $R(p) = p^k$ for some $k> 0$. Suppose your utilities are bounded and so the possible utility pay-offs of the different possible options lies in some range $[a, b]$. Suppose you know you'll face a binary decision---that is, a choice between just two alternatives. We might write such a decision problem as $(u_1, u_2; v_1, v_2)$, where $u_1$ is the utility of the first option at the first state of the world, and so on. And suppose we take the different values $u_1, u_2, v_1, v_2$ to be independent of one another and all distributed according to the same distribution. Then: if that distribution is the uniform distribution or any number of other beta distributions, then, for a range of $k > 1$, which make your risk function $R_k$ risk-averse, then there is another alternative, less risk-averse decision theory---in fact, REU with $R_{k'}$ for $k' < k$---that REU with $R_k$ would prefer to make the decision when it becomes clear which you'll face. And, for a range of $k < 1$, which make your risk function risk-seeking, then there is an alternative, less risk-seeking decision theory---in fact, REU with $R_k$ for $k < k'$---that REU with $R_k$ would prefer to make the decision. We list some of these results in the Appendix.
@@ -1573,7 +1575,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 A picking strategy picks for a choice function $\c$ if it never picks an option that $\c$ deems impermissible. That is: 
 \begin{definition}
-	A picking strategy $\s$ \emph{picks for a choice function} $\c$, if $\s(D) \in \c(D)$, for all decision problems $D$.
+	A picking strategy $\s$ \emph{picks for a choice function} $\c$, if for all decision problems, $D$, $\s(D) \in \c(D)$.
 \end{definition}
 %Such a picking strategy will never select an option which $\c$ deems impermissible. 
 
@@ -1586,7 +1588,7 @@ Given a probability function $p$ defined over $\Omega$, the expected utility of 
 If one has (probabilistic) credences given by $p$, expected utility theory says that one should choose an act in $D$ that maximises $\Exp_p[\U(a)]$.\footnote{The version we present here is of the sort described by \citet{savage1954fs}, in which it is assumed that the acts are independent of the states of the world. This assumption is dropped in the evidential decision theory of \citet{jeffrey1965lod} and the causal decision theory of \citet{stalnaker1972ldl, gibbard1978ctk, joyce1999fcdt}.} That is, we define the choice function to which expected utility theory gives rise when coupled with probability function $p$ as follows:
 
 \begin{definition}[Expected Utility Theory ($\EU_p$)]
-	\[\EU_p(D):=\{a\in D\given \Exp_p[\U(a)]\geq \Exp_p[\U(a')]\text{ for all $a'\in D$}\}\]
+	\[\EU_p(D):=\{a\in D\given \text{for all $a'\in D$, }\Exp_p[\U(a)]\geq \Exp_p[\U(a')]\}\]
 \end{definition}
 %\todooldinfo{In nu stuff I am using ``picks for'' terminology. Should that be used throughout??}
 %\todooldinfo{should we introduce ``choice funciton'' here??}
@@ -1706,18 +1708,20 @@ If the states of the world are \emph{Red} (I draw a red ball), \emph{Black} (I d
 Now consider the following two possible decision problems, $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$:
 $$
 \begin{array}{r|ccc}
-D^{\mathrm{Ellsberg}}_1 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} & x&\sfrac{2}{3}-x \\%\multicolumn{2}{c}{\sfrac{2}{3}}\Bstrut \\\hline \hline\Tstrut 
-\text{1A} & \text{\pounds 10} & \text{\pounds 0}  & \text{\pounds 0} \\
-\text{1B} & \text{\pounds 1} & \text{\pounds 11}  & \text{\pounds 1} 
+D^{\mathrm{Ellsberg}}_1 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} & x&\sfrac{2}{3}-x %\multicolumn{2}{c}{\sfrac{2}{3}}
+\Bstrut \\\hline \hline\Tstrut 
+\text{1E} & \text{\pounds 10} & \text{\pounds 0}  & \text{\pounds 0} \\
+\text{1F} & \text{\pounds 1} & \text{\pounds 11}  & \text{\pounds 1} 
 \end{array}
 \hspace{10mm}
 \begin{array}{r|ccc}
-D^{\mathrm{Ellsberg}}_2 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} &x&\sfrac{2}{3}-x \\% \multicolumn{2}{c}{\sfrac{2}{3}}\Bstrut \\\hline \hline\Tstrut 
-\text{2A} & \text{\pounds 11} & \text{\pounds 1}  & \text{\pounds 11} \\
-\text{2B} & \text{\pounds 0} & \text{\pounds 10}  & \text{\pounds 10} 
+D^{\mathrm{Ellsberg}}_2 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} &x&\sfrac{2}{3}-x % \multicolumn{2}{c}{\sfrac{2}{3}}
+\Bstrut \\\hline \hline\Tstrut 
+\text{2E} & \text{\pounds 11} & \text{\pounds 1}  & \text{\pounds 11} \\
+\text{2F} & \text{\pounds 0} & \text{\pounds 10}  & \text{\pounds 10} 
 \end{array}
 $$
-Faced with these decisions, people often report the Ellsberg preferences: they will choose 1A from $D^{\mathrm{Ellsberg}}_1$, and 2B from $D^{\mathrm{Ellsberg}}_2$.\footnote{In fact, we have added a small constant to the usual versions of 1B and 2A, reflecting the fact that people strictly prefer the usual version of 1A over the usual version of 1B, and so are willing to pay a penalty for making that choice; we've taken that penalty to be \pounds 1, but our point remains however small you make it.} And indeed that is exactly what $\Gamma$-Maximin demands. It says that, faced with a particular decision problem, you should pick one of the acts whose minimum expected utility by the lights of the probability functions in $\IP$ is maximal: in $D^{\mathrm{Ellsberg}}_1$, 1A uniquely maximizes minimum expected utility; and in $D^{\mathrm{Ellsberg}}_2$, 2B does that.
+Faced with these decisions, people often report the Ellsberg preferences: they will choose 1E from $D^{\mathrm{Ellsberg}}_1$, and 2F from $D^{\mathrm{Ellsberg}}_2$.\footnote{In fact, we have added a small constant to the usual versions of 1F and 2E, reflecting the fact that people strictly prefer the usual version of 1E over the usual version of 1F, and so are willing to pay a penalty for making that choice; we've taken that penalty to be \pounds 1, but our point remains however small you make it.} And indeed that is exactly what $\Gamma$-Maximin demands. It says that, faced with a particular decision problem, you should pick one of the acts whose minimum expected utility by the lights of the probability functions in $\IP$ is maximal: in $D^{\mathrm{Ellsberg}}_1$, 1E uniquely maximizes minimum expected utility; and in $D^{\mathrm{Ellsberg}}_2$, 2F does that.
 
 \begin{definition}[$\Gamma$-Maximin$_\IP$ ($\Maximin_\IP$) ]
 $$
@@ -1726,7 +1730,7 @@ $$
 (This should only be applied when these minima exist, e.g., when $\IP$ is a closed set.)
 \end{definition}
 
-So $\s$ picks for $\Maximin_\IP$ iff $\s(D)\in\Maximin_\IP(D)$ for every $D\in\D$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1A from $D^{\mathrm{Ellsberg}}_1$ and 2B from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_E$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any $p\in\IP$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1A)}]\geq \Exp_p[\U(\text{1B)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2B)}]\geq \Exp_p[\U(\text{2A)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
+So $\s$ picks for $\Maximin_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximin_\IP(D)$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_E$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any $p\in\IP$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1E)}]\geq \Exp_p[\U(\text{1F)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2F)}]\geq \Exp_p[\U(\text{2E)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
 
 Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agent's uncertainty not only over what the world is like, but also which decision problem she'll face. 
 Suppose that in fact you've got precise probabilities over what decision you'll face, and you think it's $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_1$ and $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_2$. 
@@ -1734,11 +1738,11 @@ So we are representing your uncertainty as a set, $\IB$, of (higher-order) proba
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
 {That is, your credal set is given by $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-\todo{is it clear that these are the Ellsberg ones not the Allais ones???!!!}Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1B,2A}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1B,2A}})=6$; so $\s_E=\s_{\text{1A,2B}}\notin\Maximin_{\IB}(\S)$. 
+Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$; so $\s_E=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todooldinfo{REFS!!!!}
-	For instance, we might consider how the agent will choose in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, individually, and then combine these choices and observe that the result is dominated---1B-and-2A dominates 1A-and-2B. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D^{\mathrm{Ellsberg}}_1$, then $D^{\mathrm{Ellsberg}}_2$. And again we can note that 1B-then-2A dominates 1A-then-2B. And we can note that $\Gamma$-Maximin would still have you choose 2A when faced with $D^{\mathrm{Ellsberg}}_2$, even if you know you've already chosen 1B when faced with $D^{\mathrm{Ellsberg}}_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
+	For instance, we might consider how the agent will choose in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, individually, and then combine these choices and observe that the result is dominated---1F-and-2E dominates 1E-and-2F. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D^{\mathrm{Ellsberg}}_1$, then $D^{\mathrm{Ellsberg}}_2$. And again we can note that 1F-then-2E dominates 1E-then-2F. And we can note that $\Gamma$-Maximin would still have you choose 2E when faced with $D^{\mathrm{Ellsberg}}_2$, even if you know you've already chosen 1F when faced with $D^{\mathrm{Ellsberg}}_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
 		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.
 
 %However, such examples can always be used to construct instances of undermining evaluations of strategies. Suppose $D^{\mathrm{Ellsberg}}_1, \ldots, D_k$ is a sequence of decision problems and your decision theory demands you pick $a_i$ from $D_i$; but suppose further than, if you were to pick $b_i$ from $D_i$ you'd be better off for sure: that is, the total utility of $a_1$-and-\ldots-and-$a_k$ is less than the total utility of $b_1$-and-\ldots-and-$b_k$  at every state of the world. Then, if you are equally confident you'll face each of $D^{\mathrm{Ellsberg}}_1, \ldots, D_n$, then, at each world, the expected utility of a strategy that picks $a_i$ when faced with $D_i$ is less than the expected utility of a strategy that picks $b_i$ when faced with $D_i$. 
@@ -1823,14 +1827,14 @@ We are able to provide a general result for a wide class of ways of being uncert
 \begin{definition}
  $$\EAd_\IP(D) = \Set{a \in D \given (\exists p \in \IP)(\forall a' \in D)(\Exp_p[\U(a)]\geq\Exp_p[\U(a')])}
 	$$\end{definition}
-	 $\s$ picks for $\EAd_\IP$ iff $\s(D)\in\EAd_\IP(D)$ for every $D\in\D$.
+	 $\s$ picks for $\EAd_\IP$ iff for every $D\in\D$, $\s(D)\in\EAd_\IP(D)$.
 	
 
 	
 	\begin{definition}
 	$$\Maximality_\IP(D) = \Set{a \in D \given (\forall a'\in D)(\exists p\in\IP)(\Exp_p[\U(a)] \geq\Exp_p[\U(a')])}$$
 \end{definition}
-	 $\s$ picks for $\Maximality_\IP$ iff $\s(D)\in\Maximality_\IP(D)$ for every $D\in\D$.
+	 $\s$ picks for $\Maximality_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximality_\IP(D)$.
 
 
 Let's treat E-Admissibility first. Suppose you are uncertain which decision problem you'll face. And suppose, as above, we represent your uncertainty over $\Omega \times \D$ with a credal set $\IB$. 
@@ -1856,13 +1860,13 @@ In the precise setting, irrelevance is a univocal, symmetric notion: for any joi
 \todooldinfo{ftnte defining marginal again. Check consistency throughtou paper. } 
 But in the imprecise setting, irrelevance fractures into a variety of distinct, not necessarily symmetric notions.\footnote{A short survey of independence notions for imprecise probability: complete independence for sets of probabilities (\cite{seidenfeld2007ci,cozman2012}); independence in selection for lower previsions (\cite{campos1995}); strong independence for lower previsions and sets of desirable gambles (\cite{cooman:2012:indnatexdesirs}); epistemic independence (value and subset) for sets of desirable gambles (\cite{Moral2005b}); epistemic h-independence for lower previsions and credal sets (\cite{debock2015:phdthesis}); S-independence for choice functions (\cite{debock2021:S-independence}).}
 
-Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension} (\emph{cf.} \cite[Thm 13]{cooman2012}). This is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfy the following inequality constraints: for any gamble $g:\Omega\rightarrow\mathbb{R}$ and any $B\subseteq\D$ with $b(D\in B)>0$
+Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension}  \citep[\emph{cf.}][Thm 13]{cooman2012}\todo{shouldn't it be `see'??}. This is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfy the following inequality constraints: for any gamble $g:\Omega\rightarrow\mathbb{R}$ and any $B\subseteq\D$ with $b(D\in B)>0$
 \[
-\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
+\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_\pb[g^+]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
 \]
 and
 \[
-\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+\given D\in B]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
+\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_\pb[g^+\given D\in B]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
 \]
 where $g^+:\Omega\times\D\rightarrow\mathbb{R}$ is the ``cylindrical extension'' of $g$ defined by $g^+(\omega,D)=g(\omega)$ for all $\omega\in\Omega$ and $D\in\D$. As many authors have noted, individual probabilities $\pb$ in the irrelevant natural extension $\IB$ will not in general treat $\D$ as irrelevant to $\Omega$ (\emph{cf.} \cite[pp. 96-7]{debock2019iar}). Nonetheless, $\IB$ itself will do so, in the sense described above. Moreover, $\IB$ will contain any $\pb$ that treats $\D$ as stochastically independent of $\Omega$. This is sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.
 
@@ -1870,9 +1874,9 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 
 
 
-%\footnote{More carefully, we suppose that $\IB$ is a set of probability measures $b$ over $\Omega\times\D$ which are absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$. Let $f^b:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $b$, so that for any measurable $A\subseteq\Omega\times\D$
+%\footnote{More carefully, we suppose that $\IB$ is a set of probability measures $\pb$ over $\Omega\times\D$ which are absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$. Let $f^\pb:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $\pb$, so that for any measurable $A\subseteq\Omega\times\D$
 %\[
-%b(A)=\sum_{\omega\in\Omega}\int_{A_\omega} f^b(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)
+%\pb(A)=\sum_{\omega\in\Omega}\int_{A_\omega} f^\pb(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)
 %\]
 %where, for any $\omega\in\Omega$, $A_\omega:=\left\{\left<\omega^*,D^*\right>\in A\given \omega=\omega^*\right\}$. To say that $\IB$ marginalizes to $\IP$ is just to say that \[
 %\IP=\left\{\int_\D f^b(\cdot,D) \frac{1}{|\Omega|}\diff\lambda(D)\given b\in\IB\right\}
@@ -1928,11 +1932,11 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 
 
-For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1A,1B}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2A,2B}\}$; so every strategy picks for $\EAd_\IP$. However, the $\s_{\text{1A,2B}}$ strategy, which is the empirically observed strategy, is not an $\EU_p$ strategy for any $p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} I.e., it is not in $\EU_p(\Strategies)$ for any $p$. If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they are $\EU_p$ and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1A,2A}}$. 
+For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$\todo{does this mean `picks for2?}: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} Thus, it is not in $\EU_p(\Strategies)$ for any $p$. If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,\todo{is this phrasing used elswhere... strategies ``are EUp''???} and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
 
 
 
-This is a more general feature: there are always some strategies which picks for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$, at least if $\EAd_\IP$ is not sufficiently precise, i.e., that it does not $\mu$-surely look like $\EU_p$, or a restriction thereof, for any $p\times\mu\in\IB$. 
+This is a more general feature: there are always some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$, at least if $\EAd_\IP$ is not sufficiently precise, i.e., that it does not $\mu$-surely look like $\EU_p$, or a restriction thereof, for any $p\times\mu\in\IB$. 
 \begin{proposition}\label{thm:ead-existsimpermissibel[indep]}
 
 {Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
@@ -1951,7 +1955,8 @@ This is a more general feature: there are always some strategies which picks for
 %	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \emph{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
 %}
 
- E-Admissibility rejects some picking strategies which are compatible with its own choice set. \cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
+ E-Admissibility rejects some picking strategies which are compatible with its own choice set.\todo{this is repeating statement above the propn... is that ok?}
+  \Cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
 
 
 
@@ -1964,27 +1969,29 @@ Does this make E-Admissibility self-undermining? Not exactly. But it does mean t
 	
 	
 	On the other hand, one might not see this as a concern for E-Admissibility. %Firstly, as \cref{thm:ead-equiv[dep]} makes clear, there are many picking strategies that E-Admissibility does not reject. In the Consumer Bulletin analogy, it is as if there are many other magazines that your personal shopper could cross-reference, not just Consumer Reports. Secondly, and more to the point, 
-What all of this shows, one might think, is just that E-Admissibility sees value in coordinating how you resolve incomparability. Take a simple example.
+{\color{red}What all of this shows, one might think, is just that E-Admissibility sees value in coordinating how you resolve incomparability.}
+{\color{violet}It just shows that E-Admissibility sees value in coordinating how you resolve incomparability. }
+Take a simple example.
 	
 	
 	$$
 	\begin{array}{r|cc}
 		D^{\mathrm{coord}}_1 & X & \neg X  \Bstrut \\\hline \Tstrut		p & x & 1-x \Bstrut \\\hline \hline\Tstrut 
 		B & \text{\pounds 10} & \text{\pounds 10}   \\
-		1A & \text{\pounds 0} & \text{\pounds 20} 
+		1C & \text{\pounds 0} & \text{\pounds 20} 
 	\end{array}\hspace{20mm}
 	\begin{array}{r|cc}
 		D^{\mathrm{coord}}_2 & X & \neg X  \Bstrut \\\hline \Tstrut		p & x & 1-x \Bstrut \\\hline \hline\Tstrut 
 		B & \text{\pounds 10} & \text{\pounds 10}   \\
-		2A & \text{\pounds 20} & \text{\pounds 0} 
+		2C & \text{\pounds 20} & \text{\pounds 0} 
 	\end{array}
 	$$
 	
-	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$ in the following sense: they will (assuming utility linear in GBP) choose $B$ (reject $1A$) in $D^{\mathrm{coord}}_1$ just in case they choose $2A$ (reject $B$) in $D^{\mathrm{coord}}_2$; likewise, they will choose $1A$ (reject $B$) in $D^{\mathrm{coord}}_1$ just in case they choose $B$ (reject $2A$) in $D^{\mathrm{coord}}_2$. 
+	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$ in the following sense: they will (assuming utility linear in GBP) choose $B$ (reject $1C$) in $D^{\mathrm{coord}}_1$ just in case they choose $2C$ (reject $B$) in $D^{\mathrm{coord}}_2$; likewise, they will choose $1C$ (reject $B$) in $D^{\mathrm{coord}}_1$ just in case they choose $B$ (reject $2C$) in $D^{\mathrm{coord}}_2$. 
 % \todoold{unless $p=0.5$!!!}	
 	
-	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $B$ to be strictly better than $1A$, while $p_2$ expects $1A$ to be strictly better than $B$. In that case, $\EAd_\IP(D^{\mathrm{coord}}_1)=\{B,1A\}$ and $\EAd_\IP(D^{\mathrm{coord}}_2)=\{B,2A\}$. You find both options in both options \emph{incomparable}, \emph{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $B$ in $D^{\mathrm{coord}}_1$ just in case you pick $2A$ in $D^{\mathrm{coord}}_2$. Likewise, you ought to pick $1A$ in $D^{\mathrm{coord}}_1$ just in case you pick $B$ in $D^{\mathrm{coord}}_2$. 
-\todo{I made the a, b capital to match the other examples we use. But now I am kind of confused. And wonder wehther they need special names to keep them apart tooo? We use 1A to mean: Allais, Ellsberg, this one. I thought of using $A_1$, but we already have the clashing issue for tAllais and Ellsberg... lets sort it out!}	
+	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $B$ to be strictly better than $1C$, while $p_2$ expects $1C$ to be strictly better than $B$. In that case, $\EAd_\IP(D^{\mathrm{coord}}_1)=\{B,1C\}$ and $\EAd_\IP(D^{\mathrm{coord}}_2)=\{B,2C\}$. You find both options in both options \emph{incomparable}, \emph{i.e.}, not rejected, but also not indifferent or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$, so too does E-Admissibility advise you to coordinate how you resolve incomparability by picking. You ought to pick $B$ in $D^{\mathrm{coord}}_1$ just in case you pick $2C$ in $D^{\mathrm{coord}}_2$. Likewise, you ought to pick $1C$ in $D^{\mathrm{coord}}_1$ just in case you pick $B$ in $D^{\mathrm{coord}}_2$. 
+
 	
 	
 	Now, you might doubt that there is \emph{really} any value in this sort of ``modal coordination.'' (Recall, you will actually only face one of $D^{\mathrm{coord}}_1$ or $D^{\mathrm{coord}}_2$. You are not coordinating across time.) But the fact that E-Admissibility \emph{sees} value in coordinating how you resolve incomparability does not render it self-undermining.\todoold{I like this paragraph a lot!!!!}
@@ -1993,7 +2000,7 @@ What all of this shows, one might think, is just that E-Admissibility sees value
 
 Moreover, while E-Admissibility's lust for coordination does require decision-makers to \emph{pick as if} their probabilities were imprecise rather than indeterminate, in Levi's sense, this does not mean that they \emph{actually are} imprecise rather than indeterminate. Their credal set need not \emph{actually} represent some true, precise probability which they are unable to identify. This is reflected in their rejection judgments. They often find options genuinely incomparable---not rejected, but not indifferent. No agent with precise probabilities would do so. They are committed to \emph{picking as if} they have some true, precise probability because they value coordination in resolving incomparability.
 
-The utility of an option,\todo{surely an ``action''??} $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
+The utility of an action, $\U(a)$, is a gamble on $\Omega$. The utility of picking strategy, in contrast, $\U(\s)$, is a gamble on $\Omega\times\D$---a larger, refined sample space. Reasons for rejection that apply to one scale, or level of resolution, might not apply at others. E-Admissibility identifies some reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
 
 
 %{\color{blue}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}, although E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. }
@@ -2041,13 +2048,13 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 %Here, we extended maximality to apply to dependence in the analogous way: conditionalise the probabilities on which decision problem you're faced with. 
 \end{comment}
 
-And so, like E-Admissibility, Maximality is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: there are always strategies that pick for it that it does not deem impermissible.
+And so, like E-Admissibility, Maximality is not self-undermining in the way that $\Gamma$-Maximin is self-undermining. There are always strategies that pick for it that it does not deem impermissible.
 
-Unlike for E-Admissibility, we do not get the converse result (even under the assumption of complete independence). There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless are not $\EU_p$ strategies. This is because a strategy is only ruled out as impermissible if there's a single alternative which is preferable according to every $\pb\in \IB$. 
+Unlike for E-Admissibility, we do not get the converse result (even under the assumption of complete independence). There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless do not pick for any $\EU_p$. This is because a strategy is only ruled out as impermissible if there's a \emph{single} alternative which is preferable according to \emph{every} $\pb\in \IB$. 
 This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise or if it's precise and pretty confident about which one you will face. 
 %, as when $\mu$ does assign high enough confidence to facing $D^{\mathrm{Ellsberg}}_1$, then it evaluates any strategy as permissible. 
 
-If, however, you think it's precise, and equally likely, that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1A,2B}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2A,1B}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1A,2B}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2A,1B}})=6$, so  $\s_{\text{1A,2B}}\notin\Maximality_\IB(\Strategies)$. 
+If, however, you think it's precise, and equally likely, that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2E,1F}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2E,1F}})=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
 
 We will be able to show that if your credence over which decision problem you'll be faced with is precise, and also has a further property, that it requires almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we will be able to show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}.
 
@@ -2108,7 +2115,7 @@ an analogue of \cref{thm:ead-existence[dep]} unless we impose additional particu
 %\begin{proposition}\label{thm:max-nec}
 %If $\mu^*$ requires almost everywhere decisiveness and countably additive, and $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then $\s$ is not in $\Maximality_\IB(\Strategies)$.
 %\end{proposition}
-%This follows from a version of Wald's Complete Class Theorem, which shows that, if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^\star$ such that $\EU_{p\times\mu^*}[\U(\s)] < \EU_{p\times\mu^*}[\U(\s^\star)]$, for each $p$ in $\IP$.
+%This follows from a version of Wald's Complete Class Theorem, which shows that, if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\EU_{p\times\mu^*}[\U(\s)] < \EU_{p\times\mu^*}[\U(\s^*)]$, for each $p$ in $\IP$.
 %}
 %This will (somehow) result in a conflict with the notion of being a coherent rejection function, at least one which satisfies (a), (b) and (c). 
 
@@ -2181,7 +2188,7 @@ Up to this point, we have asked how a decision theory evaluates the picking stra
 
 However, other approaches are available too. We are interested in judging a decision theory as a means to your ends, and we have been using the proposed decision theory itself to do the judging, for it is, after all, a theory of which means to your ends are rational. Judging picking strategies that pick for the choice function that a decision theory produces furnish us with an straightforward approach to this question because they determine what the outcomes are: given a decision problem and a state of the world, the utility of a picking strategy is the utility, at that state of the world, of the act it picks from the decision problem. Since decisions theories don't always have definitive guidance on what to pick when faced with a decision, we considered various strategies compatible with its recommendations, which we called, the strategies which pick for it. 
 %But all of the decision theories we've been considering, but especially E-Admissibility and Maximality, don't always tell you exactly what you should do when faced with a decision; instead they rule out various options as impermissible, and often leave more than one remaining. As a result, there are many different picking strategies that pick for them. 
-How else might we evaluate what a decision theory will lead you to do when there are various acts it leaves open?
+How else might we evaluate what a decision theory will lead you to do when there are various acts \todo{should it be 'strategies'?}it leaves open?
 
 We propose that you might have a precise probability over those permissible acts---what we'll call a probabilistic picking strategy---and you might take the utility of this probabilistic picking strategy at a state of the world to be its expected utility at that world. There are two reasons you might think this is the right way to evaluate a decision theory: 
 
@@ -2213,19 +2220,22 @@ We begin by extending our definitions:
 		\item %\todoold{name??? ``picking strategy''? ``probabilistic picking strategy''? ``picking expectation''}
 		A \emph{probabilistic picking strategy} $\prpickstrat$, specifies, for each decision problem, $D\in\D$, a probability function $\prpickstrat_D$ over $D$, i.e., over the acts available in the decision problem $D$.
 		% $\prpickstrat$ is a function from $\D$ to probability functions over $\A$ which 
-		\item For a choice function $\c$,  $\prpickstrat$ \emph{picks for $\c$} iff $\prpickstrat_D(\c(D))=1$ for each $D\in\D$, i.e., it is certain that what it picks will be compatible with $C$'s recommendations.
+		\item For a choice function $\c$,  $\prpickstrat$ \emph{picks for $\c$} iff for all $D\in\D$,  $\prpickstrat_D(\c(D))=1$, i.e., it is certain that what it picks will be compatible with $C$'s recommendations.
 		\item For a choice function $\c$, $\prpickstrat$ \emph{$\mu$-surely picks for $\c$}, if $\mu\{D\given \prpickstrat_D(\c(D))=1\}=1$.
  	\end{itemize}
 \end{definition}
-And we add a new one:
+Observe that in the special case where $\prpickstrat$ is extremal---that is, when for every $D$ it assigns all its probabilistic weight to an individual member of $D$---then we recover our original notion of a picking strategy. We will call these the \emph{deterministic} picking strategies. 
+
+We add a further definition which is relevant for probabilistic picking strategies: 
 \begin{definition}
-For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if, for each $D$ in $\D$, $\prpickstrat_D(a) > 0$ iff $a \in \c(D)$.
+{\color{red}For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if, for each $D$ in $\D$: $\prpickstrat_D(a) > 0$ iff $a \in \c(D)$.}
+{\color{violet}For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if it picks for $\c$ and for every $D\in\D$ and $a\in\c(D)$, $\prpickstrat_D(a)>0$. \todo{not sure if it was quantifier order, but I fould old defn hard to read. }}
 \end{definition}
-Observe that in the special case where $\prpickstrat$ is extremal---that is, when for every $D$ it assigns all its probabilistic weight to an individual member of $D$---then we recover our original notion of a picking strategy. 
+
 
 %We will apply the choice function to evaluate strategies, or more generally, $\prpickstrat$ too. \todooldinfo{JK to help!! is there a systematic thing to say about extending. See the Max section...???}
 
-For a non-probabilistic picking strategy, $\s$, we simply took its utility to be the utility of the act it requires you to pick: given a state of the world $\omega$ and a decision problem $D$, $\U(\s)(\omega,D):=\U(\s(D))(\omega)$, the utility of the act $\s(D)$ at $\omega$. For $\prpickstrat$, we take its utility to be the \emph{expected} utility of the act it lead you to pick: given a state of the world $\omega$ and a decision problem $D$, $$\U(\prpickstrat)(\omega,D):=\sum_{a \in D} \prpickstrat_D(a)\U(a)(\omega).$$
+For a deterministic picking strategy, $\s$, we simply took its utility to be the utility of the act it requires you to pick: given a state of the world $\omega$ and a decision problem $D$, $\U(\s)(\omega,D):=\U(\s(D))(\omega)$, the utility of the act $\s(D)$ at $\omega$. For $\prpickstrat$, we take its utility to be the \emph{expected} utility of the act it lead you to pick: given a state of the world $\omega$ and a decision problem $D$, $$\U(\prpickstrat)(\omega,D):=\sum_{a \in D} \prpickstrat_D(a)\U(a)(\omega).$$
 \begin{comment}
 \begin{colored}{violet}
 	If we are allowing $D$ to be infinite (although compact), we should in fact take an integral, $\U(\prpickstrat)(\omega,D):=\int_{a \in D} \U(a)(\omega)\,\prpickstrat_D(\diff a).$\todoold{should we explicitly talk about finitely additive integrals?}
@@ -2238,33 +2248,33 @@ For a non-probabilistic picking strategy, $\s$, we simply took its utility to be
 
 We have thus far been assuming that decision problems $D$ are non-empty finite sets of acts. If we were to allow $D$ to be infinite (although compact), then we should have $\U(\prpickstrat)(\omega,D):=\int_{D} \U(a)(\omega) \prpickstrat_D(\diff a)$.
 
-In the next few sections, we note how our earlier results concerning non-probabilistic picking strategies generalize to probabilistic picking strategies.
+In the next few sections, we note how our earlier results concerning deterministic\todo{did say ``non-probabilistic''} picking strategies generalize to probabilistic picking strategies.
 \subsubsection{Expected Utility Theory}
-We will judge whether the decision theory evaluates a probabilistic picking strategy $\prpickstrat$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\prpickstrat$ is an impermissible picking strategy from a set of picking strategies, $\prpickstrategies$. 
-There are various natural proposals for what is considered in $\prpickstrategies$ depending on one's interpretation and applications of our results. 
-When $\prpickstrategies$ consists just of extremal picking strategies, it is equivalent to our set of (deterministic) picking strategies, $\S$, considered in the first half of the paper. 
-If you think you get to pick by randomisation, and can select any randomisation process, then $\prpickstrategies$ will be the collection of all probabilistic picking strategies.
-If you think we are just evaluating some choice functions, and each one just comes along with a single randomisation process, then $\prpickstrategies$ will have a particular $\prpickstrat^\c$ for each $\c$, where $\prpickstrat$ picks for $\c$. 
+We will judge whether the decision theory evaluates a probabilistic picking strategy $\prpickstrat$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\prpickstrat$ is an impermissible picking strategy from a set of picking strategies, $\PrPickStrategies$. 
+There are various natural proposals for what is considered in $\PrPickStrategies$ depending on one's interpretation and applications of our results. 
+When $\PrPickStrategies$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
+If you think you get to pick by randomisation, and can select any randomisation process, then $\PrPickStrategies$ will be the collection of all probabilistic picking strategies.
+If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set)\todo{I added the `uniform'}, then $\PrPickStrategies$ will have a particular $\prpickstrat^\c$ for each $\c$, where $\prpickstrat^\c$ picks for $\c$. 
 If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\prpickstrat^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
 
-Our results will all hold under various choices of $\prpickstrategies$, so long as it has a particular feature: 
+Our results will all hold under various choices of $\PrPickStrategies$, so long as it has a particular feature: 
 %We will just need a structural requirement on $\prpickstrategies$ for our results to hold, which will be satisfied in these various interpretations: 
 \begin{definition}\label{def:EU-complete}
-	A set of probabilistic picking strategies, $\prpickstrategies$, is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\prpickstrat$ in $\prpickstrategies$ such that $\prpickstrat$ picks for $\EU_p$.
+	A set of probabilistic picking strategies, $\PrPickStrategies$, is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\prpickstrat$ in $\PrPickStrategies$ such that $\prpickstrat$ picks for $\EU_p$.
 	%	
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\prpickstrat$ in $\prpickstrategies$ such that $\prpickstrat$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
 %In fact, for our results we will only require that it is sufficiently $\EU$-complete for $\IB$, meaning that for each $p\times \mu\in \IB$ there is some $\prpickstrat\in\prpickstrategies$ such that $\prpickstrat$ $\mu$-surely picks for $\EU_p$. However, we will continue to use the general $\EU$-completeness for ease of exposition. 
 
-In fact, for all the results, one only needs that $\prpickstrategies$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\prpickstrategies$ is the collection of all deterministic strategies and when $\prpickstrategies$ is the collection of all probabilistic picking strategies. 
+In fact, for all the results, one only needs that $\PrPickStrategies$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\PrPickStrategies$ is the collection of all deterministic strategies and when $\PrPickStrategies$ is the collection of all probabilistic picking strategies. 
 
 \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} extend to this setting.
 Suppose $p$ is a probability over $\Omega$ and $\mu$ is a probability measure over $\D$.
 \begin{proposition}\label{thm:eu-nu-nec-suff}
-If $\prpickstrategies$ is $\EU$-complete, we have:
-$$\prpickstrat \in \EU_{p\times \mu}(\prpickstrategies) \Leftrightarrow \prpickstrat \text{ $\mu$-surely picks for $\EU_p$.}$$
+If $\PrPickStrategies$ is $\EU$-complete, we have:
+$$\prpickstrat \in \EU_{p\times \mu}(\PrPickStrategies) \Leftrightarrow \prpickstrat \text{ $\mu$-surely picks for $\EU_p$.}$$
 and, more generally, 
-$$\prpickstrat \in \EU_{\pb}(\prpickstrategies) \Leftrightarrow \prpickstrat \text{ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.}$$
+$$\prpickstrat \in \EU_{\pb}(\PrPickStrategies) \Leftrightarrow \prpickstrat \text{ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.}$$
 \end{proposition}
 
 
@@ -2275,10 +2285,10 @@ $$\prpickstrat \in \EU_{\pb}(\prpickstrategies) \Leftrightarrow \prpickstrat \te
 
 Since something is in $\EAd_\IB$ iff for some $\pb$ in $\IB$ it is in $\EU_\pb$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
-If $\prpickstrat$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\prpickstrat\in\EAd_\IB(\prpickstrategies)$. More generally, if for some $\pb\in\IB$, $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\EAd_\IB(\prpickstrategies)$. 
+If $\prpickstrat$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\prpickstrat\in\EAd_\IB(\PrPickStrategies)$. More generally, if for some $\pb\in\IB$, $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\EAd_\IB(\PrPickStrategies)$. 
 
-Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\prpickstrategies$ is $\EU$-complete: 
-$$\prpickstrat \in \EAd_\IB(\prpickstrategies) \Leftrightarrow \text{for some $\pb$ in $\IB$, $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.}$$
+Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\PrPickStrategies$ is $\EU$-complete: 
+$$\prpickstrat \in \EAd_\IB(\PrPickStrategies) \Leftrightarrow \text{for some $\pb$ in $\IB$, $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$.}$$
 %If $\IB$ is strongly complete, then: $\prpickstrat \in \EAd_\IB(\prpickstrategies) \Leftrightarrow \prpickstrat \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}
 %\end{align}
 
@@ -2291,13 +2301,13 @@ $$\prpickstrat \in \EAd_\IB(\prpickstrategies) \Leftrightarrow \text{for some $\
 %\end{proposition}
 
 	\begin{proposition}\label{thm:ead-nu-reg-nec}
-		Suppose that $\prpickstrategies$ is $\EU$-complete. 
+		Suppose that $\PrPickStrategies$ is $\EU$-complete. 
 		
 Suppose that for every $\pb\in\IB$, $\pb_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{\pb(\cdot|-)}\}<1$. That is, for all $\pb\in \IB$, $\pb_\D\{D\given \text{there is $\pb'\in\IB$ with }\EU_{\pb'(\cdot|-)}(D)\not\subseteq\EU_{\pb(\cdot|-)}(D)\}>0$. 
 		
 %	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
 		
-	Then, if $\prpickstrat$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\prpickstrat\notin \EAd_\IB(\prpickstrategies)$.
+	Then, if $\prpickstrat$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\prpickstrat\notin \EAd_\IB(\PrPickStrategies)$.
 	\end{proposition}
 	
 
@@ -2311,11 +2321,11 @@ Suppose that for every $\pb\in\IB$, $\pb_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subs
 %Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that both $a_1$ and $a_2$ are choiceworthy. Then for any picking strategy $\prpickstrat$ such that $\prpickstrat_D$ gives positive probability to $a_1$ and $a_2$, $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, that picking strategy is not rationally permissible.
 
 
-Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}. Recall that $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1A,1B}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2A,2B}\}$. 
-Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\emph{Black})>\nicefrac{7}{30}$ rules 1A as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\prpickstrat_{D^{\mathrm{Ellsberg}}_1}$ picks 1A, by the assumption that it is regular for $\EAd_\IP$. 
+Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}. Recall that $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$. 
+Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\emph{Black})>\nicefrac{7}{30}$ rules 1E as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\prpickstrat_{D^{\mathrm{Ellsberg}}_1}$ picks 1E, by the assumption that it is regular for $\EAd_\IP$. 
 Thus, $\prpickstrat$ does not pick for $\EU_p$. It also does not even $\mu$-surely pick for $\EU_p$ if we assume that each $\mu$ assigns positive probability to both $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$. It is thus not E-Admissible. 
 
-In fact, if $\IP$ is allowed to be non-convex, we get cases where $\prpickstrat$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability which is indifferent between the two actions, and thus, $\prpickstrat$ is Bayes for this probability.}\todo{ref: Bayes for p not defined}
+In fact, if $\IP$ is allowed to be non-convex, we get cases where $\prpickstrat$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability $p^*\in\IP$ which is indifferent between the two actions, and thus, $\prpickstrat\in\EU_{p^*}(\PrPickStrategies)$.}\todo{ref: Bayes for p not defined. C: changed it.}
 Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that neither $a_1$ or $a_2$ are rejected. Then for any regular picking strategy for $\EAd_\IP$, $\prpickstrat_D$ will give positive probability to both $a_1$ and $a_2$. $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, $\prpickstrat$ is not rationally permissible.
 \todoold{double check wording of above. And make it match JKs eg}
 
@@ -2354,9 +2364,9 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility, all $\EU_p$ strategies are evaluated as acceptable according to Maximality. We thus have, as a corollary to \cref{thm:eu-nu-nec-suff}, and extending \cref{thm:max-suff}:
 \begin{proposition}\label{thm:max-nu-suff}
-		If for some $p\times\mu\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{p}$, then $\prpickstrat\in\Maximality_\IB(\prpickstrategies)$. 
+		If for some $p\times\mu\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{p}$, then $\prpickstrat\in\Maximality_\IB(\PrPickStrategies)$. 
 		
-		More generally, if for some $\pb\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\Maximality_\IB(\prpickstrategies)$. 
+		More generally, if for some $\pb\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\Maximality_\IB(\PrPickStrategies)$. 
 \end{proposition}
 
 For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $\pb\in \IB$ have to agree on a particular alternative as better.
@@ -2370,20 +2380,20 @@ We will also place a further condition on $\mu^*$:
 	$\mu^*$ \emph{requires almost everywhere decisiveness} iff for all probabilities $p$,$$\mu^*\Set{D\given \EU_p(D)\text{ is a singleton}}=1.$$ 
 \end{definition}
 That is, for each probability function $p$, $\mu^*$ is certain that you'll face a decision problem in which only one act maximizes expected utility. That is, the set of decision problems in which there are ties for expected utility has measure 0.
-Just considering a single proposition, this will hold, for example, if you might be faced with various decision problems indexed by $t\in[0,1]$: are you willing to pay $\$t$ for a bet paying out $\$1$ if $p$ and $\$0$ if $\neg p$, where $\mu^*$ is a measure assigning strictly positive weight to every non-degenerate interval $[x,y]$. 
+Just considering a single proposition, this will hold, for example, if you might be faced with various decision problems indexed by $t\in[0,1]$: are you willing to pay $\pounds t$ for a bet paying out $\pounds 1$ if $p$ and $\pounds 0$ if $\neg p$, where $\mu^*$ is a measure assigning strictly positive weight to every non-degenerate interval $[x,y]$. 
 %Suppose you have any coherent rejection function over $\Omega$. 
 
 %Wald gives us a very strong result linking being Bayes to be 
 
 Then we have the following result.%
-\footnote{{The assumptions on $\mu^*$ are not required if one instead assumes that $\prpickstrategies$ is convex, which is motivated when one considers randomisations as available options. If $D$ was allowed to be infinite, one should also ensure that $\prpickstrategies$ is closed, 
+\footnote{{The assumptions on $\mu^*$ are not required if one instead assumes that $\PrPickStrategies$ is convex, which is motivated when one considers randomisations as available options. If $D$ was allowed to be infinite, one should also ensure that $\PrPickStrategies$ is closed, 
 %		However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\prpickstrategies$ is also closed,
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
-\begin{proposition}\label{thm:max-nu}Suppose $\prpickstrategies$ is $\EU$-complete. Suppose that 
-	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximality_\IB(\prpickstrategies)$, then $\prpickstrat \text{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
+\begin{proposition}\label{thm:max-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness\todo{status of countable additivity?}. Then if $\prpickstrat \in \Maximality_\IB(\PrPickStrategies)$, then there is some probability $p$ such that $\prpickstrat \text{ $\mu^*$-surely picks for $\EU_p$}$
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\prpickstrat'$, in fact, an $\prpickstrat'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\prpickstrat')(\omega)>\Exp_{\mu^*}\U(\prpickstrat)(\omega)$ for all $\omega$, and thus for all $p$, $\Exp_p[\Exp_{\mu^*}\U(\prpickstrat')]>\Exp_p[\Exp_{\mu^*}\U(\prpickstrat)]$, i.e., $\Exp_{p\times \mu^*}\U(\prpickstrat')>\Exp_{p\times\mu^*}\U(\prpickstrat)$, so $\prpickstrat\notin\Maximality_\IB(\prpickstrategies)$. 
+This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\prpickstrat'$, in fact, an $\prpickstrat'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\prpickstrat')(\omega)>\Exp_{\mu^*}\U(\prpickstrat)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\prpickstrat')]>\Exp_p[\Exp_{\mu^*}\U(\prpickstrat)]$, i.e., $\Exp_{p\times \mu^*}\U(\prpickstrat')>\Exp_{p\times\mu^*}\U(\prpickstrat)$; and thus, $\prpickstrat\notin\Maximality_\IB(\PrPickStrategies)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\prpickstrategies$ is convex. }
 	
@@ -2396,9 +2406,9 @@ This follows from a version of Wald's Complete Class Theorem. We will be able to
 %	What we can show is that if $\prpickstrat$ is such that there is no probability function with $\Exp_{p}\Exp_{\mu^*}\U(\prpickstrat)$
 %	 which shows that non-Bayes options are dominated. We 
 %%	Using this, we show that if $\prpickstrat$ is not Bayes for any 
-%	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^\star$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^\star)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^\star)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\prpickstrategies)$. }
+%	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\prpickstrategies)$. }
 
-The deterministic picking strategies discussed in the earlier part of the paper, $\S$, form a class which is EU-complete, since we assumed that all strategies were in it; and thus we obtain the result that we hinted at in \cref{sect:Max} that if we have such a $\IB$, then it is only $\EU_p$ strategies which are in $\Maximality_\IB(\S)$.
+The deterministic picking strategies discussed in the earlier part of the paper, $\S$, form a class which is EU-complete as we assumed that all picking strategies were in it; and thus we obtain the result that we hinted at in \cref{sect:Max} that if we have such a $\IB$, then it is only $\EU_p$ strategies which are in $\Maximality_\IB(\S)$.
 
 
 
@@ -2406,12 +2416,12 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
-	Suppose $\prpickstrategies$ is $\EU$-complete.  
+	Suppose $\PrPickStrategies$ is $\EU$-complete.  
 	Suppose that $\mu^*$ requires almost everywhere decisiveness.
 
 	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}
 	
-	Then, if $\prpickstrat$ is regular picking strategy for $\Maximality$ then $\prpickstrat\notin \Maximality_\IB(\prpickstrategies)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
+	Then, if $\prpickstrat$ is regular picking strategy for $\Maximality$ then $\prpickstrat\notin \Maximality_\IB(\PrPickStrategies)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
 
 
@@ -2457,10 +2467,10 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 
 Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ for which it $\mu^*$ surely pick for \todo{eg here should we replace?? I did so... changed order of quantifier}$\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
-	\begin{proposition}\label{thm:gamma-nu}Suppose $\prpickstrategies$ is $\EU$-complete. Suppose that 
-		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\prpickstrategies)$, $ \prpickstrat \emph{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
+	\begin{proposition}\label{thm:gamma-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\PrPickStrategies)$, $ \prpickstrat \emph{ $\mu^*$-surely picks for $\EU_p$, for some probability $p$.}$
 		
-		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\prpickstrat$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\prpickstrategies)$ (in fact, any $\prpickstrat$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\prpickstrat$ is regular for $\Maximin_\IP$ then $\prpickstrat\notin \Maximin_\IB(\prpickstrategies)$. 
+		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\prpickstrat$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\PrPickStrategies)$ (in fact, any $\prpickstrat$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\prpickstrat$ is regular for $\Maximin_\IP$ then $\prpickstrat\notin \Maximin_\IB(\PrPickStrategies)$. 
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
@@ -2744,7 +2754,7 @@ the situation is less clear. This may simply reflect a deep-seated value for coo
 
 
 
-\newpage\appendix
+\appendix
 
 %\section{REU}
 %\todooldinfo{As above, we need to think about how to present this.}\todooldinfo{???}
@@ -2759,7 +2769,7 @@ the situation is less clear. This may simply reflect a deep-seated value for coo
 
 
 
-Suppose $b$ is probability measure over $\Omega\times\D$ which is absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$. Let $f:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $b$, so that for any measurable $A\subseteq\Omega\times\D$
+Suppose $\pb$ is probability measure over $\Omega\times\D$ which is absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$. Let $f:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $\pb$, so that for any measurable $A\subseteq\Omega\times\D$
 \[
 b(A)=\sum_{\omega\in\Omega}\int_{A_\omega} f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)
 \]
@@ -2800,11 +2810,11 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 
 
 \begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_b(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_\pb(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
 	
 	Suppose $D\in\D'$. 
 	
-	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$.\todoold{this is only true for $D\in\D'$!}
+	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$.\todoold{this is only true for $D\in\D'$!}
 	
 %	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
 	
@@ -2821,12 +2831,12 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 &=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\s(D))(\omega)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
 &=\int_{\D'}\Exp_{\pb(\cdot|D)}[\U(\s(D))]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
 &=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{\pb(\cdot|D)}[\U(\s(D))]f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&\leq\sum_{\omega\in\Omega}\int_{\D'}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\sum_{\omega\in\Omega}\int_{\D}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\Exp_\pb[t_b]
+&\leq\sum_{\omega\in\Omega}\int_{\D'}t_\pb(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+&=\sum_{\omega\in\Omega}\int_{\D}t_\pb(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+&=\Exp_\pb[t_\pb]
 \end{align}}
 
-	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{\pb(\cdot|D)}[\U(\s(D))]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
+	Thus, $\Exp_\pb[\U(\s)]\leq \Exp_\pb [t_\pb]$ with equality iff $\Exp_{\pb(\cdot|D)}[\U(\s(D))]=t_\pb(\omega,D)$ almost everywhere, which is true iff $\pb\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
 	\end{proof}
 
 \begin{comment}
@@ -2889,7 +2899,7 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 \begin{itemize}
 	\item $\Omega$ is a finite set of states.
 	\item Probability $p$ is a normalised non-negative function. For $X$ a random variable, $X\in\Re^\Omega$, i.e., $X:\Omega\to\Re$, will also write $p(X)=\sum_{\omega\in\Omega}p(\omega)X(\omega)$ applying the probability function to random variables. 
-	\item $\O$ is a set of ``options''. In our application they will be various picking functions, $\prpickstrat$.
+	\item $\O$ is a set of ``options''. In our application they will be various (probabilistic) picking strategies, $\prpickstrat$.
 	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\prpickstrat,\omega)=\Exp_{\mu^*}\U(\prpickstrat,\omega)=\Exp_{\mu^*}\Exp_{\prpickstrat_D}\U(a)(\omega)$ \begin{itemize}
 		\item We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$. 
 		\item The utility profile of an option is $\Uwald(o)\in\Re^\Omega$ as expected, i.e., $\Uwald(o)(\omega)=\Uwald(o,\omega)$, however $\Uwald$ is specified. 
@@ -2969,7 +2979,11 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 \begin{definition}
 	$o$ is \emph{strictly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)>\Uwald(o,\omega)$ for all $\omega$. $o$ is called \emph{admissible} if it is not strictly dominated. 
 	
-	$o$ is \emph{weakly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$ 
+	$o$ is \emph{weakly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$ .
+	
+	For a probability function $p$ over $\Omega$ we will use $p(\Uwald(o)):=\Exp_p[\Uwald(o)]$. \todo{are we assuming finite $\Omega$??}
+	$o$ is \emph{Bayes for $p$} iff $o\in\EU_p(\O)$; that is, for all $o'\in\O$, $p(\Uwald(o))\geq p(\Uwald(o'))$. 
+	$o$ is \emph{Bayes} iff there is some probability $p$ such that $o$ is Bayes for $p$. \todo{I don't think we'd defined it! added it here. }
 \end{definition}
 
 
@@ -3004,7 +3018,7 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 		If $o$ is Bayes then it is not strictly dominated.
 	\end{lemma}
 	\begin{proof}
-		Suppose it is strictly dominated. Then there is $o'$ with $\Uwald(o,\omega)<\Uwald(o',\omega)$ for all $\omega$. So every probability $p$ will have $p( \Uwald(o))<p(\Uwald(o'))$. Thus it is not Bayes.
+		Suppose it is strictly dominated. Then there is $o'$ with $\Uwald(o,\omega)<\Uwald(o',\omega)$ for all $\omega$. So every probability $p$ will have $p( \Uwald(o))<p(\Uwald(o'))$\todo{Have we introduced this notation yet?}. Thus it is not Bayes.
 		%	
 		%	Suppose $o$ is weakly dominated. Then every \emph{regular} probability has $p\cdot \Uwald(o')>p\cdot \Uwald(o)$, so it is not Bayes for any regular probability. 
 	\end{proof}
@@ -3036,28 +3050,30 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 	\end{lemma}
 	\begin{proof}
 		Suppose $X$ is not strictly dominated in $\Conv(\Uwald(\O))$. 
-		Let $$D:=\{Y\in \Re^\Omega\given Y(\omega)>X(\omega)\text{ for all $\omega$}\},$$ i.e., the \begin{infversion}
+		Let $$\Dom_X :=\{Y\in \Re^\Omega\given \text{for all $\omega$, }Y(\omega)>X(\omega)\},$$ i.e., the \begin{infversion}
 			finite
-		\end{infversion} strict dominators of $X$; so we know that $D$ and $\Conv(\Uwald(\O))$ \begin{infversion}
-			$\cap Fin$ [qu: might it be empty?; we know that $D$ is non-empty]
-		\end{infversion}are disjoint by assumption. They are also both convex, so they can be separated by a continuous linear functional, by the separating hyperplane theorem \citep[Theorem 5.61]{aliprantis2006infinite}. %\todoold{Is there a diff ref that doesn't have the proper separation part, so avoids the mention of interior points, so that doesn't need checking?} 
-		That is, there is a non-zero linear functional, $f:\Re^\Omega\to\Re$ with $f\neq 0$ and constant $c$ s.t.,  $f(Y)\geq c \geq f(Z)$ for any $Y\in D$ and $Z\in \Conv(\Uwald(\O))$.\footnote{In fact, to apply their result, we need that at least one of them has an interior point, i.e., a point such that any sequence converging to it must have some tail inside that set. That's fine because $D$ is open, so long as $D$ is non-empty, which is clear.
+		\end{infversion} strict dominators of $X$; so we know that $\Dom_X $ and $\Conv(\Uwald(\O))$ \begin{infversion}
+			$\cap Fin$ [qu: might it be empty?; we know that $\Dom_X $ is non-empty]
+		\end{infversion}are disjoint by assumption. They are also both convex so they can be separated by a linear functional, by the separating hyperplane theorem \citep[Theorem 5.61]{aliprantis2006infinite}. 
+		\todo{this ref doesn't get cts!! we don't actually need it though. So i removed from statement}
+		That is, there is a non-zero linear functional, $f:\Re^\Omega\to\Re$ with $f\neq 0$ and constant $c$ s.t.,  $f(Y)\geq c \geq f(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\footnote{In fact, to apply their result, we need that at least one of them has an internal point. In finite dimensions, this is interior points \citep[Thm.~5.60]{aliprantis2006infinite}, and observe that $\Dom_X$ is non-empty and open, so has interior points. 
 %		 \begin{infversion}
 %			Although, it may fail if we allowed $+\infty$; so we'd need to impose that utilities are not $+\infty$ to get this bit.
 %		\end{infversion}
-	}
+	}\todo{it needs internal rather than interior opint,...}
+
 		
-		We need to show that $f$ is non-negative. Let $Z\geq 0$ and suppose $f(Z)<0$. Then take any $Y\in D$ and consider $Y+kZ$, observing that it is still in $D$. And $f(Y+kZ)=f(Y)+kf(Z)$ can be arbitrarily small, and in particular less than $c$ by making $k$ large enough. Contradicting. 
+		We need to show that $f$ is non-negative. Let $Z\geq 0$ and suppose $f(Z)<0$. Then take any $Y\in \Dom_X $ and consider $Y+kZ$, observing that it is still in $\Dom_X $. And $f(Y+kZ)=f(Y)+kf(Z)$ can be arbitrarily small, and in particular less than $c$ by making $k$ large enough. Contradicting. 
 		
-		We also know that $f(\omega)\neq 0$ for some $\omega$, otherwise it would be $0$ everywhere and the theorem gives us a non-zero linear functional. 
+		We also know that $f(\omega)\neq 0$ for some $\omega$, otherwise it would be $0$ everywhere (as by linearity, it has the form $f(X)=\sum_{\omega\in\Omega}f(\omega)X(\omega)$) and the theorem gives us a non-zero linear functional.\todo{iadded expln}
 		
 %				Now, any non-trivial monotone linear functional must have $f(\vec{1})\neq 0$.\todoold{why?????} And thus, we can ``normalise'' $f$ by dividing through by $f(\vec{1})$. \todoold{footnote that this isn't the usual notion of normalisation.}
 		
-		We can thus normalise $f$ to obtain our probability $p$ $p$ with $p(Y)\geq c \geq p(Z)$ for any $Y\in D$ and $Z\in \Conv(\Uwald(\O))$.\begin{infversion}
+		We can thus normalise $f$ to obtain our probability $p$ with $p(Y)\geq c \geq p(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\begin{infversion}
 			$\cap Fin$. If $Z$ not in Fin, then we also want to check that $p(Z)<c$. 
 		\end{infversion}
 		
-		Since $X\in\cl(D)$, also $p(X)\geq c$. Thus, $p(X)\geq p(Z)$ for all $Z\in \Uwald(\O)$ (as $\Uwald(\O)\subseteq \Conv(\Uwald(\O))$) as required.
+		Since $X\in\cl(\Dom_X )$, also $p(X)\geq c$. Thus, $p(X)\geq p(Z)$ for all $Z\in \Uwald(\O)$ (as $\Uwald(\O)\subseteq \Conv(\Uwald(\O))$) as required.
 	\end{proof}
 	
 		This now gives us:
@@ -3081,7 +3097,7 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 		\end{infversion}
 		%	If $X$ is not Bayes in $\Uwald(\O)$ then there is $X'\in\cl(\Conv(\Uwald(\O)))$ s.t. $X'$ dominates $X$ and $X'$ is non-dom in $\Conv(\Uwald(\O))$. 
 	\end{lemma}
-	In the Wald setting, the $Z\in\cl(\Conv(\Uwald(\O)))$ which are not weakly dominated is called the lower boundary of the set [in our case, it would be ``upper boundary'' because we're working with positive utility rather than risk or disutility]. This then says that being dominated entails that one is dominated by something in the lower boundary. It essentially depends on the fact that $\Uwald(\O)$ is bounded from above. 
+	In the Wald setting, the $Z\in\cl(\Conv(\Uwald(\O)))$ which are not weakly dominated is called the lower boundary of the set (in our case, it would be ``upper boundary'' because we're working with positive utility rather than risk or disutility). This then says that being dominated entails that one is dominated by something in the lower boundary. It essentially depends on the fact that $\Uwald(\O)$ is bounded from above. 
 	%\todoold{Note: just improving it in each coordinate isn't sufficient. }
 	
 	
@@ -3243,14 +3259,14 @@ For example, if $\Uwald$ is a measure of accuracy which is continuous and strict
 
 Suppose
 \begin{itemize}
-\item $\O$ is a specified collection of probabilistic picking strategies, $\prpickstrategies$.
+\item $\O$ is a specified collection of probabilistic picking strategies, $\PrPickStrategies$.
 \item $\mu^*$ is a measure over $\D$.
 \item $\Uwald(\prpickstrat)(\omega):=\Exp_{\mu^*}\U(\prpickstrat)(\omega)=\Exp_{\prpickstrat_{D}} \U(a)(\omega)$
 \end{itemize}
 
-Recall \cref{def:EU-complete} of $\prpickstrategies$ being $\EU$-complete, and observe that Bayes-existing immediately follows. 
+Recall \cref{def:EU-complete} of $\PrPickStrategies$ being $\EU$-complete, and observe that Bayes-existing immediately follows. 
 \begin{lemma}\label{thm:cct-appln:existing}
-	If $\prpickstrategies$ is EU-complete, then it is Bayes-existing. 
+	If $\PrPickStrategies$ is EU-complete, then it is Bayes-existing. 
 \end{lemma}
 \begin{proof}
 	Observe that $\prpickstrat$ is Bayes for $p$ iff it ${\mu^*}$-surely picks for $\EU_p$ using \cref{thm:EU appendix}. %\todooldinfo{where's the ref??} 
@@ -3289,7 +3305,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \end{proof}
 
 \begin{corollary}\label{thm:cct-applns:corr}
-	Suppose that $\prpickstrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+	Suppose that $\PrPickStrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
 	
 %	If $\prpickstrat$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\prpickstrat'$
 	
@@ -3299,7 +3315,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
 \begin{corollary}
-		Suppose that $\prpickstrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+		Suppose that $\PrPickStrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
 		
 	If $\prpickstrat$ does not $\mu^*$-surely pick for any probability $p$, then there is some $\prpickstrat'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\prpickstrat')]>\Exp_{p\times\mu^*}[\U(\prpickstrat)]$. 
 \end{corollary}
