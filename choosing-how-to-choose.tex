@@ -11,6 +11,8 @@
 \usepackage{natbib}
 \usepackage{latexsym}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{tabularx}
+
 
 \usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=gray,hypertexnames=false]{hyperref} % the addition of hypertexnames is for autonum
 \usepackage[capitalize]{cleveref}
@@ -1864,7 +1866,7 @@ Let's treat E-Admissibility first. Suppose you are uncertain which decision prob
  \begin{proposition}\label{thm:ead-suff-indep}
  		If $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$ then $\s\in\EAd_\IB(\Strategies)$. 
  	
- 	Thus, if there is some $p\in\IP$ with some $p\times\mu\in \IB$, then there is some $\s$, namely any $\s$ which picks for $\EU_p$, which picks for $\EAd_\IP$ and which is in $\EAd_\IB(\Strategies)$. 
+ 	Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in \IB$, then there is some $\s$, namely any $\s$ which picks for $\EU_p$, which picks for $\EAd_\IP$ and which is in $\EAd_\IB(\Strategies)$. 
  \end{proposition}
  
  There are a number of conditions which guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP$, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy which is E-Admissible.
@@ -1922,7 +1924,7 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %\todooldinfo{JK: Observe that $p\times\mu$ is in the natural extension of $\IP$. So there is some joint distribution consistent with $\IP$ relative to which $\s$ picks for $\EAd_\IP$.}
 %\end{proposition}
 %}
-The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, there are strategies that pick for it that it does not deem impermissible.
+The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, \todo{what are these condns? I can't immediately see iut from the pronpn}there are strategies that pick for it that it does not deem impermissible.
 
 
 Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? \todooldinfo{I rewrote the start of this. JK to check. }
@@ -1931,7 +1933,7 @@ We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it 
 
 %{\color{red} It is worth emphasising, though, that the strength of your irrelevance judgments (whether you make a judgment of epistemic irrelevance or complete independence, for example) makes a big difference to which strategies are permissible by the lights of E-Admissibility. If you treat $\D$ as completely irrelevant to $\Omega$, then we can use \cref{thm:eu-self-rec,thm:eu-uniquely-optimal} to get the following: 
 
-\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. In that case, $\s\in\EAd_\IB(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in\IB$. 
+\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ where $\s$ $\mu$-surely picks for $\EU_p$. 
 %	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 
@@ -3080,13 +3082,15 @@ To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraha
 			finite
 		\end{infversion} strict dominators of $X$; so we know that $\Dom_X $ and $\Conv(\Uwald(\O))$ \begin{infversion}
 			$\cap Fin$ [qu: might it be empty?; we know that $\Dom_X $ is non-empty]
-		\end{infversion}are disjoint by assumption. They are also both convex so they can be separated by a linear functional, by the separating hyperplane theorem \citep[Theorem 5.61]{aliprantis2006infinite}. 
-		\todo{this ref doesn't get cts!! we don't actually need it though. So i removed from statement}
-		That is, there is a non-zero linear functional, $f:\Re^\Omega\to\Re$ with $f\neq 0$ and constant $c$ s.t.,  $f(Y)\geq c \geq f(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\footnote{In fact, to apply their result, we need that at least one of them has an internal point. In finite dimensions, this is interior points \citep[Thm.~5.60]{aliprantis2006infinite}, and observe that $\Dom_X$ is non-empty and open, so has interior points. 
-%		 \begin{infversion}
-%			Although, it may fail if we allowed $+\infty$; so we'd need to impose that utilities are not $+\infty$ to get this bit.
-%		\end{infversion}
-	}\todo{it needs internal rather than interior opint,...}
+		\end{infversion}are disjoint by assumption. They are also both convex so they can be separated by a linear functional, by the separating hyperplane theorem  
+		\todo{Find a proper reference for what we need!}
+%		\citep[Theorem 5.61]{aliprantis2006infinite}. 
+%		\todo{this ref doesn't get cts!! we don't actually need it though. So i removed from statement}
+%		That is, there is a non-zero linear functional, $f:\Re^\Omega\to\Re$ with $f\neq 0$ and constant $c$ s.t.,  $f(Y)\geq c \geq f(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\footnote{In fact, to apply their result, we need that at least one of them has an internal point. In finite dimensions, this is interior points \citep[Thm.~5.60]{aliprantis2006infinite}, and observe that $\Dom_X$ is non-empty and open, so has interior points. 
+%%		 \begin{infversion}
+%%			Although, it may fail if we allowed $+\infty$; so we'd need to impose that utilities are not $+\infty$ to get this bit.
+%%		\end{infversion}
+%	}\todo{it needs internal rather than interior opint,...}
 
 		
 		We need to show that $f$ is non-negative. Let $Z\geq 0$ and suppose $f(Z)<0$. Then take any $Y\in \Dom_X $ and consider $Y+kZ$, observing that it is still in $\Dom_X $. And $f(Y+kZ)=f(Y)+kf(Z)$ can be arbitrarily small, and in particular less than $c$ by making $k$ large enough. Contradicting. 
