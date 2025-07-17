@@ -705,7 +705,7 @@ Let's suppose that our agent has a decision theory which endorses these preferen
 %A decision problem is given by a set of acts which are available in it. 
 %A decision theory is an account of means-end reasoning which, when parameters such as credences and utilities are specified, specifies which options should be picked, or which shouldn't be pic...???
 
-Now, consider instead a related decision problem. The two options available to the agent---Safe and Risky---depend on whether a particular company goes bust or not; they might be, for example, options for stocks she can invest in.
+Now, consider instead a related decision problem, which we will call $D^{\mathrm{Allais}}_{\mathrm{local}}$. There are two actions available to the agent---Safe and Risky---whose outcomes depend on whether a particular company goes bust or not; they might be, for example, different stocks she can invest in. Let's suppose the agent thinks the odds of this company going bust are $1:10$. 
 $$
 \begin{array}{r|cc}
 	\text{Decision problem } D^{\mathrm{Allais}}_{\mathrm{local}} & \text{goes bust} &  \text{not bust} \Bstrut\\\hline \Tstrut
@@ -715,7 +715,7 @@ $$
 \end{array}
 $$
 %There are two actions that the agent could take: take a risky bet or the safe course of action. Let's say the outcome of the risky bet depends on whether this particular company goes bust. These actions might be, 
-Let's suppose the agent thinks the odds of this company going bust are $1:10$. Perhaps her decision theory prefers Risky to Safe. 
+Perhaps her decision theory prefers Risky to Safe. 
 
 We will now turn to a higher-order decision that the agent might face.   She is unsure which decision problem she will face, and she must choose a strategy for which option to pick in each possible decision problem. Perhaps she is leaving instructions for what her stockbroker should do, unsure what will be on offer. Or perhaps she has to choose a proxy to act on her behalf, knowing what they'll pick in each decision problem, but unsure which decision problem will be in play. 
 %As she is unavailable to make the decision at the later time. 
@@ -775,7 +775,7 @@ Despite the fact that her decision theory recommends picking Risky, it thinks it
 %There is no funny business going on here. Learning that you face decision problem $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not, we are supposing, provide any information about whether the company will go bust. We assumed that the decision problem is independent of the state of the world. We are also assuming act-state independence: picking one option or another in $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not tell you anything about which state of the world you're in.
 %\end{colored}
 
-This is a \emph{prima facie} bad feature of her decision theory. Her decision theory makes recommendations both about \emph{picking strategies} and which \emph{options} to choose in different decision problems. But these recommendations pull her in different directions. The picking strategy it recommends tells her to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells her to do another thing. There's a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
+This is a \emph{prima facie} bad feature of her decision theory. Her decision theory makes recommendations both about \emph{picking strategies} and which \emph{actions} to choose in different decision problems. But these recommendations pull her in different directions. The picking strategy it recommends tells her to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells her to do another thing. There is a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
 \begin{quote}
 	It is as if Consumer Bulletin were to advise you that Consumer Reports was a best
 	buy whereas Consumer Bulletin itself was not acceptable; you could not possibly
@@ -783,12 +783,12 @@ This is a \emph{prima facie} bad feature of her decision theory. Her decision th
 \end{quote}
 
 %This is, \emph{prima facie}, a bad-making feature of a decision theory. 
-It is self-undermining, in the sense that given this particular precise probability distribution over the possible decision problems she might face---it's $11\%$ likely she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$, and $89\%$ likely she'll get \pounds 1m for sure---if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
+It is thus a decision theory which is self-undermining, in the sense that given this particular precise probability distribution over the possible decision problems she might face---it's $11\%$ likely she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$, and $89\%$ likely she'll get \pounds 1m for sure---if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
 
 
 
 
-This was all based on the assumption not only that her decision theory endorses the Allais preferences, but also that it recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. If instead she prefers Safe over Risky in $D^{\mathrm{Allais}}_{\mathrm{local}}$, we can consider a different decision problem: Suppose that, whilst she still thinks that her credence that she'll be offered $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$, she thinks that if she is not offered it, then she is given nothing. 
+This was all based on the assumption not only that her decision theory endorses the Allais preferences, but also that it recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. If it instead recommends Safe over Risky in $D^{\mathrm{Allais}}_{\mathrm{local}}$, we can consider a different decision problem: Suppose that, whilst she still thinks that her credence that she'll be offered $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $11\%$, she thinks that if she is not offered it, then she is given nothing. 
 Now, she is facing the following decision problem over which picking strategy to select. 
 $$
 \begin{array}{c|ccc}
@@ -802,13 +802,13 @@ This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Al
 
 Thus, if her decision theory endorses the Allais preferences and is opinionated over what to choose in $D^{\mathrm{Allais}}_{\mathrm{local}}$ then it is undermining in the sense that there is some uncertainty over which decision problem she'll face where the decision theory rules its own way of picking as impermissible. 
 
-What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$? Neither way of picking is deemed impermissible. Both picking strategies are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on the amount she'll receive when not facing $D^{\mathrm{Allais}}_{\mathrm{local}}$, in neither case does she rule out all the picking strategies that are compatible with her recommendations---she just rules out one of them. Whilst her decision theory would then be undermining in some sense, it is much weaker than what we had previously, where the decision theory rules out as impermissible \textit{all} picking strategies compatible with its recommendations (there is only one).% \todo{what do we actually say about this?? EAdmiss?? RP: yes, this is covered below. And this is the point of the probabilistic picking strategies.}
+What if, however, her decision theory has neither a strict preference for Safe over Risky or Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$. Then both ways of picking are compatible with her decision theory. Whilst which picking strategy she deems optimal changes depending on the amount she'll receive when not facing $D^{\mathrm{Allais}}_{\mathrm{local}}$, in neither case does she rule out all the picking strategies that are compatible with her recommendations---she just rules out one of them. Whilst her decision theory would then be undermining in some sense, it is much weaker than what we had previously, where the decision theory rules out as impermissible \textit{all} picking strategies compatible with its recommendations (there is only one).% \todo{what do we actually say about this?? EAdmiss?? RP: yes, this is covered below. And this is the point of the probabilistic picking strategies.}
 
 
 %A decision theory often does leave some decisions unsettled. This might be because they are indifferent between various option or it might be because they consider them incomparable. In these cases, they say that our reasons for action do not determine a unique option. In the language of \citep{ullman1977}, such a decision theory leaves open various ways to pick, where picking is a matter of settling on what to do after your reasons for action have run out and a range of options have not been ruled out as impermissible.
 
-
-The decision theories that endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision, and they typically say that cases in which an agent doesn't have a strict preference either way between two options are those in which  she is indifferent between them; and, in those cases, any slight sweetening of one option is sufficient to make her strictly prefer  that. %\todo{is this the ``ordering principle''?}
+However, with some additional assumptions we can modify the case to again show that it is still self-undermining. 
+The decision theories that endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision. They thus typically say that cases in which an agent doesn't have a strict preference either way between two options are those in which  she is indifferent between them; and, in those cases, any slight sweetening of one option is sufficient to make her strictly prefer  that. %\todo{is this the ``ordering principle''?}
 So, in this decision, she will prefer Risky$^+$ to Safe:
 $$
 \begin{array}{r|cc}
@@ -828,8 +828,24 @@ $$
 $$
 And so again, the decision theory deems it impermissible to pick in accordance with its own recommendations; instead it recommends using a different decision theory. 
 
-Any strict failure of von Neumann-Morgenstern's Independence Principle will also generate a case of undermining. Suppose your decision theory deems option $a$ preferable to option $b$; and suppose further that it prefers the mixed option $b$-if-a-possibly-biased-coin-lands-heads-and-$c$-if-tails to the mixed option $a$-if-heads-and-$c$-if-tails. Then we can generate a way of being uncertain over which decision problem you'll be faced with so that the unique picking strategy which is compatible with the decision theory is itself impermissible according to the theory. 
+\begin{colored}{violet}
+Any failure of von Neumann-Morgenstern's Independence Principle will generate a case where the decision theory is self-undermining.
+This principle says that if the decision theory deems action $a_1$ preferable to $a_2$ then it deems a probabilistic mixture $\alpha a_1+(1-\alpha)b$ as preferable to $\alpha a_2+(1-\alpha)b$. 
+Such mixtures are often interpreted as performing acts depending on the outcome of a randomization device, say a toss of a biased coin. 
+But it can similarly be seen as evaluating picking strategies if you're uncertain over which decision problem you're faced with: with probability $\alpha$ you'll be offered the decision of $a_1$ vs $a_2$ and with probability $1-\alpha$ you'll be given a decision just with one option: to perform $b$. The picking strategies are determined by their pick of either $a_1$ or $a_2$, and they are extensionally equivalent to the mixed acts. A failure of the independence axiom thus results in a different evaluation of the picking strategy to the individual actions, i.e., a case of self-underminingness.%
+\footnote{
+	In the case where we have $a_1\succ a_2$ and $\alpha a_1 +(1-\alpha)b\prec \alpha a_2 + (1-\alpha)b$ this is immediate. 
+	If the reversal is merely weak, we can make use of an Ordering and Archimedeanicity principle by assuming it is due to indifference, then making a slight improvement which ensures it is strictly preferred, but with that improvement being small enough that it doesn't break the other strict preference. 
+}
+%	When we merely have  $a_1\succeq a_2$ and $\alpha a_1 +(1-\alpha)b\prec \alpha a_2 + (1-\alpha)b$ we can make an argument similar to that above, making use of ordering and Archimadeanicity assumptions: when $a_1\succeq a_2$, for small enough price, $\epsilon$, still $\alpha (a_1-\epsilon) +(1-\alpha)b\prec \alpha a_2 + (1-\alpha)b$, but  }
+\end{colored}
 
+\begin{colored}{red}
+Any failure of von Neumann-Morgenstern's Independence Principle will generate a case of undermining. 
+Suppose your decision theory deems action $a$ preferable to action $b$.
+But if a biased coin is to be tossed to determine whether 
+and suppose further that it prefers the mixed option $b$-if-a-possibly-biased-coin-lands-heads-and-$c$-if-tails \todo{C: hard to read! I've actually rewritten}to the mixed option $a$-if-heads-and-$c$-if-tails. Then we can generate a way of being uncertain over which decision problem you'll be faced with so that the unique picking strategy which is compatible with the decision theory is itself impermissible according to the theory. 
+\end{colored}
 
 
 
@@ -1006,7 +1022,7 @@ However, we are assuming that we are not in this sort of case, and that it is wi
 %{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? RP: I'd cut the paragraph higher up where we say there's nothing funny going on. At that point, we're just introducing the idea and making the case it's odd prima facie. I think we leave the spelling out of how it's bad for here as well as deflecting the potential responses. C: yes, but I'm not sure exactly how to do that.}
 Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points. Recall the case above in which you were initially uncertain whether you'd face $D^\mathrm{Allais}_\mathrm{local}$ or get \pounds 1m for sure, and your decision theory would choose Risky over Safe when faced with $D^\mathrm{Allais}_\mathrm{local}$ but would choose the picking strategy $\s_\mathrm{Safe}$ over $\s_\mathrm{Risky}$. Standing facing the decision problem $D^\mathrm{Allais}_\mathrm{local}$, you might ask yourself: my decision theory tells me to choose Safe and not to choose Risky, but it also tells me that, if I could have chosen how I would choose, it would have told me to choose Risky and not to choose Safe---which should I do?
 
-If we again suppose that the self-undermining decision theory is correct, it leads to a rational dilemma, where one is rationally required to adopt a picking strategy which picks in an impermissible way. 
+If we again suppose that the self-undermining decision theory is correct, it leads to a rational dilemma, where one is rationally required to adopt a picking strategy which picks in an rationally impermissible way. 
 
 %{\todo{this needs fixing for above. But haven't we said it all above anyway? What's this section adding? RP: I'd cut the paragraph higher up where we say there's nothing funny going on. At that point, we're just introducing the idea and making the case it's odd prima facie. I think we leave the spelling out of how it's bad for here as well as deflecting the potential responses. C: yes, but I'm not sure exactly how to do that.}
 %	Second: Relatedly, for someone who uses the decision theory, it gives contradictory advice at different points.
@@ -2763,6 +2779,8 @@ the situation is less clear. This may simply reflect a deep-seated value for coo
 %We will work in the appendix throughout with $\prpickstrat$. Recall the definitions from \cref{def:nu stuff}
 
 
+\bibliographystyle{apa-good}
+\bibliography{bibliography}
 
 
 \section{EU and E-admissibility}
@@ -2781,7 +2799,7 @@ The marginal density, $f_\D$, is given by $f_\D(D)=\sum_{\omega\in\Omega}f(\omeg
 Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 
 \begin{definition}
-	For any $D\in\D'$ and any $a\in D$, $\pb(\cdot|D)$ is a probability function over $\Omega$ defined by $\pb(\omega|D)=\frac{f(\omega,D)}{f_\D(D)}$. 
+	For any $D\in\D'$ and any $a\in D$, $\pb(\cdot|D)$ is a probability function over $\Omega$ defined by $\pb(\omega|D)=\frac{f(\omega,D)}{f_\D(D)}$. \todo{why do we sometimes use angle brackets?}
 	So,  \[\Exp_{\pb(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
 \end{definition}
 	
@@ -3334,9 +3352,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %	 \end{proof}
 %}
 \todooldinfo{If we're rewriting the EU result, check how this looks!}
-\newpage
-\bibliographystyle{apa-good}
-\bibliography{bibliography}
+
 
 
 
