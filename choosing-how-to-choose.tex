@@ -1669,17 +1669,17 @@ Now consider the following two possible decision problems, $D^{\mathrm{Ellsberg}
 $$
 \begin{array}{r|ccc}
 D^{\mathrm{Ellsberg}}_1 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} & x&\sfrac{2}{3}-x \\%\multicolumn{2}{c}{\sfrac{2}{3}}\Bstrut \\\hline \hline\Tstrut 
-\text{1A} & \text{\pounds 10} & \text{\pounds 0}  & \text{\pounds 0} \\
-\text{1B} & \text{\pounds 1} & \text{\pounds 11}  & \text{\pounds 1} 
+\text{1E} & \text{\pounds 10} & \text{\pounds 0}  & \text{\pounds 0} \\
+\text{1F} & \text{\pounds 1} & \text{\pounds 11}  & \text{\pounds 1} 
 \end{array}
 \hspace{10mm}
 \begin{array}{r|ccc}
 D^{\mathrm{Ellsberg}}_2 & \emph{Red} & \emph{Black} &\emph{Yellow} \Bstrut \\\hline \Tstrut\IP & \sfrac{1}{3} &x&\sfrac{2}{3}-x \\% \multicolumn{2}{c}{\sfrac{2}{3}}\Bstrut \\\hline \hline\Tstrut 
-\text{2A} & \text{\pounds 11} & \text{\pounds 1}  & \text{\pounds 11} \\
-\text{2B} & \text{\pounds 0} & \text{\pounds 10}  & \text{\pounds 10} 
+\text{2E} & \text{\pounds 11} & \text{\pounds 1}  & \text{\pounds 11} \\
+\text{2F} & \text{\pounds 0} & \text{\pounds 10}  & \text{\pounds 10} 
 \end{array}
 $$
-Faced with these decisions, people often report the Ellsberg preferences: they will choose 1A from $D^{\mathrm{Ellsberg}}_1$, and 2B from $D^{\mathrm{Ellsberg}}_2$.\footnote{In fact, we have added a small constant to the usual versions of 1B and 2A, reflecting the fact that people strictly prefer the usual version of 1A over the usual version of 1B, and so are willing to pay a penalty for making that choice; we've taken that penalty to be \pounds 1, but our point remains however small you make it.} And indeed that is exactly what $\Gamma$-Maximin demands. It says that, faced with a particular decision problem, you should pick one of the acts whose minimum expected utility by the lights of the probability functions in $\IP$ is maximal: in $D^{\mathrm{Ellsberg}}_1$, 1A uniquely maximizes minimum expected utility; and in $D^{\mathrm{Ellsberg}}_2$, 2B does that.
+Faced with these decisions, people often report the Ellsberg preferences: they will choose 1E from $D^{\mathrm{Ellsberg}}_1$, and 2F from $D^{\mathrm{Ellsberg}}_2$.\footnote{In fact, we have added a small constant to the usual versions of 1B and 2A, reflecting the fact that people strictly prefer the usual version of 1A over the usual version of 1B, and so are willing to pay a penalty for making that choice; we've taken that penalty to be \pounds 1, but our point remains however small you make it.} And indeed that is exactly what $\Gamma$-Maximin demands. It says that, faced with a particular decision problem, you should pick one of the acts whose minimum expected utility by the lights of the probability functions in $\IP$ is maximal: in $D^{\mathrm{Ellsberg}}_1$, 1E uniquely maximizes minimum expected utility; and in $D^{\mathrm{Ellsberg}}_2$, 2F does that.
 
 \begin{definition}[$\Gamma$-Maximin$_\IP$ ($\Maximin_\IP$) ]
 $$
@@ -1688,9 +1688,9 @@ $$
 (This should only be applied when these minima exist, e.g., when $\IP$ is a closed set.)
 \end{definition}
 
-So $\s$ picks for $\Maximin_\IP$ iff $\s(D)\in\Maximin_\IP(D)$ for every $D\in\D$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1A from $D^{\mathrm{Ellsberg}}_1$ and 2B from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_E$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any $p\in\IP$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1A)}]\geq \Exp_p[\U(\text{1B)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2B)}]\geq \Exp_p[\U(\text{2A)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
+So $\s$ picks for $\Maximin_\IP$ iff $\s(D)\in\Maximin_\IP(D)$ for every $D\in\D$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_E$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any $p\in\IP$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1A)}]\geq \Exp_p[\U(\text{1B)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2B)}]\geq \Exp_p[\U(\text{2A)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
 
-Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agent's uncertainty not only over what the world is like, but also which decision problem she'll face. 
+Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agent's uncertainty not only over what the world is like, but also over which decision problem she'll face. 
 Suppose that in fact you've got precise probabilities over what decision you'll face, and you think it's $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_1$ and $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_2$. 
 So we are representing your uncertainty as a set, $\IB$, of (higher-order) probabilities over both $\Omega$ and $\D$, each of which makes the state of the world independent of the decision you're faced with. 
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
