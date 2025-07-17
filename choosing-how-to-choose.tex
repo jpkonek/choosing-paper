@@ -2793,6 +2793,30 @@ the situation is less clear. This may simply reflect a deep-seated value for coo
 \bibliography{bibliography}
 
 
+\section{Summary of results}
+\begin{tabularx}{1.2\linewidth}{X|l|l|l|l|l|}
+&Allais &EU&$\Maximin$&$\EAd$&$\Maximality$\Bstrut\\\hline\Tstrut
+bad: For some $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+good: For all $\mu$, some $\s$ which picks for $\c$ is in $\c(\S)$
+	&bad&good&bad&good &good\Bstrut\\\hline\Tstrut
+bad: For some $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$ \newline
+good: For all $\mu$ and $\s$, if $\s$ picks for $\c$ it is in $\c(\S)$
+	&bad&good&bad&bad &bad\Bstrut\\\hline\Tstrut
+bad: For many $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+good: 
+	&?uniform&good&?&good &good\Bstrut\\\hline\Tstrut
+bad: For many $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+good: 
+	&?&good&bad&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+bad: For many $\mu$, every regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+good: 
+&?&good&?&bad &bad($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+bad: For many $\mu$, some regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+good: 
+&?&good&?&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+Imprecise $\imprecpickstrat$??
+\end{tabularx}
+
 \section{EU and E-admissibility}
 
 
