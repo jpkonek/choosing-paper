@@ -203,6 +203,8 @@ Todo/questions:
 	"INDEPENDENCE" OR WITHOUT
 	"ORDERING"''}
 
+
+\todo[inline]{referee: I think the summary of results on p. 29 [concln] is very helpful, but it might be helpful to have a chart as well, and also to have some sort of summary of these results in the introduction too.}
 %\todooldinfo[color=red]{19/2 - I've come to a halt at least today. The imprecise nu etc is still fluffy. not sure if I'll come back to it soon}
 %\todooldinfo{from CCM: red text =  delete, but not ready to do so yet. Purple is stuff I'm considering and think would be good to be}
 %CCM trying to rewrite with strategies. 
@@ -2090,8 +2092,9 @@ We will be able to show that if your credence over which decision problem you'll
 
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
-To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then using the updated credal set to determine which options to reject.
+To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then use the updated credal set to determine which options to reject.
 \todoold{We already talked about this earlier! }
+\todo{Do we need to say it's pintwise conditionalizaiton?}
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
@@ -2742,7 +2745,8 @@ In \cref{sect:e-admiss} we observed that E-Admissibility and Maximility aren't v
 %In \cref{sect:Max} we showed that the more permissive decision theories such as Maximality still have the same feature, that only EU strategies are evaluated as permissible, thus it undermines its own recommendations when there is non-trivial imprecision. However, for these results we needed to make a stronger assumption: that one has \emph{precise} probabilities over which decision she'll be faced with, along with an assumption that this requires almost everywhere decisiveness over a whole range of decisions. Whilst this is a limitation of our results, it nonetheless shows a whole slew of cases where these theories collapse into EU. \todoold{check that phrasing}
 
 In \cref{sect:nu} we reevaluated what we are judging and instead proposed evaluating not the deterministic picking strategies compatible with the recommendations of the decision theory but instead using probabilistic picking strategies. This might be because you are using a randomisation process, or just that you have uncertainty about how you'll pick which is governed by a precise probability, or simply that how we judge the utility of a choice rule should be given by a mixture of the utilities of the actions that are not ruled out. 
-We noted that all our previous results generalised to this setting and moreover, that the situation became worse for the imprecise decision theories. E-Admissibility now judges as impermissible any regular $\prpickstrat$ which picks for it, as it no longer looks like $\EU_p$ for any $p$, at least given some mild assumptions on the credal set. 
+We noted that all our previous results generalised to this setting and moreover, that the situation became worse for the imprecise decision theories:
+ E-Admissibility now judges as impermissible any regular $\prpickstrat$ which picks for it, as it no longer looks like $\EU_p$ for any $p$, at least given some mild assumptions on the credal set. 
 For Maximality, we were able to show something similar, that it deems impermissible any regular $\prpickstrat$ that picks for it, although in this case we needed a much stronger assumption: that one's uncertainty over which decision she'll be faced with is governed by a precise probability, along with a broadness assumption that this requires almost everywhere decisiveness. 
 	These considerations highlight that one should not in general pick by randomisation amongst the non-rejected options, or have uncertainty over how you'll pick in a way that amounts to randomisation. Imprecise decision theories see value in coordination. %have to see the value in coordination. 
 %What these considerations highlight is the general 
