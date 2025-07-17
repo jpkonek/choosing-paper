@@ -760,7 +760,7 @@ The decision among picking strategies thus amounts to this decision:
 	\s_{\mathrm{Risky}}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 1m}
 \end{array}
 $$
-But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$! And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but just the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
+But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$. And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but just the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
 Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one that she knows won't choose in the way she would were she in the situation herself. 
@@ -768,14 +768,16 @@ Given the choice of whether she should tie herself to the mast, and pre-commit t
 
 Her adopted decision theory requires her to pick a picking strategy which is not compatible with its own recommendations. 
 %If our agent, using her decision theory, endorses the Allais preferences and recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$, then her adopted decision theory recommends a picking strategy which is not compatible with its own recommendations. 
-Despite the fact that her decision theory recommends picking Risky, it thinks it would be better to use a decision theory which recommends Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$.
+Despite the fact that her decision theory recommends picking Risky, it thinks it would be better to use a decision theory which recommends picking Safe.
 
 %\begin{colored}{red}
 	%\todo{I moved this para up here}
 %There is no funny business going on here. Learning that you face decision problem $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not, we are supposing, provide any information about whether the company will go bust. We assumed that the decision problem is independent of the state of the world. We are also assuming act-state independence: picking one option or another in $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not tell you anything about which state of the world you're in.
 %\end{colored}
 
-This is a \emph{prima facie} bad feature of her decision theory. Her decision theory makes recommendations both about \emph{picking strategies} and which \emph{actions} to choose in different decision problems. But these recommendations pull her in different directions. The picking strategy it recommends tells her to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells her to do another thing. There is a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
+This is a \emph{prima facie} bad feature of her decision theory. Her decision theory makes recommendations both about what actions to perform when faced with different decision problems and which picking strategy is best. But these recommendations pull her in different directions. The decision theory itself tells you do do one thing when faced with the decision, but recommends using a picking strategy which does a different thing. 
+%The picking strategy it recommends tells her to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells her to do another thing. 
+This is a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
 \begin{quote}
 	It is as if Consumer Bulletin were to advise you that Consumer Reports was a best
 	buy whereas Consumer Bulletin itself was not acceptable; you could not possibly
@@ -783,7 +785,7 @@ This is a \emph{prima facie} bad feature of her decision theory. Her decision th
 \end{quote}
 
 %This is, \emph{prima facie}, a bad-making feature of a decision theory. 
-It is thus a decision theory which is self-undermining, in the sense that given this particular precise probability distribution over the possible decision problems she might face---it's $11\%$ likely she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$, and $89\%$ likely she'll get \pounds 1m for sure---if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
+The decision theory is self-undermining in the sense that there is some particular precise probability distribution over the possible decision problems she might face---it's $11\%$ likely she'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$, and $89\%$ likely she'll get \pounds 1m for sure---where if she applies her decision theory to the question of which picking strategy to use, it rules out as impermissible its own recommended course of action. 
 
 
 
@@ -850,8 +852,12 @@ and suppose further that it prefers the mixed option $b$-if-a-possibly-biased-co
 
 
 These cases are formally related to cases of sequential incoherence for such decision theories \citep{hammond1988cfeu,machina1989}. 
-\begin{colored}{violet}
-The formal motivation for our investigation was instead \citet{levinstein2017pgeu} who, following \citet{schervish2009psr}, also considers evaluations based on uncertainty over which decision problem is being faced, although his analysis is to evaluate credences according to their expected guidance value in each state of the world, which differs from ours by both associated a picking function with varying credences in accordance with expected utility theory and then reduces it using expectations. 
+
+\begin{colored}{violet}\todo{!!!}
+The formal motivation for our investigation was instead \citet{levinstein2017pgeu} who, following \citet{schervish2009psr}, also considers uncertainty over which decision problem is being faced and makes evaluations on that basis. 
+The target of their investigation is to judge credences rather than decision theories.
+They hold fixed the decision theory as expected utility theory and instead using this uncertainty over which decision you'll face to evaluate credences by their guidance value, assuming what they guide you to do is in accordance with expected utility theory. 
+%is to evaluate credences according to their expected guidance value in each state of the world, which differs from ours by both associated a picking function with credence functions in accordance with expected utility theory and then reduces it using expectations. 
 \end{colored}
 
 
@@ -983,16 +989,17 @@ There are at least two ways to argue that being self-undermining tells against a
 %\todo{Maybe worth seeing if we can reword. RP: I actually liked this when I re-read it.}
 %\begin{colored}{violet}
 \begin{colored}{violet}
+	\todoinfo{I'm unhappy with this section. I'm not sure my rewriting is correct... }
 	
-First: A decision theory provides verdicts on which options from each decision problem are impermissible. 
-If it is self-undermining, then one of its verdicts is that picking in accordance with itself is impermissible. Could such a decision theory be correct? 
-That is, could its evaluations match with what is actually impermissible for the agent. 
-Since it judges some alternative picking strategy to be better than its own, it is thus impermissible to pick in accordance with it.
+First: Could a self-undermining decision theory be correct? 
+That is, could its verdicts match with what is actually impermissible for the agent. 
+If it is self-undermining, then one of its verdicts is that some alternative picking strategy is better than its own. 
+And thus it is in fact impermissible to pick in accordance with it. 
 
-The decision theory evaluates some alternative picking strategy to be preferable to itself, but to conclude that it is impermissible to use its own picking strategy, the alternative one needs to be available to the agent. 
+This is assuming that that alternative picking strategy is available to the agent. 
 If the alternative picking strategy is so complex and computationally demanding that it lies beyond the agent's cognitive capacities to use reliably, then this is no bad mark against the self-undermining one. 
-Similarly, if in attempting to use a given decision theory, it may misfire and result in even worse decisions, it may be permissible, or even required, to adopt the simpler decision theory. 
-However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy and that there is no misfiring. 
+Similarly, if in \emph{attempting to use} a given decision theory, it may misfire and result in even worse decisions, it may be permissible, or even required, to adopt the simpler decision theory. 
+However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy.
 
 \end{colored}
 
@@ -1043,11 +1050,12 @@ We're also used to that in cases of act-state dependence. Causal decision theori
 \subsection{Responses}
 
 \subsubsection{Limit the decision theory's scope}
-
+\todo{do we want to change this?? I don't thinkit's terrible as is... }
 Perhaps the defender of a self-undermining decision theory will say it was never their intention that their theory should be used for these higher-order decisions. They are offering a theory of first-order rational choice; not a fully general theory that covers any sort of decision, including these higher-order decisions between picking strategies. 
 But that can't be right, for these theories are presented by their proponents as universal decision theories. In their descriptions, it is not specified that they are to be applied only in specific cases. 
 And, most importantly, the arguments in favour of the axioms that characterize them---which, in many cases, constitute the arguments for the theory itself---never make reference to the sort of decision you'll face: if they are plausible at all, they are plausible as applied to all decisions. \todoold{Could we make a mixed decision, to show why the risk profile couldn't change?} 
 These arguments are truly formal in the sense that the content of the decisions in question is not relevant to our evaluation of their plausibility. If the theory is not supposed to apply to higher-order decisions as well as first-order decisions, the defender of the theory must explain why the axioms are true when they govern preferences between first-order acts, but not when they govern preferences between higher-order acts like picking strategies.
+
 
 %\todooldinfo{Todo: select part of the buchak quote, from below. Or perhaps just don't bother.//!}
 %{\color{cyan}
@@ -1213,7 +1221,7 @@ These arguments are truly formal in the sense that the content of the decisions 
 \begin{colored}
 	{violet}
 	\subsubsection{Change the way of updating credences}
-
+\todo{C: what do you think? I'm not against deleting it... }
 There is another way the defender of these theories could argue against the charge of self-underminingness: they can note that we have essentially assumed Bayesian conditionalization and argue against conditionalization. As pointed out in \citet[16]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility.
 
 The picking strategy which the decision theory deems optimal is compatible with that very decision theory when we allow her credences to change when she learns which decision problem she is faced with. Instead of holding fixed her credences (by assuming probabilistic independence and conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
@@ -1543,13 +1551,12 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
 
-
  \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,u\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq u$. 
  %, and without loss of generality, for each act $a \in \A$ and state $\omega\in\Omega$, $0 \leq a(\omega) \leq 1$. We write $\A$ for the set of possible acts. \todoold{CCM: I still think we should have U and a separated. At least we *need* to do something like that to make sense of applying EU to strategies! since we need to specify the utility of a strategy..??}%An act is a function $a$ that specifies an outcome in each state $a(s)$. A utility function specifies the utility of that outcome $U(a(s))$.  %\todoold{should utilities be separated??}
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
 %Note that we are essentially here holding the utility function fixed, for our purposes. 
 
-\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all decision problems is $\D$. 
+\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all decision problems is $\D$. \todo{should we add ``re;evant''?}
 
 (In fact, we could relax the assumption that $D$ specifies a finite set of acts and instead assume that the set of acts it specifies is compact relative to the utility function, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,u]^\Omega$. But we will continue to assume that decision problems are finite for ease of presentation.)
 
@@ -1603,7 +1610,7 @@ Given a probability function $p$ defined over $\Omega$, the expected utility of 
 \end{equation}
 If one has (probabilistic) credences given by $p$, expected utility theory says that one should choose an act in $D$ that maximises $\Exp_p[\U(a)]$.\footnote{The version we present here is of the sort described by \citet{savage1954fs}, in which it is assumed that the acts are independent of the states of the world. This assumption is dropped in the evidential decision theory of \citet{jeffrey1965lod} and the causal decision theory of \citet{stalnaker1972ldl, gibbard1978ctk, joyce1999fcdt}.} That is, we define the choice function to which expected utility theory gives rise when coupled with probability function $p$ as follows:
 
-\begin{definition}[Expected Utility Theory ($\EU_p$)]
+\begin{definition}[Expected Utility Theory ($\EU_p$)]\label{def:EU}
 	\[\EU_p(D):=\{a\in D\given \text{for all $a'\in D$, }\Exp_p[\U(a)]\geq \Exp_p[\U(a')]\}\]
 \end{definition}
 %\todooldinfo{In nu stuff I am using ``picks for'' terminology. Should that be used throughout??}
@@ -1620,7 +1627,7 @@ So a picking strategy $\s$ picks for $\EU_p$ iff $\s(D)$ maximizes expected util
 Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtains its maximum in $D$; so $\EU_p(D)\neq\emptyset$. 
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
-{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $A$ is given by $(p\times\mu)(\omega,A)=p(\omega)\times\mu(A)$.} 
+{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $E$ is given by $(p\times\mu)(\omega,E)=p(\omega)\times\mu(E)$.} 
 We will moreover always assume that $\mu$ is countably additive. 
 
 
@@ -1632,9 +1639,11 @@ We can now simply apply our notion of expected utility with the credences over $
 	$$\Exp_{p\times\mu}[\U(\s)]\geq\Exp_{p\times\mu}[\U(\s')].$$
 	That is, if $\s$ picks for $\EU_p$, then $\s\in\EU_{p\times\mu}(\Strategies)$. 
 	\end{proposition}
-(Recall: $\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with %$p\times \mu$. 
-{ $p\times\mu$}, and $\Strategies$ is the set of picking strategies, and so $\EU_{p\times \mu}(\Strategies)$ is the set of all picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
-{ $p\times\mu$.})
+(Recall: 
+%$\s\in\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with \todo{I don't think we've defined $\EU$ by itself... what's going on here!}%$p\times \mu$. 
+%{ $p\times\mu$}, and 
+$\Strategies$ is the set of picking strategies. $\EU_{p\times \mu}(\Strategies)$ is the set of those picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
+{ $p\times\mu$}, as in \cref{def:EU}.)
 
 
 This shows that expected utility theory is not self-undermining in the way the Allais-permitting decision theories considered in the previous section are self-undermining. Expected utility picking strategies are themselves maximisers of expected utility. 
@@ -1872,7 +1881,7 @@ Let's treat E-Admissibility first. Suppose you are uncertain which decision prob
  
 Alternatively, suppose that you have a bit of information both about the world and which decision problem you will face. Your uncertainty about the world is given by the credal set $\IP$ over $\Omega$. Your uncertainty about the which decision you will face is given by the credal set $\ID$ over $\D$. Suppose also that you treat information about which decisions you will face as \emph{irrelevant} to which state of the world you are in. 
 
-In the precise setting, irrelevance is a univocal, symmetric notion: for any joint distribution $\pb$ over $\Omega \times \D$, $\D$ is \emph{stochastically independent} of (and hence irrelevant to) $\Omega$ according to $\pb$ just in case $\pb(\omega\in A\given D\in B)=\pb(\omega\in A)$ whenever $\pb(D\in B)>0$.\footnote{For any $A\subseteq\Omega$, $\omega\in A:=\left\{\left<\omega,D\right>\in\Omega\times\D\given \omega\in A\right\}$. Likewise, for any $B\subseteq\D$, $D\in B:=\left\{\left<\omega,D\right>\in\Omega\times\D\given D\in B\right\}$.}
+In the precise setting, irrelevance is a univocal, symmetric notion: for any joint distribution $\pb$ over $\Omega \times \D$, $\D$ is \emph{stochastically independent} of (and hence irrelevant to) $\Omega$ according to $\pb$ just in case $\pb(\omega\in A\given D\in E)=\pb(\omega\in A)$ whenever $\pb(D\in E)>0$.\footnote{For any $A\subseteq\Omega$, $\omega\in A:=\left\{\left<\omega,D\right>\in\Omega\times\D\given \omega\in A\right\}$. Likewise, for any $E\subseteq\D$, $D\in E:=\left\{\left<\omega,D\right>\in\Omega\times\D\given D\in E\right\}$.}
 \todooldinfo{ftnte defining marginal again. Check consistency throughtou paper. } 
 But in the imprecise setting, irrelevance fractures into a variety of distinct, not necessarily symmetric notions.\footnote{A short survey of independence notions for imprecise probability: complete independence for sets of probabilities (\cite{seidenfeld2007ci,cozman2012}); independence in selection for lower previsions (\cite{campos1995}); strong independence for lower previsions and sets of desirable gambles (\cite{cooman:2012:indnatexdesirs}); epistemic independence (value and subset) for sets of desirable gambles (\cite{Moral2005b}); epistemic h-independence for lower previsions and credal sets (\cite{debock2015:phdthesis}); S-independence for choice functions (\cite{debock2021:S-independence}).}
 
@@ -1948,7 +1957,9 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 
 
-For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$\todo{does this mean `picks for2?}: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} Thus, it is not in $\EU_p(\Strategies)$ for any $p$. If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,\todo{is this phrasing used elswhere... strategies ``are EUp''???} and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
+For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. 
+However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
+If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,\todo{is this phrasing used elswhere... strategies ``are EUp''???} and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
 
 
 
