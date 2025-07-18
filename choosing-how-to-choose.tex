@@ -1594,7 +1594,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 \emph{Picking strategy } As above, a picking strategy, $\s$, specifies an act from each decision problem, so that $\s(D)\in D$, for each $D$ in $\D$. The set of all picking strategies is $\S$. 
 
 A picking strategy picks for a choice function $\c$ if it never picks an option that $\c$ deems impermissible. That is: 
-\begin{definition}
+\begin{definition}\label{def:picks for}
 	A picking strategy $\s$ \emph{picks for a choice function} $\c$, if for all decision problems, $D$, $\s(D) \in \c(D)$.
 \end{definition}
 %Such a picking strategy will never select an option which $\c$ deems impermissible. 
@@ -1647,7 +1647,7 @@ This shows that expected utility theory is not self-undermining in the way the A
 
 What's more, they are the only picking strategies which maximise expected utility. Or at least, the picking strategies which maximise expected utility are those that look like an $\EU_p$ strategy from $\mu$'s perspective. %For example, if $\mu$ is certain you won't be faced with the decision problem $D$, then it doesn't matter whether the strategy chooses in an expected utility way for $D$. 
 
-\begin{definition}
+\begin{definition}\label{def:mu surely picks for}
 If $\c$ is a choice function and $\s$ is a picking strategy, then $\s$ \emph{$\mu$-surely picks for $\c$} iff $\mu\{D \in \D \given \s(D)\in \c(D)\}=1$
 \end{definition}
 %That is, $\mu$ is certain that, for each decision problem $D$, $\s$ picks an act from $D$ that lies in $\c(D)$.
@@ -2879,7 +2879,9 @@ Imprecise $\imprecpickstrat$??
 
 \section{EU and E-admissibility}
 
-Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy, at least $\mu$-surely. This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). This will then imply the results about E-Admissible strategies, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are judged as Maximal. 
+\subsection{EU}
+Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
+
 
 We present our result in generality, covering both the decision-state dependence and probabilistic picking strategy cases. 
 
@@ -2899,23 +2901,71 @@ Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 	So,  \[\Exp_{\pb(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
 \end{definition}
 	
-	Recall our definition \cref{def:cond}
-\begin{definition}
-	For any $D\in\D'$, \[\EU_{\pb(\cdot|D)}(D):=\left\{a\in D\given \Exp_{\pb(\cdot|D)}[\U(a)]\geq\Exp_{\pb(\cdot|D)}[\U(a')]\text{ for all $a'\in D$}\right\}\]
-\end{definition}
+	Recall \cref{def:cond}, defining the choice function $\EU_{\pb(\cdot|-)}$: For $D\in\D'$ (when this is well-defined), $\EU_{\pb(\cdot|-)}(D)=\EU_{\pb(\cdot|D)}(D)$, which, using \cref{def:EU} is 
+		\[a\in\EU_{\pb(\cdot|-)}(D)\text{ iff for all $a'\in D$, }\Exp_{\pb(\cdot|D)}[\U(a)]\geq\Exp_{\pb(\cdot|D)}[\U(a')].\]
+	If $D\notin\D'$, we can put $\EU_{\pb(\cdot|-)}(D)$ arbitrary, for example just make it equal $\D$. 
+	A picking strategy $\s\in\S$ is then said to $\pb$-surely pick for $\EU_{\pb(\cdot|-)}$ when \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1\] i.e., for the marginal $\pb_\D$, $\pb_\D\{D\given \s(D)\in\EU_{\pb(\cdot|-)}(D)\}=1$. A probabilistic picking strategy $\prpickstrat$ is said to $\pb$-surely pick for $\EU_{\pb(\cdot|-)}$ when \[\pb\{\seq{\omega,D}\given\prpickstrat_D(\EU_{\pb(\cdot|-)}(D))=1\}=1\]
+
 
 	
-\begin{definition}
-	$\EU_{\pb(\cdot|-)}$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\]when $D\in\D'$, i.e., when $f_\D(D)>0$; and when $D\notin\D'$, we put $\EU_{\pb(\cdot|-)}(D)=D$ (this is arbitrary, and it won't play a role in our result).\todoold{I added the when def!!} 
-\end{definition}
+%\begin{definition}
+%	$\EU_{\pb(\cdot|-)}$ is the choice function defined by \[\EU_{\pb(\cdot|-)}(D):=\EU_{\pb(\cdot|D)}(D)\]when $D\in\D'$, i.e., when $f_\D(D)>0$; and when $D\notin\D'$, we put $\EU_{\pb(\cdot|-)}(D)=D$ (this is arbitrary, and it won't play a role in our result).\todoold{I added the when def!!} 
+%\end{definition}
+%
+%
+%\todo{we should make the theorem already cover the prob case!!}
+%\begin{definition}
+%A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1\] i.e., for the marginal $\pb_\D$, $\pb_\D\{D\given \s(D)\in\EU_{\pb(\cdot|-)}(D)\}=1$.
+%\end{definition}
+
+\begin{theorem}\label{thm:EU appendix} 
+	\hspace*{1mm}
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+		\item  If $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ then, for any $\s'$, $\Exp_\pb[\U(\s)]\geq\Exp_\pb[\U(\s')]$
+		\item  If $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ and $\s'$ does not, then $\Exp_\pb[\U(\s)]>\Exp_\pb[\U(\s')]$.
+	\end{enumerate}
+\end{theorem}
 
 
-\todo{we should make the theorem already cover the prob case!!}
-\begin{definition}
-A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1\] i.e., for the marginal $\pb_\D$, $\pb_\D\{D\given \s(D)\in\EU_{\pb(\cdot|-)}(D)\}=1$.
-\end{definition}
+\begin{proof}
+	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
+	Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	
+	Suppose $D\in\D'$. By definition of $t_\pb$, $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega^*,D)$ for any $\omega^*\in\Omega$. 
+	For $\prpickstrat$ a probabilistic picking strategy, $\prpickstrat_D$ is a measure over $D$, so $\U(\prpickstrat)(\omega,D):=\Exp_{\prpickstrat_D}[\U(a)(\omega)]=\sum_{a\in D}\prpickstrat_D(a)(\omega)$. Since 
+	
+	By definition of $\EU_{\pb(\cdot|-)}(D)$, $\Exp_{\pb(\cdot|D)}[\U(a)]= t_\pb(\omega^*,D)$ exactly when $a\in \EU_{\pb(\cdot|-)}(D)$. 
+	
+	
+	
+	Now, 
+	
+	%	Observe that $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
+	
+	%	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
+	
+	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega^*,D^*\right>\in\X\given \omega=\omega^*\right\}$.	
+	
+	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega,D\right>\given D\in\D'\right\}$.	
+	
+	
+	
+	{\allowdisplaybreaks
+		\begin{align}
+			\Exp_\pb[\U(\prpickstrat)]&=\sum_{\omega\in\Omega}\int_{\D} \U(\prpickstrat)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\sum_{\omega\in\Omega}\int_{\D'} \U(\prpickstrat)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\prpickstrat)(\omega,D)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\int_{\D'}\Exp_{\pb(\cdot|D)}[\U(\prpickstrat)(\omega,D)]\;f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{\pb(\cdot|D)}[\U(\prpickstrat)(\omega,D)]\;f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+			&\leq\sum_{\omega\in\Omega}\int_{\D'}t_\pb(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\sum_{\omega\in\Omega}\int_{\D}t_\pb(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+			&=\Exp_\pb[t_\pb]
+	\end{align}}
+	
+	Thus, $\Exp_\pb[\U(\s)]\leq \Exp_\pb [t_\pb]$ with equality iff $\Exp_{\pb(\cdot|D)}[\U(\prpickstrat)(\omega,D)]=t_\pb(\omega,D)$ almost everywhere, which is true iff $\pb\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
+\end{proof}
 
-
+\begin{color}{red}
 \begin{theorem}\label{thm:EU appendix} 
 \hspace*{1mm}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
@@ -2926,11 +2976,14 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 
 
 \begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. For any $\omega\in\Omega$ and $D\in\D\setminus\D'$, let $t_\pb(\omega,D):=0$. Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
+	For any $\omega\in\Omega$ and $D\in\D'$, let $t_\pb(\omega,D):=\sup\{\Exp_{\pb(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
+	Note that $t_\pb(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $\pb$. 
 	
-	Suppose $D\in\D'$. 
+	Suppose $D\in\D'$. By definition of $t_\pb$, $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega^*,D)$ for any $\omega^*\in\Omega$. By definition of $\EU_{\pb(\cdot|-)}(D)$, $\Exp_{\pb(\cdot|D)}[\U(a)]= t_\pb(\omega^*,D)$ exactly when $a\in \EU_{\pb(\cdot|-)}(D)$.
 	
-	So $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$.\todoold{this is only true for $D\in\D'$!}
+	Now, 
+	
+%	Observe that $\Exp_{\pb(\cdot|D)}[\U(a)]\leq t_\pb(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{\pb(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
 	
 %	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
 	
@@ -2955,9 +3008,9 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 	Thus, $\Exp_\pb[\U(\s)]\leq \Exp_\pb [t_\pb]$ with equality iff $\Exp_{\pb(\cdot|D)}[\U(\s(D))]=t_\pb(\omega,D)$ almost everywhere, which is true iff $\pb\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
 	\end{proof}
 
-\begin{comment}
+
 \begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
-	\begin{enumerate}[{\normalfont (i)}]
+	\begin{enumerate}
 		\item  If $\prpickstrat$ $\mu$-surely picks for $\EU_p$ then, for any $\prpickstrat'$, $\EU_{p\times\mu}[\U(\prpickstrat)]\geq\EU_{p\times\mu}[\U(\prpickstrat')]$
 		\item If $\prpickstrat$ $\mu$-surely picks for $\EU_p$, and $\prpickstrat'$ does not, then $\EU_{p\times\mu}[\U(\prpickstrat)]>\EU_{p\times\mu}[\U(\prpickstrat')]$.
 	\end{enumerate}
@@ -2991,12 +3044,13 @@ A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \
 %	
 %	Observe that $\EU_{p\times\mu}\Exp_{\prpickstrat(D)}a=\Exp_\mu\Exp_{\prpickstrat(D)}\Exp_p(a)$ by interchange of expectations. This obtains our result. \todooldinfo{is this cleaner than RPs writeup?}
 \end{proof}
-\end{comment}
+\end{color}
 
 
 All the theorems about Expected Utility Theory and E-Admissibility, as well as the existence of Maximality strategies can be seen as quick corollaries of this: 
-\Cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
-\todo{not so easy to see the nu ones!!}
+\Cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}
+%\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+
 \begin{comment}
 	
 In fact, we can create a version of this result allowing dependence between the decision problem you're faced with and the state of the world, assuming that when you make a decision you first conditionalise your probabilities on which decision problem you're faced with and then use expected utility using that updated probability to make the decision. 
@@ -3006,6 +3060,14 @@ This is because $\Exp_\pb[\U(\prpickstrat)]=\Exp_{\pb_\D}\Exp_{\pb(\cdot|D)}\U(\
 %Since, 
 %		If $P$ is probability over $\Omega\times\D$, 
 %$\Exp_P[\U(\prpickstrat)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\prpickstrat)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\prpickstrat)\leq t_D(p(\cdot|D))$, with equality iff $\prpickstrat_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\prpickstrat)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\prpickstrat_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\prpickstrat$ $P$-surely picks for $\EU_P$.)
+
+
+
+\subsection{E-Admissibility}
+This will then imply the results about E-Admissible strategies, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are judged as Maximal. 
+
+\cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+
 
 \section{Maximality}
 To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
