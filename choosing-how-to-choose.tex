@@ -13,6 +13,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{makecell}
 
 \usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=gray,hypertexnames=false]{hyperref} % the addition of hypertexnames is for autonum
 \usepackage[capitalize]{cleveref}
@@ -1239,7 +1240,7 @@ But that can't be right, for these theories are presented by their proponents as
 \begin{colored}
 	{violet}
 	\subsubsection{Change the way of updating credences}
-\todo{RP: I added a tiny bit here, and I think we should keep.}
+
 There is another way the defender of these theories could argue against the charge of self-underminingness. They can note first that, by assuming decisions are probabilistically independent of states of the world, and assuming our credences in states of the world don't change when we learn which decision we face, we have essentially assumed Bayesian conditionalization. And then they can argue against conditionalization. As pointed out in \citet[16]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility.
 
 The picking strategy which the decision theory deems optimal is compatible with that very decision theory when we allow her credences to change when she learns which decision problem she faces. Instead of holding fixed her credences (by assuming probabilistic independence and conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
@@ -1423,16 +1424,16 @@ Whilst we acknowledge this is a possible way out of the criticism, it is a signi
 In our argument that Allais-permitting decision theories are self-undermining, we used the preferences they permit over the Allais gambles to construct a \emph{particular} way that you might be uncertain about what decisions you'll face and showed that, \emph{in that case}, you judge some alternative picking strategy to be preferable. 
 %{\color{violet}Or, more generally, we noted that one could use any particular failure of the Sure Thing Principle or the Independence Principle to generate a particular such challenge. }
 
-\todo{let's do a final double check of this again}
-\begin{colored}
-	{violet} Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$, with what the constant amount is being chosen specifically to demonstrate the undermining feature. 
+
+
+Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$, with what the constant amount is being chosen specifically to demonstrate the undermining feature. 
 	
 	Of course this might be the situation you're facing, where you happen to have these credences over the possible decisions. It might be just unfortunate coincidence, or it could be specifically constructed this way by a nefarious opponent who has set you up: they're going to toss a biased coin to determine what to offer you at the specified probabilities, having chosen these numbers specifically to demonstrate the inconsistency in your judgements. 
 	
 	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems. If your particular uncertainty is not one that generates the underminingness, is it really that problematic that were you to be in the particular uncertainty situation your decision theory were undermining, if in your actual situation it judges its own picking strategies as optimal?
 	
 	
-\end{colored}
+
 
 %\begin{colored}{red}ORIGINAL:
 %	%	But these are only generating a particular way of being uncertain over decisions under which the strategy undermines its own recommendations. 
@@ -1946,7 +1947,7 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %\todooldinfo{JK: Observe that $p\times\mu$ is in the natural extension of $\IP$. So there is some joint distribution consistent with $\IP$ relative to which $\s$ picks for $\EAd_\IP$.}
 %\end{proposition}
 %}
-The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining: under a broad range of conditions, \todo{what are these condns? I can't immediately see iut from the pronpn}there are strategies that pick for it that it does not deem impermissible.
+The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining. So long as there is some $p\in\IP$ with some $p\times\mu\in\IB$,\todo{reread} then there are strategies that pick for it that it does not deem impermissible.
 
 
 Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? \todooldinfo{I rewrote the start of this. JK to check. }
@@ -2444,7 +2445,7 @@ Then we have the following result.%
 %		However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\prpickstrategies$ is also closed,
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
-	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness\todo{status of countable additivity?}. 
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 	Then if $\prpickstrat \in \Maximality_\IB(\PrPickStrategies)$, then there is some $p$ such that $\prpickstrat$ $\mu^*$-surely picks for $\EU_p$.\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
@@ -2474,7 +2475,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 	Suppose $\PrPickStrategies$ is $\EU$-complete.  
 	Suppose that $\mu^*$ requires almost everywhere decisiveness.
 
-	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}
+	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	
 	Then, if $\prpickstrat$ is regular picking strategy for $\Maximality$ then $\prpickstrat\notin \Maximality_\IB(\PrPickStrategies)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
@@ -2521,13 +2522,13 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 
 
-Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ for which it $\mu^*$ surely picks for
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ \todo{why in IP???}for which it $\mu^*$ surely picks for
 % \todo{eg here should we replace?? I did so... changed order of quantifier}
 $\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\PrPickStrategies)$, there is some $p\in\IP$ where $\prpickstrat$ $\mu^*$-surely picks for $\EU_p$.
 		
-		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\prpickstrat$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\PrPickStrategies)$ (in fact, any $\prpickstrat$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\prpickstrat$ is regular for $\Maximin_\IP$ then $\prpickstrat\notin \Maximin_\IB(\PrPickStrategies)$. 
+		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\prpickstrat$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\PrPickStrategies)$ (in fact, any $\prpickstrat$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\prpickstrat$ is regular for $\Maximin_\IP$ then $\prpickstrat\notin \Maximin_\IB(\PrPickStrategies)$. \todo{See above!}
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
@@ -2576,7 +2577,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	\subsection{Alternatives}
 %	We proposed using probabilistic picking strategies, $\prpickstrat$ in evaluating a decision theory. 
 	
-	\subsubsection{Imprecise picking strategies}\label{IPpicking}
+	\subsubsection{Imprecise picking strategies}\label{sect:IPpicking}
 	So far, we've used decision theories to judge deterministic picking strategies, $\s$, and probabilistic picking strategies, $\prpickstrat$. 
 	But perhaps the proponent of imprecise probabilities thinks the way you pick is better represented by imprecise probabilities, indeed, a set of probabilistic picking strategies. 
 %	Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
@@ -2833,19 +2834,19 @@ There are two main dimensions of stronger undermining results:
 	\item\label{itm:uncertainty} Uncertainty over possible decisions:
 	\begin{enumerate}
 		\item\label{dimension:uncertainty:exists} Just a single example of being uncertain where it’s undermining.
-		\item\label{dimension:uncertainty:plausible} A plausible way of being uncertain where it’s undermining.
-		\item\label{dimension:uncertainty:range} It’s undermining for a decent range of ways of being uncertain.
-		\item\label{dimension:uncertainty:all} It’s undermining in almost all ways of being uncertain.
+		\item\label{dimension:uncertainty:plausible} A plausible way of being uncertain where it’s undermining.\\Uniform
+		\item\label{dimension:uncertainty:range} It’s undermining for a decent range of ways of being uncertain.\\When precise, requires almost everywhere decisiveness...
+		\item\label{dimension:uncertainty:all} It’s undermining in almost all ways of being uncertain.\\All, except those where it reduces to EU.
 	\end{enumerate}
 	
 	\item\label{dimension:strategies} Are all or just some of the strategies deemed impermissible?
 	\begin{enumerate}[label=(\alph*), ref=\theenumi\alph*]
-		\item\label{dimension:strategies:some} All non-EU strategies are impermissible. So typically, some of its strategies ruled impermissible.
+		\item\label{dimension:strategies:some} All non-EU strategies are impermissible. So (typically), some of its strategies ruled impermissible. 
 %		\begin{itemize}
 %			\item Each choiceworthy act is part of a choiceworthy strategy: for each $D\in\D$ and $a\in\c(D)$ there’s some $\s\in\c(\S)$ with $\s(D)=a$.
 %			\item Some decisions have choiceworthy acts which are not picked by any choiceworthy strategy.
 %		\end{itemize}
-		\item\label{dimension:strategies:allprob} All its regular probabilistic picking strategies deemed impermissible (unless ??). % does this lie between the others?
+		\item\label{dimension:strategies:allprob} All its regular probabilistic picking strategies deemed impermissible.% does this lie between the others?
 		\item\label{dimension:strategies:all} All its picking strategies ruled impermissible.
 	\end{enumerate}
 \end{enumerate}
@@ -2855,58 +2856,67 @@ There are two main dimensions of stronger undermining results:
 \begin{itemize}
 	\item EU: \label{itm:EU}
 	\begin{itemize}
-		\item Has none of these dimensions of undermining: in all ways of being uncertain, all picking strategies are choiceworthy.
+		\item Has none of these dimensions of undermining: in all ways of being uncertain, all picking strategies are choiceworthy.\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff}
 	\end{itemize}
 	
 	\item Risk / Allais cases / Independence failures\label{itm:allais}
 	\begin{itemize}[nosep]
-		\item An instance of uncertainty (\ref{dimension:uncertainty:exists}) where all picking strategies are rejected (\ref{dimension:strategies:all}).
-		\item For REU/Quiggin: strengthen to the uniform distribution (\ref{dimension:uncertainty:plausible}), still rejecting all strategies (\ref{dimension:strategies:all}).
+		\item An instance of uncertainty (\ref{dimension:uncertainty:exists}) where all picking strategies are rejected (\ref{dimension:strategies:all}). \Cref{sect:reu}
+		\item For REU/Quiggin: strengthen to the uniform distribution (\ref{dimension:uncertainty:plausible}), still rejecting all strategies (\ref{dimension:strategies:all}). \Cref{sect:reu:other mu}
 	\end{itemize}
 	
 	\item $\Maximin$\label{itm:maximin}
 	\begin{itemize}[nosep]
-		\item Some way of being uncertain (\ref{dimension:uncertainty:exists}) where all strategies are rejected (\ref{dimension:strategies:all}).
-		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}). 
-		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then no regular probabilistic picking strategy is choiceworthy (\ref{dimension:strategies:allprob})
+		\item Some way of being uncertain (\ref{dimension:uncertainty:exists}) where all strategies are rejected (\ref{dimension:strategies:all}). \Cref{sect:Ellsberg}
+		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}). \Cref{thm:gamma-nu}
+		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then no regular probabilistic picking strategy is choiceworthy (\ref{dimension:strategies:allprob}). \Cref{thm:gamma-nu}
 	\end{itemize}
 	\item $\EAd$
 	\begin{itemize}
-		\item For all uncertainty, \ref{dimension:uncertainty:all}, its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}). There are others, which are ruled out.
-		\item For all uncertainty which is imprecise, all regular picking strategies are ruled out.
-		\item For all uncertainty, the only imprecise picking strategy which is choiceworthy (under our propopsed extension of that for EAd) is to be precise and follow expected utility. 
+		\item For all uncertainty, (\ref{dimension:uncertainty:all}), its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}). There are others, which are ruled out. \Cref{thm:ead-equiv[indep]} (also, when decision-state dependence: \cref{thm:ead-equiv[dep]})
+		\item For all uncertainty which is imprecise (\ref{dimension:uncertainty:all}), all regular picking strategies are ruled out (\ref{dimension:strategies:allprob}). \Cref{thm:ead-nu-reg-nec}
+		\item For all uncertainty (\ref{dimension:uncertainty:all}), the only imprecise picking strategy which is not rejected (under our proposed extension of that for EAd) is to be precise and follow expected utility (NO REF ABOVE??) \Cref{sect:IPpicking}
 	\end{itemize}
 	\item Maximality:
 	\begin{itemize}
-		\item  If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}). 
-		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then no regular probabilistic picking strategy is choiceworthy (\ref{dimension:strategies:allprob})
+		\item  If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then its only choiceworthy strategies are $\EU$ picking strategies (\ref{dimension:strategies:some}).  \Cref{thm:max-suff}
+		\item If one’s uncertainty is precise, countably additive, and requires almost‐everywhere decisiveness (\ref{dimension:uncertainty:range}), then no regular probabilistic picking strategy is choiceworthy (\ref{dimension:strategies:allprob}) \Cref{thm:max-nu-reg-nec}
 	\end{itemize}
 \end{itemize}
 
 \bigskip 
+ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO WE KNOW WHAT OTHER THMS WE HAVE AS WEAKER ONES??
+\begin{center}
+	\begin{tabular}{l|cccc}
+	& \ref{dimension:uncertainty:exists} & \ref{dimension:uncertainty:plausible} & \ref{dimension:uncertainty:range} & \ref{dimension:uncertainty:all} \\ \hline
+	\ref{dimension:strategies:some}    &  &  &  \makecell[l]{$\Maximin$\\$\Maximality$}& \makecell[l]{$\EAd$} \\
+	\ref{dimension:strategies:allprob} &  &  &  \makecell[l]{$\Maximin$\\$\Maximality$}&  \makecell[l]{$\EAd$} \\
+	\ref{dimension:strategies:all}     & \makecell[l]{Allais\\$\Maximin$} & REU &  &  
+\end{tabular}
+\end{center}
 
-\begin{tabularx}{1.2\linewidth}{X|l|l|l|l|l|}
-&Allais &EU&$\Maximin$&$\EAd$&$\Maximality$\Bstrut\\\hline\Tstrut
-bad: For some $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
-good: For all $\mu$, some $\s$ which picks for $\c$ is in $\c(\S)$
-	&bad&good&bad&good &good\Bstrut\\\hline\Tstrut
-bad: For some $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$ \newline
-good: For all $\mu$ and $\s$, if $\s$ picks for $\c$ it is in $\c(\S)$
-	&bad&good&bad&bad &bad\Bstrut\\\hline\Tstrut
-bad: For many $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
-good: 
-	&?uniform&good&?&good &good\Bstrut\\\hline\Tstrut
-bad: For many $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$\newline
-good: 
-	&?&good&bad&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
-bad: For many $\mu$, every regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
-good: 
-&?&good&?&bad &bad($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
-bad: For many $\mu$, some regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
-good: 
-&?&good&?&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
-Imprecise $\imprecpickstrat$??
-\end{tabularx}
+%\begin{tabularx}{1.2\linewidth}{X|l|l|l|l|l|}
+%&Allais &EU&$\Maximin$&$\EAd$&$\Maximality$\Bstrut\\\hline\Tstrut
+%bad: For some $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+%good: For all $\mu$, some $\s$ which picks for $\c$ is in $\c(\S)$
+%	&bad&good&bad&good &good\Bstrut\\\hline\Tstrut
+%bad: For some $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$ \newline
+%good: For all $\mu$ and $\s$, if $\s$ picks for $\c$ it is in $\c(\S)$
+%	&bad&good&bad&bad &bad\Bstrut\\\hline\Tstrut
+%bad: For many $\mu$, every $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+%good: 
+%	&?uniform&good&?&good &good\Bstrut\\\hline\Tstrut
+%bad: For many $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$\newline
+%good: 
+%	&?&good&bad&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+%bad: For many $\mu$, every regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+%good: 
+%&?&good&?&bad &bad($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+%bad: For many $\mu$, some regular $\prpickstrat$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+%good: 
+%&?&good&?&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
+%Imprecise $\imprecpickstrat$??
+%\end{tabularx}
 
 \section{EU and E-admissibility}
 
@@ -2948,6 +2958,58 @@ Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
 %\begin{definition}
 %A picking strategy $\s$ \emph{$\pb$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{\pb(\cdot|-)}(D)\}=1\] i.e., for the marginal $\pb_\D$, $\pb_\D\{D\given \s(D)\in\EU_{\pb(\cdot|-)}(D)\}=1$.
 %\end{definition}
+
+\begin{theorem}\label{thm:EU appendix} 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
+		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	The basic reason is by exchange of expectations: $$\Exp_{p\times\mu}[\U(\nu)]:=\Exp_{p\times\mu}[\Exp_{\nu_D}[\U]]=\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]$$. The exchange is .
+	 and one can observe that this obtains it optimum when each $\nu_D(\EU_p(D))=1$, putting maximal weight on those acts which maximise expected utility, and reaches this maximal exactly when $\nu_D(\EU_p(D))=1$ for $\mu$-almost every $D\in\D$. 
+	
+	
+	
+	
+	
+	For maximum perspicuity, we will write everything out with integrals, to keep track of the variables. However, note that $\Omega$ and each $D$ have been assumed to be finite. 
+	
+	Let $t_p(D):=\sup_{a\in D}\Exp_p[\U(a)]$, the maximum attainable expected utility on $D$. $\EU_p(D)=\{a\in D\given \Exp_p[\U(a)]=t_p(D)\}$.
+	$\nu_D$ is a measure over $D$, so:
+	\begin{align}
+		\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&\leq t_p(D)\\
+			\text{ and }	\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&= t_p(D)\text{ iff }\nu_D(\EU_p(D))=1
+	\end{align}
+	
+	Therefore 
+	\begin{align}
+	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&\leq \int_\D t_p(D)\mu(\diff D)\\
+	\text{ and }	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&= \int_\D t_p(D)\mu(\diff D)\\\text{ iff }\mu\{D\given \nu_D(\EU_p(D))=1\}=1
+\end{align}
+	
+	So for all $a\in D$, $\Exp_p[\U(a)]\leq t_p(D)$, with equality just when $a\in \EU_p(D)$. 
+	
+	$\nu_D$ is a measure over $D$ ($D$ is finite, but we write it as an integral for), so $\Exp_{\nu_D}[\Exp_p[\U]]\leq t_p(D)$, with equality just when $\nu_D(\EU_p(D))=1$. 
+	
+	Thus, $\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]\leq \Exp_\mu[t_p(D)]$, with equality just when $\mu\{D\given \nu_D(\EU_p(D))=1\}=1$. 
+	
+	Now, observe that $\Exp_{p\times\mu}[\U(\nu)]=$
+	
+\end{proof}
+
+\begin{theorem}\label{thm:EU appendix} 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+	\item  If $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ then, for any $\nu'$, $\Exp_\pb[\U(\nu)]\geq\Exp_\pb[\U(\nu')]$
+	\item  If $\nu$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ and $\nu'$ does not, then $\Exp_\pb[\U(\nu)]>\Exp_\pb[\U(\nu')]$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+
+\end{proof}
+
+
 
 \begin{theorem}\label{thm:EU appendix} 
 	\hspace*{1mm}
