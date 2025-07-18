@@ -2298,7 +2298,7 @@ For a deterministic picking strategy, $\s$, we simply took its utility to be the
 %$$\EU_{p\times\mu}[\U(\prpickstrat)]=\EU_{p\times\mu}\Exp_{\prpickstrat_D}[\U(\omega)]$$%\todooldinfo{I'm not sure about the right notation}
 
 
-We have thus far been assuming that decision problems $D$ are non-empty finite sets of acts. If we were to allow $D$ to be infinite (although compact), then we should have $\U(\prpickstrat)(\omega,D):=\int_{D} \U(a)(\omega) \prpickstrat_D(\diff a)$.
+We have thus far been assuming that decision problems $D$ are non-empty finite sets of acts. If we were to allow $D$ to be infinite (although compact), then we should have $\U(\prpickstrat)(\omega,D):=\int_{D} \U(a)(\omega)\; \prpickstrat_D(\diff a)$.
 
 In the next few sections, we note how our earlier results concerning deterministic
 %\todo{did say ``non-probabilistic''}
@@ -2421,7 +2421,7 @@ As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility,
 \begin{proposition}\label{thm:max-nu-suff}
 		If for some $p\times\mu\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{p}$, then $\prpickstrat\in\Maximality_\IB(\PrPickStrategies)$. 
 		
-		More generally, if for some $\pb\in \IB$, $\prpickstrat$ $\mu$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\Maximality_\IB(\PrPickStrategies)$. 
+		More generally, if for some $\pb\in \IB$, $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$, then $\prpickstrat\in\Maximality_\IB(\PrPickStrategies)$. 
 \end{proposition}
 
 For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $\pb\in \IB$ have to agree on a particular alternative as better.
@@ -2475,7 +2475,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 	Suppose $\PrPickStrategies$ is $\EU$-complete.  
 	Suppose that $\mu^*$ requires almost everywhere decisiveness.
 
-	Suppose that for every $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
+	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every $p$ there is a non-negligible set of decision problems $D$ for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	
 	Then, if $\prpickstrat$ is regular picking strategy for $\Maximality$ then $\prpickstrat\notin \Maximality_\IB(\PrPickStrategies)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 \end{proposition}
@@ -2526,7 +2526,7 @@ Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strat
 % \todo{eg here should we replace?? I did so... changed order of quantifier}
 $\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
-		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\PrPickStrategies)$, there is some $p\in\IP$ where $\prpickstrat$ $\mu^*$-surely picks for $\EU_p$.
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\PrPickStrategies)$, there is some probability $p$ where $\prpickstrat$ $\mu^*$-surely picks for $\EU_p$.
 		
 		If also for every $p\in\IP$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\prpickstrat$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\PrPickStrategies)$ (in fact, any $\prpickstrat$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\prpickstrat$ is regular for $\Maximin_\IP$ then $\prpickstrat\notin \Maximin_\IB(\PrPickStrategies)$. \todo{See above!}
 	\end{proposition}
@@ -2923,6 +2923,32 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 \newcommand{\Decs}{\mathcal{D}}
 
 $b$ is a probability over $\Omega\times\Decs$. \todo{What is the measure space on $\Decs$???}
+In this section, we spell out the marginal $b_\D$ and the conditional $b(\cdot |D)$ ensuring that $\Exp_b[X]=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X]]$
+
+Let $b_\omega$ a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq D$ measurable. Put $b_\D=\sum_{\omega\in\Omega} b_w$, is the marginal of $b$ on $\D$. 
+
+As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a function $f_\omega$ on $\Decs$ such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
+Put $b(\omega |D):= f_\omega(D)$. 
+
+Since $b_\D=\sum_{\omega\in\Omega}b_\omega$, one can check that for $b_\D$ almost all $D$, $b(\cdot |D)$ is a probability measure. 
+
+We have $b_\omega(E)=\int_{E}b(\omega |D) b_\D(\diff D)$
+
+For any absolutely integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bounded)
+\begin{align}
+	\Exp_b[X]&=\int_b X(\omega, D) b(\diff \omega,\diff D)\\
+	&=\sum_\omega\int_\D X(\omega,D) b_\omega (\diff D)\\
+		&=\sum_\omega\int_\D X(\omega,D) b(\omega |D) b_\D(\diff D)\\
+		&=\int_\D [\sum_\omega X(\omega,D) b(\omega |D)] b_\D(\diff D)\\
+		&=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X]]
+\end{align}
+
+\bigskip
+
+ALTERNATIVE...
+
+
+
 
 Define its marginal on $\Decs$ by $b_\Decs(E)=b(\Set{(\omega,D)\given D\in E})$ for $E\subseteq\Decs$. 
 By the disintegration theorem (since $\Omega$ and $\Decs$ are standard Borel), there are conditional probabilities $b(\cdot | D)$ which are unique for $b_\Decs$-almost all $D$. 
