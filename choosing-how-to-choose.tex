@@ -979,7 +979,7 @@ There are at least two ways to argue that being self-undermining tells against a
 
 %\todo{Maybe worth seeing if we can reword. RP: I actually liked this when I re-read it.}
 %\begin{colored}{violet}
-\begin{colored}{violet}
+\begin{colored}{red}
 	\todoinfo{I'm unhappy with this section. I'm not sure my rewriting is correct... }
 	
 First: Could a self-undermining decision theory be correct? 
@@ -993,6 +993,27 @@ Similarly, if in \emph{attempting to use} a given decision theory, it may misfir
 However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy.
 
 \end{colored}
+
+
+\begin{colored}{violet}
+	\todoinfo{RP: suggested rewrite }
+	
+First: Suppose a self-undermining decision theory is correct. That is, it deems impermissible exactly those options that are indeed impermissible. But, since it is self-undermining, it deems impermissible the option of picking in accordance with itself. And so it is indeed impermissible to pick in accordance with it, since it is correct. But surely it cannot be impermissible to pick in accordance with the true theory of rational choice. Therefore, the decision theory cannot be correct, which gives a reductio.
+
+You might think that it could be impermissible to pick in accordance with the correct theory of rational choice, if for instance it is very costly to do so and there is a low cost alternative available that reasonably approximates the true theory, or if your attempt to pick in this way is likely to misfire, or if it is simply infeasible and so impossible for you to do it. But, when a theory is self-undermining, it is not for any of those reasons that it deems itself impermissible: it says it is impermissible even if it is cost-free to use it, and your attempt to use it always goes perfectly.
+
+%Could a self-undermining decision theory be correct? 
+%That is, could its verdicts match with what is actually impermissible for the agent. 
+%If it is self-undermining, then one of its verdicts is that some alternative picking strategy is better than its own. 
+%And thus it is in fact impermissible to pick in accordance with it. 
+
+%This is assuming that that alternative picking strategy is available to the agent. 
+%If the alternative picking strategy is so complex and computationally demanding that it lies beyond the agent's cognitive capacities to use reliably, then this is no bad mark against the self-undermining one. 
+%Similarly, if in \emph{attempting to use} a given decision theory, it may misfire and result in even worse decisions, it may be permissible, or even required, to adopt the simpler decision theory. 
+%However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy.
+
+\end{colored}
+
 
 
 %
@@ -1218,10 +1239,10 @@ But that can't be right, for these theories are presented by their proponents as
 \begin{colored}
 	{violet}
 	\subsubsection{Change the way of updating credences}
-\todo{C: what do you think? I'm not against deleting it... }
-There is another way the defender of these theories could argue against the charge of self-underminingness: they can note that we have essentially assumed Bayesian conditionalization and argue against conditionalization. As pointed out in \citet[16]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility.
+\todo{RP: I added a tiny bit here, and I think we should keep.}
+There is another way the defender of these theories could argue against the charge of self-underminingness. They can note first that, by assuming decisions are probabilistically independent of states of the world, and assuming our credences in states of the world don't change when we learn which decision we face, we have essentially assumed Bayesian conditionalization. And then they can argue against conditionalization. As pointed out in \citet[16]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility.
 
-The picking strategy which the decision theory deems optimal is compatible with that very decision theory when we allow her credences to change when she learns which decision problem she is faced with. Instead of holding fixed her credences (by assuming probabilistic independence and conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
+The picking strategy which the decision theory deems optimal is compatible with that very decision theory when we allow her credences to change when she learns which decision problem she faces. Instead of holding fixed her credences (by assuming probabilistic independence and conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
 
 Whilst we acknowledge this is a possible way out of the criticism, it is a significant bullet to bite. 
 
@@ -1406,9 +1427,9 @@ In our argument that Allais-permitting decision theories are self-undermining, w
 \begin{colored}
 	{violet} Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$, with what the constant amount is being chosen specifically to demonstrate the undermining feature. 
 	
-	Of course this might be the situation you're facing, where you happen to have these credences over the possible decisions. It might be just unfortunate coincidence, or it could be specifically constructed this way by a nefarious opponent who has set you up: they're going to toss a biased coin to determine what to offer you at the specified probabilities, having chosen these number specifically to demonstrate the inconsistency in your judgements. 
+	Of course this might be the situation you're facing, where you happen to have these credences over the possible decisions. It might be just unfortunate coincidence, or it could be specifically constructed this way by a nefarious opponent who has set you up: they're going to toss a biased coin to determine what to offer you at the specified probabilities, having chosen these numbers specifically to demonstrate the inconsistency in your judgements. 
 	
-	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems. If your particular uncertainty is not one which generates the underminingness, is it really that problematic that were you to be in the particular uncertainty situation your decision theory were undermining, if in your actual situation it judges its own picking strategies as optimal. 
+	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems. If your particular uncertainty is not one that generates the underminingness, is it really that problematic that were you to be in the particular uncertainty situation your decision theory were undermining, if in your actual situation it judges its own picking strategies as optimal?
 	
 	
 \end{colored}
@@ -1426,7 +1447,7 @@ In our argument that Allais-permitting decision theories are self-undermining, w
 %
 %\end{colored}
 
-This is analogous to a certain standard response to the Dutch book arguments: perhaps you just think it's unlikely that you'll ever face such a nefarious bookie. A common response is to argue that the mere existence of a Dutch book already shows you are irrational because it shows your preferences are inconsistent in a particular way---they judge the same decision differently when it is presented in different way, perhaps.\footnote{Cf. \citep{armendt1993db,mahtani2014db}.} %The set-up in which a bookie approaches you and offers a string of bets merely dramatizes this inconsistency. 
+This is analogous to a certain standard response to the Dutch book arguments: perhaps you just think it's unlikely you'll ever face such a nefarious bookie. A common response is to argue that the mere existence of a Dutch book already shows you are irrational because it shows your preferences are inconsistent in a particular way---they judge the same decision differently when it is presented in different way, perhaps.\footnote{Cf. \citep{armendt1993db,mahtani2014db}.} %The set-up in which a bookie approaches you and offers a string of bets merely dramatizes this inconsistency. 
 {The set-up in which an opposing Gambler approaches you, buys and sells bets that you deem fair, and thereby saddles you with a sure loss merely dramatizes this inconsistency.} The argument doesn't assume you'll ever actually meet such a person. We might argue similarly that the mere existence of self-underminingness for some way of being uncertain about what decision you'll faced is already a challenge to the decision theory. Perhaps it shows that it is inconsistent in the same way the Dutch book argument shows non-probabilistic credences are inconsistent.
 
 In the case of the Dutch book arguments, \Citet[Sec 6.2]{pettigrew2020dutch} argues the mere existence of a set of bets you'll accept individually that, taken together, lead to sure loss isn't sufficient to show you are  irrational. Instead, he asks what happens if you are uncertain about which decisions you'll face. Drawing on results from Mark \citet{schervish1989gm} and Ben \citet{levinstein2017pgeu}, he shows that, for very  many natural ways of being uncertain about the decisions you'll face, if you have non-probabilistic credences and face whatever decision you'll face with those credences, there are alternative probabilistic credences you might have had instead that guide your choices better.
@@ -1553,7 +1574,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
 %Note that we are essentially here holding the utility function fixed, for our purposes. 
 
-\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all decision problems is $\D$. \todo{should we add ``re;evant''?}
+\emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all relevant decision problems is $\D$. %\todo{should we add ``re;evant''?}
 
 (In fact, we could relax the assumption that $D$ specifies a finite set of acts and instead assume that the set of acts it specifies is compact relative to the utility function, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,u]^\Omega$. But we will continue to assume that decision problems are finite for ease of presentation.)
 
@@ -1882,7 +1903,8 @@ In the precise setting, irrelevance is a univocal, symmetric notion: for any joi
 \todooldinfo{ftnte defining marginal again. Check consistency throughtou paper. } 
 But in the imprecise setting, irrelevance fractures into a variety of distinct, not necessarily symmetric notions.\footnote{A short survey of independence notions for imprecise probability: complete independence for sets of probabilities (\cite{seidenfeld2007ci,cozman2012}); independence in selection for lower previsions (\cite{campos1995}); strong independence for lower previsions and sets of desirable gambles (\cite{cooman:2012:indnatexdesirs}); epistemic independence (value and subset) for sets of desirable gambles (\cite{Moral2005b}); epistemic h-independence for lower previsions and credal sets (\cite{debock2015:phdthesis}); S-independence for choice functions (\cite{debock2021:S-independence}).}
 
-Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension}  \citep[\emph{cf.}][Thm 13]{cooman2012}\todo{shouldn't it be `see'??}. This is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfy the following inequality constraints: for any gamble $g:\Omega\rightarrow\mathbb{R}$ and any $B\subseteq\D$ with $b(D\in B)>0$
+Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension}  \citep[see][Thm 13]{cooman2012}%\todo{shouldn't it be `see'??}.
+This is the largest (least informative) set $\IB$ of probabilities $\pb$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfy the following inequality constraints: for any gamble $g:\Omega\rightarrow\mathbb{R}$ and any $B\subseteq\D$ with $b(D\in B)>0$
 \[
 \inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_\pb[g^+]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
 \]
@@ -1956,7 +1978,8 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. 
 However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
-If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,\todo{is this phrasing used elswhere... strategies ``are EUp''???} and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
+If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,%\todo{is this phrasing used elswhere... strategies ``are EUp''???} 
+and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
 
 
 
@@ -1979,7 +2002,7 @@ This is a more general feature: there are always some strategies which pick for 
 %	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \emph{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
 %}
 
- E-Admissibility rejects some picking strategies which are compatible with its own choice set.\todo{this is repeating statement above the propn... is that ok?}
+ E-Admissibility rejects some picking strategies which are compatible with its own choice set.%\todo{this is repeating statement above the propn... is that ok?}
   \Cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
 
 
@@ -1993,8 +2016,9 @@ Does this make E-Admissibility self-undermining? Not exactly. But it does mean t
 	
 	
 	On the other hand, one might not see this as a concern for E-Admissibility. %Firstly, as \cref{thm:ead-equiv[dep]} makes clear, there are many picking strategies that E-Admissibility does not reject. In the Consumer Bulletin analogy, it is as if there are many other magazines that your personal shopper could cross-reference, not just Consumer Reports. Secondly, and more to the point, 
-{\color{red}What all of this shows, one might think, is just that E-Admissibility sees value in coordinating how you resolve incomparability.}
-{\color{violet}It just shows that E-Admissibility sees value in coordinating how you resolve incomparability. }
+%{\color{red}What all of this shows, one might think, is just that E-Admissibility sees value in coordinating how you resolve incomparability.}
+%{\color{violet}
+It just shows that E-Admissibility sees value in coordinating how you resolve incomparability.
 Take a simple example.
 	
 	
@@ -2087,9 +2111,9 @@ We will be able to show that if your credence over which decision problem you'll
 
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
-To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by conditionalizing on that information), and then use the updated credal set to determine which options to reject.
+To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by updating on that information via pointwise conditionalization), and then use the updated credal set to determine which options to reject.
 \todoold{We already talked about this earlier! }
-\todo{Do we need to say it's pintwise conditionalizaiton?}
+%\todo{Do we need to say it's pintwise conditionalizaiton?}
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
@@ -2213,7 +2237,8 @@ Up to this point, we have asked how a decision theory evaluates the picking stra
 
 However, other approaches are available too. We are interested in judging a decision theory as a means to your ends, and we have been using the proposed decision theory itself to do the judging, for it is, after all, a theory of which means to your ends are rational. Judging picking strategies that pick for the choice function that a decision theory produces furnish us with an straightforward approach to this question because they determine what the outcomes are: given a decision problem and a state of the world, the utility of a picking strategy is the utility, at that state of the world, of the act it picks from the decision problem. Since decisions theories don't always have definitive guidance on what to pick when faced with a decision, we considered various strategies compatible with its recommendations, which we called, the strategies which pick for it. 
 %But all of the decision theories we've been considering, but especially E-Admissibility and Maximality, don't always tell you exactly what you should do when faced with a decision; instead they rule out various options as impermissible, and often leave more than one remaining. As a result, there are many different picking strategies that pick for them. 
-How else might we evaluate what a decision theory will lead you to do when there are various acts \todo{should it be 'strategies'?}it leaves open?
+How else might we evaluate what a decision theory will lead you to do when there are various strategies %\todo{should it be 'strategies'?}
+it leaves open?
 
 We propose that you might have a precise probability over those permissible acts---what we'll call a probabilistic picking strategy---and you might take the utility of this probabilistic picking strategy at a state of the world to be its expected utility at that world. There are two reasons you might think this is the right way to evaluate a decision theory: 
 
@@ -2253,8 +2278,9 @@ Observe that in the special case where $\prpickstrat$ is extremal---that is, whe
 
 We add a further definition which is relevant for probabilistic picking strategies: 
 \begin{definition}
-{\color{red}For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if, for each $D$ in $\D$: $\prpickstrat_D(a) > 0$ iff $a \in \c(D)$.}
-{\color{violet}For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if it picks for $\c$ and for every $D\in\D$ and $a\in\c(D)$, $\prpickstrat_D(a)>0$. \todo{not sure if it was quantifier order, but I fould old defn hard to read. }}
+%{\color{red}For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if, for each $D$ in $\D$: $\prpickstrat_D(a) > 0$ iff $a \in \c(D)$.}
+%{\color{violet}
+For a choice function $\c$,  \emph{$\prpickstrat$ is regular for $\c$}, if it picks for $\c$ and for every $D\in\D$ and $a\in\c(D)$, $\prpickstrat_D(a)>0$. %\todo{not sure if it was quantifier order, but I fould old defn hard to read. }}
 \end{definition}
 
 
@@ -2273,13 +2299,16 @@ For a deterministic picking strategy, $\s$, we simply took its utility to be the
 
 We have thus far been assuming that decision problems $D$ are non-empty finite sets of acts. If we were to allow $D$ to be infinite (although compact), then we should have $\U(\prpickstrat)(\omega,D):=\int_{D} \U(a)(\omega) \prpickstrat_D(\diff a)$.
 
-In the next few sections, we note how our earlier results concerning deterministic\todo{did say ``non-probabilistic''} picking strategies generalize to probabilistic picking strategies.
+In the next few sections, we note how our earlier results concerning deterministic
+%\todo{did say ``non-probabilistic''}
+picking strategies generalize to probabilistic picking strategies.
 \subsubsection{Expected Utility Theory}
 We will judge whether the decision theory evaluates a probabilistic picking strategy $\prpickstrat$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\prpickstrat$ is an impermissible picking strategy from a set of picking strategies, $\PrPickStrategies$. 
 There are various natural proposals for what is considered in $\PrPickStrategies$ depending on one's interpretation and applications of our results. 
 When $\PrPickStrategies$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
 If you think you get to pick by randomisation, and can select any randomisation process, then $\PrPickStrategies$ will be the collection of all probabilistic picking strategies.
-If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set)\todo{I added the `uniform'}, then $\PrPickStrategies$ will have a particular $\prpickstrat^\c$ for each $\c$, where $\prpickstrat^\c$ picks for $\c$. 
+If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set),%\todo{I added the `uniform'},
+then $\PrPickStrategies$ will have a particular $\prpickstrat^\c$ for each $\c$, where $\prpickstrat^\c$ picks for $\c$. 
 If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\prpickstrat^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
 
 Our results will all hold under various choices of $\PrPickStrategies$, so long as it has a particular feature: 
@@ -2350,7 +2379,7 @@ Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}.
 Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\emph{Black})>\nicefrac{7}{30}$ rules 1E as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\prpickstrat_{D^{\mathrm{Ellsberg}}_1}$ picks 1E, by the assumption that it is regular for $\EAd_\IP$. 
 Thus, $\prpickstrat$ does not pick for $\EU_p$. It also does not even $\mu$-surely pick for $\EU_p$ if we assume that each $\mu$ assigns positive probability to both $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$. It is thus not E-Admissible. 
 
-In fact, if $\IP$ is allowed to be non-convex, we get cases where $\prpickstrat$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability $p^*\in\IP$ which is indifferent between the two actions, and thus, $\prpickstrat\in\EU_{p^*}(\PrPickStrategies)$.}\todo{ref: Bayes for p not defined. C: changed it.}
+In fact, if $\IP$ is allowed to be non-convex, we get cases where $\prpickstrat$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability $p^*\in\IP$ which is indifferent between the two actions, and thus, $\prpickstrat\in\EU_{p^*}(\PrPickStrategies)$.} %\todo{ref: Bayes for p not defined. C: changed it.}
 Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that neither $a_1$ or $a_2$ are rejected. Then for any regular picking strategy for $\EAd_\IP$, $\prpickstrat_D$ will give positive probability to both $a_1$ and $a_2$. $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, $\prpickstrat$ is not rationally permissible.
 \todoold{double check wording of above. And make it match JKs eg}
 
@@ -2492,7 +2521,9 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 
 
-Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ for which it $\mu^*$ surely picks for \todo{eg here should we replace?? I did so... changed order of quantifier}$\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some $p\in\IP$ for which it $\mu^*$ surely picks for
+% \todo{eg here should we replace?? I did so... changed order of quantifier}
+$\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\prpickstrat \in \Maximin_\IB(\PrPickStrategies)$, there is some $p\in\IP$ where $\prpickstrat$ $\mu^*$-surely picks for $\EU_p$.
 		
