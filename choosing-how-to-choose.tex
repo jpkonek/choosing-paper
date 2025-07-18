@@ -2918,8 +2918,91 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 %Imprecise $\imprecpickstrat$??
 %\end{tabularx}
 
+\begin{colored}{violet}
+\section{Decision-State Dependence}
+\newcommand{\Decs}{\mathcal{D}}
+
+$b$ is a probability over $\Omega\times\Decs$. \todo{What is the measure space on $\Decs$???}
+
+Define its marginal on $\Decs$ by $b_\Decs(E)=b(\Set{(\omega,D)\given D\in E})$ for $E\subseteq\Decs$. 
+By the disintegration theorem (since $\Omega$ and $\Decs$ are standard Borel), there are conditional probabilities $b(\cdot | D)$ which are unique for $b_\Decs$-almost all $D$. 
+
+Note that $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|-)}[X]]$ for any $X$ a measurable random variable on $\Omega\times \Decs$. 
+
+Note that if $b$ is a product, $p\times\mu$, then $b_\Decs$ is just $\mu$ and $b(\cdot|D)=p$ for all $D$. 
 \section{EU and E-admissibility}
 
+	
+\subsection{EU}
+Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
+
+We will prove the result in generality to cover all these cases. 
+
+%
+%\begin{theorem}\label{thm:EU appendix} 
+%	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+%		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
+%		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
+%	\end{enumerate}
+%\end{theorem}
+%\begin{proof}
+%	Since $\U$ is assumed to be bounded, $\abs{\U(a)(\omega)}\leq M$ for all $a\in\A$ and $\omega\in\Omega$. Thus $\abs{\U(\nu)(\omega,D)}\leq M$, so $\int_{\Omega\times \D} \abs{\U(\nu)(\omega,D)} \; \pb(\diff \omega,\diff D)\leq M$, i.e., it is absolutely integrable. Thus, by Fubini's theorem, integrals can be exchanged freely. 
+%	
+%	The basic reason is by exchange of expectations: $$\Exp_{p\times\mu}[\U(\nu)]:=\Exp_{p\times\mu}[\Exp_{\nu_D}[\U]]=\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]$$.
+%	This exchange is legitimate because $\Omega$ and each $D$ are finite, so it's exchanging an integral with two finite sums. It is also legitimate without the assumption that each $D$ is finite (we mentioned the possibility that it is merely compact), as $\U$ is bounded, so it is absolutely integrable and by Fubini's theorem, integrals can be exchanged at will. 
+%	
+%	One can observe that this obtains it optimum when each $\nu_D(\EU_p(D))=1$, putting maximal weight on those acts which maximise expected utility, and reaches this maximal exactly when $\nu_D(\EU_p(D))=1$ for $\mu$-almost every $D\in\D$. 
+%
+%
+%\end{proof}
+
+\begin{theorem}\label{thm:EU appendix} 
+	\hspace*{1mm}
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+		\item  If $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ then, for any $\prpickstrat'$, $\Exp_\pb[\U(\prpickstrat)]\geq\Exp_\pb[\U(\prpickstrat')]$
+		\item  If $\prpickstrat$ $\pb$-surely picks for $\EU_{\pb(\cdot|-)}$ and $\prpickstrat'$ does not, then $\Exp_\pb[\U(\prpickstrat)]>\Exp_\pb[\U(\prpickstrat')]$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+%$b$ is a measure on $\Omega\times\D$. $\Omega$ finite, we consider all subsets measurable; it is a standard Borel space. 
+%Given the utility, $\Decs$ can be considered as finite subsets of $[-M,M]^{|\Omega|}\subseteq\Re^n$; again a standard Borel space. 
+%So it admits a regular conditional probability kernel $b(\cdot \given D):\Omega\to [0,1]$ for $b_\D$-almost every $D$. Where 
+
+We have $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$, as $\U(\prpickstrat)$ is a measurable random variable on $\Omega\times\Decs$ given by $\U(\prpickstrat)(\omega,D)=\sum_{a\in D}\prpickstrat_D(a)\U(a)(\omega)$. 
+	
+Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. 
+%Observe that $\Exp_{b(\cdot | D)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot|D^*)}[\U]]$.
+%\begin{align}
+%	\Exp_{b(\cdot | D)}[\U(\prpickstrat)(D,\omega)]&=\Exp_{b(\cdot| D)}[\Exp_{\prpickstrat_D}[\U(a)(\cdot)]]&&\text{definition  of $\U(\prpickstrat)$}\\
+%	&=\Exp_{\prpickstrat_D}[\Exp_{b(\cdot | D)}[\U(a)]]&&\text{ as both are just finite weighted sums.\footnote{\begin{align}
+%					\sum_{\omega\in\Omega}b(\omega| D)\sum_{a\in D}\prpickstrat_D(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
+%				&=\sum_{a\in D}\prpickstrat_D(a)\sum_{\omega\in\Omega}b(\omega| D)\;\U(a)(\omega)\\
+%	\end{align}}}
+%\end{align}	
+\begin{align}
+	\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(D^*)]&=	\sum_{\omega\in\Omega}b(\omega| D^*)\sum_{a\in D^*}\prpickstrat_{D^*}(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
+				&=\sum_{a\in D^*}\prpickstrat_{D^*}(a)\sum_{\omega\in\Omega}b(\omega| D^*)\;\U(a)(\omega)
+\end{align}	
+
+$a\in\EU_{b(\cdot|-)}(D^*)$, by definition, iff it is a maximiser within $D^*$ of  $\Exp_{b(\cdot| D^*)}[\U(a)]=\sum_{\omega\in\Omega}b(\omega| D^*)\;\U(a)(\omega)$. Let this maximum value be $t_b(D^*)$.
+
+Thus, $\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(D^*)]\leq t_b(D^*)$ with equality just when $\prpickstrat_{D^*}$ is supported on $\EU_{b(\cdot | -)}(D^*)$.
+
+Thus $
+	\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]
+$
+obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\prpickstrat_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\prpickstrat$ $b$-surely picks for $\EU_{b(\cdot|-)}$.
+\end{proof}
+
+This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}
+
+\end{colored}
+
+
+
+\begin{colored}{red}
+	
 \subsection{EU}
 Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
 
@@ -3156,12 +3239,20 @@ This is because $\Exp_\pb[\U(\prpickstrat)]=\Exp_{\pb_\D}\Exp_{\pb(\cdot|D)}\U(\
 
 
 
+
+\end{colored}\begin{colored}{violet}
 \subsection{E-Admissibility}
-This will then imply the results about E-Admissible strategies, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are judged as Maximal. 
+This will then imply the results about E-Admissible strategies, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
+\cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:ead-equiv[dep]} thus follow.
 
-\cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+
+As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
 
 
+So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+
+
+\end{colored}
 \section{Maximality}
 To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
 \subsection{Wald theorem}
