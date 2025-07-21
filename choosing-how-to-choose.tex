@@ -2941,7 +2941,7 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 	
 	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
 	
-	We will first construct a $\sigma$-algebra on $\A$, which will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. We consider the standard Borel $\sigma$-algebra on $\Re^n$, and assume that $\U(\A)$ is a Borel set. We then equip $\A$ with the pull-back of this $\sigma$-algebra, $\mathcal{B}(\A)=\Set{\U^{-1}(B)\given B\in\mathcal{B}(\Re^n)}$. This implies that any measurable function cannot distinguish acts with the same utility profiles.    By assumption that $\U(\A)$ is Borel, this is a standard Borel space. 
+	We will first construct a $\sigma$-algebra on $\A$. This will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. We consider the standard Borel $\sigma$-algebra on $\Re^n$, and assume that $\U(\A)$ is a Borel set. We then equip $\A$ with the $\sigma$-algebra, $\mathcal{B}(\A)=\Set{\U^{-1}(B)\given B\in\mathcal{B}(\Re^n)}$. This implies that any measurable function cannot distinguish acts with the same utility profiles.    By assumption that $\U(\A)$ is Borel, this is a standard Borel space. 
 	 \todo{but must A be a Borel set?}
 	
 	One can then construct a $\sigma$-algebra on $\Decs$ from $\mathcal{B}(\A)$. 
@@ -2952,6 +2952,8 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 %	Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra.\todo{more care}
 	
 %	We then require any probability $p$$\mu$ on $\Decs$ to be a probability measure on $(\Decs,\Sigma)$; and $\pb$ to be a probability measure on $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$
+
+For  $\Omega\times\Decs$ we simply use $\mathcal{F}\otimes \Sigma$
 	
 	All the results in this paper are restricted to measurable picking strategies $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\prpickstrat:\Decs\to\Delta(\A)$ so that the induced payoffs, $\U(\s),\U(\prpickstrat):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, recalling that $\U(\prpickstrat)(\omega,D):=\Exp_{\prpickstrat_D}[\U(\cdot)(\omega)]$.
 	
@@ -2962,11 +2964,11 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 
 When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded (or integrable) measurable random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and check that the law of total expectation holds. 
+When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
 
-In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ which is a probability measure on $\Omega$ and such that for every bounded (or integrable) measurable random variable $X$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
+In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem (or disintegration theorem) guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded (or in fact integrable) measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
 
 When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
