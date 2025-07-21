@@ -1891,7 +1891,7 @@ Let's treat E-Admissibility first. Suppose you are uncertain which decision prob
 % }
  Then we can ask, from the point of view of $\IB$, and using E-Admissibility as our decision theory, whether a picking strategy that picks for $\EAd_\IP$ is permissible. And it turns out that, unlike for $\Gamma$-Maximin, there always is such a strategy. Indeed, if you simply take $p$ from $\IP$, and take a picking strategy $\s$ that picks for $\EU_p$, then $\s$ also picks for $\EAd_\IP$, and $\s$ is E-Admissible, as evaluated by $\IB$---that is, $\s$ is in $\EAd_\IB(\Strategies)$; at least if there is some $\pb=p\times\mu\in\IB$. The following is a corollary of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
  \begin{proposition}\label{thm:ead-suff-indep}
- 		If $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$ then $\s\in\EAd_\IB(\Strategies)$. 
+ 		If there is some $p\times \mu\in \IB$ such that $\s$ $\mu$-surely picks for $\EU_p$, then $\s\in\EAd_\IB(\Strategies)$. 
  	
  	Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in \IB$, then there is some $\s$, namely any $\s$ which picks for $\EU_p$, which picks for $\EAd_\IP$ and which is in $\EAd_\IB(\Strategies)$. 
  \end{proposition}
@@ -2931,35 +2931,35 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 	
 	
 	\section{Measure theoretic considerations}\label{sect:appendix:measure}
-	Throughout the paper, we ignored the question of measurability. 
+	Throughout the paper, we have ignored the question of measurability. We have considered various probability measures, $p$ a probability on $\Omega$, $\mu$ a probability on $\Decs$, or $\pb$ a probability on $\Omega\times\Decs$. To make this precise, we should fix the $\sigma$-algebras on each of these spaces.
 	
-	$\Decs$ was just defined as finite subsets of an arbitrary non-empty set $\A$ and we gave $\mu$ a probability measure on $\Decs$ (or $\pb$ a probability measure on $\Omega\times\Decs$). We should, however, specify the measure space. 
+	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 
 	
-	Fixing $\U:\A\times\Omega\to\Re$ we can treat $\A$ as a subset of $\Re^{|\Omega|}$. We will consider the measure space given by the Lebesgue measurable sets. 
-	Since each $D\in\Decs$ is a finite subset of $\A$, the measure space on $\Decs$ can be defined from it. 
+	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
 	
-	All the results in this paper should be qualified to quantify only over measurable picking strategies $\s:\Decs\to\A$, or probabilistic picking strategies $\prpickstrat:\Decs\to\Delta(\A)$. 
+	By fixing a utility function $\U:\A\times\Omega\to\Re$ we can treat $\A$ as a subset of $\Re^n$, where $n=\#\Omega$, the cardinality of $\Omega$. 
+	We will fix the $\sigma$-algebra on $\A$ as inherited from the standard Borel $\sigma$-algebra on $\Re^n$. 
+	
+	To construct a $\sigma$-algebra on $\Decs$, we consider $\Sigma$ the smallest $\sigma$-algebra containing each $\{D\in\Decs\given \#(D\cap A)=k\}$ for $A$ measurable subset of $\A$ and $k\in\mathbb{N}\setminus\{0\}$. Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra. 
+	
+%	We then require any probability $p$$\mu$ on $\Decs$ to be a probability measure on $(\Decs,\Sigma)$; and $\pb$ to be a probability measure on $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$
+	
+	All the results in this paper are restricted to measurable picking strategies $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\prpickstrat:\Decs\to\Delta(\A)$ so that the induced payoffs, $\U(\s),\U(\prpickstrat):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$, recalling that $\U(\prpickstrat)(\omega,D):=\Exp_{\prpickstrat_D}[\U(\cdot)(\omega)]$.
 	
 	
 	
 \section{Decision-State Dependence}\label{sect:appendix:decdep}
 
 
-When we have decision-state dependence, we made use of the idea of conditional probabilities. For $b$, a probability function over $\Omega\times\Decs$, we considered $b(\cdot | D)$, probability functions over $\Omega$ resulting from conditionalising $b$ on which decision problem is being faced with (\cref{sect:decdep}).
+When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-Let $b_\Decs$ be the marginal on $\Decs$. 
-We need to check that we can define $b(\cdot|D)$ for $b_\Decs$-almost all $D$ and ensure that for bounded random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+For $b$, a probability measure on $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded (or integrable) measurable random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-When $\Decs$ is supported on a finite subset of $\Decs$, we can just define this by the ratio formula for all $D$ with $b_\Decs(D)>0$. 
+When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$. 
 
-In the more general setting, we can do it due to the Regular Conditional Probability theorem. 
+In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$ is a standard Borel space, and so by the Regular Conditional Probability theorem guarantee the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ which is a probability measure on $\Omega$ and such that for every bounded (or integrable) random variable $X$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-%\begin{proposition}
-	We can define the regular conditional probability kernel, 	$b(\cdot|D)$ for $b_\Decs$ almost every $D$, with $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$ for any integrable random variable $X:\Omega\times\Decs\to\Re$. 
-%\end{proposition}
-
-
-When $b=p\times\mu$, we have $b_\Decs$ is $\mu$ and $b(\cdot|D)=p$ for all $D$.
+When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
 
 
@@ -3054,31 +3054,53 @@ We will prove the result in generality to cover all these cases.
 %Given the utility, $\Decs$ can be considered as finite subsets of $[-M,M]^{|\Omega|}\subseteq\Re^n$; again a standard Borel space. 
 %So it admits a regular conditional probability kernel $b(\cdot \given D):\Omega\to [0,1]$ for $b_\D$-almost every $D$. Where 
 
-We have $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$, as $\U(\prpickstrat)$ is a measurable random variable on $\Omega\times\Decs$.
-	
-Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then:
-\begin{align}
- &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
- 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \prpickstrat_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\prpickstrat)$}\\
- 	&=\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
- \end{align}
+As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D^*)$ defined for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+
+Thus, $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$, as $\U(\prpickstrat)$ is a measurable random variable on $\Omega\times\Decs$ and is bounded by our assumption on $\U$. 
 
 
-$\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]$ is maximised, by definition, at any $a\in\EU_{b(\cdot|-)}(D^*)$. Thus $\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]]$ is maximised just when $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$.
+Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then\footnote{More carefully:
+	\begin{align}
+		\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(\cdot,D^*)]&=	\sum_{\omega\in\Omega}b(\omega| D^*)\sum_{a\in D^*}\prpickstrat_{D^*}(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
+		&=\sum_{a\in D^*}\prpickstrat_{D^*}(a)\sum_{\omega\in\Omega}b(\omega| D^*)\;\U(a)(\omega)
+\end{align}	}
+ $$\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)]=\Exp_{b(\cdot | D)}[\Exp_{\nu_{D^*}}[\U]]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D)}[\U]].$$
 
-Thus, $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised just when for $\pb_\Decs$ almost every $D$,  $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D))=1$, which is to say that $\prpickstrat$ $\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$. 
-%
-%
-%%Observe that $\Exp_{b(\cdot | D)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot|D^*)}[\U]]$.
-%%\begin{align}
-%%	\Exp_{b(\cdot | D)}[\U(\prpickstrat)(D,\omega)]&=\Exp_{b(\cdot| D)}[\Exp_{\prpickstrat_D}[\U(a)(\cdot)]]&&\text{definition  of $\U(\prpickstrat)$}\\
-%%	&=\Exp_{\prpickstrat_D}[\Exp_{b(\cdot | D)}[\U(a)]]&&\text{ as both are just finite weighted sums.\footnote{\begin{align}
-%%					\sum_{\omega\in\Omega}b(\omega| D)\sum_{a\in D}\prpickstrat_D(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
-%%				&=\sum_{a\in D}\prpickstrat_D(a)\sum_{\omega\in\Omega}b(\omega| D)\;\U(a)(\omega)\\
-%%	\end{align}}}
-%%\end{align}	
+$\Exp_{b(\cdot | D^*)}[\U(a)]$ is maximised, by definition, at any $a\in \EU_{\pb(\cdot|-)}(D^*)$. 
+
+Thus $\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D^*))=1$. 
+
+And so $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D))=1$ for $b_\Decs$ almost every $D$. 
+i.e., when $\prpickstrat$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+%Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
 %\begin{align}
-%	\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(D^*)]&=	\sum_{\omega\in\Omega}b(\omega| D^*)\sum_{a\in D^*}\prpickstrat_{D^*}(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
+% &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
+% 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \prpickstrat_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\prpickstrat)$}\\
+% 	&=\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
+% \end{align}
+%
+%
+%$\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]$ is maximised, by definition, at any $a\in\EU_{b(\cdot|-)}(D^*)$. Thus $\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]]$ is maximised just when $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$.
+%
+%Thus, $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised just when for $\pb_\Decs$ almost every $D$,  $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D))=1$, which is to say that $\prpickstrat$ $\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$. 
+%
+%
+%Observe that $\Exp_{b(\cdot | D)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot|D^*)}[\U]]$.
+%\begin{align}
+%	\Exp_{b(\cdot | D)}[\U(\prpickstrat)(D,\omega)]&=\Exp_{b(\cdot| D)}[\Exp_{\prpickstrat_D}[\U(a)(\cdot)]]&&\text{definition  of $\U(\prpickstrat)$}\\
+%	&=\Exp_{\prpickstrat_D}[\Exp_{b(\cdot | D)}[\U(a)]]&&\text{ as both are just finite weighted sums.\footnote{\begin{align}
+%					\sum_{\omega\in\Omega}b(\omega| D)\sum_{a\in D}\prpickstrat_D(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
+%				&=\sum_{a\in D}\prpickstrat_D(a)\sum_{\omega\in\Omega}b(\omega| D)\;\U(a)(\omega)\\
+%	\end{align}}}
+%\end{align}	
+%
+%Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then 
+%		$\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(\cdot,D^*)]
+%		%=\Exp_{b(\cdot | D^*)}[\Exp_{\prpickstrat_{D^*}}[\U]]$ by the definition of $\U(\prpickstrat)$, which $
+%		=\Exp_{\prpickstrat_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$.
+%More carefully:
+%\begin{align}
+%	\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)(\cdot,D^*)]&=	\sum_{\omega\in\Omega}b(\omega| D^*)\sum_{a\in D^*}\prpickstrat_{D^*}(a)\; \U(a)(\omega)&&\text{definition of $\U(\prpickstrat)$}\\
 %				&=\sum_{a\in D^*}\prpickstrat_{D^*}(a)\sum_{\omega\in\Omega}b(\omega| D^*)\;\U(a)(\omega)
 %\end{align}	
 %
