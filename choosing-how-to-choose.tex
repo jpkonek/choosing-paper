@@ -2943,7 +2943,7 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 	By fixing a utility function $\U:\A\times\Omega\to\Re$ we can treat $\A$ as a subset of $\Re^n$, where $n=\#\Omega$, the cardinality of $\Omega$. 
 	We will fix the $\sigma$-algebra on $\A$ as inherited from the standard Borel $\sigma$-algebra on $\Re^n$. 
 	
-	To construct a $\sigma$-algebra on $\Decs$, we consider $\Sigma$ the smallest $\sigma$-algebra containing each $\{D\in\Decs\given \#(D\cap A)=k\}$ for $A$ measurable subset of $\A$ and $k\in\mathbb{N}\setminus\{0\}$. Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra. 
+	To construct a $\sigma$-algebra on $\Decs$, we consider $\Sigma$ the smallest $\sigma$-algebra containing each $\{D\in\Decs\given \#(D\cap A)=k\}$ for $A$ measurable subset of $\A$ and $k\in\mathbb{N}\setminus\{0\}$. Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra.\todo{more care}
 	
 %	We then require any probability $p$$\mu$ on $\Decs$ to be a probability measure on $(\Decs,\Sigma)$; and $\pb$ to be a probability measure on $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$
 	
@@ -2956,11 +2956,11 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 
 When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded (or integrable) measurable random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded (or integrable) measurable random variables $X:\Omega\times\Decs\to\Re$, (in particular, for our $\U(\s)$ or $\U(\prpickstrat)$), the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and check that the law of total expectation holds. 
 
-In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ which is a probability measure on $\Omega$ and such that for every bounded (or integrable) random variable $X$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
+In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Omega\times\Decs,\wp({\Omega})\otimes \Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ which is a probability measure on $\Omega$ and such that for every bounded (or integrable) measurable random variable $X$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
 
 When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
@@ -3074,7 +3074,8 @@ $\Exp_{b(\cdot | D^*)}[\U(a)]$ is maximised, by definition, at any $a\in \EU_{\p
 Thus $\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D^*))=1$. 
 
 And so $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D))=1$ for $b_\Decs$ almost every $D$. 
-i.e., when $\prpickstrat$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+i.e., when $\prpickstrat$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+This gives our claims.
 %Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
 %\begin{align}
 % &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
