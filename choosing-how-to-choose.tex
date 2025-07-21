@@ -117,6 +117,9 @@
 \newcommand{\Dom}{\mathsf{Dom}}
 
 
+\renewcommand{\Re}{\mathbb{R}}
+
+
 \renewcommand{\mathsterling}{\text{\normalfont\textsterling}} % to be able to use \pounds in math mode
 \newcommand{\million}{\mathrm{m}}   % million shorthand
 
@@ -3054,7 +3057,7 @@ We will prove the result in generality to cover all these cases.
 %Given the utility, $\Decs$ can be considered as finite subsets of $[-M,M]^{|\Omega|}\subseteq\Re^n$; again a standard Borel space. 
 %So it admits a regular conditional probability kernel $b(\cdot \given D):\Omega\to [0,1]$ for $b_\D$-almost every $D$. Where 
 
-As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D^*)$ defined for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D)$ defined for $b_\Decs$ almost every $D$ where for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Thus, $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$, as $\U(\prpickstrat)$ is a measurable random variable on $\Omega\times\Decs$ and is bounded by our assumption on $\U$. 
 
