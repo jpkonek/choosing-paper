@@ -224,6 +224,32 @@ But there is another approach, and it has the advantage that it avoids such appe
 	
 Yet all is not lost, for this line of thinking nonetheless furnishes us with a test we can conduct on a theory of decision-making, and while it might not tell in favour of the theory if it passes, it seems to tell against it if it fails. We can ask of the theory: If I were to use you not only to make my normal day-to-day decisions, but also to make the higher-order decision about which decision theory to use, would you recommend yourself? If it would, we call it \emph{self-recommending}; if it wouldn't, we call it \emph{self-undermining}. We claim that no self-undermining decision theory can be correct. This is not to say that a self-recommending theory is thereby adequate---for instance, the theory that says that any available act is rationally permissible is self-recommending, but it is not correct. Nonetheless, we can use this test to winnow the list of candidate decision theories, removing those that fail it.
 
+\begin{colored}
+	{violet}
+	\subsection{Our forthcoming results}
+	\todo[inline]{Say what we'll do? Summary of results}
+	
+	
+	What we'll show throughout this paper is that this idea results in a challenge for a host of theories that diverge from expected utility theory. 
+	
+	The strength of the results that we show vary in the different cases. 
+	
+	Decision theories that accommodate risk, by rationalising the Allais preferences, lead to ways of being uncertain about which decision you'll face where they recommend picking in accordance with a different strategy. However, we are limited as our results only hold for a particular way of being uncertain over which decision you'll face. 
+	
+	Some other decision theories which differ from expected utility theory are those which accommodate ambiguity or imprecision. For one of these, $\Gamma$-maximin, it is similarly undermining as it rationalises the Ellsberg preferences. Two other prominent decision theories for imprecision, however, are E-Admissibility and Maximality. In these cases, they do not rule out choosing in accordance with expected utility theory as impermissible, they just allow for other picking strategies too. 
+	
+	For E-Admissibility, these other picking strategies are, however, deemed impermissible according to the theory itself. 
+	What this shows is that one has to hold a deep commitment for coordinating how one picks across various strategies, even though applying E-Admissibility to each decision problem doesn't guarantee this. It requires the user of the theory to first pick a probability function for which they will then plan to pick in accordance with expected utility theory for it in each decision problem, although various probabilities are permitted. 
+	We will also show that the theory deems it impermissible to pick amongst the options which are not ruled out by a randomisation procedure, unless its recommendations already correspond to expected utility theory.
+	Thus, whilst not strictly undermining in the way that the recommendations of the risk-aware decision theories are, it forces the defender of these theories to more carefully consider what it means to adopt such a theory and how to make use of its advice. 
+	
+	For Maximality, we obtain the same results as in the E-Admissibility case, although restricted to cases where one's uncertainty over which decisions you'll face has some particular features. When your uncertainty over which decision you'll be faced with is precise and spread over a sufficiently broad range of decisions, then the only ways to pick which are not impermissible is to pick in accordance with expected utility theory. Thus requiring one's way of picking to be coordinated across different decision problems, and deeming it impermissible to pick using randomisation. 
+	
+	A defender of imprecise probability may argue that one's way of using the decision theory and picking amongst the options that are not ruled out should be captured instead by something of an imprecise nature. For E-Admissibility we also consider how to extend the theory to judge such imprecise ways of picking and see that also here 
+	
+	What we see, therefore, is that considerations of whether the decision theory undermines itself lead to challenges for theories that diverge from expected utility theory by accommodating risk or imprecision. In the cases of imprecision, whilst not in a strong sense undermining, as only some ways of picking are deemed impermissible, such considerations force the defenders of these theories to more carefully discuss how to use the theory. 
+	
+\end{colored}
 
 
 
@@ -2973,7 +2999,7 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 
 When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had $b(\cdot | D)$, probability functions on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular apply this to our $\U(\s)$ or $\U(\prpickstrat)$, which are bounded, by assumption that $\U$ is bounded.\todo{We could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\prpickstrat$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
+For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular apply this to our $\U(\s)$ or $\U(\prpickstrat)$, which are bounded, by assumption that $\U$ is bounded.\todo{We could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\prpickstrat$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
 
 When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
 
@@ -3076,7 +3102,7 @@ We will prove the result in generality to cover all these cases.
 %Given the utility, $\Decs$ can be considered as finite subsets of $[-M,M]^{|\Omega|}\subseteq\Re^n$; again a standard Borel space. 
 %So it admits a regular conditional probability kernel $b(\cdot \given D):\Omega\to [0,1]$ for $b_\D$-almost every $D$. Where 
 
-As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D)$ defined for $b_\Decs$ almost every $D$ where for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D)$ defined for $b_\Decs$-almost every $D$ such that for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Thus, $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$, as $\U(\prpickstrat)$ is a measurable random variable on $\Omega\times\Decs$ and is bounded by our assumption on $\U$. 
 
@@ -3092,9 +3118,9 @@ $\Exp_{b(\cdot | D^*)}[\U(a)]$ is maximised, by definition, at any $a\in \EU_{\p
 
 Thus $\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D^*))=1$. 
 
-And so $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D))=1$ for $b_\Decs$ almost every $D$. 
+And so $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised when $\prpickstrat_{D^*}(\EU_{\pb(\cdot|-)}(D))=1$ for $b_\Decs$-almost every $D$. 
 i.e., when $\prpickstrat$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
-This gives our claims.
+Our claims follow from this.
 %Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
 %\begin{align}
 % &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
