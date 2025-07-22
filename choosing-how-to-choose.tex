@@ -1818,9 +1818,9 @@ So we are representing your uncertainty as a set, $\IB$, of (higher-order) proba
 Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$; so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
-	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todooldinfo{REFS!!!!}
+	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todo{Shouldn't it be a ref to Seidenfel;s other one??}
 	For instance, we might consider how the agent will choose in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, individually, and then combine these choices and observe that the result is dominated---1F-and-2E dominates 1E-and-2F. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D^{\mathrm{Ellsberg}}_1$, then $D^{\mathrm{Ellsberg}}_2$. And again we can note that 1F-then-2E dominates 1E-then-2F. And we can note that $\Gamma$-Maximin would still have you choose 2E when faced with $D^{\mathrm{Ellsberg}}_2$, even if you know you've already chosen 1F when faced with $D^{\mathrm{Ellsberg}}_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
-		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.
+		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.\todo{...}
 
 %However, such examples can always be used to construct instances of undermining evaluations of strategies. Suppose $D^{\mathrm{Ellsberg}}_1, \ldots, D_k$ is a sequence of decision problems and your decision theory demands you pick $a_i$ from $D_i$; but suppose further than, if you were to pick $b_i$ from $D_i$ you'd be better off for sure: that is, the total utility of $a_1$-and-\ldots-and-$a_k$ is less than the total utility of $b_1$-and-\ldots-and-$b_k$  at every state of the world. Then, if you are equally confident you'll face each of $D^{\mathrm{Ellsberg}}_1, \ldots, D_n$, then, at each world, the expected utility of a strategy that picks $a_i$ when faced with $D_i$ is less than the expected utility of a strategy that picks $b_i$ when faced with $D_i$. 
 
@@ -1901,28 +1901,76 @@ We are able to provide a general result for a wide class of ways of being uncert
 
 { Two alternative decision theories are E-Admissibility and Maximality. When coupled with a credal set $\IP$, E-Admissibility rejects an act $a$ from a decision problem $D$ when, for any $p$ in $\IP$, there is some $a'$ in $D$ that $p$ expects to do better than $a$. In that case, every $p$ in $\IP$ expects \emph{some} other option to be better than $a$, even though there may be no \emph{single} option that they all agree to be better. Maximality rejects an act $a$ from $D$ when there is some $a'$ in $D$ that every $p$ in $\IP$ expects to do better than $a$, \emph{i.e.}, when all $p$ in $\IP$ agree on a \emph{single} option which they expect to be better than $a$. If an act is rejected according to Maximality, then it is also rejected according to E-Admissibility, but not vice versa.}
 
-\begin{definition}
- $$\EAd_\IP(D) = \Set{a \in D \given (\exists p \in \IP)(\forall a' \in D)(\Exp_p[\U(a)]\geq\Exp_p[\U(a')])}
-	$$\end{definition}
-	 $\s$ picks for $\EAd_\IP$ iff for every $D\in\D$, $\s(D)\in\EAd_\IP(D)$.
-	
+\begin{definition}\label{def:ead}
+ $$\EAd_\IP(D) = \Set{a \in D \given (\exists p \in \IP)(\forall a' \in D)(\Exp_p[\U(a)]\geq\Exp_p[\U(a')])}$$
+ 
+ 	 $\s$ picks for $\EAd_\IP$ iff for every $D\in\D$, $\s(D)\in\EAd_\IP(D)$. 	
+ \end{definition}
 
+\begin{colored}{violet}
+	 Note that	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
+Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$.
 	
+\end{colored}
 	\begin{definition}
 	$$\Maximality_\IP(D) = \Set{a \in D \given (\forall a'\in D)(\exists p\in\IP)(\Exp_p[\U(a)] \geq\Exp_p[\U(a')])}$$
+	
+		 $\s$ picks for $\Maximality_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximality_\IP(D)$.
 \end{definition}
-	 $\s$ picks for $\Maximality_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximality_\IP(D)$.
 
 
-Let's treat E-Admissibility first. Suppose you are uncertain which decision problem you'll face. And suppose, as above, we represent your uncertainty over $\Omega \times \D$ with a credal set $\IB$. 
+
+
+We will treat E-Admissibility first. 
+\begin{colored}{violet}
+	
+\subsubsection{E-Admissibility}
+
+ 
+Now we want to consider how E-Admissibility judges picking strategies.  
+This depends on your uncertainty over which decision problem you'll face. 
+We represent your uncertainty over $\Omega \times \D$ with a credal set, $\IB$, given by a set of probability functions, $\pb$, over $\Omega\times \D$. 
+
+We can simply apply our notion of E-Admissibility with the credal set $\IB$ to determine which picking strategies are E-Admissible. 
+%	$\s\in\EAd_\IB(\S)$ iff there is some $\pb\in\IB$ such that for all $\s'\in\S$, $\Exp_\pb(\s)\geq\Exp_\pb(\s')$.
+ $$\EAd_\IB(\S)=\Set{\s\in\S\given  (\exists \pb \in \IB)(\forall \s' \in \S)(\Exp_\pb[\U(\s)]\geq\Exp_\pb[\U(\s')])}$$
+That is, $\s\in\EAd_\IB(\S)$ iff there is some $\pb\in\IB$ such that $\s\in\EU_\pb(\S)$. 
+\todo{we could explciitly have a lemma to say how EAd relates to EU both for acts and strategies. Makes the thm trivial then... As in appendix, but of course simpler}
+%	We thus have
+%\begin{lemma}
+%	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
+%	Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$.
+%	
+%	$\s\in\EAd_\IB(\S)$ iff there is some $\pb\in\IB$ such that $\s\in\EU_\pb(\S)$. 
+%\end{lemma}
+
+
+By \cref{thm:eu-self-rec}, for any $\pb\in\IB$ which has the form $p\times\mu$, if $\s$ picks for $\EU_p$ then it is in $\EU_{\pb}(\S)$, and thus, is in $\EAd_\IB(\S)$. Also, when $p\in\IP$ any $\s$ which picks for $\EU_p$ also picks for $\EAd_\IP$. We thus typically have some strategy which both picks for $\EAd_\IP$ and is in $\EAd_\IB$, unlike for $\Gamma$-Maximin. 
+ \begin{proposition}\label{thm:ead-suff-indep}
+	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
+	
+	If there exists some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
+	
+	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$, if $a\in\EAd_\IB(\S)$ there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
+	
+\end{proposition}
+
+
+
+\end{colored}
+
+\begin{colored}{red}
+	
+
 % {\color{orange}an set $\IB$ of probabilities over $\Omega\times\D$, each taking $\Omega$ and $\D$ to be probabilistically independent. This is a very strong notion of independence, called Strong Independence. We make use of it 
 % }
  Then we can ask, from the point of view of $\IB$, and using E-Admissibility as our decision theory, whether a picking strategy that picks for $\EAd_\IP$ is permissible. And it turns out that, unlike for $\Gamma$-Maximin, there always is such a strategy. Indeed, if you simply take $p$ from $\IP$, and take a picking strategy $\s$ that picks for $\EU_p$, then $\s$ also picks for $\EAd_\IP$, and $\s$ is E-Admissible, as evaluated by $\IB$---that is, $\s$ is in $\EAd_\IB(\Strategies)$; at least if there is some $\pb=p\times\mu\in\IB$. The following is a corollary of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
  \begin{proposition}\label{thm:ead-suff-indep}
  		If there is some $p\times \mu\in \IB$ such that $\s$ $\mu$-surely picks for $\EU_p$, then $\s\in\EAd_\IB(\Strategies)$. 
- 	
- 	Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in \IB$, then there is some $\s$, namely any $\s$ which picks for $\EU_p$, which picks for $\EAd_\IP$ and which is in $\EAd_\IB(\Strategies)$. 
+ 		
+ 		Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there is some $\s$ which picks for $\EAd_\IP$ and is in  $\EAd_\IB(\Strategies)$. 
  \end{proposition}
+\end{colored}
  
  There are a number of conditions which guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP$, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy which is E-Admissible.
  For example, suppose that you have no views whatsoever about which decisions you will face,  or the evidential value of information about which decisions you will face. 
@@ -1980,16 +2028,16 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 %\todooldinfo{JK: Observe that $p\times\mu$ is in the natural extension of $\IP$. So there is some joint distribution consistent with $\IP$ relative to which $\s$ picks for $\EAd_\IP$.}
 %\end{proposition}
 %}
-The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining. So long as $\IP$ and $\IB$ are appropriately related,\todo{reread} then there are strategies that pick for it that it does not deem impermissible.
+The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining. So long as $\IP$ and $\IB$ are appropriately related, then there are strategies that pick for it that it does not deem impermissible.
 
 
-Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? \todooldinfo{I rewrote the start of this. JK to check. }
+Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? 
 A strategy is E-Admissible iff there is some $\pb\in\IB$ which expects it to be optimal.
 We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $\pb$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
 
 %{\color{red} It is worth emphasising, though, that the strength of your irrelevance judgments (whether you make a judgment of epistemic irrelevance or complete independence, for example) makes a big difference to which strategies are permissible by the lights of E-Admissibility. If you treat $\D$ as completely irrelevant to $\Omega$, then we can use \cref{thm:eu-self-rec,thm:eu-uniquely-optimal} to get the following: 
 
-\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ where $\s$ $\mu$-surely picks for $\EU_p$. 
+\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $\pb\in\IB$ has the form $p\times\mu$). In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ where $\s$ $\mu$-surely picks for $\EU_p$. 
 %	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 
@@ -2012,15 +2060,17 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. 
 However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
-If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. However, the other strategies also pick for $\EAd_\IP$ and they pick for $\EU_p$ for some $p$,%\todo{is this phrasing used elswhere... strategies ``are EUp''???} 
-and thus in $\EAd_\IB(\S)$, for example $\s_{\text{1E,2E}}$. 
+If every $\pb\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. 
+However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$, namely any strategy for which there is some $p\times\mu\in\IB$ which $\mu$-surely picks for $\EU_p$, for example $\s_{\text{1E,2E}}$. 
+\todo{minor rewrite here. Reread}
 
 
 
-This is a more general feature: there are always some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$, at least if $\EAd_\IP$ is not sufficiently precise, i.e., that it does not $\mu$-surely look like $\EU_p$, or a restriction thereof, for any $p\times\mu\in\IB$. 
+There are always some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$, at least if $\EAd_\IP$ is not sufficiently precise, i.e., that it does not $\mu$-surely look like $\EU_p$, or a restriction thereof, for any $p\times\mu\in\IB$. 
 \begin{proposition}\label{thm:ead-existsimpermissibel[indep]}
 
-{Suppose $\D$ and $\Omega$ are completely independent in $\IB$. Then every $\pb\in\IB$ has the form $p\times\mu$. Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
+{Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $\pb\in\IB$ has the form $p\times\mu$).
+	Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
 
 %Suppose every $\pb\in\IB$ has the form $p\times\mu$.
 	
@@ -2104,18 +2154,35 @@ The utility of an action, $\U(a)$, is a gamble on $\Omega$. The utility of picki
 \todooldinfo{sort out here!!!! I }
 
 	\subsubsection{Maximality}
-	
+\begin{colored}
+	{violet}
+	We can also apply the notion of Maximality to determine which picking strategies are Maximal: 
+	$$\Maximality_\IB(\S)=\Set{\s\in\S\given (\forall \s'\in\S)(\exists \pb\in\IB)(\Exp_\pb[\U(\s)]\geq\Exp_\pb[\U(\s')])}$$
+\end{colored}
 	
 Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-suff-indep} entails:
 
 
- \begin{proposition}\label{thm:max-suff}
-	If $\s$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$ with $p\in\IP$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
+\begin{colored}{red}
+	 \begin{proposition}\label{thm:max-suff}
+	If $\s$ picks for $\EU_p$ for some $p\times \mu\in \IB$ with $p\in\IP$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
 %	
 %	If $\s$ picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$, then $\s$ picks for $\Maximality_{\IB(\cdot|-)}$ and $\s\in \Maximality_\IB(\Strategies)$. 
 	%and is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
+\end{colored}
 
+\begin{colored}{violet}
+	 \begin{proposition}\label{thm:max-suff}
+	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\Maximality_\IP$ and is in $\Maximality_\IB(\S)$. 
+	
+	If there exists some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there are some strategies which pick for $\Maximality_\IP$ and are in $\Maximality_\IB(\S)$. 
+	
+	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$, if $a\in\Maximality_\IB(\S)$ there is some $\s$ such that $\s(D)=a$ and $\s\in\Maximality_\IB(\S)$. 
+	
+\end{proposition}
+
+\end{colored}
 \begin{comment}
 Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-equiv[indep]} entails:
 
@@ -2151,14 +2218,25 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
+\begin{colored}{violet}
+	\todo{double check these thms!!!}
+
 \begin{definition}
 	$$\EAd_{\IB(\cdot|-)}(D) = \Set{a \in D \given (\exists \pb \in \IB)(\forall a' \in D)(\Exp_{\pb(\cdot|D)}[\U(a)]\geq\Exp_{\pb(\cdot|D)}[\U(a')])}
-	$$\end{definition}
-	That is, $\EAd_{\IB(\cdot|-)}(D)=\bigcup_{\pb\in\IB}\EU_{\pb(\cdot|-)}(D)$. We thus have, as a consequence of \cref{thm:eu-dep}: 
+	$$
+	$\s$ picks for $\EAd_{\IB(\cdot|-)}$ iff for all $D\in\Decs$, $\s(D)\in\EAd_{\IB(\cdot|-)}(D)$.
+	\end{definition}
+	That is, $a\in\EAd_{\IB(\cdot|-)}(D)$ iff there is some $\pb\in\IB$ such that $a\in\EU_{\pb(\cdot|-)}(D)$. 
+	
+	Also $\s\in\EAd_\IB(\Strategies)$ iff there is some $\pb\in\IB$ such that $\s\in\EU_\pb(\Strategies)$. 
+	We thus have, as a consequence of \cref{thm:eu-dep}: 
 	\begin{proposition}\label{thm:ead-equiv[dep]}
 		$\s\in\EAd_\IB(\Strategies)$ iff for some $\pb$ in $\IB$, $\s$ $\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$.
+		
+		Thus, there is some $\s$ which picks for  $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Strategies)$, namely any $\s$ which $\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$.
 	\end{proposition}
-	Thus there exists some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ which is not rejected by $\EAd_\IB(\Strategies)$; but there will also be some which are not, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function. 
+\end{colored}
+	Thus whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function. 
 		\begin{proposition}\label{thm:ead-existence[dep]}
 Suppose that for every $\pb\in\IB$, $\pb_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{\pb(\cdot|-)}\}<1$. That is, for all $\pb\in \IB$, $\pb_\D\{D\given \text{there is $\pb'\in\IB$ with }\EU_{\pb'(\cdot|-)}(D)\not\subseteq\EU_{\pb(\cdot|-)}(D)\}>0$. 
 	
@@ -3408,10 +3486,26 @@ This is because $\Exp_\pb[\U(\prpickstrat)]=\Exp_{\pb_\D}\Exp_{\pb(\cdot|D)}\U(\
 
 \end{colored}\begin{colored}{violet}
 \subsection{E-Admissibility}
-This will then imply the results about E-Admissible strategies, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
-\cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:ead-equiv[dep]} thus follow.
+This will then imply the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
+\begin{lemma}\label{thm:ead to eu appendix}
+	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
+	Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\prpickstrat$.
 
+More generally, 
+	$a\in\EAd_\IB(\cdot|-)(D)$ iff there is some $\pb\in\IB$ such that $a\in\EU_\pb(D)$.  
+Thus, any $\s$ which picks for $\EU_{\pb(\cdot|-)}$ for some $\pb\in\IB$ also picks for $\EAd_\IB(\cdot|-)$; and similarly for $\prpickstrat$. 
 
+Also, 
+	$\s\in\EAd_\IB(\S)$ iff there is some $\pb\in\IB$ such that $\s\in\EU_\pb(\S)$. 
+	and 
+		$\prpickstrat\in\EAd_\IB(\PrPickStrategies)$ iff there is some $\pb\in\IB$ such that $\prpickstrat\in\EU_\pb(\PrPickStrategies)$ 
+\end{lemma}
+
+%, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
+
+\Cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:ead-equiv[dep]} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+
+\subsection{Maximality}
 As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
 
 
