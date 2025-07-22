@@ -1010,24 +1010,24 @@ There are at least two ways to argue that being self-undermining tells against a
 
 %\todo{Maybe worth seeing if we can reword. RP: I actually liked this when I re-read it.}
 %\begin{colored}{violet}
-\begin{colored}{red}
-	\todoinfo{I'm unhappy with this section. I'm not sure my rewriting is correct... }
-	
-First: Could a self-undermining decision theory be correct? 
-That is, could its verdicts match with what is actually impermissible for the agent. 
-If it is self-undermining, then one of its verdicts is that some alternative picking strategy is better than its own. 
-And thus it is in fact impermissible to pick in accordance with it. 
-
-This is assuming that that alternative picking strategy is available to the agent. 
-If the alternative picking strategy is so complex and computationally demanding that it lies beyond the agent's cognitive capacities to use reliably, then this is no bad mark against the self-undermining one. 
-Similarly, if in \emph{attempting to use} a given decision theory, it may misfire and result in even worse decisions, it may be permissible, or even required, to adopt the simpler decision theory. 
-However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy.
-
-\end{colored}
+%\begin{colored}{red}
+%	\todoinfo{I'm unhappy with this section. I'm not sure my rewriting is correct... }
+%	
+%First: Could a self-undermining decision theory be correct? 
+%That is, could its verdicts match with what is actually impermissible for the agent. 
+%If it is self-undermining, then one of its verdicts is that some alternative picking strategy is better than its own. 
+%And thus it is in fact impermissible to pick in accordance with it. 
+%
+%This is assuming that that alternative picking strategy is available to the agent. 
+%If the alternative picking strategy is so complex and computationally demanding that it lies beyond the agent's cognitive capacities to use reliably, then this is no bad mark against the self-undermining one. 
+%Similarly, if in \emph{attempting to use} a given decision theory, it may misfire and result in even worse decisions, it may be permissible, or even required, to adopt the simpler decision theory. 
+%However, we are assuming that we are not in this sort of case, and that it is within the agent's control to choose any picking strategy.
+%
+%\end{colored}
 
 
 \begin{colored}{violet}
-	\todoinfo{RP: suggested rewrite }
+%	\todoinfo{RP: suggested rewrite }
 	
 First: Suppose a self-undermining decision theory is correct. That is, it deems impermissible exactly those options that are indeed impermissible. But, since it is self-undermining, it deems impermissible the option of picking in accordance with itself. And so it is indeed impermissible to pick in accordance with it, since it is correct. But surely it cannot be impermissible to pick in accordance with the true theory of rational choice. Therefore, the decision theory cannot be correct, which gives a reductio.
 
@@ -1267,20 +1267,19 @@ But that can't be right, for these theories are presented by their proponents as
 
 
 
-\begin{colored}
-	{violet}
+
 	\subsubsection{Change the way of updating credences}
 
 There is another way the defender of these theories could argue against the charge of self-underminingness. They can note first that, by assuming decisions are probabilistically independent of states of the world, and assuming our credences in states of the world don't change when we learn which decision we face, we have essentially assumed Bayesian conditionalization. And then they can argue against conditionalization. As pointed out in \citet[16]{campbellmoore2020arae}, several standard arguments for conditionalization assume that rational agents maximise expected utility.
 
-The picking strategy which the decision theory deems optimal is compatible with that very decision theory when we allow her credences to change when she learns which decision problem she faces. Instead of holding fixed her credences (by assuming probabilistic independence and conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
+The picking strategy which the decision theory deems optimal is compatible with that very decision theory if instead we allow her credences to change when she learns which decision problem she faces, even though they are probabilistically independent. Instead of holding fixed her credences (assuming conditionalization), the defender of the decision theory might instead argue for an alternative credal update strategy: the one which results in the optimal picking strategy when coupled with risk-weighted expected utility theory \citep[see also][]{campbellmoore2022aurs,brown1976ceu}.
 
 Whilst we acknowledge this is a possible way out of the criticism, it is a significant bullet to bite. 
 
 
-\end{colored}
 
-\begin{colored}{red}
+
+%\begin{colored}{red}
 %\todoinfo{ORIGINAL}
 %Another way the defender of these theories could argue against our objection against self-undermining theories is to argue that we have presupposed Bayesian conditionalization, and then argue against that norm. 
 
@@ -1311,7 +1310,7 @@ Whilst we acknowledge this is a possible way out of the criticism, it is a signi
 %In that paper, \citet{campbellmoore2022aurs} also consider ``local'' versions of the epistemic arguments for update procedures, following \citet{leitgeb2010ojb2}, showing that they require the risk-sensitive agent to nonetheless update by conditionalization. \Citet{campbellmoore2022aurs} argue that this is actually what gives the rational requirements on updating, and so conclude that conditionalization is rationally required (and thus, the Value of Information challenge cannot be avoided this way, cf., \citep{campbellmoore2020arae}). The analogous questions can be also asked for the practical utility versions: whilst we are unsure what this results in, it is unlikely that they result in the same recommendations as the optimal update plan.\footnote{It differs from the epistemic versions because we used an $r$-proper scoring rule, but this is not what we'd get if we just use pragmatic utility. } And thus, whilst the agent might evaluate the optimal update plan to be one which avoids the undermining we have identified, it is not the update method which we think that they should actually implement. 
 
 
-\end{colored}
+%\end{colored}
 
 
 %{\color{red}
@@ -1577,7 +1576,7 @@ Now, suppose:
 \item your risk function is a power function $r_k(x) = x^k$, with $k = 0.5$, $0.6$, $\ldots$, $0.8$, $0.9$, $1.1$, $1.2$, $\ldots$, $1.9$, or $2$;
 \item you know you'll face a choice between just two acts, but you don't know which two acts, and you place a measure $\mu$ over the possible decision problems that takes the utilities of the two acts at the two possibilities to be independent of one another and all distributed according to a beta distribution $\mathrm{Beta}(\alpha, \beta)$ with $\alpha = 1, 2, 3, 4$, or $5$ and $\beta = 1, 2, 3, 4$, or $5$.\end{enumerate}
 Then, let $\s$ be any picking strategy compatible with REU when coupled with $p$ and $r_k$. Then there is an alternative picking strategy $\s^*$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^*$ to $\s$. What's more, $\s^*$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^*$ so that it is compatible with REU with $p$ and $r_{k^*}$ for some $k^* \neq k$. That is, $\s^*$ is a picking strategy compatible with REU coupled with a different risk-averse risk function. So, uncertain which decision they'll face, someone using REU with this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly different risk function.\footnote{See the Mathematica notebook here for the tools to carry out these calculations [link to notebook from journal page as supplementary material].}%\todooldinfo{link to mathematica}
-\todo{we'll need to remember to do that.}
+%\todo{we'll need to remember to do that.}
 
 %Second, suppose $0<k<1$. So your risk function $r_k(x) = x^k$ is risk-seeking. And now let $\s$ be any picking strategy compatible with REU with $p$ and $r_k$. Then there is an alternative picking strategy $\s^*$ such that REU with credences given by $p$ and $\mu$ and risk function $r_k$ strictly prefers $\s^*$ to $\s$. What's more, $\s^*$ is not compatible with REU with $p$ and $r_k$. And indeed, it's possible to find $\s^*$ so that it is compatible with REU with $p$ and $r_{k'}$, for some $k < k'$. That is, $\s^*$ is a picking strategy compatible with REU coupled with a less risk-seeking risk function. So, uncertain which decision they'll face, someone using REU and this risk function would prefer that, when the uncertainty is resolved and they face a particular decision, they use REU with a slightly less risk-inclined risk function.
 
@@ -1731,11 +1730,11 @@ As well as assuming act-state independence, we've also assumed decision-state in
 In any decision problem, we must bring one's probability $\pb$ up to speed on the problem that you face (by conditionalizing on that information), and then use expected utility theory with this updated credence function to determine what to select. 
 %The strategies which are in $\EU_\pb(\S)$ are those that select according to expected utility theory, using the probability function over $\Omega$ which is generated by conditionalising on knowing which decision problem it is that you're facing, assuming that this is well-defined. 
 %If we assume that, when the uncertainty about the decision you face is resolved, and you face a particular decision problem, you will use expected utility theory with the credences you obtain by updating on the decision problem you face, then the picking strategy that results maximizes expected utility from the point of view of your credences over $\Omega \times \D$.
-The details of this are developed in \cref{sect:appendix:decdep}.
+\todo{The details of this are developed in \cref{sect:appendix:decdep}.}
 
 \begin{definition}\label{def:cond}
 	If $\pb$ is a probability over $\Omega\times \D$; we specify a choice function: 
-	$\EU_{\pb(\cdot|-)}$ given by $\EU_{\pb(\cdot|-)}(D)=\EU_{\pb(\cdot|D)}(D)$, when this is well-defined.\todooldinfo{check specification and link to appendix}
+	$\EU_{\pb(\cdot|-)}$ given by $\EU_{\pb(\cdot|-)}(D)=\EU_{\pb(\cdot|D)}(D)$, when this is well-defined.
 	That is, $\EU_{\pb(\cdot|-)}(D):=\{a\in D\given \text{for all $a'\in D$, }\Exp_{\pb(\cdot|D)}[\U(a)]\geq \Exp_{\pb(\cdot|D)}[\U(a')]\}$\todo{Should this ``that is'' go into footnote or be deleted?}
 %	 that is, $a\in\EU_{\pb(\cdot|-)}(D)$ iff $\Exp_{\pb(\cdot|D)}[\U(a)]
 
@@ -1744,8 +1743,7 @@ $\pb_\Decs$ is the marginal probability measure on $\Decs$ generated by $\pb$, t
 We say that %$\s$ $\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$ iff $\pb\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in\EU_{B(\cdot|D)}(D)\}=1$; that is the marginal $\pb_\D\{D\given \s(D)\in\EU_{B(\cdot|D)}(D) \}=1$. 
 a picking strategy, $\s$, \emph{$\pb_\Decs$-surely picks for $\EU_{\pb(\cdot|-)}$} iff \[\pb_\Decs\{D\given \s(D)\in EU_{\pb(\cdot|-)}(D)\}=1\]
 \end{definition}
-When $\pb$ has the form $p\times\mu$, then $\pb_\Decs$ is just $\mu$ and for every $D$, the conditional $\pb(\cdot|D)$ is just given by $p$. These are thus exactly our original notions of $\EU_p$ and $\s$ $\mu$-surely picking for $\EU_p$. 
-\todooldinfo{Check this notation throughout}
+When $\pb$ has the form $p\times\mu$, then $\pb_\Decs$ is just $\mu$ and, for every $D$, $\pb(\cdot|D)$ is just $p$. These are thus generalisations of our original notions of the choice function $\EU_p$ and a strategy $\s$ $\mu$-surely picking for $\EU_p$. 
 
 We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
 \begin{proposition}\label{thm:eu-dep}
@@ -1809,7 +1807,7 @@ $$
 (This should only be applied when these minima exist, e.g., when $\IP$ is a closed set.)
 \end{definition}
 
-So $\s$ picks for $\Maximin_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximin_\IP(D)$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_E$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any $p\in\IP$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1E)}]\geq \Exp_p[\U(\text{1F)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2F)}]\geq \Exp_p[\U(\text{2E)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
+So $\s$ picks for $\Maximin_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximin_\IP(D)$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_{\mathrm{Ellsberg}}$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any probability $p$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1E)}]\geq \Exp_p[\U(\text{1F)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2F)}]\geq \Exp_p[\U(\text{2E)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
 
 Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agent's uncertainty not only over what the world is like, but also over which decision problem she'll face. 
 Suppose that in fact you've got precise probabilities over what decision you'll face, and you think it's $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_1$ and $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_2$. 
@@ -1817,7 +1815,7 @@ So we are representing your uncertainty as a set, $\IB$, of (higher-order) proba
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
 {That is, your credal set is given by $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$; so $\s_E=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
+Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$; so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todooldinfo{REFS!!!!}
@@ -1830,14 +1828,14 @@ Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\ome
 %
 %Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agents uncertainty not only over what the world is like, but also which decision problem she'll be faced with. 
 %We will still assume that you take which decision problem you're faced with to be independent of the state of the world, so we will represent your uncertainty with a set, $\IB$, of pairs of probabilities $p\times \mu$ where $p$ is a probability function over $\Omega$ and $\mu$ is a probability function over $\D$.
-%Then we can ask, from the point of view of $\IB$, and using $\Gamma$-Maximin as our decision theory, whether the Ellsberg picking strategy $\s_E$ is permissible. That is, is $\s_E$ in $\Maximin_B(\S)$, where $\Maximin_B$ is the choice function to which $\Gamma$-Maximin gives rise when it is coupled with the credal set $\IB$ over $\Omega \times \D$, and $\Strategies$ is the set of possible picking strategies? 
+%Then we can ask, from the point of view of $\IB$, and using $\Gamma$-Maximin as our decision theory, whether the Ellsberg picking strategy $\s_{\mathrm{Ellsberg}}$ is permissible. That is, is $\s_{\mathrm{Ellsberg}}$ in $\Maximin_B(\S)$, where $\Maximin_B$ is the choice function to which $\Gamma$-Maximin gives rise when it is coupled with the credal set $\IB$ over $\Omega \times \D$, and $\Strategies$ is the set of possible picking strategies? 
 %
 %Suppose $\IB$ is such that for any $p\times \mu\in \IB$, $p\in\IP$, i.e., $p(\emph{Red}) = \sfrac{1}{3}\ \&\ p(\emph{Black})+p(\emph{Yellow}) = \sfrac{2}{3}$; 
 %and $\mu$ assigns positive credence to facing both $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$. 
-%Then the answer is no, $\s_E\notin\Maximin_B(\S)$. 
-%To see this, we use the fact that $\Gamma$-Maximin is a more restrictive decision theory than E-Admissibility, so that any $\Gamma$-Maximin strategy must be optimal according to some probability in $\IB$ \todoold{add ref!!}. That is, there must be some $p\times \mu\in \IB$ for which $\s$ maximises $\EU_{p\times\mu}[\U(\s)]$; but as we saw from \cref{thm:eu-uniquely-optimal}, the only such strategies are those which $\mu$-surely pick for $\EU_p$ for some $p\times \mu\in \IB$. But, so long as $\mu$ gave non-zero credence to each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, then $\s_E$ also does not $\mu$-surely pick for any $\EU_p$ with $p\in\IP$. \todoold{check this, and maybe prove it}
+%Then the answer is no, $\s_{\mathrm{Ellsberg}}\notin\Maximin_B(\S)$. 
+%To see this, we use the fact that $\Gamma$-Maximin is a more restrictive decision theory than E-Admissibility, so that any $\Gamma$-Maximin strategy must be optimal according to some probability in $\IB$ \todoold{add ref!!}. That is, there must be some $p\times \mu\in \IB$ for which $\s$ maximises $\EU_{p\times\mu}[\U(\s)]$; but as we saw from \cref{thm:eu-uniquely-optimal}, the only such strategies are those which $\mu$-surely pick for $\EU_p$ for some $p\times \mu\in \IB$. But, so long as $\mu$ gave non-zero credence to each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, then $\s_{\mathrm{Ellsberg}}$ also does not $\mu$-surely pick for any $\EU_p$ with $p\in\IP$. \todoold{check this, and maybe prove it}
 %
-%So, at least in the Ellsberg case, where we are uncertain whether we'll face $D^{\mathrm{Ellsberg}}_1$ or $D^{\mathrm{Ellsberg}}_2$, $\Gamma$-Maximin is self-undermining. The only picking strategy that picks for that decision theory with $\IP$---namely, $\s_E$---is not permitted by that decision theory with $\IB$.
+%So, at least in the Ellsberg case, where we are uncertain whether we'll face $D^{\mathrm{Ellsberg}}_1$ or $D^{\mathrm{Ellsberg}}_2$, $\Gamma$-Maximin is self-undermining. The only picking strategy that picks for that decision theory with $\IP$---namely, $\s_{\mathrm{Ellsberg}}$---is not permitted by that decision theory with $\IB$.
 
 
 {
@@ -3985,7 +3983,7 @@ In the Ellsberg case as described above, this requires one to select $1A$ in $D^
 
 
 
-% That is, is $\s_E$ in $\Maximin_\IB(\S)$? And the answer is no. If an act $a$ is permissible by the lights of $\Gamma$-Maximin applied to a credal set $\IP$, then there must be some $p$ in $\IP$ for which $a$ maximizes expected utility. After all, as we saw above, if $\s$ maximizes expected utility for $\langle p, \mu \rangle$, then $\s$ picks for $\EU_p$. But $\s_E$ does not maximize expected utility for any $\langle p, \mu \rangle$ in $\IB$. Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide natural preferences that could not be captured by expected utility theory. So, at least in the Ellsberg case, where we are uncertain whether we'll face $D^{\mathrm{Ellsberg}}_1$ or $D^{\mathrm{Ellsberg}}_2$, $\Gamma$-Maximin is self-undermining. The only picking strategy that picks for that decision theory with $\IP$---namely, $\s_E$---is not permitted by that decision theory with $\IB$.
+% That is, is $\s_{\mathrm{Ellsberg}}$ in $\Maximin_\IB(\S)$? And the answer is no. If an act $a$ is permissible by the lights of $\Gamma$-Maximin applied to a credal set $\IP$, then there must be some $p$ in $\IP$ for which $a$ maximizes expected utility. After all, as we saw above, if $\s$ maximizes expected utility for $\langle p, \mu \rangle$, then $\s$ picks for $\EU_p$. But $\s_{\mathrm{Ellsberg}}$ does not maximize expected utility for any $\langle p, \mu \rangle$ in $\IB$. Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide natural preferences that could not be captured by expected utility theory. So, at least in the Ellsberg case, where we are uncertain whether we'll face $D^{\mathrm{Ellsberg}}_1$ or $D^{\mathrm{Ellsberg}}_2$, $\Gamma$-Maximin is self-undermining. The only picking strategy that picks for that decision theory with $\IP$---namely, $\s_{\mathrm{Ellsberg}}$---is not permitted by that decision theory with $\IB$.
 
 
 %We can then judge which strategies are E-Admissible, i.e., which strategies are such that there is at least one probability function which evaluates them as optimal. To answer this, we have to describe the agent's uncertainty over the states of the world and the decision problems together. We will represent this with a set of probabilities $\IB$ over $\Omega\times\D$, where each probability in $\IB$ treats $\Omega$ and $\D$ as independent. So we can equally think of $\IB$ as a set of pairs $p\times \mu$ where $p$ is in probability function over $\Omega$ and $\mu$ is a probability function over $\D$. For $\IB$ to extend $\IP$, it must be that... \todooldinfo{JK to help with making this stuff correct}
