@@ -2969,7 +2969,7 @@ For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)
 
 When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
 
-In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded (or in fact integrable) measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
+In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{Ref to this!!!}
 
 When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
@@ -3001,7 +3001,7 @@ Let $b_\omega$ be a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times 
 As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a (measurable) function $f_\omega$ on $\Decs$ (unique almost everywehere) such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
 Put $b(\omega |D):= f_\omega(D)$. 
 
-Since $b_\D=\sum_{\omega\in\Omega}b_\omega$, one can check that for $b_\D$ almost every $D$, $b(\cdot |D)$ is a probability measure over $\Omega$.\todo{check!}
+Since $b_\D=\sum_{\omega\in\Omega}b_\omega$, one can check that for $b_\D$ almost every $D$, $b(\cdot |D)$ is a probability measure over $\Omega$.\todo{check! Although, we don't actually care! We just need the law total expectation... }
 
 We have $b_\omega(E)=\int_{E}b(\omega |D) b_\D(\diff D)$
 
