@@ -3148,20 +3148,50 @@ Now, if $b$ is supported on an infinite set $\Decs$, we need to use some more ma
 Let $b_\omega$ be a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. Then the marginal on $\Decs$ is given by  $b_\D=\sum_{\omega\in\Omega} b_w$. 
 
 As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a (measurable) function $f_\omega$ on $\Decs$ (unique almost everywehere) such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
-Put $b(\omega |D):= f_\omega(D)$. 
+%Put $b(\omega |D):= f_\omega(D)$. 
 
-Since $b_\D=\sum_{\omega\in\Omega}b_\omega$, one can check that for $b_\D$ almost every $D$, $b(\cdot |D)$ is a probability measure over $\Omega$.\todo{check! Although, we don't actually care! We just need the law total expectation... }
 
-We have $b_\omega(E)=\int_{E}b(\omega |D) b_\D(\diff D)$ for $E\subseteq \Decs$. 
+For any $A\subseteq\Omega$, define $b(A | D):= \sum_{\omega\in A}f_\omega(D)$. Then we have $b_\omega(E)=\int_{E}b(\{\omega\} |D) b_\D(\diff D)$ for measurable $E\subseteq \Decs$. 
+
+
+
+Note that for almost every $D$, $b(\cdot |D)$ is a probability measure over $\Omega$. To see this, suppose that $b(\Omega | D)\not=1$ for all $D$ in some measurable $E\subseteq\Decs$ with $b_\D(E)>0$. Let $E^+=\Set{D\in E\given b(\Omega | D)>1}$ and $E^-=\Set{D\in E\given b(\Omega | D)<1}$. Then either $b_\D(E^+)>0$ or $b_\D(E^-)>0$. Suppose WLOG that $b_\D(E^+)>0$. Then
+\begin{align}
+	b_\D(E^+)&=\sum_{\omega\in\Omega} b_w(E^+)\\
+	&=\sum_{\omega\in\Omega}\int_{E^+}b(\{\omega\} |D) b_\D(\diff D)\\
+	&=\int_{E^+}b(\Omega |D) b_\D(\diff D)\\
+	&>\int_{E^+} 1 b_\D(\diff D)\\
+	&=b_\D(E^+)
+\end{align}
+
+
+%Since $b_\D=\sum_{\omega\in\Omega}b_\omega$, one can check that for $b_\D$ almost every $D$, $b(\cdot |D)$ is a probability measure over $\Omega$.\todo{check! Although, we don't actually care! We just need the law total expectation... }
+
+
 
 For any integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bounded)
+
+
+%\begin{align}
+%	\Exp_b[X]&=\int_{\Omega\times\Decs} X(\omega, D) b(\diff \omega,\diff D)\\
+%	&=\sum_\omega\int_\D X(\omega,D) b(\omega,\diff D)\\
+%	&=\sum_\omega\int_\D X(\omega,D) b_\omega (\diff D)\\
+%	&=\sum_\omega\int_\D X(\omega,D) f_\omega(D) b_\D(\diff D)&&\text{(change of measures formula)}\\
+%		&=\sum_\omega\int_\D X(\omega,D) b(\omega |D) b_\D(\diff D)\\
+%		&=\int_\D [\sum_\omega X(\omega,D) b(\omega |D)] b_\D(\diff D)\\
+%		&=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X(\cdot,D)]]
+%\end{align}
+
 \begin{align}
 	\Exp_b[X]&=\int_{\Omega\times\Decs} X(\omega, D) b(\diff \omega,\diff D)\\
-	&=\sum_\omega\int_\D X(\omega,D) b_\omega (\diff D)\\
-		&=\sum_\omega\int_\D X(\omega,D) b(\omega |D) b_\D(\diff D)&&\text{integration by parts?? - check!}\\
-		&=\int_\D [\sum_\omega X(\omega,D) b(\omega |D)] b_\D(\diff D)\\
-		&=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X]]
+	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}b_\omega(\Decs)\left[\int_\D X(\omega,D) \frac{b(\{\omega\},\diff D)}{b_\omega(\Decs)}\right]\\
+	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) b_\omega (\diff D)\\
+	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) f_\omega(D) b_\D(\diff D)&&\text{(change of measures formula)}\\
+	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) b(\omega |D) b_\D(\diff D)\\
+		&=\int_\D \left[\sum_{\omega\in\Omega} X(\omega,D) b(\omega |D)\right] b_\D(\diff D)\\
+		&=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X(\cdot,D)]]
 \end{align}
+
 
 %\bigskip
 %
