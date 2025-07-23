@@ -1958,8 +1958,8 @@ We will treat E-Admissibility first.
 \subsubsection{E-Admissibility}
 
  
-Now we want to consider how E-Admissibility judges picking strategies.  
-This depends on your uncertainty over which decision problem you'll face. 
+We want to consider how E-Admissibility judges picking strategies.  
+This depends on your uncertainty over which decision problem you'll face as well. 
 We represent your uncertainty over $\Omega \times \D$ with a credal set, $\IB$, given by a set of probability functions, $b$, over $\Omega\times \D$. 
 
 We can simply apply our notion of E-Admissibility with the credal set $\IB$ to determine which picking strategies are E-Admissible. 
@@ -1980,10 +1980,9 @@ By \cref{thm:eu-self-rec}, for any $b\in\IB$ which has the form $p\times\mu$, if
  \begin{proposition}\label{thm:ead-suff-indep}
 	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
 	
-	If there exists some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
+	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
 	
-	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$, if $a\in\EAd_\IB(\S)$ there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
-	
+	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$ and $a\in\EAd_\IP(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 \end{proposition}
 
 
@@ -2093,7 +2092,7 @@ For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{E
 However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
 If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. 
 However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$, namely any strategy for which there is some $p\times\mu\in\IB$ which $\mu$-surely picks for $\EU_p$, for example $\s_{\text{1E,2E}}$. 
-\todo{minor rewrite here. Reread}
+\todo{minor rewrite this tilltle bit above. Reread}
 
 
 
@@ -2101,13 +2100,17 @@ There are always some strategies which pick for $\EAd_\IP$ but which are rejecte
 \begin{proposition}\label{thm:ead-existsimpermissibel[indep]}
 
 {Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
+	
+	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
+	
+	
 	Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
 
 %Suppose every $b\in\IB$ has the form $p\times\mu$.
 	
 	%Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
 	
-	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
+	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.\todo{struggling to prove it...!}
 \end{proposition}
 
 
@@ -2207,10 +2210,7 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 	 \begin{proposition}\label{thm:max-suff}
 	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\Maximality_\IP$ and is in $\Maximality_\IB(\S)$. 
 	
-	If there exists some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there are some strategies which pick for $\Maximality_\IP$ and are in $\Maximality_\IB(\S)$. 
-	
-	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$, if $a\in\Maximality_\IB(\S)$ there is some $\s$ such that $\s(D)=a$ and $\s\in\Maximality_\IB(\S)$. 
-	
+	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\Maximality_\IP$ and are in $\Maximality_\IB(\S)$. 
 \end{proposition}
 
 \end{colored}
@@ -2228,7 +2228,9 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 %Here, we extended maximality to apply to dependence in the analogous way: conditionalise the probabilities on which decision problem you're faced with. 
 \end{comment}
 
-And so, like E-Admissibility, Maximality is not self-undermining in the way that $\Gamma$-Maximin is self-undermining. There are always strategies that pick for it that it does not deem impermissible.
+And so, like E-Admissibility, Maximality is not self-undermining in the way that $\Gamma$-Maximin is self-undermining. There are always strategies that pick for it that it does not deem impermissible, \begin{colored}{violet}
+	at least as long as such $p\in\IP$ and $p\times\mu\in\IB$ exist.
+\end{colored}
 
 Unlike for E-Admissibility, we do not get the converse result (even under the assumption of complete independence). There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless do not pick for any $\EU_p$. This is because a strategy is only ruled out as impermissible if there's a \emph{single} alternative which is preferable according to \emph{every} $b\in \IB$. 
 This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise or if it's precise and pretty confident about which one you will face. 
@@ -2236,7 +2238,7 @@ This happens, for example, in the Ellsberg case if one's probability over which 
 
 If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2E,1F}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2E,1F}})=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
 
-We will be able to show that if your credence over which decision problem you'll be faced with is precise, and also has a further property, that it requires almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we will be able to show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}.
+We will be able to show that if your credence over which decision problem you'll be faced with is precise, and also has a further property, that it requires almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we will be able to show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}, but will first note that our results so far hold in a more general setting, one where we allow for decision-state dependence. 
 
 %We will be able to nonetheless get results for this case if we assume that you happen to be precise about which decision problem you'll be faced with, and this measure over the decisions has a particular property (requiring almost everywhere decisiveness); which we will discuss this in \cref{sect:nu:Max}.
 
@@ -2264,14 +2266,14 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 	\begin{proposition}\label{thm:ead-equiv[dep]}
 		$\s\in\EAd_\IB(\Strategies)$ iff for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 		
-		Thus, there is some $\s$ which picks for  $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Strategies)$, namely any $\s$ which $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+		Thus, there is some $\s$ which picks for  $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Strategies)$, namely, for any $b\in\IB$, a strategy $\s$ which $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 	\end{proposition}
 \end{colored}
-	Thus whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function. 
+	Whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
 		\begin{proposition}\label{thm:ead-existence[dep]}
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
-	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.
+	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.\todo{I'm struggling to prove it... }
 %	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.\todooldinfo{This thm is new, check it and see if instead I should write it with IPxM}
 \end{proposition}
 
@@ -3112,11 +3114,24 @@ When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\
 
 %One might instead simply stipulate that $b$ is constructed 
 
-In the more general setting, we need to make use of further machinery. 
+In the more general setting, we need to make use of further machinery to find this regular probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
 
-Let $f_\omega$ be a measure on $\Decs$ given by $f_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. Then $b_\Decs=\sum_{\omega\in\Omega}f_\omega$. As 
 
-In the more general setting, we need to make use of further machinery. Under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
+Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
+Then $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, and so each $\beta_\omega$ is absolutely continuous wrt $b_\Decs$, and thus by the Radon-Nikodym theorem, there are $b_\Decs$-measurable functions $\frac{\diff \beta_\omega}{\diff b_\Decs}$. 
+By the non-negativity and linearity of Radon-Nikodym derivatives, $\frac{\diff \beta_\omega}{\diff b_\Decs}\geq 0$ and $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=1$. 
+Let $b(\cdot|D)$ be a measure on $\Omega$ given by $b(A|D)=\sum_{\omega\in A} \frac{\diff \beta_\omega}{\diff b_\Decs}$, which is thus a probability function on $\Omega$.  
+Hence, for any integrable $X:\Omega\times\Decs\to\Re$, 
+\begin{align}
+	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
+	&=\int_{\Omega_b\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\beta_\omega(\diff D)&&\text{definition of $\beta_\omega$ and}\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)&&\text{change of measure}\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)b(\omega|D)b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
+		&=\int_\Decs \left[\sum_{\omega\in\Omega_b} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
+\end{align}
+
+Under our imposed $\sigma$-algeRbra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
 
 Alternatively, 
 
@@ -3145,7 +3160,8 @@ Now, if $b$ is supported on an infinite set $\Decs$, we need to use some more ma
 
 
 
-Let $b_\omega$ be a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. Then the marginal on $\Decs$ is given by  $b_\D=\sum_{\omega\in\Omega} b_w$. 
+Let $b_\omega$ be a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
+Then the marginal on $\Decs$ is given by  $b_\D=\sum_{\omega\in\Omega} b_w$. 
 
 As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a (measurable) function $f_\omega$ on $\Decs$ (unique almost everywehere) such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
 %Put $b(\omega |D):= f_\omega(D)$. 
@@ -3183,8 +3199,9 @@ For any integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bound
 %\end{align}
 
 \begin{align}
-	\Exp_b[X]&=\int_{\Omega\times\Decs} X(\omega, D) b(\diff \omega,\diff D)\\
-	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}b_\omega(\Decs)\left[\int_\D X(\omega,D) \frac{b(\{\omega\},\diff D)}{b_\omega(\Decs)}\right]\\
+	\Exp_b[X]&=\int_{\Omega\times\Decs} X(\omega, D) b(\diff (\seq{\omega,D}))\\
+		&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\left[\int_{\{\omega\}\times \D} X(\omega,D) {b(\{\omega\},\diff D)}\right]\\
+%	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}b_\omega(\Decs)\left[\int_\D X(\omega,D) \frac{b(\{\omega\},\diff D)}{b_\omega(\Decs)}\right]\\
 	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) b_\omega (\diff D)\\
 	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) f_\omega(D) b_\D(\diff D)&&\text{(change of measures formula)}\\
 	&=\sum_{\omega\in\Omega:b_\omega(\Decs)>0}\int_\D X(\omega,D) b(\omega |D) b_\D(\diff D)\\
@@ -3264,12 +3281,12 @@ Thus $\Exp_{b(\cdot | D^*)}[\U(\prpickstrat)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D
 And so $\Exp_{b}[\U(\prpickstrat)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\prpickstrat)]]$ is maximised when $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D))=1$ for $b_\Decs$-almost every $D$. 
 i.e., when $\prpickstrat$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 Our claims follow from this.
-%Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
-%\begin{align}
-% &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
-% 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \prpickstrat_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\prpickstrat)$}\\
-% 	&=\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
-% \end{align}
+Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
+\begin{align}
+ &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\prpickstrat)(\omega,D^*)]\\
+ 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \prpickstrat_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\prpickstrat)$}\\
+ 	&=\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
+ \end{align}
 %
 %
 %$\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]$ is maximised, by definition, at any $a\in\EU_{b(\cdot|-)}(D^*)$. Thus $\Exp_{a\sim\prpickstrat_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]]$ is maximised just when $\prpickstrat_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$.
