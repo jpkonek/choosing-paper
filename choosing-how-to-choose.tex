@@ -2622,7 +2622,7 @@ Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ r
 
 	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	
-	Then, if $\n$ is regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\PrPickStrategies)$.
+	Then, if $\n$ is regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\PrPickStrategies)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
 
 
@@ -3104,11 +3104,10 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 	\begin{theorem}
 		Completely independent. 
 		
-		Suppose $\IP$ contains $p_1$ and $p_2$ such that for all $p\times\mu\in\IB$, for at least one of $q\in\{p_1,p_2\}$, 
-		$\mu\{D\given \EU_p(D)\cap\EU_q(D)=\emptyset\}=1$. 
+		Suppose $\IP$ contains $p_1$ and $p_2$ such that for all $p\times\mu\in\IB$, for at least one of $i\in\{1,2\}$, 
+		$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
 		
-		Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. \\
-		(For this, perhaps all $\mu$ are all absolutely continuous wrt a single $\mu^*$ which is non-atomic...)
+		Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
 		
 		Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 	\end{theorem}
@@ -3118,10 +3117,9 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 		
 		Denote $E_1=E$ and $E_2=\Decs\setminus E$, just so we can make the argument once:
 		
-		Take any $p\times\mu\in\IB$. By assumption, for at least one of $q\in\{p_1,p_2\}$, 
-		$\mu\{D\given \EU_p(D)\cap\EU_q(D)=\emptyset\}=1$. 
-		So for $D\in E_i$, since $\s(D)\in \EU_{p_i}(D)$, then $\s(D)\notin\EU_p(D)$, at least $\mu$-surely. 
-		Thus $\mu\{D\given \s(D)\notin\EU_p(D)\}\geq \mu(E_i)>0$. 
+		Take any $p\times\mu\in\IB$. For at least one of $i\in\{1,2\}$, 
+		$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
+		So $\mu\{D\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
 		Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
 	\end{proof}
 	
