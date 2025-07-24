@@ -4118,7 +4118,39 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %}
 \todooldinfo{If we're rewriting the EU result, check how this looks!}
 
+\todo{RP attempt at proof of something like Propn 7}
 
+
+\begin{proposition}
+
+Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
+	
+	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
+	
+	
+	If $\mu$ is non-degenerate and $\IP$ is not precise, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
+\end{proposition}
+\begin{proof}
+Suppose $\Omega = \{\omega_1, \ldots, \omega_n\}$. Suppose $a \in [l, h]^n$. Then write $\overline{a}$ for the act such that $\U(\overline{a}, \omega_i) = a_i$, for each $i$, and write $\overline{0}$ for the act such that $\U(\overline{0}, \omega_i) = 0$, for all $i$. Given $a \in [l, h]^n$ and $\varepsilon > 0$, let $B_\varepsilon(a)$ be the ball with centre $a$ and radius $\varepsilon$.
+
+If $\IP$ is not precise, there are $p, q$ in $\IP$ such that $p \neq q$. Then there is $a^\star$ and $\varepsilon$ such that $B_\varepsilon(a^\star) \subseteq [l, h]^n$ and, for all $a$ in $B_\varepsilon(a^\star)$, $\Exp_p[\U(\overline{a})] > 0 = \Exp_p[\U(\overline{0})]$ and $\Exp_q[\U(\overline{a})] < 0 = \Exp_q[\U(\overline{0})]$. Now, we pick a hyperplane $H$ that includes $a^\star$ and doesn't include $0$, and divide the ball $B_\varepsilon(a^\star) \subseteq [l, h]^n$ into two hemispheres $X_1$ and $X_2$ that lie either side of the hyperplane. Then we define $\s$ as follows:
+$$
+\s(\{\overline{a}, \overline{0}\}) = \left \{ 
+\begin{array}{rl}
+\overline{a} & \text{if } \overline{a} \in X_1 \\
+\overline{0} & \text{if } \overline{a} \in X_2 
+\end{array}
+\right.
+$$
+Then $\s$ picks for $\EAd_\IP$, since $p$ rationalizes its picks for $\{\overline{a}, \overline{0}\}$ with $a$ in $X_1$ and $q$ rationalizes its picks for $\{\overline{a}, \overline{0}\}$ with $a$ in $X_2$.
+
+Next, take any $r$ in $\IP$, and let $H_r = \{a \mid \Exp_r[\U(\overline{a})] = 0\}$. Then, $H \neq H_r$, since $H_r$ contains $0$ but $H$ does not. So, there is a non-null subset $Y_1$ of $X_1$ and a non-null subset $Y_2$ of $X_2$ that both lie on the same side of $H_r$. And so either $\s$ does not pick for $\EU_r$ for all $\{\overline{a}, \overline{0}\}$ with $a$ in $Y_1$, or $\s$ does not pick for $\EU_r$ for all $\{\overline{a}, \overline{0}\}$ with $a$ in $Y_2$. Either way, $\s$ does not $\mu$-surely pick for $\EU_r$. 
+
+
+
+%We wish to show that there is $a$ in $B_\varepsilon(a^\star)$ such that $\s$ does not pick for $\EU_r$ on $\{\overline{a}, \overline{0}\}$. Suppose $\s$ does pick for $\EU_r$ for all $\{\overline{a}, \overline{0}\}$ with $a$ in $B_\varepsilon(a^\star)$. Then $H_r = H$. And yet $H$ includes $0$ and $H_r$ does not, which gives a contradiction.
+
+\end{proof}
 
 
 
