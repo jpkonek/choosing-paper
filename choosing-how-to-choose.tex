@@ -4182,16 +4182,15 @@ Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\
 	
 If there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
 \begin{enumerate}
-\item $(\forall D\in B_x)\EAd_\IP(D)\setminus\left(\cup_{p\in x}\EU_{p}(D)\right)\not=\varnothing$
+\item $(\forall D\in B_x)\EAd_\IP(D)\setminus\EAd_x(D)\not=\varnothing$
 \item $(\forall p\in x)\mu_p(B_x)>0$
-%\item $(\forall x,x^\prime\in\X)B_x\cap B_{x^\prime}=\varnothing$
 \end{enumerate}
 then there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
 
 \end{proposition}
 \begin{proof}
 
-For any $x\in\X$ and any $D\in B_x$, let $\s(D)$ be any element of $\EAd_\IP(D)\setminus\left(\cup_{p\in x}\EU_{p}(D)\right)$. For any $D\in\Decs\setminus\left(\cup_{x\in\X}B_x\right)$, let $\s(D)$ be any element of $\EAd_\IP(D)$.
+For any $x\in\X$ and any $D\in B_x$, let $\s(D)$ be any element of $\EAd_\IP(D)\setminus\EAd_x(D)$. For any $D\in\Decs\setminus\left(\cup_{x\in\X}B_x\right)$, let $\s(D)$ be any element of $\EAd_\IP(D)$.
 
 By construction $\s$ picks for $\EAd_\IP$. And for any $p\times \mu_p\in\IB$, $\s$ does not $\mu_p$-surely pick for $\EU_p$ since (1) $p\in x$ for some $x\in \X$, (2) $\mu_p(B_x)>0$, and (3) for any $p'\in x$, $\s$ does not pick for $\EU_{p'}$ on $B_x$. Hence $\s\not\in\EAd_\IB(\Strategies)$.
 
@@ -4199,11 +4198,48 @@ By construction $\s$ picks for $\EAd_\IP$. And for any $p\times \mu_p\in\IB$, $\
 
 
 
+\textit{Example}. 
+
+\begin{itemize}
+\item $\Omega=\left\{ H, T\right\}$
+
+\item $\IP=\left\{ \left<t, 1-t\right>\given 0\leq t\leq 1\right\}$
+
+\item $\mu= \left<1/2,1/2\right>$
 
 
+\item $\IB=\IP\times\{\mu\}$
+\end{itemize}
 
+$$
+\begin{array}{r|cc}
+D_1 & \emph{H} &\emph{T} \\\hline 
+\text{A} & \text{\pounds 5} & -\text{\pounds 10}  \\
+0 & \text{\pounds0} & \text{\pounds 0}  \\
+\end{array}
+\hspace{10mm}
+\begin{array}{r|cc}
+D_2 & \emph{H} &\emph{T} \\\hline 
+\text{B} & -\text{\pounds 10} & \text{\pounds 5}  \\
+0 & \text{\pounds0} & \text{\pounds 0}  \\
+\end{array}
+$$
 
+\begin{itemize}
+\item $\Decs=\left\{ D_1, D_2 \right\}$
 
+\item $x_1=\left\{ \left<t, 1-t\right>\given 0\leq t< 2/3\right\}$
+\item $x_2=\left\{ \left<t, 1-t\right>\given 2/3\leq t\leq 1\right\}$
+
+\item $B_{x_1}=\left\{ D_1\right\}$
+\item $B_{x_2}=\left\{ D_2\right\}$
+
+\item $\EAd_\IP(D_1)\setminus\EAd_{x_1}(D_1)=D_1\setminus\left\{0\right\}=\left\{A\right\}$
+
+\item $\EAd_\IP(D_2)\setminus\EAd_{x_2}(D_2)=D_2\setminus\left\{0\right\}=\left\{B\right\}$
+
+\item $\s(D_1)=A$, $\s(D_2)=B$
+\end{itemize}
 
 
 
