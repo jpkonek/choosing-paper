@@ -4161,6 +4161,53 @@ Next, take any $r$ in $\IP$, and let $H_r = \{a \mid \Exp_r[\U(\overline{a})] = 
 
 
 
+
+
+
+
+
+
+
+\todo{JK version of Propn 7}
+
+
+
+\begin{proposition}
+
+Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu_p$).
+	
+	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu_p\in\IB$ such that $\s$ $\mu_p$-surely picks for $\EU_p$. 
+	
+	
+	
+If there is a partition $\X$ of $\IP$ such that for all $x\in\X$ there is some $\exists B_x\subseteq\Decs$ satisfying
+\begin{enumerate}
+\item $(\forall D\in B_x)\EAd_\IP(D)\setminus\left(\cup_{p\in x}\EU_{p}(D)\right)\not=\varnothing$
+\item $(\forall p\in x)\mu_p(B_x)>0$
+\end{enumerate}
+then there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
+
+\end{proposition}
+\begin{proof}
+
+For any $x\in\X$ and any $D\in B_x$, let $\s(D)$ be any element of $\EAd_\IP(D)\setminus\left(\cup_{p\in x}\EU_{p}(D)\right)$. For any $D\in\Decs\setminus\left(\cup_{x\in\X}B_x\right)$, let $\s(D)$ be any element of $\EAd_\IP(D)$.
+
+By construction $\s$ picks for $\EAd_\IP$. And for any $p\times \mu_p\in\IB$, $\s$ does not $\mu_p$-surely pick for $\EU_p$ since (1) $p\in x$ for some $x\in \X$, (2) $\mu_p(B_x)>0$, and (3) for any $p'\in x$, $\s$ does not pick for $\EU_{p'}$ on $B_x$. Hence $\s\not\in\EAd_\IB(\Strategies)$.
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
 
 
