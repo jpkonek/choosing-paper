@@ -4180,10 +4180,11 @@ Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\
 	
 	
 	
-If there is a partition $\X$ of $\IP$ such that for all $x\in\X$ there is some $\exists B_x\subseteq\Decs$ satisfying
+If there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
 \begin{enumerate}
 \item $(\forall D\in B_x)\EAd_\IP(D)\setminus\left(\cup_{p\in x}\EU_{p}(D)\right)\not=\varnothing$
 \item $(\forall p\in x)\mu_p(B_x)>0$
+%\item $(\forall x,x^\prime\in\X)B_x\cap B_{x^\prime}=\varnothing$
 \end{enumerate}
 then there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
 
