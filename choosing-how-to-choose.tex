@@ -99,6 +99,7 @@
 %\newcommand\D{\mathsf{DecProblems}}
 \newcommand{\D}{\mathcal{D}}
 	\newcommand{\Decs}{\mathcal{D}}
+		\newcommand{\mass}{\mathcal{M}}
 	
 \renewcommand\S{\mathcal{S}}
 \newcommand\s{\mathsf{s}}
@@ -4243,6 +4244,110 @@ $$
 
 
 
+\todo{JK version of Propn 39}
+\begin{proposition}
+
+If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
+\[
+(\forall D\in B_x)\EAd_\IP(D)\setminus\EAd_x(D)\not=\varnothing.
+\]
+
+\end{proposition}
+
+
+
+
+\begin{proof}
+For any $f\in \mathbb{R}^n$, let 
+\[
+\underline{\IP}(f)=\inf\left\{E_p(f)\given p\in\IP\right\},\; \overline{\IP}(f)=\sup\left\{E_p(f)\given p\in\IP\right\}.
+\]
+Since $\IP$ is imprecise, there is some $g\in \mathbb{R}^n$ such that $\underline{\IP}(g)<\overline{\IP}(g)$. Since $\IP$ is convex, there is some $p\in\IP$ such that $\underline{\IP}(g)<E_p(g)<\overline{\IP}(g)$. Define 
+\[
+x_1=\left\{q\in\IP\given E_q(g)\leq E_p(g)\right\},\; x_2=\left\{q\in\IP\given E_q(g)>E_p(g)\right\}.
+\]
+Then $\X=\left\{x_1,x_2\right\}$ partitions $\IP$. For any $q\in x_1$ and $\delta>0$
+\[
+E_q(g-E_p(g)-\delta)=E_q(g)-E_p(g)-\delta\leq-\delta<0
+\]
+In particular this holds for $q=p$. And if $0<\delta<\overline{\IP}(g)-E_p(g)$ then
+\begin{align}
+\overline{\IP}(g-E_p(g)-\delta)&=\overline{\IP}(g)-E_p(g)-\delta\\
+&>\overline{\IP}(g)-E_p(g)-(\overline{\IP}(g)-E_p(g))\\
+&=0
+\end{align}
+Since $\IP$ is convex, $E_p(g-E_p(g)-\delta)<0$ and $\overline{\IP}(g-E_p(g)-\delta)>0$ implies that there are $r,r^\prime\in x_2$ such that 
+\begin{align}
+E_r(g-E_p(g)-\delta)&<0\\
+E_{r^\prime}(g-E_p(g)-\delta)&>0
+\end{align}
+Let $\delta_1=\frac{\overline{\IP}(g)-E_p(g)}{2}$ and $h_1=g-E_p(g)-\delta_1$. Let $B_{x_1}$ be the set of binary decision problems defined by
+$$
+B_{x_1} = \{ \{h_1+\epsilon,0\} : -\frac{\delta_1}{2}\leq\epsilon\leq\frac{\delta_1}{2} \}.
+$$
+%For any $q\in x_1$ and $-\frac{\delta_1}{2}\leq\epsilon\leq\frac{\delta_1}{2}$, $E_q(h_1+\epsilon)<0$ which implies
+Then
+\begin{align}
+(\forall D\in B_{x_1})\EAd_{x_1}(D)&=\{0\}\\
+(\forall D\in B_{x_1})\EAd_{x_2}(D)&=D
+\end{align}
+Hence
+\[
+(\forall D\in B_{x_1})\EAd_\IP(D)\setminus\EAd_{x_1}(D)\not=\varnothing.
+\]
+Next, we construct $B_{x_2}$. For any $q\in x_2$ and $\delta>0$
+\[
+E_q(-g+E_p(g)-\delta)=-E_q(g)+E_p(g)-\delta<0
+\]
+This also holds for $q=p$. If $0<\delta<\overline{\IP}(-g)-E_p(-g)$ then
+\begin{align}
+\overline{\IP}(-g+E_p(g)-\delta)&=\overline{\IP}(-g)-E_p(-g)-\delta\\
+&>\overline{\IP}(-g)-E_p(-g)-(\overline{\IP}(-g)-E_p(-g))\\
+&=0
+\end{align}
+Note that $x_1=\left\{q\in\IP\given E_q(-g)\geq E_p(-g)\right\}$. Since $\IP$ is convex, $E_p(-g+E_p(g)-\delta)<0$ and $\overline{\IP}(-g+E_p(g)-\delta)>0$ implies that there are $r,r^\prime\in x_1$ such that 
+\begin{align}
+E_r(-g+E_p(g)-\delta)&<0\\
+E_{r^\prime}(-g+E_p(g)-\delta)&>0
+\end{align}
+Let $\delta_2=\frac{\overline{\IP}(-g)-E_p(-g)}{2}$ and $h_2=g+E_p(g)-\delta_2$. Let $B_{x_2}$ be the set of binary decision problems defined by
+$$
+B_{x_2} = \{ \{h_2+\epsilon,0\} : -\frac{\delta_2}{2}\leq\epsilon\leq\frac{\delta_2}{2} \}.
+$$
+Then
+\begin{align}
+(\forall D\in B_{x_2})\EAd_{x_1}(D)&=D\\
+(\forall D\in B_{x_2})\EAd_{x_2}(D)&=\{0\}
+\end{align}
+Hence
+\[
+(\forall D\in B_{x_2})\EAd_\IP(D)\setminus\EAd_{x_2}(D)\not=\varnothing.
+\]
+
+
+
+
+\begin{corollary}
+
+If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$, and some measure $\mu$ satisfying
+\begin{enumerate}
+\item $(\forall D\in B_x)\EAd_\IP(D)\setminus\EAd_x(D)\not=\varnothing$
+\item $\mu(B_x)>0$
+\end{enumerate}
+
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+\end{proof}
 
 
 \end{document}
