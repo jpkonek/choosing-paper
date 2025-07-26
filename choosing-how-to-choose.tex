@@ -4087,10 +4087,8 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
 	Completely independent. 
 	
-	Suppose $\{p_i\given i\in I\}\subseteq \IP$ and $E_i\subseteq\Decs$ are disjoint  such that for all $(p,\mu)\in\IB$, $\exists i\in I$ with\begin{itemize}
-		\item  $\mu(E_i)>0$ and 
-		\item $\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)\neq \emptyset\}=0$.
-	\end{itemize}
+	Suppose $\{p_i\given i\in I\}\subseteq \IP$ and we have disjoint $E_i\subseteq\Decs$ such that for all $(p,\mu)\in\IB$, there is some $i\in I$ with
+	 $\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0$.
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{theorem}
@@ -4098,19 +4096,18 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	
 	Put $\s(D)\in\EU_{p_i}(D)$ for $D\in E_i$. For $D\notin\bigcup_{i\in I}E_i$, put $\s(D)$ anything in $\EAd_\IP(D)$.  So $\s$ picks for $\EAd_\IP$. 
 	
-	Take any $p\times\mu\in\IB$. For at least one of $i\in I$, 
-	$\mu\{D\in  E_i \given \EU_p(D)\cap\EU_{p_i}(D)\neq\emptyset\}=0$. 
-	So $\mu\{D\in E_i\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
+	Take any $p\times\mu\in\IB$. For at least one of $i\in I$, 	 $\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0$. Thus
+	 \begin{equation}
+		\mu\{D\in E_i\given \s(D)\notin\EU_p(D)\}\geq\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0
+	\end{equation}
 	Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
 \end{proof}
 
-It can also be extended to allow for proper distributions by allowing each $\mu$ having some $J\subseteq I$ st: \begin{itemize}
-	\item  $\mu(\bigcup_{j\in J} E_j)>0$ and 
-	\item $\mu(\bigcup_{j\in J}\{D\in E_j\given \EU_{p_j}(D)\cap \EU_p(D)\neq \emptyset\})=0$.
-\end{itemize}
+It can also be extended to allow for proper distributions by allowing each $\mu$ having some $J\subseteq I$ st:  $\mu(\bigcup_{j\in J}\{D\in E_j\given \EU_{p_j}(D)\cap \EU_p(D)= \emptyset\})>0$.
 
 
-Measurability? ChatGPT says: ``Kuratowski–Ryll–Nardzewski to choose measurable selectors on each slice.''???
+
+%Measurability? ChatGPT says: ``Kuratowski–Ryll–Nardzewski to choose measurable selectors on each slice.''???
 
 
 Question: how does it relate to ``it does not look like an EU picking''?
@@ -4128,6 +4125,44 @@ Question: how does it relate to ``it does not look like an EU picking''?
 %	\begin{proof}
 	%		content...
 	%	\end{proof}
+
+\begin{corollary}
+	Suppose that for every $(p,\mu)\in\IB$, and $q\neq p$ $\mu\{D\given \EU_p(D)\cap \EU_q(D)=\emptyset\}=1$. And suppose that there is $E\subseteq\Decs$ st every $\mu$ has $0<\mu(E)<1$.
+\end{corollary}
+\begin{proof}
+	Take such an $E$ and put $E_1=E$ and $E_2=\Decs\setminus E$, so that these are disjoint and $\mu(E_i)>0$ for all $\mu$. 
+	
+	Take any distinct $p_1,p_2\in\IP$.  Then every $p\in\IP$ is distinct from at least one of $p_1$ or $p_2$. Suppose $p$ is distinct from $p_i$. Then $\mu\{D\given \EU_p(D)\cap \EU_{p_i}(D)=\emptyset\}=1$. Thus $\mu\{D\in E_i\given\EU_p(D)\cap \EU_{p_i}(D)=\emptyset\}=\mu(E_i)>0$. 
+	
+	This gives us the assumptions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1} clearly follow. 
+\end{proof}
+Weakening the zero separations but instead requiring it to assign positive probability to every non-degenerate subset of $\Decs$.
+\begin{lemma}Suppose $E$ non-empty open $\subseteq\Decs$. For $q_1$ and ${q_2}$ disjoint, 
+	$\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
+\end{lemma}
+\begin{proof}
+
+It is open: $E$ is open. We just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open. 
+Since $q_1\neq {q_2}$ there are $a_1,a_2\in\A$ such that $\Exp_{q_1}[\U(a_1)]>\Exp_{q_1}[\U(a_2)]$ and $\Exp_{q_2}[\U(a_1)]<\Exp_{q_2}[\U(a_2)]$. So we can find open $U_1\ni a_1$ and $U_2\ni a_2$ with the same inequality of expectation. So $\{D\given D\cap U_1=\emptyset\text{ and }D\cap U_2=\emptyset\}$ is open and $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$.
+
+It is nonempty:
+
+Take any $D_0\in E$ and $a_0\in D_0$. As $E$ is open under the Hausdorff metric, there is some $\epsilon>0$ such that $d(D_0,D)<\epsilon\implies D\in E$, where $$d(D,D'):=\max\{\sup_{a\in D}\inf_{a'\in D'} d(a,a'), \sup_{a'\in D'}\inf_{a\in D} d(a,a')\}$$ with the Euclidean distance on $\A\cong\Re^n$. 
+
+Consider $a^*\in\A$ such that  $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$ and $\|a^*\|<\epsilon$. \todo{this is assumptions about $\A$! Needs more than the assumptions so far...! E.g., so far, we could just have $\A$ is utilities in $\{1,2,3\}$. }
+Consider $D^*=\{a_0+a^*,a_0-a^*\}$. Observe that $d(D^*,\{a_0\})<\epsilon$. Also $d(\{a_0\},D_0)=0$ as $a_0\in D_0$. So $d(D^*,D_0)\leq d(D^*,\{a_0\})+d(D_0,\{a_0\})<\epsilon$. But, since $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0-a^*\}$; thus $D^*\in \{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$. This has shown that $\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is non-empty. \end{proof}
+\begin{corollary}Completely independent. 
+	
+Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+\end{corollary}
+\begin{proof}		
+	Take any $p_1,p_2$ disjoint in $\IP$ and $E_1,E_2$ disjoint open subsets of $\Decs$ and will then satisfy the conditions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.	
+\end{proof}
+
+
+
 
 
 \subsection{JK}
@@ -4246,6 +4281,22 @@ $$
 \end{proof}
 
 
+\todo[inline]{CCM: OK. So this is constructing sets like in my current \cref{thm:ead-existsimpermissibel[indep]:CCM-1}. I don't think RPs proof is right as it stands, as why think there's positive measure to these pairwise decs. Oh, right, that's hidden in the ``non-degenerate''! Although I'm stil not sure they quite get pos meaure. The pairwise are a lower dimensional subspace...?}
+
+
+
+\begin{proposition}
+	Suppose that for every $(p,\mu)\in\IB$ and every measurable 
+	
+	Suppose $\IP$ is imprecise. 
+\end{proposition}
+
+\begin{proof}
+	Take $p_1\neq p_2\in\IP$. 
+	
+\end{proof}
+
+\subsection{JK version of RP}
 
 
 
@@ -4255,12 +4306,7 @@ $$
 
 
 
-
-
-
-
-\todo{JK version of \cref{thm:ead-existsimpermissibel[indep]:RP-1}}
-\begin{proposition}\label{thm:ead-existsimpermissibel[indep]:JK-2}
+\begin{proposition}[{JK version of RP \cref{thm:ead-existsimpermissibel[indep]:RP-1}}]\label{thm:ead-existsimpermissibel[indep]:JK-2}
 
 If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
 \[
@@ -4352,6 +4398,7 @@ If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a fam
 
 \end{corollary}
 
+\todo[inline]{CCM: this can't be true. measure 1 on decs where they all agree... }
 
 
 
