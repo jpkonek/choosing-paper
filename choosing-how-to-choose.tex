@@ -4052,6 +4052,8 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 
 
 \subsection{CCM}
+
+
 %\begin{theorem}
 %Suppose $\IB=\IP\times\{\mu^*\}$ and for $p\neq q$, $\mu^*\{D\given \EU_p(D)\cap\EU_q(D)=\emptyset\}=1$. 
 %
@@ -4082,30 +4084,31 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %	
 %\end{proof}
 
-
-
-\color{blue}
 \begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
 	Completely independent. 
 	
-	Suppose $\IP$ contains $p_1$ and $p_2$ such that for all $p\times\mu\in\IB$, for at least one of $i\in\{1,2\}$, 
-	$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
-	
-	Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
+	Suppose $\{p_i\given i\in I\}\subseteq \IP$ and $E_i\subseteq\Decs$ are disjoint  such that for all $(p,\mu)\in\IB$, $\exists i\in I$ with\begin{itemize}
+		\item  $\mu(E_i)>0$ and 
+		\item $\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)\neq \emptyset\}=0$.
+	\end{itemize}
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{theorem}
 \begin{proof}
 	
-	Put $\s(D)\in\EU_{p_1}(D)$ for $D\in E$ and  $\s(D)\in\EU_{p_2}(D)$ for $D\notin E$. So it picks for $\EAd_\IP$. 
+	Put $\s(D)\in\EU_{p_i}(D)$ for $D\in E_i$. For $D\notin\bigcup_{i\in I}E_i$, put $\s(D)$ anything in $\EAd_\IP(D)$.  So $\s$ picks for $\EAd_\IP$. 
 	
-	Denote $E_1=E$ and $E_2=\Decs\setminus E$, just so we can make the argument once:
-	
-	Take any $p\times\mu\in\IB$. For at least one of $i\in\{1,2\}$, 
-	$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
-	So $\mu\{D\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
+	Take any $p\times\mu\in\IB$. For at least one of $i\in I$, 
+	$\mu\{D\in  E_i \given \EU_p(D)\cap\EU_{p_i}(D)\neq\emptyset\}=0$. 
+	So $\mu\{D\in E_i\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
 	Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
 \end{proof}
+
+It can also be extended to allow for proper distributions by allowing each $\mu$ having some $J\subseteq I$ st: \begin{itemize}
+	\item  $\mu(\bigcup_{j\in J} E_j)>0$ and 
+	\item $\mu(\bigcup_{j\in J}\{D\in E_j\given \EU_{p_j}(D)\cap \EU_p(D)\neq \emptyset\})=0$.
+\end{itemize}
+
 
 Measurability? ChatGPT says: ``Kuratowski–Ryll–Nardzewski to choose measurable selectors on each slice.''???
 
