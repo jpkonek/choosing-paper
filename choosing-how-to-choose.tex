@@ -3070,79 +3070,6 @@ ARE THEY STRICTLY ORDERED? 2B IMPLIES 2A?? NOT REALLY. ADD PIC FOR ORDERING, SO 
 
 
 	
-\section{E-Ad thm}
-
-%\begin{theorem}
-%Suppose $\IB=\IP\times\{\mu^*\}$ and for $p\neq q$, $\mu^*\{D\given \EU_p(D)\cap\EU_q(D)=\emptyset\}=1$. 
-%
-%Lets assume that we have some two $E_1,E_2$ disjoint subsets of $\Decs$ which both have $\mu^*$ positive measure. 
-%
-%Define:
-%\begin{itemize}
-%	\item $A_p(D)=\EAd_\IP(D)\setminus \EU_p(D)$
-%	\item $B_p=\{D\given A_p(D)\neq \emptyset\}$
-%\end{itemize}
-%
-%If $\mu^*(B_p)>0$ for all $p\in\IP$ then there is $\s$ which picks for $\EAd_\IP$ but is not $\mu^*$-surely $\EU_p$.
-%\end{theorem}
-%\begin{proof}
-%	Consider two members, $p_1,p_2$ from $\IP$. 
-%	
-%	And take disjoint subsets $E_1,E_2$ of $\Decs$ with $\mu^*(E_i)>0$. 
-%	
-%	Put $\s(D)\in\EU_{p_1}(D)$ for $D\in E_1$ and  $\s(D)\in\EU_{p_2}(D)$ for $D\in E_2$; and $\s(D)$ can be any member of $\EAd_\IP(D)$ for $D\notin\{E_1,E_2\}$. So $\s$ picks for $\EAd_\IP$.
-%	
-%	For any $p\in\IP$, take $i$ st $p\neq p_i$. For $D\in E_i$, $\s(D)\in\EU_{p_i}(D)$. So by zero agreement, $\s(D)\notin\EU_p(D)$, at least $\mu^*$-surely.
-%	
-%	So $\mu^*\{D\given \s(D)\notin\EU_p(D)\}\geq \mu(E_i)>0$. 
-%	
-%	Thus, $\mu^*\{D\given \s(D)\notin \EU_{p}(D)\}\geq \mu^*(E_n)>0$. Thus $\s$ does not $\mu$-surely pick for $\EU_{p}$. 
-%	
-%	
-%	
-%\end{proof}
-	
-	\begin{theorem}
-		Completely independent. 
-		
-		Suppose $\IP$ contains $p_1$ and $p_2$ such that for all $p\times\mu\in\IB$, for at least one of $i\in\{1,2\}$, 
-		$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
-		
-		Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
-		
-		Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
-	\end{theorem}
-	\begin{proof}
-		
-		Put $\s(D)\in\EU_{p_1}(D)$ for $D\in E$ and  $\s(D)\in\EU_{p_2}(D)$ for $D\notin E$. So it picks for $\EAd_\IP$. 
-		
-		Denote $E_1=E$ and $E_2=\Decs\setminus E$, just so we can make the argument once:
-		
-		Take any $p\times\mu\in\IB$. For at least one of $i\in\{1,2\}$, 
-		$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
-		So $\mu\{D\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
-		Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
-	\end{proof}
-	
-	Measurability? ChatGPT says: ``Kuratowski–Ryll–Nardzewski to choose measurable selectors on each slice.''???
-	
-	
-	Question: how does it relate to ``it does not look like an EU picking''?
-	
-%		Perhaps by allowing the randomised strategies we can remove the zero ties thing? 
-%			
-%	\begin{theorem}
-%		Suppose we allow any randomised picking strategies. 
-%		
-%					Suppose $\IB$ is a set of $p\times \mu$ containing distinct $p_1,p_2$. 
-%					Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
-%		
-%				Then there is $\n$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\n$ $\mu$-surely pick for $\EU_p$.
-%	\end{theorem}
-%	\begin{proof}
-%		content...
-%	\end{proof}
-	
 
 	
 	\section{Measure theoretic considerations}\label{sect:appendix:measure}
@@ -4119,10 +4046,88 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %}
 \todooldinfo{If we're rewriting the EU result, check how this looks!}
 
+
+\section{E-Ad thm}
+
+%\begin{theorem}
+%Suppose $\IB=\IP\times\{\mu^*\}$ and for $p\neq q$, $\mu^*\{D\given \EU_p(D)\cap\EU_q(D)=\emptyset\}=1$. 
+%
+%Lets assume that we have some two $E_1,E_2$ disjoint subsets of $\Decs$ which both have $\mu^*$ positive measure. 
+%
+%Define:
+%\begin{itemize}
+%	\item $A_p(D)=\EAd_\IP(D)\setminus \EU_p(D)$
+%	\item $B_p=\{D\given A_p(D)\neq \emptyset\}$
+%\end{itemize}
+%
+%If $\mu^*(B_p)>0$ for all $p\in\IP$ then there is $\s$ which picks for $\EAd_\IP$ but is not $\mu^*$-surely $\EU_p$.
+%\end{theorem}
+%\begin{proof}
+%	Consider two members, $p_1,p_2$ from $\IP$. 
+%	
+%	And take disjoint subsets $E_1,E_2$ of $\Decs$ with $\mu^*(E_i)>0$. 
+%	
+%	Put $\s(D)\in\EU_{p_1}(D)$ for $D\in E_1$ and  $\s(D)\in\EU_{p_2}(D)$ for $D\in E_2$; and $\s(D)$ can be any member of $\EAd_\IP(D)$ for $D\notin\{E_1,E_2\}$. So $\s$ picks for $\EAd_\IP$.
+%	
+%	For any $p\in\IP$, take $i$ st $p\neq p_i$. For $D\in E_i$, $\s(D)\in\EU_{p_i}(D)$. So by zero agreement, $\s(D)\notin\EU_p(D)$, at least $\mu^*$-surely.
+%	
+%	So $\mu^*\{D\given \s(D)\notin\EU_p(D)\}\geq \mu(E_i)>0$. 
+%	
+%	Thus, $\mu^*\{D\given \s(D)\notin \EU_{p}(D)\}\geq \mu^*(E_n)>0$. Thus $\s$ does not $\mu$-surely pick for $\EU_{p}$. 
+%	
+%	
+%	
+%\end{proof}
+
+
+
+\color{blue}
+\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
+	Completely independent. 
+	
+	Suppose $\IP$ contains $p_1$ and $p_2$ such that for all $p\times\mu\in\IB$, for at least one of $i\in\{1,2\}$, 
+	$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
+	
+	Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+\end{theorem}
+\begin{proof}
+	
+	Put $\s(D)\in\EU_{p_1}(D)$ for $D\in E$ and  $\s(D)\in\EU_{p_2}(D)$ for $D\notin E$. So it picks for $\EAd_\IP$. 
+	
+	Denote $E_1=E$ and $E_2=\Decs\setminus E$, just so we can make the argument once:
+	
+	Take any $p\times\mu\in\IB$. For at least one of $i\in\{1,2\}$, 
+	$\mu\{D\given \EU_p(D)\cap\EU_{p_i}(D)=\emptyset\}=1$. 
+	So $\mu\{D\given \s(D)\notin\EU_p(D)\}\geq \mu\{D\given \s(D)\in\EU_{p_i}(D)\}\geq \mu(E_i)>0$. 
+	Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
+\end{proof}
+
+Measurability? ChatGPT says: ``Kuratowski–Ryll–Nardzewski to choose measurable selectors on each slice.''???
+
+
+Question: how does it relate to ``it does not look like an EU picking''?
+
+%		Perhaps by allowing the randomised strategies we can remove the zero ties thing? 
+%			
+%	\begin{theorem}
+	%		Suppose we allow any randomised picking strategies. 
+	%		
+	%					Suppose $\IB$ is a set of $p\times \mu$ containing distinct $p_1,p_2$. 
+	%					Assume that there is some $E\subseteq\Decs$ such that for all $p\times\mu\in\IB$, $0<\mu(E)<1$. 
+	%		
+	%				Then there is $\n$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\n$ $\mu$-surely pick for $\EU_p$.
+	%	\end{theorem}
+%	\begin{proof}
+	%		content...
+	%	\end{proof}
+
+
 \todo{RP attempt at proof of something like Propn 7}
 
 
-\begin{proposition}
+\begin{proposition}[RP]\label{thm:ead-existsimpermissibel[indep]:RP-1}
 
 Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
 	
@@ -4169,11 +4174,11 @@ Next, take any $r$ in $\IP$, and let $H_r = \{a \mid \Exp_r[\U(\overline{a})] = 
 
 
 
-\todo{JK version of Propn 7}
 
 
 
-\begin{proposition}
+
+\begin{proposition}[JK]\label{thm:ead-existsimpermissibel[indep]:JK-1}
 
 Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu_p$).
 	
@@ -4242,10 +4247,12 @@ $$
 \item $\s(D_1)=A$, $\s(D_2)=B$
 \end{itemize}
 
-
-
-\todo{JK version of Propn 39}
-\begin{proposition}
+\todo{CCM version of \cref{thm:ead-existsimpermissibel[indep]:JK-1}}
+\begin{proposition}\label{thm:ead-existsimpermissibel[indep]:CCM-2}
+	content...
+\end{proposition}
+\todo{JK version of \cref{thm:ead-existsimpermissibel[indep]:RP-1}}
+\begin{proposition}\label{thm:ead-existsimpermissibel[indep]:JK-2}
 
 If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
 \[
@@ -4327,7 +4334,7 @@ Hence
 
 
 
-\begin{corollary}
+\begin{corollary}\label{thm:ead-existsimpermissibel[indep]:JK-2-corollary}
 
 If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$, and some measure $\mu$ satisfying
 \begin{enumerate}
