@@ -50,6 +50,7 @@
 \newtheorem{metacorollary}{Metacorollary}
 \newtheorem{example}{Example}
 \newtheorem{ruleinf}{Rule of Inference}
+\newtheorem{sublemma}{Sublemma}[theorem]
 %\doublespacing
 
 %\linenumbersx
@@ -2141,7 +2142,7 @@ Does this make E-Admissibility self-undermining? Not exactly. But it does mean t
 It just shows that E-Admissibility sees value in coordinating how you resolve incomparability.
 Take a simple example.
 	
-	
+	\label{eg:coord}
 	$$
 	\begin{array}{r|cc}
 		D^{\mathrm{coord}}_1 & X & \neg X  \Bstrut \\\hline \Tstrut		p & x & 1-x \Bstrut \\\hline \hline\Tstrut 
@@ -4102,8 +4103,24 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	\end{equation}
 	Thus $\s$ does not $\mu$-surely pick for $\EU_p$.
 \end{proof}
+This can be verified in many examples. 
 
-It can also be extended to allow for proper distributions by allowing each $\mu$ having some $J\subseteq I$ st:  $\mu(\bigcup_{j\in J}\{D\in E_j\given \EU_{p_j}(D)\cap \EU_p(D)= \emptyset\})>0$.
+\begin{example}
+	Consider the example from \cref{eg:coord}, putting $E_1=\{D^{\mathrm{coord}}_1\}$ and $E_2=\{D^{\mathrm{coord}}_2\}$. 
+	
+	If $p=0.5$ were added to $\IP$ then it would fail, because then $\EU_{.5}(D)=D$ for both these $D$. It would rationalise any picking strategy. 
+	
+	Adding any $p\neq 0.5$ to $\IP$ would still satisfy it: just take some $p_1>0.5$ and $p_2<0.5$. Each $p$ assigns positive measure to its choice set disagreeing with either $p_1$s or $p_2$s. 
+\end{example}
+\begin{example}
+	If $p_1,p_2,p_3\in\IP$ and $\mu_1(D_1)=1$, etc, where:
+	\begin{itemize}
+		\item $D_1$ is such that $\EU_{p_1}(D_1)\cap\EU_{p_2}(D_1)\neq \emptyset$ but $\EU_{p_1}(D_1)\cap\EU_{p_3}(D_1)= \emptyset$
+		\item $D_2$ is such that $\EU_{p_2}(D_2)\cap\EU_{p_3}(D_2)\neq \emptyset$ but $\EU_{p_2}(D_2)\cap\EU_{p_1}(D_2)= \emptyset$
+		\item $D_3$ is such that $\EU_{p_3}(D_3)\cap\EU_{p_1}(D_3)\neq \emptyset$ but $\EU_{p_3}(D_3)\cap\EU_{p_2}(D_3)= \emptyset$
+	\end{itemize}then this is an example where we cannot find an example with just $|I|=2$ but we can with $|I|=3$, at least so long as the other $(p,\mu)\in\IP$ have positive measure to disagreeing with one of these $p_1,p_2,p_3$. 
+\end{example}
+It could also be extended to allow for proper distributions by allowing each $\mu$ having some $J\subseteq I$ st:  $\mu(\bigcup_{j\in J}\{D\in E_j\given \EU_{p_j}(D)\cap \EU_p(D)= \emptyset\})>0$.
 
 
 
@@ -4136,21 +4153,46 @@ Question: how does it relate to ``it does not look like an EU picking''?
 	
 	This gives us the assumptions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1} clearly follow. 
 \end{proof}
-Weakening the zero separations but instead requiring it to assign positive probability to every non-degenerate subset of $\Decs$.
-\begin{lemma}Suppose $E$ non-empty open $\subseteq\Decs$. For $q_1$ and ${q_2}$ disjoint, 
-	$\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
-\end{lemma}
-\begin{proof}
 
-It is open: $E$ is open. We just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open. 
-Since $q_1\neq {q_2}$ there are $a_1,a_2\in\A$ such that $\Exp_{q_1}[\U(a_1)]>\Exp_{q_1}[\U(a_2)]$ and $\Exp_{q_2}[\U(a_1)]<\Exp_{q_2}[\U(a_2)]$. So we can find open $U_1\ni a_1$ and $U_2\ni a_2$ with the same inequality of expectation. So $\{D\given D\cap U_1=\emptyset\text{ and }D\cap U_2=\emptyset\}$ is open and $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$.
 
-It is nonempty:
+We can show this is satisfied given some other assumptions:
 
-Take any $D_0\in E$ and $a_0\in D_0$. As $E$ is open under the Hausdorff metric, there is some $\epsilon>0$ such that $d(D_0,D)<\epsilon\implies D\in E$, where $$d(D,D'):=\max\{\sup_{a\in D}\inf_{a'\in D'} d(a,a'), \sup_{a'\in D'}\inf_{a\in D} d(a,a')\}$$ with the Euclidean distance on $\A\cong\Re^n$. 
+\begin{corollary}[CCM version of \cref{thm:ead-existsimpermissibel[indep]:RP-1}]\label{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}
+	Completely independent. 
+	
+	Assume there are distinct $l,u\in\Re$ such that for all $g\in[l,u]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
+	
+	Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+\end{corollary}
+\begin{proof}WLOG suppose $l<0<u$ and that $|l|,|u|>1$.  Otherwise work with transformed utilities. 
+	
+	Let $V_1:=\{a\in\A\given \sup\U(a)>1\}$ and $V_2:=\{a\in\A\given \sup\U(a)<1\}$.	Put $E_1:=\{\{a,0\}\given a\in V_1\}$ and $E_2:=\{\{a,0\}\given a \in V_2\}$. 
+	
+	
+	Let $\mathrm{Disagree}(p,q):=\{a\in \A\given \Exp_p[\U(a)]>0\text{ and }\Exp_q[\U(a)]<0\}\cup\{a\in \A\given \Exp_p[\U(a)]<0\text{ and }\Exp_q[\U(a)]>0\}$. Note that it is open and contains $\lambda a$ for any $a\in\A$, at least so long as $\lambda a\in\A$. Also observe that $\EU_{q}(\{a,0\})\cap \EU_{p}(\{a,0\})=\emptyset$ iff $a\in \mathrm{Disagree}(p,q)$.
+	
+	Now take any $p_1,p_2$ distinct in $\IP$. 
+	
+	Suppose $q\neq p_1$.
+	Take $\omega^*$ such that $q(\omega^*)\neq p_1(\omega^*)$. Let $r=\frac{q(\omega^*)+p_i(\omega^*)}{2}>0$ and consider the Dutch-book-style bet $a^*(\omega)=\begin{cases}
+		1-r&\omega=\omega^*\\
+		-r&\omega\neq \omega^*
+	\end{cases}$ and observe that $a^*\in  \mathrm{Disagree}(p_1,q)$.
+	
+	Moreover, by choosing $\lambda>\nicefrac{1}{1-r}$, $\sup\U(\lambda a^*)>1$, and $\lambda a^*$ is still in $\mathrm{Disagree}(p_1,q)$, and thus $V_1\cap \mathrm{Disagree}(p_1,q)\neq\emptyset$. It is thus a non-empty open subset of $\A$ and so \begin{equation}
+		\mu\{\{a,0\}\given a\in V_1\cap \mathrm{Disagree}(p_1,q)\}>0
+	\end{equation}
+	If $a\in V_1\cap \mathrm{Disagree}(p_1,q)$, then $\{a,0\}\in\{D\in E_1\given \EU_{p_1}(D)\cap \EU_q(D)=\emptyset\}$. Thus, $\mu \{D\in E_1\given \EU_{p_1}(D)\cap \EU_p(D)= \emptyset\}>0$, as required. 
+	
+	For $q=p_2$, it is distinct from $p_2$, so using an analogous argument we find some $a^*\in \mathrm{Disagree}(p_2,q)$, and then putting $\lambda<\nicefrac{1}{1-r}$ we have $\lambda a^*\in V_2\cap \mathrm{Disagree}(p_2,q)$, so it is a non-empty open subset of $\A$. Then observe that $\mu \{D\in E_2\given \EU_{p_2}(D)\cap \EU_p(D)= \emptyset\}>0$, as required. 
+	
+	We can then apply \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.
+\end{proof}
 
-Consider $a^*\in\A$ such that  $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$ and $\|a^*\|<\epsilon$. \todo{this is assumptions about $\A$! Needs more than the assumptions so far...! E.g., so far, we could just have $\A$ is utilities in $\{1,2,3\}$. }
-Consider $D^*=\{a_0+a^*,a_0-a^*\}$. Observe that $d(D^*,\{a_0\})<\epsilon$. Also $d(\{a_0\},D_0)=0$ as $a_0\in D_0$. So $d(D^*,D_0)\leq d(D^*,\{a_0\})+d(D_0,\{a_0\})<\epsilon$. But, since $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0-a^*\}$; thus $D^*\in \{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$. This has shown that $\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is non-empty. \end{proof}
+This is perhaps slightly odd $\mu$, in general they'll assign 0-measure to these take-it-or-leave it decisions. They are not open subsets of $\Decs$ and are of lower dimension. We can instead do it for full support $\mu$. 
+
 \begin{corollary}Completely independent. 
 	
 Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
@@ -4158,9 +4200,55 @@ Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ h
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{corollary}
 \begin{proof}		
+	\begin{sublemma}Suppose $E$ non-empty open $\subseteq\Decs$. For distinct $q_1,q_2$, 
+		$\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
+	\end{sublemma}
+	\begin{proof}
+		
+%		It is open: As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open. 
+%		Since $q_1\neq {q_2}$ there are $a_1,a_2\in\A$ such that $\Exp_{q_1}[\U(a_1)]>\Exp_{q_1}[\U(a_2)]$ and $\Exp_{q_2}[\U(a_1)]<\Exp_{q_2}[\U(a_2)]$. For example, use a construction like in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}. 
+%		As $\Exp$ is continuous, we can also find open $U_1\ni a_1$ and $U_2\ni a_2$ with the same inequality of expectations. 
+%		So $\{D\given D\cap U_1=\emptyset\text{ and }D\cap U_2=\emptyset\}$ is open and it is a subset of $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$.
+%		
+	
+		
+		It is open: As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
+		
+		The complement is $$\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}=\bigcup_{a\in \A}\{D\given a\in \EU_{q_1}(D)\text{ and } a\in\EU_{q_2}(D)\}$$
+		
+		For each fixed $a\in \A$, $\{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}$ is closed $\subseteq\A$. So $$\{D\given D\subseteq \{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}\}$$ is closed in $\Decs$. $\{D\given a\in\EU_q(D)\}$ is the intersection of this with the closed set $\{D\given a\in D\}$. 
+		
+		So $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}$ is an intersection of closed sets and thus is closed. 
+		
+		
+		
+		
+			It is nonempty:
+		
+		Take any $D_0\in E$. 
+		If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
+		
+		Otherwise there is some $a_0\in \EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)$. 
+		
+		As $E$ is open, for some $\epsilon>0$, $B_\epsilon(D_0)\subseteq E$. 
+		
+		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, there is some $a^*$ such that $a^*\in  \mathrm{Disagree}(q_1,q_2)$, and we can choose $a^*$ so that $\sup\{a^*(\omega)\}<\epsilon$. WLOG assume that $\Exp_{q_1}[\U(a^*)]>0$ and $\Exp_{q_1}[\U(a^*)]<0$. Note then that $\Exp_{q_1}[\U(a_0+a^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_1}[\U(a_0+a^*)]<\Exp_{q_1}[\U(a_0)]$.
+		
+		Consider $D^*=D_0\cup\{a_0+a^*\}$ and observe that $D^*\in B_\epsilon(D_0)$. 
+		
+		Now, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0\}$, so we have found our $D^*\in E$ with $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$. 
+%		
+%
+%		
+%		
+%		
+%		 and $a_0\in D_0$. As $E$ is open under the Hausdorff metric, there is some $\epsilon>0$ such that $d(D_0,D)<\epsilon\implies D\in E$, where $$d(D,D'):=\max\{\sup_{a\in D}\inf_{a'\in D'} d(a,a'), \sup_{a'\in D'}\inf_{a\in D} d(a,a')\}$$ with the Euclidean distance on $\A\cong\Re^n$. 
+%		
+%		Consider $a^*\in\A$ such that  $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$ and $\|a^*\|<\epsilon$. \todo{this is assumptions about $\A$! Needs more than the assumptions so far...! E.g., so far, we could just have $\A$ is utilities in $\{1,2,3\}$. }
+%		Consider $D^*=\{a_0+a^*,a_0-a^*\}$. Observe that $d(D^*,\{a_0\})<\epsilon$. Also $d(\{a_0\},D_0)=0$ as $a_0\in D_0$. So $d(D^*,D_0)\leq d(D^*,\{a_0\})+d(D_0,\{a_0\})<\epsilon$. But, since $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0-a^*\}$; thus $D^*\in \{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$. This has shown that $\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is non-empty.
+		 \end{proof}
 	Take any $p_1,p_2$ disjoint in $\IP$ and $E_1,E_2$ disjoint open subsets of $\Decs$ and will then satisfy the conditions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.	
 \end{proof}
-
 
 
 
@@ -4241,22 +4329,16 @@ $$
 
 \item $\s(D_1)=A$, $\s(D_2)=B$
 \end{itemize}
-
-\todo{CCM version of \cref{thm:ead-existsimpermissibel[indep]:JK-1}}
-\begin{proposition}\label{thm:ead-existsimpermissibel[indep]:CCM-2}
-	content...
-\end{proposition}
-
+\todo[inline]{CCM: this example can't work... every strategy is rationalised by $t=2/3$. }
 \section{RP's version}
 
 \begin{proposition}[RP]\label{thm:ead-existsimpermissibel[indep]:RP-1}
 	
 	Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
 	
-	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
+	Suppose EVERY? $\mu$ assigns strictly positive measure to every $\{\{a,0\}\given a\in U\}$ for $U$ non-empty open subset of $\A$, and ASSUMPTIONS ABOUT $\A$. 
 	
-	
-	If $\mu$ is non-degenerate and $\IP$ is not precise, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
+	If $\IP$ is not precise, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 \begin{proof}
 	Suppose $\Omega = \{\omega_1, \ldots, \omega_n\}$. Suppose $a \in [l, h]^n$. Then write $\overline{a}$ for the act such that $\U(\overline{a}, \omega_i) = a_i$, for each $i$, and write $\overline{0}$ for the act such that $\U(\overline{0}, \omega_i) = 0$, for all $i$. Given $a \in [l, h]^n$ and $\varepsilon > 0$, let $B_\varepsilon(a)$ be the ball with centre $a$ and radius $\varepsilon$.
@@ -4281,20 +4363,14 @@ $$
 \end{proof}
 
 
-\todo[inline]{CCM: OK. So this is constructing sets like in my current \cref{thm:ead-existsimpermissibel[indep]:CCM-1}. I don't think RPs proof is right as it stands, as why think there's positive measure to these pairwise decs. Oh, right, that's hidden in the ``non-degenerate''! Although I'm stil not sure they quite get pos meaure. The pairwise are a lower dimensional subspace...?}
+\todo[inline]{CCM: OK. So this is constructing sets like in my current \cref{thm:ead-existsimpermissibel[indep]:CCM-1}. I don't think RPs proof is right as it stands, as why think there's positive measure to these pairwise decs. Oh, right, that's hidden in the ``non-degenerate''! Although I'm stil not sure they quite get pos meaure. The pairwise are a lower dimensional subspace...?
+
+I've got a different proof of this above.
+}
 
 
 
-\begin{proposition}
-	Suppose that for every $(p,\mu)\in\IB$ and every measurable 
-	
-	Suppose $\IP$ is imprecise. 
-\end{proposition}
 
-\begin{proof}
-	Take $p_1\neq p_2\in\IP$. 
-	
-\end{proof}
 
 \subsection{JK version of RP}
 
@@ -4398,7 +4474,7 @@ If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a fam
 
 \end{corollary}
 
-\todo[inline]{CCM: this can't be true. measure 1 on decs where they all agree... }
+\todo[inline]{CCM: this can't be true. measure 1 on decs where they all agree...  You've also got a positive to non-degen assumption? Yes, you need to use $\mu(B_x)>0$... }
 
 
 
