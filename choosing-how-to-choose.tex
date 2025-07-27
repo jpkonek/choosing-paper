@@ -4166,27 +4166,39 @@ We can show this is satisfied given some other assumptions:
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{corollary}
-\begin{proof}WLOG suppose $l<0<u$ and that $|l|,|u|>1$.  Otherwise work with transformed utilities. 
+\begin{proof}
+	\todo[inline]{I've tried to be careful now about existence of A but it's made things confused...?}
+	WLOG suppose $l<-1$ and $u>1$.  Otherwise work with transformed utilities ($+$ and $\times$). 
 	
-	Let $V_1:=\{a\in\A\given \sup\U(a)>1\}$ and $V_2:=\{a\in\A\given \sup\U(a)<1\}$.	Put $E_1:=\{\{a,0\}\given a\in V_1\}$ and $E_2:=\{\{a,0\}\given a \in V_2\}$. 
+	Let $V_1:=\{g\in[-1,1]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[-1,1]^n\given \|g\|>0.5\}$. 
+	By our assumptions on $\A$, then for any $g\in V_i$ there is some $a\in \A$ such that $\U(a)=g$. 
+	
+	Put $E_1:=\{\{a,0\}\given \U(a)\in V_1\}$ and $E_2:=\{\{a,0\}\given \U(a) \in V_2\}$. 
 	
 	
-	Let $\mathrm{Disagree}(p,q):=\{a\in \A\given \Exp_p[\U(a)]>0\text{ and }\Exp_q[\U(a)]<0\}\cup\{a\in \A\given \Exp_p[\U(a)]<0\text{ and }\Exp_q[\U(a)]>0\}$. Note that it is open and contains $\lambda a$ for any $a\in\A$, at least so long as $\lambda a\in\A$. Also observe that $\EU_{q}(\{a,0\})\cap \EU_{p}(\{a,0\})=\emptyset$ iff $a\in \mathrm{Disagree}(p,q)$.
+	Let $\mathrm{Disagree}(p,q):=\{a\in \A\given \Exp_p[\U(a)]>0\text{ and }\Exp_q[\U(a)]<0\}\cup\{a\in \A\given \Exp_p[\U(a)]<0\text{ and }\Exp_q[\U(a)]>0\}$. Note that it is open. 
+	
+	Also, if $a\in \mathrm{Disagree}(p,q)$ and $\lambda a\in \A$ then $\lambda a\in\mathrm{Disagree}(p,q)$.	
+	
+	Also observe that $\EU_{q}(\{a,0\})\cap \EU_{p}(\{a,0\})=\emptyset$ iff $a\in \mathrm{Disagree}(p,q)$.
 	
 	Now take any $p_1,p_2$ distinct in $\IP$. 
 	
 	Suppose $q\neq p_1$.
-	Take $\omega^*$ such that $q(\omega^*)\neq p_1(\omega^*)$. Let $r=\frac{q(\omega^*)+p_i(\omega^*)}{2}>0$ and consider the Dutch-book-style bet $a^*(\omega)=\begin{cases}
+	Take $\omega^*$ such that $q(\omega^*)\neq p_1(\omega^*)$. Let $r=\frac{q(\omega^*)+p_i(\omega^*)}{2}>0$ and consider the Dutch-book-style bet $g^*(\omega)=\begin{cases}
 		1-r&\omega=\omega^*\\
 		-r&\omega\neq \omega^*
-	\end{cases}$ and observe that $a^*\in  \mathrm{Disagree}(p_1,q)$.
+	\end{cases}$
 	
-	Moreover, by choosing $\lambda>\nicefrac{1}{1-r}$, $\sup\U(\lambda a^*)>1$, and $\lambda a^*$ is still in $\mathrm{Disagree}(p_1,q)$, and thus $V_1\cap \mathrm{Disagree}(p_1,q)\neq\emptyset$. It is thus a non-empty open subset of $\A$ and so \begin{equation}
+	We can find some $\lambda>0$ so that $\|\lambda g^*\|<0.5$, thus that $\lambda g^*\in V_1$. Then there is some $a^*\in\A$ with $\U(a^*)=\lambda g^*$, and $a^*\in \mathrm{Disagree}(p_1,q)$, and thus $V_1\cap \mathrm{Disagree}(p_1,q)\neq\emptyset$. It is thus a non-empty open subset of $\A$ and so \begin{equation}
 		\mu\{\{a,0\}\given a\in V_1\cap \mathrm{Disagree}(p_1,q)\}>0
 	\end{equation}
 	If $a\in V_1\cap \mathrm{Disagree}(p_1,q)$, then $\{a,0\}\in\{D\in E_1\given \EU_{p_1}(D)\cap \EU_q(D)=\emptyset\}$. Thus, $\mu \{D\in E_1\given \EU_{p_1}(D)\cap \EU_p(D)= \emptyset\}>0$, as required. 
 	
-	For $q=p_2$, it is distinct from $p_2$, so using an analogous argument we find some $a^*\in \mathrm{Disagree}(p_2,q)$, and then putting $\lambda<\nicefrac{1}{1-r}$ we have $\lambda a^*\in V_2\cap \mathrm{Disagree}(p_2,q)$, so it is a non-empty open subset of $\A$. Then observe that $\mu \{D\in E_2\given \EU_{p_2}(D)\cap \EU_p(D)= \emptyset\}>0$, as required. 
+	For $q=p_1$, it is distinct from $p_2$, so using an analogous argument 
+	we can find $a^*\in V_1\cap \mathrm{Disagree}(p_2,q)$. 
+	So it is a non-empty open subset of $\A$. 
+	Then observe that $\mu \{D\in E_2\given \EU_{p_2}(D)\cap \EU_p(D)= \emptyset\}>0$, as required. 
 	
 	We can then apply \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.
 \end{proof}
@@ -4195,12 +4207,21 @@ This is perhaps slightly odd $\mu$, in general they'll assign 0-measure to these
 
 \begin{corollary}Completely independent. 
 	
+		Assume that for all  $g\in[-1,1]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
+	
 Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{corollary}
-\begin{proof}		
-	\begin{sublemma}Suppose $E$ non-empty open $\subseteq\Decs$. For distinct $q_1,q_2$, 
+\begin{proof}
+	Let $V_1,V_2$ be disjoint open subsets of $B_1(0)\subseteq [-1,1]^n$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. This is open. 
+	
+	
+	
+	\begin{sublemma}
+	Let $E$ be open non-empty and $E\subseteq B_1(\{0\})$. 
+				
+		For distinct $q_1,q_2$, 
 		$\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
 	\end{sublemma}
 	\begin{proof}
@@ -4211,32 +4232,34 @@ Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ h
 %		So $\{D\given D\cap U_1=\emptyset\text{ and }D\cap U_2=\emptyset\}$ is open and it is a subset of $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$.
 %		
 	
+	
+\textbf{It is nonempty:}
+	
+	Take any $D_0\in E$. 
+	If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
+	
+	Otherwise there is some $a_0\in \EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)$. 
+	
+	As $E$ is open, there is some $\epsilon>0$ such that 
+	
+	As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, there is some $a^*\in\mathrm{Disagree}(q_1,q_n)$. Moreover, we can choose $a^*$ so that $\|a^*\|<1-\|a_0\|$ and $\|a^*\|<\epsilon$, so then $\|a_0+a^*\|<1$, so by our assumption on $\A$, $a_0+a^*\in\A$. 
+	
+	WLOG assume that $\Exp_{q_1}[\U(a^*)]>0$ and $\Exp_{q_1}[\U(a^*)]<0$. Note then that $\Exp_{q_1}[\U(a_0+a^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_1}[\U(a_0+a^*)]<\Exp_{q_1}[\U(a_0)]$.
+	
+	Consider $D^*=D_0\cup\{a_0+a^*\}$ and observe that $d(D^*,D_0)<d(a_0+a^*,a_0)<\epsilon$. So $D^*\in E$. 
+	
+	Now, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0\}$, so we have found our $D^*\in E$ with $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$. 
+	
+	
 		
-		It is open: As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
+		\textbf{It is open:} 
+		As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
 		
 		The complement is $$\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}=\bigcup_{a\in \A}\{D\given a\in \EU_{q_1}(D)\text{ and } a\in\EU_{q_2}(D)\}$$
 		
 		For each fixed $a\in \A$, $\{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}$ is closed $\subseteq\A$. So $$\{D\given D\subseteq \{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}\}$$ is closed in $\Decs$. $\{D\given a\in\EU_q(D)\}$ is the intersection of this with the closed set $\{D\given a\in D\}$. 
 		
 		So $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}$ is an intersection of closed sets and thus is closed. 
-		
-		
-		
-		
-			It is nonempty:
-		
-		Take any $D_0\in E$. 
-		If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
-		
-		Otherwise there is some $a_0\in \EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)$. 
-		
-		As $E$ is open, for some $\epsilon>0$, $B_\epsilon(D_0)\subseteq E$. 
-		
-		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, there is some $a^*$ such that $a^*\in  \mathrm{Disagree}(q_1,q_2)$, and we can choose $a^*$ so that $\sup\{a^*(\omega)\}<\epsilon$. WLOG assume that $\Exp_{q_1}[\U(a^*)]>0$ and $\Exp_{q_1}[\U(a^*)]<0$. Note then that $\Exp_{q_1}[\U(a_0+a^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_1}[\U(a_0+a^*)]<\Exp_{q_1}[\U(a_0)]$.
-		
-		Consider $D^*=D_0\cup\{a_0+a^*\}$ and observe that $D^*\in B_\epsilon(D_0)$. 
-		
-		Now, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0\}$, so we have found our $D^*\in E$ with $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$. 
 %		
 %
 %		
