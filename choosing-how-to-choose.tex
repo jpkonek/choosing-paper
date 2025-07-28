@@ -27,6 +27,8 @@
 %\usepackage[USenglish]{babel}
 \usepackage{graphicx}
 
+\usepackage{showlabels}
+
 
 \usepackage{multirow}
 
@@ -109,7 +111,7 @@
 
 \newcommand{\n}{\mathsf{n}}
 \renewcommand{\nu}{\n}
-\newcommand\PrPickStrategies{\mathcal{N}}
+\newcommand\Nu{\mathcal{N}}
 \newcommand{\imprecpickstrat}{\mathbb{N}}
 
 \newcommand{\IB}{\mathbb{B}}
@@ -2455,32 +2457,32 @@ In the next few sections, we note how our earlier results concerning determinist
 %\todo{did say ``non-probabilistic''}
 picking strategies generalize to probabilistic picking strategies.
 \subsubsection{Expected Utility Theory}
-We will judge whether the decision theory evaluates a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\PrPickStrategies$. 
-There are various natural proposals for what is considered in $\PrPickStrategies$ depending on one's interpretation and applications of our results. 
-When $\PrPickStrategies$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
-If you think you get to pick by randomisation, and can select any randomisation process, then $\PrPickStrategies$ will be the collection of all probabilistic picking strategies.
+We will judge whether the decision theory evaluates a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\Nu$. 
+There are various natural proposals for what is considered in $\Nu$ depending on one's interpretation and applications of our results. 
+When $\Nu$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
+If you think you get to pick by randomisation, and can select any randomisation process, then $\Nu$ will be the collection of all probabilistic picking strategies.
 If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set),%\todo{I added the `uniform'},
-then $\PrPickStrategies$ will have a particular $\n^\c$ for each $\c$, where $\n^\c$ picks for $\c$. 
+then $\Nu$ will have a particular $\n^\c$ for each $\c$, where $\n^\c$ picks for $\c$. 
 If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
 
-Our results will all hold under various choices of $\PrPickStrategies$, so long as it has a particular feature: 
+Our results will all hold under various choices of $\Nu$, so long as it has a particular feature: 
 %We will just need a structural requirement on $\negies$ for our results to hold, which will be satisfied in these various interpretations: 
 \begin{definition}\label{def:EU-complete}
-	A set of probabilistic picking strategies, $\PrPickStrategies$, is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\PrPickStrategies$ such that $\n$ picks for $\EU_p$.
+	A set of probabilistic picking strategies, $\Nu$, is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
 	%	
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\n$ in $\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
 %In fact, for our results we will only require that it is sufficiently $\EU$-complete for $\IB$, meaning that for each $p\times \mu\in \IB$ there is some $\n\in\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$. However, we will continue to use the general $\EU$-completeness for ease of exposition. 
 
-In fact, for all the results, one only needs that $\PrPickStrategies$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\PrPickStrategies$ is the collection of all deterministic strategies and when $\PrPickStrategies$ is the collection of all probabilistic picking strategies. 
+In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
 
 \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} extend to this setting.
 Suppose $p$ is a probability over $\Omega$ and $\mu$ is a probability measure over $\D$.
 \begin{proposition}\label{thm:eu-nu-nec-suff}
-If $\PrPickStrategies$ is $\EU$-complete, we have:
-$$\n \in \EU_{p\times \mu}(\PrPickStrategies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$.}$$
+If $\Nu$ is $\EU$-complete, we have:
+$$\n \in \EU_{p\times \mu}(\Nu) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$.}$$
 and, more generally, 
-$$\n \in \EU_{b}(\PrPickStrategies) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
+$$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
 \end{proposition}
 
 
@@ -2491,10 +2493,10 @@ $$\n \in \EU_{b}(\PrPickStrategies) \Leftrightarrow \n \text{ $b_\Decs$-surely p
 
 Since something is in $\EAd_\IB$ iff for some $b$ in $\IB$ it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
-If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\PrPickStrategies)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\PrPickStrategies)$. 
+If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
-Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\PrPickStrategies$ is $\EU$-complete: 
-$$\n \in \EAd_\IB(\PrPickStrategies) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
+Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is $\EU$-complete: 
+$$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
 %If $\IB$ is strongly complete, then: $\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}
 %\end{align}
 
@@ -2507,13 +2509,13 @@ $$\n \in \EAd_\IB(\PrPickStrategies) \Leftrightarrow \text{for some $b$ in $\IB$
 %\end{proposition}
 
 	\begin{proposition}\label{thm:ead-nu-reg-nec}
-		Suppose that $\PrPickStrategies$ is $\EU$-complete. \todo{I don't think we need EU-complete!}
+		Suppose that $\Nu$ is $\EU$-complete. \todo{I don't think we need EU-complete!}
 		
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 		
 %	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
 		
-	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\PrPickStrategies)$.
+	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\Nu)$.
 	\end{proposition}
 	
 
@@ -2531,7 +2533,7 @@ Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}.
 Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\emph{Black})>\nicefrac{7}{30}$ rules 1E as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\n_{D^{\mathrm{Ellsberg}}_1}$ picks 1E, by the assumption that it is regular for $\EAd_\IP$. 
 Thus, $\n$ does not pick for $\EU_p$. It also does not even $\mu$-surely pick for $\EU_p$ if we assume that each $\mu$ assigns positive probability to both $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$. It is thus not E-Admissible. 
 
-In fact, if $\IP$ is allowed to be non-convex, we get cases where $\n$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability $p^*\in\IP$ which is indifferent between the two actions, and thus, $\n\in\EU_{p^*}(\PrPickStrategies)$.} %\todo{ref: Bayes for p not defined. C: changed it.}
+In fact, if $\IP$ is allowed to be non-convex, we get cases where $\n$ will be judged as impermissible even when you know what decision problem you'll be faced with.\footnote{These examples are avoided when $\IP$ is convex as then there will be  a probability $p^*\in\IP$ which is indifferent between the two actions, and thus, $\n\in\EU_{p^*}(\Nu)$.} %\todo{ref: Bayes for p not defined. C: changed it.}
 Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. And suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that neither $a_1$ or $a_2$ are rejected. Then for any regular picking strategy for $\EAd_\IP$, $\n_D$ will give positive probability to both $a_1$ and $a_2$. $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, $\n$ is not rationally permissible.
 \todoold{double check wording of above. And make it match JKs eg}
 
@@ -2570,9 +2572,9 @@ So, at least when we consider regular probabilistic picking strategies, things h
 
 As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility, all $\EU_p$ strategies are evaluated as acceptable according to Maximality. We thus have, as a corollary to \cref{thm:eu-nu-nec-suff}, and extending \cref{thm:max-suff}:
 \begin{proposition}\label{thm:max-nu-suff}
-		If for some $p\times\mu\in \IB$, $\n$ $\mu$-surely picks for $\EU_{p}$, then $\n\in\Maximality_\IB(\PrPickStrategies)$. 
+		If for some $p\times\mu\in \IB$, $\n$ $\mu$-surely picks for $\EU_{p}$, then $\n\in\Maximality_\IB(\Nu)$. 
 		
-		More generally, if for some $b\in \IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\Maximality_\IB(\PrPickStrategies)$. 
+		More generally, if for some $b\in \IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\Maximality_\IB(\Nu)$. 
 \end{proposition}
 
 For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $b\in \IB$ have to agree on a particular alternative as better.
@@ -2592,15 +2594,15 @@ Just considering a single proposition, this will hold, for example, if you might
 %Wald gives us a very strong result linking being Bayes to be 
 
 Then we have the following result.%
-\footnote{{The assumptions on $\mu^*$ are not required if one instead assumes that $\PrPickStrategies$ is convex, which is motivated when one considers randomisations as available options. If $D$ was allowed to be infinite, one should also ensure that $\PrPickStrategies$ is closed, 
+\footnote{{The assumptions on $\mu^*$ are not required if one instead assumes that $\Nu$ is convex, which is motivated when one considers randomisations as available options. If $D$ was allowed to be infinite, one should also ensure that $\Nu$ is closed, 
 %		However, one should usually only apply these decision theories to compact sets, otherwise all options can be rejected, so we should ensure that $\negies$ is also closed,
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
-\begin{proposition}\label{thm:max-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
+\begin{proposition}\label{thm:max-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
-	Then if $\n \in \Maximality_\IB(\PrPickStrategies)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.\todo{did we know that $p$ in $\IP$??}
+	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$, in fact, an $\n'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$; and thus, $\n\notin\Maximality_\IB(\PrPickStrategies)$. 
+This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$, in fact, an $\n'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$; and thus, $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2623,12 +2625,12 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
-	Suppose $\PrPickStrategies$ is $\EU$-complete.  
+	Suppose $\Nu$ is $\EU$-complete.  
 Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
 	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	
-	Then, if $\n$ is regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\PrPickStrategies)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
+	Then, if $\n$ is regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
 
 
@@ -2676,10 +2678,10 @@ Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ r
 Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p$  \todo{why in IP???}for which the strategy $\mu^*$ surely picks for
 % \todo{eg here should we replace?? I did so... changed order of quantifier}
 $\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
-	\begin{proposition}\label{thm:gamma-nu}Suppose $\PrPickStrategies$ is $\EU$-complete. Suppose that 
-		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\PrPickStrategies)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
+	\begin{proposition}\label{thm:gamma-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
-		If also for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\PrPickStrategies)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\PrPickStrategies)$. \todo{double check thms... I removed ``in IP''!}
+		If also for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\Nu)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{double check thms... I removed ``in IP''!}
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
@@ -3063,10 +3065,10 @@ the situation is less clear, as picking in accordance with expected utility theo
 %bad: For many $\mu$, some $\s$ which picks for $\c$ is not in $\c(\S)$\newline
 %good: 
 %	&?&good&bad&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
-%bad: For many $\mu$, every regular $\n$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+%bad: For many $\mu$, every regular $\n$ which picks for $\c$ is not in $\c(\Nu)$\newline
 %good: 
 %&?&good&?&bad &bad($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
-%bad: For many $\mu$, some regular $\n$ which picks for $\c$ is not in $\c(\PrPickStrategies)$\newline
+%bad: For many $\mu$, some regular $\n$ which picks for $\c$ is not in $\c(\Nu)$\newline
 %good: 
 %&?&good&?&bad &bad ($\mu$ prec \& req dec)\Bstrut\\\hline\Tstrut
 %Imprecise $\imprecpickstrat$??
@@ -3395,8 +3397,19 @@ Our claims follow from this.
 %$
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
+\begin{corollary}
+	\begin{enumerate}
+		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
+		\item \label{itm:eu-2}Suppose $\Nu$ is $\EU$-complete. If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ then $\nu\notin\EU_b(\Nu)$.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	\cref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
+	
+	For \cref{itm:eu-2}, take $\nu^*$ which does pick for $\EU_{b(\cdot|-)}$, possible by $\EU$-completeness, and \cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^*)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+\end{proof}
 
-This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
+This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep} (noting that $\S$ is $\EU$-complete by definition). 
 
 \end{colored}
 
@@ -3645,24 +3658,119 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 
 \begin{colored}{violet}
 \subsection{E-Admissibility}
-This will then imply many of the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
+\subsubsection{E-Admissibility and EU equivalences}
+This will then imply many of the results about E-Admissible strategies.
+
+We will again state the results for probabilistic picking strategies, $\nu$, with the deterministic picking strategies, $\s$ being special cases. Recalling that when $\Nu=\S$ the same definitions apply. 
+ 
+Judgements about strategies being E-Admissible are as follows:
+\begin{lemma}\label{thm:appendix:ead:strategiesjudge}
+	\begin{itemize}
+		\item $\nu\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\nu\in\EU_b(\Nu)$.  
+		\item If $p\times\mu\in \IB$ and $\nu\in\EU_{p\times\mu}(\Nu)$, then $\nu\in\EAd_\IB(\Nu)$ 
+		\item If $\IB$ makes $\Omega$ and $\Decs$ completely independent, then $\nu\in\EAd_\IB(\Nu)$ iff there is some $p\times\mu\in\IB$ such that $\nu\in\EU_{p\times\mu}(\Nu)$.  
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	Immediate from definitions. 
+\end{proof}
+\begin{corollary}\label{thm:appendix:ead:eu}
+	Suppose $\Nu$ is $\EU$-complete. 
+	\begin{enumerate}
+		\item $\nu\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\nu$ $b_\Decs$-picks for $\EU_{b(\cdot|-)}$.  
+		\item \label{itm:ead:2}If $p\times\mu\in \IB$ and $\nu$ $\mu$-surely picks for $\EU_p$, then $\nu\in\EAd_\IB(\Nu)$ 
+		\item If $\IB$ makes $\Omega$ and $\Decs$ completely independent, then $\nu\in\EAd_\IB(\Nu)$ iff there is some $p\times\mu\in\IB$ such that $\nu$ $\mu$-surely picks for $\EU_p$
+	\end{enumerate}
+\end{corollary}
+\begin{proof}
+	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU appendix}. In fact, \cref{itm:ead:2} does not require $\EU$-completeness. 
+\end{proof}
+This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of \cref{thm:ead-equiv[dep]}. 
+
+
+\begin{lemma}\label{thm:appendix:ead:pickingeu}
+	\begin{enumerate}
+		\item\label{itm:appendix:ead:pickingeu:1} If $p\in \IP$ and $\nu$ picks for $\EU_p$, then $\nu$ picks for $\EAd_\IP$.
+		\item\label{itm:appendix:ead:pickingeu:2}  If $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$, then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. 
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	From the definition of $\EAd_\IP$, for all $D$, $\EU_p(D)\subseteq \EAd_\IP(D)$.
+	
+	So if $\nu$ picks for $\EU_p$, then for all $D\in\Decs$, $\nu_D(\EU_p(D))=1$, and thus $\nu_D(\EAd_\IP(D))=1$, i.e.~$\nu$ picks for $\EAd_\IP$. 
+	
+	An analogous argument holds for \cref{itm:appendix:ead:pickingeu:2}, as $\EU_{b(\cdot|-)}(D)\subseteq\EAd_{\IB(\cdot|-)}(D)$ for all $D$. 
+\end{proof}
+
+\begin{corollary}
+	\begin{itemize}
+		\item \label{itm:ead:blah1}Suppose $p\in\IP$,  $p\times\mu\in\IB$ and $\nu$ picks for $\EU_p$. Then $\nu$ picks for $\EAd_\IP$ and is in $\EAd_\IB(\Nu)$. 
+		\item \label{itm:ead:blah2}Suppose $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$. Then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Nu)$. 
+	\end{itemize}
+\end{corollary}
+\begin{proof}
+	\Cref{itm:ead:blah1}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_\IP$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
+	
+	\Cref{itm:ead:blah2}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
+\end{proof}
+\cref{thm:ead-suff-indep} follows from this, using the fact that $\S$ is $\EU$-complete so we can always select such an $\s$. Same for the second part of \cref{thm:ead-equiv[dep]}
+
+
+
+
+%\Cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+%
+%
+% \begin{proposition}[\cref{thm:ead-suff-indep}]
+%	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
+%	
+%	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
+%	
+%	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$ and $a\in\EAd_\IP(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
+%\end{proposition}
+%
+%\begin{proposition}[\cref{thm:ead-equiv[indep]}] Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$). In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ where $\s$ $\mu$-surely picks for $\EU_p$. 
+%	%	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
+%\end{proposition}
+%
+%	\begin{proposition}[\cref{thm:ead-equiv[dep]}]
+%	$\s\in\EAd_\IB(\Strategies)$ iff for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+%	
+%	Thus, there is some $\s$ which picks for  $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Strategies)$, namely, for any $b\in\IB$, a strategy $\s$ which $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+%\end{proposition}
+%
+%\begin{proposition}[\cref{thm:ead-nu-nec-suff}]
+%	If $\n$ picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. 
+%	More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
+%	
+%	Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is $\EU$-complete: 
+%	$$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
+%	%If $\IB$ is strongly complete, then: $\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}
+%	%\end{align}
+%	
+%	%If $\negies$ is $\EU$-complete, then $$\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}$$
+%\end{proposition}
+
+\subsubsection{Underminingness of E-Admissibility}
+
 \begin{proposition}\label{thm:ead to eu appendix}
 	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
-	Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\n$.
+	
+	So, for any $p\in\IP$, $\EU_p(D)\subseteq\EAd_\IP(D)$, and thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\n$.
 
 More generally, 
-	$a\in\EAd_\IB(\cdot|-)(D)$ iff there is some $b\in\IB$ such that $a\in\EU_b(D)$.  
+	$a\in\EAd_{\IB(\cdot|-)}(D)$ iff there is some $b\in\IB$ such that $a\in\EU_{b(\cdot|-)}(D)$.  
 Thus, any $\s$ which picks for $\EU_{b(\cdot|-)}$ for some $b\in\IB$ also picks for $\EAd_\IB(\cdot|-)$; and similarly for $\n$. 
 
 Also, 
 	$\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\S)$. 
 	and 
-		$\n\in\EAd_\IB(\PrPickStrategies)$ iff there is some $b\in\IB$ such that $\n\in\EU_b(\PrPickStrategies)$ 
+		$\n\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\n\in\EU_b(\Nu)$ 
 \end{proposition}
 
 %, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
 
-\Cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+
 
 
 For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}, we need to moreover give conditions under which no strategy looks like an expected utility strategy. For regular picking strategies this is simple: it has to not look like an $\EU_p$ strategy. 
@@ -3671,7 +3779,7 @@ For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-r
 	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
 	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
-	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\PrPickStrategies)$.
+	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\Nu)$.
 \end{proposition}
 
 \begin{proof}
@@ -4088,14 +4196,14 @@ For example, if $\Uwald$ is a measure of accuracy which is continuous and strict
 
 Suppose
 \begin{itemize}
-\item $\O$ is a specified collection of probabilistic picking strategies, $\PrPickStrategies$.
+\item $\O$ is a specified collection of probabilistic picking strategies, $\Nu$.
 \item $\mu^*$ is a measure over $\D$.
 \item $\Uwald(\n)(\omega):=\Exp_{\mu^*}\U(\n)(\omega)=\Exp_{\n_{D}} \U(a)(\omega)$
 \end{itemize}
 
-Recall \cref{def:EU-complete} of $\PrPickStrategies$ being $\EU$-complete, and observe that Bayes-existing immediately follows. 
+Recall \cref{def:EU-complete} of $\Nu$ being $\EU$-complete, and observe that Bayes-existing immediately follows. 
 \begin{lemma}\label{thm:cct-appln:existing}
-	If $\PrPickStrategies$ is EU-complete, then it is Bayes-existing. 
+	If $\Nu$ is EU-complete, then it is Bayes-existing. 
 \end{lemma}
 \begin{proof}
 	By \cref{thm:EU appendix}, $\n$ ${\mu^*}$-surely picks for $\EU_p$ iff it is a maximiser of  \cref{thm:EU appendix}. %\todooldinfo{where's the ref??} 
@@ -4134,7 +4242,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \end{proof}
 
 \begin{corollary}\label{thm:cct-applns:corr}
-	Suppose that $\PrPickStrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+	Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
 	
 %	If $\n$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\n'$
 	
@@ -4144,7 +4252,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
 \begin{corollary}
-		Suppose that $\PrPickStrategies$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
 		
 	If $\n$ does not $\mu^*$-surely pick for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
