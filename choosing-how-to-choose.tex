@@ -2503,7 +2503,7 @@ $$\n \in \EAd_\IB(\PrPickStrategies) \Leftrightarrow \text{for some $b$ in $\IB$
 %\end{proposition}
 
 	\begin{proposition}\label{thm:ead-nu-reg-nec}
-		Suppose that $\PrPickStrategies$ is $\EU$-complete. 
+		Suppose that $\PrPickStrategies$ is $\EU$-complete. \todo{I don't think we need EU-complete!}
 		
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 		
@@ -3141,7 +3141,8 @@ Alternatively,
 
 When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
-
+\begin{colored}{red}
+	
 \section{Alternative direct proof...}\todo{doesn't make use of standard Borel!}
 %When $b$ is supported on finite subset of $\Decs$, this is easy to define: we update $b$ by the ratio formula, whenever $b(D)\neq 0$. More carefully:
 %
@@ -3227,6 +3228,7 @@ For any integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bound
 %Note that $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|-)}[X]]$ for any $X$ a measurable random variable on $\Omega\times \Decs$. 
 %
 %Note that if $b$ is a product, $p\times\mu$, then $b_\Decs$ is just $\mu$ and $b(\cdot|D)=p$ for all $D$. 
+\end{colored}
 \section{EU and E-admissibility}
 
 	
@@ -3285,12 +3287,16 @@ Thus $\Exp_{b(\cdot | D^*)}[\U(\n)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$
 And so $\Exp_{b}[\U(\n)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\n)]]$ is maximised when $\n_{D^*}(\EU_{b(\cdot|-)}(D))=1$ for $b_\Decs$-almost every $D$. 
 i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 Our claims follow from this.
-Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
-\begin{align}
- &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\n)(\omega,D^*)]\\
- 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \n_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\n)$}\\
- 	&=\Exp_{a\sim\n_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
- \end{align}
+%
+%
+%
+%Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then
+%\begin{align}
+% &	\Exp_{\omega\sim b(\cdot | D^*)}[\U(\n)(\omega,D^*)]\\
+% 	&=\Exp_{\omega\sim b(\cdot | D^*)}[\Exp_{a\sim \n_{D^*}}[\U(a)(\omega)]]&&\text{definition of $\U(\n)$}\\
+% 	&=\Exp_{a\sim\n_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]].&&\text{$\Omega$ and $D^*$ are finite.}
+% \end{align}
+% \todo{I thought I stopped using this notation, but seems not...}
 %
 %
 %$\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]$ is maximised, by definition, at any $a\in\EU_{b(\cdot|-)}(D^*)$. Thus $\Exp_{a\sim\n_{D^*}}[\Exp_{\omega\sim b(\cdot | D^*)}[\U(a)(\omega)]]$ is maximised just when $\n_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$.
@@ -3577,7 +3583,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 \begin{colored}{violet}
 \subsection{E-Admissibility}
 This will then imply many of the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
-\begin{lemma}\label{thm:ead to eu appendix}
+\begin{proposition}\label{thm:ead to eu appendix}
 	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
 	Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\n$.
 
@@ -3589,17 +3595,55 @@ Also,
 	$\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\S)$. 
 	and 
 		$\n\in\EAd_\IB(\PrPickStrategies)$ iff there is some $b\in\IB$ such that $\n\in\EU_b(\PrPickStrategies)$ 
-\end{lemma}
+\end{proposition}
 
 %, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
 
 \Cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
 
 
-For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}, we need to moreover give conditions under which no strategy looks like an expected utility strategy.
-\begin{lemma}
-	content...
-\end{lemma}
+For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}, we need to moreover give conditions under which no strategy looks like an expected utility strategy. For regular picking strategies this is simple: it has to not look like an $\EU_p$ strategy. 
+
+	\begin{proposition}
+	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
+	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. \todo{is this second codnition really equivalent??}
+	
+	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\PrPickStrategies)$.
+\end{proposition}
+
+\begin{proof}
+	Suppose $\nu$ is a regular picking strategy for $\EAd_\IP$. Take $b\in\IB$
+	
+	If $\EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}$, then $\nu(\EU_{b(\cdot|-)}(D))\neq 1$, by regularity. As 
+	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}\}>0$, then $\mu\{D\given \nu(\EU_{b(\cdot|-)}(D))<1\}>0$. So $\nu$ does not $\mu$-surely pick for $\EU_p$.  
+\end{proof}
+
+For showing the existence of deterministic picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
+\begin{example}
+	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ better than $a_2$ and $p_2$ expects $a_2$ better than $a_1$. Suppose $\mu\{a_1,a_2\}=1$. Then picking strategies are just determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy, even though $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}\neq 1$. 
+\end{example}
+
+Instead the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
+
+In these cases, we have distinct decisions each of which have positive measure but where every probability 
+
+\begin{proposition}
+	If $q_1,q_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
+	\[
+	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{q_i}(D)=\emptyset\}>0
+	\]
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $(p,\mu)\in\IB$ such that $\s$  $\mu$-surely picks for $\EU_p$. 
+\end{proposition}
+
+
+\begin{proposition}
+	If $b_1,b_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $b\in\IB$ there is at least one of $b_1$ or $b_2$ such that
+	 \[
+		\mu\{D\in E_i\given \EU_{b(\cdot|D)}(D)\cap \EU_{b_i(\cdot|D)}=\emptyset\}>0
+	\]
+\end{proposition}
+
 
 
 \subsection{Maximality}
@@ -3608,6 +3652,7 @@ As Maximality is a more permissive theory than E-Admissibility, it thus also imp
 
 So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
+The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require an different approach.
 
 \end{colored}
 \section{Maximality}
