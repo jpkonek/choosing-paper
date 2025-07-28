@@ -1,0 +1,199 @@
+
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, mathrsfs, enumitem}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ms}{\mathsf}
+\newcommand{\Haus}{d_{\text{H}}}
+\newcommand{\prob}{\mathcal{P}}
+\newcommand{\meas}{\operatorname{meas}}
+\newcommand{\nn}{\mathbb{N}}
+
+\title{A Selector that Picks for a Family but for no Single Prior}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Setting}
+
+Fix $n\in\N$.  
+Let 
+\[
+D \;=\;\bigl\{\,A\subseteq\R^{n} : A\text{ is finite}\bigr\}
+\]
+and endow $D$ with the \emph{Hausdorff pseudo--metric} $\Haus$.  
+Quotienting by the relation $\Haus(A,B)=0$ yields a complete separable metric space, so the Borel $\sigma$--algebra
+\[
+\Sigma \;=\;\mathscr{B}(D,\Haus)
+\]
+is well defined and Polish.
+
+Throughout, $\mu$ denotes a fixed probability measure on $(D,\Sigma)$,  
+and $E\subseteq\Sigma$ is a measurable set with $\mu(E)>0$.
+
+\subsection{Coherence}
+
+\begin{definition}[Coherent and consistent sets]
+A non--empty collection $K\subseteq D$ is \emph{coherent} if it satisfies axioms
+\begin{enumerate}[label=\textbf{K\arabic*.}, wide]
+  \item $\varnothing\notin K$;
+  \item $A\in K\;\Longrightarrow\;A\setminus\{0\}\in K$;
+  \item $\{u\}\in K$ for every $u\in\R^{n}_{>0}$;
+  \item if $A_1,A_2\in K$ and
+        $(\lambda_{u,v},\mu_{u,v})\in[0,\infty)^2\setminus\{(0,0)\}$ for all $u\in A_1$, $v\in A_2$,
+        then 
+        \[
+        \bigl\{\lambda_{u,v}u+\mu_{u,v}v : u\in A_1,\;v\in A_2\bigr\}\in K;
+        \]
+  \item $A_1\in K$ and $A_1\subseteq A_2\subseteq\R^{n}\;\Longrightarrow\;A_2\in K$.
+\end{enumerate}
+
+A set $\mathcal{A}\subseteq D$ is \emph{consistent} if~$\mathcal{A}\subseteq K$ for some coherent~$K$.
+\end{definition}
+
+\subsection{Picking rules}
+
+Let $P\subseteq\Delta_{n}$ be a family of probability mass functions (pmf's) on $\{1,\dots,n\}$, identified with a subset of~$\R^{n}$.
+For $X\in\Sigma$ put
+\[
+E_{A,P}(X)\;:=\;\bigl\{x\in X : \exists m\in P\text{ such that }m\cdot x\ge 0\bigr\},\qquad
+E_{m}(X)\;:=\;\bigl\{x\in X : m\cdot x\ge 0\bigr\}.
+\]
+
+\begin{definition}
+A function $s:\Sigma\to D$
+\begin{itemize}
+  \item \emph{picks for $P$} if $s(X)\in E_{A,P}(X)$ for all $X\in\Sigma$;
+  \item \emph{picks for $m$} (a single pmf) if $s(X)\in E_{m}(X)$ for all $X\in\Sigma$.
+\end{itemize}
+\end{definition}
+
+Define
+\[
+A^{\*}\;=\;\bigcup_{X\in E}\bigl\{\,X\setminus\{x\} : x\notin E_{A,P}(X)\bigr\}.
+\]
+By assumption, $A^{\*}$ is \emph{inconsistent}.
+
+\section{The Main Result}
+
+\begin{theorem}
+\label{thm:selector}
+Suppose $A^{\*}$ is inconsistent.
+Then there exists a Borel function $s:\Sigma\to D$ such that
+\begin{enumerate}[label=\textup{(\roman*)}]
+  \item $s$ $\mu$--surely picks for $P$, i.e.\ $\mu\bigl(\{\,X : s(X)\in E_{A,P}(X)\}\bigr)=1$;
+  \item for \emph{no} pmf $m$ does $s$ $\mu$--surely pick for~$m$.
+\end{enumerate}
+\end{theorem}
+
+\subsection*{Idea of the construction}
+The inconsistency of $A^{\*}$ forces each individual prior $m$ to \emph{miss} some positive--$\mu$ set.
+We partition $E$ according to the ``first'' prior that fails,
+and inside each piece employ the Kuratowski--Ryll--Nardzewski measurable--selection theorem to pick a point that embarrasses that very prior.
+
+\section{Preparatory Lemma}
+
+\begin{lemma}
+\label{lem:positive_miss}
+For every pmf $m$ we have
+\[
+\mu\Bigl(\{\,X\in E : E_{A,P}(X)\setminus E_{m}(X)\neq\varnothing\}\Bigr)\;>\;0.
+\]
+\end{lemma}
+
+\begin{proof}
+Assume to the contrary that some $m_{0}$ satisfies $\mu(\Omega_{m_{0}})=0$, where
+\[
+\Omega_{m_{0}}=\{X\in E : E_{A,P}(X)\setminus E_{m_{0}}(X)\neq\varnothing\}.
+\]
+Then $\mu$--a.e.\ $X$ obeys $E_{A,P}(X)\subseteq E_{m_{0}}(X)$.
+Let
+\[
+K:=\{A\in D : m_{0}\cdot u\ge 0\ \text{for all}\ u\in A\}.
+\]
+A direct check verifies $K$ satisfies~K0--K4, hence is coherent,
+and $A^{\*}\subseteq K$ (up to a $\mu$--null set), contradicting the assumed inconsistency.
+\end{proof}
+
+\section{A Countable Test Family}
+
+Since $P$ lives in $\Delta_{n}\subset\R^{n}$,
+choose a \emph{countable dense} subset $\{m_{k}\}_{k\in\N}\subseteq P$ (take pmf's with rational coordinates).
+By Lemma~\ref{lem:positive_miss},
+\[
+\mu\bigl(\Omega_{m_{k}}\bigr)\;=\;\mu\Bigl(\{X\in E : E_{A,P}(X)\setminus E_{m_{k}}(X)\neq\varnothing\}\Bigr)\;>\;0
+\quad\forall k\in\N.
+\]
+Define the Borel index
+\[
+\kappa(X)\;:=\;\min\bigl\{\,k\in\N : X\in\Omega_{m_{k}}\bigr\}\in\N\cup\{\infty\}.
+\]
+Because each $\Omega_{m_{k}}$ is Borel, $\kappa$ is Borel.  
+Set $B_{k}:=\{X\in D : \kappa(X)=k\}$.
+Then $B_{k}$ are disjoint Borel, satisfy $\mu(B_{k})=\mu(\Omega_{m_{k}})>0$, and
+$\mu\bigl(\bigcup_{k}B_{k}\bigr)=\mu(E)$.
+
+\section{Measurable Selection on Each Slice}
+
+For a fixed $k$ define the multifunction
+\[
+F_{k}(X)\;:=\;
+\begin{cases}
+E_{A,P}(X)\setminus E_{m_{k}}(X), & X\in B_{k},\\[4pt]
+\{0\}, & X\notin B_{k}.
+\end{cases}
+\]
+Each $F_{k}(X)$ is non--empty, closed, and Borel measurable in $X$.
+Hence by the Kuratowski--Ryll--Nardzewski theorem
+there exists a Borel selector
+\[
+s_{k}:B_{k}\longrightarrow\R^{n},\qquad s_{k}(X)\in F_{k}(X).
+\]
+
+\section{Global Selector}
+
+Define
+\[
+s(X)\;:=\;\sum_{k=0}^{\infty}s_{k}(X)\,\mathbf 1_{B_{k}}(X).
+\]
+Because the $B_{k}$ are disjoint, the sum has at most one non--zero term, so $s:D\to\R^{n}$ is Borel.
+
+\section{Verification}
+
+\paragraph{(i) $\mu$--surely picks for $P$.}
+For $\mu$--a.e.\ $X$ there exists $k$ with $X\in B_{k}$, whence
+$s(X)=s_{k}(X)\in F_{k}(X)\subseteq E_{A,P}(X)$.
+
+\paragraph{(ii) Fails $\mu$--surely for every single prior.}
+Fix any pmf $m$.
+
+\smallskip
+\emph{Case 1:} $m=m_{k}$ for some $k$.  
+On the set $B_{k}$ (with $\mu(B_{k})>0$) we have $s(X)\notin E_{m_{k}}(X)$, i.e.\ $m\cdot s(X)<0$.
+
+\smallskip
+\emph{Case 2:} $m\notin\{m_{k}\}$.  
+Choose a sequence $m_{k_{j}}\to m$.  
+For any $X$, $E_{m}(X)=\bigcap_{j}E_{m_{k_{j}}}(X)$ by continuity of $m\cdot x$ in $m$,
+so if $X\in\bigcup_{j}B_{k_{j}}$ we have $s(X)\notin E_{m}(X)$.
+Since each $B_{k_{j}}$ has positive measure, their union does as well.
+
+\medskip
+Thus no prior $m$ enjoys $\mu\bigl(\{\,X : s(X)\in E_{m}(X)\}\bigr)=1$.
+
+\section{Conclusion}
+
+Theorem~\ref{thm:selector} completes the proof:  
+\emph{There exists a measurable rule that $\mu$--surely picks for the whole family $P$ but for no individual prior.} \qedhere
+
+\end{document}
