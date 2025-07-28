@@ -3333,7 +3333,7 @@ Our claims follow from this.
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
 
-This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}
+This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
 
 \end{colored}
 
@@ -3606,7 +3606,7 @@ For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-r
 
 	\begin{proposition}
 	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
-	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. \todo{is this second codnition really equivalent??}
+	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\PrPickStrategies)$.
 \end{proposition}
@@ -3620,7 +3620,7 @@ For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-r
 
 For showing the existence of deterministic picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
 \begin{example}
-	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ better than $a_2$ and $p_2$ expects $a_2$ better than $a_1$. Suppose $\mu\{a_1,a_2\}=1$. Then picking strategies are just determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy, even though $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}\neq 1$. 
+	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ better than $a_2$ and $p_2$ expects $a_2$ better than $a_1$. Suppose $\mu$ is sure it'll be faced with $D=\{a_1,a_2\}$. Then picking strategies are just determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy, even though $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}\neq 1$. 
 \end{example}
 
 Instead the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
@@ -3628,7 +3628,7 @@ Instead the requirement of coordination needs to be seen. There need to be disti
 In these cases, we have distinct decisions each of which have positive measure but where every probability 
 
 \begin{proposition}
-	If $q_1,q_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
+	If there are some $q_1,q_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
 	\[
 	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{q_i}(D)=\emptyset\}>0
 	\]
