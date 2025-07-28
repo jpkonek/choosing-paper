@@ -4288,7 +4288,19 @@ Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ h
 
 
 
-
+\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
+	Completely independent. 
+	
+	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
+	
+	If $\nu$ is a regular picking strategy for $\EAd_\IP$, then there is no $p\times\mu\in \IB$ such that $\nu$ $\mu$-surely pick for $\EU_p$.
+\end{theorem}
+\begin{proof}
+	Suppose $\nu$ is a regular picking strategy for $\EAd_\IP$. 
+	
+	For $p\times\mu\in\IB$, if $\EAd_\IP(D)\not\subseteq \EU_p(D)$, then $\nu(\EU_p(D))\neq 1$, by regularity. As 
+	$\mu\{D\given \EAd_\IP(D)\not\subseteq \EU_p(D)\}>0$, then $\mu\{D\given \nu(\EU_p(D))<1\}>0$. So $\nu$ does not $\mu$-surely pick for $\EU_p$.  
+\end{proof}
 \subsection{JK}
 
 
