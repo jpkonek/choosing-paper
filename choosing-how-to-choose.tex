@@ -3657,8 +3657,8 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %\end{colored}
 
 \begin{colored}{violet}
-\subsection{E-Admissibility}
-\subsubsection{E-Admissibility and EU equivalences}
+%\subsection{E-Admissibility}
+\subsection{E-Admissibility and EU equivalences}
 This will then imply many of the results about E-Admissible strategies.
 
 We will again state the results for probabilistic picking strategies, $\nu$, with the deterministic picking strategies, $\s$ being special cases. Recalling that when $\Nu=\S$ the same definitions apply. 
@@ -3702,7 +3702,7 @@ This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of
 	An analogous argument holds for \cref{itm:appendix:ead:pickingeu:2}, as $\EU_{b(\cdot|-)}(D)\subseteq\EAd_{\IB(\cdot|-)}(D)$ for all $D$. 
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{thm:appendix:ead:exist}
 	\begin{itemize}
 		\item \label{itm:ead:blah1}Suppose $p\in\IP$,  $p\times\mu\in\IB$ and $\nu$ picks for $\EU_p$. Then $\nu$ picks for $\EAd_\IP$ and is in $\EAd_\IB(\Nu)$. 
 		\item \label{itm:ead:blah2}Suppose $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$. Then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Nu)$. 
@@ -3713,12 +3713,13 @@ This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of
 	
 	\Cref{itm:ead:blah2}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
 \end{proof}
-\cref{thm:ead-suff-indep} follows from this, using the fact that $\S$ is $\EU$-complete so we can always select such an $\s$. Same for the second part of \cref{thm:ead-equiv[dep]}
+\cref{thm:ead-suff-indep} follows from this, using the fact that $\S$ is $\EU$-complete so we can always select such an $\s$. So does the second part of \cref{thm:ead-equiv[dep]}
 
 
 
+We have thus proved \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep,thm:ead-equiv[dep]}. 
 
-%\Cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+
 %
 %
 % \begin{proposition}[\cref{thm:ead-suff-indep}]
@@ -3751,31 +3752,16 @@ This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of
 %	%If $\negies$ is $\EU$-complete, then $$\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}$$
 %\end{proposition}
 
-\subsubsection{Underminingness of E-Admissibility}
+\subsection{Maximality}
+As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
 
-\begin{proposition}\label{thm:ead to eu appendix}
-	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
-	
-	So, for any $p\in\IP$, $\EU_p(D)\subseteq\EAd_\IP(D)$, and thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\n$.
+\subsection{Underminingness of E-Admissibility}
 
-More generally, 
-	$a\in\EAd_{\IB(\cdot|-)}(D)$ iff there is some $b\in\IB$ such that $a\in\EU_{b(\cdot|-)}(D)$.  
-Thus, any $\s$ which picks for $\EU_{b(\cdot|-)}$ for some $b\in\IB$ also picks for $\EAd_\IB(\cdot|-)$; and similarly for $\n$. 
+We will now move to \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which no strategy looks like an expected utility strategy. 
 
-Also, 
-	$\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\S)$. 
-	and 
-		$\n\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\n\in\EU_b(\Nu)$ 
-\end{proposition}
+For regular picking strategies this is simple: it has to not look like an $\EU_p$ strategy. 
 
-%, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
-
-
-
-
-For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}, we need to moreover give conditions under which no strategy looks like an expected utility strategy. For regular picking strategies this is simple: it has to not look like an $\EU_p$ strategy. 
-
-	\begin{proposition}
+	\begin{proposition}[\cref{thm:ead-nu-reg-nec}]
 	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
 	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
@@ -3783,10 +3769,15 @@ For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-r
 \end{proposition}
 
 \begin{proof}
-	Suppose $\nu$ is a regular picking strategy for $\EAd_\IP$. Take $b\in\IB$
+	Suppose $\nu$ is a regular picking strategy for $\EAd_\IP$ and the conditions of the theorem hold. 
 	
-	If $\EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}$, then $\nu(\EU_{b(\cdot|-)}(D))\neq 1$, by regularity. As 
-	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}\}>0$, then $\mu\{D\given \nu(\EU_{b(\cdot|-)}(D))<1\}>0$. So $\nu$ does not $\mu$-surely pick for $\EU_p$.  
+	Take any $b^*\in\IB$.
+	If $\EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b^*(\cdot|-)}$, then $\nu(\EU_{b^*(\cdot|-)}(D))\neq 1$, by regularity. 
+	As 
+	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b^*(\cdot|-)}\}>0$, then $\mu\{D\given \nu(\EU_{b^*(\cdot|-)}(D))<1\}>0$.
+	 So $\nu$ does not $b^*_\Decs$-surely pick for $\EU_{b^*(\cdot|-)}$. 
+	 
+	 By \cref{thm:appendix:ead:eu}, then $\nu\notin\EAd_\IB(\Nu)$. 
 \end{proof}
 
 For showing the existence of deterministic picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
@@ -3817,8 +3808,7 @@ In these cases, we have distinct decisions each of which have positive measure b
 
 
 
-\subsection{Maximality}
-As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
+
 
 
 So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
@@ -3827,7 +3817,8 @@ The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} requir
 
 \end{colored}
 \section{Maximality}
-To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
+To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. \todo{what are the two versions referred to?}
+We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
 \subsection{Wald theorem}
 
 
@@ -4259,7 +4250,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \begin{proof}
 	From \cref{thm:EU appendix}, such $\n$ thus does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is some $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
-\cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this. 
+\cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this. \todo{Let's double checkt hat that's true.}
 %%	thm:chiocefns-nu-reg-nec,thm:gamma}
 %	 follow from this, making use of \cref{thm:EU appendix}.
 %	 
@@ -4272,6 +4263,10 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %}
 \todooldinfo{If we're rewriting the EU result, check how this looks!}
 
+
+
+
+\newpage
 \color{blue}
 \section{E-Ad thm}
 
