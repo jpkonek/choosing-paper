@@ -2104,7 +2104,7 @@ There are always some strategies which pick for $\EAd_\IP$ but which are rejecte
 
 {Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
 	
-	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
+%	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
 	
 	
 	Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
@@ -3574,7 +3574,7 @@ This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}\U(\n)$, where $b_\D
 
 \end{colored}\begin{colored}{violet}
 \subsection{E-Admissibility}
-This will then imply the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
+This will then imply many of the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
 \begin{lemma}\label{thm:ead to eu appendix}
 	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
 	Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$; and similarly for $\n$.
@@ -3591,7 +3591,14 @@ Also,
 
 %, as what is judged as E-Admissible is just those options which are maximisers of expected utility for one of the members of the credal set, and thus are just the expected utility picking strategies. 
 
-\Cref{thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:ead-equiv[dep]} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+\Cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep} thus follow from \cref{thm:ead to eu appendix,thm:EU appendix}.
+
+
+For \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}, we need to moreover give conditions under which no strategy looks like an expected utility strategy.
+\begin{lemma}
+	content...
+\end{lemma}
+
 
 \subsection{Maximality}
 As Maximality is a more permissive theory than E-Admissibility, it thus also implies our result that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
@@ -4167,7 +4174,7 @@ We can show this is satisfied given some other assumptions:
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{corollary}
 \begin{proof}
-	\todo[inline]{I've tried to be careful now about existence of A but it's made things confused...?}
+
 	WLOG suppose $l<-1$ and $u>1$.  Otherwise work with transformed utilities ($+$ and $\times$). 
 	So that by our assumption on $\A$, for any $g\in[-1,1]^\Omega$, there is some $a\in \A$ such that $\U(a)=g$. 
 	
