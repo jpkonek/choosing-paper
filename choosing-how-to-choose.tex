@@ -3333,246 +3333,248 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 
 
 
-\begin{colored}{red}
-	
-\subsection{EU}
-Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
-
-
-We present our result in generality, covering both the decision-state dependence and probabilistic picking strategy cases. 
-
-Suppose $b$ is probability measure over $\Omega\times\D$ which is absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$\todo{What does that mean??}. Let $f:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $b$, so that for any measurable $A\subseteq\Omega\times\D$
-\[
-b(A)=\sum_{\omega\in\Omega}\int_{A_\omega} f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)
-\]
-where, for any $\omega\in\Omega$, $A_\omega:=\left\{\left<\omega^*,D^*\right>\in A\given \omega=\omega^*\right\}$.
-
-The marginal density, $f_\D$, is given by $f_\D(D)=\sum_{\omega\in\Omega}f(\omega,D)$. 
-
-	
-Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
-
-\begin{definition}
-	For any $D\in\D'$ and any $a\in D$, $b(\cdot|D)$ is a probability function over $\Omega$ defined by $b(\omega|D)=\frac{f(\omega,D)}{f_\D(D)}$. \todo{why do we sometimes use angle brackets?}
-	So,  \[\Exp_{b(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
-\end{definition}
-	
-	Recall \cref{def:cond}, defining the choice function $\EU_{b(\cdot|-)}$: For $D\in\D'$ (when this is well-defined), $\EU_{b(\cdot|-)}(D)=\EU_{b(\cdot|D)}(D)$, which, using \cref{def:EU} is 
-		\[a\in\EU_{b(\cdot|-)}(D)\text{ iff for all $a'\in D$, }\Exp_{b(\cdot|D)}[\U(a)]\geq\Exp_{b(\cdot|D)}[\U(a')].\]
-	If $D\notin\D'$, we can put $\EU_{b(\cdot|-)}(D)$ arbitrary, for example just make it equal $\D$. 
-	A picking strategy $\s\in\S$ is then said to $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ when \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$. A probabilistic picking strategy $\n$ is said to $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ when \[b\{\seq{\omega,D}\given\n_D(\EU_{b(\cdot|-)}(D))=1\}=1\]
-
-
-	
-%\begin{definition}
-%	$\EU_{b(\cdot|-)}$ is the choice function defined by \[\EU_{b(\cdot|-)}(D):=\EU_{b(\cdot|D)}(D)\]when $D\in\D'$, i.e., when $f_\D(D)>0$; and when $D\notin\D'$, we put $\EU_{b(\cdot|-)}(D)=D$ (this is arbitrary, and it won't play a role in our result).\todoold{I added the when def!!} 
-%\end{definition}
-%
-%
-%\todo{we should make the theorem already cover the prob case!!}
-%\begin{definition}
-%A picking strategy $\s$ \emph{$b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$} iff \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$.
-%\end{definition}
-
-\begin{theorem}\label{thm:EU appendix} 
-	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
-		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
-		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-	The basic reason is by exchange of expectations: $$\Exp_{p\times\mu}[\U(\nu)]:=\Exp_{p\times\mu}[\Exp_{\nu_D}[\U]]=\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]$$. The exchange is .
-	 and one can observe that this obtains it optimum when each $\nu_D(\EU_p(D))=1$, putting maximal weight on those acts which maximise expected utility, and reaches this maximal exactly when $\nu_D(\EU_p(D))=1$ for $\mu$-almost every $D\in\D$. 
-	
-	
-	
-	
-	
-	For maximum perspicuity, we will write everything out with integrals, to keep track of the variables. However, note that $\Omega$ and each $D$ have been assumed to be finite. 
-	
-	Let $t_p(D):=\sup_{a\in D}\Exp_p[\U(a)]$, the maximum attainable expected utility on $D$. $\EU_p(D)=\{a\in D\given \Exp_p[\U(a)]=t_p(D)\}$.
-	$\nu_D$ is a measure over $D$, so:
-	\begin{align}
-		\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&\leq t_p(D)\\
-			\text{ and }	\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&= t_p(D)\text{ iff }\nu_D(\EU_p(D))=1
-	\end{align}
-	
-	Therefore 
-	\begin{align}
-	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&\leq \int_\D t_p(D)\mu(\diff D)\\
-	\text{ and }	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&= \int_\D t_p(D)\mu(\diff D)\\\text{ iff }\mu\{D\given \nu_D(\EU_p(D))=1\}=1
-\end{align}
-	
-	So for all $a\in D$, $\Exp_p[\U(a)]\leq t_p(D)$, with equality just when $a\in \EU_p(D)$. 
-	
-	$\nu_D$ is a measure over $D$ ($D$ is finite, but we write it as an integral for), so $\Exp_{\nu_D}[\Exp_p[\U]]\leq t_p(D)$, with equality just when $\nu_D(\EU_p(D))=1$. 
-	
-	Thus, $\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]\leq \Exp_\mu[t_p(D)]$, with equality just when $\mu\{D\given \nu_D(\EU_p(D))=1\}=1$. 
-	
-	Now, observe that $\Exp_{p\times\mu}[\U(\nu)]=$
-	
-\end{proof}
-
-\begin{theorem}\label{thm:EU appendix} 
-	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
-	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\nu'$, $\Exp_b[\U(\nu)]\geq\Exp_b[\U(\nu')]$
-	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\nu'$ does not, then $\Exp_b[\U(\nu)]>\Exp_b[\U(\nu')]$.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-
-
-\end{proof}
-
-
-
-\begin{theorem}\label{thm:EU appendix} 
-	\hspace*{1mm}
-	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
-		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
-		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\s'$ does not, then $\Exp_b[\U(\s)]>\Exp_b[\U(\s')]$.
-	\end{enumerate}
-\end{theorem}
-
-
-\begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_b(\omega,D):=\sup\{\Exp_{b(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
-	Note that $t_b(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $b$. 
-	
-	Suppose $D\in\D'$. By definition of $t_b$, $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega^*,D)$ for any $\omega^*\in\Omega$. 
-	For $\n$ a probabilistic picking strategy, $\n_D$ is a measure over $D$, so $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(a)(\omega)]=\sum_{a\in D}\n_D(a)(\omega)$. Since 
-	
-	By definition of $\EU_{b(\cdot|-)}(D)$, $\Exp_{b(\cdot|D)}[\U(a)]= t_b(\omega^*,D)$ exactly when $a\in \EU_{b(\cdot|-)}(D)$. 
-	
-	
-	
-	Now, 
-	
-	%	Observe that $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{b(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
-	
-	%	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
-	
-	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega^*,D^*\right>\in\X\given \omega=\omega^*\right\}$.	
-	
-	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega,D\right>\given D\in\D'\right\}$.	
-	
-	
-	
-	{\allowdisplaybreaks
-		\begin{align}
-			\Exp_b[\U(\n)]&=\sum_{\omega\in\Omega}\int_{\D} \U(\n)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\sum_{\omega\in\Omega}\int_{\D'} \U(\n)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\n)(\omega,D)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\int_{\D'}\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]\;f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]\;f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-			&\leq\sum_{\omega\in\Omega}\int_{\D'}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\sum_{\omega\in\Omega}\int_{\D}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-			&=\Exp_b[t_b]
-	\end{align}}
-	
-	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{b(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
-\end{proof}
-
-\begin{color}{red}
-\begin{theorem}\label{thm:EU appendix} 
-\hspace*{1mm}
-	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
-		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
-		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\s'$ does not, then $\Exp_b[\U(\s)]>\Exp_b[\U(\s')]$.
-	\end{enumerate}
-\end{theorem}
-
-
-\begin{proof}
-	For any $\omega\in\Omega$ and $D\in\D'$, let $t_b(\omega,D):=\sup\{\Exp_{b(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
-	Note that $t_b(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $b$. 
-	
-	Suppose $D\in\D'$. By definition of $t_b$, $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega^*,D)$ for any $\omega^*\in\Omega$. By definition of $\EU_{b(\cdot|-)}(D)$, $\Exp_{b(\cdot|D)}[\U(a)]= t_b(\omega^*,D)$ exactly when $a\in \EU_{b(\cdot|-)}(D)$.
-	
-	Now, 
-	
-%	Observe that $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{b(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
-	
-%	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
-	
-%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega^*,D^*\right>\in\X\given \omega=\omega^*\right\}$.	
-	
-%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega,D\right>\given D\in\D'\right\}$.	
-
-	
-
-{\allowdisplaybreaks
-\begin{align}
-\Exp_b[\U(\s)]&=\sum_{\omega\in\Omega}\int_{\D} \U(\s(D))(\omega) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\sum_{\omega\in\Omega}\int_{\D'} \U(\s(D))(\omega) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\s(D))(\omega)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\int_{\D'}\Exp_{b(\cdot|D)}[\U(\s(D))]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{b(\cdot|D)}[\U(\s(D))]f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&\leq\sum_{\omega\in\Omega}\int_{\D'}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\sum_{\omega\in\Omega}\int_{\D}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
-&=\Exp_b[t_b]
-\end{align}}
-
-	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{b(\cdot|D)}[\U(\s(D))]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{b(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
-	\end{proof}
-
-
-\begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
-	\begin{enumerate}
-		\item  If $\n$ $\mu$-surely picks for $\EU_p$ then, for any $\n'$, $\EU_{p\times\mu}[\U(\n)]\geq\EU_{p\times\mu}[\U(\n')]$
-		\item If $\n$ $\mu$-surely picks for $\EU_p$, and $\n'$ does not, then $\EU_{p\times\mu}[\U(\n)]>\EU_{p\times\mu}[\U(\n')]$.
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-	Let $m_D(p):=\sup\{\Exp_p[\U(a)]\given a\in D\}$.
-	
-	So $\Exp_p[\U(a)]\leq m_D(p)$ for all $a\in D$, with equality only if $a\in \EU_p(D)$. 
-	
-	Since $\n_D$ is a probability over $D$, we know that $\Exp_{\n(D)}\Exp_p[\U]\leq m_D(p)$ with equality only if $\n_D(\EU_p(D))=1$. And note that $\Exp_{\n(D)}\Exp_p(a)=\Exp_p[\U(\n)(D)]$
+%\begin{colored}{red}
 %	
-%	{\color{cyan}
-%		If $P$ is probability over $\Omega\times\D$, 
-%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%\subsection{EU}
+%Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
+%
+%
+%We present our result in generality, covering both the decision-state dependence and probabilistic picking strategy cases. 
+%
+%Suppose $b$ is probability measure over $\Omega\times\D$ which is absolutely continuous with respect to $u\times\lambda$, where $u$ is the uniform distribution on $\Omega$ and $\lambda$ is the restriction of the Lebesgue measure to $\D$\todo{What does that mean??}. Let $f:\Omega\times\D\rightarrow\mathbb{R}_{\geq0}$ be a Radon-Nikodym derivative (or density) of $b$, so that for any measurable $A\subseteq\Omega\times\D$
+%\[
+%b(A)=\sum_{\omega\in\Omega}\int_{A_\omega} f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)
+%\]
+%where, for any $\omega\in\Omega$, $A_\omega:=\left\{\left<\omega^*,D^*\right>\in A\given \omega=\omega^*\right\}$.
+%
+%The marginal density, $f_\D$, is given by $f_\D(D)=\sum_{\omega\in\Omega}f(\omega,D)$. 
+%
+%	
+%Let $\D':=\{D\in\D\given f_\D(D)>0\}$.
+%
+%\begin{definition}
+%	For any $D\in\D'$ and any $a\in D$, $b(\cdot|D)$ is a probability function over $\Omega$ defined by $b(\omega|D)=\frac{f(\omega,D)}{f_\D(D)}$. \todo{why do we sometimes use angle brackets?}
+%	So,  \[\Exp_{b(\cdot|D)}[\U(a)]:=\displaystyle\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(a)(\omega)\]
+%\end{definition}
+%	
+%	Recall \cref{def:cond}, defining the choice function $\EU_{b(\cdot|-)}$: For $D\in\D'$ (when this is well-defined), $\EU_{b(\cdot|-)}(D)=\EU_{b(\cdot|D)}(D)$, which, using \cref{def:EU} is 
+%		\[a\in\EU_{b(\cdot|-)}(D)\text{ iff for all $a'\in D$, }\Exp_{b(\cdot|D)}[\U(a)]\geq\Exp_{b(\cdot|D)}[\U(a')].\]
+%	If $D\notin\D'$, we can put $\EU_{b(\cdot|-)}(D)$ arbitrary, for example just make it equal $\D$. 
+%	A picking strategy $\s\in\S$ is then said to $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ when \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$. A probabilistic picking strategy $\n$ is said to $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ when \[b\{\seq{\omega,D}\given\n_D(\EU_{b(\cdot|-)}(D))=1\}=1\]
+%
+%
+%	
+%%\begin{definition}
+%%	$\EU_{b(\cdot|-)}$ is the choice function defined by \[\EU_{b(\cdot|-)}(D):=\EU_{b(\cdot|D)}(D)\]when $D\in\D'$, i.e., when $f_\D(D)>0$; and when $D\notin\D'$, we put $\EU_{b(\cdot|-)}(D)=D$ (this is arbitrary, and it won't play a role in our result).\todoold{I added the when def!!} 
+%%\end{definition}
+%%
+%%
+%%\todo{we should make the theorem already cover the prob case!!}
+%%\begin{definition}
+%%A picking strategy $\s$ \emph{$b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$} iff \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$.
+%%\end{definition}
+%
+%\begin{theorem}\label{thm:EU appendix} 
+%	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+%		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
+%		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
+%	\end{enumerate}
+%\end{theorem}
+%\begin{proof}
+%	The basic reason is by exchange of expectations: $$\Exp_{p\times\mu}[\U(\nu)]:=\Exp_{p\times\mu}[\Exp_{\nu_D}[\U]]=\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]$$. The exchange is .
+%	 and one can observe that this obtains it optimum when each $\nu_D(\EU_p(D))=1$, putting maximal weight on those acts which maximise expected utility, and reaches this maximal exactly when $\nu_D(\EU_p(D))=1$ for $\mu$-almost every $D\in\D$. 
+%	
+%	
+%	
+%	
+%	
+%	For maximum perspicuity, we will write everything out with integrals, to keep track of the variables. However, note that $\Omega$ and each $D$ have been assumed to be finite. 
+%	
+%	Let $t_p(D):=\sup_{a\in D}\Exp_p[\U(a)]$, the maximum attainable expected utility on $D$. $\EU_p(D)=\{a\in D\given \Exp_p[\U(a)]=t_p(D)\}$.
+%	$\nu_D$ is a measure over $D$, so:
+%	\begin{align}
+%		\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&\leq t_p(D)\\
+%			\text{ and }	\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)&= t_p(D)\text{ iff }\nu_D(\EU_p(D))=1
+%	\end{align}
+%	
+%	Therefore 
+%	\begin{align}
+%	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&\leq \int_\D t_p(D)\mu(\diff D)\\
+%	\text{ and }	\int_\D\int_D \Exp_p[\U(a)]\;\nu_D(\diff a)\mu(\diff D)&= \int_\D t_p(D)\mu(\diff D)\\\text{ iff }\mu\{D\given \nu_D(\EU_p(D))=1\}=1
+%\end{align}
+%	
+%	So for all $a\in D$, $\Exp_p[\U(a)]\leq t_p(D)$, with equality just when $a\in \EU_p(D)$. 
+%	
+%	$\nu_D$ is a measure over $D$ ($D$ is finite, but we write it as an integral for), so $\Exp_{\nu_D}[\Exp_p[\U]]\leq t_p(D)$, with equality just when $\nu_D(\EU_p(D))=1$. 
+%	
+%	Thus, $\Exp_\mu[\Exp_{\nu_D}[\Exp_p[\U]]]\leq \Exp_\mu[t_p(D)]$, with equality just when $\mu\{D\given \nu_D(\EU_p(D))=1\}=1$. 
+%	
+%	Now, observe that $\Exp_{p\times\mu}[\U(\nu)]=$
+%	
+%\end{proof}
+%
+%\begin{theorem}\label{thm:EU appendix} 
+%	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+%	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\nu'$, $\Exp_b[\U(\nu)]\geq\Exp_b[\U(\nu')]$
+%	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\nu'$ does not, then $\Exp_b[\U(\nu)]>\Exp_b[\U(\nu')]$.
+%\end{enumerate}
+%\end{theorem}
+%\begin{proof}
+%
+%
+%\end{proof}
+%
+%
+%
+%\begin{theorem}\label{thm:EU appendix} 
+%	\hspace*{1mm}
+%	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+%		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
+%		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\s'$ does not, then $\Exp_b[\U(\s)]>\Exp_b[\U(\s')]$.
+%	\end{enumerate}
+%\end{theorem}
+%
+%
+%\begin{proof}
+%	For any $\omega\in\Omega$ and $D\in\D'$, let $t_b(\omega,D):=\sup\{\Exp_{b(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
+%	Note that $t_b(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $b$. 
+%	
+%	Suppose $D\in\D'$. By definition of $t_b$, $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega^*,D)$ for any $\omega^*\in\Omega$. 
+%	For $\n$ a probabilistic picking strategy, $\n_D$ is a measure over $D$, so $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(a)(\omega)]=\sum_{a\in D}\n_D(a)(\omega)$. Since 
+%	
+%	By definition of $\EU_{b(\cdot|-)}(D)$, $\Exp_{b(\cdot|D)}[\U(a)]= t_b(\omega^*,D)$ exactly when $a\in \EU_{b(\cdot|-)}(D)$. 
+%	
+%	
+%	
+%	Now, 
+%	
+%	%	Observe that $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{b(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
+%	
+%	%	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
+%	
+%	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega^*,D^*\right>\in\X\given \omega=\omega^*\right\}$.	
+%	
+%	%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega,D\right>\given D\in\D'\right\}$.	
+%	
+%	
+%	
+%	{\allowdisplaybreaks
+%		\begin{align}
+%			\Exp_b[\U(\n)]&=\sum_{\omega\in\Omega}\int_{\D} \U(\n)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\sum_{\omega\in\Omega}\int_{\D'} \U(\n)(\omega,D) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\n)(\omega,D)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\int_{\D'}\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]\;f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]\;f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&\leq\sum_{\omega\in\Omega}\int_{\D'}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\sum_{\omega\in\Omega}\int_{\D}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%			&=\Exp_b[t_b]
+%	\end{align}}
+%	
+%	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{b(\cdot|D)}[\U(\n)(\omega,D)]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{b(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
+%\end{proof}
+%
+%\begin{color}{red}
+%\begin{theorem}\label{thm:EU appendix} 
+%\hspace*{1mm}
+%	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+%		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
+%		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\s'$ does not, then $\Exp_b[\U(\s)]>\Exp_b[\U(\s')]$.
+%	\end{enumerate}
+%\end{theorem}
+%
+%
+%\begin{proof}
+%	For any $\omega\in\Omega$ and $D\in\D'$, let $t_b(\omega,D):=\sup\{\Exp_{b(\cdot|D)}[\U(a)]\given a\in D\}$. We can define it arbitrarily for $D\notin \D'$. 
+%	Note that $t_b(\omega,D)$ only depends on $D$. Nevertheless, we define it as a function on $\Omega\times\D$ in order to take expectations relative to $b$. 
+%	
+%	Suppose $D\in\D'$. By definition of $t_b$, $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega^*,D)$ for any $\omega^*\in\Omega$. By definition of $\EU_{b(\cdot|-)}(D)$, $\Exp_{b(\cdot|D)}[\U(a)]= t_b(\omega^*,D)$ exactly when $a\in \EU_{b(\cdot|-)}(D)$.
+%	
+%	Now, 
+%	
+%%	Observe that $\Exp_{b(\cdot|D)}[\U(a)]\leq t_b(\omega,D)$ for all $a\in D$, with equality iff $a\in \EU_{b(\cdot|-)}(D)$, by definition of .\todoold{this is only true for $D\in\D'$!}
+%	
+%%	Let $\X:=\{\left<\omega,D\right>\in\Omega\times\D\given f_\D(D)>0\}$.
+%	
+%%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega^*,D^*\right>\in\X\given \omega=\omega^*\right\}$.	
+%	
+%%	For any $\omega\in\Omega$, let $\X_\omega:=\left\{\left<\omega,D\right>\given D\in\D'\right\}$.	
+%
+%	
+%
+%{\allowdisplaybreaks
+%\begin{align}
+%\Exp_b[\U(\s)]&=\sum_{\omega\in\Omega}\int_{\D} \U(\s(D))(\omega) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\sum_{\omega\in\Omega}\int_{\D'} \U(\s(D))(\omega) f(\omega,D) \frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\int_{\D'}\left[\sum_{\omega\in\Omega}\frac{f(\omega,D)}{f_\D(D)}\U(\s(D))(\omega)\right]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\int_{\D'}\Exp_{b(\cdot|D)}[\U(\s(D))]f_\D(D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\sum_{\omega\in\Omega}\int_{\D'}\Exp_{b(\cdot|D)}[\U(\s(D))]f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%&\leq\sum_{\omega\in\Omega}\int_{\D'}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\sum_{\omega\in\Omega}\int_{\D}t_b(\omega,D)f(\omega,D)\frac{1}{|\Omega|}\diff\lambda(D)\\
+%&=\Exp_b[t_b]
+%\end{align}}
+%
+%	Thus, $\Exp_b[\U(\s)]\leq \Exp_b [t_b]$ with equality iff $\Exp_{b(\cdot|D)}[\U(\s(D))]=t_b(\omega,D)$ almost everywhere, which is true iff $b\{\left<\omega,D\right> \in \Omega\times\D \given \s(D)\in \EU_{b(\cdot|-)}(D)\}=1$, i.e., iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. Both (i) and (ii) follow immediately from this.
+%	\end{proof}
+%
+%
+%\begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
+%	\begin{enumerate}
+%		\item  If $\n$ $\mu$-surely picks for $\EU_p$ then, for any $\n'$, $\EU_{p\times\mu}[\U(\n)]\geq\EU_{p\times\mu}[\U(\n')]$
+%		\item If $\n$ $\mu$-surely picks for $\EU_p$, and $\n'$ does not, then $\EU_{p\times\mu}[\U(\n)]>\EU_{p\times\mu}[\U(\n')]$.
+%	\end{enumerate}
+%\end{theorem}
+%\begin{proof}
+%	Let $m_D(p):=\sup\{\Exp_p[\U(a)]\given a\in D\}$.
+%	
+%	So $\Exp_p[\U(a)]\leq m_D(p)$ for all $a\in D$, with equality only if $a\in \EU_p(D)$. 
+%	
+%	Since $\n_D$ is a probability over $D$, we know that $\Exp_{\n(D)}\Exp_p[\U]\leq m_D(p)$ with equality only if $\n_D(\EU_p(D))=1$. And note that $\Exp_{\n(D)}\Exp_p(a)=\Exp_p[\U(\n)(D)]$
+%%	
+%%	{\color{cyan}
+%%		If $P$ is probability over $\Omega\times\D$, 
+%%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%%		
+%%%		$\Exp_P[\U(\n)]=\sum_{D\text{ s.t., }P(D)\neq 0} P(D)\sum_\omega \frac{P(D\wedge\omega)}{P(D)}\U(\n,D,\omega)$
+%%		}
 %		
-%%		$\Exp_P[\U(\n)]=\sum_{D\text{ s.t., }P(D)\neq 0} P(D)\sum_\omega \frac{P(D\wedge\omega)}{P(D)}\U(\n,D,\omega)$
-%		}
-		
-	Thus, $\EU_{p\times\mu}[\U(\n)]\leq \Exp_\mu [t(p)]$ with equality only if $\mu\Set {D \given \n_D(\EU_p(D))=1} = 1$, i.e., only if $\n$ $\mu$-surely picks for $\EU_p$. 
-%	By definition of $\EU_p$, we have that $a\in\EU_p(D)$ iff $\Exp_p\U(a)\geq \Exp_p\U(b)$ for all $b\in D$. 
-%	So if $a\in\EU_p(D)$ and $b\in D\setminus \EU_p(D)$ then $\Exp_p\U(a)>\Exp_p\U(b)$.
+%	Thus, $\EU_{p\times\mu}[\U(\n)]\leq \Exp_\mu [t(p)]$ with equality only if $\mu\Set {D \given \n_D(\EU_p(D))=1} = 1$, i.e., only if $\n$ $\mu$-surely picks for $\EU_p$. 
+%%	By definition of $\EU_p$, we have that $a\in\EU_p(D)$ iff $\Exp_p\U(a)\geq \Exp_p\U(b)$ for all $b\in D$. 
+%%	So if $a\in\EU_p(D)$ and $b\in D\setminus \EU_p(D)$ then $\Exp_p\U(a)>\Exp_p\U(b)$.
+%%	
+%%	Let $m_{p,D}:=\Exp_p(a)$ for any $a\in\EU_p(D)$, observing that this exists because we have assumed $D$ is finite so $\EU_p(D)\neq\emptyset$, and that it is well-defined because any $a,a'\in\EU_p(D)$ have $\Exp_p(a)=\Exp_p(a')$. 
+%%	
+%%	Thus, if $\n_D(\EU_p(D))=1$, then $\Exp_{\n(D)}\Exp_p(a)=m_{p,D}$. 
+%%	And if $\n_D(\EU_p(D))\neq 1$, then $\Exp_{\n(D)}\Exp_p(a)<m_{p,D}$.
+%%	
+%%	Thus, if $\n$ does $\mu$-surely pick for $\EU_p$, i.e., $\mu\{D\given \n_D(\EU_p(D))=1\}=1$, then $\Exp_\mu\Exp_{\n(D)}\Exp_p(a)=\Exp_\mu m_{p,D}$
+%%	
+%%	If $\n$ does not $\mu$-surely pick for $\EU_p$, then $\mu\{D\given \n_D(\EU_p(D))\neq 1\}>0$, then $\Exp_\mu\Exp_{\n(D)}\Exp_p(a)<\Exp_\mu m_{p,D}$. 
+%%	
+%%	Observe that $\EU_{p\times\mu}\Exp_{\n(D)}a=\Exp_\mu\Exp_{\n(D)}\Exp_p(a)$ by interchange of expectations. This obtains our result. \todooldinfo{is this cleaner than RPs writeup?}
+%\end{proof}
+%\end{color}
+%
+%
+%All the theorems about Expected Utility Theory and E-Admissibility, as well as the existence of Maximality strategies can be seen as quick corollaries of this: 
+%\Cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}
+%%\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+%
+%\begin{comment}
 %	
-%	Let $m_{p,D}:=\Exp_p(a)$ for any $a\in\EU_p(D)$, observing that this exists because we have assumed $D$ is finite so $\EU_p(D)\neq\emptyset$, and that it is well-defined because any $a,a'\in\EU_p(D)$ have $\Exp_p(a)=\Exp_p(a')$. 
-%	
-%	Thus, if $\n_D(\EU_p(D))=1$, then $\Exp_{\n(D)}\Exp_p(a)=m_{p,D}$. 
-%	And if $\n_D(\EU_p(D))\neq 1$, then $\Exp_{\n(D)}\Exp_p(a)<m_{p,D}$.
-%	
-%	Thus, if $\n$ does $\mu$-surely pick for $\EU_p$, i.e., $\mu\{D\given \n_D(\EU_p(D))=1\}=1$, then $\Exp_\mu\Exp_{\n(D)}\Exp_p(a)=\Exp_\mu m_{p,D}$
-%	
-%	If $\n$ does not $\mu$-surely pick for $\EU_p$, then $\mu\{D\given \n_D(\EU_p(D))\neq 1\}>0$, then $\Exp_\mu\Exp_{\n(D)}\Exp_p(a)<\Exp_\mu m_{p,D}$. 
-%	
-%	Observe that $\EU_{p\times\mu}\Exp_{\n(D)}a=\Exp_\mu\Exp_{\n(D)}\Exp_p(a)$ by interchange of expectations. This obtains our result. \todooldinfo{is this cleaner than RPs writeup?}
-\end{proof}
-\end{color}
+%In fact, we can create a version of this result allowing dependence between the decision problem you're faced with and the state of the world, assuming that when you make a decision you first conditionalise your probabilities on which decision problem you're faced with and then use expected utility using that updated probability to make the decision. 
+%This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}\U(\n)$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}\U(\n)$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
+%\end{comment}
+%
+%%Since, 
+%%		If $P$ is probability over $\Omega\times\D$, 
+%%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%
+%
+%
+%
+%\end{colored}
 
-
-All the theorems about Expected Utility Theory and E-Admissibility, as well as the existence of Maximality strategies can be seen as quick corollaries of this: 
-\Cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}
-%\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
-
-\begin{comment}
-	
-In fact, we can create a version of this result allowing dependence between the decision problem you're faced with and the state of the world, assuming that when you make a decision you first conditionalise your probabilities on which decision problem you're faced with and then use expected utility using that updated probability to make the decision. 
-This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}\U(\n)$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}\U(\n)$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
-\end{comment}
-
-%Since, 
-%		If $P$ is probability over $\Omega\times\D$, 
-%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
-
-
-
-
-\end{colored}\begin{colored}{violet}
+\begin{colored}{violet}
 \subsection{E-Admissibility}
 This will then imply many of the results about E-Admissible strategies due to the following, which is immediate from the definition of E-Admissibility.
 \begin{lemma}\label{thm:ead to eu appendix}
