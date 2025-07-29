@@ -4759,35 +4759,55 @@ If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a fam
 
 
 
-\subsection{JK Nec $\&$ Suff}
+\subsection{JK Gen Suff}
 
 
 
 \begin{proposition}[JK]\label{thm:ead-existsimpgen[indep]:JK}
+
+
+	
+%	Suppose $\{p_i\given i\in I\}\subseteq \IP$ and we have disjoint $E_i\subseteq\Decs$ such that for all $(p,\mu)\in\IB$, there is some $i\in I$ with
+%	 $\mu\{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0$.
+	
+%	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+
+
 
 Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu_p$).
 	
 %	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu_p\in\IB$ such that $\s$ $\mu_p$-surely picks for $\EU_p$. 
 	
 
-Then, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$ iff there is some  $E\subseteq\Decs$ such that (1) $(\forall p\times\mu_p\in\IB)\mu_p(E)>0$, and (2) $(\forall X\in E)(\exists f_X\in\EAd_\IP(X))(\exists g_X\not\in\EAd_\IP(X))(\forall E^\prime\subseteq E)$
+Suppose further that
+\begin{enumerate}
+\item $(\forall p\times\mu_p\in\IB)(\exists E_p\subseteq\Decs)\mu_p(E_p)>0$, 
+\item $(\forall p,q\in\IP: p\not=q)E_p\cap E_q=\varnothing$
+\item $(\forall p\times\mu_p\in\IB)(\forall X\in E_p)(\exists f_X\in\EAd_\IP(X))(\exists g_X\in X)$
 \[
-\posi(\left\{f_X-g_X\given X\in E^\prime\right\})\cap \mathbb{R}^n_{<0}=\varnothing\;\Rightarrow\;(\forall p\times\mu_p\in\IB)\mu_p(E^\prime)=0
+(\forall E^\prime\subseteq E_p)\left[\posi(\left\{f_X-g_X\given X\in E^\prime\right\})\cap \mathbb{R}^n_{<0}=\varnothing\;\Rightarrow\;\mu_p(E^\prime)=0\right]
 \]
 where $\posi(A)=\left\{\sum_{k=1}^m\lambda_k h_k \given m\in\mathbb{N},\;h_1,\hdots,h_m\in A,\;\lambda_1,\hdots\lambda_m>0\right\}$ for any $A\subseteq\mathbb{R}^n$.
+\end{enumerate}
+
+Then, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$
 
 \end{proposition}
 \begin{proof}
 
 	
-	Let $\s(x)=f_X$ for $X\in E$. For $X\notin E$, let $\s(X)$ be anything in $\EAd_\IP(X)$.  So $\s$ picks for $\EAd_\IP$. 
+For any $p\times\mu_p\in\IB$ and $X\in E_p$, let $\s(x)=f_X$. For $X\notin \cup_{p\in\IP}E_p$, let $\s(X)$ be anything in $\EAd_\IP(X)$.  So $\s$ picks for $\EAd_\IP$. 
 
 
-	Choose any $p\times\mu_p\in\IB$. Suppose for contradiction that $\s$ $\mu_p$-surely pick for $\EU_p$. Then $f_X\in\EU_p(X)$ $\mu_p$-a.e. on $E$, or equivalently, $f_X\in\EU_p(X)$ on $E^\prime$ for some $E^\prime\subseteq E$ with $\mu_p(E)=\mu_p(E^\prime)>0$. In that case,
+	Choose any $p\times\mu_p\in\IB$. Suppose for contradiction that $\s$ $\mu_p$-surely pick for $\EU_p$. Then $f_X\in\EU_p(X)$ $\mu_p$-a.e. on $E_p$, or equivalently, $f_X\in\EU_p(X)$ on $E^\prime$ for some $E^\prime\subseteq E_p$ with $\mu_p(E_p)=\mu_p(E^\prime)>0$. In that case,
 \[
 \posi(\left\{f_X-h\given X\in E^\prime, h\in X\right\})\cap \mathbb{R}^n_{<0}=\varnothing
 \]
-since	 $p(f_X-h)\geq0$ for all $X\in E^\prime, h\in X$. But $\left\{f_X-g_X\given X\in E^\prime\right\}\subseteq\left\{f_X-h\given X\in E^\prime, h\in X\right\}$, so we must have 
+since	 $p(f_X-h)\geq0$ for all $X\in E^\prime, h\in X$. But 
+\[
+\left\{f_X-g_X\given X\in E^\prime\right\}\subseteq\left\{f_X-h\given X\in E^\prime, h\in X\right\}.
+\]
+So we must have 
 \[
 \posi(\left\{f_X-g_X\given X\in E^\prime\right\})\cap \mathbb{R}^n_{<0}=\varnothing
 \]
@@ -4796,18 +4816,7 @@ But then by assumption $\mu_p(E^\prime)=0$ which is a contradiction.
 
 
 	
-	
-NEED OTHER DIRECTION.	
-	
-	
-	
-	
 	\end{proof}
-
-
-
-
-
 
 
 
