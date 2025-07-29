@@ -63,7 +63,7 @@
 
 \DeclareMathOperator*{\arginf}{\arg\,\inf}
 \DeclareMathOperator*{\argsup}{\arg\,\sup}
-
+\DeclareMathOperator{\posi}{posi}
 
 % Load amsfonts for \mathbb (optional, but recommended)
 %\usepackage{amsfonts}
@@ -4753,6 +4753,71 @@ If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a fam
 
 
 \end{proof}
+
+
+
+
+
+
+\subsection{JK Nec $\&$ Suff}
+
+
+
+\begin{proposition}[JK]\label{thm:ead-existsimpgen[indep]:JK}
+
+Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu_p$).
+	
+%	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu_p\in\IB$ such that $\s$ $\mu_p$-surely picks for $\EU_p$. 
+	
+
+Then, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$ iff there is some  $E\subseteq\Decs$ such that (1) $(\forall p\times\mu_p\in\IB)\mu_p(E)>0$, and (2) $(\forall X\in E)(\exists f_X\in\EAd_\IP(X))(\exists g_X\not\in\EAd_\IP(X))(\forall E^\prime\subseteq E)$
+\[
+\posi(\left\{f_X-g_X\given X\in E^\prime\right\})\cap \mathbb{R}^n_{<0}=\varnothing\;\Rightarrow\;(\forall p\times\mu_p\in\IB)\mu_p(E^\prime)=0
+\]
+where $\posi(A)=\left\{\sum_{k=1}^m\lambda_k h_k \given m\in\mathbb{N},\;h_1,\hdots,h_m\in A,\;\lambda_1,\hdots\lambda_m>0\right\}$ for any $A\subseteq\mathbb{R}^n$.
+
+\end{proposition}
+\begin{proof}
+
+	
+	Let $\s(x)=f_X$ for $X\in E$. For $X\notin E$, let $\s(X)$ be anything in $\EAd_\IP(X)$.  So $\s$ picks for $\EAd_\IP$. 
+
+
+	Choose any $p\times\mu_p\in\IB$. Suppose for contradiction that $\s$ $\mu_p$-surely pick for $\EU_p$. Then $f_X\in\EU_p(X)$ $\mu_p$-a.e. on $E$, or equivalently, $f_X\in\EU_p(X)$ on $E^\prime$ for some $E^\prime\subseteq E$ with $\mu_p(E)=\mu_p(E^\prime)>0$. In that case,
+\[
+\posi(\left\{f_X-h\given X\in E^\prime, h\in X\right\})\cap \mathbb{R}^n_{<0}=\varnothing
+\]
+since	 $p(f_X-h)\geq0$ for all $X\in E^\prime, h\in X$. But $\left\{f_X-g_X\given X\in E^\prime\right\}\subseteq\left\{f_X-h\given X\in E^\prime, h\in X\right\}$, so we must have 
+\[
+\posi(\left\{f_X-g_X\given X\in E^\prime\right\})\cap \mathbb{R}^n_{<0}=\varnothing
+\]
+But then by assumption $\mu_p(E^\prime)=0$ which is a contradiction.
+
+
+
+	
+	
+NEED OTHER DIRECTION.	
+	
+	
+	
+	
+	\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
