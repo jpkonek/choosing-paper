@@ -2261,7 +2261,7 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
 \begin{colored}{violet}
-	\todo{double check these thms!!!}
+
 
 \begin{definition}
 	$$\EAd_{\IB(\cdot|-)}(D) = \Set{a \in D \given (\exists b \in \IB)(\forall a' \in D)(\Exp_{b(\cdot|D)}[\U(a)]\geq\Exp_{b(\cdot|D)}[\U(a')])}
@@ -2283,14 +2283,19 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 		
 		For every $D\in\Decs$ and $a\in\EAd_{\IB(\cdot|-)}(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 	\end{proposition}
+
+	Whilst some of its picking strategies are not ruled out, often some will be ruled out. 
 \end{colored}
-	Whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
+	\begin{colored}{blue}
+		
+	be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
 		\begin{proposition}\label{thm:ead-existsimpermissible[dep]}
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.\todo{I'm struggling to prove it... }
 %	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.\todooldinfo{This thm is new, check it and see if instead I should write it with IPxM}
 \end{proposition}
+	\end{colored}
 
 Similarly, for Maximality, we can define: 
 \begin{definition}
@@ -2515,7 +2520,7 @@ Suppose $p$ is a probability over $\Omega$ and $\mu$ is a probability measure ov
 \begin{proposition}\label{thm:eu-nu-nec-suff}
 If $\Nu$ is $\EU$-complete, we have:
 $$\n \in \EU_{p\times \mu}(\Nu) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$.}$$
-and, more generally, 
+If $\Nu$ is conditional-$\EU$-complete, then
 $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
 \end{proposition}
 
