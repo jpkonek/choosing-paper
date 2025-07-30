@@ -217,7 +217,7 @@ Todo/questions:
 	"ORDERING"''}
 
 
-\todo[inline]{referee: I think the summary of results on p. 29 [concln] is very helpful, but it might be helpful to have a chart as well, and also to have some sort of summary of these results in the introduction too.}
+
 %\todooldinfo[color=red]{19/2 - I've come to a halt at least today. The imprecise nu etc is still fluffy. not sure if I'll come back to it soon}
 %\todooldinfo{from CCM: red text =  delete, but not ready to do so yet. Purple is stuff I'm considering and think would be good to be}
 %CCM trying to rewrite with strategies. 
@@ -233,7 +233,7 @@ Yet all is not lost, for this line of thinking nonetheless furnishes us with a t
 \begin{colored}
 	{violet}
 	\subsection{Our forthcoming results}
-	\todo[inline]{Say what we'll do? Summary of results}
+
 	
 	
 	Throughout this paper, we'll show that this idea results in a challenge for a host of theories that diverge from expected utility theory. The strength of the results that we show vary in the different cases. We provide a summary here.
@@ -1120,7 +1120,7 @@ If we again suppose that the self-undermining decision theory is correct, it lea
 
 %It's worth adding that, for those decision theories that permit the Allais preferences and also satisfy an Archimedeanicity postulate, they consider it rationally required of you, at the point when you're uncertain which decision problem you'll face, to pay money if it's possible to thereby to bind yourself to doing something other than what they will recommend when you actually face that decision. %\todo{C: we need to add Arch somewhere above!}.
 
-These self-undermining decision theories would prefer to bind themselves to do something other than what they recommend when you actually face that decision. \todo{this paragraph was above ``second'', which didn't seem to make sense. I've now put it next to the act-state dep}
+These self-undermining decision theories would prefer to bind themselves to do something other than what they recommend when you actually face that decision.
 Of course, we're used to that in cases of temptation---Ulysses should pay his sailors to bind him to the mast as their ship passes the Sirens---but that's because we think your utilities will change under the pressure of temptation or your probabilities will change in an irrational way or you won't choose rationally on the basis of your utilities and probabilities. Nothing like that is going on here.
 
 We're also used to that in cases of act-state dependence. Causal decision theorists say that in Newcomb's problem you should take both boxes, but if you can pay to take a pill to turn yourself into a one-boxer before the prediction is made, then you should. But that's because choosing how to choose, in this case, causes you to face a better decision problem down the line. Nothing like that is going on here. And perhaps we think that, at least when choosing a picking strategy has no causal or evidential impact on which decision problems you will face or the value of the options in those problems, the correct theory of rational choice should not give rise to such dilemmas.
@@ -1639,7 +1639,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
 
- \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,u\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq u$.%
+ \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,u\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq h$.%
  \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
  %, and without loss of generality, for each act $a \in \A$ and state $\omega\in\Omega$, $0 \leq a(\omega) \leq 1$. We write $\A$ for the set of possible acts. \todoold{CCM: I still think we should have U and a separated. At least we *need* to do something like that to make sense of applying EU to strategies! since we need to specify the utility of a strategy..??}%An act is a function $a$ that specifies an outcome in each state $a(s)$. A utility function specifies the utility of that outcome $U(a(s))$.  %\todoold{should utilities be separated??}
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
@@ -1647,7 +1647,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 \emph{Decision problems } A decision problem $D$ specifies a non-empty finite set of acts: the acts that are available in that decision problem. The set of all relevant decision problems is $\D$. %\todo{should we add ``re;evant''?}
 
-(In fact, we could relax the assumption that $D$ specifies a finite set of acts and instead assume that the set of acts it specifies is compact relative to the utility function, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,u]^\Omega$. But we will continue to assume that decision problems are finite for ease of presentation.)
+(In fact, we could relax the assumption that $D$ specifies a finite set of acts and instead assume that the set of acts it specifies is compact relative to the utility function, that is, $\{\U(a)\given a \in D\}$ is a compact subset of $[l,h]^\Omega$. But we will continue to assume that decision problems are finite for ease of presentation.)
 
 %That is, $\emptyset \neq D \subseteq \A$. %For example, you might be choosing whether to take an umbrella or not. 
 %$\D$ is a set of decision problems. A decision problem $D$ is a set of acts. That is, $D \subseteq \A$. Again, this needn't include all subsets of $\A$, for we might take only certain decision problems to be possible.
@@ -1986,7 +1986,7 @@ That is, $\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\
 
 
 By \cref{thm:eu-self-rec}, for any $b\in\IB$ which has the form $p\times\mu$, if $\s$ picks for $\EU_p$ then it is in $\EU_{b}(\S)$, and thus, is in $\EAd_\IB(\S)$. Also, when $p\in\IP$ any $\s$ which picks for $\EU_p$ also picks for $\EAd_\IP$. We thus typically have some strategy which both picks for $\EAd_\IP$ and is in $\EAd_\IB$, unlike for $\Gamma$-Maximin. 
- \begin{proposition}\label{thm:ead-suff-indep}
+ \begin{proposition}\label{thm:ead-existence[indep]}
 	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
 	
 	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
@@ -2004,7 +2004,7 @@ By \cref{thm:eu-self-rec}, for any $b\in\IB$ which has the form $p\times\mu$, if
 % {\color{orange}an set $\IB$ of probabilities over $\Omega\times\D$, each taking $\Omega$ and $\D$ to be probabilistically independent. This is a very strong notion of independence, called Strong Independence. We make use of it 
 % }
  Then we can ask, from the point of view of $\IB$, and using E-Admissibility as our decision theory, whether a picking strategy that picks for $\EAd_\IP$ is permissible. And it turns out that, unlike for $\Gamma$-Maximin, there always is such a strategy. Indeed, if you simply take $p$ from $\IP$, and take a picking strategy $\s$ that picks for $\EU_p$, then $\s$ also picks for $\EAd_\IP$, and $\s$ is E-Admissible, as evaluated by $\IB$---that is, $\s$ is in $\EAd_\IB(\Strategies)$; at least if there is some $b=p\times\mu\in\IB$. The following is a corollary of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
- \begin{proposition}\label{thm:ead-suff-indep}
+ \begin{proposition}\label{thm:ead-existence[indep]}
  		If there is some $p\times \mu\in \IB$ such that $\s$ $\mu$-surely picks for $\EU_p$, then $\s\in\EAd_\IB(\Strategies)$. 
  		
  		Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there is some $\s$ which picks for $\EAd_\IP$ and is in  $\EAd_\IB(\Strategies)$. 
@@ -2033,9 +2033,9 @@ and
 \[
 \inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+\given D\in B]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
 \]
-where $g^+:\Omega\times\D\rightarrow\mathbb{R}$ is the ``cylindrical extension'' of $g$ defined by $g^+(\omega,D)=g(\omega)$ for all $\omega\in\Omega$ and $D\in\D$. As many authors have noted, individual probabilities $b$ in the irrelevant natural extension $\IB$ will not in general treat $\D$ as irrelevant to $\Omega$ (\emph{cf.} \cite[pp. 96-7]{debock2019iar}). Nonetheless, $\IB$ itself will do so, in the sense described above. Moreover, $\IB$ will contain any $b$ that treats $\D$ as stochastically independent of $\Omega$. This is sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.
+where $g^+:\Omega\times\D\rightarrow\mathbb{R}$ is the ``cylindrical extension'' of $g$ defined by $g^+(\omega,D)=g(\omega)$ for all $\omega\in\Omega$ and $D\in\D$. As many authors have noted, individual probabilities $b$ in the irrelevant natural extension $\IB$ will not in general treat $\D$ as irrelevant to $\Omega$ (\emph{cf.} \cite[pp. 96-7]{debock2019iar}). Nonetheless, $\IB$ itself will do so, in the sense described above. Moreover, $\IB$ will contain any $b$ that treats $\D$ as stochastically independent of $\Omega$. This is sufficient to guarantee that the condition of \cref{thm:ead-existence[indep]} holds.
 
-Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \emph{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \emph{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $b\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $b$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies completely independent, \emph{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-suff-indep} holds.
+Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \emph{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \emph{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $b\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $b$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies completely independent, \emph{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-existence[indep]} holds.
 
 
 
@@ -2070,7 +2070,7 @@ Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might tre
 The upshot is that E-Admissibility is not self-undermining in the same way that $\Gamma$-Maximin is self-undermining. So long as $\IP$ and $\IB$ are appropriately related, then there are strategies that pick for it that it does not deem impermissible.
 
 
-Do we obtain a converse to \cref{thm:ead-suff-indep}?  Are these the only E-Admissible strategies? 
+Do we obtain a converse to \cref{thm:ead-existence[indep]}?  Are these the only E-Admissible strategies? 
 A strategy is E-Admissible iff there is some $b\in\IB$ which expects it to be optimal.
 We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $b$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
 
@@ -2101,26 +2101,26 @@ For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{E
 However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
 If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. 
 However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$, namely any strategy for which there is some $p\times\mu\in\IB$ which $\mu$-surely picks for $\EU_p$, for example $\s_{\text{1E,2E}}$. 
-\todo{minor rewrite this tilltle bit above. Reread}
+\todo{minor rewrite this little bit above. Reread. Huge changes below.}
 
 
-
-There are always some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$, at least if $\EAd_\IP$ is not sufficiently precise, i.e., that it does not $\mu$-surely look like $\EU_p$, or a restriction thereof, for any $p\times\mu\in\IB$. 
+\begin{colored}{violet}
+	
+There are often some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$. 
+This requires both that one's credal state is imprecise and that each $\mu$ sees a requirement to coordinate (and, moreover, that these requirements are coordinated).
+A condition that can be checked to show the existence of such strategies is the following: 
 \begin{proposition}\label{thm:ead-existsimpermissibel[indep]}
-
-{Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
+	If there exist some (distinct) $q_1,q_2\in\IP$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
+	\[
+	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{q_i}(D)=\emptyset\}>0
+	\]
 	
-%	Then, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
-	
-	
-	Suppose further that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. }
-
-%Suppose every $b\in\IB$ has the form $p\times\mu$.
-	
-	%Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
-	
-	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.\todo{struggling to prove it...!}
+	Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
+This can be verified in various cases, such as the Ellsberg ones. 
+We can also show it if each $\mu$ is sufficiently spread. For example, if each $\mu$ assigns strictly positive measure to every collection of take-it-or-leave-it decisions generated by a non-empty open subset of $\A$, that is $\mu(\{\{a,0\}\given a\in V\})>0$ for $V$ open non-empty subset of $\A$; or if each $\mu$ assigns strictly positive measure to every non-empty open set of decisions. 
+
+\end{colored}
 
 
 %{\color{red}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies. What this reveals is that...}
@@ -2130,7 +2130,7 @@ There are always some strategies which pick for $\EAd_\IP$ but which are rejecte
 %}
 
  E-Admissibility rejects some picking strategies which are compatible with its own choice set. %\todo{this is repeating statement above the propn... is that ok?}
-  \Cref{thm:ead-equiv[dep]} shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
+  \Cref{thm:ead-equiv[indep]} (and the more general \cref{thm:ead-equiv[dep]}) shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
 
 
 
@@ -2203,7 +2203,7 @@ The utility of an action, $\U(a)$, is a gamble on $\Omega$. The utility of picki
 	$$\Maximality_\IB(\S)=\Set{\s\in\S\given (\forall \s'\in\S)(\exists b\in\IB)(\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')])}$$
 \end{colored}
 	
-Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-suff-indep} entails:
+Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-existence[indep]} entails:
 
 
 \begin{colored}{red}
@@ -2274,12 +2274,18 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 	We thus have, as a consequence of \cref{thm:eu-dep}: 
 	\begin{proposition}\label{thm:ead-equiv[dep]}
 		$\s\in\EAd_\IB(\Strategies)$ iff for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+	\end{proposition}
+	And so:
+	 \begin{proposition}\label{thm:ead-existence[dep]}
+	 	If $b\in\IB$ and $\s$ picks for $\EU_{b(\cdot|-)}$, then $\s$ both picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_{\IB(\cdot|-)}$.
+	 	
+	 	There thus always exists some strategies which pick for $\EAd_\IP$ and are in $\EAd_{\IB(\cdot|-)}$. 
 		
-		Thus, there is some $\s$ which picks for  $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Strategies)$, namely, for any $b\in\IB$, a strategy $\s$ which $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
+		For every $D\in\Decs$ and $a\in\EAd_{\IB(\cdot|-)}(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 	\end{proposition}
 \end{colored}
 	Whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
-		\begin{proposition}\label{thm:ead-existence[dep]}
+		\begin{proposition}\label{thm:ead-existsimpermissibel[dep]}
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.\todo{I'm struggling to prove it... }
@@ -2294,7 +2300,7 @@ Similarly, for Maximality, we can define:
 	\begin{proposition}\label{thm:max-suff[dep]}
 	If for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\s\in\Maximality_\IB(\Strategies)$. 
 \end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
-an analogue of \cref{thm:ead-existence[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
+an analogue of \cref{thm:ead-existsimpermissibel[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
 
 
@@ -2461,20 +2467,48 @@ We will judge whether the decision theory evaluates a probabilistic picking stra
 There are various natural proposals for what is considered in $\Nu$ depending on one's interpretation and applications of our results. 
 When $\Nu$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
 If you think you get to pick by randomisation, and can select any randomisation process, then $\Nu$ will be the collection of all probabilistic picking strategies.
-If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set),%\todo{I added the `uniform'},
+If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set), %\todo{I added the `uniform'},
 then $\Nu$ will have a particular $\n^\c$ for each $\c$, where $\n^\c$ picks for $\c$. 
 If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
 
+	\begin{colored}{violet}
 Our results will all hold under various choices of $\Nu$, so long as it has a particular feature: 
+that it at least contains some $\nu^\c$ for each relevant choice function $\EU_p$ or $\EU_{b(\cdot|-)}$.
 %We will just need a structural requirement on $\negies$ for our results to hold, which will be satisfied in these various interpretations: 
 \begin{definition}\label{def:EU-complete}
-	A set of probabilistic picking strategies, $\Nu$, is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
+	A set of probabilistic picking strategies, $\Nu$:
+	
+	$\Nu$ is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
+	
+	$\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
+
+		
+	$\Nu$, is \emph{deterministically full} if $\Nu\supseteq\S$, containing all the deterministic picking strategies. 
+
+		
+
 	%	
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\n$ in $\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
-%In fact, for our results we will only require that it is sufficiently $\EU$-complete for $\IB$, meaning that for each $p\times \mu\in \IB$ there is some $\n\in\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$. However, we will continue to use the general $\EU$-completeness for ease of exposition. 
+If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is deterministically full. 
+\begin{proposition}
+ $\Nu$ is deterministically full
+		$\implies$  $\Nu$ is  conditional-$\EU$-complete 
+		$\implies$  $\Nu$ is  $\EU$-complete.
+\end{proposition}
 
-In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
+These conditions would fail if, for example, one has considerations of boundedness of our agents being unable to act according to a specified choice function; but we are assuming that that isn't our case. 
+
+In fact, our results only need 	$\Nu$ is {$\EU$-complete for $\IB$} which we can define as: for every  $b\in \IB$, there is some $\n$ in $\Nu$ such that $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$,  but in the main body of the paper we will state the results with the more general restrictions on $\Nu$.
+	
+\end{colored}
+	
+	
+
+\begin{colored}{red}
+	In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
+\end{colored}
+
 
 \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} extend to this setting.
 Suppose $p$ is a probability over $\Omega$ and $\mu$ is a probability measure over $\D$.
@@ -2487,7 +2521,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 
 \subsubsection{E-Admissibility}
-\Cref{thm:ead-equiv[dep],thm:ead-existence[dep],thm:ead-suff-indep,thm:ead-existsimpermissibel[indep]} also generalise to the probabilistic picking strategy setting. 
+\Cref{thm:ead-equiv[dep],thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-existsimpermissibel[indep],thm:ead-existsimpermissibel[indep]} also generalise to the probabilistic picking strategy setting. 
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
@@ -2495,7 +2529,7 @@ Since something is in $\EAd_\IB$ iff for some $b$ in $\IB$ it is in $\EU_b$, we 
 \begin{proposition}\label{thm:ead-nu-nec-suff}
 If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
-Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is $\EU$-complete: 
+Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is conditional-$\EU$-complete: 
 $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
 %If $\IB$ is strongly complete, then: $\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}
 %\end{align}
@@ -2509,7 +2543,7 @@ $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Dec
 %\end{proposition}
 
 	\begin{proposition}\label{thm:ead-nu-reg-nec}
-		Suppose that $\Nu$ is $\EU$-complete. \todo{I don't think we need EU-complete!}
+		Suppose that $\Nu$ is conditional-$\EU$-complete.
 		
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 		
@@ -2625,7 +2659,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
-	Suppose $\Nu$ is $\EU$-complete.  
+	Suppose $\Nu$ is $\EU$-complete. 
 Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
 	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
@@ -3297,7 +3331,7 @@ For any integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bound
 \section{EU and E-admissibility}
 
 	
-\subsection{EU}
+\subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}
 Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
 
 We will prove the result in generality to cover all these cases. 
@@ -3400,16 +3434,16 @@ Our claims follow from this.
 \begin{corollary}
 	\begin{enumerate}
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
-		\item \label{itm:eu-2}Suppose $\Nu$ is $\EU$-complete. If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ then $\nu\notin\EU_b(\Nu)$.
+		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu_b$ which picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
 	\cref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
 	
-	For \cref{itm:eu-2}, take $\nu^*$ which does pick for $\EU_{b(\cdot|-)}$, possible by $\EU$-completeness, and \cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^*)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \cref{itm:eu-2}, take $\nu_b$ which does pick for $\EU_{b(\cdot|-)}$. \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
-This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep} (noting that $\S$ is $\EU$-complete by definition). 
+This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
 
 \end{colored}
 
@@ -3658,10 +3692,10 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 
 \begin{colored}{violet}
 %\subsection{E-Admissibility}
-\subsection{E-Admissibility and EU equivalences}
-This will then imply many of the results about E-Admissible strategies.
+\subsection{E-Admissibility and EU equivalences\\  (\cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff})}
+This will imply many of the results about E-Admissible strategies.
 
-We will again state the results for probabilistic picking strategies, $\nu$, with the deterministic picking strategies, $\s$ being special cases. Recalling that when $\Nu=\S$ the same definitions apply. 
+We will again state the results for probabilistic picking strategies, $\nu$, with the deterministic picking strategies, $\s$ being special cases. Recalling that when $\Nu=\S$ the same definitions apply.
  
 Judgements about strategies being E-Admissible are as follows:
 \begin{lemma}\label{thm:appendix:ead:strategiesjudge}
@@ -3674,8 +3708,13 @@ Judgements about strategies being E-Admissible are as follows:
 \begin{proof}
 	Immediate from definitions. 
 \end{proof}
+We will use a new definition encompassing $\Nu$ being $\EU$-complete and $\Nu$ being conditional-$\EU$-complete, as in \cref{def:EU-complete}, by specifying the set it is $\EU$-complete for: 
+\begin{definition}
+	$\Nu$ is $\EU$-complete for $\IB$ iff for every $b\in\IB$, there is some $\nu_b\in\Nu$ such that $\nu_b$ picks for $\EU_{b(\cdot|-)}$. 
+\end{definition}
+And note that if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it is $\EU$-complete for any $\IB$. 
 \begin{corollary}\label{thm:appendix:ead:eu}
-	Suppose $\Nu$ is $\EU$-complete. 
+	Suppose $\Nu$ is $\EU$-complete for $\IB$.
 	\begin{enumerate}
 		\item $\nu\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\nu$ $b_\Decs$-picks for $\EU_{b(\cdot|-)}$.  
 		\item \label{itm:ead:2}If $p\times\mu\in \IB$ and $\nu$ $\mu$-surely picks for $\EU_p$, then $\nu\in\EAd_\IB(\Nu)$ 
@@ -3683,9 +3722,9 @@ Judgements about strategies being E-Admissible are as follows:
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU appendix}. In fact, \cref{itm:ead:2} does not require $\EU$-completeness. 
+	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU appendix}.
 \end{proof}
-This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of \cref{thm:ead-equiv[dep]}. 
+This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-equiv[dep]}. For \cref{thm:ead-existence[dep],thm:ead-existence[indep]}, we will use a further lemma. 
 
 
 \begin{lemma}\label{thm:appendix:ead:pickingeu}
@@ -3702,7 +3741,7 @@ This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of
 	An analogous argument holds for \cref{itm:appendix:ead:pickingeu:2}, as $\EU_{b(\cdot|-)}(D)\subseteq\EAd_{\IB(\cdot|-)}(D)$ for all $D$. 
 \end{proof}
 
-\begin{corollary}\label{thm:appendix:ead:exist}
+\begin{corollary}\label{thm:appendix:ead:exists}
 	\begin{itemize}
 		\item \label{itm:ead:blah1}Suppose $p\in\IP$,  $p\times\mu\in\IB$ and $\nu$ picks for $\EU_p$. Then $\nu$ picks for $\EAd_\IP$ and is in $\EAd_\IB(\Nu)$. 
 		\item \label{itm:ead:blah2}Suppose $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$. Then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Nu)$. 
@@ -3713,11 +3752,11 @@ This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff} and the first part of
 	
 	\Cref{itm:ead:blah2}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
 \end{proof}
-\cref{thm:ead-suff-indep} follows from this, using the fact that $\S$ is $\EU$-complete so we can always select such an $\s$. So does the second part of \cref{thm:ead-equiv[dep]}
+\cref{thm:ead-existence[indep],thm:ead-existence[dep]} follow from this.
 
 
 
-We have thus proved \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-indep,thm:ead-equiv[dep]}. 
+We have thus proved \cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff}. 
 
 
 %
@@ -3752,14 +3791,14 @@ We have thus proved \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-suff-
 %	%If $\negies$ is $\EU$-complete, then $$\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}$$
 %\end{proposition}
 
-\subsection{Maximality}
-As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that there exist some Maximality strategies which are themselves judged as Maximal: \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}
+\subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}
+As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal ( \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that the risk-sensitive decision theories or $\Gamma$-maximin were.
 
-\subsection{Underminingness of E-Admissibility}
+\subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec})}
 
-We will now move to \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which no strategy looks like an expected utility strategy. 
+We will now move to \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
 
-For regular picking strategies this is simple: it has to not look like an $\EU_p$ strategy. 
+For regular picking strategies this is simple: there must E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
 	\begin{proposition}[\cref{thm:ead-nu-reg-nec}]
 	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
@@ -3780,43 +3819,197 @@ For regular picking strategies this is simple: it has to not look like an $\EU_p
 	 By \cref{thm:appendix:ead:eu}, then $\nu\notin\EAd_\IB(\Nu)$. 
 \end{proof}
 
-For showing the existence of deterministic picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
+For showing the existence of \emph{deterministic} picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
 \begin{example}
 	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ better than $a_2$ and $p_2$ expects $a_2$ better than $a_1$. Suppose $\mu$ is sure it'll be faced with $D=\{a_1,a_2\}$. Then picking strategies are just determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy, even though $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}\neq 1$. 
 \end{example}
 
-Instead the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
+Instead, the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
 
 In these cases, we have distinct decisions each of which have positive measure but where every probability 
 
-\begin{proposition}
-	If there are some $q_1,q_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
+\begin{proposition}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
+	If there exist some (distinct) $p^*_1,p^*_2\in\IP$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $p^*_1$ or $p^*_2$ such that
 	\[
-	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{q_i}(D)=\emptyset\}>0
+	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\}>0
 	\]
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $(p,\mu)\in\IB$ such that $\s$  $\mu$-surely picks for $\EU_p$. 
 \end{proposition}
+\begin{proof}
+	Set $\s$ so that $\s(D)\in\EU_{p^*_1}(D)$ for $D\in E_1$, $\s(D)\in\EU_{p^*_2}(D)$ for $D\in E_2$, and $s(D)\in\EAd_{\IP}(D)$ for any other $D$. 
+	
+	By construction it picks for $\EAd_\IP$. 
+	
+	For any $(p,\mu)\in\IB$ there is at least one of $p^*_1$ or $p^*_2$ such that
+	\[
+	\mu(\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\})>0
+	\]
+	If $D\in E_i$ and $\EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset$ then $\s(D)\notin \EU_p(D)$. So  
+	\begin{align}
+		\mu\{D\given\s(D)\notin \EU_p(D)\}\geq 	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\}>0
+	\end{align}It thus does not $\mu$-surely pick for $\EU_p$. 
+\end{proof}
+This condition can be verified in cases such as the Ellsberg example or the example in \cref{eg:coord}.
 
+It can also be extended to more than two probabilities: In fact, we could choose an event for each probability in $\IP$ (allowing some to be empty, so it encompasses the previous result)
+%there is some $\{p^*_i\given i\in I\}\subseteq\IP$ (which may be uncountable) such that for all $(p,\mu)\in\IB$, there is some $J\subseteq I$ such that $\mu(\bigcup_{i\in J}\mu\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\})>0$. The proof is exactly the same: putting $\s(D)\in\EU_{p^*_i}(D)$ for $D\in E_i$ and verifying that this condition ensures that it does not $\mu$-surely pick for $\EU_p$. 
 
-\begin{proposition}
-	If $b_1,b_2\in\IB$ and $E_1,E_2\subseteq\Decs$ such that for all $b\in\IB$ there is at least one of $b_1$ or $b_2$ such that
+\begin{theorem}
+	There is a selection of disjoint $E_p\subseteq\Decs$ for each $p\in\IP$, such that for all $(p_0,\mu_0)\in\IB$, $$\mu_0\left(\bigcup_{p\in\IP}\{D\in E_p\given \EU_p(D)\cap\EU_{p_0}(D)=\emptyset\}\right)>0.$$
+\end{theorem}
+
+We suspect this condition 
+
+It will also apply in the conditional case. 
+\begin{proposition}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[dep]}
+	If there exist some (distinct) $b^*_1,b^*_2\in\IB$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $b\in\IB$ there is at least one of $b^*_1$ or $b^*_2$ such that
 	 \[
-		\mu\{D\in E_i\given \EU_{b(\cdot|D)}(D)\cap \EU_{b_i(\cdot|D)}=\emptyset\}>0
+		b_\Decs(\{D\in E_i\given \EU_{b(\cdot|D)}(D)\cap \EU_{b^*_i(\cdot|D)}=\emptyset\})>0
 	\]
 \end{proposition}
+\begin{proof}
+	Exactly as \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}.
+\end{proof}
+
+\begin{theorem}
+	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
+		
+	Suppose $\IP$ is non-singleton, there is some for every $(p,\mu)\in\IB$, for every $p'\in\IP$ with $p\neq p'$, $$\mu\{D\given \EU_p(D)\cap\EU_{p'}(D)=\emptyset\}>0.$$
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+\end{theorem}
+
+\begin{proof}
+	Take 
+\end{proof}
+
+
+
+\begin{corollary}
+	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
+	
+	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
+
+
+	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
+
+Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+\end{corollary}
+\begin{proof}
+
+Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ and for all $g\in \Re^\Omega$ there is some $\lambda_1$ such that $\lambda_1 g\in V_1$ and $\lambda_2>0$ such that $\lambda_2 g\in V_2$. 
+For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
+
+Take any distinct $p^*_1,p^*_2\in \IP$.
+
+Suppose $p$ is distinct from $p^*_i$. 
+There is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_{p^*_i}[g]$. 
+By assumption on $V_i$, there is some $\lambda >0$ with $\lambda g\in V_i$. Also $\Exp_p[\lambda g]>0>\Exp_{p^*_i}[\lambda g]$. 
+
+So $\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\}\neq \emptyset$. 
+
+It is also an open subset of $\Re^\Omega$, as expectation is continuous. 
+
+So, for every $(p,\mu)\in\IB$, $\mu\{\{a,0\}\given \U(a)\in\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\} \}$
+\end{proof}
+
+
+\begin{proposition}Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
+	
+	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
+	
+	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
+	
+	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+	
+\end{proposition}
+\begin{proof}
+	
+	\begin{sublemma}
+		Let $E$ be of the form $\{D\in\D\given D\subseteq V\}$ where $V$ is an open subset of $[l,h]^\Omega$.
+		
+		For distinct $q_1,q_2$, 
+		$\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
+	\end{sublemma}
+	\begin{proof}
+		
+		%		It is open: As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open. 
+		%		Since $q_1\neq {q_2}$ there are $a_1,a_2\in\A$ such that $\Exp_{q_1}[\U(a_1)]>\Exp_{q_1}[\U(a_2)]$ and $\Exp_{q_2}[\U(a_1)]<\Exp_{q_2}[\U(a_2)]$. For example, use a construction like in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}. 
+		%		As $\Exp$ is continuous, we can also find open $U_1\ni a_1$ and $U_2\ni a_2$ with the same inequality of expectations. 
+		%		So $\{D\given D\cap U_1=\emptyset\text{ and }D\cap U_2=\emptyset\}$ is open and it is a subset of $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$.
+		%		
+		
+		
+		\textbf{It is nonempty:}
+		
+		Take any $D_0\in E$. If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
+		
+		Otherwise there is some $a_0\in \EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)$. 
+		
+		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $g^*$ such that $\Exp_{q_1}[g^*]>0>\Exp_{q_2}[g^*]$, and, moreover, can choose a scalar small enough so that $\U(a_0)+\lambda g^*\in[l,h]^n$ and thus that $a_0+\lambda g^*\in\A$ (abusing notation). 
+		
+		So $\Exp_{q_1}[\U(a_0+\lambda g^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_2}[\U(a_0+\lambda g^*)]<\Exp_{q_2}[\U(a_0)]$.
+		
+		Consider $D^*=D_0\cup\{a_0+\lambda g^*\}$, recalling that $a_0\in D_0$. 
+		
+		Observe that $\EU_{q_1}(D^*)=\{a_0+\lambda g^*\}$ but that $a_0+\lambda g^*\notin\EU_{q_2}(D^*)$ as it finds $a_0$ preferable. 
+		Thus $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$.
+		
+		As $\U(a_0)+\lambda g^*\in V$ by choice of $\lambda$, $D^*\subseteq V$, so $D^*\in E$, as required. 
+		
+		\textbf{It is open:}
+		
+		Take any $D_0\in E$ with $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$. 
+		
+		Let $t_1=\max_{a\in D_0}\Exp_{q_1}[\U(a)]$ and $t_2=\max_{a\in D_0}\Exp_{q_2}[\U(a)]$.
+		
+		As  $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$, for all $a\in D_0$, either $t_1>\Exp_{q_1}(a)$ or  $t_2>\Exp_{q_2}(a)$. Thus $f(a):=\max\{t_1-\Exp_{q_1}[\U(a)],t_2-\Exp_{q_2}[\U(a)]\}>0$ for all $a\in D_0$. As $D_0$ is finite, put $\delta=\min_{a\in D_0}f(a)>0$. So that for all $a\in D_0$, either  $\Exp_{q_1}[\U(a)]\leq t_1-\delta$ or $\Exp_{q_2}[\U(a)]\leq t_2-\delta$
+		
+		Put $\epsilon=\nicefrac{\delta}{2}$. Suppose $d(D_0,D)<\epsilon$. That is, for all $a\in D_0$ there is some $c\in D$ such that $d(a,c)<\epsilon$ and for all $c\in D$ there is some $a\in D_0$ with $d(a,c)<\epsilon$. 
+		
+		Take any $a_1\in \EU_{q_1}(D_0)$, so $\Exp_{q_1}[\U(a_1)]=t_1$. There is some $c_1\in D$ such that $d(a_1,c_1)<\epsilon$, and thus $\Exp_{q_1}[\U(c_1)]>t_1-\epsilon$. Thus, $\max_{c\in D}\Exp_{q_1}[\U(c)]>t_1-\epsilon$, and so if $c\in \EU_{q_1}(D)$, then $\Exp_{q_1}[\U(c)]>t_1-\epsilon$. 
+		
+		
+		By an analogous argument, if $c\in \EU_{q_2}(D)$ then $\Exp_{q_2}[\U(c)]>t_2-\epsilon$. 
+		
+		For any $c\in D$, there is some $a_c\in D_0$ such that $d(c,a_c)<\epsilon$. If, also,  $c\in \EU_{q_1}(D)\cap\EU_{q_2}(D)$ then 
+		\begin{align}
+			&\Exp_{q_1}[\U(a_c)]>\Exp_{q_1}[\U(c)]-\epsilon>t_1-2\epsilon\\
+			\text{and }&\Exp_{q_2}[\U(a_c)]>\Exp_{q_2}[\U(c)]-\epsilon>t_2-2\epsilon
+		\end{align}
+		This is not possible by choice of $\epsilon=\nicefrac{\delta}{2}$. 		
+		%	
+		%	
+		%	
+		%		
+		%		\textbf{It is open:} 
+		%		As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
+		%		
+		%		The complement is $$\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}=\bigcup_{a\in \A}\{D\given a\in \EU_{q_1}(D)\text{ and } a\in\EU_{q_2}(D)\}$$
+		%		
+		%		For each fixed $a\in \A$, $\{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}$ is closed $\subseteq\A$. So $$\{D\given D\subseteq \{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}\}$$ is closed in $\Decs$. $\{D\given a\in\EU_q(D)\}$ is the intersection of this with the closed set $\{D\given a\in D\}$. 
+		%		
+		%		So $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}$ is an intersection of closed sets and thus is closed. 
+		%		
+	\end{proof}
+	
+	Let $V_1,V_2$ be any disjoint non-empty open subsets of $[l,h]^\Omega$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. 
+	
+	Take any $p_1,p_2$ distinct members of $\IP$. 
+	
+	\cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
+\end{proof}
 
 
 
 
-
-
-So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-suff-indep,thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
 The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require an different approach.
 
 \end{colored}
-\section{Maximality}
+\section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec})}
 To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. \todo{what are the two versions referred to?}
 We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
 \subsection{Wald theorem}
@@ -4380,13 +4573,37 @@ We can show this is satisfied given some other assumptions:
 \begin{corollary}[CCM version of \cref{thm:ead-existsimpermissibel[indep]:RP-1}]\label{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}
 	Completely independent. 
 	
-	Assume there are distinct $l,u\in\Re$ such that for all $g\in[l,u]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
+	Assume there are $l<0<h$ such that for all $g\in[l,h]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
 	
-	Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
+	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{corollary}
 \begin{proof}
+	
+	Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ and for all $g\in \Re^\Omega$ there is some $\lambda_1$ such that $\lambda_1 g\in V_1$ and $\lambda_2>0$ such that $\lambda_2 g\in V_2$. 
+	For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
+	
+	Take any distinct $p^*_1,p^*_2\in \IP$.
+	
+	Suppose $p$ is distinct from $p^*_i$. 
+	There is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_{p^*_i}[g]$. 
+	By assumption on $V_i$, there is some $\lambda >0$ with $\lambda g\in V_i$. Also $\Exp_p[\lambda g]>0>\Exp_{p^*_i}[\lambda g]$. 
+	
+	So $\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\}\neq \emptyset$. 
+	
+	It is also an open subset of $\Re^\Omega$, as expectation is continuous. 
+	
+	So, for every $(p,\mu)\in\IB$, $\mu\{\{a,0\}\given \U(a)\in\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\} \}>0$
+	
+	
+	\begin{colored}{red}
+		
+	
+	
+	
+	
+	
 
 	WLOG suppose $l<-1$ and $u>1$.  Otherwise work with transformed utilities ($+$ and $\times$). 
 	So that by our assumption on $\A$, for any $g\in[-1,1]^\Omega$, there is some $a\in \A$ such that $\U(a)=g$. 
@@ -4427,22 +4644,22 @@ We can show this is satisfied given some other assumptions:
 	For $q=p_1$, it is distinct from $p_2$, so using an analogous argument we can find a member of $V_2\cap \mathrm{Disagree}(p_2,q)$ and then observe it corresponds to some member of $\A$. 
 	
 	We can then apply \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.
+	\end{colored}
 \end{proof}
 
 This is perhaps slightly odd $\mu$, in general they'll assign 0-measure to these take-it-or-leave it decisions. They are not open subsets of $\Decs$ and are of lower dimension. We can instead do it for full support $\mu$. 
 
 \begin{corollary}Completely independent. 
 	
-		Assume that for all  $g\in[l,h]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
+	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
 	
-Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
+	Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+	
+	Suppose $\IB$ contains distinct $b_1,b_2$ any for all $b\in\IB$, $b_\Decs$ assigns strictly positive measure to every non-empty subset of $\Decs$. 
 \end{corollary}
 \begin{proof}
-	Let $V_1,V_2$ be disjoint non-empty open subsets of $[l,h]^\Omega$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. This is open. 
-	
-	
 	
 	\begin{sublemma}
 	Let $E$ be of the form $\{D\in\D\given D\subseteq V\}$ where $V$ is an open subset of $[l,h]^\Omega$.
@@ -4459,56 +4676,71 @@ Suppose $\IP$ contains distinct $p_1,p_2$ and for every $(p,\mu)\in\IB$, $\mu$ h
 %		
 	
 	
+	\textbf{It is nonempty:}
 	
-	
-	
-\textbf{It is nonempty:}
-	
-	Take any $D_0\in E$. 
-	If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
+	Take any $D_0\in E$. If $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$ this suffices. 
 	
 	Otherwise there is some $a_0\in \EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)$. 
 	
-	As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $g^*\in\mathrm{Disagree}(q1,q2)$, and, moreover, can choose a scalar small enoough so that . 
+	As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $g^*$ such that $\Exp_{q_1}[g^*]>0>\Exp_{q_2}[g^*]$, and, moreover, can choose a scalar small enough so that $\U(a_0)+\lambda g^*\in[l,h]^n$ and thus that $a_0+\lambda g^*\in\A$ (abusing notation). 
 	
+	So $\Exp_{q_1}[\U(a_0+\lambda g^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_2}[\U(a_0+\lambda g^*)]<\Exp_{q_2}[\U(a_0)]$.
 	
+	Consider $D^*=D_0\cup\{a_0+\lambda g^*\}$, recalling that $a_0\in D_0$. 
 	
-	As $E$ is open, there is some $\epsilon>0$ such that 
+	Observe that $\EU_{q_1}(D^*)=\{a_0+\lambda g^*\}$ but that $a_0+\lambda g^*\notin\EU_{q_2}(D^*)$ as it finds $a_0$ preferable. 
+	Thus $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$.
 	
-	As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, there is some $a^*\in\mathrm{Disagree}(q_1,q_n)$. Moreover, we can choose $a^*$ so that $\|a^*\|<1-\|a_0\|$ and $\|a^*\|<\epsilon$, so then $\|a_0+a^*\|<1$, so by our assumption on $\A$, $a_0+a^*\in\A$. 
+	As $\U(a_0)+\lambda g^*\in V$ by choice of $\lambda$, $D^*\subseteq V$, so $D^*\in E$, as required. 
 	
-	WLOG assume that $\Exp_{q_1}[\U(a^*)]>0$ and $\Exp_{q_1}[\U(a^*)]<0$. Note then that $\Exp_{q_1}[\U(a_0+a^*)]>\Exp_{q_1}[\U(a_0)]$ and $\Exp_{q_1}[\U(a_0+a^*)]<\Exp_{q_1}[\U(a_0)]$.
-	
-	Consider $D^*=D_0\cup\{a_0+a^*\}$ and observe that $d(D^*,D_0)<d(a_0+a^*,a_0)<\epsilon$. So $D^*\in E$. 
-	
-	Now, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0\}$, so we have found our $D^*\in E$ with $\EU_{q_1}(D^*)\cap \EU_{q_2}(D^*)=\emptyset$. 
-	
-	
+		\textbf{It is open:}
 		
-		\textbf{It is open:} 
-		As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
+		Take any $D_0\in E$ with $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$. 
 		
-		The complement is $$\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}=\bigcup_{a\in \A}\{D\given a\in \EU_{q_1}(D)\text{ and } a\in\EU_{q_2}(D)\}$$
+				Let $t_1=\max_{a\in D_0}\Exp_{q_1}[\U(a)]$ and $t_2=\max_{a\in D_0}\Exp_{q_2}[\U(a)]$.
+				
+				As  $\EU_{q_1}(D_0)\cap \EU_{q_2}(D_0)=\emptyset$, for all $a\in D_0$, either $t_1>\Exp_{q_1}(a)$ or  $t_2>\Exp_{q_2}(a)$. Thus $f(a):=\max\{t_1-\Exp_{q_1}[\U(a)],t_2-\Exp_{q_2}[\U(a)]\}>0$ for all $a\in D_0$. As $D_0$ is finite, put $\delta=\min_{a\in D_0}f(a)>0$. So that for all $a\in D_0$, either  $\Exp_{q_1}[\U(a)]\leq t_1-\delta$ or $\Exp_{q_2}[\U(a)]\leq t_2-\delta$
 		
-		For each fixed $a\in \A$, $\{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}$ is closed $\subseteq\A$. So $$\{D\given D\subseteq \{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}\}$$ is closed in $\Decs$. $\{D\given a\in\EU_q(D)\}$ is the intersection of this with the closed set $\{D\given a\in D\}$. 
+		Put $\epsilon=\nicefrac{\delta}{2}$. Suppose $d(D_0,D)<\epsilon$. That is, for all $a\in D_0$ there is some $c\in D$ such that $d(a,c)<\epsilon$ and for all $c\in D$ there is some $a\in D_0$ with $d(a,c)<\epsilon$. 
 		
-		So $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}$ is an intersection of closed sets and thus is closed. 
+		Take any $a_1\in \EU_{q_1}(D_0)$, so $\Exp_{q_1}[\U(a_1)]=t_1$. There is some $c_1\in D$ such that $d(a_1,c_1)<\epsilon$, and thus $\Exp_{q_1}[\U(c_1)]>t_1-\epsilon$. Thus, $\max_{c\in D}\Exp_{q_1}[\U(c)]>t_1-\epsilon$, and so if $c\in \EU_{q_1}(D)$, then $\Exp_{q_1}[\U(c)]>t_1-\epsilon$. 
+		
+		
+		By an analogous argument, if $c\in \EU_{q_2}(D)$ then $\Exp_{q_2}[\U(c)]>t_2-\epsilon$. 
+		
+		For any $c\in D$, there is some $a_c\in D_0$ such that $d(c,a_c)<\epsilon$. If, also,  $c\in \EU_{q_1}(D)\cap\EU_{q_2}(D)$ then 
+		\begin{align}
+			&\Exp_{q_1}[\U(a_c)]>\Exp_{q_1}[\U(c)]-\epsilon>t_1-2\epsilon\\
+			\text{and }&\Exp_{q_2}[\U(a_c)]>\Exp_{q_2}[\U(c)]-\epsilon>t_2-2\epsilon
+		\end{align}
+		This is not possible by choice of $\epsilon=\nicefrac{\delta}{2}$. 		
+%	
+%	
+%	
 %		
-%
+%		\textbf{It is open:} 
+%		As $E$ is open, we just need to show that $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is open.
 %		
+%		The complement is $$\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}=\bigcup_{a\in \A}\{D\given a\in \EU_{q_1}(D)\text{ and } a\in\EU_{q_2}(D)\}$$
 %		
+%		For each fixed $a\in \A$, $\{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}$ is closed $\subseteq\A$. So $$\{D\given D\subseteq \{b\given \Exp_q[\U(b)]\leq\Exp_q[\U(a)]\}\}$$ is closed in $\Decs$. $\{D\given a\in\EU_q(D)\}$ is the intersection of this with the closed set $\{D\given a\in D\}$. 
 %		
-%		 and $a_0\in D_0$. As $E$ is open under the Hausdorff metric, there is some $\epsilon>0$ such that $d(D_0,D)<\epsilon\implies D\in E$, where $$d(D,D'):=\max\{\sup_{a\in D}\inf_{a'\in D'} d(a,a'), \sup_{a'\in D'}\inf_{a\in D} d(a,a')\}$$ with the Euclidean distance on $\A\cong\Re^n$. 
+%		So $\{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)\neq \emptyset\}$ is an intersection of closed sets and thus is closed. 
 %		
-%		Consider $a^*\in\A$ such that  $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$ and $\|a^*\|<\epsilon$. \todo{this is assumptions about $\A$! Needs more than the assumptions so far...! E.g., so far, we could just have $\A$ is utilities in $\{1,2,3\}$. }
-%		Consider $D^*=\{a_0+a^*,a_0-a^*\}$. Observe that $d(D^*,\{a_0\})<\epsilon$. Also $d(\{a_0\},D_0)=0$ as $a_0\in D_0$. So $d(D^*,D_0)\leq d(D^*,\{a_0\})+d(D_0,\{a_0\})<\epsilon$. But, since $\Exp_{q_1}[\U(a^*)]>0>\Exp_{q_2}[\U(a^*)]$, $\EU_{q_1}(D^*)=\{a_0+a^*\}$ and $\EU_{q_2}(D^*)=\{a_0-a^*\}$; thus $D^*\in \{D\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$. This has shown that $\{D\in E\given \EU_{q_1}(D)\cap \EU_{q_2}(D)=\emptyset\}$ is non-empty.
 		 \end{proof}
-	Take any $p_1,p_2$ disjoint in $\IP$ and $E_1,E_2$ disjoint open subsets of $\Decs$ and will then satisfy the conditions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.	
+		 
+		 	Let $V_1,V_2$ be any disjoint non-empty open subsets of $[l,h]^\Omega$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. 
+		 	
+	Take any $p_1,p_2$ distinct members of $\IP$. 
+	
+	For any 
+	
+	 \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.	
 \end{proof}
 
 
 
-\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
+\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:reg}
 	Completely independent. 
 	
 	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
@@ -4791,6 +5023,7 @@ where $\posi(A)=\left\{\sum_{k=1}^m\lambda_k h_k \given m\in\mathbb{N},\;h_1,\hd
 \end{enumerate}
 
 Then, there is some $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$
+
 
 \end{proposition}
 \begin{proof}
