@@ -2109,7 +2109,7 @@ However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\I
 There are often some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$. 
 This requires both that one's credal state is imprecise and that each $\mu$ sees a requirement to coordinate (and, moreover, that these requirements are coordinated).
 A condition that can be checked to show the existence of such strategies is the following: 
-\begin{proposition}\label{thm:ead-existsimpermissibel[indep]}
+\begin{proposition}\label{thm:ead-existsimpermissible[indep]}
 	If there exist some (distinct) $q_1,q_2\in\IP$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
 	\[
 	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{q_i}(D)=\emptyset\}>0
@@ -2285,7 +2285,7 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 	\end{proposition}
 \end{colored}
 	Whilst some of its picking strategies are not ruled out, some will be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
-		\begin{proposition}\label{thm:ead-existsimpermissibel[dep]}
+		\begin{proposition}\label{thm:ead-existsimpermissible[dep]}
 Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.\todo{I'm struggling to prove it... }
@@ -2300,7 +2300,7 @@ Similarly, for Maximality, we can define:
 	\begin{proposition}\label{thm:max-suff[dep]}
 	If for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\s\in\Maximality_\IB(\Strategies)$. 
 \end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
-an analogue of \cref{thm:ead-existsimpermissibel[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
+an analogue of \cref{thm:ead-existsimpermissible[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
 
 
@@ -2521,7 +2521,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 
 \subsubsection{E-Admissibility}
-\Cref{thm:ead-equiv[dep],thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-existsimpermissibel[indep],thm:ead-existsimpermissibel[indep]} also generalise to the probabilistic picking strategy setting. 
+\Cref{thm:ead-equiv[dep],thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[indep]} also generalise to the probabilistic picking strategy setting. 
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
@@ -3114,10 +3114,9 @@ the situation is less clear, as picking in accordance with expected utility theo
 
 	
 	\section{Measure theoretic considerations}\label{sect:appendix:measure}
-	Throughout the paper, we have ignored the question of measurability. We have considered various probability measures: $p$ a probability on $\Omega$, $\mu$ a probability on $\Decs$, and $b$ a probability on $\Omega\times\Decs$. To make this precise, we should fix the $\sigma$-algebras on each of these spaces.
+	Throughout the paper, we ignored the question of measurability. We have considered various probability measures: $p$ a probability on $\Omega$, $\mu$ a probability on $\Decs$, and $b$ a probability on $\Omega\times\Decs$. To make this precise, we should fix the $\sigma$-algebras on each of these spaces.
 	
-	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 
-	
+	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 	
 	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
 	
 	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. 
@@ -3126,7 +3125,7 @@ the situation is less clear, as picking in accordance with expected utility theo
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
 	Note that if $a,a'$ have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$. 
 	
-	We can then use the Hausdorff (pseudo-)metric on $\Decs$ to again obtain our associated Borel $\sigma$-algebra on $\Decs$.
+	We can then use the Hausdorff (pseudo-)metric on $\Decs$ to again obtain our associated Borel $\sigma$-algebra on $\Decs$.\footnote{	Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. }\todo{I moved the equiv to Vietoris into ftnte as no longer using it in the pf}
 	  \[
 	d(D, D') = \max\Bigl\{
 	\sup_{a \in D}\inf_{a' \in D'}d(a,a'),
@@ -3134,12 +3133,15 @@ the situation is less clear, as picking in accordance with expected utility theo
 	\Bigr\}.
 	\]
 	
-	Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. 
+
 	
 
 	
-	If we assume that $\U(\A)$ is a Borel subset of $\Re^n$, then, by quotienting out acts with the same utility profile, we obtain $\A$ as a Borel subspace of $\Re^n$, and thus is standard Borel. Then also $K(\quotient{\A}{\sim_\U})$, the compact subsets of $\quotient{\A}{\sim_\U}$, is standard Borel, and we can show that $\Decs$ is Borel isomorphic to a Borel subset of that to obtain that it is also standard Borel. 
-	To see this, it is Borel isomorphic to $\{C\in K(\quotient{\A}{\sim_\U})\given 0<\# C\leq n\}=\bigcup_{n\in\mathbb{N}\setminus\{0\}}\{C\in K(\quotient{\A}{\sim_\U})\given 0<\# C\leq n\}$ is closed for each $n$. Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\quotient{\A}{\sim_\U}$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
+	In fact, if we assume that $\U(\A)$ is a Borel subset of $\Re^n$, then both $\A$ and $\Decs$ are standard Borel.\todo{delete the below pf as we don't use it??}
+	 \begin{colored}{red}
+	 	To see this, note that by quotienting out acts with the same utility profile, we can treat $\A$ as a Borel subspace of $\Re^n$, and thus is standard Borel. Then also $K(\quotient{\A}{\sim_\U})$, the compact subsets of $\quotient{\A}{\sim_\U}$, is standard Borel, and we can show that $\Decs$ is Borel isomorphic to a Borel subset of that to obtain that it is also standard Borel.
+	 Quotienting by $\sim_\U$, we see it is Borel isomorphic to $\bigcup_{n\in\mathbb{N}\setminus\{0\}}\{C\in K(\quotient{\A}{\sim_\U})\given 0<\# C\leq n\}$, and we can show that this set is closed for each $n$: Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\quotient{\A}{\sim_\U}$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
+	 \end{colored}
 	
 %	
 %	
@@ -3170,38 +3172,38 @@ the situation is less clear, as picking in accordance with expected utility theo
 %	Using this to generate the $\sigma$-algebra, we obtain a  standard Borel space. 
 %	
 %	We then check that $\Decs=\{C\in K(\A)\given C\text{ is finite}\}$ is a Borel subset of this so that it is also standard Borel. To do this, we will observe that $\{C\in K(\A)\given \# C\leq n\}$ is closed for each $n$. Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\A$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
-	
-	\begin{colored}{red}
-		
-	
-	\begin{itemize}
-	
-		\item Put $\Sigma$ as the $\sigma$-algebra generated by $\Set{D\in \Decs\given D\cap A\neq\emptyset}$ and $\Set{D\in \Decs\given D\cap A=\emptyset}$, for $A\in\mathcal{B}(\A)$. This is the finite-set Vietoris, or hit-and-miss topology, and it is a standard Borel space.
-		\begin{itemize}
-			\item Consider $ K(\A)=\{K\subseteq \A\given K \neq\emptyset,\;K\text{ compact}\}$ endowed with the Vietoris (hit-and-miss) topology generated by $\Set{K\in K(\A)\given K\cap A= \emptyset}$ and $\Set{K\in K(\A)\given K\cap A\neq \emptyset}$ for $A\in\mathcal{B}(\A)$. This topology is metrizable by the Hausdoff metric, under which it is complete and separable, thus Polish. And so it is a standard Borel space. 
-			For each $n\in\mathbb{N}\setminus\{0\}$, $\{K\given \# K\leq n\}$ is closed: If $K_i\longrightarrow K^*$ and $\# K^*>n$ then $K^*$ contains $n+1$ many points all separated by disjoint $\epsilon$-balls, but then some $K_m$ does too, so $\# K_m\geq n+1$. Thus $\Decs=\bigcup_n\{K\in K(\A)\given \# K\leq n\}$ is a Borel subset of $K(\A)$. It is thus a standard Borel space, under the induced $\sigma$-algebra, which is generated by $\Set{D\in \Decs\given D\cap A\neq\emptyset}$ and $\Set{D\in \Decs\given D\cap A=\emptyset}$ for $A\in\mathcal{B}(\A)$.
-		\end{itemize}
-	\item Endow $\Decs$ with the Hausdorff metric \[
-d(D, D') = \max\Bigl\{
-\sup_{a \in D}\inf_{a' \in D'}d(a,a'),
-\;\sup_{a' \in D'}\inf_{a \in D}d(a,a')
-\Bigr\}.
-\]
-Then let $\Sigma$ be the $\sigma$-algebra generated by $B_\epsilon(D_0)=\Set{D\in\Decs\given d(D,D_0)<\epsilon}$. 
-		\item Put $\Sigma$ as the smallest $\sigma$-algebra containing each $\{D\in\Decs\given \#(D\cap A)=k\}$ for $A\in\mathcal{B}(\A)$ and $k\in\mathbb{N}\setminus\{0\}$.
-		\item 
-		Consider $k$-tuples in $\A$ with the product sigma-algebra on $\A^k$. Note that the $\Set{\seq{a_1,\ldots,a_n}\given a_i=a_j\text{ for some $i\neq j$}}$ is a Borel subset, so so is the $k$-tuples, excluding any repeating members. Let's call that $\A^{(k)}$. Then quotient this out by the action of the symmetric group which permutes coordinates. This will remain Borel. Now take the disjoint union of these, and we still have a standard Borel space. 
-		\item Consider $\Decs$ as the set of point measures (??) $f:\A\to\Set{0,1}$ such that $f(\A)<\infty$....?
-		\item  Since $\A$ is standard Borel, we can consider $\phi:\A\to B\subseteq \Re$ a Borel isomorphism. $\A^k$ is standard Borel. 
-		Then consider $Y_k=\Set{\seq{a_1,\ldots,a_k}\given \phi(a_1)<\ldots<\phi(a_k)}=\phi^{-1}(\Set{\seq{x_1,\ldots,x_k}\in B^k\given x_1<\ldots<x_n})$; with this an open (and thus Borel) subset of a Borel space. So $Y_k$ is Borel. Then $\D$ is the countable disjoint union of these $Y_k$, thus remaining standard Borel. \todo{\url{https://www.jstor.org/stable/23041875}}
-	\end{itemize}
-%	Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra.\todo{more care}
-	\end{colored}
+%	
+%	\begin{colored}{red}
+%		
+%	
+%	\begin{itemize}
+%	
+%		\item Put $\Sigma$ as the $\sigma$-algebra generated by $\Set{D\in \Decs\given D\cap A\neq\emptyset}$ and $\Set{D\in \Decs\given D\cap A=\emptyset}$, for $A\in\mathcal{B}(\A)$. This is the finite-set Vietoris, or hit-and-miss topology, and it is a standard Borel space.
+%		\begin{itemize}
+%			\item Consider $ K(\A)=\{K\subseteq \A\given K \neq\emptyset,\;K\text{ compact}\}$ endowed with the Vietoris (hit-and-miss) topology generated by $\Set{K\in K(\A)\given K\cap A= \emptyset}$ and $\Set{K\in K(\A)\given K\cap A\neq \emptyset}$ for $A\in\mathcal{B}(\A)$. This topology is metrizable by the Hausdoff metric, under which it is complete and separable, thus Polish. And so it is a standard Borel space. 
+%			For each $n\in\mathbb{N}\setminus\{0\}$, $\{K\given \# K\leq n\}$ is closed: If $K_i\longrightarrow K^*$ and $\# K^*>n$ then $K^*$ contains $n+1$ many points all separated by disjoint $\epsilon$-balls, but then some $K_m$ does too, so $\# K_m\geq n+1$. Thus $\Decs=\bigcup_n\{K\in K(\A)\given \# K\leq n\}$ is a Borel subset of $K(\A)$. It is thus a standard Borel space, under the induced $\sigma$-algebra, which is generated by $\Set{D\in \Decs\given D\cap A\neq\emptyset}$ and $\Set{D\in \Decs\given D\cap A=\emptyset}$ for $A\in\mathcal{B}(\A)$.
+%		\end{itemize}
+%	\item Endow $\Decs$ with the Hausdorff metric \[
+%d(D, D') = \max\Bigl\{
+%\sup_{a \in D}\inf_{a' \in D'}d(a,a'),
+%\;\sup_{a' \in D'}\inf_{a \in D}d(a,a')
+%\Bigr\}.
+%\]
+%Then let $\Sigma$ be the $\sigma$-algebra generated by $B_\epsilon(D_0)=\Set{D\in\Decs\given d(D,D_0)<\epsilon}$. 
+%		\item Put $\Sigma$ as the smallest $\sigma$-algebra containing each $\{D\in\Decs\given \#(D\cap A)=k\}$ for $A\in\mathcal{B}(\A)$ and $k\in\mathbb{N}\setminus\{0\}$.
+%		\item 
+%		Consider $k$-tuples in $\A$ with the product sigma-algebra on $\A^k$. Note that the $\Set{\seq{a_1,\ldots,a_n}\given a_i=a_j\text{ for some $i\neq j$}}$ is a Borel subset, so so is the $k$-tuples, excluding any repeating members. Let's call that $\A^{(k)}$. Then quotient this out by the action of the symmetric group which permutes coordinates. This will remain Borel. Now take the disjoint union of these, and we still have a standard Borel space. 
+%		\item Consider $\Decs$ as the set of point measures (??) $f:\A\to\Set{0,1}$ such that $f(\A)<\infty$....?
+%		\item  Since $\A$ is standard Borel, we can consider $\phi:\A\to B\subseteq \Re$ a Borel isomorphism. $\A^k$ is standard Borel. 
+%		Then consider $Y_k=\Set{\seq{a_1,\ldots,a_k}\given \phi(a_1)<\ldots<\phi(a_k)}=\phi^{-1}(\Set{\seq{x_1,\ldots,x_k}\in B^k\given x_1<\ldots<x_n})$; with this an open (and thus Borel) subset of a Borel space. So $Y_k$ is Borel. Then $\D$ is the countable disjoint union of these $Y_k$, thus remaining standard Borel. \todo{\url{https://www.jstor.org/stable/23041875}}
+%	\end{itemize}
+%%	Equivalently, it can be seen as the countable disjoint union of $k$-tuples in $\Re^n$, modulo permutations, with the obvious inherited $\sigma$-algebra.\todo{more care}
+%	\end{colored}
 	
 	We then require $p$ a probability on $(\Omega,\mathcal{F})$, $\mu$ a probability on $(\Decs,\Sigma)$, and $b$ a probability on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$.
 
 	
-	All the results in this paper are restricted to measurable picking strategies $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\n:\Decs\to\Delta(\A)$ so that the induced payoffs, $\U(\s),\U(\n):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, recalling that $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(\cdot)(\omega)]$. 
+	All the results in this paper are restricted to \emph{measurable} picking strategies, either of the deterministic form, $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\n:\Decs\to\Delta(\A)$. This ensures that the induced payoffs, $\U(\s),\U(\n):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$ (recalling that $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(\cdot)(\omega)]$). 
 	
 	
 	
@@ -3210,7 +3212,14 @@ Then let $\Sigma$ be the $\sigma$-algebra generated by $B_\epsilon(D_0)=\Set{D\i
 
 When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$. The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular apply this to our $\U(\s)$ or $\U(\n)$, which are bounded, by assumption that $\U$ is bounded.\todo{We could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
+For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$. 
+
+These need to have $b(A\times E)=\int_{D\in E}b(A|D)b_\Decs(\diff D)$ for all $A$ measurable $\subseteq\Omega$ and $E$ measurable $\subseteq\Decs$, so we have the law of total expectation for bounded measurable random variables, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will then apply this to our $\U(\s)$ or $\U(\nu)$. 
+
+\begin{colored}{red}
+	The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular apply this to our $\U(\s)$ or $\U(\n)$, which are bounded, by assumption that $\U$ is bounded.
+\end{colored}
+\todo{We could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
 
 When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
 
@@ -3219,11 +3228,26 @@ When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\
 In the more general setting, we need to make use of further machinery to find this regular probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
 
 
-Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
-Then $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, and so each $\beta_\omega$ is absolutely continuous wrt $b_\Decs$, and thus by the Radon-Nikodym theorem, there are $b_\Decs$-measurable functions $\frac{\diff \beta_\omega}{\diff b_\Decs}$. 
-By the non-negativity and linearity of Radon-Nikodym derivatives, $\frac{\diff \beta_\omega}{\diff b_\Decs}\geq 0$ and $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=1$. 
-Let $b(\cdot|D)$ be a measure on $\Omega$ given by $b(A|D)=\sum_{\omega\in A} \frac{\diff \beta_\omega}{\diff b_\Decs}$, which is thus a probability function on $\Omega$.  
-Hence, for any integrable $X:\Omega\times\Decs\to\Re$, 
+Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b\times\Decs)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
+As $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, each $\beta_\omega$ is absolutely continuous with respect to $b_\Decs$, and thus by the Radon-Nikodym theorem, for each $\omega$ there is a $b_\Decs$-measurable function $\frac{\diff \beta_\omega}{\diff b_\Decs}:\Decs\to[0,\infty)$ such that $b_\Decs(\{\omega\}\times E)=\beta_\omega(E)=\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)$.
+Note then that \begin{align}
+	b_\Decs(A\times E)&=\sum_{\omega\in A\cap \Omega_b}\beta_\omega(E)=\sum_{\omega\in A\cap \Omega_b}\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)\\
+	&=\int_E\sum_{\omega\in A\cap \Omega_b} \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)
+\end{align}
+Let $b(\cdot|D)$ be a measure on $\Omega$ given by $b(A|D)=\sum_{\omega\in A\cap \Omega_b} \frac{\diff \beta_\omega}{\diff b_\Decs}(D)$ so that for any measurable $A\subseteq\Omega$ and $E\subseteq\Decs$, 
+\[
+b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)
+\]
+And thus, for every integrable (e.g., bounded) measurable $X:\Omega\times\Decs\to\Re$, \begin{align}
+	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
+	&=\int_\Decs \left[\sum_{\omega\in\Omega} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)
+\end{align}
+That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+
+Note also that by the almost everywhere linearity of Radon-Nikodym derivatives, $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=\frac{\diff \sum_{\omega\in\Omega_b}\beta_\omega}{\diff b_\Decs}=\frac{\diff b_\Decs}{\diff b_\Decs}=1$ almost everywhere. Thus $b(\cdot|D)$ is a probability function on $\Omega$ for almost all $D$.
+
+\begin{colored}{red}
+	Hence, for any integrable $X:\Omega\times\Decs\to\Re$, 
 \begin{align}
 	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
 	&=\int_{\Omega_b\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
@@ -3233,16 +3257,17 @@ Hence, for any integrable $X:\Omega\times\Decs\to\Re$,
 		&=\int_\Decs \left[\sum_{\omega\in\Omega_b} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
 \end{align}
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+\end{colored}
 
 Alternatively one could simply use the disintegration or Regular Conditional Probability theorem. 
-Under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
+If $\U(\A)$ is Borel subset of $\Re^n$, then under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
 
 
 When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
 \begin{colored}{red}
 	
-\section{Alternative direct proof...}\todo{doesn't make use of standard Borel!}
+\section{some more details on the RN approach}\todo{doesn't make use of standard Borel!}
 %When $b$ is supported on finite subset of $\Decs$, this is easy to define: we update $b$ by the ratio formula, whenever $b(D)\neq 0$. More carefully:
 %
 %Let $b_\omega$ a measure on $\Decs$ given by $b_\omega(\omega)=b(\{\omega\}\times E)$ for $E\subseteq D$ measurable. Put $b_\Decs=\sum_{\omega\in\Omega} b_w$, is the marginal of $b$ on $\D$. 
@@ -3267,7 +3292,7 @@ Now, if $b$ is supported on an infinite set $\Decs$, we need to use some more ma
 Let $b_\omega$ be a measure on $\Decs$ given by $b_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
 Then the marginal on $\Decs$ is given by  $b_\D=\sum_{\omega\in\Omega} b_w$. 
 
-As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a (measurable) function $f_\omega$ on $\Decs$ (unique almost everywehere) such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
+As $b_\D$ is the finite sum of these $b_\omega$, they are absolutely continuous with respect to it; and thus by Radon–Nikodym theorem, for each $\omega$ there is a (measurable) function $f_\omega$ on $\Decs$ (unique almost everywhere) such that for all measurable $E\subseteq\Decs$, $b_\omega(E)=\int_{E}f_\omega(D) b_\D(\diff D)$. 
 %Put $b(\omega |D):= f_\omega(D)$. 
 
 
@@ -3794,9 +3819,9 @@ We have thus proved \cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ea
 \subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}
 As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal ( \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that the risk-sensitive decision theories or $\Gamma$-maximin were.
 
-\subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec})}
+\subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}
 
-We will now move to \cref{thm:ead-existsimpermissibel[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
+We will now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
 
 For regular picking strategies this is simple: there must E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
@@ -3826,16 +3851,16 @@ For showing the existence of \emph{deterministic} picking strategies which are n
 
 Instead, the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
 
-In these cases, we have distinct decisions each of which have positive measure but where every probability 
+In these cases, we have distinct decisions and probabilities such that every probability function disagrees with the recommendations of $\EU_{p^*_i}$ on $D_i$, and the $D_i$ have positive measure according to every $\mu$. More generally:
 
-\begin{proposition}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
+\begin{lemma}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
 	If there exist some (distinct) $p^*_1,p^*_2\in\IP$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $p^*_1$ or $p^*_2$ such that
 	\[
 	\mu\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\}>0
 	\]
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $(p,\mu)\in\IB$ such that $\s$  $\mu$-surely picks for $\EU_p$. 
-\end{proposition}
+\end{lemma}
 \begin{proof}
 	Set $\s$ so that $\s(D)\in\EU_{p^*_1}(D)$ for $D\in E_1$, $\s(D)\in\EU_{p^*_2}(D)$ for $D\in E_2$, and $s(D)\in\EAd_{\IP}(D)$ for any other $D$. 
 	
@@ -3852,44 +3877,58 @@ In these cases, we have distinct decisions each of which have positive measure b
 \end{proof}
 This condition can be verified in cases such as the Ellsberg example or the example in \cref{eg:coord}.
 
-It can also be extended to more than two probabilities: In fact, we could choose an event for each probability in $\IP$ (allowing some to be empty, so it encompasses the previous result)
-%there is some $\{p^*_i\given i\in I\}\subseteq\IP$ (which may be uncountable) such that for all $(p,\mu)\in\IB$, there is some $J\subseteq I$ such that $\mu(\bigcup_{i\in J}\mu\{D\in E_i\given \EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset\})>0$. The proof is exactly the same: putting $\s(D)\in\EU_{p^*_i}(D)$ for $D\in E_i$ and verifying that this condition ensures that it does not $\mu$-surely pick for $\EU_p$. 
+It can also be extended to more than two probabilities: In fact, we could choose an event for each probability in $\IP$ (allowing some to be empty, so it encompasses the previous result).
+
+%\begin{theorem}
+%	If 
+%	
+%	There is a selection of disjoint $E_p\subseteq\Decs$ for each $p\in\IP$ (some possibly empty), such that for all $(p_0,\mu_0)\in\IB$, $$\mu_0\left(\bigcup_{p\in\IP}\{D\in E_p\given \EU_p(D)\cap\EU_{p_0}(D)=\emptyset\}\right)>0.$$
+%	
+%	Then there is 
+%\end{theorem}
+
+It furthermore extends to the conditional probabilities case, so we present the result including both generalisations. 
 
 \begin{theorem}
-	There is a selection of disjoint $E_p\subseteq\Decs$ for each $p\in\IP$, such that for all $(p_0,\mu_0)\in\IB$, $$\mu_0\left(\bigcup_{p\in\IP}\{D\in E_p\given \EU_p(D)\cap\EU_{p_0}(D)=\emptyset\}\right)>0.$$
-\end{theorem}
-
-We suspect this condition 
-
-It will also apply in the conditional case. 
-\begin{proposition}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[dep]}
-	If there exist some (distinct) $b^*_1,b^*_2\in\IB$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $b\in\IB$ there is at least one of $b^*_1$ or $b^*_2$ such that
-	 \[
-		b_\Decs(\{D\in E_i\given \EU_{b(\cdot|D)}(D)\cap \EU_{b^*_i(\cdot|D)}=\emptyset\})>0
-	\]
-\end{proposition}
-\begin{proof}
-	Exactly as \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}.
-\end{proof}
-
-\begin{theorem}
-	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
-		
-	Suppose $\IP$ is non-singleton, there is some for every $(p,\mu)\in\IB$, for every $p'\in\IP$ with $p\neq p'$, $$\mu\{D\given \EU_p(D)\cap\EU_{p'}(D)=\emptyset\}>0.$$
+	Suppose $\IB$ is non-singleton and there is a selection of disjoint $E_b\subseteq\Decs$ for each $b\in\IB$ (some possibly empty), such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 	
-	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+	Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 \end{theorem}
-
 \begin{proof}
-	Take 
+	Simply put $\s(D)\in\EU_{b(\cdot|D)}(D)$ for $D\in E_b$, and let it be arbitrary in $\EAd_{\IB(\cdot|-)}(D)$. 
 \end{proof}
 
+%We suspect this condition 
+%
+%It will also apply in the conditional case. 
+%\begin{proposition}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[dep]}
+%	If there exist some (distinct) $b^*_1,b^*_2\in\IB$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $b\in\IB$ there is at least one of $b^*_1$ or $b^*_2$ such that
+%	 \[
+%		b_\Decs(\{D\in E_i\given \EU_{b(\cdot|D)}(D)\cap \EU_{b^*_i(\cdot|D)}=\emptyset\})>0
+%	\]
+%\end{proposition}
+%\begin{proof}
+%	Exactly as \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}.
+%\end{proof}
 
+%\begin{theorem}
+%	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
+%		
+%	Suppose $\IP$ is non-singleton, there is some for every $(p,\mu)\in\IB$, for every $p'\in\IP$ with $p\neq p'$, $$\mu\{D\given \EU_p(D)\cap\EU_{p'}(D)=\emptyset\}>0.$$
+%	
+%	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+%\end{theorem}
+%
+%\begin{proof}
+%	Take 
+%\end{proof}
+
+\todo{is there a way of combining the below two? What's special about the spreads of probabilities here?}
 
 \begin{corollary}
 	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
-	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
+	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
 
 
 	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
@@ -3898,7 +3937,7 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 \end{corollary}
 \begin{proof}
 
-Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ and for all $g\in \Re^\Omega$ there is some $\lambda_1$ such that $\lambda_1 g\in V_1$ and $\lambda_2>0$ such that $\lambda_2 g\in V_2$. 
+Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ such that for all $g\in \Re^\Omega$ there is some $\lambda_1$ such that $\lambda_1 g\in V_1$ and $\lambda_2>0$ such that $\lambda_2 g\in V_2$. 
 For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
 
 Take any distinct $p^*_1,p^*_2\in \IP$.
@@ -3908,10 +3947,21 @@ There is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_{p^*_i}[g]$.
 By assumption on $V_i$, there is some $\lambda >0$ with $\lambda g\in V_i$. Also $\Exp_p[\lambda g]>0>\Exp_{p^*_i}[\lambda g]$. 
 
 So $\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\}\neq \emptyset$. 
-
 It is also an open subset of $\Re^\Omega$, as expectation is continuous. 
 
-So, for every $(p,\mu)\in\IB$, $\mu\{\{a,0\}\given \U(a)\in\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\} \}$
+If $\U(a)\in \{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\}$, then $\EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset$. 
+
+Thus, by making use of our assumption on $\mu$, $$\mu(\{\{a,0\}\given \U(a)\in V_i\text{ and }\EU_p(\{a,0\})\cap\EU_{p^*_i}(\{a,0\})=\emptyset\})>0.$$
+
+
+%So, for every $(p,\mu)\in\IB$, $\mu\{\{a,0\}\given \U(a)\in\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\} \}>0$, by our assumption.
+%
+%
+%Also, if $D=\{a,0\}$ with $\U(a)\in V_i$ and $\Exp_p[\U(a)]>0>\Exp_{p^*_i}[\U(a)]\}$, then $\EU_p(D)\cap\EU_{p^*_i}(D)=\emptyset$. 
+%
+%So also $$\mu(\{\{a,0\}\given \U(a)\in V_i\text{ and }\EU_p(\{a,0\})\cap\EU_{p^*_i}(\{a,0\})=\emptyset\})>0.$$
+
+This then satisfies the conditions of \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}, putting $E_i=\{\{a,0\}\given a\in V_i\}$.
 \end{proof}
 
 
@@ -3996,15 +4046,14 @@ So, for every $(p,\mu)\in\IB$, $\mu\{\{a,0\}\given \U(a)\in\{g\in V_i\given \Exp
 	
 	Let $V_1,V_2$ be any disjoint non-empty open subsets of $[l,h]^\Omega$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. 
 	
-	Take any $p_1,p_2$ distinct members of $\IP$. 
-	
+	Take any $p_1,p_2$ distinct members of $\IP$. This lemma then lets us check the conditions of 	
 	\cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
 \end{proof}
 
 
 
 
-So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissibel[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
+So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissible[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
 The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require an different approach.
 
@@ -4498,7 +4547,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 %	
 %\end{proof}
 
-\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:CCM-1}
+\begin{theorem}[CCM]\label{thm:ead-existsimpermissible[indep]:CCM-1}
 	Completely independent. 
 	
 	Suppose $\{p_i\given i\in I\}\subseteq \IP$ and we have disjoint $E_i\subseteq\Decs$ such that for all $(p,\mu)\in\IB$, there is some $i\in I$ with
@@ -4564,13 +4613,13 @@ Question: how does it relate to ``it does not look like an EU picking''?
 	
 	Take any distinct $p_1,p_2\in\IP$.  Then every $p\in\IP$ is distinct from at least one of $p_1$ or $p_2$. Suppose $p$ is distinct from $p_i$. Then $\mu\{D\given \EU_p(D)\cap \EU_{p_i}(D)=\emptyset\}=1$. Thus $\mu\{D\in E_i\given\EU_p(D)\cap \EU_{p_i}(D)=\emptyset\}=\mu(E_i)>0$. 
 	
-	This gives us the assumptions of \cref{thm:ead-existsimpermissibel[indep]:CCM-1} clearly follow. 
+	This gives us the assumptions of \cref{thm:ead-existsimpermissible[indep]:CCM-1} clearly follow. 
 \end{proof}
 
 
 We can show this is satisfied given some other assumptions:
 
-\begin{corollary}[CCM version of \cref{thm:ead-existsimpermissibel[indep]:RP-1}]\label{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}
+\begin{corollary}[CCM version of \cref{thm:ead-existsimpermissible[indep]:RP-1}]\label{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}
 	Completely independent. 
 	
 	Assume there are $l<0<h$ such that for all $g\in[l,h]^\Omega$, there is some $a\in\A$ such that $\U(a)=g$. 
@@ -4626,7 +4675,7 @@ We can show this is satisfied given some other assumptions:
 	
 	Also observe that $\EU_{q}(\{a,0\})\cap \EU_{p}(\{a,0\})=\emptyset$ iff $\U(a)\in \mathrm{Disagree}(p,q)$.
 	
-	Now take any $p_1,p_2$ distinct in $\IP$. We will show that for any $q\in\IP$, for at least one of $p_1$ or $p_2$, $\mu \{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0$, as required for \cref{thm:ead-existsimpermissibel[indep]:CCM-1}. 
+	Now take any $p_1,p_2$ distinct in $\IP$. We will show that for any $q\in\IP$, for at least one of $p_1$ or $p_2$, $\mu \{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}>0$, as required for \cref{thm:ead-existsimpermissible[indep]:CCM-1}. 
 	
 	Note that $\{\{a,0\}\given \U(a)\in V_i\cap \mathrm{Disagree}(p_i,q)\}\subseteq \{D\in E_i\given \EU_{p_i}(D)\cap \EU_p(D)= \emptyset\}$. 
 	And observe that $\{\{a,0\}\given \U(a)\in V_i\cap \mathrm{Disagree}(p_i,q)\}$ is open. So, by our assumption on $\mu$, it suffices to show that it is non-empty. 
@@ -4643,7 +4692,7 @@ We can show this is satisfied given some other assumptions:
 	
 	For $q=p_1$, it is distinct from $p_2$, so using an analogous argument we can find a member of $V_2\cap \mathrm{Disagree}(p_2,q)$ and then observe it corresponds to some member of $\A$. 
 	
-	We can then apply \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.
+	We can then apply \cref{thm:ead-existsimpermissible[indep]:CCM-1}.
 	\end{colored}
 \end{proof}
 
@@ -4735,12 +4784,12 @@ This is perhaps slightly odd $\mu$, in general they'll assign 0-measure to these
 	
 	For any 
 	
-	 \cref{thm:ead-existsimpermissibel[indep]:CCM-1}.	
+	 \cref{thm:ead-existsimpermissible[indep]:CCM-1}.	
 \end{proof}
 
 
 
-\begin{theorem}[CCM]\label{thm:ead-existsimpermissibel[indep]:reg}
+\begin{theorem}[CCM]\label{thm:ead-existsimpermissible[indep]:reg}
 	Completely independent. 
 	
 	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
@@ -4761,7 +4810,7 @@ This is perhaps slightly odd $\mu$, in general they'll assign 0-measure to these
 
 
 
-\begin{proposition}[JK]\label{thm:ead-existsimpermissibel[indep]:JK-1}
+\begin{proposition}[JK]\label{thm:ead-existsimpermissible[indep]:JK-1}
 
 Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu_p$).
 	
@@ -4831,7 +4880,7 @@ $$
 \end{itemize}
 \section{RP's version}
 
-\begin{proposition}[RP]\label{thm:ead-existsimpermissibel[indep]:RP-1}
+\begin{proposition}[RP]\label{thm:ead-existsimpermissible[indep]:RP-1}
 	
 	Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$).
 	
@@ -4862,7 +4911,7 @@ $$
 \end{proof}
 
 
-\todo[inline]{CCM: OK. So this is constructing sets like in my current \cref{thm:ead-existsimpermissibel[indep]:CCM-1}. I don't think RPs proof is right as it stands, as why think there's positive measure to these pairwise decs. Oh, right, that's hidden in the ``non-degenerate''! Although I'm stil not sure they quite get pos meaure. The pairwise are a lower dimensional subspace...?
+\todo[inline]{CCM: OK. So this is constructing sets like in my current \cref{thm:ead-existsimpermissible[indep]:CCM-1}. I don't think RPs proof is right as it stands, as why think there's positive measure to these pairwise decs. Oh, right, that's hidden in the ``non-degenerate''! Although I'm stil not sure they quite get pos meaure. The pairwise are a lower dimensional subspace...?
 
 I've got a different proof of this above.
 }
@@ -4881,7 +4930,7 @@ I've got a different proof of this above.
 
 
 
-\begin{proposition}[{JK version of RP \cref{thm:ead-existsimpermissibel[indep]:RP-1}}]\label{thm:ead-existsimpermissibel[indep]:JK-2}
+\begin{proposition}[{JK version of RP \cref{thm:ead-existsimpermissible[indep]:RP-1}}]\label{thm:ead-existsimpermissible[indep]:JK-2}
 
 If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$ and a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$ satisfying
 \[
@@ -4963,7 +5012,7 @@ Hence
 
 
 
-\begin{corollary}\label{thm:ead-existsimpermissibel[indep]:JK-2-corollary}
+\begin{corollary}\label{thm:ead-existsimpermissible[indep]:JK-2-corollary}
 
 If $\IP$ is imprecise and convex, then there is a partition $\X$ of $\IP$, a family $\left\{ B_x \given x\in\X\right\}$ of mutually disjoint $B_x\subseteq\Decs$, and some measure $\mu$ satisfying
 \begin{enumerate}
