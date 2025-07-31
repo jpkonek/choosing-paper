@@ -1631,7 +1631,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
 
- \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,u\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq h$.%
+ \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,h\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq h$.%
  \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
  %, and without loss of generality, for each act $a \in \A$ and state $\omega\in\Omega$, $0 \leq a(\omega) \leq 1$. We write $\A$ for the set of possible acts. \todoold{CCM: I still think we should have U and a separated. At least we *need* to do something like that to make sense of applying EU to strategies! since we need to specify the utility of a strategy..??}%An act is a function $a$ that specifies an outcome in each state $a(s)$. A utility function specifies the utility of that outcome $U(a(s))$.  %\todoold{should utilities be separated??}
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
@@ -1692,7 +1692,7 @@ Given a probability function $p$ defined over $\Omega$, the expected utility of 
 If one has (probabilistic) credences given by $p$, expected utility theory says that one should choose an act in $D$ that maximises $\Exp_p[\U(a)]$.\footnote{The version we present here is of the sort described by \citet{savage1954fs}, in which it is assumed that the acts are independent of the states of the world. This assumption is dropped in the evidential decision theory of \citet{jeffrey1965lod} and the causal decision theory of \citet{stalnaker1972ldl, gibbard1978ctk, joyce1999fcdt}.} That is, we define the choice function to which expected utility theory gives rise when coupled with probability function $p$ as follows:
 
 \begin{definition}[Expected Utility Theory ($\EU_p$)]\label{def:EU}
-	\[\EU_p(D):=\{a\in D\given \text{for all $a'\in D$, }\Exp_p[\U(a)]\geq \Exp_p[\U(a')]\}\]
+	\[\EU_p(D):=\left \{a\in D\given \text{ for all $a'\in D$, }\Exp_p[\U(a)]\geq \Exp_p[\U(a')]\right \}\]
 \end{definition}
 %\todooldinfo{In nu stuff I am using ``picks for'' terminology. Should that be used throughout??}
 %\todooldinfo{should we introduce ``choice funciton'' here??}
@@ -1708,12 +1708,12 @@ So a picking strategy $\s$ picks for $\EU_p$ iff $\s(D)$ maximizes expected util
 Since we have assumed that each $D$ is finite, or compact, $\Exp_p[\U(a)]$ obtains its maximum in $D$; so $\EU_p(D)\neq\emptyset$. 
 
 Now we want to judge the expected utility of a picking strategy itself---we want to ask whether the picking strategies that always pick an act that maximizes expected utility from any decision problem themselves maximize expected utility when you're uncertain which decision problem you'll face. This requires us to fix not only $p$, which gives your credences over $\Omega$, but also your credences over the decision problems you might face, given by some probability measure $\mu$ over $\D$. We will assume these are independent. %So we can separate your credence that you'll be faced with decision $D$ and that the world is thus-or-so, $\omega$, into a probability measure $\mu$ over $\D$ and a probability measure $p$ over $\Omega$. 
-{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence that you are in world $\omega$ and will be faced with some decision problem in the (measurable) set of decision problems $E$ is given by $(p\times\mu)(\omega,E)=p(\omega)\times\mu(E)$.} 
+{So your credences over the joint space, $\Omega\times\D$, are given by the product measure $p\times\mu$. That is, your credence you are in world $\omega$ and will face a decision problem in the (measurable) set of decision problems $E$ is given by $(p\times\mu)(\omega,E)=p(\omega)\times\mu(E)$.} 
 We will moreover always assume that $\mu$ is countably additive. 
 
 
 We can now simply apply our notion of expected utility with the credences over $\Omega\times\D$ given by %$p\times \mu$. 
-{ $p\times\mu$.} We judge a picking strategy by the utility of the acts it picks, and so we define $\U(\s)(\omega,D):=\U(\s(D))(\omega)$. We can then apply our definition of expected utility and get that any picking strategy that picks for $\EU_p$ maximizes expected utility by the lights of %$p\times \mu$. 
+{$p\times\mu$.} We judge a picking strategy by the utility of the acts it picks, and so we define $\U(\s)(\omega,D):=\U(\s(D))(\omega)$. We can then apply our definition of expected utility and get that any picking strategy that picks for $\EU_p$ maximizes expected utility by the lights of %$p\times \mu$. 
 { $p\times\mu$.}
 \begin{proposition}\label{thm:eu-self-rec}
 	For any $p$, $\mu$, if $\s$ picks for $\EU_p$, then, for any picking strategy $\s'$ in $\S$,
@@ -1724,7 +1724,7 @@ We can now simply apply our notion of expected utility with the credences over $
 %$\s\in\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with \todo{I don't think we've defined $\EU$ by itself... what's going on here!}%$p\times \mu$. 
 %{ $p\times\mu$}, and 
 $\Strategies$ is the set of picking strategies. $\EU_{p\times \mu}(\Strategies)$ is the set of those picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
-{ $p\times\mu$}, as in \cref{def:EU}.)
+{$p\times\mu$}, as in \cref{def:EU}.)
 
 
 This shows that expected utility theory is not self-undermining in the way the Allais-permitting decision theories considered in the previous section are self-undermining. Expected utility picking strategies are themselves maximisers of expected utility. 
