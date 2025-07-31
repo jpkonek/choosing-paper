@@ -2104,10 +2104,10 @@ However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\I
 \todo{minor rewrite this little bit above. Reread. Huge changes below.}
 
 
-\begin{colored}{violet}
+\begin{colored}{blue}
 	
 There are often some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$. 
-This requires both that one's credal state is imprecise and that each $\mu$ sees a requirement to coordinate (and, moreover, that these requirements are coordinated).
+This requires both that one's credal state is imprecise and that each $\mu$ sees a requirement to coordinate.
 A condition that can be checked to show the existence of such strategies is the following: 
 \begin{proposition}\label{thm:ead-existsimpermissible[indep]}
 	If there exist some (distinct) $q_1,q_2\in\IP$ and disjoint $E_1,E_2\subseteq\Decs$ such that for all $(p,\mu)\in\IB$ there is at least one of $q_1$ or $q_2$ such that
@@ -2550,7 +2550,9 @@ $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Dec
 	\begin{proposition}\label{thm:ead-nu-reg-nec}
 		Suppose that $\Nu$ is conditional-$\EU$-complete.
 		
-Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
+Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
+
+That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 		
 %	Suppose that for every $p\times \mu\in \IB$, $\mu\{D\given \EAd_\IP(D)\subseteq \EU_p(D)\}\neq 1$. That is, for all $p\times \mu\in \IB$, $\mu\{D\given \text{there is $p'\in\IP$ with }\EU_{p'}(D)\not\subseteq\EU_p(D)\}>0$. 
 		
@@ -2663,9 +2665,11 @@ The deterministic picking strategies discussed in the earlier part of the paper,
 Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$ surely pick for any $\EU_p$, unless Maximality just collapses to being $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
+\todo{We're not even stating the existence of such statregies claim. Isn't that weird?? Perhaps it accidently got removed somewhen?}
+
 \begin{proposition}\label{thm:max-nu-reg-nec}
 	Suppose $\Nu$ is $\EU$-complete. 
-Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
+	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
 	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	
@@ -2720,7 +2724,11 @@ $\EU_p$, although such strategies may nonetheless be impermissible according to 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
-		If also for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq \EU_p(D)\}<1$, then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\Nu)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do).  And if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{double check thms... I removed ``in IP''!}
+		Suppose that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
+\begin{colored}{blue}
+			Then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\Nu)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do). 
+\end{colored}
+		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{double check thms... I removed ``in IP''!}\todo{This thm feels false}
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
@@ -3217,23 +3225,26 @@ the situation is less clear, as picking in accordance with expected utility theo
 
 When we have decision-state dependence, we made use of the idea of conditional probabilities. 
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$. 
+For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$.
 
-These need to have $b(A\times E)=\int_{D\in E}b(A|D)b_\Decs(\diff D)$ for all $A$ measurable $\subseteq\Omega$ and $E$ measurable $\subseteq\Decs$, so we have the law of total expectation for bounded measurable random variables, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will then apply this to our $\U(\s)$ or $\U(\nu)$. 
+We will need to show that we have a so-called regular conditional probability kernel.
 
-\begin{colored}{red}
-	The important feature that our results rely on is that for bounded measurable random variables $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular apply this to our $\U(\s)$ or $\U(\n)$, which are bounded, by assumption that $\U$ is bounded.
-\end{colored}
-\todo{We could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
+When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula on those $D$ with $b(\Decs)>0$. 
+It is important for us that $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$
 
-When $\Decs$ is supported on a finite subset of $\Decs$, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
+\todo{was trying to rewrite and simplify with refs... but it's going to take longer than I thought...}
 
-%One might instead simply stipulate that $b$ is constructed 
+Important for our results is that we have the law of total expectation for integrable measurable random variables, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$, which we will apply in particular for our $\U(\s)$ or $\U(\nu)$ (which are bounded). 
+We need to ensure that $D\mapsto b(\cdot|D)$ is measurable and $b(A\times E)=\int_{D\in E}b(A|D)\;b_\Decs(\diff D)$ for all measurable $A\subseteq\Omega$ and $E\subseteq\Decs$. This is the regular conditional probability kernel. 
 
-In the more general setting, we need to make use of further machinery to find this regular probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
+\todo{Actually, we could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
+
+When $\Decs$ has finite support, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
+
+In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
 
 
-Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b\times\Decs)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for $E\subseteq \Decs$ measurable. 
+Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b\times\Decs)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for measurable $E\subseteq \Decs$. 
 As $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, each $\beta_\omega$ is absolutely continuous with respect to $b_\Decs$, and thus by the Radon-Nikodym theorem, for each $\omega$ there is a $b_\Decs$-measurable function $\frac{\diff \beta_\omega}{\diff b_\Decs}:\Decs\to[0,\infty)$ such that $b_\Decs(\{\omega\}\times E)=\beta_\omega(E)=\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)$.
 Note then that \begin{align}
 	b_\Decs(A\times E)&=\sum_{\omega\in A\cap \Omega_b}\beta_\omega(E)=\sum_{\omega\in A\cap \Omega_b}\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)\\
@@ -3251,18 +3262,6 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Note also that by the almost everywhere linearity of Radon-Nikodym derivatives, $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=\frac{\diff \sum_{\omega\in\Omega_b}\beta_\omega}{\diff b_\Decs}=\frac{\diff b_\Decs}{\diff b_\Decs}=1$ almost everywhere. Thus $b(\cdot|D)$ is a probability function on $\Omega$ for almost all $D$.
 
-\begin{colored}{red}
-	Hence, for any integrable $X:\Omega\times\Decs\to\Re$, 
-\begin{align}
-	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
-	&=\int_{\Omega_b\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
-	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\beta_\omega(\diff D)&&\text{definition of $\beta_\omega$ and}\\
-	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)&&\text{change of measure}\\
-	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)b(\omega|D)b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
-		&=\int_\Decs \left[\sum_{\omega\in\Omega_b} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
-\end{align}
-That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
-\end{colored}
 
 Alternatively one could simply use the disintegration or Regular Conditional Probability theorem. 
 If $\U(\A)$ is Borel subset of $\Re^n$, then under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
@@ -3331,6 +3330,18 @@ For any integrable $X: \Omega\times \Decs\to\Re$ (for example, when $X$ is bound
 %		&=\int_\D [\sum_\omega X(\omega,D) b(\omega |D)] b_\D(\diff D)\\
 %		&=\Exp_{b_\D}[\Exp_{b(\cdot|D)}[X(\cdot,D)]]
 %\end{align}
+
+	Hence, for any integrable $X:\Omega\times\Decs\to\Re$, 
+\begin{align}
+	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
+	&=\int_{\Omega_b\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\beta_\omega(\diff D)&&\text{definition of $\beta_\omega$ and}\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)\frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)&&\text{change of measure}\\
+	&=\sum_{\omega\in\Omega_b} \int_\Decs X(\omega,D)b(\omega|D)b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
+	&=\int_\Decs \left[\sum_{\omega\in\Omega_b} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)&&\text{definition of $b(\cdot|D)$}\\
+\end{align}
+That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+
 
 \begin{align}
 	\Exp_b[X]&=\int_{\Omega\times\Decs} X(\omega, D) b(\diff (\seq{\omega,D}))\\
@@ -3822,7 +3833,7 @@ We have thus proved \cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ea
 %\end{proposition}
 
 \subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}
-As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal ( \cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that the risk-sensitive decision theories or $\Gamma$-maximin were.
+As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that the risk-sensitive decision theories or $\Gamma$-maximin were.
 
 \subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}
 
@@ -3894,11 +3905,11 @@ It can also be extended to more than two probabilities: In fact, we could choose
 
 It furthermore extends to the conditional probabilities case, so we present the result including both generalisations. 
 
-\begin{theorem}
+\begin{proposition}
 	Suppose $\IB$ is non-singleton and there is a selection of disjoint $E_b\subseteq\Decs$ for each $b\in\IB$ (some possibly empty), such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 	
 	Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
-\end{theorem}
+\end{proposition}
 \begin{proof}
 	Simply put $\s(D)\in\EU_{b(\cdot|D)}(D)$ for $D\in E_b$, and let it be arbitrary in $\EAd_{\IB(\cdot|-)}(D)$. 
 \end{proof}
@@ -3930,7 +3941,7 @@ It furthermore extends to the conditional probabilities case, so we present the 
 
 \todo{is there a way of combining the below two? What's special about the spreads of probabilities here?}
 
-\begin{corollary}
+\begin{corollary}\todo{why am I now using g? We were using X as rv, althoguh that was for rv on OmegaxDecs}
 	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
 	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
@@ -3942,13 +3953,13 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 \end{corollary}
 \begin{proof}
 
-Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ such that for all $g\in \Re^\Omega$ there is some $\lambda_1$ such that $\lambda_1 g\in V_1$ and $\lambda_2>0$ such that $\lambda_2 g\in V_2$. 
+Suppose $V_1$ and $V_2$ are disjoint non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V_i$.
 For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
 
 Take any distinct $p^*_1,p^*_2\in \IP$.
 
 Suppose $p$ is distinct from $p^*_i$. 
-There is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_{p^*_i}[g]$. 
+There is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_{p^*_i}[g]$. For example, $g=\mathbf{1}_A-\frac{p(A)-p^*_i(A)}{2}\mathbf{1}$ for some $A\subseteq\Omega$ such that $p(A)\neq p^*_i(A)$; or take the negative of this if required. 
 By assumption on $V_i$, there is some $\lambda >0$ with $\lambda g\in V_i$. Also $\Exp_p[\lambda g]>0>\Exp_{p^*_i}[\lambda g]$. 
 
 So $\{g\in V_i\given \Exp_p[g]>0>\Exp_{p^*_i}[g]\}\neq \emptyset$. 
