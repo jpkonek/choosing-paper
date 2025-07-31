@@ -3988,7 +3988,7 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 \begin{sublemma}
 	Suppose $V$ is a non-empty open subset of $[l,h]^\Omega$ such that for each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V$. 
 	
-	For any $p\neq q$, both $\{g\in V\given \Exp_p[g]>0>\Exp_q[g]\}$ is non-empty and open.
+	For any $p\neq q$, $\{g\in V\given \Exp_p[g]>0>\Exp_q[g]\}$ is non-empty and open.
 \end{sublemma}
 \begin{proof}
 	{It is non-empty}:
@@ -3998,21 +3998,21 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 	It is open by continuity of expectation. 
 \end{proof}
 
-Thus, for any $(p,\mu)\in\IB$, $\mu(\{\{a,0\}\given \U(a)\in V\text{ and }\Exp_p[\U(a)]>0>\Exp_q[\U(a)] \})>0$. Note also that for $D=\{a,0\}$ with $\Exp_p[\U(a)]>0>\Exp_q[\U(a)]$, then $\EU_{p}(D)=\{a\}$ and $\EU_q(D)=\{0\}$, so they are disjoint. 
+Thus, for any $(p,\mu)\in\IB$ and any $q\neq p$, $$\mu(\{\{a,0\}\given \U(a)\in V\text{ and }\Exp_p[\U(a)]>0>\Exp_q[\U(a)] \})>0.$$ Note also that for $D=\{a,0\}$ with $\Exp_p[\U(a)]>0>\Exp_q[\U(a)]$, then $\EU_{p}(D)=\{a\}$ and $\EU_q(D)=\{0\}$, so they are disjoint. 
+For $E_V:=\{\{a,0\}\given a\in V\}$, then $\mu(\{D\in E_V\given \EU_p(D)\cap\EU_q(D)=\emptyset\})>0$. 
 
-We thus have that $\mu(\{\})$
-
-
-We can find $V_1$ and $V_2$  disjoint non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V_i$.
+To construct our disjoint $E_q$ satisfying the conditions of \cref{thm:ead-existsimpermissible[indep]}, first note that we can find two \emph{disjoint} $V_1$ and $V_2$ which are open non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V_i$.
 For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
 
-Put $E_1:=\{\{a,0\}\given a\in V_1\}$ and $E_2:=\{\{a,0\}\given a\in V_2\}$.
 
-Then for any $(p,\mu)\in \IB$ if $q$ is distinct from $p$, then $$\mu\{D\in E_i\given \EU_p(D)\cap\EU_q(D)=\emptyset\}>0$$ for both $E_1$ and $E_2$. 
+Then take any distinct $q^*_1,q^*_2\in\IP$. 
 
-
-
-Then take any distinct $q^*_1,q^*_2\in\IP$. Put $E_{q^*_1}=E_1$ and $E_{q^*_2}=E_2$ and $E_q=\emptyset$ for $q\notin\{q^*_1,q^*_2\}$ and observe that it satisfies the conditions of  \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}.
+Put $$E_q:=\begin{cases}
+	E_{V_1}=\{\{a,0\}\given a\in V_1\}&q=q^*_1\\
+	E_{V_2}=\{\{a,0\}\given a\in V_2\}&q=q^*_2\\
+	\emptyset&\text{otherwise}
+\end{cases}$$
+and observe that the conditions of \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]} are then satisfied. 
 \end{proof}
 
 
@@ -4094,10 +4094,16 @@ Then take any distinct $q^*_1,q^*_2\in\IP$. Put $E_{q^*_1}=E_1$ and $E_{q^*_2}=E
 		%		
 	\end{proof}
 	
-	Let $V_1,V_2$ be any disjoint non-empty open subsets of $[l,h]^\Omega$. Let $E_i:=\{D\in\D\given D\subseteq V_i\}$. 
+	Let $V_1,V_2$ be any disjoint non-empty open subsets of $[l,h]^\Omega$. 
 	
-	Take any $p_1,p_2$ distinct members of $\IP$. This lemma then lets us check the conditions of 	
-	\cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
+	Then take any distinct $q^*_1,q^*_2\in\IP$. 
+	
+	Put $$E_q:=\begin{cases}
+		\{D\in\Decs\given D\subseteq V_1\}&q=q^*_1\\
+			\{D\in\Decs\given D\subseteq V_2\}&q=q^*_2\\
+		\emptyset&\text{otherwise}
+	\end{cases}$$
+	and observe that the conditions of \cref{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]} are then satisfied. 
 \end{proof}
 
 
