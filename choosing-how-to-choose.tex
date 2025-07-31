@@ -834,9 +834,8 @@ But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
 Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one she knows won't choose in the way she would were she in the situation herself. 
-Given the choice whether she should tie herself to the mast and pre-commit to the particular picking strategy she prefers before she knows which decision problem she'll face, rather than leaving herself to choose after she comes to know, she reaches for that rope.%\todo{isn't this making it like the others??? RP: which others? CCM: I meant VoI or sequential choice. }\todo{C: pay money? We haven't shown that... it depends on the Archimadeanicity. }
-
-Her adopted decision theory requires her to pick a picking strategy that is not compatible with its own recommendations. 
+Given the choice whether she should tie herself to the mast and pre-commit to the particular picking strategy she prefers before she knows which decision problem she'll face, rather than leaving herself to choose after she comes to know, she reaches for that rope. %\todo{isn't this making it like the others??? RP: which others? CCM: I meant VoI or sequential choice. }\todo{C: pay money? We haven't shown that... it depends on the Archimadeanicity. }
+ Her adopted decision theory requires her to pick a picking strategy that is not compatible with its own recommendations. 
 %If our agent, using her decision theory, endorses the Allais preferences and recommends Risky over Safe in $D^{\mathrm{Allais}}_{\mathrm{local}}$, then her adopted decision theory recommends a picking strategy which is not compatible with its own recommendations. 
 Despite the fact that her decision theory recommends picking Risky, it thinks it would be better to use a decision theory which recommends picking Safe.
 
@@ -845,7 +844,7 @@ Despite the fact that her decision theory recommends picking Risky, it thinks it
 %There is no funny business going on here. Learning that you face decision problem $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not, we are supposing, provide any information about whether the company will go bust. We assumed that the decision problem is independent of the state of the world. We are also assuming act-state independence: picking one option or another in $D^{\mathrm{Allais}}_{\mathrm{local}}$ does not tell you anything about which state of the world you're in.
 %\end{colored}
 
-This is a \emph{prima facie} bad feature of her decision theory. Her decision theory makes recommendations both about what actions to perform when faced with different decision problems and which picking strategy is best. But these recommendations pull her in different directions. The decision theory itself tells you do do one thing when faced with the decision, but recommends using a picking strategy which does a different thing. 
+This is a \emph{prima facie} bad feature of our agent's decision theory. Her decision theory makes recommendations both about what actions to perform when faced with different decision problems and which picking strategy is best. But these recommendations pull her in different directions. The decision theory itself tells you to do one thing when faced with the decision, but recommends using a picking strategy that something else. 
 %The picking strategy it recommends tells her to do one thing when faced with $D^{\mathrm{Allais}}_{\mathrm{local}}$, and the decision theory itself tells her to do another thing. 
 This is a conflict in the theory's recommendations. The oddity of the situation is akin to one that David \citet[56]{lewis1971iim} identified in a different context:
 \begin{quote}
@@ -879,8 +878,8 @@ What if, however, her decision theory has neither a strict preference for Safe o
 
 %A decision theory often does leave some decisions unsettled. This might be because they are indifferent between various option or it might be because they consider them incomparable. In these cases, they say that our reasons for action do not determine a unique option. In the language of \citep{ullman1977}, such a decision theory leaves open various ways to pick, where picking is a matter of settling on what to do after your reasons for action have run out and a range of options have not been ruled out as impermissible.
 
-However, with some additional assumptions we can modify the case to again show that it is still self-undermining. 
-The decision theories that endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision. They thus typically say that cases in which an agent doesn't have a strict preference either way between two options are those in which  she is indifferent between them; and, in those cases, any slight sweetening of one option is sufficient to make her strictly prefer  that. %\todo{is this the ``ordering principle''?}
+However, with some additional assumptions we can modify the case to again show that the decision theory is self-undermining in the stronger sense. 
+The decision theories that endorse the Allais preferences are usually motivated by avoidance of risk rather than considerations of ambiguity or imprecision. So they typically say that cases in which an agent doesn't have a strict preference either way between two options are those in which  she is indifferent between them; and, in those cases, any slight sweetening of one option is sufficient to make her strictly prefer  that. %\todo{is this the ``ordering principle''?}
 So, in this decision, she will prefer Risky$^+$ to Safe:
 $$
 \begin{array}{r|cc}
@@ -901,7 +900,7 @@ $$
 And so again, the decision theory deems it impermissible to pick in accordance with its own recommendations; instead it recommends using a different decision theory. 
 
 
-Any failure of von Neumann-Morgenstern's Independence Principle will generate a case where the decision theory is self-undermining.
+Any failure of the Independence Principle will generate a case where the decision theory is self-undermining.\footnote{}
 This principle says that if the decision theory deems action $a_1$ preferable to $a_2$ then it deems a probabilistic mixture $\alpha a_1+(1-\alpha)b$ as preferable to $\alpha a_2+(1-\alpha)b$. 
 Such mixtures are often interpreted as performing acts depending on the outcome of a randomization device, say a toss of a biased coin. 
 But it can similarly be seen as evaluating picking strategies if you're uncertain over which decision problem you're faced with: with probability $\alpha$ you'll be offered the decision of $a_1$ vs $a_2$ and with probability $1-\alpha$ you'll be given a decision just with one option: to perform $b$. The picking strategies are determined by their pick of either $a_1$ or $a_2$, and they are extensionally equivalent to the mixed acts. A failure of the independence axiom thus results in a different evaluation of the picking strategy to the individual actions, i.e., a case of self-underminingness.%
