@@ -1487,11 +1487,11 @@ In our argument that Allais-permitting decision theories are self-undermining, w
 
 
 
-Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$, with what the constant amount is being chosen specifically to demonstrate the undermining feature. 
+Moreover, the particular way of being uncertain over decisions you'll be faced with was a rather odd one. We specified that the credence you'll face $D^{\mathrm{Allais}}_{\mathrm{local}}$ is $\sfrac{1}{11}$ and your credence that you'll get the constant amount is $\sfrac{89}{100}$, and we chose the constant specifically to demonstrate the undermining feature. 
 	
 	Of course this might be the situation you're facing, where you happen to have these credences over the possible decisions. It might be just unfortunate coincidence, or it could be specifically constructed this way by a nefarious opponent who has set you up: they're going to toss a biased coin to determine what to offer you at the specified probabilities, having chosen these numbers specifically to demonstrate the inconsistency in your judgements. 
 	
-	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems. If your particular uncertainty is not one that generates the underminingness, is it really that problematic that were you to be in the particular uncertainty situation your decision theory were undermining, if in your actual situation it judges its own picking strategies as optimal?
+	However, typically one's uncertainty over which decision you'll face is spread over a wide class of possible decision problems---how many decision problems are you fully certain you won't face? If your particular uncertainty is not one that generates underminingness, and so, relative to that uncertainty, your decision theory judges its own picking strategies to be optimal, is it really so problematic that, were your uncertainty different in some specific way, your decision theory would be undermining?
 	
 	
 
@@ -1510,9 +1510,9 @@ Moreover, the particular way of being uncertain over decisions you'll be faced w
 %\end{colored}
 
 This is analogous to a certain standard response to the Dutch book arguments: perhaps you just think it's unlikely you'll ever face such a nefarious bookie. A common response is to argue that the mere existence of a Dutch book already shows you are irrational because it shows your preferences are inconsistent in a particular way---they judge the same decision differently when it is presented in different way, perhaps.\footnote{Cf. \citep{armendt1993db,mahtani2014db}.} %The set-up in which a bookie approaches you and offers a string of bets merely dramatizes this inconsistency. 
-{The set-up in which an opposing Gambler approaches you, buys and sells bets that you deem fair, and thereby saddles you with a sure loss merely dramatizes this inconsistency.} The argument doesn't assume you'll ever actually meet such a person. We might argue similarly that the mere existence of self-underminingness for some way of being uncertain about what decision you'll faced is already a challenge to the decision theory. Perhaps it shows that it is inconsistent in the same way the Dutch book argument shows non-probabilistic credences are inconsistent.
+{The set-up in which an opposing Gambler approaches you, buys and sells bets that you deem fair, and thereby saddles you with a sure loss merely dramatizes this inconsistency.} The argument doesn't assume you'll ever actually meet such a person. We might argue similarly that the mere existence of self-underminingness for some way of being uncertain about what decision you'll face is already a challenge to the decision theory. Perhaps it shows that it is inconsistent in the same way the Dutch book argument shows non-probabilistic credences are inconsistent.
 
-In the case of the Dutch book arguments, \Citet[Sec 6.2]{pettigrew2020dutch} argues the mere existence of a set of bets you'll accept individually that, taken together, lead to sure loss isn't sufficient to show you are  irrational. Instead, he asks what happens if you are uncertain about which decisions you'll face. Drawing on results from Mark \citet{schervish1989gm} and Ben \citet{levinstein2017pgeu}, he shows that, for very  many natural ways of being uncertain about the decisions you'll face, if you have non-probabilistic credences and face whatever decision you'll face with those credences, there are alternative probabilistic credences you might have had instead that guide your choices better.
+In the case of the Dutch book arguments, \Citet[Sec 6.2]{pettigrew2020dutch} argues the mere existence of a set of bets you'll accept individually that, taken together, lead to sure loss isn't sufficient to show you are  irrational. Instead, he asks what happens if you are uncertain about which decisions you'll face. Drawing on the results from Mark \citet{schervish1989gm} and Ben \citet{levinstein2017pgeu} that we mentioned above, he shows that, for very  many natural ways of being uncertain about the decisions you'll face, if you have non-probabilistic credences and face whatever decision you'll face with those credences, there are alternative probabilistic credences you might have had instead that guide your choices better.
 
 
 
@@ -1553,7 +1553,7 @@ In the case of the Dutch book arguments, \Citet[Sec 6.2]{pettigrew2020dutch} arg
 
 %{\color{red}In response to this, we could try to bolster our objection by showing a more general result. }
 We might here similarly try to bolster our objection by showing a more general result which would apply to a whole host of natural ways of being uncertain over which decision problem you'll face. 
-Of course, we would have a stronger objection if we could show that for \emph{any} way of being uncertain over the decision problems you face, the theory is self-undermining. In fact, we'll never get something as general as that: after all, if your probability distribution places all of its probability on a single decision problem, then it will think of itself as permissible---and indeed, it will think of anything that disagrees with it as impermissible. But we might hope to be able to show that it is self-undermining for a much broader range of distributions over the possible decision theories than we currently have, thus arguing that for any `plausible' way of being uncertain over possible decisions, the theory is still undermining. 
+Of course, we would have a stronger objection if we could show that for \emph{any} way of being uncertain over the decision problems you face, the theory is self-undermining. In fact, we'll never get something as general as that: after all, if your probability distribution places all of its probability on a single decision problem, then it will think of itself as permissible---and indeed, it will think of anything that disagrees with it as impermissible. But we might hope to be able to show that it is self-undermining for a much broader range of distributions over the possible decision theories than we currently have, thus arguing that, for any `plausible' way of being uncertain over possible decisions, the theory is still undermining. 
 
 %If a defender of REU tries to apply this response, there's pressure on them to say why one should be uncertain over decision problems win a way that's compatible with being self-recommending. For example, if they could show that REU is self-recommending when you think that all possible decision problems are possible; if your measure of them requires almost everywhere decisiveness\todoold{what's the name we'll use later?}, then we think that this would be an acceptable response. 
 
@@ -1569,13 +1569,13 @@ If $\Omega$ is finite, the risk-weighted expected utility of $a$ can be written 
 $$
 \RExp_{p, r}[\U(a)] = \sum_{x \in \Set{\U(a)(\omega)\given \omega \in \Omega}} (r(p(\U(a) \geq x)) - r(p(\U(a) > x)))\times x
 $$
-And, more generally, if the utilities are bounded below by $l$ and above by $u$,
+And, more generally, if the utilities are bounded below by $l$ and above by $h$,
 %$$
 %\Exp_p[\U(a)] = \int^h_{l} p(\U(a) > u)\, du
 %$$
 %and
 $$
-\RExp_p[\U(a)] = \int^h_{u} r(p(\U(a) > x))\, dx
+\RExp_p[\U(a)] = \int^h_{l} r(p(\U(a) > x))\, dx
 $$
 Then risk-weighted expected utility theory tells you to maximize risk-weighted expected utility.
 
