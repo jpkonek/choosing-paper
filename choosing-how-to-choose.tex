@@ -2527,7 +2527,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
-Since something is in $\EAd_\IB$ iff for some $b$ in $\IB$ it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
+Since a probabilistic picking strategy is in $\EAd_\IB$ iff, for some $b$ in $\IB$, it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
 If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
@@ -2637,10 +2637,10 @@ Then we have the following result.%
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
-	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.\todo{did we know that $p$ in $\IP$??}
+	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$, in fact, an $\n'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$; and thus, $\n\notin\Maximality_\IB(\Nu)$. 
+This follows from a version of Wald's Complete Class Theorem. We will be able to show that if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2655,11 +2655,11 @@ This follows from a version of Wald's Complete Class Theorem. We will be able to
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The deterministic picking strategies discussed in the earlier part of the paper, $\S$, form a class which is EU-complete as we assumed that all picking strategies were in it; and thus we obtain the result that we hinted at in \cref{sect:Max} that if we have such a $\IB$, then it is only $\EU_p$ strategies which are in $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have a $\IB$ that satisfies the , then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$.
 
 
 
-Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$ surely pick for any $\EU_p$, unless Maximality just collapses to being $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
+Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$-surely pick for any $\EU_p$, unless Maximality just collapses to $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \todo{We're not even stating the existence of such statregies claim. Isn't that weird?? Perhaps it accidently got removed somewhen?}
