@@ -2436,7 +2436,7 @@ We begin by extending our definitions:
 \end{definition}
 Observe that in the special case where $\n$ is extremal---that is, when for every $D$ it assigns all its probabilistic weight to an individual member of $D$---then we recover our original notion of a picking strategy. We will call these the \emph{deterministic} picking strategies. 
 
-We add a further definition which is relevant for probabilistic picking strategies: 
+We add a further definition: 
 \begin{definition}
 %{\color{red}For a choice function $\c$,  \emph{$\n$ is regular for $\c$}, if, for each $D$ in $\D$: $\n_D(a) > 0$ iff $a \in \c(D)$.}
 %{\color{violet}
@@ -2462,18 +2462,19 @@ We have thus far been assuming that decision problems $D$ are non-empty finite s
 In the next few sections, we note how our earlier results concerning deterministic
 %\todo{did say ``non-probabilistic''}
 picking strategies generalize to probabilistic picking strategies.
-\subsubsection{Expected Utility Theory}
-We will judge whether the decision theory evaluates a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\Nu$. 
-There are various natural proposals for what is considered in $\Nu$ depending on one's interpretation and applications of our results. 
+
+We will judge whether a given decision theory considers a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\Nu$. 
+There are various natural proposals for what $\Nu$ contains, depending on one's interpretation and applications of our results. 
 When $\Nu$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
 If you think you get to pick by randomisation, and can select any randomisation process, then $\Nu$ will be the collection of all probabilistic picking strategies.
 If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set), %\todo{I added the `uniform'},
 then $\Nu$ will have a particular $\n^\c$ for each $\c$, where $\n^\c$ picks for $\c$. 
-If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
+If  instead you are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
 
-	\begin{colored}{violet}
-Our results will all hold under various choices of $\Nu$, so long as it has a particular feature: 
-that it at least contains some $\nu^\c$ for each relevant choice function $\EU_p$ or $\EU_{b(\cdot|-)}$.
+\subsubsection{Expected Utility Theory}
+
+	%\begin{colored}{violet}
+Our results all transpose to the probabilistic setting for any choice of $\Nu$ with a particular feature: it contains some $\nu^\c$, for each relevant choice function $\EU_p$ or $\EU_{b(\cdot|-)}$.
 %We will just need a structural requirement on $\negies$ for our results to hold, which will be satisfied in these various interpretations: 
 \begin{definition}\label{def:EU-complete}
 	A set of probabilistic picking strategies, $\Nu$:
@@ -2483,7 +2484,7 @@ that it at least contains some $\nu^\c$ for each relevant choice function $\EU_p
 	$\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
 
 		
-	$\Nu$, is \emph{deterministically full} if $\Nu\supseteq\S$, containing all the deterministic picking strategies. 
+	$\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
 
 		
 
@@ -2497,17 +2498,17 @@ If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is de
 		$\implies$  $\Nu$ is  $\EU$-complete.
 \end{proposition}
 
-These conditions would fail if, for example, one has considerations of boundedness of our agents being unable to act according to a specified choice function; but we are assuming that that isn't our case. 
+These conditions would fail if, for example, our agents were bounded in a particular way that would render them unable to act according to a specified choice function; but we are assuming that isn't our case. 
 
 In fact, our results only need 	$\Nu$ is {$\EU$-complete for $\IB$} which we can define as: for every  $b\in \IB$, there is some $\n$ in $\Nu$ such that $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$,  but in the main body of the paper we will state the results with the more general restrictions on $\Nu$.
 	
-\end{colored}
+%\end{colored}
 	
 	
 
-\begin{colored}{red}
-	In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
-\end{colored}
+%\begin{colored}{red}
+%	In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
+%\end{colored}
 
 
 \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} extend to this setting.
@@ -2525,7 +2526,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 %{\color{violet}For the remainder, we will assume that $\IB$ makes $\Omega$ and $\D$ strongly independent, i.e., every $B\in\IB$ has the form $p\times\mu$ for some probability $p$ over $\Omega$ and $\mu$ over $\D$.}
 
-Since something is in $\EAd_\IB$ iff for some $b$ in $\IB$ it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
+Since a probabilistic picking strategy is in $\EAd_\IB$ iff, for some $b$ in $\IB$, it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
 If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
@@ -2635,10 +2636,10 @@ Then we have the following result.%
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
-	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.\todo{did we know that $p$ in $\IP$??}
+	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. We will be able to show that if is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$, in fact, an $\n'$ which picks for some $\EU_p$, where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$; and thus, $\n\notin\Maximality_\IB(\Nu)$. 
+This follows from a version of Wald's Complete Class Theorem. We will be able to show that if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2653,11 +2654,11 @@ This follows from a version of Wald's Complete Class Theorem. We will be able to
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The deterministic picking strategies discussed in the earlier part of the paper, $\S$, form a class which is EU-complete as we assumed that all picking strategies were in it; and thus we obtain the result that we hinted at in \cref{sect:Max} that if we have such a $\IB$, then it is only $\EU_p$ strategies which are in $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have a $\IB$ that satisfies the , then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$.
 
 
 
-Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$ surely pick for any $\EU_p$, unless Maximality just collapses to being $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
+Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$-surely pick for any $\EU_p$, unless Maximality just collapses to $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
 \todo{We're not even stating the existence of such statregies claim. Isn't that weird?? Perhaps it accidently got removed somewhen?}
