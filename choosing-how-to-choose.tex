@@ -1793,7 +1793,7 @@ We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-unique
 
 \section{Decision theories for imprecise credences}
 
-There is another range of decision theories that diverge from expected utility theories: those theories which accommodate ambiguity and imprecision. In the decision theories considered so far, we represent an individual as assigning precise credences to the various states of the world. But some think we do better to model individuals as having imprecise credences instead \citep{walley1991srip, bradley2016ip}. There are many ways to do this, but one of the most well-known represents an individual's doxastic state not by a single credence function, which assigns to each state of the world a single numerical measure of their confidence in that state, but by a set of such functions. We call this set your \emph{credal set}. It is a set $\IP$ of probability measures over the states of the world, $\Omega$.\footnote{{It is standard in the imprecise probability literature to reserve the term ``credal set'' for convex sets of probability measures. We do not assume convexity here.}}
+There is another range of decision theories that diverge from expected utility theories: those theories that accommodate ambiguity and imprecision. In the decision theories considered so far, we represent an individual as assigning precise credences to the various states of the world. But some think we do better to model individuals as having imprecise credences instead \citep{walley1991srip, bradley2016ip}. There are many ways to do this, but one of the most well-known represents an individual's doxastic state not by a single credence function, which assigns to each state of the world a single numerical measure of their confidence in that state, but by a set of such functions. We call this set your \emph{credal set}. It is a set $\IP$ of probability measures over the states of the world, $\Omega$.\footnote{{It is standard in the imprecise probability literature to reserve the term ``credal set'' for convex sets of probability measures. We do not assume convexity here.}}
 
 
 Many decision theories have been proposed for an agent whose uncertain beliefs are represented in this way. We discuss three prominent ones: $\Gamma$-Maximin, E-Admissibility and Maximality. %\todoold{that ok?}
@@ -1838,20 +1838,20 @@ $$
 (This should only be applied when these minima exist, e.g., when $\IP$ is a closed set.)
 \end{definition}
 
-So $\s$ picks for $\Maximin_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximin_\IP(D)$. In this case, the only picking strategy that picks for $\Maximin_\IP$ must pick 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_{\mathrm{Ellsberg}}$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any probability $p$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1E)}]\geq \Exp_p[\U(\text{1F)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2F)}]\geq \Exp_p[\U(\text{2E)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
+So $\s$ picks for $\Maximin_\IP$ iff for every $D\in\D$, $\s(D)\in\Maximin_\IP(D)$. In this case, the only picking strategy that picks for $\Maximin_\IP$ picks 1E from $D^{\mathrm{Ellsberg}}_1$ and 2F from $D^{\mathrm{Ellsberg}}_2$. We call this strategy $\s_{\mathrm{Ellsberg}}$; the strategy corresponding to the Ellsberg preferences. Such a strategy is incompatible with expected utility theory: it does not pick for $\EU_p$ for any probability $p$.\footnote{\label{ftnte:Ellsberg not EU}This is because, to have $\Exp_p[\U(\text{1E)}]\geq \Exp_p[\U(\text{1F)}]$, it must be that $x\leq \sfrac{7}{30}$; and, to have  $\Exp_p[\U(\text{2F)}]\geq \Exp_p[\U(\text{2E)}]$, it must be that $x\geq \sfrac{13}{30}$; and these are jointly incompatible. } Indeed, this fact accounts for Ellsberg's use of the case: like Allais, he wished to provide an example of intuitively rational preferences that could not be captured by expected utility theory. 
 
 Now we will use the theory itself to judge picking strategies. To do this, we need to describe the agent's uncertainty not only over what the world is like, but also over which decision problem she'll face. 
-Suppose that in fact you've got precise probabilities over what decision you'll face, and you think it's $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_1$ and $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_2$. 
-So we are representing your uncertainty as a set, $\IB$, of (higher-order) probabilities over both $\Omega$ and $\D$, each of which makes the state of the world independent of the decision you're faced with. 
+Suppose you have precise probabilities over what decision you'll face, and you think it's $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_1$ and $50\%$ likely you'll face $D^{\mathrm{Ellsberg}}_2$. 
+So, we represent your uncertainty as a set, $\IB$, of (higher-order) probabilities over both $\Omega$ and $\D$, each of which makes the state of the world independent of the decision you'll face. 
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
-{That is, your credal set is given by $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
+{That is, your credal set is $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$; so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
+Observe, then, that (i) $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but (ii) $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$. And so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todo{Shouldn't it be a ref to Seidenfel;s other one??}
 	For instance, we might consider how the agent will choose in $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, individually, and then combine these choices and observe that the result is dominated---1F-and-2E dominates 1E-and-2F. One response is simply to reject the package principle. However, there is another version of the examples in which they are presented diachronically: first evaluate $D^{\mathrm{Ellsberg}}_1$, then $D^{\mathrm{Ellsberg}}_2$. And again we can note that 1F-then-2E dominates 1E-then-2F. And we can note that $\Gamma$-Maximin would still have you choose 2E when faced with $D^{\mathrm{Ellsberg}}_2$, even if you know you've already chosen 1F when faced with $D^{\mathrm{Ellsberg}}_1$. But some will deny that sure loss as a result of decisions at different times indicates irrationality.
-		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll be faced with, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.\todo{...}
+		What this example highlights is the close connection between the analysis of this paper and existing challenges and discussions for these theories. Any such Dutch book or sequential choice challenge can be seen as a particular instance where one is unsure which decision problem you'll face, taking them each as equally likely, and evaluating strategies. However, it is a slightly different philosophical question.%\todo{...}
 
 %However, such examples can always be used to construct instances of undermining evaluations of strategies. Suppose $D^{\mathrm{Ellsberg}}_1, \ldots, D_k$ is a sequence of decision problems and your decision theory demands you pick $a_i$ from $D_i$; but suppose further than, if you were to pick $b_i$ from $D_i$ you'd be better off for sure: that is, the total utility of $a_1$-and-\ldots-and-$a_k$ is less than the total utility of $b_1$-and-\ldots-and-$b_k$  at every state of the world. Then, if you are equally confident you'll face each of $D^{\mathrm{Ellsberg}}_1, \ldots, D_n$, then, at each world, the expected utility of a strategy that picks $a_i$ when faced with $D_i$ is less than the expected utility of a strategy that picks $b_i$ when faced with $D_i$. 
 
@@ -1873,11 +1873,11 @@ Observe, then, that $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\ome
 %\subsubsection{Uncertainty about decisions}
 \label{sect:gamma:other mu}
 
-Moreover, there is a further question of particular interest in our analysis which goes beyond showing the existence of cases of uncertainty for which the decision theory is undermining, as the Ellsberg case does, or using any instance of the sequential choice or Dutch Book challenges. As discussed in \cref{sect:reu:other mu}, we want a general result saying that for a wide class of ways of being uncertain about what decision you'll be faced with, $\Gamma$-Maximin is undermining.
+Moreover, there is a further question of particular interest in our analysis which goes beyond showing the existence of cases of uncertainty for which the decision theory is undermining, as the Ellsberg case does, or using any instance of the sequential choice or Dutch Book challenges. As discussed in \cref{sect:reu:other mu}, we want a general result that says, for a wide class of ways of being uncertain about what decision you'll face, $\Gamma$-Maximin is undermining. We provide such a result in \cref{sect:nu:Max}.
 % The example we have illustrated with the Ellsberg case, or more generally pointed to using any existing Dutch book or sequential choice challenge, merely gives some way of being uncertain over which decision problem you'll be faced with where $\Gamma$-Maximin undermines its own recommendations. 
 %So far, we have only shown that in this particular way of being uncertain about what decisions you'll face, $\Gamma$-Maximin is self-undermining, declaring the only strategy that picks for it impermissible. As in our discussion in \cref{sect:reu:other mu}, we would like to be able to improve on the results by giving a more general result, which says that, for a wide class of ways of being uncertain, $\Gamma$-Maximin is similarly undermining. 
 
-We are able to provide a general result for a wide class of ways of being uncertain over which decision problem you'll be faced with, although not for all. We will discuss the details of this in \cref{sect:nu:Max}. 
+%We are able to provide suchgeneral result for a wide class of ways of being uncertain over which decision problem you'll be faced with, although not for all. We will discuss the details of this in . 
 
 %\todooldinfo{check the link to the general stuff!!}
 
@@ -1930,7 +1930,7 @@ We are able to provide a general result for a wide class of ways of being uncert
 
 %Two alternative decision theories are E-Admissibility and Maximality. When coupled with a credal set $\IP$, E-Admissibility rejects an act $a$ from a decision problem $D$ when, for any $p$ in $\IP$, there is some $a'$ in $D$ that $p$ expects to do better than $a$, while Maximality rejects an act $a$ from $D$ when there is some $a'$ in $D$ that every $p$ in $\IP$ expects to do better than $a$. %that the E-Admissible acts, that is, those that are evaluated as optimal according to at least one probability function in the credal set, $\IP$. Maximality with $\IP$ permits That is:	%\todoold{move between options and actions??? }
 
-{ Two alternative decision theories are E-Admissibility and Maximality. When coupled with a credal set $\IP$, E-Admissibility rejects an act $a$ from a decision problem $D$ when, for any $p$ in $\IP$, there is some $a'$ in $D$ that $p$ expects to do better than $a$. In that case, every $p$ in $\IP$ expects \emph{some} other option to be better than $a$, even though there may be no \emph{single} option that they all agree to be better. Maximality rejects an act $a$ from $D$ when there is some $a'$ in $D$ that every $p$ in $\IP$ expects to do better than $a$, \emph{i.e.}, when all $p$ in $\IP$ agree on a \emph{single} option which they expect to be better than $a$. If an act is rejected according to Maximality, then it is also rejected according to E-Admissibility, but not vice versa.}
+{ Two alternative decision theories are E-Admissibility and Maximality. When coupled with a credal set $\IP$, E-Admissibility rejects an act $a$ from a decision problem $D$ when, for any $p$ in $\IP$, there is some $a'$ in $D$ that $p$ expects to do better than $a$. In that case, each $p$ in $\IP$ considers \emph{some} other option to be better than $a$, even though there may be no \emph{single} option they all agree to be better. In constrast, Maximality rejects an act $a$ from $D$ when there is some $a'$ in $D$ that every $p$ in $\IP$ considers better than $a$, \emph{i.e.}, when all $p$ in $\IP$ agree on a \emph{single} option that they expect to be better than $a$. If an act is rejected according to Maximality, then it is also rejected according to E-Admissibility, but not vice versa.}
 
 \begin{definition}\label{def:ead}
  $$\EAd_\IP(D) = \Set{a \in D \given (\exists p \in \IP)(\forall a' \in D)(\Exp_p[\U(a)]\geq\Exp_p[\U(a')])}$$
@@ -1938,11 +1938,9 @@ We are able to provide a general result for a wide class of ways of being uncert
  	 $\s$ picks for $\EAd_\IP$ iff for every $D\in\D$, $\s(D)\in\EAd_\IP(D)$. 	
  \end{definition}
 
-\begin{colored}{violet}
 	 Note that	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
-Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\IP$.
+Thus, any picking strategy $\s$ that picks for $\EU_p$, for some $p\in\IP$, also picks for $\EAd_\IP$.
 	
-\end{colored}
 	\begin{definition}
 	$$\Maximality_\IP(D) = \Set{a \in D \given (\forall a'\in D)(\exists p\in\IP)(\Exp_p[\U(a)] \geq\Exp_p[\U(a')])}$$
 	
@@ -1952,21 +1950,21 @@ Thus, any $\s$ which picks for $\EU_p$ for some $p\in\IP$ also picks for $\EAd_\
 
 
 
-We will treat E-Admissibility first. 
-\begin{colored}{violet}
+We  treat E-Admissibility first. 
+%\begin{colored}{violet}
 	
 \subsubsection{E-Admissibility}
 
  
 We want to consider how E-Admissibility judges picking strategies.  
-This depends on your uncertainty over which decision problem you'll face as well. 
+This depends on your uncertainty over which decision problem you'll face as well as your uncertainty about the state of the world. 
 We represent your uncertainty over $\Omega \times \D$ with a credal set, $\IB$, given by a set of probability functions, $b$, over $\Omega\times \D$. 
 
 We can simply apply our notion of E-Admissibility with the credal set $\IB$ to determine which picking strategies are E-Admissible. 
 %	$\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that for all $\s'\in\S$, $\Exp_b(\s)\geq\Exp_b(\s')$.
  $$\EAd_\IB(\S)=\Set{\s\in\S\given  (\exists b \in \IB)(\forall \s' \in \S)(\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')])}$$
 That is, $\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\S)$. 
-\todo{we could explciitly have a lemma to say how EAd relates to EU both for acts and strategies. Makes the thm trivial then... As in appendix, but of course simpler}
+%\todo{we could explciitly have a lemma to say how EAd relates to EU both for acts and strategies. Makes the thm trivial then... As in appendix, but of course simpler}
 %	We thus have
 %\begin{lemma}
 %	$a\in\EAd_\IP(D)$ iff there is some $p\in\IP$ such that $a\in\EU_p(D)$.  
@@ -1976,40 +1974,38 @@ That is, $\s\in\EAd_\IB(\S)$ iff there is some $b\in\IB$ such that $\s\in\EU_b(\
 %\end{lemma}
 
 
-By \cref{thm:eu-self-rec}, for any $b\in\IB$ which has the form $p\times\mu$, if $\s$ picks for $\EU_p$ then it is in $\EU_{b}(\S)$, and thus, is in $\EAd_\IB(\S)$. Also, when $p\in\IP$ any $\s$ which picks for $\EU_p$ also picks for $\EAd_\IP$. We thus typically have some strategy which both picks for $\EAd_\IP$ and is in $\EAd_\IB$, unlike for $\Gamma$-Maximin. 
+By \cref{thm:eu-self-rec}, for any $b\in\IB$ that has the form $p\times\mu$, if $\s$ picks for $\EU_p$ then it is in $\EU_{b}(\S)$, and thus, is in $\EAd_\IB(\S)$. Also, when $p\in\IP$, any $\s$ that picks for $\EU_p$ also picks for $\EAd_\IP$. We thus typically have some strategy which both picks for $\EAd_\IP$ and is in $\EAd_\IB$, unlike for $\Gamma$-Maximin. 
  \begin{proposition}\label{thm:ead-existence[indep]}
-	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
+	If $p\in\IP$ and $p\times\mu\in\IB$, then any picking strategy $\s$ that picks for $\EU_p$ both picks for $\EAd_\IP$ and is in $\EAd_\IB(\S)$. 
 	
-	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
+	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are picking strategies that pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$. 
 	
-	If for every $p\in\IP$ there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$ and $a\in\EAd_\IP(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
+	If, for every $p\in\IP$, there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$ and $a\in\EAd_\IP(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 \end{proposition}
 
 
 
-\end{colored}
-
-\begin{colored}{red}
+%\begin{colored}{red}
 	
 
 % {\color{orange}an set $\IB$ of probabilities over $\Omega\times\D$, each taking $\Omega$ and $\D$ to be probabilistically independent. This is a very strong notion of independence, called Strong Independence. We make use of it 
 % }
- Then we can ask, from the point of view of $\IB$, and using E-Admissibility as our decision theory, whether a picking strategy that picks for $\EAd_\IP$ is permissible. And it turns out that, unlike for $\Gamma$-Maximin, there always is such a strategy. Indeed, if you simply take $p$ from $\IP$, and take a picking strategy $\s$ that picks for $\EU_p$, then $\s$ also picks for $\EAd_\IP$, and $\s$ is E-Admissible, as evaluated by $\IB$---that is, $\s$ is in $\EAd_\IB(\Strategies)$; at least if there is some $b=p\times\mu\in\IB$. The following is a corollary of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
- \begin{proposition}\label{thm:ead-existence[indep]}
- 		If there is some $p\times \mu\in \IB$ such that $\s$ $\mu$-surely picks for $\EU_p$, then $\s\in\EAd_\IB(\Strategies)$. 
+ %Then we can ask, from the point of view of $\IB$, and using E-Admissibility as our decision theory, whether a picking strategy that picks for $\EAd_\IP$ is permissible. And it turns out that, unlike for $\Gamma$-Maximin, there always is such a strategy. Indeed, if you simply take $p$ from $\IP$, and take a picking strategy $\s$ that picks for $\EU_p$, then $\s$ also picks for $\EAd_\IP$, and $\s$ is E-Admissible, as evaluated by $\IB$---that is, $\s$ is in $\EAd_\IB(\Strategies)$; at least if there is some $b=p\times\mu\in\IB$. The following is a corollary of \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal}:
+% \begin{proposition}\label{thm:ead-existence[indep]}
+% 		If there is some $p\times \mu\in \IB$ such that $\s$ $\mu$-surely picks for $\EU_p$, then $\s\in\EAd_\IB(\Strategies)$. 
  		
- 		Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there is some $\s$ which picks for $\EAd_\IP$ and is in  $\EAd_\IB(\Strategies)$. 
- \end{proposition}
-\end{colored}
+% 		Thus, if there is some $p\in\IP$ with some $\mu$ such that $p\times\mu\in\IB$, then there is some $\s$ which picks for $\EAd_\IP$ and is in  $\EAd_\IB(\Strategies)$. 
+% \end{proposition}
+%\end{colored}
  
- There are a number of conditions which guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP$, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy which is E-Admissible.
- For example, suppose that you have no views whatsoever about which decisions you will face,  or the evidential value of information about which decisions you will face. 
+ There are a number of conditions that guarantee the existence of some $p\times\mu\in\IB$ for any $p\in\IP$, and thus ensure that every E-Admissible action in a decision problem is part of a picking strategy that is E-Admissible.
+ For example, suppose you have no views whatsoever about which decisions you will face,  nor about the evidential value of information about which decisions you will face. 
  In that case, your credal set $\IB$ over $\Omega\times\D$ is given by the \emph{natural extension} of $\IP$ to this space, which is the largest (least informative) set of probabilities that extend the probabilities in $\IP$ to $\Omega \times \D$. 
  This is sufficient to guarantee that for every $p\in\IP$ there is some $\mu$ on $\D$ such that $p\times\mu\in \IB$.
  
 
  
-Alternatively, suppose that you have a bit of information both about the world and which decision problem you will face. Your uncertainty about the world is given by the credal set $\IP$ over $\Omega$. Your uncertainty about the which decision you will face is given by the credal set $\ID$ over $\D$. Suppose also that you treat information about which decisions you will face as \emph{irrelevant} to which state of the world you are in. 
+Alternatively, suppose you have a bit of information both about the world and which decision problem you will face. Your uncertainty about the world is given by the credal set $\IP$ over $\Omega$. Your uncertainty about the which decision you will face is given by the credal set $\ID$ over $\D$. Suppose also that you treat information about which decisions you will face as \emph{irrelevant} to which state of the world you are in. 
 
 In the precise setting, irrelevance is a univocal, symmetric notion: for any joint distribution $b$ over $\Omega \times \D$, $\D$ is \emph{stochastically independent} of (and hence irrelevant to) $\Omega$ according to $b$ just in case $b(\omega\in A\given D\in E)=b(\omega\in A)$ whenever $b(D\in E)>0$.\footnote{For any $A\subseteq\Omega$, $\omega\in A:=\left\{\left<\omega,D\right>\in\Omega\times\D\given \omega\in A\right\}$. Likewise, for any $E\subseteq\D$, $D\in E:=\left\{\left<\omega,D\right>\in\Omega\times\D\given D\in E\right\}$.}
 \todooldinfo{ftnte defining marginal again. Check consistency throughtou paper. } 
