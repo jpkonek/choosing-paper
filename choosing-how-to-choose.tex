@@ -2126,7 +2126,7 @@ We can also show it holds under some plenitude conditions: if each $\mu$ assigns
 %\end{colored}
 
 
-Does this make E-Admissibility self-undermining? Not exactly. But it does mean that, by their own lights, an E-Admissibility decision-maker must pick from their choice set \emph{as if} their credal set represented some true, precise probability which they are simply not in a position to identify. This is close to what \cite{levi99} referred to as \emph{imprecise} rather than \emph{indeterminate} probabilities. And it may not sit well with contemporary proponents of E-Admissibility.
+Does this make E-Admissibility self-undermining? Not exactly. But it does mean that, by her own lights, an E-Admissibility decision-maker must pick from her choice set \emph{as if} her credal set represented some true, precise probability which she is simply not in a position to identify. This is close to what \cite{levi99} referred to as \emph{imprecise} rather than \emph{indeterminate} probabilities. And it may not sit well with contemporary proponents of E-Admissibility.
 
 
 
@@ -2154,7 +2154,7 @@ Take a simple example.
 	\end{array}
 	$$
 	
-	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$ in the following sense: they will (assuming utility linear in GBP) choose $B$ (reject $1C$) in $D^{\mathrm{coord}}_1$ just in case they choose $2C$ (reject $B$) in $D^{\mathrm{coord}}_2$; likewise, they will choose $1C$ (reject $B$) in $D^{\mathrm{coord}}_1$ just in case they choose $B$ (reject $2C$) in $D^{\mathrm{coord}}_2$. 
+	Any $\EU$-maximizer will coordinate their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$ in the following sense: assuming their utility is linear in $\pounds$s, they will choose $B$ (reject $1C$) in $D^{\mathrm{coord}}_1$ just in case they choose $2C$ (reject $B$) in $D^{\mathrm{coord}}_2$; likewise, they will choose $1C$ (reject $B$) in $D^{\mathrm{coord}}_1$ just in case they choose $B$ (reject $2C$) in $D^{\mathrm{coord}}_2$. 
 % \todoold{unless $p=0.5$!!!}	
 	
 	Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $B$ to be strictly better than $1C$, while $p_2$ expects $B$ to be strictly worse than $2C$. In that case, $\EAd_\IP(D^{\mathrm{coord}}_1)=\{B,1C\}$ and $\EAd_\IP(D^{\mathrm{coord}}_2)=\{B,2C\}$. You find both options in both options \emph{incomparable}, \emph{i.e.}, not rejected but also not indifferent, or equally good. Just as each of $p_1$ and $p_2$ coordinates their choices in $D^{\mathrm{coord}}_1$ and $D^{\mathrm{coord}}_2$, so too does E-Admissibility, advising you to coordinate how you resolve incomparability in a picking strategy. You ought to pick $B$ in $D^{\mathrm{coord}}_1$ just in case you pick $2C$ in $D^{\mathrm{coord}}_2$. Likewise, you ought to pick $1C$ in $D^{\mathrm{coord}}_1$ just in case you pick $B$ in $D^{\mathrm{coord}}_2$. 
@@ -2189,32 +2189,32 @@ The utility of an action, $\U(a)$, is a gamble on $\Omega$. The utility of picki
 \todooldinfo{sort out here!!!! I }
 
 	\subsubsection{Maximality}
-\begin{colored}
-	{violet}
+%\begin{colored}
+%	{violet}
 	We can also apply the notion of Maximality to determine which picking strategies are Maximal: 
 	$$\Maximality_\IB(\S)=\Set{\s\in\S\given (\forall \s'\in\S)(\exists b\in\IB)(\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')])}$$
-\end{colored}
+%\end{colored}
 	
 Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-existence[indep]} entails:
 
 
-\begin{colored}{red}
-	 \begin{proposition}\label{thm:max-suff}
-	If $\s$ picks for $\EU_p$ for some $p\times \mu\in \IB$ with $p\in\IP$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
+%\begin{colored}{red}
+%	 \begin{proposition}\label{thm:max-suff}
+%	If $\s$ picks for $\EU_p$ for some $p\times \mu\in \IB$ with $p\in\IP$, then $\s$ picks for $\Maximality_\IP$ and $\s$ is in $\Maximality_\IB(\Strategies)$.
 %	
 %	If $\s$ picks for $\EU_{b(\cdot|-)}$ for some $b\in\IB$, then $\s$ picks for $\Maximality_{\IB(\cdot|-)}$ and $\s\in \Maximality_\IB(\Strategies)$. 
 	%and is not in $\EAd_\IB(\Strategies)$.
-\end{proposition}
-\end{colored}
+%\end{proposition}
+%\end{colored}
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 	 \begin{proposition}\label{thm:max-suff}
 	If $p\in\IP$ and $p\times\mu\in\IB$ then any $\s$ which picks for $\EU_p$ both picks for $\Maximality_\IP$ and is in $\Maximality_\IB(\S)$. 
 	
 	If there exists some $p$ and $\mu$ with $p\in\IP$ and $p\times\mu\in\IB$, then there are some strategies which pick for $\Maximality_\IP$ and are in $\Maximality_\IB(\S)$. 
 \end{proposition}
 
-\end{colored}
+%\end{colored}
 \begin{comment}
 Since Maximality is a more permissive decision theory than E-Admissibility, \cref{thm:ead-equiv[indep]} entails:
 
@@ -2229,9 +2229,9 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 %Here, we extended maximality to apply to dependence in the analogous way: conditionalise the probabilities on which decision problem you're faced with. 
 \end{comment}
 
-And so, like E-Admissibility, Maximality is not self-undermining in the way that $\Gamma$-Maximin is self-undermining. There are always strategies that pick for it that it does not deem impermissible, \begin{colored}{violet}
+And so, like E-Admissibility, Maximality is not self-undermining in the way that $\Gamma$-Maximin is self-undermining. There are always strategies that pick for it that it does not deem impermissible, %\begin{colored}{violet}
 	at least as long as such $p\in\IP$ and $p\times\mu\in\IB$ exist.
-\end{colored}
+%\end{colored}
 
 Unlike for E-Admissibility, we do not get the converse result (even under the assumption of complete independence). There can sometimes be some strategies which are not ruled out by Maximality but which nonetheless do not pick for any $\EU_p$. This is because a strategy is only ruled out as impermissible if there's a \emph{single} alternative which is preferable according to \emph{every} $b\in \IB$. 
 This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise or if it's precise and pretty confident about which one you will face. 
@@ -2239,26 +2239,26 @@ This happens, for example, in the Ellsberg case if one's probability over which 
 
 If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2E,1F}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2E,1F}})=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
 
-We will be able to show that if your credence over which decision problem you'll be faced with is precise, and also has a further property, that it requires almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we will be able to show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}, but will first note that our results so far hold in a more general setting, one where we allow for decision-state dependence. 
+We will be able to show that, if your credences over which decision problem you'll face are precise, and also have a further property, that they require almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we can show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}, but we first note that our results so far hold in a more general setting, one where we allow for decision-state dependence. 
 
 %We will be able to nonetheless get results for this case if we assume that you happen to be precise about which decision problem you'll be faced with, and this measure over the decisions has a particular property (requiring almost everywhere decisiveness); which we will discuss this in \cref{sect:nu:Max}.
 
 
 
 	\subsubsection{Decision-State Dependence}\label{sect:EAd-dep}
-To avoid the various independence assumptions that we employed in \cref{sect:e-admiss}, we will now generalize some of our earlier results to the decision-state dependent case, as we did in the precise setting in \cref{sect:decdep}. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by updating on that information via pointwise conditionalization), and then use the updated credal set to determine which options to reject. 
+To avoid the various independence assumptions we employed in \cref{sect:e-admiss}, we  now generalize some of our earlier results to cover the case in which we don't assume the decision problem you face is independent of the state of the world you're in,  as we did in the precise setting in \cref{sect:decdep}. To do this, in any decision problem, we must bring $\IB$ up to speed on the problem that you face (by updating on that information via pointwise conditionalization), and then use the updated credal set to determine which options to reject. 
 \todoold{We already talked about this earlier! }
 %\todo{Do we need to say it's pintwise conditionalizaiton?}
 
 %To avoid the strong independence we can present version of this result using the credal state over $\Omega\times\D$ which might allow for dependence. To do this, one must first conditionalise the probabilities by the decision problem you're faced with, and then select amongst the available ones. 
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 
 
 \begin{definition}
 	$$\EAd_{\IB(\cdot|-)}(D) = \Set{a \in D \given (\exists b \in \IB)(\forall a' \in D)(\Exp_{b(\cdot|D)}[\U(a)]\geq\Exp_{b(\cdot|D)}[\U(a')])}
 	$$
-	$\s$ picks for $\EAd_{\IB(\cdot|-)}$ iff for all $D\in\Decs$, $\s(D)\in\EAd_{\IB(\cdot|-)}(D)$.
+	$\s$ picks for $\EAd_{\IB(\cdot|-)}$ iff, for all $D\in\Decs$, $\s(D)\in\EAd_{\IB(\cdot|-)}(D)$.
 	\end{definition}
 	That is, $a\in\EAd_{\IB(\cdot|-)}(D)$ iff there is some $b\in\IB$ such that $a\in\EU_{b(\cdot|-)}(D)$. 
 	
@@ -2277,7 +2277,7 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 	\end{proposition}
 
 	Whilst some of its picking strategies are not ruled out, often some will be ruled out. 
-\end{colored}
+%\end{colored}
 	\begin{colored}{blue}
 		
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]}
