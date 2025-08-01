@@ -2474,9 +2474,8 @@ If  instead you are just uncertain over how you'll pick when using a choice func
 
 \subsubsection{Expected Utility Theory}
 
-	\begin{colored}{violet}
-Our results will all hold under various choices of $\Nu$, so long as it has a particular feature: 
-that it at least contains some $\nu^\c$ for each relevant choice function $\EU_p$ or $\EU_{b(\cdot|-)}$.
+	%\begin{colored}{violet}
+Our results all transpose to the probabilistic setting for any choice of $\Nu$ with a particular feature: it contains some $\nu^\c$, for each relevant choice function $\EU_p$ or $\EU_{b(\cdot|-)}$.
 %We will just need a structural requirement on $\negies$ for our results to hold, which will be satisfied in these various interpretations: 
 \begin{definition}\label{def:EU-complete}
 	A set of probabilistic picking strategies, $\Nu$:
@@ -2486,7 +2485,7 @@ that it at least contains some $\nu^\c$ for each relevant choice function $\EU_p
 	$\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
 
 		
-	$\Nu$, is \emph{deterministically full} if $\Nu\supseteq\S$, containing all the deterministic picking strategies. 
+	$\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
 
 		
 
@@ -2500,17 +2499,17 @@ If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is de
 		$\implies$  $\Nu$ is  $\EU$-complete.
 \end{proposition}
 
-These conditions would fail if, for example, one has considerations of boundedness of our agents being unable to act according to a specified choice function; but we are assuming that that isn't our case. 
+These conditions would fail if, for example, our agents were bounded in a particular way that would render them unable to act according to a specified choice function; but we are assuming that isn't our case. 
 
 In fact, our results only need 	$\Nu$ is {$\EU$-complete for $\IB$} which we can define as: for every  $b\in \IB$, there is some $\n$ in $\Nu$ such that $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$,  but in the main body of the paper we will state the results with the more general restrictions on $\Nu$.
 	
-\end{colored}
+%\end{colored}
 	
 	
 
-\begin{colored}{red}
-	In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
-\end{colored}
+%\begin{colored}{red}
+%	In fact, for all the results, one only needs that $\Nu$ is sufficiently $\EU$-complete in that it contains a strategy which is $\mu$-surely an $\EU_p$ strategy for relevant $p$ and $\mu$. We don't think that such weakenings are significantly interesting, so we simply impose $\EU$-completeness for ease, noticing that it applies both when $\Nu$ is the collection of all deterministic strategies and when $\Nu$ is the collection of all probabilistic picking strategies. 
+%\end{colored}
 
 
 \Cref{thm:eu-self-rec,thm:eu-uniquely-optimal} extend to this setting.
