@@ -2100,7 +2100,7 @@ This occurs when, for each decision problem $D$, there is some probability funct
 
 This will entail that, for every $(p,\mu)\in\IB$, $\EAd_\IP$ is not $\mu$-surely a restriction of $\EU_p$, i.e., $\mu(\{D\given \EAd_\IP(D)\setminus\EU_p(D)\neq\emptyset\})>0$. Once we move to \emph{probabilistic} picking strategies below, it will turn out that this condition is also sufficient to ensure that no regular probabilistic picking strategy $\mu$-surely picks for $\EU_p$. However, it is not sufficient to show the existence of the deterministic picking strategies here. To do that, we require that each $\mu$ recognises the requirement to coordinate. 
 
-We can give some sufficient conditions for strategies that pick for $\EAd_\IP$ but are rejected by $\EAd_\IB$: 
+We can give some sufficient conditions for the existence of strategies that pick for $\EAd_\IP$ but are rejected by $\EAd_\IB$: 
 \begin{proposition}\label{thm:ead-existsimpermissible[indep]}
 
 Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
@@ -2654,9 +2654,15 @@ This follows from a version of Wald's Complete Class Theorem. We will be able to
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have a $\IB$ that satisfies the , then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have a $\IB$ that satisfies the \todo{???}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$.
 
+\todo{state soemthing about the existence. }
 
+\begin{colored}
+	{blue}
+	
+SAY SOMETHING ABOUT EXISTANCE OF UNDERMINING MAXIMALITY HERE, IF WE CAN...???
+\end{colored}
 
 Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$-surely pick for any $\EU_p$, unless Maximality just collapses to $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
@@ -3133,9 +3139,9 @@ the situation is less clear, as picking in accordance with expected utility theo
 	We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
 	
-	In fact, if there are some $a,a'$ which have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure identifying any two such acts.
+	In fact, if there are some $a,a'$ which have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure which identifies any two such acts.
 	
-	We can then use the Hausdorff metric on $\Decs$ to again obtain our associated Borel $\sigma$-algebra on $\Decs$.
+	We can then use the Hausdorff metric on $\Decs$ to obtain our topology and the associated Borel $\sigma$-algebra.
 	  \[
 	d(D, D') = \max\Bigl\{
 	\sup_{a \in D}\inf_{a' \in D'}d(a,a'),
@@ -3153,7 +3159,7 @@ the situation is less clear, as picking in accordance with expected utility theo
 	
 
 	
-	We will throughout additionally assume that $\U(\A)$ is a Borel subset of $\Re^n$, then both $\A$ and $\Decs$ are standard Borel.\todo{delete the below pf as we don't use it??... that's not actually true. to be careful in our ``define s as ...'' we need to make measurable and this uses a selection theorem which I think needs standard Borel...!}
+	We will throughout additionally assume that $\U(\A)$ is a Borel subset of $\Re^n$, then both $\A$ and $\Decs$ are standard Borel spaces.\todo{delete the below pf as we don't use it??... that's not actually true. to be careful in our ``define s as ...'' we need to make measurable and this uses a selection theorem which I think needs standard Borel...!}
 	 \begin{colored}{red}
 	 	To see this, note that by quotienting out acts with the same utility profile, we can suppose that $\A$ is a Borel subspace of $\Re^n$, and thus is standard Borel. Then also $K(\A)$, the compact subsets of $\A$, is standard Borel, and we can show that $\Decs$ is Borel isomorphic to a Borel subset of that to obtain that it is also standard Borel.
 	 Quotienting by $\sim_\U$, we see it is Borel isomorphic to $\bigcup_{n\in\mathbb{N}\setminus\{0\}}\{C\in K(\A)\given 0<\# C\leq n\}$, and we can show that this set is closed for each $n$: Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\A$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
@@ -3230,27 +3236,29 @@ When we have decision-state dependence, we made use of the idea of conditional p
 
 For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$.
 
-When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula on those $D$ with $b(\Decs)>0$. 
+When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula for those $D$ with $b(\Decs)>0$. 
 Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$-almost every $D$ (and $D\mapsto b(\cdot|D)$ is measurable). 
 Moreover, and importantly for us, the law of total expectation holds: for measurable integrable random variables $X:\Omega\times\Decs\to\Re$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular be applying this to $\U(\s)$ and $\U(\nu)$. 
 \todo{Actually, we could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
 
 In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. 
-As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, with $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$ and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
-\[
-b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)
-\]
-And thus, \todo{Reference monotone convergence theorem from simple functions? Better to find a reference though... } for every integrable (e.g., bounded) measurable $X:\Omega\times\Decs\to\Re$, \begin{align}
-	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)\\
-	&=\int_\Decs \left[\sum_{\omega\in\Omega} b(\omega|D)X(\omega,D)\right]\;b_\Decs(\diff D)
+As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. 
+This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, with $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$. 
+% and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
+%\[
+%b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)
+%\]
+For every non-negative (or bounded) measurable $X:\Omega\times\Decs\to\Re$, \begin{align}
+	&\int_{\Omega\times \Decs} X(\omega,D) b(\diff \omega, \diff D)=\int_\Decs \left[\sum_{\omega\in\Omega} b(\omega|D)X(\omega,D)\right]\,b_\Decs(\diff D)
 \end{align}
+\todo{Reference monotone convergence theorem from simple functions? Better to find a reference though... } 
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives by putting $b(A|D)$ as $\frac{\diff b(A\times\cdot)}{\diff b_\Decs}(D)$ for $A\subseteq\Omega$. 
 By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$-almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain the disintegration formula $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
-As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$-almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives.
+As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$-almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives. Thus, also for measurable integrable $X$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-\todo[inline]{Why bother with the construction at all? It's not easy to follow anyway. }
+
 
 %For any $\omega$ with $b(\{\omega\}\times\Decs)>0$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega=b(\{\omega\}\times \cdot)$. 
 %As $b_\Decs=\sum_{\omega\in\Omega}\beta_\omega$, each $\beta_\omega$ is absolutely contiuous 
@@ -3273,8 +3281,17 @@ As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are onl
 %
 %In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
 
+
+When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
+
+
+
+
+
 \begin{colored}{red}
+	\section{some more details on the RN approach}\todo{doesn't make use of standard Borel!}
 	
+	\subsection{v1}
 Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b\times\Decs)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for measurable $E\subseteq \Decs$. 
 As $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, each $\beta_\omega$ is absolutely continuous with respect to $b_\Decs$, and thus by the Radon-Nikodym theorem, for each $\omega$ there is a $b_\Decs$-measurable function $\frac{\diff \beta_\omega}{\diff b_\Decs}:\Decs\to[0,\infty)$ such that $b_\Decs(\{\omega\}\times E)=\beta_\omega(E)=\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)$.
 Note then that \begin{align}
@@ -3294,16 +3311,9 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 Note also that by the almost everywhere linearity of Radon-Nikodym derivatives, $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=\frac{\diff \sum_{\omega\in\Omega_b}\beta_\omega}{\diff b_\Decs}=\frac{\diff b_\Decs}{\diff b_\Decs}=1$ almost everywhere. Thus $b(\cdot|D)$ is a probability function on $\Omega$ for almost all $D$.
 
 
-\end{colored}
-%Alternatively one could simply use the disintegration or Regular Conditional Probability theorem. 
-%If $\U(\A)$ is Borel subset of $\Re^n$, then under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
-
-
-When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
-
-\begin{colored}{red}
+\subsection{v2}
 	
-\section{some more details on the RN approach}\todo{doesn't make use of standard Borel!}
+
 %When $b$ is supported on finite subset of $\Decs$, this is easy to define: we update $b$ by the ratio formula, whenever $b(D)\neq 0$. More carefully:
 %
 %Let $b_\omega$ a measure on $\Decs$ given by $b_\omega(\omega)=b(\{\omega\}\times E)$ for $E\subseteq D$ measurable. Put $b_\Decs=\sum_{\omega\in\Omega} b_w$, is the marginal of $b$ on $\D$. 
@@ -3996,11 +4006,11 @@ Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $
 %	Take 
 %\end{proof}
 
-\todo{is there a way of combining the below two? What's special about the spreads of probabilities here?}
+We can find cases with such events when we make additional assumptions that each $\mu$ is sufficiently spread. \cref{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}
 
 
 
-\begin{corollary}\todo{why am I now using g? We were using X as rv, althoguh that was for rv on OmegaxDecs}
+\begin{proposition}\label{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}\todo{why am I now using g? We were using X as rv, althoguh that was for rv on OmegaxDecs}
 	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
 	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
@@ -4009,7 +4019,7 @@ Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $
 	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
 
 Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
-\end{corollary}
+\end{proposition}
 \begin{proof}
 
 
@@ -4047,7 +4057,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 \end{proof}
 
 
-\begin{proposition}Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
+\begin{proposition}\label{thm:ead-existsimpermissible[dep]:spreadeg}Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
 	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
 	
@@ -4531,7 +4541,7 @@ Recall \cref{def:EU-complete} of $\Nu$ being $\EU$-complete, and observe that Ba
 
 Recall the definition of requires almost everywhere decisiveness from \cref{def:suff spread}.
 \begin{lemma}\label{thm:cct-appln:cts}
-	If ${\mu^*}$ requires almost everywhere decisiveness (and countably additive), then $\Uwald(\n)(\omega):=\Exp_{\mu^*}\U({\n_{D}})(\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$ is Bayes continuous. 
+	If ${\mu^*}$ requires almost everywhere decisiveness (and countably additive), then $\Uwald(\n)(\omega):=\Exp_{\mu^*}\U({\n_{D}})(\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$ is Bayes continuous. \todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
 \end{lemma}
 \begin{proof}
 Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges on $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, then $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
@@ -4572,7 +4582,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
 \begin{corollary}
-		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. \todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
 		
 	If $\n$ does not $\mu^*$-surely pick for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
