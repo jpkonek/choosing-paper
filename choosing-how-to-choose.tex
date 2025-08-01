@@ -2105,8 +2105,7 @@ We can give some sufficient conditions for strategies that pick for $\EAd_\IP$ b
 
 Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
 
-
-If there is a selection of events $E_q\subseteq\Decs$ for each $q\in\IP$ (some of which may be empty) which are pairwise disjoint and such that for all $p\times\mu\in\IB$, 
+Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\times\mu\in\IB$, 
 \[
 \mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
 \]
@@ -2287,7 +2286,7 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 %	\begin{colored}{blue}
 		
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]}
-	If there is a selection of events $E_{b'}\subseteq\Decs$ for each $b'\in\IB$ (some of which may be empty) which are pairwise disjoint and are such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 
 Then there is $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 \end{proposition}
@@ -3247,8 +3246,8 @@ And thus, \todo{Reference monotone convergence theorem from simple functions? Be
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives by putting $b(A|D)$ as $\frac{\diff b(A\times\cdot)}{\diff b_\Decs}(D)$ for $A\subseteq\Omega$. 
-By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$ almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain the disintegration formula $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
-As each $b(A|D)$ is well defined on $b_\Decs$ almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$ almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives.
+By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$-almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain the disintegration formula $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
+As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$-almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives.
 
 \todo[inline]{Why bother with the construction at all? It's not easy to follow anyway. }
 
