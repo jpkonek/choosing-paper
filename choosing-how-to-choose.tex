@@ -2011,18 +2011,18 @@ In the precise setting, irrelevance is a univocal, symmetric notion: for any joi
 \todooldinfo{ftnte defining marginal again. Check consistency throughtou paper. } 
 But in the imprecise setting, irrelevance fractures into a variety of distinct, not necessarily symmetric notions.\footnote{A short survey of independence notions for imprecise probability: complete independence for sets of probabilities (\cite{seidenfeld2007ci,cozman2012}); independence in selection for lower previsions (\cite{campos1995}); strong independence for lower previsions and sets of desirable gambles (\cite{cooman:2012:indnatexdesirs}); epistemic independence (value and subset) for sets of desirable gambles (\cite{Moral2005b}); epistemic h-independence for lower previsions and credal sets (\cite{debock2015:phdthesis}); S-independence for choice functions (\cite{debock2021:S-independence}).}
 
-Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension}  \citep[see][Thm 13]{cooman2012}%\todo{shouldn't it be `see'??}.
+Consider a case where $\IP$ and $\ID$ are closed and convex and you treat $\D$ as \emph{epistemically irrelevant} to $\Omega$, in the sense of \cite{walley1991srip}. This means roughly that learning information about which decision problem you face does not change your maximum buy price for any ``worldly'' gamble, \emph{i.e.}, any gamble whose payout depends only on $\Omega$. Suppose that $\IP$, $\ID$ and this judgment of epistemic irrelevance jointly capture the totality of your views. In that case, your credal set $\IB$ over $\Omega \times \D$ is given by the \emph{irrelevant natural extension}  \citep[see][Thm 13]{cooman2012}. %\todo{shouldn't it be `see'??}.
 This is the largest (least informative) set $\IB$ of probabilities $b$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfy the following inequality constraints: for any gamble $g:\Omega\rightarrow\mathbb{R}$ and any $B\subseteq\D$ with $b(D\in B)>0$
 \[
 \inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
 \]
 and
 \[
-\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+\given D\in B]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\}
+\inf\left\{\Exp_p[g]\given p\in\IP\right\}\leq\Exp_b[g^+\given D\in B]\leq\sup\left\{\Exp_p[g]\given p\in\IP\right\},
 \]
 where $g^+:\Omega\times\D\rightarrow\mathbb{R}$ is the ``cylindrical extension'' of $g$ defined by $g^+(\omega,D)=g(\omega)$ for all $\omega\in\Omega$ and $D\in\D$. As many authors have noted, individual probabilities $b$ in the irrelevant natural extension $\IB$ will not in general treat $\D$ as irrelevant to $\Omega$ (\emph{cf.} \cite[pp. 96-7]{debock2019iar}). Nonetheless, $\IB$ itself will do so, in the sense described above. Moreover, $\IB$ will contain any $b$ that treats $\D$ as stochastically independent of $\Omega$. This is sufficient to guarantee that the condition of \cref{thm:ead-existence[indep]} holds.
 
-Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \emph{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \emph{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $b\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $b$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies completely independent, \emph{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-existence[indep]} holds.
+Rather than treating $\D$ as epistemically irrelevant to $\Omega$, you might treat $\D$ and $\Omega$ as \emph{completely independent}, in the sense of \cite{seidenfeld2007ci,cozman2012}, \emph{i.e.}, $\D$ and $\Omega$ are stochastically independent according to every $b\in\IB$. This is a more stringent notion of irrelevance than epistemic irrelevance (and is also symmetric). If $\IP$ and $\ID$ capture your opinions about $\Omega$ and $\D$, respectively, you judge $\D$ and $\Omega$ as completely independent, and nothing more (this captures the totality of your views), then your credal set $\IB$ over $\Omega \times \D$ is the largest (least informative) set $\IB$ of probabilities $b$ over $\Omega \times \D$ that marginalize to $\IP$ and $\ID$ and satisfies complete independence, \emph{i.e.}, $\IB=\left\{p\times\mu\given p\in\IP, \mu\in\ID\right\}$. This is also sufficient to guarantee that the condition of \cref{thm:ead-existence[indep]} holds.
 
 
 
@@ -2059,11 +2059,11 @@ The upshot is that E-Admissibility is not self-undermining in the same way that 
 
 Do we obtain a converse to \cref{thm:ead-existence[indep]}?  Are these the only E-Admissible strategies? 
 A strategy is E-Admissible iff there is some $b\in\IB$ which expects it to be optimal.
-We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies which are E-Admissible. For this, we need to assume that every $b$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
+We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it is only these strategies that are E-Admissible. For this, we need to assume that every $b$ in $\IB$ has the form $p\times\mu$, i.e., that you treat $\D$ as completely irrelevant to $\Omega$:
 
 %{\color{red} It is worth emphasising, though, that the strength of your irrelevance judgments (whether you make a judgment of epistemic irrelevance or complete independence, for example) makes a big difference to which strategies are permissible by the lights of E-Admissibility. If you treat $\D$ as completely irrelevant to $\Omega$, then we can use \cref{thm:eu-self-rec,thm:eu-uniquely-optimal} to get the following: 
 
-\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$). In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ where $\s$ $\mu$-surely picks for $\EU_p$. 
+\begin{proposition}\label{thm:ead-equiv[indep]} Suppose $\D$ and $\Omega$ are completely independent in $\IB$ (so that every $b\in\IB$ has the form $p\times\mu$). In that case, $\s\in\EAd_\IB(\Strategies)$ iff there is some $p\times \mu\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
 %	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 
@@ -2086,17 +2086,17 @@ In fact, these are pretty much the only strategies that are permissible by the l
 
 For example, in the Ellsberg case (\cref{sect:Ellsberg}), $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$; so every strategy picks for $\EAd_\IP$. 
 However, the $\s_{\text{1E,2F}}$ strategy, which is the empirically observed strategy, does not pick for any $\EU_p$: it is not rationalisable by expected utility theory.\footnote{See \cref{ftnte:Ellsberg not EU}.} 
-If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then it also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. 
+If every $b\in\IB$ has the form $p\times\mu$ with each $\mu$ giving positive probability to facing both of the decisions in the Ellsberg case, then $\s_{\text{1E,2F}}$ also does not $\mu$-surely pick for $\EU_p$ for any $p\times\mu\in\IB$; and thus, it is not in $\EAd_\IB(\S)$, despite picking for $\EAd_\IP$. 
 However, there are some strategies which pick for $\EAd_\IP$ and are in $\EAd_\IB(\S)$, namely any strategy for which there is some $p\times\mu\in\IB$ which $\mu$-surely picks for $\EU_p$, for example $\s_{\text{1E,2E}}$. 
-\todo{minor rewrite this little bit above. Reread. Huge changes below.}
+%\todo{minor rewrite this little bit above. Reread. Huge changes below.}
 
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 	
-There are often some strategies which pick for $\EAd_\IP$ but which are rejected by $\EAd_\IB(\Strategies)$. 
-This is when there is some selection of acts for each $D$, i.e., some picking strategy $\s$, such that it picks for $\EAd_\IP$, i.e., for every $D\in\Decs$, there is some $p\in\IP$ such that $\s(D)\in\EU_p(D)$, but where different probability functions rationalise $\s$ in different decision problems and for no $(p,\mu)\in\IB$ does $\s$ $\mu$-surely pick for $\EU_p$. 
+There are often picking strategies $\s$ that pick for $\EAd_\IP$---for each decision problem $D$, they pick an action from $\EAd_\IP(D)$---but which are rejected by $\EAd_\IB$---that is, they do not lie in $\EAd_\IB(\Strategies)$. 
+This occurs when, for each decision problem $D$, there is some probability function $p\in\IP$ such that $\s(D)\in\EU_p(D)$, but where different probability functions rationalise $\s$ in different decision problems, and there is no $(p,\mu)\in\IB$ such that $\s$ $\mu$-surely picks for $\EU_p$. 
 
-This will entail that for every $(p,\mu)\in\IB$, $\EAd_\IB$ is not $\mu$-surely a restriction of $\EU_p$, i.e., $\mu(\{D\given \EAd_\IP(D)\setminus\EU_p(D)\neq\emptyset\})>0$. Once we move to \emph{probabilistic} picking strategies, this condition will also be sufficient to ensure that no regular probabilistic picking strategy $\mu$-surely picks for $\EU_p$; but it is not sufficient to show the existence of the deterministic picking strategies here. They require that each $\mu$ recognises the requirement to coordinate. 
+This will entail that, for every $(p,\mu)\in\IB$, $\EAd_\IB$ is not $\mu$-surely a restriction of $\EU_p$, i.e., $\mu(\{D\given \EAd_\IP(D)\setminus\EU_p(D)\neq\emptyset\})>0$. Once we move to \emph{probabilistic} picking strategies below, this condition will also be sufficient to ensure that no regular probabilistic picking strategy $\mu$-surely picks for $\EU_p$. However, it is not sufficient to show the existence of the deterministic picking strategies here. To do that, we require that each $\mu$ recognises the requirement to coordinate. 
 
 We can give some sufficient conditions. 
 
@@ -2115,7 +2115,7 @@ A condition that can be checked to show the existence of such strategies is the 
 This can be verified in various cases, such as the Ellsberg ones. 
 We can also show it holds under some plenitude conditions: if each $\mu$ assigns strictly positive measure to every collection of take-it-or-leave-it decisions generated by a non-empty open subset of $\A$, that is $\mu(\{\{a,0\}\given a\in V\})>0$ for $V$ open non-empty subset of $\A$; or if each $\mu$ assigns strictly positive measure to every non-empty open set of decisions. In such cases, we can select two disjoint $E_1,E_2$ such that for any $p\neq q$, $\mu(\{D\in E_1|\EU_p(D)\cap \EU_q(D)=\emptyset\})>0$ and $\mu(\{D\in E_2|\EU_p(D)\cap \EU_q(D)=\emptyset\})>0$. Then by putting any $q^*_1,q^*_2$ distinct in $\IP$, the conditions of \cref{thm:ead-existence[indep]} will hold. These are discussed in \cref{sect:appendix:eadundermining}.
 
-\end{colored}
+%\end{colored}
 
 
 %{\color{red}E-Admissibility rejects some picking strategies which are compatible with its own choice set. But in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies. What this reveals is that...}
@@ -2124,11 +2124,11 @@ We can also show it holds under some plenitude conditions: if each $\mu$ assigns
 %	This feels a bit like Consumer Bulletin advising you that it is fine to hire a personal shopper who invariably comes back with Consumer Bulletin best buys, but only if they are \emph{guaranteed} to pick Consumer Bulletin best buys that are also Consumer Reports best buys. This is not quite self-undermining, but close, you might think.
 %}
 
-\begin{colored}{red}
-	 E-Admissibility rejects some picking strategies which are compatible with its own choice set. %\todo{this is repeating statement above the propn... is that ok?}
-  \Cref{thm:ead-equiv[indep]} (and the more general \cref{thm:ead-equiv[dep]}) shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
+%\begin{colored}{red}
+%	 E-Admissibility rejects some picking strategies which are compatible with its own choice set. %\todo{this is repeating statement above the propn... is that ok?}
+%  \Cref{thm:ead-equiv[indep]} (and the more general \cref{thm:ead-equiv[dep]}) shows that E-Admissible picking strategies require coordinating across the decision problems so that they could arise as expected utility strategies for some probability in one's credal set. Still, in every decision problem you're faced with, those acts which are E-Admissible are exactly those that arise from E-Admissible picking strategies, unlike in \cref{sect:reu:phil-discussion}.
 
-\end{colored}
+%\end{colored}
 
 
 Does this make E-Admissibility self-undermining? Not exactly. But it does mean that, by their own lights, an E-Admissibility decision-maker must pick from their choice set \emph{as if} their credal set represented some true, precise probability which they are simply not in a position to identify. This is close to what \cite{levi99} referred to as \emph{imprecise} rather than \emph{indeterminate} probabilities. And it may not sit well with contemporary proponents of E-Admissibility.
