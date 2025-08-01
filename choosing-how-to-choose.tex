@@ -2280,12 +2280,13 @@ To avoid the various independence assumptions that we employed in \cref{sect:e-a
 \end{colored}
 	\begin{colored}{blue}
 		
-	be, at least if $\EAd_{\IB(\cdot|-)}$ is not a restriction of some precise choice function, $\EU_{b(\cdot|-)}$.
-		\begin{proposition}\label{thm:ead-existsimpermissible[dep]}
-Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
+\begin{proposition}\label{thm:ead-existsimpermissible[dep]}
+	If there is a selection of events $E_q\subseteq\Decs$ for each $q\in\IP$ (some of which may be empty) which are pairwise disjoint and such that for all $(p,\mu)\in\IB$, 
+	\[
+	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+	\]
 	
-	Then there is some $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ that is rejected by $\EAd_\IB(\Strategies)$.\todo{I'm struggling to prove it... }
-%	Then there is some $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\Strategies)$.\todooldinfo{This thm is new, check it and see if instead I should write it with IPxM}
+	Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
 	\end{colored}
 
@@ -2297,7 +2298,7 @@ Similarly, for Maximality, we can define:
 	\begin{proposition}\label{thm:max-suff[dep]}
 	If for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\s\in\Maximality_\IB(\Strategies)$. 
 \end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
-an analogue of \cref{thm:ead-existsimpermissible[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
+an analogue of \cref{thm:ead-equiv[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
 
 
@@ -3893,7 +3894,7 @@ For showing the existence of \emph{deterministic} picking strategies which are n
 Instead, the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
 
 In these cases, we have distinct decisions and probabilities such that every probability function disagrees with the recommendations of $\EU_{q^*_i}$ on $D_i$, and the $D_i$ have positive measure according to every $\mu$. More generally:
-\begin{proposition}[\cref{thm:ead-existsimpermissible[indep]}]
+\begin{proposition}[\cref{thm:ead-existsimpermissible[dep]}]
 	If there is a selection of events $E_q\subseteq\Decs$ for each $q\in\IP$ (some of which may be empty) which are pairwise disjoint and such that for all $(p,\mu)\in\IB$, 
 	\[
 	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
