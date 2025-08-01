@@ -2100,7 +2100,7 @@ This will entail that, for every $(p,\mu)\in\IB$, $\EAd_\IP$ is not $\mu$-surely
 
 We can give some sufficient conditions for strategies that pick for $\EAd_\IP$ but are rejected by $\EAd_\IB$: 
 \begin{proposition}\label{thm:ead-existsimpermissible[indep]}
-	Suppose there is a selection of disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $(p,\mu)\in\IB$, 
+Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $(p,\mu)\in\IB$, 
 	\[
 	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
 	\]
@@ -2278,17 +2278,17 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 
 	Whilst some of its picking strategies are not ruled out, often some will be ruled out. 
 %\end{colored}
-	\begin{colored}{blue}
+%	\begin{colored}{blue}
 		
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]}
-	If there is a selection of events $E_q\subseteq\Decs$ for each $q\in\IP$ (some of which may be empty) which are pairwise disjoint and such that for all $(p,\mu)\in\IB$, 
+	Suppose there is a selection of events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), which are pairwise disjoint and such that for all $(p,\mu)\in\IB$, 
 	\[
 	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
 	\]
 	
 	Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
-	\end{colored}
+%	\end{colored}
 
 Similarly, for Maximality, we can define: 
 \begin{definition}
