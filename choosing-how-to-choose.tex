@@ -2437,7 +2437,7 @@ We begin by extending our definitions:
 \end{definition}
 Observe that in the special case where $\n$ is extremal---that is, when for every $D$ it assigns all its probabilistic weight to an individual member of $D$---then we recover our original notion of a picking strategy. We will call these the \emph{deterministic} picking strategies. 
 
-We add a further definition which is relevant for probabilistic picking strategies: 
+We add a further definition: 
 \begin{definition}
 %{\color{red}For a choice function $\c$,  \emph{$\n$ is regular for $\c$}, if, for each $D$ in $\D$: $\n_D(a) > 0$ iff $a \in \c(D)$.}
 %{\color{violet}
@@ -2463,14 +2463,16 @@ We have thus far been assuming that decision problems $D$ are non-empty finite s
 In the next few sections, we note how our earlier results concerning deterministic
 %\todo{did say ``non-probabilistic''}
 picking strategies generalize to probabilistic picking strategies.
-\subsubsection{Expected Utility Theory}
-We will judge whether the decision theory evaluates a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\Nu$. 
-There are various natural proposals for what is considered in $\Nu$ depending on one's interpretation and applications of our results. 
+
+We will judge whether a given decision theory considers a probabilistic picking strategy $\n$ to be impermissible. This will depend on the range of alternatives available. That is, we will be judging whether $\n$ is an impermissible picking strategy from a set of picking strategies, $\Nu$. 
+There are various natural proposals for what $\Nu$ contains, depending on one's interpretation and applications of our results. 
 When $\Nu$ consists just of extremal picking strategies, it is equivalent to the set of deterministic picking strategies, $\S$, which we considered in the first half of the paper. 
 If you think you get to pick by randomisation, and can select any randomisation process, then $\Nu$ will be the collection of all probabilistic picking strategies.
 If you think we are just evaluating choice functions, and each one just comes along with a single randomisation process (for example, a uniform distribution over its choice set), %\todo{I added the `uniform'},
 then $\Nu$ will have a particular $\n^\c$ for each $\c$, where $\n^\c$ picks for $\c$. 
-If you instead are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
+If  instead you are just uncertain over how you'll pick when using a choice function $\c$, and assume that this is a matter governed by a precise probability, then again we'll have a $\n^\c$ representing your probabilistic uncertainty over how you'll pick once you've selected a choice function $\c$ and are faced with a decision $D$.
+
+\subsubsection{Expected Utility Theory}
 
 	\begin{colored}{violet}
 Our results will all hold under various choices of $\Nu$, so long as it has a particular feature: 
