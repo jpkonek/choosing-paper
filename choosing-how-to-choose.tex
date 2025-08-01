@@ -3126,15 +3126,16 @@ the situation is less clear, as picking in accordance with expected utility theo
 	Throughout the paper, we ignored the question of measurability. We have considered various probability measures: $p$ a probability on $\Omega$, $\mu$ a probability on $\Decs$, and $b$ a probability on $\Omega\times\Decs$. To make this precise, we should fix the $\sigma$-algebras on each of these spaces.
 	
 	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 	
-	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
 	
+	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
 	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. 
 	
-	We define a pseudo-metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
+	We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
-	Note that if $a,a'$ have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$. 
 	
-	We can then use the Hausdorff (pseudo-)metric on $\Decs$ to again obtain our associated Borel $\sigma$-algebra on $\Decs$.
+	In fact, if there are some $a,a'$ which have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure identifying any two such acts.
+	
+	We can then use the Hausdorff metric on $\Decs$ to again obtain our associated Borel $\sigma$-algebra on $\Decs$.
 	  \[
 	d(D, D') = \max\Bigl\{
 	\sup_{a \in D}\inf_{a' \in D'}d(a,a'),
@@ -3154,8 +3155,8 @@ the situation is less clear, as picking in accordance with expected utility theo
 	
 	We will throughout additionally assume that $\U(\A)$ is a Borel subset of $\Re^n$, then both $\A$ and $\Decs$ are standard Borel.\todo{delete the below pf as we don't use it??... that's not actually true. to be careful in our ``define s as ...'' we need to make measurable and this uses a selection theorem which I think needs standard Borel...!}
 	 \begin{colored}{red}
-	 	To see this, note that by quotienting out acts with the same utility profile, we can treat $\A$ as a Borel subspace of $\Re^n$, and thus is standard Borel. Then also $K(\quotient{\A}{\sim_\U})$, the compact subsets of $\quotient{\A}{\sim_\U}$, is standard Borel, and we can show that $\Decs$ is Borel isomorphic to a Borel subset of that to obtain that it is also standard Borel.
-	 Quotienting by $\sim_\U$, we see it is Borel isomorphic to $\bigcup_{n\in\mathbb{N}\setminus\{0\}}\{C\in K(\quotient{\A}{\sim_\U})\given 0<\# C\leq n\}$, and we can show that this set is closed for each $n$: Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\quotient{\A}{\sim_\U}$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
+	 	To see this, note that by quotienting out acts with the same utility profile, we can suppose that $\A$ is a Borel subspace of $\Re^n$, and thus is standard Borel. Then also $K(\A)$, the compact subsets of $\A$, is standard Borel, and we can show that $\Decs$ is Borel isomorphic to a Borel subset of that to obtain that it is also standard Borel.
+	 Quotienting by $\sim_\U$, we see it is Borel isomorphic to $\bigcup_{n\in\mathbb{N}\setminus\{0\}}\{C\in K(\A)\given 0<\# C\leq n\}$, and we can show that this set is closed for each $n$: Suppose $C_i\longrightarrow C^*$ with $\# C_i\leq n$. If $\# C^* >n$ then there are $n+1$ disjoint $\epsilon$-balls in $\A$ which have non-empty intersection with $C^*$. And so for some tail of $C_i$, they also have non-empty intersection with these $n+1$ disjoint balls, and thus have cardinality $>n$, contradicting the assumption. 
 	 \end{colored}
 	
 %	
@@ -3229,15 +3230,13 @@ When we have decision-state dependence, we made use of the idea of conditional p
 
 For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$.
 
-We will need to show that we have a so-called regular conditional probability kernel.
-
 When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula on those $D$ with $b(\Decs)>0$. 
-Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$ almost every $D$ (and $D\mapsto b(\cdot|D)$ is measurable). 
+Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$-almost every $D$ (and $D\mapsto b(\cdot|D)$ is measurable). 
 Moreover, and importantly for us, the law of total expectation holds: for measurable integrable random variables $X:\Omega\times\Decs\to\Re$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular be applying this to $\U(\s)$ and $\U(\nu)$. 
 \todo{Actually, we could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
 
 In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. 
-As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$ and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
+As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, with $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$ and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
 \[
 b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)
 \]
@@ -3247,7 +3246,9 @@ And thus, \todo{Reference monotone convergence theorem from simple functions? Be
 \end{align}
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives. 
+Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives by putting $b(A|D)$ as $\frac{\diff b(A\times\cdot)}{\diff b_\Decs}(D)$ for $A\subseteq\Omega$. 
+By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$ almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain the disintegration formula $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
+As each $b(A|D)$ is well defined on $b_\Decs$ almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$ almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives.
 
 \todo[inline]{Why bother with the construction at all? It's not easy to follow anyway. }
 
@@ -3272,11 +3273,12 @@ Since $\Omega$ is finite, it could alternatively be constructed directly using R
 %
 %In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
 
-
+\begin{colored}{red}
+	
 Let $\Omega_b:=\Set{\omega\given b(\{\omega\}\times\Decs)>0}$, and note that $b(\Omega_b\times\Decs)=1$. For any $\omega\in \Omega_b$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega(E)=b(\{\omega\}\times E)$ for measurable $E\subseteq \Decs$. 
 As $b_\Decs=\sum_{\omega\in\Omega_b}\beta_\omega$, each $\beta_\omega$ is absolutely continuous with respect to $b_\Decs$, and thus by the Radon-Nikodym theorem, for each $\omega$ there is a $b_\Decs$-measurable function $\frac{\diff \beta_\omega}{\diff b_\Decs}:\Decs\to[0,\infty)$ such that $b_\Decs(\{\omega\}\times E)=\beta_\omega(E)=\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}b_\Decs(\diff D)$.
 Note then that \begin{align}
-	b_\Decs(A\times E)&=\sum_{\omega\in A\cap \Omega_b}\beta_\omega(E)=\sum_{\omega\in A\cap \Omega_b}\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)\\
+	b(A\times E)&=\sum_{\omega\in A\cap \Omega_b}\beta_\omega(E)=\sum_{\omega\in A\cap \Omega_b}\int_E \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)\\
 	&=\int_E\sum_{\omega\in A\cap \Omega_b} \frac{\diff \beta_\omega}{\diff b_\Decs}(D)\;b_\Decs(\diff D)
 \end{align}
 Let $b(\cdot|D)$ be a measure on $\Omega$ given by $b(A|D)=\sum_{\omega\in A\cap \Omega_b} \frac{\diff \beta_\omega}{\diff b_\Decs}(D)$ so that for any measurable $A\subseteq\Omega$ and $E\subseteq\Decs$, 
@@ -3292,6 +3294,7 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 Note also that by the almost everywhere linearity of Radon-Nikodym derivatives, $\sum_{\omega\in\Omega_b}\frac{\diff \beta_\omega}{\diff b_\Decs}=\frac{\diff \sum_{\omega\in\Omega_b}\beta_\omega}{\diff b_\Decs}=\frac{\diff b_\Decs}{\diff b_\Decs}=1$ almost everywhere. Thus $b(\cdot|D)$ is a probability function on $\Omega$ for almost all $D$.
 
 
+\end{colored}
 %Alternatively one could simply use the disintegration or Regular Conditional Probability theorem. 
 %If $\U(\A)$ is Borel subset of $\Re^n$, then under our imposed $\sigma$-algebra, $(\Decs,\Sigma)$ is a standard Borel space, and so the Regular Conditional Probability theorem, or disintegration theorem \citep[Theorem 3.4]{kallenberg1997foundations} guarantees the existence of $b(\cdot|D)$ for $b_\Decs$ almost every $D$ such that for every bounded measurable random variable $X:\Omega\times \Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.\todo{check ref carefully or find beter one?}
 
@@ -3898,16 +3901,15 @@ Instead, the requirement of coordination needs to be seen. There need to be dist
 
 In these cases, we have distinct decisions and probabilities such that every probability function disagrees with the recommendations of $\EU_{q^*_i}$ on $D_i$, and the $D_i$ have positive measure according to every $\mu$. More generally:
 \begin{proposition}[\cref{thm:ead-existsimpermissible[indep]}]
-	
-		Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
-		
-		
-	If there is a selection of events $E_q\subseteq\Decs$ for each $q\in\IP$ (some of which may be empty) which are pairwise disjoint and such that for all $p\times\mu\in\IB$, 
-	\[
-	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
-	\]
-	
-	Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
+
+Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
+
+Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\times\mu\in\IB$, 
+\[
+\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+\]
+
+Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
 \begin{proof}
 	Put $\s(D)\in \EU_q(D)$ for $q\in E_q$ and $\s(D)$ any member of $\EAd_\IB(D)$ for $D\notin \bigcup_{q\in\IP}E_q$. 
@@ -3961,9 +3963,9 @@ In these cases, we have distinct decisions and probabilities such that every pro
 %%It furthermore extends to the conditional probabilities case, so we present the result including both generalisations. 
 
 \begin{proposition}[\cref{thm:ead-existsimpermissible[dep]}]
-	If there is a selection of events $E_{b'}\subseteq\Decs$ for each $b'\in\IB$ (some of which may be empty) which are pairwise disjoint and are such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
-	
-	Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+
+Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 \end{proposition}
 \begin{proof}
 	Simply put $\s(D)\in\EU_{b(\cdot|D)}(D)$ for $D\in E_b$, and let it be arbitrary in $\EAd_{\IB(\cdot|-)}(D)$. 
