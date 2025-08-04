@@ -4019,7 +4019,7 @@ We can find cases with such events when we make additional assumptions that each
 	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $X\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=X$. 
 
 
-	Suppose $\IP$ is non-singleton and for every $p \times \mu\in\IB$, for every open non-empty subset $U \subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
+	Suppose $\IP$ is non-singleton and for every $p \times \mu\in\IB$, for every open non-empty subset $U \subseteq\A$, $\mu\{\{a,0\}\given a\in U\}>0$.
 
 Then there is $\s$ that picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{proposition}
@@ -4032,12 +4032,12 @@ Then there is $\s$ that picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$
 \begin{sublemma}
 	Suppose $V$ is a non-empty open subset of $[l,h]^\Omega$ such that for each $X\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda X\in V$. 
 	
-	For any $p\neq q$, $\{X\in V\given \Exp_p[X]>0>\Exp_q[X]\}$ is non-empty and open.
+	Then, for any $p\neq q$, $\{X\in V\given \Exp_p[X]>0>\Exp_q[X]\}$ is non-empty and open.
 \end{sublemma}
 \begin{proof}
 	{It is non-empty}:
-	First, observe that there is some $X\in\Re^\Omega$ such that $\Exp_p[X]>0>\Exp_q[X]$. For example, with $A$ such that $p(A)\neq q(A)$, we can put $X=\mathbf{1}_A-\frac{p(A)-q(A)}{2}\mathbf{1}$; or the negative of this if required.\todo{cleaner eg??} 
-	By assumption on $V$, there is some $\lambda >0$ with $\lambda X\in V$. Also $\Exp_p[\lambda X]>0>\Exp_{q}[\lambda X]$. 
+	First, observe that there is some $X\in\Re^\Omega$ such that $\Exp_p[X]>0>\Exp_q[X]$. For example, with $A$ such that $p(A)\neq q(A)$, we can put $X=\mathbf{1}_A-\frac{p(A)-q(A)}{2}\mathbf{1}$; or the negative of this, if required. %\todo{cleaner eg??} 
+	By our assumption concerning $V$, there is some $\lambda >0$ with $\lambda X\in V$. And so $\Exp_p[\lambda X]>0>\Exp_{q}[\lambda X]$. 
 	
 	It is open by continuity of expectation. 
 \end{proof}
