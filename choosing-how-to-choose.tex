@@ -3920,21 +3920,23 @@ Suppose there is a selection of measurable, pairwise disjoint events $E_q\subset
 \mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
 \]
 
-Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
+Then there is $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
 \begin{proof}
-	Put $\s(D)\in \EU_q(D)$ for $q\in E_q$ and $\s(D)$ any member of $\EAd_\IB(D)$ for $D\notin \bigcup_{q\in\IP}E_q$. 
+	Define $\s$ as follows:
+	\begin{itemize}
+	\item for $D \in E_q$, $\s(D)$ is any member of  $\EU_q(D)$; 
+	\item for $D\notin \bigcup_{q\in\IP}E_q$, $\s(D)$ is any member of $\EAd_\IB(D)$.
+	\end{itemize} 
 	
 	As they are disjoint, this is well-defined. \begin{colored}
 		{blue}
 		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
 	\end{colored}
 	
-	
+	Then consider any $p \times \mu\in\IB$. 
 	If $\s(D)\in\EU_q(D)$ and $\EU_p(D)\cap\EU_q(D)=\emptyset$, then $\s(D)\notin\EU_p(D)$. 
-	
-	Then consider any $(p,\mu)\in\IB$. 
-	So, for each $q\in\IP$, $\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\subseteq\{D\given \s(D)\notin\EU_p(D)\}$. Thus, $$\{D\given \s(D)\notin\EU_p(D)\}\supseteq\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}.$$ By our assumption on $\mu$, then $\mu(\{D\given \s(D)\notin\EU_p(D)\})>0$, so $\s$ does not $\mu$-surely pick for $\EU_p$. 
+		So, for each $q\in\IP$, $\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\subseteq\{D\given \s(D)\notin\EU_p(D)\}$. Thus, $$\{D\given \s(D)\notin\EU_p(D)\}\supseteq\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}.$$ By our assumption on $\mu$, it follows that $\mu(\{D\given \s(D)\notin\EU_p(D)\})>0$. So $\s$ does not $\mu$-surely pick for $\EU_p$. 
 \end{proof}
 
 %\begin{lemma}\label{thm:appendix:ead:existsimpermissibe:conditiontwoprobs[indep]}
@@ -3979,7 +3981,7 @@ Suppose there is a selection of measurable, pairwise disjoint events $E_{b'}\sub
 Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 \end{proposition}
 \begin{proof}
-	Simply put $\s(D)\in\EU_{b(\cdot|D)}(D)$ for $D\in E_b$, and let it be arbitrary in $\EAd_{\IB(\cdot|-)}(D)$. 
+	As above, except ensure $\s(D)$ some member of $\EU_{b(\cdot|D)}(D)$, for $D\in E_b$; and $\s(D)$ some member of $\EAd_{\IB(\cdot|-)}(D)$, for $D \notin \bigcup_{b\in\IB}E_b$. 
 \end{proof}
 
 %We suspect this condition 
@@ -4007,19 +4009,19 @@ Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $
 %	Take 
 %\end{proof}
 
-We can find cases with such events when we make additional assumptions that each $\mu$ is sufficiently spread. \cref{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}
+We can find cases with such events when we make additional assumptions that each $\mu$ is sufficiently spread. %\cref{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}
 
 
 
-\begin{proposition}\label{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}\todo{why am I now using g? We were using X as rv, althoguh that was for rv on OmegaxDecs}
+\begin{proposition}\label{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}%\todo{why am I now using g? We were using X as rv, althoguh that was for rv on OmegaxDecs}
 	Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
-	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
+	Assume $\U(\A)=[l,h]^\Omega$ with $l<0<h$. In particular, for every $X\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=X$. 
 
 
-	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, for every $U$ open non-empty $\subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
+	Suppose $\IP$ is non-singleton and for every $p \times \mu\in\IB$, for every open non-empty subset $U \subseteq\A$, $\mu$ assigns strictly positive measure to $\{\{a,0\}\given a\in U\}$.
 
-Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+Then there is $\s$ that picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{proposition}
 \begin{proof}
 
