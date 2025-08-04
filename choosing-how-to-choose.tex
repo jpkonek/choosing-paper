@@ -4247,14 +4247,14 @@ We state them in a general setting and then explain how they apply to our case.
 %	$\Uwald$ is Bayes-existing on $\O$ iff for every probability $P$ there is some $o\in \O$ which is Bayes for $P$. 
 %\end{definition}
 \begin{definition}
-	$o$ is \emph{strictly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)>\Uwald(o,\omega)$ for all $\omega$. $o$ is called \emph{admissible} if it is not strictly dominated. 
+	$o$ is \emph{strictly dominated in $\O$} iff there is $o'\in\O$ with $\Uwald(o',\omega)>\Uwald(o,\omega)$ for all $\omega$. $o$ is called \emph{admissible} if it is not strictly dominated. 
 	
-	$o$ is \emph{weakly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$.
+	$o$ is \emph{weakly dominated in $\O$} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$.
 	
 	%For a probability function $p$ over $\Omega$, we will use $p(\Uwald(o)):=\Exp_p[\Uwald(o)]$. %\todo{are we assuming finite $\Omega$??}
-	$o$ is \emph{Bayes for $p$} iff $o\in\EU_p(\O)$; that is, for all $o'\in\O$, $p(\Uwald(o))\geq p(\Uwald(o'))$. 
+	$o$ is \emph{Bayes for $p$ in $\O$} iff, for all $o'\in\O$, $p(\Uwald(o))\geq p(\Uwald(o'))$. 
 	
-	$o$ is \emph{Bayes} iff there is some probability $p$ such that $o$ is Bayes for $p$. %\todo{I don't think we'd defined it! added it here. }
+	$o$ is \emph{Bayes in $\O$} iff there is some probability $p$ such that $o$ is Bayes for $p$. %\todo{I don't think we'd defined it! added it here. }
 \end{definition}
 
 
@@ -4286,7 +4286,7 @@ We state them in a general setting and then explain how they apply to our case.
 	
 	
 	\begin{lemma}\label{thm:cct:Bayes implies admiss}
-		If $o$ is Bayes, then it is not strictly dominated.
+		If $o$ is Bayes in $\O$, then it is not strictly dominated in $\O$.
 	\end{lemma}
 	\begin{proof}
 		Suppose it is strictly dominated. Then there is $o'$ such that $\Uwald(o,\omega)<\Uwald(o',\omega)$, for all $\omega$. So every probability function $p$ over $\Omega$, we have $p( \Uwald(o))<p(\Uwald(o'))$. %$\todo{Have we introduced this notation yet?}.
@@ -4295,13 +4295,7 @@ We state them in a general setting and then explain how they apply to our case.
 		%	Suppose $o$ is weakly dominated. Then every \emph{regular} probability has $p\cdot \Uwald(o')>p\cdot \Uwald(o)$, so it is not Bayes for any regular probability. 
 	\end{proof}
 	
-	
-	We will start thinking directly about vectors in $\Re^\Omega$. 
-	\begin{align} 
-		\Uwald(\O) &:= \Set{\Uwald(o)\given o\in \O}\subseteq\Re^\Omega\\
-		\Conv(\Uwald(\O))&:=\mathsf{ConvHull}(\Uwald(\O))
-	\end{align}
-	We will also work with $\cl(\Conv(\Uwald(\O)))$, which we define to be the closure in the product topology. This can also be characterised by limits of sequences, or more generally of nets: if a sequence (or net) of members of $\Conv(\Uwald(\O))$ is such that for each coordinate, $\omega$, $X_\alpha(\omega)\longrightarrow X^*(\omega)$, then $X^*\in\cl(\Conv(\Uwald(\O)))$. 
+	From now on, we'll think directly in terms of vectors. We let $\Uwald(\O) := \Set{\Uwald(o)\given o\in \O}\subseteq\Re^\Omega$, and we write $\Conv(\Uwald(\O))$ for the convex hull of this set of real-valued vectors. We write $\cl(\Conv(\Uwald(\O)))$ for the closure of $\Conv(\Uwald(\O))$ in the product topology. This can also be characterised by limits of sequences, or more generally of nets: if a sequence (or net) of members of $\Conv(\Uwald(\O))$ is such that, for each coordinate, $\omega$, $X_\alpha(\omega)\longrightarrow X^*(\omega)$, then $X^*\in\cl(\Conv(\Uwald(\O)))$. 
 	
 %	We extend the notion of being Bayes for vectors as follows.
 %	\begin{definition}[Bayes for vectors]
@@ -4310,52 +4304,50 @@ We state them in a general setting and then explain how they apply to our case.
 %	\end{definition}
 %	Note that we haven't actually required $X$ to be in the set $\Uwald(\O)$ for it to be Bayes in $\Uwald(\O)$. The proof doesn't rely on this fact in any way, but it means that we're proving something a bit stronger: Bayes is equivalent to being non-dominated in general, whether the $X$ is in $\Uwald(\O)$ or not.
 	
-	The notion of being dominated by something in a set is defined for vectors as is obvious. 
+	The definitions of strict and weak dominance, and the definitions of being Bayes for $p$ and being Bayes simpliciter carry over straightforwardly to vectors. For instance, given two vectors $X, Y \in \Re^\Omega$, we say $X$ strictly dominates $Y$ if $X(\omega) > Y(\omega)$, for all $\omega$; and we say that $X$ is Bayes for $p$ in a given set of vectors if $p(X) \geq p(Y)$, for all $Y$ in that set; and so on.
 	
 	\begin{infversion}
 		I'm allowing infinite disutility. $\Uwald:\Re^\Omega\to[-\infty,+\infty)$. 
 	\end{infversion}
 	
-	Our first lemma says that if a vector is not Bayes in $\Uwald(\O)$ then it is strictly dominated in the convex hull.
+	Our first lemma says that if a vector is not Bayes in $\Uwald(\O)$, then it is strictly dominated in the convex hull of $\Uwald(\O)$.
 	\begin{lemma}\label{thm:cct:admiss in conv are Bayes in conv}
-		If $X\in\Re^\Omega$ is such that there is no probability $p$ with $p(X)\geq p(\Uwald(o))$ for all $o\in\O$, then there is $Y\in\Conv(\Uwald(O))$ which strictly dominates $X$, i.e., $Y(\omega)>X(\omega)$ for all $\omega$.
+		If $X\in\Re^\Omega$ and  there is no probability $p$ with $p(X)\geq p(\Uwald(o))$, for all $o\in\O$, then there is $Y\in\Conv(\Uwald(O))$ such that $Y(\omega)>X(\omega)$, for all $\omega$.
 	\end{lemma}
 	\begin{proof}
 		Suppose $X$ is not strictly dominated in $\Conv(\Uwald(\O))$. 
-		Let $$\Dom_X :=\{Y\in \Re^\Omega\given \text{for all $\omega$, }Y(\omega)>X(\omega)\},$$ i.e., the \begin{infversion}
-			finite
-		\end{infversion} strict dominators of $X$; so we know that $\Dom_X $ and $\Conv(\Uwald(\O))$ \begin{infversion}
-			$\cap Fin$ [qu: might it be empty?; we know that $\Dom_X $ is non-empty]
-		\end{infversion}are disjoint by assumption. They are also both convex so they can be separated by a linear functional, by the separating hyperplane theorem  
-		\todo{Find a proper reference for what we need!}
+		Let $\Dom_X$ be the set of strict dominators of $X$, i.e., $$\Dom_X :=\{Y\in \Re^\Omega\given \text{for all $\omega$, }Y(\omega)>X(\omega)\}.$$ Then, by assumption, $\Dom_X $ and $\Conv(\Uwald(\O))$ are disjoint. They are also both convex. And so, by the Separating Hyperplane Theorem, they can be separated by a non-zero linear functional \citep[Section 2.5.1]{boyd2004co}. That is, there is a linear functional, $f:\Re^\Omega\to\Re$, with $f\neq 0$ and a constant $c$ such that $f(Y)\geq c \geq f(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.
+		%\todo{Find a proper reference for what we need!}
 %		\citep[Theorem 5.61]{aliprantis2006infinite}. 
 %		\todo{this ref doesn't get cts!! we don't actually need it though. So i removed from statement}
-%		That is, there is a non-zero linear functional, $f:\Re^\Omega\to\Re$ with $f\neq 0$ and constant $c$ s.t.,  $f(Y)\geq c \geq f(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\footnote{In fact, to apply their result, we need that at least one of them has an internal point. In finite dimensions, this is interior points \citep[Thm.~5.60]{aliprantis2006infinite}, and observe that $\Dom_X$ is non-empty and open, so has interior points. 
+%		.\footnote{In fact, to apply their result, we need that at least one of them has an internal point. In finite dimensions, this is interior points \citep[Thm.~5.60]{aliprantis2006infinite}, and observe that $\Dom_X$ is non-empty and open, so has interior points. 
 %%		 \begin{infversion}
 %%			Although, it may fail if we allowed $+\infty$; so we'd need to impose that utilities are not $+\infty$ to get this bit.
 %%		\end{infversion}
 %	}\todo{it needs internal rather than interior opint,...}
 
 		
-		We need to show that $f$ is non-negative. Let $Z\geq 0$ and suppose $f(Z)<0$. Then take any $Y\in \Dom_X $ and consider $Y+kZ$, observing that it is still in $\Dom_X $. And $f(Y+kZ)=f(Y)+kf(Z)$ can be arbitrarily small, and in particular less than $c$ by making $k$ large enough. Contradicting. 
+		We now show that $f$ is non-negative. Let $Z\geq 0$ and suppose $f(Z)<0$. Then take any $Y\in \Dom_X $ and any $k > 0$, and note that $Y+kZ \in \Dom_X$, and so $f(Y + kZ) \geq c$. Then, since $f(Z) < 0$, we can make $f(Y+kZ)=f(Y)+kf(Z)$ arbitrarily small by making $k$ arbitrarily large. And, in particular, we can make $f(Y+kZ)=f(Y)+kf(Z)$ less than $c$. This gives a contradiction. 
 		
-		We also know that $f(\omega)\neq 0$ for some $\omega$, otherwise it would be $0$ everywhere (as by linearity, it has the form $f(X)=\sum_{\omega\in\Omega}f(\omega)X(\omega)$) and the theorem gives us a non-zero linear functional.\todo{iadded expln}
+		Also, since $f \neq 0$, there is $\omega$ such that $f(\omega)\neq 0$. After all, by linearity, $f(X) = \sum_{\omega\in\Omega}f(\omega)X(\omega)$, and so, if $f(\omega) = 0$, for all $\omega$, $f(X) = 0$, for all $X \in \Re^\Omega$, i.e., $f = 0$, which gives a contradiction. %, for otherwise it would be $0$ everywhere (as by linearity, it has the form $f(X)=\sum_{\omega\in\Omega}f(\omega)X(\omega)$) and the theorem gives us a non-zero linear functional.%\todo{iadded expln}
 		
 %				Now, any non-trivial monotone linear functional must have $f(\vec{1})\neq 0$.\todoold{why?????} And thus, we can ``normalise'' $f$ by dividing through by $f(\vec{1})$. \todoold{footnote that this isn't the usual notion of normalisation.}
 		
-		We can thus normalise $f$ to obtain our probability $p$ with $p(Y)\geq c \geq p(Z)$ for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\begin{infversion}
+		We can thus normalise $f$ to obtain our probability function $p$ over $\Omega$ with $p(Y)\geq c' \geq p(Z)$, for any $Y\in \Dom_X $ and $Z\in \Conv(\Uwald(\O))$.\begin{infversion}
 			$\cap Fin$. If $Z$ not in Fin, then we also want to check that $p(Z)<c$. 
 		\end{infversion}
 		
-		Since $X\in\cl(\Dom_X )$, also $p(X)\geq c$. Thus, $p(X)\geq p(Z)$ for all $Z\in \Uwald(\O)$ (as $\Uwald(\O)\subseteq \Conv(\Uwald(\O))$) as required.
+		Now, $X\in\cl(\Dom_X )$, and so $p(X)\geq c'$, and so $p(X) \geq p(Z)$, for all $Z\in \Uwald(\O)\subseteq \Conv(\Uwald(\O))$, as required.
 	\end{proof}
 	
 		This now gives us:
 	\begin{corollary}
 		If $\Uwald(\O)$ is convex, then 
-		$o$ is Bayes iff $o$ is not strictly dominated.
+		$o$ is Bayes in $\O$ iff $o$ is not strictly dominated in $\O$.
 	\end{corollary}
-	Note that this requires $\Uwald(\O)$ to be convex, not $\O$. This doesn't however, show that if it is not Bayes it is strictly dominated by something with is itself not dominated, and thus is Bayes. We will get that from the next result. 
+	Note that this requires $\Uwald(\O)$ to be convex, not $\O$.
+	
+	However, this doesn't show that if it is not Bayes it is strictly dominated by something that is itself not dominated, and thus is Bayes. We get that from the next result. 
 	
 	%\begin{corollary}
 	%	Suppose $\Uwald(\O)$ is convex. If $X$ is not Bayes in $\Uwald(\O)$ then it is strictly dominated in $\Uwald(\O)$. \todoold{For this case we don't have the result that it's strictly dominated by a Bayes option using \cref{thm:cct:dominator on boundry} and the fact that the $Z\in\cl(\Uwald(\O))$ which dominates it is not weakly dominated, and thus, by what we already have here, it is Bayes.. }
@@ -4366,17 +4358,17 @@ We state them in a general setting and then explain how they apply to our case.
 	
 %	Our second lemma says that if $X$ is strictly domiant
 	\begin{lemma}\label{thm:cct:dominator on boundry}
-		Suppose $X$ is strictly  dominated in $\Conv(\Uwald(\O))$. Then we can find $Z\in\cl(\Conv(\Uwald(\O)))$ which strictly dominates $X$ and is itself not even weakly dominated in $\Conv(\Uwald(\O))$. \begin{infversion}
+		Suppose $X$ is strictly  dominated in $\Conv(\Uwald(\O))$. Then we can find $Z\in\cl(\Conv(\Uwald(\O)))$ that strictly dominates $X$ and is itself not even weakly dominated in $\Conv(\Uwald(\O))$. \begin{infversion}
 			and $Z$ in Fin.
 		\end{infversion}
 		%	If $X$ is not Bayes in $\Uwald(\O)$ then there is $X'\in\cl(\Conv(\Uwald(\O)))$ s.t. $X'$ dominates $X$ and $X'$ is non-dom in $\Conv(\Uwald(\O))$. 
 	\end{lemma}
-	In the Wald setting, the $Z\in\cl(\Conv(\Uwald(\O)))$ which are not weakly dominated is called the lower boundary of the set (in our case, it would be ``upper boundary'' because we're working with positive utility rather than risk or disutility). This then says that being dominated entails that one is dominated by something in the lower boundary. It essentially depends on the fact that $\Uwald(\O)$ is bounded from above. 
+	In the usual setting for Wald's Complete Class Theorem, the vector $Z$ in $\cl(\Conv(\Uwald(\O)))$ that dominates $X$ and is not weakly dominated is called the `lower boundary' of the set; in our case, it would be `upper boundary', since we are working with positive utility rather than risk or disutility. This then says that, if a vector is dominated, it is dominated by something in the lower (upper) boundary. The result depends essentially on the fact that $\Uwald(\O)$ is bounded from above. 
 	%\todoold{Note: just improving it in each coordinate isn't sufficient. }
 	
 	
 	\begin{proof}
-		Take any $Y\in \Conv(\Uwald(\O))$ which dominates $X$. Consider $A:=\{Z\in \cl(\Conv(\Uwald(\O)))\given  Z(\omega)\geq Y(\omega)\text{ for all $\omega$}\}$. Observe that this is closed (as it is the intersection of two closed sets) and bounded (as we assumed that utilities were bounded above), and thus compact. Let $f(Z):=\sum_\omega Z(\omega)$, observing that it is a continuous function. Thus, by the Extreme Value Theorem, it obtains its maximum somewhere in $A$. This maximum point will be as required. 
+		Take any $Y\in \Conv(\Uwald(\O))$ that dominates $X$. Consider $A:=\{Z\in \cl(\Conv(\Uwald(\O)))\given  Z(\omega)\geq Y(\omega)\text{ for all $\omega$}\}$. Observe that this is closed (as it is the intersection of two closed sets) and bounded (as we assumed that utilities were bounded above), and thus compact. Let $f(Z):=\sum_\omega Z(\omega)$, observing that it is a continuous function. Thus, by the Extreme Value Theorem, it obtains its maximum somewhere in $A$. This maximum point will be as required. 
 	\end{proof}
 	%\begin{proof}
 	%	[Rewriting that more explicitly, not sure it helped though!]
@@ -4458,14 +4450,14 @@ We state them in a general setting and then explain how they apply to our case.
 %	Note that this requires $\Uwald(\O)$ to be closed and convex, not $\O$. 
 	
 	
-	This will not apply to our general case yet. For that, we need further assumptions on $\Uwald$ and $\O$. 
-\todo{are these assns on U or O?}
+	This will not apply to our general case yet. For that, we need further assumptions on the relationship between $\Uwald$ and $\O$. 
+%\todo{are these assns on U or O?}
 
 
 
 \begin{definition}\ 
 	\begin{itemize}
-		\item $\O$ is \emph{Bayes-existing} (relative to $\Uwald$) iff for every probability $p$ there is some $o\in\O$ which is Bayes for $p$.
+		\item $\O$ is \emph{Bayes-existing} relative to $\Uwald$ iff, for every probability $p$, there is some $o\in\O$ that is Bayes for $p$.
 		\item $\Uwald$ is \emph{Bayes-continuous} iff for all $o\in\O$, if $o$ is Bayes for $p$ and $p_1,p_2,\ldots$ are probabilities converging to $p$ then there is some sequence of options $o_1,o_2,\ldots$, each of which is Bayes for $p_n$ whose utility profiles converge to those of $o$. 
 	\end{itemize}
 \end{definition}
