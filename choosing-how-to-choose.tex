@@ -3886,7 +3886,7 @@ For regular picking strategies, this is simple: E-Admissibility must disagree wi
 
 	\begin{proposition}[\cref{thm:ead-nu-reg-nec}]
 	Suppose that, for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}(D)\}<1$. 
-	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
+	%That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\Nu)$.
 \end{proposition}
@@ -3896,19 +3896,19 @@ For regular picking strategies, this is simple: E-Admissibility must disagree wi
 	
 	Take any $b\in\IB$.
 	If $\EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)$, then, since $\n_D$ is a regular probability function, $\nu_D(\EU_{b(\cdot|-)}(D))< 1$. 
-	As 
-	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)(D)}\}>0$, then $\mu\{D\given \nu(\EU_{b(\cdot|-)}(D))<1\}>0$.
+	Since 
+	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)(D)}\}>0$, we have $\mu\{D\given \nu(\EU_{b(\cdot|-)}(D))<1\}>0$.
 	 So $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$. 
 	 
 	 By \cref{thm:appendix:ead:eu}, it follows that $\nu\notin\EAd_\IB(\Nu)$. 
 \end{proof}
 
-For showing the existence of \emph{deterministic} picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
+To ensure the existence of \emph{deterministic} picking strategies that are not $\EU_p$ strategies, this assumption does not suffice, as the following example demonstrates.
 \begin{example}
-	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ better than $a_2$ and $p_2$ expects $a_2$ better than $a_1$. Suppose $\mu$ is sure it'll be faced with $D=\{a_1,a_2\}$. Then picking strategies are just determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy, even though $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}\neq 1$. 
+	If $\IP=\{p_1,p_2\}$ and $p_1$ expects $a_1$ to be better than $a_2$ and $p_2$ expects $a_2$ to be better than $a_1$. Suppose $\mu$ is sure you'll face $D=\{a_1,a_2\}$, i.e., $\mu(D) = 1$. Then picking strategies are determined by their selection on this single decision, picking either $a_1$ or $a_2$. So any strategy is $\mu$-surely an $\EU_p$ strategy for some $p \in \IP$, even though, for each $p \in \IP$, $\mu\{D\given \EAd_\IP(D)\subseteq\EU_p(D)\}< 1$. 
 \end{example}
 
-Instead, the requirement of coordination needs to be seen. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed. 
+Instead, the requirement of coordination needs to be visible from the point of view of the measure $\mu$. There need to be distinct decisions where the probabilities in $\IP$  require coordination across the decisions, but E-Admissibility does not. This is what happens in the Ellsberg case or the Coordination cases discussed in the main text. 
 
 In these cases, we have distinct decisions and probabilities such that every probability function disagrees with the recommendations of $\EU_{q^*_i}$ on $D_i$, and the $D_i$ have positive measure according to every $\mu$. More generally:
 \begin{proposition}[\cref{thm:ead-existsimpermissible[indep]}]
