@@ -2672,7 +2672,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 \begin{proposition}\label{thm:max-nu-reg-nec}
 	Suppose $\Nu$ is $\EU$-complete. 
 	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$} %\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
-	Then, if $\n$ is a regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
+	Then, if $\n$ is a regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.%\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
 
 
@@ -2715,7 +2715,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 %Then, if $\n$ is regular picking strategy for $\Maximin_\IP$ then $\n\notin \Maximality_\IB(\negies)$, where 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. 
 %\end{proposition}
 
-
+\subsubsection{$\Gamma$-Maximin}
 
 Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p$ % \todo{why in IP???}
 for which the strategy $\mu^*$ surely picks for
@@ -2728,7 +2728,7 @@ $\EU_p$, although such strategies may nonetheless be impermissible according to 
 \begin{colored}{blue}
 			Then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\Nu)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do). 
 \end{colored}
-		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{double check thms... I removed ``in IP''!}\todo{This thm feels false}
+		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{JK looking at this}%double check thms... I removed ``in IP''!}\todo{This thm feels false}
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
