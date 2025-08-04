@@ -3140,7 +3140,7 @@ the situation is less clear, as picking in accordance with expected utility theo
 	We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
 	
-	In fact, if there are some $a,a'$ which have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure which identifies any two such acts.
+	In fact, if there are some $a,a'$ that have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure which identifies any two such acts.
 	
 	We can then use the Hausdorff metric on $\Decs$ to obtain our topology and the associated Borel $\sigma$-algebra.
 	  \[
@@ -3416,7 +3416,7 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 	
 \subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}
-Our first series of results rely on the fact that a picking strategy is an optimiser of expected utility iff it is an expected utility picking strategy (or at least looks like one, i.e., is $\mu$-surely one). This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of act-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
+Our first series of results rely on the fact that a picking strategy has maximal expected utility iff it $\mu$-surely picks for expected utility theory combined with a particular probability. This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of decision-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
 
 We will prove the result in generality to cover all these cases. 
 
@@ -3451,9 +3451,9 @@ We will prove the result in generality to cover all these cases.
 %Given the utility, $\Decs$ can be considered as finite subsets of $[-M,M]^{|\Omega|}\subseteq\Re^n$; again a standard Borel space. 
 %So it admits a regular conditional probability kernel $b(\cdot \given D):\Omega\to [0,1]$ for $b_\D$-almost every $D$. Where 
 
-As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D)$ defined for $b_\Decs$-almost every $D$ such that for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
+As in \cref{sect:appendix:decdep}, we have $b(\cdot\given D)$ defined for $b_\Decs$-almost every $D$ such that, for every bounded measurable random variable $X:\Omega\times\Decs\to\Re$, the law of total expectation holds: $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-Thus, $\Exp_{b}[\U(\n)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\n)]]$, as $\U(\n)$ is a measurable random variable on $\Omega\times\Decs$ and is bounded by our assumption on $\U$. 
+$\U(\n)$ is a measurable random variable on $\Omega\times\Decs$; and, since we have assumed that $\U$ is bounded above and below, $\U(\n)$ is bounded. And so, $\Exp_{b}[\U(\n)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\n)]]$. 
 
 
 Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then\footnote{More carefully:
@@ -3465,7 +3465,7 @@ Consider any $D^*\in\D$ for which $b(\cdot\given D^*)$ is well defined. Then\foo
 
 $\Exp_{b(\cdot | D^*)}[\U(a)]$ is maximised, by definition, at any $a\in \EU_{b(\cdot|-)}(D^*)$. 
 
-Thus $\Exp_{b(\cdot | D^*)}[\U(\n)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$ is maximised when $\n_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$. 
+Thus, $\Exp_{b(\cdot | D^*)}[\U(\n)]=\Exp_{\nu_{D^*}}[\Exp_{b(\cdot | D^*)}[\U]]$ is maximised when $\n_{D^*}(\EU_{b(\cdot|-)}(D^*))=1$. 
 
 And so $\Exp_{b}[\U(\n)]=\Exp_{b_\Decs}[\Exp_{b(\cdot | D)}[\U(\n)]]$ is maximised when $\n_{D^*}(\EU_{b(\cdot|-)}(D))=1$ for $b_\Decs$-almost every $D$. 
 i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
@@ -3515,16 +3515,16 @@ Our claims follow from this.
 %$
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
-\begin{corollary}
-	\begin{enumerate}
+\begin{corollary}\ 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
-		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu_b$ which picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
+		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu_b$ that picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
 	\cref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
 	
-	For \cref{itm:eu-2}, take $\nu_b$ which does pick for $\EU_{b(\cdot|-)}$. \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \cref{itm:eu-2}, \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu_b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
@@ -3777,26 +3777,26 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 \begin{colored}{violet}
 %\subsection{E-Admissibility}
 \subsection{E-Admissibility and EU equivalences\\  (\cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff})}
-This will imply many of the results about E-Admissible strategies.
+The results just stated imply many of the results about E-Admissible strategies.
 
-We will again state the results for probabilistic picking strategies, $\nu$, with the deterministic picking strategies, $\s$ being special cases. Recalling that when $\Nu=\S$ the same definitions apply.
+We will again state the results for probabilistic picking strategies, $\nu$. The results concerning deterministic picking strategies, $\s$, are then special cases, recalling that, when $\Nu=\S$, the same definitions apply.
  
-Judgements about strategies being E-Admissible are as follows:
-\begin{lemma}\label{thm:appendix:ead:strategiesjudge}
-	\begin{itemize}
+%Judgements about strategies being E-Admissible are as follows:
+\begin{lemma}\label{thm:appendix:ead:strategiesjudge}\ 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 		\item $\nu\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\nu\in\EU_b(\Nu)$.  
 		\item If $p\times\mu\in \IB$ and $\nu\in\EU_{p\times\mu}(\Nu)$, then $\nu\in\EAd_\IB(\Nu)$ 
 		\item If $\IB$ makes $\Omega$ and $\Decs$ completely independent, then $\nu\in\EAd_\IB(\Nu)$ iff there is some $p\times\mu\in\IB$ such that $\nu\in\EU_{p\times\mu}(\Nu)$.  
-	\end{itemize}
+	\end{enumerate}
 \end{lemma}
 \begin{proof}
 	Immediate from definitions. 
 \end{proof}
-We will use a new definition encompassing $\Nu$ being $\EU$-complete and $\Nu$ being conditional-$\EU$-complete, as in \cref{def:EU-complete}, by specifying the set it is $\EU$-complete for: 
+We introduce a new definition that encompasses the notions of $\EU$-completeness and conditional-$\EU$-completeness given in \cref{def:EU-complete}, by specifying the set for which the set of picking strategies is $\EU$-complete: 
 \begin{definition}
 	$\Nu$ is $\EU$-complete for $\IB$ iff for every $b\in\IB$, there is some $\nu_b\in\Nu$ such that $\nu_b$ picks for $\EU_{b(\cdot|-)}$. 
 \end{definition}
-And note that if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it is $\EU$-complete for any $\IB$. 
+Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it is $\EU$-complete for any $\IB$. 
 \begin{corollary}\label{thm:appendix:ead:eu}
 	Suppose $\Nu$ is $\EU$-complete for $\IB$.
 	\begin{enumerate}
