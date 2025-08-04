@@ -2614,9 +2614,9 @@ As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility,
 		More generally, if for some $b\in \IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\Maximality_\IB(\Nu)$. 
 \end{proposition}
 
-For E-Admissibility, we were able to show that it was only these strategies which were judged by the decision theory as acceptable. This result does not immediately apply to Maximality in a similar way because for a strategy to be deemed impermissible, the various probabilities $b\in \IB$ have to agree on a particular alternative as better.
+For E-Admissibility, we were able to show that it is only these strategies that are judged acceptable by the decision theory. This result does not immediately apply to Maximality in a similar way because, for a strategy to be deemed impermissible, the various probabilities $b\in \IB$ have to agree on a particular alternative as better.
 
-However, if we impose an additional restriction on $\IB$ we can obtain an analogous result: suppose your credence over which decision you'll be faced with is given by a single, \emph{precise} probability, $\mu^*$, and that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. All our results equally apply when $\IB$ is the convex hull of this, as taking a convex hull doesn't affect which acts are rejected by Maximality. But since $\IP$ being convex implies that this $\{p\times\mu^*\given p\in\IP\}$ is convex (since $\mu^*$ is fixed), we do not bother with presenting this strengthening. 
+However, if we impose an additional restriction on $\IB$ we can obtain an analogous result: suppose your credence over which decision you'll face is given by a single, \emph{precise} probability, $\mu^*$, and that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$. All our results equally apply when $\IB$ is the convex hull of this, since taking a convex hull doesn't affect which acts are rejected by Maximality. But, if $\IP$ is convex, then $\{p\times\mu^*\given p\in\IP\}$ is also convex (since $\mu^*$ is fixed), and so we do not bother presenting this strengthening. 
 \todoold{check!!!}
 
 
@@ -2624,8 +2624,8 @@ We will also place a further condition on $\mu^*$:
 \begin{definition}\label{def:suff spread}
 	$\mu^*$ \emph{requires almost everywhere decisiveness} iff for all probabilities $p$,$$\mu^*\Set{D\given \EU_p(D)\text{ is a singleton}}=1.$$ 
 \end{definition}
-That is, for each probability function $p$, $\mu^*$ is certain that you'll face a decision problem in which only one act maximizes expected utility. That is, the set of decision problems in which there are ties for expected utility has measure 0.
-Just considering a single proposition, this will hold, for example, if you might be faced with various decision problems indexed by $t\in[0,1]$: are you willing to pay $\pounds t$ for a bet paying out $\pounds 1$ if $p$ and $\pounds 0$ if $\neg p$, where $\mu^*$ is a measure assigning strictly positive weight to every non-degenerate interval $[x,y]$. 
+That is, for each probability function $p$, $\mu^*$ is certain you'll face a decision problem in which only one act maximizes expected utility. That is, the set of decision problems in which there are ties for expected utility has measure 0.
+For example, fix a proposition and suppose you will face the choice between paying $\pounds t$ for a bet that pays out $\pounds 1$ if the proposition is true and $\pounds 0$ if it is false, for unknown $t$ in $[0, 1]$. Then, if $\mu^*$ is a measure that assigns strictly positive weight to every non-degenerate interval $[x,y] \subseteq [0, 1]$, then $\mu^*$ requires almost everywhere decisiveness. Whatever your probability in the fixed proposition, the set of decisions of this form in which buying the bet and rejecting the bet have equal expected utility has measure 0 by the lights of $\mu^*$.
 %Suppose you have any coherent rejection function over $\Omega$. 
 
 %Wald gives us a very strong result linking being Bayes to be 
@@ -2639,7 +2639,7 @@ Then we have the following result.%
 	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. We will be able to show that if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
+This follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2654,33 +2654,30 @@ This follows from a version of Wald's Complete Class Theorem. We will be able to
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have a $\IB$ that satisfies the \todo{???}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IB(\cdot|-)}$ but that does not belong to $\Maximality_\IB(\S)$.
 
-\todo{state soemthing about the existence. }
+%\todo{state soemthing about the existence. }
 
-\begin{colored}
-	{blue}
+%\begin{colored}
+%	{blue}
 	
-SAY SOMETHING ABOUT EXISTANCE OF UNDERMINING MAXIMALITY HERE, IF WE CAN...???
-\end{colored}
+%SAY SOMETHING ABOUT EXISTANCE OF UNDERMINING MAXIMALITY HERE, IF WE CAN...???
+%\end{colored}
 
 Just as we got a more challenging result for E-Admissibility when we restricted attention to \emph{regular} picking strategies, as these won't look like $\EU_p$ strategies, similarly we get a more challenging result for Maximality when we restrict to regular picking strategies because such regular picking strategies will not $\mu^*$-surely pick for any $\EU_p$, unless Maximality just collapses to $\EU_p$ for some $p$, or at least $\mu^*$-surely does so.
 %We get a more interesting challenge for Maximality, though, if we restrict attention to regular picking strategies. This is relevant when we are trying to use probabilistic picking strategies to evaluate the utility of using the decision theory. 
 
-\todo{We're not even stating the existence of such statregies claim. Isn't that weird?? Perhaps it accidently got removed somewhen?}
+%\todo{We're not even stating the existence of such statregies claim. Isn't that weird?? Perhaps it accidently got removed somewhen?}
 
 \begin{proposition}\label{thm:max-nu-reg-nec}
 	Suppose $\Nu$ is $\EU$-complete. 
-	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
-
-	Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$}\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
-	
-	Then, if $\n$ is regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
+	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$} %\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
+	Then, if $\n$ is a regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
 
 
-	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device, or have uncertainty over how you'll pick in a way which amounts to randomisation; (at least when your opinions over which decision problem you'll be faced with is precise and require almost everywhere decisiveness). 
-	Just as with E-Admissibility, the defender of Maximality will argue that this is the right answer. In cases like this, you should coordinate how you resolve incomparability. The are reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
+	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device; nor should you be uncertain over how you'll pick in a way which amounts to randomisation; at least when your opinions over which decision problem you'll face are precise and require almost everywhere decisiveness. 
+	Just as with E-Admissibility, the defender of Maximality will argue that this is the right answer. In cases like this, you should coordinate how you resolve incomparability. There are reasons for rejection at the scale of picking strategies---reasons grounded in the (putative) value of coordination---that are not reasons for rejection at the scale of actions or options. 
 	
 	%	One's account of imprecise decision making has to say something more sophisticated about how one should pick.
 \todoold{I rewrote this from JKs comment}
@@ -2720,7 +2717,8 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 
 
-Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p$  \todo{why in IP???}for which the strategy $\mu^*$ surely picks for
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p$ % \todo{why in IP???}
+for which the strategy $\mu^*$ surely picks for
 % \todo{eg here should we replace?? I did so... changed order of quantifier}
 $\EU_p$, although such strategies may nonetheless be impermissible according to $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}) where the only strategy compatible with $\Gamma$-Maximin was judged impermissible by the theory itself. 
 	\begin{proposition}\label{thm:gamma-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
