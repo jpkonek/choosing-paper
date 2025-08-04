@@ -3242,7 +3242,7 @@ Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$-almost every $D$ (a
 Moreover, and importantly for us, the law of total expectation holds: for measurable integrable random variables $X:\Omega\times\Decs\to\Re$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular be applying this to $\U(\s)$ and $\U(\nu)$. 
 \todo{Actually, we could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
 
-In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. 
+In the more general setting, we need to make use of further machinery.
 As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. 
 This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, with $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$. 
 % and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
@@ -3882,7 +3882,7 @@ As Maximality is a more permissive theory than E-Admissibility, \cref{thm:append
 
 We will now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
 
-For regular picking strategies this is simple: there must E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
+For regular picking strategies this is simple: E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
 	\begin{proposition}[\cref{thm:ead-nu-reg-nec}]
 	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
@@ -3915,7 +3915,7 @@ In these cases, we have distinct decisions and probabilities such that every pro
 
 Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
 
-Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\times\mu\in\IB$, 
+Suppose there is a selection of measurable, pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\times\mu\in\IB$, 
 \[
 \mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
 \]
@@ -3927,7 +3927,7 @@ Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$
 	
 	As they are disjoint, this is well-defined. \begin{colored}
 		{blue}
-		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!}
+		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
 	\end{colored}
 	
 	
@@ -3974,7 +3974,7 @@ Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$
 %%It furthermore extends to the conditional probabilities case, so we present the result including both generalisations. 
 
 \begin{proposition}[\cref{thm:ead-existsimpermissible[dep]}]
-Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+Suppose there is a selection of measurable, pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 
 Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
 \end{proposition}
@@ -4591,6 +4591,36 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	From \cref{thm:EU appendix}, such $\n$ thus does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is some $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
 \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this. \todo{Let's double checkt hat that's true.}
+
+\begin{colored}{violet}
+	\subsection{Theorems}
+
+\Cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu}
+\begin{proposition}[\cref{thm:max-nu}]Suppose $\Nu$ is $\EU$-complete. Suppose that 
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
+	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
+	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
+\end{proposition}
+
+
+\begin{proposition}[\cref{thm:max-nu-reg-nec}]
+	Suppose $\Nu$ is $\EU$-complete. 
+	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$} %\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
+	Then, if $\n$ is a regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
+\end{proposition}
+
+
+\begin{proof}
+	content...
+\end{proof}
+\end{colored}
+
+
+
+
+
+
+
 %%	thm:chiocefns-nu-reg-nec,thm:gamma}
 %	 follow from this, making use of \cref{thm:EU appendix}.
 %	 
@@ -4607,7 +4637,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 
 
 \newpage
-\color{blue}
+\color{red}
 \section{E-Ad thm}
 
 
