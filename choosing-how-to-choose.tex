@@ -4021,7 +4021,7 @@ We can find cases with such events when we make additional assumptions that each
 
 	Suppose $\IP$ is non-singleton and for every $p \times \mu\in\IB$, for every open non-empty subset $U \subseteq\A$, $\mu\{\{a,0\}\given a\in U\}>0$.
 
-Then there is $\s$ that picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+Then there is $\s$ that picks for $\EAd_\IP$ but for which there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 \end{proposition}
 \begin{proof}
 
@@ -4045,7 +4045,7 @@ Then there is $\s$ that picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$
 Thus, for any $p\times\mu\in\IB$ and any $q\neq p$, $$\mu(\{\{a,0\}\given \U(a)\in V\text{ and }\Exp_p[\U(a)]>0>\Exp_q[\U(a)] \})>0.$$ Note also that for $D=\{a,0\}$ with $\Exp_p[\U(a)]>0>\Exp_q[\U(a)]$, then $\EU_{p}(D)=\{a\}$ and $\EU_q(D)=\{0\}$, so they are disjoint. 
 For $E_V:=\{\{a,0\}\given a\in V\}$, then $\mu(\{D\in E_V\given \EU_p(D)\cap\EU_q(D)=\emptyset\})>0$. 
 
-To construct our disjoint $E_q$ satisfying the conditions of \cref{thm:ead-existsimpermissible[indep]}, first note that we can find two \emph{disjoint} $V_1$ and $V_2$ which are open non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $X\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda X\in V_i$.
+To construct our disjoint $E_q$ satisfying the conditions of \cref{thm:ead-existsimpermissible[indep]}, first note that we can find two \emph{disjoint} $V_1$ and $V_2$ that are  non-empty open subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $X\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda X\in V_i$.
 For example, we could put  $V_1:=\{X\in[l,h]^n\given \|X\|<0.5\}$ and $V_2:=\{X\in[l,h]^n\given \|X\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
 
 
@@ -4066,14 +4066,14 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 	
 	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
 	
-	Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
+	Then there is $\s$ that picks for $\EAd_\IP$ but for which there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 	
 \end{proposition}
 \begin{proof}
 	\begin{sublemma}
-		Let $E$ be of the form $\{D\in\D\given D\subseteq V\}$ where $V$ is an open subset of $[l,h]^\Omega$.
+		Let $E = \{D\in\D\given D\subseteq V\}$ for some open subset $V \subseteq [l,h]^\Omega$.
 		
-		For any $p\neq q$
+		For any $p\neq q$,
 		$\{D\in E\given \EU_{p}(D)\cap \EU_{q}(D)=\emptyset\}$ is open and non-empty $\subseteq\Decs$.
 	\end{sublemma}
 	\begin{proof}
