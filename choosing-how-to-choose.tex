@@ -3256,7 +3256,7 @@ For every non-negative (or bounded) measurable $X:\Omega\times\Decs\to\Re$, \beg
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives by putting $b(A|D)$ as $\frac{\diff b(A\times\cdot)}{\diff b_\Decs}(D)$ for $A\subseteq\Omega$. 
-By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$-almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain the disintegration formula $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
+By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$-almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
 As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$-almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives. Thus, also for measurable integrable $X$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 
@@ -4028,14 +4028,14 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 
 
 \begin{sublemma}
-	Suppose $V$ is a non-empty open subset of $[l,h]^\Omega$ such that for each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V$. 
+	Suppose $V$ is a non-empty open subset of $[l,h]^\Omega$ such that for each $X\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda X\in V$. 
 	
-	For any $p\neq q$, $\{g\in V\given \Exp_p[g]>0>\Exp_q[g]\}$ is non-empty and open.
+	For any $p\neq q$, $\{X\in V\given \Exp_p[X]>0>\Exp_q[X]\}$ is non-empty and open.
 \end{sublemma}
 \begin{proof}
 	{It is non-empty}:
-	First, observe that there is some $g\in\Re^\Omega$ such that $\Exp_p[g]>0>\Exp_q[g]$. For example, with $A$ such that $p(A)\neq q(A)$, we can put $g=\mathbf{1}_A-\frac{p(A)-q(A)}{2}\mathbf{1}$; or the negative of this if required.\todo{cleaner eg??} 
-	By assumption on $V$, there is some $\lambda >0$ with $\lambda g\in V$. Also $\Exp_p[\lambda g]>0>\Exp_{q}[\lambda g]$. 
+	First, observe that there is some $X\in\Re^\Omega$ such that $\Exp_p[X]>0>\Exp_q[X]$. For example, with $A$ such that $p(A)\neq q(A)$, we can put $X=\mathbf{1}_A-\frac{p(A)-q(A)}{2}\mathbf{1}$; or the negative of this if required.\todo{cleaner eg??} 
+	By assumption on $V$, there is some $\lambda >0$ with $\lambda X\in V$. Also $\Exp_p[\lambda X]>0>\Exp_{q}[\lambda X]$. 
 	
 	It is open by continuity of expectation. 
 \end{proof}
@@ -4043,8 +4043,8 @@ Then there is $\s$ which picks for $\EAd_\IP$ but there is no $p\times\mu\in \IB
 Thus, for any $p\times\mu\in\IB$ and any $q\neq p$, $$\mu(\{\{a,0\}\given \U(a)\in V\text{ and }\Exp_p[\U(a)]>0>\Exp_q[\U(a)] \})>0.$$ Note also that for $D=\{a,0\}$ with $\Exp_p[\U(a)]>0>\Exp_q[\U(a)]$, then $\EU_{p}(D)=\{a\}$ and $\EU_q(D)=\{0\}$, so they are disjoint. 
 For $E_V:=\{\{a,0\}\given a\in V\}$, then $\mu(\{D\in E_V\given \EU_p(D)\cap\EU_q(D)=\emptyset\})>0$. 
 
-To construct our disjoint $E_q$ satisfying the conditions of \cref{thm:ead-existsimpermissible[indep]}, first note that we can find two \emph{disjoint} $V_1$ and $V_2$ which are open non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $g\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda g\in V_i$.
-For example, we could put  $V_1:=\{g\in[l,h]^n\given \|g\|<0.5\}$ and $V_2:=\{g\in[l,h]^n\given \|g\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
+To construct our disjoint $E_q$ satisfying the conditions of \cref{thm:ead-existsimpermissible[indep]}, first note that we can find two \emph{disjoint} $V_1$ and $V_2$ which are open non-empty subsets of $[l,h]^\Omega$ such that for each $i\in\{1,2\}$ and each $X\in \Re^\Omega$ there is some $\lambda>0$ such that $\lambda X\in V_i$.
+For example, we could put  $V_1:=\{X\in[l,h]^n\given \|X\|<0.5\}$ and $V_2:=\{X\in[l,h]^n\given \|X\|>0.5\}$ (assuming that $l<-0.5<0.5<h$). 
 
 
 Then take any distinct $q^*_1,q^*_2\in\IP$. 
@@ -4060,7 +4060,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]:spreadeg}Suppose that $\IB$ makes $\Omega$ and $\Decs$ completely independent. 
 	
-	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $g\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=g$. 
+	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $X\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=X$. 
 	
 	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
 	
@@ -4089,16 +4089,16 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 		
 		Otherwise there is some $a_0\in \EU_{p}(D_0)\cap \EU_{q}(D_0)$. 
 		
-		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $g^*$ such that $\Exp_{p}[g^*]>0>\Exp_{q}[g^*]$, and, moreover, can choose a scalar small enough so that $\U(a_0)+\lambda g^*\in[l,h]^n$ and thus that $a_0+\lambda g^*\in\A$ (abusing notation). 
+		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$, and, moreover, can choose a scalar small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\A$ (abusing notation). 
 		
-		So $\Exp_{p}[\U(a_0+\lambda g^*)]>\Exp_{p}[\U(a_0)]$ and $\Exp_{q}[\U(a_0+\lambda g^*)]<\Exp_{q}[\U(a_0)]$.
+		So $\Exp_{p}[\U(a_0+\lambda X^*)]>\Exp_{p}[\U(a_0)]$ and $\Exp_{q}[\U(a_0+\lambda X^*)]<\Exp_{q}[\U(a_0)]$.
 		
-		Consider $D^*=D_0\cup\{a_0+\lambda g^*\}$, recalling that $a_0\in D_0$. 
+		Consider $D^*=D_0\cup\{a_0+\lambda X^*\}$, recalling that $a_0\in D_0$. 
 		
-		Observe that $\EU_{p}(D^*)=\{a_0+\lambda g^*\}$ but that $a_0+\lambda g^*\notin\EU_{q}(D^*)$ as it finds $a_0$ preferable. 
+		Observe that $\EU_{p}(D^*)=\{a_0+\lambda X^*\}$ but that $a_0+\lambda X^*\notin\EU_{q}(D^*)$ as it finds $a_0$ preferable. 
 		Thus $\EU_{p}(D^*)\cap \EU_{q}(D^*)=\emptyset$.
 		
-		As $\U(a_0)+\lambda g^*\in V$ by choice of $\lambda$, $D^*\subseteq V$, so $D^*\in E$, as required. 
+		As $\U(a_0)+\lambda X^*\in V$ by choice of $\lambda$, $D^*\subseteq V$, so $D^*\in E$, as required. 
 		
 		\textbf{It is open:}
 		
@@ -4154,6 +4154,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:ead-existsimpermissible[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
 The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require an different approach.
+\todo{add ref to the new undermining thm we're adding. }
 
 \end{colored}
 \section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec})}
