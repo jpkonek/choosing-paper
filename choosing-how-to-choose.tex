@@ -3412,6 +3412,7 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 %
 %Note that if $b$ is a product, $p\times\mu$, then $b_\Decs$ is just $\mu$ and $b(\cdot|D)=p$ for all $D$. 
 \end{colored}
+\end{colored}
 \section{EU and E-admissibility}
 
 	
@@ -3529,7 +3530,7 @@ Our claims follow from this.
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
 
-\end{colored}
+%\end{colored}
 
 
 
@@ -3774,7 +3775,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %
 %\end{colored}
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 %\subsection{E-Admissibility}
 \subsection{E-Admissibility and EU equivalences\\  (\cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff})}
 The results just stated imply many of the results about E-Admissible strategies.
@@ -4064,7 +4065,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 	
 	Assume $\U(\A)=[l,h]^\Omega$. In particular, for every $X\in [l,h]^\Omega$ there is some $a\in \A$ with $\U(a)=X$. 
 	
-	Suppose $\IP$ is non-singleton and for every $(p,\mu)\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
+	Suppose $\IP$ is non-singleton and for every $p \times \mu\in\IB$, $\mu$ has full support on $\Decs$ (assigning strictly positive measure to every non-empty open subset of $\Decs$).
 	
 	Then there is $\s$ that picks for $\EAd_\IP$ but for which there is no $p\times\mu\in \IB$ such that $\s$ $\mu$-surely pick for $\EU_p$.
 	
@@ -4089,18 +4090,18 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 		
 		Take any $D_0\in E$. If $\EU_{p}(D_0)\cap \EU_{q}(D_0)=\emptyset$ this suffices. 
 		
-		Otherwise there is some $a_0\in \EU_{p}(D_0)\cap \EU_{q}(D_0)$. 
+		Otherwise, there is some $a_0\in \EU_{p}(D_0)\cap \EU_{q}(D_0)$. 
 		
-		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$, and, moreover, can choose a scalar small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\A$ (abusing notation). 
+		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$. And, moreover, we can choose a scalar $\lambda$ small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\U(\A)$.% (abusing notation). 
 		
 		So $\Exp_{p}[\U(a_0+\lambda X^*)]>\Exp_{p}[\U(a_0)]$ and $\Exp_{q}[\U(a_0+\lambda X^*)]<\Exp_{q}[\U(a_0)]$.
 		
 		Consider $D^*=D_0\cup\{a_0+\lambda X^*\}$, recalling that $a_0\in D_0$. 
 		
-		Observe that $\EU_{p}(D^*)=\{a_0+\lambda X^*\}$ but that $a_0+\lambda X^*\notin\EU_{q}(D^*)$ as it finds $a_0$ preferable. 
+		Observe that $\EU_{p}(D^*)=\{a_0+\lambda X^*\}$ but that $a_0+\lambda X^*\notin\EU_{q}(D^*)$, since $q$ finds $a_0$ preferable. 
 		Thus $\EU_{p}(D^*)\cap \EU_{q}(D^*)=\emptyset$.
 		
-		As $\U(a_0)+\lambda X^*\in V$ by choice of $\lambda$, $D^*\subseteq V$, so $D^*\in E$, as required. 
+		Since $\U(a_0)+\lambda X^*\in V$, by choice of $\lambda$, $D^*\subseteq V$, and so $D^*\in E$, as required. 
 		
 		\textbf{It is open:}
 		
@@ -4108,9 +4109,9 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 		
 		Let $t_p=\max_{a\in D_0}\Exp_{p}[\U(a)]$ and $t_q=\max_{a\in D_0}\Exp_{q}[\U(a)]$.
 		
-		As  $\EU_{p}(D_0)\cap \EU_{p}(D_0)=\emptyset$, for all $a\in D_0$, either $t_p>\Exp_{p}(a)$ or  $t_q>\Exp_{q}(a)$. Thus $f(a):=\max\{t_p-\Exp_{p}[\U(a)],t_q-\Exp_{q}[\U(a)]\}>0$ for all $a\in D_0$. As $D_0$ is finite, put $\delta=\min_{a\in D_0}f(a)>0$. So that for all $a\in D_0$, either  $\Exp_{p}[\U(a)]\leq t_p-\delta$ or $\Exp_{q}[\U(a)]\leq t_q-\delta$
+		As  $\EU_{p}(D_0)\cap \EU_{p}(D_0)=\emptyset$, for all $a\in D_0$, either $t_p>\Exp_{p}(a)$ or  $t_q>\Exp_{q}(a)$. So, define $f(a):=\max\{t_p-\Exp_{p}[\U(a)],t_q-\Exp_{q}[\U(a)]\}>0$, for all $a\in D_0$. Since $D_0$ is finite, let $\delta=\min_{a\in D_0}f(a)>0$. So that for all $a\in D_0$, either  $\Exp_{p}[\U(a)]\leq t_p-\delta$ or $\Exp_{q}[\U(a)]\leq t_q-\delta$
 		
-		Put $\epsilon=\nicefrac{\delta}{2}$. Suppose $d(D_0,D)<\epsilon$. That is, for all $a\in D_0$ there is some $c\in D$ such that $d(a,c)<\epsilon$ and for all $c\in D$ there is some $a\in D_0$ with $d(a,c)<\epsilon$. 
+		Let $\epsilon=\nicefrac{\delta}{2}$. Suppose $d(D_0,D)<\epsilon$. That is, for all $a\in D_0$, there is some $c\in D$ such that $d(a,c)<\epsilon$ and, for all $c\in D$, there is some $a\in D_0$ such that $d(a,c)<\epsilon$. 
 		
 		Take any $a_p\in \EU_{p}(D_0)$, so $\Exp_{p}[\U(a_p)]=t_p$. There is some $c_p\in D$ such that $d(a_p,c_p)<\epsilon$, and thus $\Exp_{p}[\U(c_p)]>t_p-\epsilon$. Thus, $\max_{c\in D}\Exp_{p}[\U(c)]>t_p-\epsilon$, and so if $c\in \EU_{p}(D)$, then $\Exp_{p}[\U(c)]>t_p-\epsilon$. 
 		
@@ -4142,7 +4143,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 	
 	Then take any distinct $q^*_1,q^*_2\in\IP$. 
 	
-	Put $$E_q:=\begin{cases}
+	Let $$E_q:=\begin{cases}
 		\{D\in\Decs\given D\subseteq V_1\}&q=q^*_1\\
 			\{D\in\Decs\given D\subseteq V_2\}&q=q^*_2\\
 		\emptyset&\text{otherwise}
@@ -4158,22 +4159,22 @@ So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-su
 The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require an different approach.
 \todo{add ref to the new undermining thm we're adding. }
 
-\end{colored}
+%\end{colored}
 \section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec})}
-To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem. \todo{what are the two versions referred to?}
-We'll state them in a general setting and then explain how they apply to our case. To state them, we need some definitions.
+To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we combine in \Cref{thm:wald-cct}.% \todo{what are the two versions referred to?}
+We state them in a general setting and then explain how they apply to our case.
 \subsection{Wald theorem}
-
+ To state them, we need some definitions.
 
 \begin{itemize}
 	\item $\Omega$ is a finite set of states.
-	\item Probability $p$ is a normalised non-negative function. For $X$ a random variable, $X\in\Re^\Omega$, i.e., $X:\Omega\to\Re$, will also write $p(X)=\sum_{\omega\in\Omega}p(\omega)X(\omega)$ applying the probability function to random variables. 
+	\item A probability function over $\Omega$ is a normalised function $p : \Omega \to [0, 1]$, i.e., $\sum_{\omega \in \Omega} p(w) = 1$. Given a random variable (or vector) $X\in\Re^\Omega$, we write $p(X)$ for the expectation of $X$, i.e., $p(X)=\Exp_p[X] = \sum_{\omega\in\Omega}p(\omega)X(\omega)$.% applying the probability function to random variables. 
 	\item $\O$ is a set of ``options''. In our application they will be various (probabilistic) picking strategies, $\n$.
-	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}\U(\n,\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$ \begin{itemize}
-		\item We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$. 
-		\item The utility profile of an option is $\Uwald(o)\in\Re^\Omega$ as expected, i.e., $\Uwald(o)(\omega)=\Uwald(o,\omega)$, however $\Uwald$ is specified. 
+	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}\U(\n,\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
+		\item Given an option $o$, the utility profile of $o$ is the random variable (or vector) $\Uwald(o) \in\Re^\Omega$ with $\Uwald(o)(\omega)=\Uwald(o,\omega)$.%, however $\Uwald$ is specified. 
+		\item So, given an option $o$ and a probability function $p$ over $\Omega$, $p(\Uwald(o)) = \Exp_p[\Uwald(o)] = \sum_{\omega \in \Omega} p(\omega) \Uwald(o)(\omega) = \sum_{\omega \in \Omega} p(\omega) \Uwald(o, \omega)$.
 	\end{itemize}
-\end{itemize}
+%\end{itemize}
 
 
 %$\O$ is the set of picking functions. 
@@ -4248,11 +4249,12 @@ We'll state them in a general setting and then explain how they apply to our cas
 \begin{definition}
 	$o$ is \emph{strictly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)>\Uwald(o,\omega)$ for all $\omega$. $o$ is called \emph{admissible} if it is not strictly dominated. 
 	
-	$o$ is \emph{weakly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$ .
+	$o$ is \emph{weakly dominated} iff there is $o'\in\O$ with $\Uwald(o',\omega)\geq\Uwald(o,\omega)$ for all $\omega$ and $\Uwald(o',\omega)>\Uwald(o,\omega)$ for some $\omega$.
 	
-	For a probability function $p$ over $\Omega$ we will use $p(\Uwald(o)):=\Exp_p[\Uwald(o)]$. \todo{are we assuming finite $\Omega$??}
+	%For a probability function $p$ over $\Omega$, we will use $p(\Uwald(o)):=\Exp_p[\Uwald(o)]$. %\todo{are we assuming finite $\Omega$??}
 	$o$ is \emph{Bayes for $p$} iff $o\in\EU_p(\O)$; that is, for all $o'\in\O$, $p(\Uwald(o))\geq p(\Uwald(o'))$. 
-	$o$ is \emph{Bayes} iff there is some probability $p$ such that $o$ is Bayes for $p$. \todo{I don't think we'd defined it! added it here. }
+	
+	$o$ is \emph{Bayes} iff there is some probability $p$ such that $o$ is Bayes for $p$. %\todo{I don't think we'd defined it! added it here. }
 \end{definition}
 
 
@@ -4284,10 +4286,11 @@ We'll state them in a general setting and then explain how they apply to our cas
 	
 	
 	\begin{lemma}\label{thm:cct:Bayes implies admiss}
-		If $o$ is Bayes then it is not strictly dominated.
+		If $o$ is Bayes, then it is not strictly dominated.
 	\end{lemma}
 	\begin{proof}
-		Suppose it is strictly dominated. Then there is $o'$ with $\Uwald(o,\omega)<\Uwald(o',\omega)$ for all $\omega$. So every probability $p$ will have $p( \Uwald(o))<p(\Uwald(o'))$\todo{Have we introduced this notation yet?}. Thus it is not Bayes.
+		Suppose it is strictly dominated. Then there is $o'$ such that $\Uwald(o,\omega)<\Uwald(o',\omega)$, for all $\omega$. So every probability function $p$ over $\Omega$, we have $p( \Uwald(o))<p(\Uwald(o'))$. %$\todo{Have we introduced this notation yet?}.
+		Thus it is not Bayes.
 		%	
 		%	Suppose $o$ is weakly dominated. Then every \emph{regular} probability has $p\cdot \Uwald(o')>p\cdot \Uwald(o)$, so it is not Bayes for any regular probability. 
 	\end{proof}
@@ -4298,7 +4301,7 @@ We'll state them in a general setting and then explain how they apply to our cas
 		\Uwald(\O) &:= \Set{\Uwald(o)\given o\in \O}\subseteq\Re^\Omega\\
 		\Conv(\Uwald(\O))&:=\mathsf{ConvHull}(\Uwald(\O))
 	\end{align}
-	We will also work with $\cl(\Conv(\Uwald(\O)))$, which we define as the closure in the product topology. This can also be characterised by limits of sequences, or more generally of nets: if a sequence (or net) of members of $\Conv(\Uwald(\O))$ is such that for each coordinate, $\omega$, $X_\alpha(\omega)\longrightarrow X^*(\omega)$, then $X^*\in\cl(\Conv(\Uwald(\O)))$. 
+	We will also work with $\cl(\Conv(\Uwald(\O)))$, which we define to be the closure in the product topology. This can also be characterised by limits of sequences, or more generally of nets: if a sequence (or net) of members of $\Conv(\Uwald(\O))$ is such that for each coordinate, $\omega$, $X_\alpha(\omega)\longrightarrow X^*(\omega)$, then $X^*\in\cl(\Conv(\Uwald(\O)))$. 
 	
 %	We extend the notion of being Bayes for vectors as follows.
 %	\begin{definition}[Bayes for vectors]
@@ -4523,7 +4526,7 @@ For example, if $\Uwald$ is a measure of accuracy which is continuous and strict
 \end{proof}
 
 
-\begin{theorem}[Main theorem: a version of Wald's Complete Class Theorem]
+\begin{theorem}[Main theorem: a version of Wald's Complete Class Theorem]\label{thm:wald-cct}
 	Suppose $\Uwald(\O)$ is closed and convex; or that $\Uwald$ is Bayes-continuous and Bayes-existing. Then $o$ is Bayes iff $o$ is not strictly dominated.
 \end{theorem}
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
