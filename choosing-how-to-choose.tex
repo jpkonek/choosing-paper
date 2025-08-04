@@ -2783,7 +2783,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 %	Perhaps, it is the set of all strategies that pick for the choice function, $\c$. 
 	
 
-	Since E-Admissibility requires coordinating, and rejects all strategies except for those which are equivalent to $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies that E-Admissibility recommends. Can we apply E-Admissibility itself to judge this proposal? 
+	Since E-Admissibility requires coordinating, and rejects all strategies except for those  equivalent to $\EU_p$ strategies, perhaps it is the set of all these $\EU_p$ strategies that E-Admissibility recommends. Can we apply E-Admissibility itself to judge this proposal? 
 	
 	
 	To do this, we might extend E-Admissibility so that it judges what we might call imprecise acts, where we represent an imprecise act as a set of acts. So the imprecise acts available in decision problem $D$ is any $\mathbb{A}\subseteq D$. For instance, the set of all the $\EU_p$ strategies is such an imprecise act in the decision problem containing all the possible strategies.
@@ -2803,7 +2803,7 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 	Alternatively, one might say that $p$ expects $\mathbb{A}'$ to do better than $\mathbb{A}$ when, for every $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]\geq\Exp_p[\U(a)]$, and there is some $a\in\mathbb{A}$ such that for all $a'\in\mathbb{A}'$, $\Exp_p[\U(a')]>\Exp_p[\U(a)]$.\footnote{Or perhaps this second disjunct should say that there is some $a\in\mathbb{A}$ and $a'\in\mathbb{A}'$ with $\Exp_p[\U(a')]>\Exp_p[\U(a)]$, but since our application of interest satisfies the slightly stronger property, we merely impose that. }
 	This condition generates a version of E-Admissibility for imprecise acts which rules as impermissible the set of all picking strategies for $\EAd_\IP$. 
 	
-	Using this criterion, we rule out the imprecise picking strategy which consists of the set of all $\EU_p$ strategies, unless they all $\mu$-surely pick for $\EU_p$, for a single $\mu\times p\in\IB$. 
+	This criterion rules out the imprecise picking strategy that consists of the set of all $\EU_p$ strategies, unless they all $\mu$-surely pick for $\EU_p$ for a single $p \times \mu\in\IB$. 
 %	Using this, we rule out any imprecise picking strategy whose members do not all $\mu$-surely pick for $\EU_p$, for a single $p\times\mu\in\IB$.
 %	Using this, we get a result paralleling that for precise picking strategies: to avoid being ruled out as impermissible, one's strategy needs to $\mu$-surely be an $\EU_p$ strategy for some $p\times\mu\in\IB$. (Or equivalently for the conditional version.)
 	Suppose $\imprecpickstrat$ is a set of picking strategies, and there is no $p \times \mu$ in $\IB$ such that all strategies in $\imprecpickstrat$ $\mu$-surely pick for $\EU_p$; then each probability $b=p\times \mu$ evaluates the precise picking strategy $\{\n^p\}$, where $\n^p$ picks for $\EU_p$, to be better, in this sense: for every $\n\in\imprecpickstrat$, $\Exp_p[\U(\n)]\leq \Exp_p[\U(\n^p)]$, and there is some $\n\in\imprecpickstrat$ with $\Exp_p[\U(\n)]<\Exp_p[\U(\n^p)]$. 
@@ -2861,7 +2861,7 @@ Maximality thus avoids the charge of evaluating the imprecise picking strategy a
 
 
 	So, whilst this approach is a challenge for E-Admissibility, it is an option for Maximality.  
-	So, if picking strategies may be imprecise acts, represented by sets of precise probabilistic picking strategies, then Maximality sometimes evades the charge of being self-undermining. However, it is hard to see how to implement an imprecise picking strategy. Perhaps one could choose by tossing a coin about whose bias you have imprecise probabilities, or perhaps one should just have imprecise probabilistic uncertainty about how one will pick. But to maintain this response, one had better not gain additional information sufficient to make one precise. 
+	So, if picking strategies may be imprecise acts, represented by sets of precise probabilistic picking strategies, then Maximality sometimes evades the charge of being self-undermining. However, it is hard to see how to implement an imprecise picking strategy. Perhaps one could choose by tossing a coin about whose bias you have imprecise probabilities, or perhaps one should have imprecise probabilistic uncertainty about how one will pick. But to maintain this response, one had better not gain additional information sufficient to make one precise. 
 %	what mechanism one could use for picking between options your choice function does not reject that doesn't amount to randomisation. Moreover, 
 	
 
@@ -2928,13 +2928,16 @@ Maximality thus avoids the charge of evaluating the imprecise picking strategy a
 %
 \subsubsection{Utility of a choice function not given by a picking strategy}
 
-Perhaps one should specify the utility of a choice function in an alternative way, specifying $\U(\c,D,\omega)$ for the various $D$ and $\omega$. 
+Perhaps we should specify the utility of a choice function in an alternative way. %, specifying $\U(\c,D,\omega)$ for the various $D$ and $\omega$. 
 %Perhaps the utility of adopting a choice function $\c$ isn't governed by randomisation. 
-Even if we impose that $\U(\c,D,\omega)$ should be a mixture of $\U(a,\omega)$ for $a\in\c(D)$ our results do not follow. For example, if we specify that $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$, then our results clearly do not hold, in fact, then one should be maximally imprecise in every decision problem, setting $\c(D)=D$. 
+%Even if we impose that $\U(\c,D,\omega)$ should be a mixture of $\U(a,\omega)$ for $a\in\c(D)$ our results do not follow. 
+For example, we might say that $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$. If we do this, our results clearly do not hold. In fact, if we measure the utility of a choice function in this way, one should be maximally imprecise in every decision problem, that is, one should set $\c(D)=D$. And so, even if we require that $\U(\c,D,\omega)$ is a mixture of $\U(a,\omega)$ for $a\in\c(D)$, there are ways to define $\U$ such that our results do not follow. 
 %An alternative defence is to argue that there's no representation in terms of a mixture of utilities of the non-rejected options. If for example $\U(\c,D,\omega)=\sup\{\U(a,\omega)\given a\in \c(D)\}$, then our results would not hold, in fact, then one should be maximally imprecise in every decision, setting $\c(D)=D$. 
-This, however, needs more justification. Why should it be evaluated this way?
+
+However, measuring the utility of a choice function in this way would need more justification. Why should it be evaluated this way?
 Why would this be the right judgement of what utility I will get if I adopt the choice function $\c$?
-Perhaps an approach which says that when there's an imprecise decision set one should do something else to make the decision, for example to consult an expert \citep{de2014efficient}; although we wonder then why the option to consult an expert or gather more evidence wasn't available in the setting up of the decision problem. 
+
+Or we could say that, when there's an imprecise decision set, one should do something else to make the decision, such as consulting an expert or gathering more evidence \citep{de2014efficient}. But then why is the possibility of consulting an expert or gathering more evidence not represented as an option in the original decision problem?
 %A defence by Jasper etc\todoold{what?} say that when there's an imprecise decision set one should do something else, for example gather more evidence. We're not sure however, whether that's that helpful. Why wasn't the gathering more evidence option an option that was available in the first setting up of the decision problem? 
 
 
@@ -2960,7 +2963,7 @@ We proposed to use a decision theory to judge itself, or to judge strategies com
 %Our formal analysis often parallels that of existing known challenges for these theories such as diachronic inconsistencies exhibited by Dutch book arguments or paradoxes of sequential choice, but our interpretation of the results is different, understanding it as the decision theory undermining its own recommendations. 
 
 
-In \cref{sect:reu} we showed that risk-weighted expected utility theory, and other theories that accommodate the Allais preferences are self-undermining in a particular way: for any such theory, there are particular ways of being uncertain about which decisions you'll face, where there is a single picking strategy that chooses in line with the recommendations the decision theory would make were you to face each possible decision you might face, and that strategy is not itself acceptable according to the decision theory. These decision theories undermine their own recommendations, recommending instead choosing in a way that the theory itself rejects. We generated these examples on the basis of the Allais preferences---and indeed any failure of the Independence Axiom would do. We then noted that we see the same phenomenon if we know we'll face a binary decision defined over two possible states of the world, and we place a uniform distribution over these different possible decisions; and similarly for a number of beta distributions we might place over them. And so the extent of the self-undermining is reasonably broad, but we don't have a precise general result that shows how broad it is.
+In \cref{sect:reu}, we showed that risk-weighted expected utility theory, and other theories that accommodate the Allais preferences are self-undermining in a particular way: for any such theory, there are particular ways of being uncertain about which decisions you'll face, where there is a single picking strategy that chooses in line with the recommendations the decision theory would make were you to face each possible decision you might face, and that strategy is not itself acceptable according to the decision theory. These decision theories undermine their own recommendations, recommending instead choosing in a way that the theory itself rejects. We generated these examples on the basis of the Allais preferences---and indeed any failure of the Independence Axiom would do. We then noted that we see the same phenomenon if we know we'll face a binary decision defined over two possible states of the world, and we place a uniform distribution over these different possible decisions; and similarly for a number of beta distributions we might place over them. And so the extent of the self-undermining is reasonably broad, but we don't have a precise general result that shows how broad it is.
 
 In \cref{sect:eut} we showed that traditional Savage-style expected utility theory does not have the same flaw: that it always recommends its own picking strategies.
 
