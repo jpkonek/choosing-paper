@@ -4368,14 +4368,14 @@ We state them in a general setting and then explain how they apply to our case.
 	
 	
 	\begin{proof}
-		Take any $Y\in \Conv(\Uwald(\O))$ that dominates $X$. Consider $A:=\{Z\in \cl(\Conv(\Uwald(\O)))\given  Z(\omega)\geq Y(\omega)\text{ for all $\omega$}\}$. Observe that this is closed (as it is the intersection of two closed sets) and bounded (as we assumed that utilities were bounded above), and thus compact. Let $f(Z):=\sum_\omega Z(\omega)$, observing that it is a continuous function. Thus, by the Extreme Value Theorem, it obtains its maximum somewhere in $A$. This maximum point will be as required. 
+		Take any $Y\in \Conv(\Uwald(\O))$ that dominates $X$. Consider $A:=\{Z\in \cl(\Conv(\Uwald(\O)))\given  Z(\omega)\geq Y(\omega)\text{ for all $\omega$}\}$. Observe that this is closed (as it is the intersection of two closed sets) and bounded (as we assumed that utilities were bounded above), and thus compact. Let $f(Z):=\sum_\omega Z(\omega)$. Since $f$ is a continuous function, the Extreme Value Theorem ensure it obtains its maximum somewhere in $A$. This maximum point will be as required. 
 	\end{proof}
 	%\begin{proof}
 	%	[Rewriting that more explicitly, not sure it helped though!]
 	%	Start with any point, $x_0\in\cl(\Conv(\Uwald(\O)))$, that strictly dominates $X$. Then if possible, take $x_1$ to be a point in $\cl(\Conv(\Uwald(\O)))$ weakly dominating $x_0$, if it is not possible, then we have already found our desired $Z$. Continue this, choosing points in $\cl(\Conv(\Uwald(\O)))$ which weakly dominate the previous point, if possible, and if not possible, we are done: we have found the desired $Z\in\cl(\Conv(\Uwald(\O)))$ which is not weakly dominated. If this process didn't halt, then we have a sequence $\langle x_0,x_1,\ldots\rangle$ each of which is in $\cl(\Conv(\Uwald(\O)))$ and weakly dominates the previous one. We can then consider extending this sequence to the transfinite. Take $x_\omega$ to be the (pointwise) supremum of this sequence, observing that it is a limit point of the sequence [topology of pointwise convergence] so is in $\cl(\Conv(\Uwald(\O)))$, and it weakly dominates all the previous points, and we can then continue the construction from there, through the transfinite. Since there are at most continuum-many points to be chosen from, this process must at some point terminate. And since one can always take the limit point of any such sequence and check that it is in $\cl(\Conv(\Uwald(\O)))$, it must be an actual point that is found where the process terminates, i.e., giving us our required $Z$.
 	%\end{proof}
 	
-	It can alternatively be proved with an application of Zorn's lemma, an argument which also works when $\Omega$ is infinite.\footnote{Define $\preccurlyeq$ a partial order on $A$ as the natural coordinatewise order. For any chain, consider its pointwise supremum, which exists because utilities are bounded above, and checking that it is in the $A$ since it is closed and this is a pointwise limit. Consequently, every chain has an upper bound, allowing the application of Zorn's lemma to guarantee the existence of a maximal element, which will be as required. } 
+	This result can also be proved by applying Zorn's lemma. That argument also works when $\Omega$ is infinite.\footnote{Define $\preccurlyeq$ a partial order on $A$ as the natural coordinatewise order. For any chain, consider its pointwise supremum, which exists because utilities are bounded above, and checking that it is in the $A$ since it is closed and this is a pointwise limit. Consequently, every chain has an upper bound, allowing the application of Zorn's lemma to guarantee the existence of a maximal element, which will be as required. } 
 	
 %	This can be proved by an extreme value theorem. We instead prove it directly. This is because the proof carries over to the infinite dimensional setting. 
 %	
@@ -4461,7 +4461,7 @@ We state them in a general setting and then explain how they apply to our case.
 		\item $\Uwald$ is \emph{Bayes-continuous} iff for all $o\in\O$, if $o$ is Bayes for $p$ and $p_1,p_2,\ldots$ are probabilities converging to $p$ then there is some sequence of options $o_1,o_2,\ldots$, each of which is Bayes for $p_n$ whose utility profiles converge to those of $o$. 
 	\end{itemize}
 \end{definition}
-For example, if $\Uwald$ is a measure of accuracy which is continuous and strictly proper, then these will be satisfied. They are, however, \emph{much} weaker than that.
+%For example, if $\Uwald$ is a measure of accuracy which is continuous and strictly proper, then these will be satisfied. They are, however, \emph{much} weaker than that.
 	
 	\begin{lemma}\label{thm:cct:bdry are the Bayes optimal}
 		Suppose $\Uwald$ is Bayes-continuous and Bayes-existing. 
@@ -4589,6 +4589,26 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	From \cref{thm:EU appendix}, such $\n$ thus does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is some $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
 \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this. \todo{Let's double checkt hat that's true.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
 
 \begin{colored}{red}
 	\subsection{Theorems}
@@ -5281,26 +5301,6 @@ Since $f_X\notin\EAd_x(X)$ for $X\in F\subseteq E_p=B_x$, $f_X\notin \EU_p(X)$. 
 
 
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\end{document}
-
 
 
 
