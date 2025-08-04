@@ -3516,15 +3516,15 @@ Our claims follow from this.
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
 \begin{corollary}\ 
-	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
+	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
 		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu_b$ that picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	\cref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
+	\ref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
 	
-	For \cref{itm:eu-2}, \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu_b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \ref{itm:eu-2}, \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu_b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
@@ -3799,10 +3799,10 @@ We introduce a new definition that encompasses the notions of $\EU$-completeness
 Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it is $\EU$-complete for any $\IB$. 
 \begin{corollary}\label{thm:appendix:ead:eu}
 	Suppose $\Nu$ is $\EU$-complete for $\IB$.
-	\begin{enumerate}
+	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item $\nu\in\EAd_\IB(\Nu)$ iff there is some $b\in\IB$ such that $\nu$ $b_\Decs$-picks for $\EU_{b(\cdot|-)}$.  
-		\item \label{itm:ead:2}If $p\times\mu\in \IB$ and $\nu$ $\mu$-surely picks for $\EU_p$, then $\nu\in\EAd_\IB(\Nu)$ 
-		\item If $\IB$ makes $\Omega$ and $\Decs$ completely independent, then $\nu\in\EAd_\IB(\Nu)$ iff there is some $p\times\mu\in\IB$ such that $\nu$ $\mu$-surely picks for $\EU_p$
+		\item \label{itm:ead:2}If $p\times\mu\in \IB$ and $\nu$ $\mu$-surely picks for $\EU_p$, then $\nu\in\EAd_\IB(\Nu)$.
+		\item If $\IB$ makes $\Omega$ and $\Decs$ completely independent, then $\nu\in\EAd_\IB(\Nu)$ iff there is some $p\times\mu\in\IB$ such that $\nu$ $\mu$-surely picks for $\EU_p$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
@@ -3811,30 +3811,30 @@ Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it i
 This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-equiv[dep]}. For \cref{thm:ead-existence[dep],thm:ead-existence[indep]}, we will use a further lemma. 
 
 
-\begin{lemma}\label{thm:appendix:ead:pickingeu}
-	\begin{enumerate}
+\begin{lemma}\label{thm:appendix:ead:pickingeu}\ 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item\label{itm:appendix:ead:pickingeu:1} If $p\in \IP$ and $\nu$ picks for $\EU_p$, then $\nu$ picks for $\EAd_\IP$.
 		\item\label{itm:appendix:ead:pickingeu:2}  If $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$, then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. 
 	\end{enumerate}
 \end{lemma}
 \begin{proof}
-	From the definition of $\EAd_\IP$, for all $D$, $\EU_p(D)\subseteq \EAd_\IP(D)$.
+	It follows from the definition of $\EAd_\IP$ that, for all $D$ and $p \in \IP$, $\EU_p(D)\subseteq \EAd_\IP(D)$.
 	
-	So if $\nu$ picks for $\EU_p$, then for all $D\in\Decs$, $\nu_D(\EU_p(D))=1$, and thus $\nu_D(\EAd_\IP(D))=1$, i.e.~$\nu$ picks for $\EAd_\IP$. 
+	If $\nu$ picks for $\EU_p$, then for all $D\in\Decs$, $\nu_D(\EU_p(D))=1$. And so, since  $\EU_p(D)\subseteq \EAd_\IP(D)$, $\nu_D(\EAd_\IP(D))=1$, i.e.~$\nu$ picks for $\EAd_\IP$. 
 	
-	An analogous argument holds for \cref{itm:appendix:ead:pickingeu:2}, as $\EU_{b(\cdot|-)}(D)\subseteq\EAd_{\IB(\cdot|-)}(D)$ for all $D$. 
+	An analogous argument gives \ref{itm:appendix:ead:pickingeu:2}, as,  for all $D$, $\EU_{b(\cdot|-)}(D)\subseteq\EAd_{\IB(\cdot|-)}(D)$. 
 \end{proof}
 
-\begin{corollary}\label{thm:appendix:ead:exists}
-	\begin{itemize}
+\begin{corollary}\label{thm:appendix:ead:exists}\ 
+	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item \label{itm:ead:blah1}Suppose $p\in\IP$,  $p\times\mu\in\IB$ and $\nu$ picks for $\EU_p$. Then $\nu$ picks for $\EAd_\IP$ and is in $\EAd_\IB(\Nu)$. 
 		\item \label{itm:ead:blah2}Suppose $b\in\IB$ and $\nu$ picks for $\EU_{b(\cdot|-)}$. Then $\nu$ picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_\IB(\Nu)$. 
-	\end{itemize}
+	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	\Cref{itm:ead:blah1}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_\IP$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
+	\ref{itm:ead:blah1}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_\IP$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
 	
-	\Cref{itm:ead:blah2}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
+	\ref{itm:ead:blah2}: From \cref{thm:appendix:ead:pickingeu}, $\nu$ picks for $\EAd_{\IB(\cdot|-)}$. By \cref{thm:appendix:ead:eu}, $\nu\in\EAd_\IB(\Nu)$. 
 \end{proof}
 \cref{thm:ead-existence[indep],thm:ead-existence[dep]} follow from this.
 
@@ -3880,7 +3880,7 @@ As Maximality is a more permissive theory than E-Admissibility, \cref{thm:append
 
 \subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}\label{sect:appendix:eadundermining}
 
-We will now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
+We now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
 
 For regular picking strategies this is simple: E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
