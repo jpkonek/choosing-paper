@@ -3876,31 +3876,31 @@ We have thus proved \cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ea
 %\end{proposition}
 
 \subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}
-As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that the risk-sensitive decision theories or $\Gamma$-maximin were.
+As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that we've seen the risk-sensitive decision theories or $\Gamma$-maximin are.
 
 \subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}\label{sect:appendix:eadundermining}
 
-We now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to moreover give conditions under which there exists a strategy which picks for E-Admissibility and does not looks like an expected utility strategy. 
+We now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to give conditions under which there exists a strategy that picks for E-Admissibility and does not look like an expected utility strategy from the point of view of our measure $\mu$ over the decision problems. 
 
-For regular picking strategies this is simple: E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
+For regular picking strategies, this is simple: E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
 	\begin{proposition}[\cref{thm:ead-nu-reg-nec}]
-	Suppose that for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}\}<1$. 
+	Suppose that, for every $b\in\IB$, $b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b(\cdot|-)}(D)\}<1$. 
 	That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_{b'(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)\}>0$. 
 	
 	Then, if $\n$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$, then $\n\notin \EAd_\IB(\Nu)$.
 \end{proposition}
 
 \begin{proof}
-	Suppose $\nu$ is a regular picking strategy for $\EAd_\IP$ and the conditions of the theorem hold. 
+	Suppose $\nu$ is a regular picking strategy for $\EAd_{\IB(\cdot|-)}$ and the conditions of the theorem hold. 
 	
-	Take any $b^*\in\IB$.
-	If $\EAd_{\IB(\cdot|-)}(D)\subseteq\EU_{b^*(\cdot|-)}$, then $\nu(\EU_{b^*(\cdot|-)}(D))\neq 1$, by regularity. 
+	Take any $b\in\IB$.
+	If $\EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)}(D)$, then, since $\n_D$ is a regular probability function, $\nu_D(\EU_{b(\cdot|-)}(D))< 1$. 
 	As 
-	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b^*(\cdot|-)}\}>0$, then $\mu\{D\given \nu(\EU_{b^*(\cdot|-)}(D))<1\}>0$.
-	 So $\nu$ does not $b^*_\Decs$-surely pick for $\EU_{b^*(\cdot|-)}$. 
+	$b_\D\{D\given \EAd_{\IB(\cdot|-)}(D)\not\subseteq\EU_{b(\cdot|-)(D)}\}>0$, then $\mu\{D\given \nu(\EU_{b(\cdot|-)}(D))<1\}>0$.
+	 So $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$. 
 	 
-	 By \cref{thm:appendix:ead:eu}, then $\nu\notin\EAd_\IB(\Nu)$. 
+	 By \cref{thm:appendix:ead:eu}, it follows that $\nu\notin\EAd_\IB(\Nu)$. 
 \end{proof}
 
 For showing the existence of \emph{deterministic} picking strategies which are not $\EU_p$ strategies, this assumption will not suffice. 
