@@ -4458,44 +4458,39 @@ We state them in a general setting and then explain how they apply to our case.
 \begin{definition}\ 
 	\begin{itemize}
 		\item $\O$ is \emph{Bayes-existing} relative to $\Uwald$ iff, for every probability $p$, there is some $o\in\O$ that is Bayes for $p$.
-		\item $\Uwald$ is \emph{Bayes-continuous} iff, for all $o\in\O$, if $o$ is Bayes for $p$ and $p_1,p_2,\ldots$ are probabilities converging to $p$ then there is some sequence of options $o_1,o_2,\ldots$, with $o_n$ Bayes for $p_n$, whose utility profiles converge to those of $o$. 
+		\item $\Uwald$ is \emph{Bayes-continuous} on $\O$ iff, for all $o\in\O$, if $o$ is Bayes for $p$ and $p_1,p_2,\ldots$ are probabilities converging to $p$ then there is some sequence of options $o_1,o_2,\ldots$, with $o_n$ Bayes for $p_n$, whose utility profiles converge to those of $o$. 
 	\end{itemize}
 \end{definition}
 %For example, if $\Uwald$ is a measure of accuracy which is continuous and strictly proper, then these will be satisfied. They are, however, \emph{much} weaker than that.
 	
 	\begin{lemma}\label{thm:cct:bdry are the Bayes optimal}
-		Suppose $\Uwald$ is Bayes-continuous and Bayes-existing. 
-		
-		
-		Suppose $Z\in\cl(\Conv(\Uwald(\O)))$ is not weakly dominated in $\Conv(\Uwald(\O))$\begin{infversion}
-			and $Z$ in Fin.
-		\end{infversion}, then in fact $Z\in \Uwald(\O)$, moreover, it is in fact Bayes optimal in $\Uwald(\O)$. 
+		Suppose $\Uwald$ is Bayes-continuous on $\O$ and $\O$ is Bayes-existing relative to $\Uwald$. Then, if $Z\in\cl(\Conv(\Uwald(\O)))$ is not weakly dominated in $\Conv(\Uwald(\O))$, then $Z\in \Uwald(\O)$ and $Z$ is Bayes  in $\Uwald(\O)$. 
 %		
 %		The proof also shows t
 	\end{lemma}
-	In the Wald setting, that is, that the lower boundary of $\Conv(\Uwald(\O))$ is a subset of $\Uwald(\O)$. This is then called $\Uwald(\O)$ being ``closed from below'' [in our case, above, as we're doing positive utility not loss]. This proof is where the assumptions on $\Uwald$ are vital. 
+	%In the Wald setting, that is, that the lower boundary of $\Conv(\Uwald(\O))$ is a subset of $\Uwald(\O)$. This is then called $\Uwald(\O)$ being ``closed from below'' [in our case, above, as we're doing positive utility not loss]. This proof is where the assumptions on $\Uwald$ are vital. 
 	
 	\begin{proof}
 		%	\todoold{JK wanted a more direct proof rather than something like this pf contradiction; but it wont work. It relies essentially on the Bayes existing part - that there is such $\Uwald(o_{p^*})$, so will have to involve that directly. Bayes cty itself doesn't tell us anything about $Z$ which isn't in $\Uwald(\O)$.}
-		Since $Z$ is not weakly dominated, it is also not strictly dominated. So by \cref{thm:cct:admiss in conv are Bayes in conv}, there is some $p^*$ with $p^*(Z)\geq p^*(\Uwald(o))$ for all $o$. 
+		Since $Z$ is not weakly dominated, it is also not strictly dominated. So, by \cref{thm:cct:admiss in conv are Bayes in conv}, there is some probability function $p^*$ on $\Omega$ with $p^*(Z)\geq p^*(\Uwald(o))$, for all $o$. Since $\O$ is Bayes-existing relative to $\Uwald$, there is some $o_{p^*}$ that is Bayes for $p^*$ in $\Uwald(\O)$. 
 		
-		By Bayes existing, there is also some $o_{p^*}$ which is Bayes optimal for $p^*$ in $\Uwald(\O)$. 
-		We will use Bayes continuity and existing to show that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for every $\omega$, i.e., either $\Uwald(o_{p^*})=Z$ or $\Uwald(o_{p^*})$ weakly dominates $Z$, which would contradict our assumption that $Z$ is not weakly dominated. 
+		We will now show that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for every $\omega$. It will follow from this that $\Uwald(o_{p^*})(\omega)=Z(\omega)$, for every $\omega$, since we know that $Z$ is not weakly dominated, and so $\Uwald(o_{p^*})=Z$.%. or $\Uwald(o_{p^*})$ weakly dominates $Z$, which would contradict our assumption that $Z$ is not weakly dominated. 
 		
-		So, what we need to show is that for every  $\omega$, $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$. 
+		%So, what we need to show is that for every  $\omega$, $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$. 
 		
-		The argument we will make will work for every $\omega$. So hold fixed a single $\omega$, call it $\omega^*$. Let $\pi_{\omega^*}$ be the projection function for the ${\omega^*}$ that we are considering, i.e., $\pi_{\omega^*}(Y):=Y({\omega^*})$. Then define $p_n$ by:
+		%The argument we will make will work for every $\omega$.
+		Hold fixed a single $\omega$, which we call $\omega^*$. Let $\pi_{\omega^*}$ be the projection function for the ${\omega^*}$ that we are considering, i.e., $\pi_{\omega^*}(Y):=Y({\omega^*})$. Then define $p_n$ by:
 		\begin{align}
 			p_n=(1-\sfrac{1}{n})p^*+\sfrac{1}{n} \pi_{{\omega^*}}
-		\end{align}(this depends on the $\omega^*$ under consideration). Observe that $p_n$ is probabilistic, so by Bayes existing, for each $n$, there is some $o_{p_n}$ which is Bayes optimal for $p_n$, i.e., $p_n(\Uwald(o_{p_n}))\geq p_n(\Uwald(o))$ for all $o$. Since we have assumed $Z\in\cl(\Conv(\Uwald(\O)))$, also $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$.\footnote{To show this, we first observe it for any $Z\in \Conv(\Uwald(\O))$, just taking a mixture, and then taking limits can't break a $\geq$.}\todoold{should it be an official separate lemma?}
+		\end{align}Note that this depends on the $\omega^*$ under consideration. Observe that $p_n$ is a probability function on $\Omega$. And so, since $\O$ is Bayes-existing relative to $\Uwald$, for each $n$, there is some $o_{p_n}$ that is Bayes optimal for $p_n$, i.e., $p_n(\Uwald(o_{p_n}))\geq p_n(\Uwald(o))$, for all $o$. Since we have assumed $Z\in\cl(\Conv(\Uwald(\O)))$, also $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$.\footnote{To show this, we first observe it for any $Z\in \Conv(\Uwald(\O))$, just taking a mixture, and then note that taking limits can't break a non-strict inequality, $\geq$.}\todoold{should it be an official separate lemma?}
 		
-		We also know that $p^*(Z)\geq p^*(\Uwald(o_{p_n}))$, so, since $p_n$ is a mixture of $p^*$ and $\pi_{\omega^*}$,  to get that $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$ we must in fact have that $\pi_{{\omega^*}}(\Uwald(o_{p_n}))\geq \pi_{\omega^*}(Z)$. That is, we can conclude that $\Uwald(o_{p_n})(\omega^*)\geq Z(\omega^*)$. 
+		We also know that $p^*(Z)\geq p^*(\Uwald(o_{p_n}))$. So, since $p_n$ is a mixture of $p^*$ and $\pi_{\omega^*}$,  to get that $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$ we must in fact have that $\pi_{{\omega^*}}(\Uwald(o_{p_n}))\geq \pi_{\omega^*}(Z)$. That is, we can conclude that $\Uwald(o_{p_n})(\omega^*)\geq Z(\omega^*)$. 
 		
 		%		We will now show that $\Uwald(o_{p_n})({{\omega^*}^*})\geq Z({{\omega^*}^*})$ for all ${{\omega^*}^*}$. Suppose, for contradiction, that $Z({{\omega^*}^*})>\Uwald(o_{p_n})({{\omega^*}^*})$. Then $\pi_{{\omega^*}^*}(Z)>\pi_{{\omega^*}^*}(\Uwald(o_{p_n}))$. Since we know that $Z$ is Bayes for $p^*$ in $\Uwald(\O)$ and $\Uwald(o_{p_n})\in \Uwald(\O)$, also $p^*(Z)\geq p^*(\Uwald(o_{p_n}))$. Since $p_n$ is a mixture of $p^*$ and $\pi_{{\omega^*}^*}$ we would thus have $p_n(Z)>p_n(\Uwald(o_{p_n}))$, contradicting our choice of $\Uwald(o_{p_n})$ being Bayes for $p_n$. 
 		
-		Observe that $p_n\longrightarrow p^*$. So, by Bayes continuity, $\Uwald(o_{p_n})\longrightarrow \Uwald(o_{p^*})$, so $\Uwald(o_{p_n})({\omega})\longrightarrow \Uwald(o_{p^*})({\omega})$ for each ${\omega}$. Thus, since $\Uwald(o_{p_n})({\omega^*})\geq Z({\omega^*})$ for all $n$, also $\Uwald(o_{p^*})(\omega^*)\geq Z(\omega^*)$. 
+		Observe that $p_n\longrightarrow p^*$. So, since $\Uwald$ is Bayes-continuous on $\O$, $\Uwald(o_{p_n})\longrightarrow \Uwald(o_{p^*})$, so $\Uwald(o_{p_n})({\omega})\longrightarrow \Uwald(o_{p^*})({\omega})$ for each ${\omega}$. Thus, since $\Uwald(o_{p_n})({\omega^*})\geq Z({\omega^*})$ for all $n$, also $\Uwald(o_{p^*})(\omega^*)\geq Z(\omega^*)$. 
 		
-		Since this worked for any $\omega$, i.e., for any $\omega$ we could construct the relevant sequence and apply this argument, we have in fact obtained that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for all $\omega$, i.e., either $\Uwald(o_{p^*})=Z$ or $\Uwald(o_{p^*})$ weakly dominates $Z$, which would contradict our assumption that $Z$ is not weakly dominated. 
+		Now, this worked for any $\omega$. That is, for any $\omega$ we can construct the relevant sequence and apply this argument. So, we have in fact shown that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for all $\omega$. And so, as noted above, it follows that $\Uwald(o_{p^*})=Z$, for if $\Uwald(o_{p^*})(\omega) > Z(\omega)$ for any $\omega$, $\Uwald(o_{p^*})$ would weakly dominate $Z$, and we know this isn't the case.
 	\end{proof}
 	This proof in fact shows that the assumptions on $\Uwald$ are very strong. It shows that for every probability there is a unique member of $\cl(\Conv(\Uwald(\O)))$ which is not weakly dominated; thus also that for every regular probability, there is a unique Bayes option. 
 	
