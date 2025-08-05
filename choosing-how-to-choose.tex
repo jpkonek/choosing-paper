@@ -3523,16 +3523,16 @@ Our claims follow from this.
 %$
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
-\begin{corollary}\ 
+\begin{corollary}\label{thm:EU appendix corollary}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
-		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu_b$ that picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
+		\item \label{itm:eu-2} If $\nu$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$, and $\Nu$ contains some $\nu^b$ that picks for $\EU_{b(\cdot|-)}$, then $\nu\notin\EU_b(\Nu)$.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
 	\ref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
 	
-	For \ref{itm:eu-2}, \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu_b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \ref{itm:eu-2}, \Cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
@@ -3802,7 +3802,7 @@ We will again state the results for probabilistic picking strategies, $\nu$. The
 \end{proof}
 We introduce a new definition that encompasses the notions of $\EU$-completeness and conditional-$\EU$-completeness given in \cref{def:EU-complete}, by specifying the set for which the set of picking strategies is $\EU$-complete: 
 \begin{definition}
-	$\Nu$ is $\EU$-complete for $\IB$ iff for every $b\in\IB$, there is some $\nu_b\in\Nu$ such that $\nu_b$ picks for $\EU_{b(\cdot|-)}$. 
+	$\Nu$ is $\EU$-complete for $\IB$ iff for every $b\in\IB$, there is some $\nu^b\in\Nu$ such that $\nu^b$ picks for $\EU_{b(\cdot|-)}$. 
 \end{definition}
 Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it is $\EU$-complete for any $\IB$. 
 \begin{corollary}\label{thm:appendix:ead:eu}
@@ -4532,8 +4532,13 @@ Suppose
 \item $\O$ is a specified collection of probabilistic picking strategies, $\Nu$.
 \item $\mu^*$ is a measure over $\D$.
 \item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. That is, $\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$.
+	\item Fix $\mu^*$ a measure over $\D$. 
+\item The options, $\O$, are a specified collection of probabilistic picking strategies, $\Nu$.
+\item $\Uwald:\Nu\times\Omega\to[l,u]$ defined by $\Uwald(\nu)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$.
+%\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. 
+\\That is, $\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. 
-That is, the utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
+\\The utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \end{itemize}
 
 Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and observe that Bayes-existing immediately follows. 
@@ -4541,38 +4546,80 @@ Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and o
 	If $\Nu$ is EU-complete, then $\Nu$ is Bayes-existing relative to $\Uwald$. 
 \end{lemma}
 \begin{proof}
-	If $\Nu$ is EU-complete, then for each $p$, there is $\n$ in $\Nu$ that picks for $\EU_p$. And, by \cref{thm:EU appendix}, since $\n$ picks for $\EU_p$, $\n$ is Bayes for $p$. %\todooldinfo{where's the ref??} 
+	If $\Nu$ is EU-complete, then for each $p$, there is some $\n$ in $\Nu$ that picks for $\EU_p$. And, by \cref{thm:EU appendix corollary}, since $\n$ picks for $\EU_p$, $\n$ is Bayes for $p$. %\todooldinfo{where's the ref??} 
 \end{proof}
 
 Recall \cref{def:suff spread}, which says when a measure requires almost everywhere decisiveness.
 \begin{lemma}\label{thm:cct-appln:cts}
-	If ${\mu^*}$ requires almost everywhere decisiveness, then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
+	If ${\mu^*}$ requires almost everywhere decisiveness,
+	then $\Uwald$ is Bayes continuous on $\Nu$, where $\Uwald(\nu)$. 
+%	then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
 \end{lemma}\todo{remove ctbly add}
+\begin{colored}{violet}
 \begin{proof}
-Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
+Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. 
+%	We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have the utility profiles of $\n^{p_n}$ converge to the utility profile of $\nu^{p^*}$. 
 
-Suppose that $D$ is such that: (i) $\EU_{p^*}(D)= \{a^*\}$, (ii) $\n^{p_n}_D(\EU_{p_n}(D))=1$, and (iii) $\n^{p^*}_D(\EU_{p^*}(D))=1$, so that $\n^{p^*}_D(\{a^*\}) = 1$. 
-For every $a$,  $\Exp_{p_n}(a)\longrightarrow\Exp_{p^*}(a)$. If $D$ is finite, there must be some $N$ such that for all $n>N$, also $\EU_{p_n}(D)=\{a^*\}$. And then $\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)=a^*(\omega)= \Exp_{\n^{p^*}_D}a(\omega) = \U(\n^{p^*})(\omega, D)$.\footnote{If $D$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D)$ is upper hemi-continuous, so that if $p_n\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D)\subseteq V$, then there is some $N$ such that for all $n>N$, $\EU_{p_n}(D)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{a(\omega)-a^*(\omega)}<\epsilon\}$, which is open containing $\EU_{p^*}(D)=\{a^*\}$. So there is some $N$ such that for all $n>N$, any $a_n\in\EU_{p_n}(D)$ is in $V_{\epsilon}$, and so $\abs{a(\omega)-a^*(\omega)}<\epsilon$; thus also $\abs{\Exp_{v_D^{p_n}} a(\omega)- a^*(\omega)}<\epsilon$; so the utility profiles converge. }
+Suppose $\nu^{p_n}$ is Bayes for $p_n$ and $\nu^{p^*}$ is Bayes for $p^*$. 
+We will show that for each $\omega\in\Omega$,  $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\nu^{p^*})(\omega)$; that is, $\Exp_{\mu^*}[\U(\nu^{p_n})(\omega)]\longrightarrow\Exp_{\mu^*}[\U(\nu^{p^*})(\omega)]$. 
 
-%$\epsilon>0$, then there is an $N$ such that for all $a_n\in\EU_{p_n}(D)$ there is some $a^*\in\EU_{p^*}(D)$ with $\sum_\omega |a(\omega)-a^*(\omega)|<\epsilon $. Since there is only one such $a^*$ by assumption that $\EU_{p^*}(D)=\{a^*\}$, in fact, for all $\epsilon>0$, there is $N$ such that $\Exp_{\n_D^{p_n}} a(\omega)$ 
-% so if $a\neq a^*$, 
-% $$\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)\longrightarrow \Exp_{\n^{p^*}_D}a(\omega) = a^*(\omega)=\U(\n^{p^*})(\omega, D).$$ 
-%In fact, as we have assumed that $D$ is finite, there is $N$ such that, for $n > N$, $\EU_{p_n}(D)=\{a^*\}$. \todooldinfo{This is by ???}
+Fix any $\omega^*\in\Omega$. 
 
-Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
-$$\Exp_{\mu^*}\U(\n^{p_n})(\omega) \longrightarrow \Exp_{\mu^*} \U(\n^{p^*})(\omega)$$which is what we wish to prove.
-
-We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
-and $\n^{p_n}$ ${\mu^*}$-surely pick for $\EU_{p_n}$. 
 Let:
 \begin{itemize}
 	\item $\X^* = \Set{D \in \D \given \n^{p^*}_D(\EU_{p^*}(D)) = 1 }$
 	\item $\X^n = \Set{D \in \D \given \n^{p_n}_D(\EU_{p^n}(D)) = 1 }$
-	\item $\Y^* = \Set{D \in \D \given \EU_{p^*}(D) \emph{ is a singleton}}$
+	\item $\Y^* = \Set{D \in \D \given \EU_{p^*}(D) \text{ is a singleton}}$
 \end{itemize}
-We thus know that ${\mu^*}(\X^*) = {\mu^*}(\X^n)=1$. We also know that ${\mu^*}(\Y^*) = 1$, since we have assumed that ${\mu^*}$ requires almost everywhere decisiveness. And so, since ${\mu^*}$ is countably additive,
-$${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This completes the proof.
+
+We have ${\mu^*}(\X^*) =1$ by assumption that $\nu^{p^*}$ is Bayes for $p^*$; and similarly, for each $n$, $\mu^*(\X^n)=1$ as $\nu^{p_n}$ is assumed to be Bayes for $p_n$.
+
+We also know that ${\mu^*}(\Y^*) = 1$, since we have assumed that ${\mu^*}$ requires almost everywhere decisiveness. 
+
+And so, since ${\mu^*}$ is countably additive,
+$${\mu^*}\left (\X^* \cap \bigcap^\infty_{n=1} \X^n \cap \Y^* \right ) = 1.$$
+
+
+Now take any $D^*\in \X^* \cap \bigcap^\infty_{n=1} \X^n \cap \Y^* $
+
+$\EU_{p^*}(D^*)$ is a singleton, so let $\EU_{p^*}(D^*)=\{a^*\}$. As $\nu^{p^*}_{D^*}(\{a^*\})=1$, observe that  $\U(\nu^{p^*})(\omega^*,D^*)=\U(a^*)(\omega^*)$. 
+
+Expected utility is continuous as a function of probabilities; \todo{This must require ctbly addy? Anything else?}i.e., for all $a\in\A$, $\Exp_{p_n}[\U(a)]\longrightarrow \Exp_{p^*}[\U(a)]$. Thus, as $D^*$ is finite, for some $N\in\mathbb{N}\setminus\{0\}$ and for all $n>N$, $\EU_{p_n}(D^*)=\{a^*\}$. 
+
+And so, for each $n>N$, $\nu^{p_n}_{D^*}(\{a^*\})=1$ and  so $\U(\nu^{p_n})(\omega^*,D^*)=\U(a^*)(\omega^*)=\U(\nu^{p^*})(\omega^*,D^*)$. 
+
+This gives us that $\U(\nu^{p_n})(\omega^*,D^*)\longrightarrow\U(\nu^{p^*})(\omega^*,D^*)$. 
+
+As this holds for all $D\in \X^* \cap \bigcap^\infty_{n=1} \X^n \cap \Y^*$, 
+we have that on a set of $\mu^*$-measure one, 
+which is $\mu^*$-almost everywhere, as utilities are bounded, a Dominated Convergence Theorem gives us that
+$\Exp_{\mu^*}[\U(\nu^{p_n})(\omega^*)]\longrightarrow\Exp_{\mu^*}\U(\nu^{p^*})(\omega^*)]$. That is, $\Uwald(\nu^{p_n})(\omega^*)\longrightarrow\Uwald(\nu^{p^*})(\omega^*)$.
 \end{proof}
+\end{colored}
+
+%\begin{proof}
+%Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})\longrightarrow\Uwald(\n^{p^*})$. 
+%
+%Suppose that $D$ is such that: (i) $\EU_{p^*}(D)= \{a^*\}$, (ii) $\n^{p_n}_D(\EU_{p_n}(D))=1$, and (iii) $\n^{p^*}_D(\EU_{p^*}(D))=1$, so that $\n^{p^*}_D(\{a^*\}) = 1$. 
+%For every $a$,  $\Exp_{p_n}[\U(a)]\longrightarrow\Exp_{p^*}[\U(a)]$. 
+%If $D$ is finite, there must be some $N$ such that for all $n>N$, also $\EU_{p_n}(D)=\{a^*\}$. 
+%And then $\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)=a^*(\omega)= \Exp_{\n^{p^*}_D}a(\omega) = \U(\n^{p^*})(\omega, D)$.\footnote{If $D$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D)$ is upper hemi-continuous, so that if $p_n\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D)\subseteq V$, then there is some $N$ such that for all $n>N$, $\EU_{p_n}(D)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{a(\omega)-a^*(\omega)}<\epsilon\}$, which is open containing $\EU_{p^*}(D)=\{a^*\}$. So there is some $N$ such that for all $n>N$, any $a_n\in\EU_{p_n}(D)$ is in $V_{\epsilon}$, and so $\abs{a(\omega)-a^*(\omega)}<\epsilon$; thus also $\abs{\Exp_{v_D^{p_n}} a(\omega)- a^*(\omega)}<\epsilon$; so the utility profiles converge. }
+%
+%
+%Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
+%$$\Exp_{\mu^*}\U(\n^{p_n})(\omega) \longrightarrow \Exp_{\mu^*} \U(\n^{p^*})(\omega)$$which is what we wish to prove.
+%
+%We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
+%and $\n^{p_n}$ ${\mu^*}$-surely pick for $\EU_{p_n}$. 
+%Let:
+%\begin{itemize}
+%	\item $\X^* = \Set{D \in \D \given \n^{p^*}_D(\EU_{p^*}(D)) = 1 }$
+%	\item $\X^n = \Set{D \in \D \given \n^{p_n}_D(\EU_{p^n}(D)) = 1 }$
+%	\item $\Y^* = \Set{D \in \D \given \EU_{p^*}(D) \emph{ is a singleton}}$
+%\end{itemize}
+%We thus know that ${\mu^*}(\X^*) = {\mu^*}(\X^n)=1$. We also know that ${\mu^*}(\Y^*) = 1$, since we have assumed that ${\mu^*}$ requires almost everywhere decisiveness. And so, since ${\mu^*}$ is countably additive,
+%$${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This completes the proof.
+%\end{proof}
 
 \begin{corollary}\label{thm:cct-applns:corr}
 	Suppose that $\Nu$ is EU-complete, and suppose $\mu^*$ requires almost everywhere decisiveness. 
