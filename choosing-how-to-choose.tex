@@ -2679,7 +2679,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 \begin{proposition}\label{thm:max-nu-reg-nec}
 	Suppose $\Nu$ is $\EU$-complete. 
 	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$} %\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
-	Then, if $\n$ is a regular picking strategy for $\Maximality$ then $\n\notin \Maximality_\IB(\Nu)$.%\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
+	Then, if $\n$ is a regular picking strategy for $\Maximality_{\IB(\cdot|-)}$ then $\n\notin \Maximality_\IB(\Nu)$.%\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
 
 
@@ -3888,7 +3888,7 @@ As Maximality is a more permissive theory than E-Admissibility, \cref{thm:append
 
 \subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}\label{sect:appendix:eadundermining}
 
-We now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existence[dep],thm:ead-nu-reg-nec}. For these results, we need to give conditions under which there exists a strategy that picks for E-Admissibility and does not look like an expected utility strategy from the point of view of our measure $\mu$ over the decision problems. 
+We now move to \cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec}. For these results, we need to give conditions under which there exists a strategy that picks for E-Admissibility and does not look like an expected utility strategy from the point of view of our measure $\mu$ over the decision problems. 
 
 For regular picking strategies, this is simple: E-Admissibility must disagree with each $\EU_p$, at least $\mu$-surely.
 
@@ -4584,18 +4584,31 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \begin{proof}
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
-\begin{corollary}
+\begin{corollary}\label{cor:max-dom}
 		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. %\todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
 		
-	If $\n$ does not $\mu^*$-surely pick for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
+	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
 \begin{proof}
 	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
-\cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this.% \todo{Let's double checkt hat that's true.}
+\cref{thm:max-nu} follows from this.% \todo{Let's double checkt hat that's true.}
 
 
+\begin{proposition}[\cref{thm:max-nu-reg-nec}]
+	Suppose $\Nu$ is $\EU$-complete. 
+	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that, for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$. Then, if $\n$ is a regular picking strategy for $\Maximality_{\IB(\cdot|-)}$ then $\n\notin \Maximality_\IB(\Nu)$.
+\end{proposition}
 
+\begin{proof}
+	Suppose $\nu$ is a regular picking strategy for $\Maximality_{\IB(\cdot|-)}$ and the conditions of the theorem hold. 
+	
+	Take any $p\in\IP$.
+	If $\Maximality_{\IB(\cdot|-)}(D)\not\subseteq\EU_p(D)$, then, since $\n_D$ is a regular probability function, $\nu_D(\EU_p(D))< 1$. 
+	Since 
+	$b_\D\{D\given \Maximality_{\IB(\cdot|-)}(D)\not\subseteq\EU_p(D)\}>0$, we have $\mu^*\{D\given \nu(\EU_p(D))<1\}>0$.
+	 So $\nu$ does not $\mu^*$-surely pick for $\EU_p$. Since this holds for any $p \in \IP$, \cref{cor:max-dom} tells us that $\nu\notin\Maximality_\IB(\Nu)$. 
+\end{proof}
 
 
 
