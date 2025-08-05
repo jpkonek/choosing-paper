@@ -4182,7 +4182,7 @@ We state it in a general setting and then explain how they apply to our case. Al
 	\item $\Omega$ is a finite set of states.
 	\item A probability function over $\Omega$ is a normalised function $p : \Omega \to [0, 1]$, i.e., $\sum_{\omega \in \Omega} p(w) = 1$. Given a random variable (or vector) $X\in\Re^\Omega$, we write $p(X)$ for the expectation of $X$, i.e., $p(X)=\Exp_p[X] = \sum_{\omega\in\Omega}p(\omega)X(\omega)$.% applying the probability function to random variables. 
 	\item $\O$ is a set of ``options''. In our application they will be various (probabilistic) picking strategies, $\n$.
-	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}\U(\n,\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
+	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}[\U(\n,\omega)]=\Exp_{\mu^*}[\Exp_{\n_D}[\U(a)(\omega)]]$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
 		\item Given an option $o$, the utility profile of $o$ is the random variable (or vector) $\Uwald(o) \in\Re^\Omega$ with $\Uwald(o)(\omega)=\Uwald(o,\omega)$.%, however $\Uwald$ is specified. 
 		\item So, given an option $o$ and a probability function $p$ over $\Omega$, $p(\Uwald(o)) = \Exp_p[\Uwald(o)] = \sum_{\omega \in \Omega} p(\omega) \Uwald(o)(\omega) = \sum_{\omega \in \Omega} p(\omega) \Uwald(o, \omega)$.
 	\end{itemize}
@@ -4478,7 +4478,7 @@ Relative to $\Uwald$:
 %For example, if $\Uwald$ is a measure of accuracy which is continuous and strictly proper, then these will be satisfied. They are, however, \emph{much} weaker than that.
 	
 	\begin{lemma}\label{thm:cct:bdry are the Bayes optimal}
-		Suppose $\Uwald$ is Bayes-continuous on $\O$ and $\O$ is Bayes-existing relative to $\Uwald$. Then, if $Z\in\cl(\Conv(\Uwald(\O)))$ is not weakly dominated in $\Conv(\Uwald(\O))$, then $Z\in \Uwald(\O)$ and $Z$ is Bayes  in $\Uwald(\O)$. 
+		Suppose $\Uwald$ is Bayes-continuous on $\O$ and $\O$ is Bayes-existing. Then, if $Z\in\cl(\Conv(\Uwald(\O)))$ is not weakly dominated in $\Conv(\Uwald(\O))$, then $Z\in \Uwald(\O)$ and $Z$ is Bayes  in $\Uwald(\O)$. 
 %		
 %		The proof also shows t
 	\end{lemma}
@@ -4486,7 +4486,7 @@ Relative to $\Uwald$:
 	
 	\begin{proof}
 		%	\todoold{JK wanted a more direct proof rather than something like this pf contradiction; but it wont work. It relies essentially on the Bayes existing part - that there is such $\Uwald(o_{p^*})$, so will have to involve that directly. Bayes cty itself doesn't tell us anything about $Z$ which isn't in $\Uwald(\O)$.}
-		Since $Z$ is not weakly dominated, it is also not strictly dominated. So, by \cref{thm:cct:admiss in conv are Bayes in conv}, there is some probability function $p^*$ on $\Omega$ with $p^*(Z)\geq p^*(\Uwald(o))$, for all $o$. Since $\O$ is Bayes-existing relative to $\Uwald$, there is some $o_{p^*}$ that is Bayes for $p^*$ in $\Uwald(\O)$. 
+		Since $Z$ is not weakly dominated, it is also not strictly dominated. So, by \cref{thm:cct:admiss in conv are Bayes in conv}, there is some probability function $p^*$ on $\Omega$ with $p^*(Z)\geq p^*(\Uwald(o))$, for all $o$. Since $\O$ is Bayes-existing, there is some $o_{p^*}$ that is Bayes for $p^*$ in $\Uwald(\O)$. 
 		
 		We will now show that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for every $\omega$. It will follow from this that $\Uwald(o_{p^*})(\omega)=Z(\omega)$, for every $\omega$, since we know that $Z$ is not weakly dominated, and so $\Uwald(o_{p^*})=Z$.%. or $\Uwald(o_{p^*})$ weakly dominates $Z$, which would contradict our assumption that $Z$ is not weakly dominated. 
 		
@@ -4496,7 +4496,7 @@ Relative to $\Uwald$:
 		Hold fixed a single $\omega$, which we call $\omega^*$. Let $\pi_{\omega^*}$ be the projection function for the ${\omega^*}$ that we are considering, i.e., $\pi_{\omega^*}(Y):=Y({\omega^*})$. Then define $p_n$ by:
 		\begin{align}
 			p_n=(1-\sfrac{1}{n})p^*+\sfrac{1}{n} \pi_{{\omega^*}}
-		\end{align}Note that this depends on the $\omega^*$ under consideration. Observe that $p_n$ is a probability function on $\Omega$. And so, since $\O$ is Bayes-existing relative to $\Uwald$, for each $n$, there is some $o_{p_n}$ that is Bayes optimal for $p_n$, i.e., $p_n(\Uwald(o_{p_n}))\geq p_n(\Uwald(o))$, for all $o$. Since we have assumed $Z\in\cl(\Conv(\Uwald(\O)))$, also $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$.\footnote{To show this, we first observe it for any $Z\in \Conv(\Uwald(\O))$, just taking a mixture, and then note that taking limits can't break a non-strict inequality, $\geq$.}\todoold{should it be an official separate lemma?}
+		\end{align}Note that this depends on the $\omega^*$ under consideration. Observe that $p_n$ is a probability function on $\Omega$. And so, since $\O$ is Bayes-existing, for each $n$, there is some $o_{p_n}$ that is Bayes optimal for $p_n$, i.e., $p_n(\Uwald(o_{p_n}))\geq p_n(\Uwald(o))$, for all $o$. Since we have assumed $Z\in\cl(\Conv(\Uwald(\O)))$, also $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$.\footnote{To show this, we first observe it for any $Z\in \Conv(\Uwald(\O))$, just taking a mixture, and then note that taking limits can't break a non-strict inequality, $\geq$.}\todoold{should it be an official separate lemma?}
 		
 		We also know that $p^*(Z)\geq p^*(\Uwald(o_{p_n}))$. So, since $p_n$ is a mixture of $p^*$ and $\pi_{\omega^*}$,  to get that $p_n( \Uwald(o_{p_n}))\geq p_n(Z)$ we must in fact have that $\pi_{{\omega^*}}(\Uwald(o_{p_n}))\geq \pi_{\omega^*}(Z)$. That is, we can conclude that $\Uwald(o_{p_n})(\omega^*)\geq Z(\omega^*)$. 
 		
@@ -4518,7 +4518,7 @@ Relative to $\Uwald$:
 %	\end{proof}
 %	This applies to any $X$, whether or not it is in $\Uwald(\O)$ itself, but of course we actually want the result for $o$. 
 	\begin{theorem}\label{thm:cct}
-		Suppose $\O$ is Bayes-existing relative to $\Uwald$ and $\Uwald$ is Bayes-continuous on $\O$. Then, if $o$ is not Bayes then there is $o'$ that strictly dominates it; moreover, it is strictly dominated by an option that is itself Bayes and not even weakly dominated. 
+		Suppose $\O$ is Bayes-existing and $\Uwald$ is Bayes-continuous on $\O$. Then, if $o$ is not Bayes then there is $o'$ that strictly dominates it; moreover, it is strictly dominated by an option that is itself Bayes and not even weakly dominated. 
 	\end{theorem}
 \begin{proof}
 			If $o$ is not Bayes in $\Uwald(\O)$, then, by \cref{thm:cct:admiss in conv are Bayes in conv}, $\Uwald(o)$ is strictly dominated in $\Conv(\Uwald(\O))$. 
@@ -4527,7 +4527,7 @@ Relative to $\Uwald$:
 \end{proof}
 
 
-We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is closed and convex, then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing relative to $\Uwald$, then again $o$ is Bayes iff $o$ is not strictly dominated.
+We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is closed and convex, then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing, then again $o$ is Bayes iff $o$ is not strictly dominated.
 
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
 
