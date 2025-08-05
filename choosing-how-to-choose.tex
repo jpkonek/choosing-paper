@@ -2656,6 +2656,13 @@ This follows from a version of Wald's Complete Class Theorem. Using that, we sho
 
 The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IB(\cdot|-)}$ but that does not belong to $\Maximality_\IB(\S)$.
 
+\begin{proposition}\label{thm:max-existsimpermissible[dep]}
+Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+
+Then there is $\s$ that picks for $\Maximality_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+\end{proposition}
+
+
 %\todo{state soemthing about the existence. }
 
 %\begin{colored}
@@ -4010,6 +4017,8 @@ Then there is $\s$ which picks for $\EAd_{\IB(\cdot|-)}$ but where there is no $
 %	Take 
 %\end{proof}
 
+And the same proof also establishes \Cref{thm:max-existsimpermissible[dep]}.
+
 We can find cases with such events when we make additional assumptions that each $\mu$ is sufficiently spread. %\cref{thm:ead-existsimpermissible[dep]:spreadegtakeorleave}
 
 
@@ -4490,9 +4499,9 @@ We state them in a general setting and then explain how they apply to our case.
 		
 		Observe that $p_n\longrightarrow p^*$. So, since $\Uwald$ is Bayes-continuous on $\O$, $\Uwald(o_{p_n})\longrightarrow \Uwald(o_{p^*})$, so $\Uwald(o_{p_n})({\omega})\longrightarrow \Uwald(o_{p^*})({\omega})$ for each ${\omega}$. Thus, since $\Uwald(o_{p_n})({\omega^*})\geq Z({\omega^*})$ for all $n$, also $\Uwald(o_{p^*})(\omega^*)\geq Z(\omega^*)$. 
 		
-		Now, this worked for any $\omega$. That is, for any $\omega$ we can construct the relevant sequence and apply this argument. So, we have in fact shown that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for all $\omega$. And so, as noted above, it follows that $\Uwald(o_{p^*})=Z$, for if $\Uwald(o_{p^*})(\omega) > Z(\omega)$ for any $\omega$, $\Uwald(o_{p^*})$ would weakly dominate $Z$, and we know this isn't the case.
+		Now, this worked for any $\omega$. That is, for any $\omega$ we can construct the relevant sequence and apply this argument. So, we have in fact shown that $\Uwald(o_{p^*})(\omega)\geq Z(\omega)$ for all $\omega$. And so, as noted above, it follows that $\Uwald(o_{p^*})=Z$, for if $\Uwald(o_{p^*})(\omega) > Z(\omega)$ for any $\omega$, $\Uwald(o_{p^*})$ would weakly dominate $Z$, and, by assumption, this isn't the case.
 	\end{proof}
-	This proof in fact shows that the assumptions on $\Uwald$ are very strong. It shows that for every probability there is a unique member of $\cl(\Conv(\Uwald(\O)))$ which is not weakly dominated; thus also that for every regular probability, there is a unique Bayes option. 
+	This proof in fact shows that the assumptions on $\O$ and $\Uwald$ are very strong. It shows that for every probability there is a unique member of $\cl(\Conv(\Uwald(\O)))$ that is not weakly dominated; thus also that for every regular probability, there is a unique Bayes option. 
 	
 %	\begin{theorem}
 %		Suppose $\Uwald$ is Bayes existing and Bayes continuous. Then if $X$ is not Bayes in $\Uwald(\O)$, it is strictly dominated in $\Uwald(\O)$, moreover, it is strictly dominated by a Bayes point in $\Uwald(\O)$.
@@ -4504,53 +4513,52 @@ We state them in a general setting and then explain how they apply to our case.
 %	\end{proof}
 %	This applies to any $X$, whether or not it is in $\Uwald(\O)$ itself, but of course we actually want the result for $o$. 
 	\begin{theorem}\label{thm:cct}
-		Suppose $\Uwald$ is Bayes existing and Bayes continuous. If $o$ is not Bayes then there is $o'$ which strictly dominates it; moreover, it is strictly dominated by an option which is itself Bayes and not even weakly dominated. 
+		Suppose $\O$ is Bayes-existing relative to $\Uwald$ and $\Uwald$ is Bayes-continuous on $\O$. Then, if $o$ is not Bayes then there is $o'$ that strictly dominates it; moreover, it is strictly dominated by an option that is itself Bayes and not even weakly dominated. 
 	\end{theorem}
 \begin{proof}
 			If $o$ is not Bayes in $\Uwald(\O)$, then, by \cref{thm:cct:admiss in conv are Bayes in conv}, $\Uwald(o)$ is strictly dominated in $\Conv(\Uwald(\O))$. 
 	
-	By \cref{thm:cct:dominator on boundry} it is thus strictly dominated by some $Z\in\cl(\Conv(\Uwald(\O)))$ which is itself not weakly dominated in $\Conv(\Uwald(\O))$. By \cref{thm:cct:bdry are the Bayes optimal}, in fact $Z\in \Uwald(\O)$, and moreover, it is in fact a Bayes point; as required.
+	By \cref{thm:cct:dominator on boundry} it is thus strictly dominated by some $Z\in\cl(\Conv(\Uwald(\O)))$ which is itself not weakly dominated in $\Conv(\Uwald(\O))$. By \cref{thm:cct:bdry are the Bayes optimal}, in fact $Z = \Uwald(o_Z)$, for some $o_Z$ in $\O$, and moreover, $o_Z$ is Bayes, as required.
 \end{proof}
 
 
 \begin{theorem}[Main theorem: a version of Wald's Complete Class Theorem]\label{thm:wald-cct}
-	Suppose $\Uwald(\O)$ is closed and convex; or that $\Uwald$ is Bayes-continuous and Bayes-existing. Then $o$ is Bayes iff $o$ is not strictly dominated.
+	Suppose either: {\normalfont(i)} $\Uwald(\O)$ is closed and convex, or {\normalfont(ii)} that $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing relative to $\Uwald$. Then $o$ is Bayes iff $o$ is not strictly dominated.
 \end{theorem}
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
+
 
 Suppose
 \begin{itemize}
 \item $\O$ is a specified collection of probabilistic picking strategies, $\Nu$.
 \item $\mu^*$ is a measure over $\D$.
-\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}\U(\n)(\omega)=\Exp_{\n_{D}} \U(a)(\omega)$
+\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. That is, the utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \end{itemize}
 
-Recall \cref{def:EU-complete} of $\Nu$ being $\EU$-complete, and observe that Bayes-existing immediately follows. 
+Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and observe that Bayes-existing immediately follows. 
 \begin{lemma}\label{thm:cct-appln:existing}
-	If $\Nu$ is EU-complete, then it is Bayes-existing. 
+	If $\Nu$ is EU-complete, then $\Nu$ is Bayes-existing relative to $\Uwald$. 
 \end{lemma}
 \begin{proof}
-	By \cref{thm:EU appendix}, $\n$ ${\mu^*}$-surely picks for $\EU_p$ iff it is a maximiser of  \cref{thm:EU appendix}. %\todooldinfo{where's the ref??} 
+	If $\Nu$ is EU-complete, then for each $p$, there is $\n$ in $\Nu$ that picks for $\EU_p$. And, by \cref{thm:EU appendix}, since $\n$ picks for $\EU_p$, $\n$ is Bayes for $p$. %\todooldinfo{where's the ref??} 
 \end{proof}
 
-Recall the definition of requires almost everywhere decisiveness from \cref{def:suff spread}.
+Recall \cref{def:suff spread}, which says when a measure requires almost everywhere decisiveness.
 \begin{lemma}\label{thm:cct-appln:cts}
-	If ${\mu^*}$ requires almost everywhere decisiveness (and countably additive), then $\Uwald(\n)(\omega):=\Exp_{\mu^*}\U({\n_{D}})(\omega)=\Exp_{\mu^*}\Exp_{\n_D}\U(a)(\omega)$ is Bayes continuous. \todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
+	If ${\mu^*}$ requires almost everywhere decisiveness and it is countably additive, then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
 \end{lemma}
 \begin{proof}
-Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges on $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, then $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
+Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
 
-Now suppose that $D$ is such that: (i) $\EU_{p^*}(D)= \{a^*\}$, (ii) $\n^{p_n}_D(\EU_{p_n}(D))=1$, and (iii) $\n^{p^*}_D(\EU_{p^*}(D))=1$, so that $\n^{p^*}_D(\{a^*\}) = 1$. 
-For every $a$,  $\Exp_{p_n}(a)\longrightarrow\Exp_{p^*}(a)$. If $D$ is finite, there must be some $N$ such that for all $n>N$, also $\EU_{p_n}(D)=\{a^*\}$. And then $\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)=a^*(\omega)= \Exp_{\n^{p^*}_D}a(\omega) = \U(\n^{p^*})(\omega, D)$.  
-
-If $D$ is infinite, although compact, one can use the Berge's Maximum Theorem to observe that $\EU_p(D)$ is upper hemi-continuous, so that if $p_n\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D)\subseteq V$, then there is some $N$ such that for all $n>N$, $\EU_{p_n}(D)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{a(\omega)-a^*(\omega)}<\epsilon\}$, which is open containing $\EU_{p^*}(D)=\{a^*\}$. So there is some $N$ such that for all $n>N$, any $a_n\in\EU_{p_n}(D)$ is in $V_{\epsilon}$, and so $\abs{a(\omega)-a^*(\omega)}<\epsilon$; thus also $\abs{\Exp_{v_D^{p_n}} a(\omega)- a^*(\omega)}<\epsilon$; so the utility profiles converge. 
+Suppose that $D$ is such that: (i) $\EU_{p^*}(D)= \{a^*\}$, (ii) $\n^{p_n}_D(\EU_{p_n}(D))=1$, and (iii) $\n^{p^*}_D(\EU_{p^*}(D))=1$, so that $\n^{p^*}_D(\{a^*\}) = 1$. 
+For every $a$,  $\Exp_{p_n}(a)\longrightarrow\Exp_{p^*}(a)$. If $D$ is finite, there must be some $N$ such that for all $n>N$, also $\EU_{p_n}(D)=\{a^*\}$. And then $\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)=a^*(\omega)= \Exp_{\n^{p^*}_D}a(\omega) = \U(\n^{p^*})(\omega, D)$.\footnote{If $D$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D)$ is upper hemi-continuous, so that if $p_n\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D)\subseteq V$, then there is some $N$ such that for all $n>N$, $\EU_{p_n}(D)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{a(\omega)-a^*(\omega)}<\epsilon\}$, which is open containing $\EU_{p^*}(D)=\{a^*\}$. So there is some $N$ such that for all $n>N$, any $a_n\in\EU_{p_n}(D)$ is in $V_{\epsilon}$, and so $\abs{a(\omega)-a^*(\omega)}<\epsilon$; thus also $\abs{\Exp_{v_D^{p_n}} a(\omega)- a^*(\omega)}<\epsilon$; so the utility profiles converge. }
 
 %$\epsilon>0$, then there is an $N$ such that for all $a_n\in\EU_{p_n}(D)$ there is some $a^*\in\EU_{p^*}(D)$ with $\sum_\omega |a(\omega)-a^*(\omega)|<\epsilon $. Since there is only one such $a^*$ by assumption that $\EU_{p^*}(D)=\{a^*\}$, in fact, for all $\epsilon>0$, there is $N$ such that $\Exp_{\n_D^{p_n}} a(\omega)$ 
 % so if $a\neq a^*$, 
 % $$\U(\n^{p_n})(\omega, D)=\Exp_{\n^{p_n}_D}a(\omega)\longrightarrow \Exp_{\n^{p^*}_D}a(\omega) = a^*(\omega)=\U(\n^{p^*})(\omega, D).$$ 
 %In fact, as we have assumed that $D$ is finite, there is $N$ such that, for $n > N$, $\EU_{p_n}(D)=\{a^*\}$. \todooldinfo{This is by ???}
 
-Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so (since the utilities are bounded, by a Dominated Convergence Theorem):
+Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
 $$\Exp_{\mu^*}\U(\n^{p_n})(\omega) \longrightarrow \Exp_{\mu^*} \U(\n^{p^*})(\omega)$$which is what we wish to prove.
 
 We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
@@ -4561,12 +4569,12 @@ Let:
 	\item $\X^n = \Set{D \in \D \given \n^{p_n}_D(\EU_{p^n}(D)) = 1 }$
 	\item $\Y^* = \Set{D \in \D \given \EU_{p^*}(D) \emph{ is a singleton}}$
 \end{itemize}
-We thus know that ${\mu^*}(\X^*) = {\mu^*}(\X^n)=1$. We also know that ${\mu^*}(\Y^*) = 1$ by assumption of ${\mu^*}$ requiring almost everywhere decisiveness. And so, since ${\mu^*}$ is countably additive,
+We thus know that ${\mu^*}(\X^*) = {\mu^*}(\X^n)=1$. We also know that ${\mu^*}(\Y^*) = 1$, since we have assumed that ${\mu^*}$ requires almost everywhere decisiveness. And so, since ${\mu^*}$ is countably additive,
 $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This completes the proof.
 \end{proof}
 
 \begin{corollary}\label{thm:cct-applns:corr}
-	Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+	Suppose that $\Nu$ is EU-complete, and suppose $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
 	
 %	If $\n$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\n'$
 	
@@ -4576,14 +4584,14 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
 \begin{corollary}
-		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. \todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
+		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. %\todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
 		
 	If $\n$ does not $\mu^*$-surely pick for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
 \begin{proof}
-	From \cref{thm:EU appendix}, such $\n$ thus does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is some $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
+	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
-\cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this. \todo{Let's double checkt hat that's true.}
+\cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} follow from this.% \todo{Let's double checkt hat that's true.}
 
 
 
