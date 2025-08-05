@@ -2747,7 +2747,7 @@ $\EU_p$, although such strategies may nonetheless be impermissible according to 
 \todoold{The idea of N being closed and convex has now totally been deleted. }
 \begin{comment}
 	If you take $\negies$ to consist of all probabilistic picking strategies, then we in fact do not need the requirement that $\mu^*$ requires almost everywhere decisiveness (or countable additivity). 
-The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumption that $\mu^*$ requires almost everywhere decisiveness or countably additive if we instead assume that $\negies$ is convex, i.e., that it contains any (finite) mixtures of members of $\negies$. 
+The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumption that $\mu^*$ requires almost everywhere decisiveness or is countably additive if we instead assume that $\negies$ is convex, i.e., that it contains any (finite) mixtures of members of $\negies$. 
 \begin{proposition}Suppose that $\negies$ is $\EU$-complete and convex.\todooldinfo{Actually we should be careful: if $\negies$ is convex but not closed then it is non-compact and our decision theories aren't even defined for it!!!}
 	
 	Let $\IB$ have the form $\{p\times \mu^*\given p\in\IP\}$
@@ -4531,7 +4531,7 @@ Suppose
 \begin{itemize}
 \item $\O$ is a specified collection of probabilistic picking strategies, $\Nu$.
 \item $\mu^*$ is a measure over $\D$.
-\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. That is, $\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$
+\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. That is, $\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. 
 That is, the utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \end{itemize}
@@ -4546,7 +4546,7 @@ Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and o
 
 Recall \cref{def:suff spread}, which says when a measure requires almost everywhere decisiveness.
 \begin{lemma}\label{thm:cct-appln:cts}
-	If ${\mu^*}$ requires almost everywhere decisiveness and it is countably additive, then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
+	If ${\mu^*}$ requires almost everywhere decisiveness, then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
 \end{lemma}\todo{remove ctbly add}
 \begin{proof}
 Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
@@ -4575,7 +4575,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 \end{proof}
 
 \begin{corollary}\label{thm:cct-applns:corr}
-	Suppose that $\Nu$ is EU-complete, and suppose $\mu^*$ requires almost everywhere decisiveness and is countably additive. 
+	Suppose that $\Nu$ is EU-complete, and suppose $\mu^*$ requires almost everywhere decisiveness. 
 	
 %	If $\n$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\n'$
 	
@@ -4585,7 +4585,7 @@ $${\mu^*}\left (\X^* \cap \bigcap^n_{n=1} \X^n \cap \Y^* \right ) = 1.$$This com
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
 \end{proof}
 \begin{corollary}\label{cor:max-dom}
-		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness and is countably additive. %\todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
+		Suppose that $\Nu$ is EU-complete, $\mu^*$ requires almost everywhere decisiveness. %\todo{why are we explicitly stating ctbly add here. Surely for the existence of the conditionals we need the ctbly add. i was assuming that we had assumed somewhere in general that it was ctbly add.....!!!!!}
 		
 	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
