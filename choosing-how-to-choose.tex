@@ -4170,7 +4170,7 @@ The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} requir
 
 %\end{colored}
 \section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec})}
-To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we combine in \Cref{thm:wald-cct}.% \todo{what are the two versions referred to?}
+To prove \cref{thm:max-nu,thm:max-nu-reg-nec}, we turn to two versions of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we combine in \Cref{thm:wald-cct}. % \todo{what are the two versions referred to?}
 We state them in a general setting and then explain how they apply to our case.
 \subsection{Wald theorem}
  To state them, we need some definitions.
@@ -4521,7 +4521,7 @@ We state them in a general setting and then explain how they apply to our case.
 	By \cref{thm:cct:dominator on boundry} it is thus strictly dominated by some $Z\in\cl(\Conv(\Uwald(\O)))$ which is itself not weakly dominated in $\Conv(\Uwald(\O))$. By \cref{thm:cct:bdry are the Bayes optimal}, in fact $Z = \Uwald(o_Z)$, for some $o_Z$ in $\O$, and moreover, $o_Z$ is Bayes, as required.
 \end{proof}
 
-
+\todo{remove this from a thm env}
 \begin{theorem}[Main theorem: a version of Wald's Complete Class Theorem]\label{thm:wald-cct}
 	Suppose either: {\normalfont(i)} $\Uwald(\O)$ is closed and convex, or {\normalfont(ii)} that $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing relative to $\Uwald$. Then $o$ is Bayes iff $o$ is not strictly dominated.
 \end{theorem}
@@ -4532,7 +4532,9 @@ Suppose
 \begin{itemize}
 \item $\O$ is a specified collection of probabilistic picking strategies, $\Nu$.
 \item $\mu^*$ is a measure over $\D$.
-\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. That is, the utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
+\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. That is, $\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$
+%\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. 
+That is, the utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \end{itemize}
 
 Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and observe that Bayes-existing immediately follows. 
@@ -4546,7 +4548,7 @@ Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete .%, and o
 Recall \cref{def:suff spread}, which says when a measure requires almost everywhere decisiveness.
 \begin{lemma}\label{thm:cct-appln:cts}
 	If ${\mu^*}$ requires almost everywhere decisiveness and it is countably additive, then $\nu, \omega \mapsto\Uwald(\n)(\omega)$ is Bayes continuous on $\Nu$.%\todo{here the variables are being used whereas earlier we just did $\Exp_{\mu^*}[\Exp_{\n_D}[\U]]]$. We should proabbly be consistent}
-\end{lemma}
+\end{lemma}\todo{remove ctbly add}
 \begin{proof}
 Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})(\omega)\longrightarrow\Uwald(\n^{p^*})(\omega)$. 
 
