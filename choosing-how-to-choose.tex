@@ -2492,7 +2492,7 @@ Our results all transpose to the probabilistic setting for any choice of $\Nu$ w
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\n$ in $\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
 If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is deterministically full. 
-\begin{proposition}
+\begin{proposition}\label{thm:EU-complete}
  $\Nu$ is deterministically full
 		$\implies$  $\Nu$ is  conditional-$\EU$-complete 
 		$\implies$  $\Nu$ is  $\EU$-complete.
@@ -3237,6 +3237,8 @@ the situation is less clear, as picking in accordance with expected utility theo
 	
 	All the results in this paper are restricted to \emph{measurable} picking strategies, either of the deterministic form, $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\n:\Decs\to\Delta(\A)$. This ensures that the induced payoffs, $\U(\s),\U(\n):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$ (recalling that $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(\cdot)(\omega)]$). 
 	
+
+	
 	
 	
 \section{Decision-State Dependence}\label{sect:appendix:decdep}
@@ -3421,6 +3423,45 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 %
 %Note that if $b$ is a product, $p\times\mu$, then $b_\Decs$ is just $\mu$ and $b(\cdot|D)=p$ for all $D$. 
 \end{colored}
+
+
+
+
+\subsection{$\EU$-completeness and measurability}
+
+With the clarification that we restrict to \emph{measurable} selection functions, $\Nu$ being $\EU$-complete is taken to mean that for every probability $p$ over $\Omega$ there is some $\nu\in\Nu$ which picks for $\EU_p$. 
+
+\begin{lemma}
+	For every probability $p$ there is a measurable $\s\in\S$ which picks for $\EU_p$. 
+\end{lemma}
+\begin{proof}
+	$\phi:\Decs\twoheadrightarrow\A$ by $\phi(D)=D$ is a weakly measurable correspondence: for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is open in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+	
+	$\Exp_p[\U(a)]=\sum_{\omega\in\Omega}p(\omega)\U(a)(\omega)$ is a continuous function of $a$. Conceiving of it as a function from $\A\times\Decs\to\Re$ which doesn't depend on $D$, we also see that it is trivially measurable as a function of $D$. 
+	
+	So this follows from the Measurable Maximum Theorem \citep[Theorem 18.19]{aliprantis2006infinite}. 
+\end{proof}
+
+Similarly for being conditional $\EU$-complete: it requires the existence of \emph{measurable} picking strategies for $\EU_{b(\cdot|-)}$. 
+
+\begin{lemma}
+	For every probability $b$ over $\Omega\times\Decs$, there is some measurable $\s\in\S$ which picks for $\EU_{b(\cdot|-)}$. 
+\end{lemma}
+
+\begin{proof}
+	$\phi:\Decs\twoheadrightarrow\A$ by $\phi(D)=D$ is a weakly measurable correspondence: for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is open in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+	
+	Consider $\Exp_{b(\cdot|D)}[\U(a)]$, a function from $\Decs\times\A\to\Re$. 
+	
+	For fixed $D$, this is $=\sum_{\omega\in\Omega}b(\cdot|D)(\omega)\U(a)(\omega)$, which is linear and continuous in $a$. 
+	
+	We need to show that it is measurable in $D$, for fixed $a$. This holds because $D\mapsto b(\cdot|D)$ is measurable. 
+	
+	Then the existence of a measurable picking function then follows from the Measurable Maximum Theorem \citep[Theorem 18.19]{aliprantis2006infinite}. 
+\end{proof}
+
+\Cref{thm:EU-complete} thus follows from these. 
+
 \end{colored}
 \section{EU and E-admissibility}
 
