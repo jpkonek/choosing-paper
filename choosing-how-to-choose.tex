@@ -1846,7 +1846,7 @@ So, we represent your uncertainty as a set, $\IB$, of (higher-order) probabiliti
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
 {That is, your credal set is $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-Observe, then, that (i) $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but (ii) $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$. And so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
+Observe, then, that (i) $\Exp_{\mu^*}[\U(\s_{\text{1E,2F}})(\omega)]=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but (ii) $\Exp_{\mu^*}[\U(\s_{\text{1F,2E}})(\omega)]=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$. And so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todo{Shouldn't it be a ref to Seidenfel;s other one??}
@@ -2242,7 +2242,7 @@ Unlike for E-Admissibility, we do not get the converse result (even under the as
 This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise or if it's precise and pretty confident about which one you will face. 
 %, as when $\mu$ does assign high enough confidence to facing $D^{\mathrm{Ellsberg}}_1$, then it evaluates any strategy as permissible. 
 
-If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2E,1F}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2E,1F}})=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
+If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}[\U(\s_{\text{1E,2F}})(\omega)]=5$ for each $\omega$ and $\Exp_{\mu^*}[\U(\s_{\text{2E,1F}})(\omega)]=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}[\U(\s_{\text{1E,2F}})]=5$ and $\Exp_{p\times\mu^*}[\U(\s_{\text{2E,1F}})]=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
 
 We will be able to show that, if your credences over which decision problem you'll face are precise, and also have a further property, that they require almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we can show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}, but we first note that our results so far hold in a more general setting, one where we allow for decision-state dependence. 
 
@@ -2414,7 +2414,7 @@ Secondly, you might think that, once your decision theory gives its choice set, 
 Before discussing some alternatives, we will now show that under either of these ways of thinking about judging the outcomes of adopting a decision theory, all our previous claims carry over, and in fact in some cases even get worse since the strategies that align with expected utility theory arise from extremal picking strategies which we might want to rule out under this way of thinking. 
 
 
-%Either way, what we formally have, is, for each decision problem $D$ and picking strategy $C$, some probability $\n$ over the options which are not ruled out by $C$. Then we have $\U(C,D,\omega)$ as $\Exp_{\n^C_D}\U(a,D,\omega)$; which we think of as your expected utility of having adopted the choice function $C$. 
+%Either way, what we formally have, is, for each decision problem $D$ and picking strategy $C$, some probability $\n$ over the options which are not ruled out by $C$. Then we have $\U(C,D,\omega)$ as $\Exp_{\n^C_D}[\U(a,D,\omega)]$; which we think of as your expected utility of having adopted the choice function $C$. 
 
 
 
@@ -2639,7 +2639,7 @@ Then we have the following result.%
 	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
+This follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$, i.e., $\Exp_{p\times \mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2648,8 +2648,8 @@ This follows from a version of Wald's Complete Class Theorem. Using that, we sho
 
 	
 %	 If $\n$ is not Bayes\todooldinfo{here!}
-%	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then by \cref{thm:eu-nu-nec-suff}, $\n\notin \EU_{p\times\mu^*}(\negies)$. We can then use a version of Wald's Complete Class Theorem to show that there is some $\n'$ where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all $p$, $\EU_{p\times\mu^*}\U(\n')>\EU_{p\times\mu^*}\U(\n)$, so $\n\notin\Maximality_\IB(\negies)$. 
-%	What we can show is that if $\n$ is such that there is no probability function with $\Exp_{p}\Exp_{\mu^*}\U(\n)$
+%	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then by \cref{thm:eu-nu-nec-suff}, $\n\notin \EU_{p\times\mu^*}(\negies)$. We can then use a version of Wald's Complete Class Theorem to show that there is some $\n'$ where $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$, and thus for all $p$, $\EU_{p\times\mu^*}\U(\n')>\EU_{p\times\mu^*}\U(\n)$, so $\n\notin\Maximality_\IB(\negies)$. 
+%	What we can show is that if $\n$ is such that there is no probability function with $\Exp_{p}\Exp_{\mu^*}[\U(\n)]$
 %	 which shows that non-Bayes options are dominated. We 
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
@@ -2694,12 +2694,12 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 %Our core result is that if $\n$
 
-%{\color{violet}This isn't unique to Maximality. It also doesn't depend on any strong independence condition. What we actually show is that if $\n$ is not Bayes, then there is $\n'$ such that $\Exp_{\mu^*}\U(\n)(\omega)<\Exp_{\mu^*}\U(\n')(\omega)$ for all $\omega$. So if $\c$ is any choice function allowing some non-$\EU_p$ strategies, then any regular $\n$ gives some positive probability to these non-$\EU_p$ options; which are thus not Bayes and thus dominated in expectation by some alternative. }
+%{\color{violet}This isn't unique to Maximality. It also doesn't depend on any strong independence condition. What we actually show is that if $\n$ is not Bayes, then there is $\n'$ such that $\Exp_{\mu^*}[\U(\n)(\omega)]<\Exp_{\mu^*}[\U(\n')(\omega)]$ for all $\omega$. So if $\c$ is any choice function allowing some non-$\EU_p$ strategies, then any regular $\n$ gives some positive probability to these non-$\EU_p$ options; which are thus not Bayes and thus dominated in expectation by some alternative. }
 %
 % It will hold for all {
 %	\color{orange} manner of choice functions. 
 %
-%	For a choice function $\c$, let $\c_{\mu^*}$ be an extension of $\c$ to $\Omega\times \D$ which treats $\D$ as being governed by the precise probability $\mu^*$ and respects dominance, i.e., if $\Exp_{\mu^*}\U(\n)(\omega)<\Exp_{\mu^*}\U(\n')(\omega)$ for all $\omega\in\Omega$, then $\n\notin \c_{\mu^*}(\negies)$. 
+%	For a choice function $\c$, let $\c_{\mu^*}$ be an extension of $\c$ to $\Omega\times \D$ which treats $\D$ as being governed by the precise probability $\mu^*$ and respects dominance, i.e., if $\Exp_{\mu^*}[\U(\n)(\omega)]<\Exp_{\mu^*}[\U(\n')(\omega)]$ for all $\omega\in\Omega$, then $\n\notin \c_{\mu^*}(\negies)$. 
 %	}
 %	\todooldinfo{Qu again for JK if this formulation is right}
 %
@@ -3160,10 +3160,10 @@ the situation is less clear, as picking in accordance with expected utility theo
 	\]
 	
 	
-	%\begin{colored}{red}\todo{I no longer use in pf so get rid of it?
-	%	}
-	%	Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. 
-	%\end{colored}
+	\begin{colored}{red}\todo{I no longer use in pf so get rid of it?
+		}
+		Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. 
+	\end{colored}
 	
 
 	
@@ -3743,7 +3743,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %%	
 %%	{\color{cyan}
 %%		If $P$ is probability over $\Omega\times\D$, 
-%%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}[\U(\n)]$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}[\U(\n)]\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
 %%		
 %%%		$\Exp_P[\U(\n)]=\sum_{D\text{ s.t., }P(D)\neq 0} P(D)\sum_\omega \frac{P(D\wedge\omega)}{P(D)}\U(\n,D,\omega)$
 %%		}
@@ -3773,12 +3773,12 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %\begin{comment}
 %	
 %In fact, we can create a version of this result allowing dependence between the decision problem you're faced with and the state of the world, assuming that when you make a decision you first conditionalise your probabilities on which decision problem you're faced with and then use expected utility using that updated probability to make the decision. 
-%This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}\U(\n)$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}\U(\n)$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
+%This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}[\U(\n)]$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}[\U(\n)]$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
 %\end{comment}
 %
 %%Since, 
 %%		If $P$ is probability over $\Omega\times\D$, 
-%%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}[\U(\n)]$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}[\U(\n)]\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
 %
 %
 %
@@ -3940,7 +3940,8 @@ Then there is $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$.
 	\item for $D\notin \bigcup_{q\in\IP}E_q$, $\s(D)$ is any member of $\EAd_\IB(D)$.
 	\end{itemize} 
 	
-	As they are disjoint, this is well-defined. \begin{colored}
+	As they are disjoint, this is well-defined. 
+	\begin{colored}
 		{blue}
 		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
 	\end{colored}
@@ -4539,7 +4540,7 @@ We now have two versions of Wald's Complete Class Theorem: the first we proved a
 \item The utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \\$\Uwald:\Nu\times\Omega\to[l,u]$ defined by $\Uwald(\nu)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. 
-\\That is, $\Uwald(\nu)(\omega)=\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$.
+\\That is, $\Uwald(\nu)(\omega)=\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}[\U(a)(\omega)]]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. 
 \end{itemize}
 
@@ -4574,10 +4575,10 @@ Recall \cref{def:suff spread}, which says when a measure requires almost everywh
 Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. 
 %	We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_k}$ which are Bayes for $p_k$, we have the utility profiles of $\n^{p_k}$ converge to the utility profile of $\nu^{p^*}$. 
 
-Take $\nu^*\in\Nu$ Bayes for $p^*$ and $\nu^1,\nu^2,\ldots$ in $\Nu$ with $\nu^k$ Bayes for $p_k$. This is possible by \cref{thm:cct-appln:existing}, and also by this, $\nu^*$ $\mu^*$-surely picks for $\EU_{p^*}$ and each $\nu^k$ $\mu^*$-surely picks for $\EU_{p_k}$. 
-That is, $\mu^*(\Set{D \given \n^*_D(\EU_{p^*}(D)) = 1})=1$, and $\mu^*(\Set{D  \given \n^k_D(\EU_{p_k}(D)) = 1})=1$ for each $k$.
+Take $\nu^*\in\Nu$ Bayes for $p^*$ and $\nu^1,\nu^2,\ldots$ in $\Nu$ with $\nu^k$ Bayes for $p_k$. This is possible by \cref{thm:cct-appln:existing}, and also by that \namecref{thm:cct-appln:existing}, $\nu^*$ $\mu^*$-surely picks for $\EU_{p^*}$ and each $\nu^k$ $\mu^*$-surely picks for $\EU_{p_k}$. 
+That is, $\mu^*(\Set{D \given \nu^*_{\;D}(\EU_{p^*}(D)) = 1})=1$, and $\mu^*(\Set{D  \given \nu^k_{\;D}(\EU_{p_k}(D)) = 1})=1$ for each $k$.
 
-Let $$E:=\Set{D\given \n^*_D(\EU_{p^*}(D)) = 1\text{ and for all $k$,  $\n^k_D(\EU_{p_k}(D)) = 1$}}.$$
+Let $$E:=\Set{D\given \nu^*_{\;D}(\EU_{p^*}(D)) = 1\text{ and for all $k$,  $\nu^k_{\;D}(\EU_{p_k}(D)) = 1$}}.$$
 By countable additivity, $\mu^*(E)=1$. 
 
 Let $$S:=\{D\given \EU_{p^*}(D)\text{ is a singleton}\}.$$ As $\mu^*$ requires almost everywhere decisiveness, $\mu^*(S)=1$. 
@@ -4586,14 +4587,14 @@ Let $$S:=\{D\given \EU_{p^*}(D)\text{ is a singleton}\}.$$ As $\mu^*$ requires a
 %
 %We will show that for each $\omega\in\Omega$,  $\Uwald(\n^{p_k})(\omega)\longrightarrow\Uwald(\nu^*)(\omega)$; that is, $\Exp_{\mu^*}[\U(\nu^k)(\omega)]\longrightarrow\Exp_{\mu^*}[\U(\nu^*)(\omega)]$. 
 
-Fix any $\omega^*\in\Omega$ and take any $D^*\in E\cap S$. 
+Take any $\omega^*\in\Omega$ and $D^*\in E\cap S$. 
 
-$\EU_{p^*}(D^*)$ is a singleton, so let $\EU_{p^*}(D^*)=\{a^*\}$. As $\nu^*_{D^*}(\{a^*\})=1$, observe that  $\U(\nu^*)(\omega^*,D^*)=\U(a^*)(\omega^*)$. 
+$\EU_{p^*}(D^*)$ is a singleton, so let $\EU_{p^*}(D^*)=\{a^*\}$. As $\nu^*_{\;D^*}(\{a^*\})=1$, observe that  $\U(\nu^*)(\omega^*,D^*)=\U(a^*)(\omega^*)$. 
 
-Expected utility is continuous as a function of probabilities; \todo{Any more comment or justification here?}i.e., for all $a\in\A$, $\Exp_{p_k}[\U(a)]\longrightarrow \Exp_{p^*}[\U(a)]$. Thus, as $D^*$ is finite, for some $N\in\mathbb{N}\setminus\{0\}$ and for all $k>N$, $\EU_{p_k}(D^*)=\{a^*\}$.%
-\footnote{If $D^*$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D^*)$ is upper hemi-continuous, so that if $p_k\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D^*)\subseteq V$, then there is some $N$ such that for all $k>N$, $\EU_{p_k}(D^*)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon\}$, which is open superset of $\EU_{p^*}(D^*)=\{a^*\}$. So there is some $N$ such that for all $k>N$, any $a_k\in\EU_{p_k}(D^*)$ is in $V_{\epsilon}$, and so $\abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon$; thus also $\abs{\U(\nu^k)- a^*(\omega^*)}<\epsilon$; so the utility converges for each $\omega\in\Omega$. } 
+Expected utility is continuous as a function of probabilities; \todo{Any more comment or justification here?}i.e., for all $a\in\A$, $\Exp_{p_k}[\U(a)]\longrightarrow \Exp_{p^*}[\U(a)]$. Thus, as $D^*$ is finite, there is some $N\in\mathbb{N}\setminus\{0\}$ such that for all $k>N$, $\EU_{p_k}(D^*)=\{a^*\}$.%
+\footnote{If $D^*$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D^*)$ is upper hemi-continuous, so that if $p_k\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D^*)\subseteq V$, then there is some $N$ such that for all $k>N$, $\EU_{p_k}(D^*)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon\}$, which is open superset of $\EU_{p^*}(D^*)=\{a^*\}$. So there is some $N$ such that for all $k>N$, any $a_k\in\EU_{p_k}(D^*)$ is in $V_{\epsilon}$, and so $\abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon$; thus also $\abs{\U(\nu^k)- a^*(\omega^*)}<\epsilon$; so $\U(\nu^k)(\omega^*,D^*)\longrightarrow\U(\nu^*)(\omega^*,D^*)$. } 
 
-And so, for each $k>N$, $\nu^k_{D^*}(\{a^*\})=1$ and  so $\U(\nu^k)(\omega^*,D^*)=\U(a^*)(\omega^*)=\U(\nu^*)(\omega^*,D^*)$. 
+And so, for each $k>N$, $\nu^k_{\;D^*}(\{a^*\})=1$ and  so $\U(\nu^k)(\omega^*,D^*)=\U(a^*)(\omega^*)=\U(\nu^*)(\omega^*,D^*)$. 
 
 This gives us that $\U(\nu^k)(\omega^*,D^*)\longrightarrow\U(\nu^*)(\omega^*,D^*)$. 
 
@@ -4616,7 +4617,7 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 %
 %
 %Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
-%$$\Exp_{\mu^*}\U(\n^{p_n})(\omega) \longrightarrow \Exp_{\mu^*} \U(\n^{p^*})(\omega)$$which is what we wish to prove.
+%$$\Exp_{\mu^*}[\U(\n^{p_n})(\omega)] \longrightarrow \Exp_{\mu^*}[\U(\n^{p^*})(\omega)]$$which is what we wish to prove.
 %
 %We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
 %and $\n^{p_n}$ ${\mu^*}$-surely pick for $\EU_{p_n}$. 
@@ -4635,7 +4636,7 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 	
 %	If $\n$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\n'$
 	
-	If there is no probability $p$ over $\Omega$ for which $\n$ maximises $\Exp_{p}[\Exp_{\mu^*}[\U(\n)]]$; then there is some $\n'$ such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega\in\Omega$. 
+	If there is no probability $p$ over $\Omega$ for which $\n$ maximises $\Exp_{p}[\Exp_{\mu^*}[\U(\n)]]$; then there is some $\n'$ such that $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega\in\Omega$. 
 \end{corollary}
 \begin{proof}
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
@@ -4646,7 +4647,7 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
 \begin{proof}
-	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
+	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
 \cref{thm:max-nu} follows from this.% \todo{Let's double checkt hat that's true.}
 
