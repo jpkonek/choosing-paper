@@ -831,6 +831,7 @@ The decision among picking strategies thus amounts to this decision:
 \end{array}
 $$
 But of course, this exactly mirrors the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$. And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but only on the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
+
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
 Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one she knows won't choose in the way she would were she in the situation herself. 
@@ -3439,7 +3440,7 @@ With the clarification that we restrict to \emph{measurable} selection functions
 \begin{proof}
 	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}.
 	
-	Define $\phi$ a measurable correspondence from $\Decs$ to $\A$ by $\phi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+	Define $\varphi$ a measurable correspondence from $\Decs$ to $\A$ by $\varphi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}. It also takes non-empty compact values by specification of $\Decs$. 
 	
 	$\Exp_p[\U(a)]=\sum_{\omega\in\Omega}p(\omega)\,\U(a)(\omega)$ is a continuous function of $a$. Conceiving of it as a function from $\A\times\Decs\to\Re$ which doesn't depend on $D$, it is trivially measurable as a function of $D$. 
 	It is thus a Carathéodory function and we obtain a measurable selector for $\EU_p$, as required. 
@@ -3454,7 +3455,7 @@ Similarly for being conditional $\EU$-complete: it requires the existence of \em
 \begin{proof}
 	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}. 
 
-Define $\phi$ a measurable correspondence from $\Decs$ to $\A$ by $\phi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+As in \cref{thm:EU-complete-measurable}, $\varphi$ is a weakly measurable correspondence from $\Decs$ to $\A$ which takes non-empty compact values. 
 	
 	Consider $\Exp_{b(\cdot|D)}[\U(a)]$, a function from $\Decs\times\A\to\Re$. 
 	
@@ -4155,7 +4156,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 		
 		Otherwise, there is some $a_0\in \EU_{p}(D_0)\cap \EU_{q}(D_0)$. 
 		
-		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$. And, moreover, we can choose a scalar $\lambda$ small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\U(\A)$.% (abusing notation). 
+		As in \cref{thm:ead-existsimpermissible[indep]}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$. And, moreover, we can choose a scalar $\lambda$ small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\U(\A)$.% (abusing notation). 
 		
 		So $\Exp_{p}[\U(a_0+\lambda X^*)]>\Exp_{p}[\U(a_0)]$ and $\Exp_{q}[\U(a_0+\lambda X^*)]<\Exp_{q}[\U(a_0)]$.
 		
@@ -4578,7 +4579,7 @@ Relative to $\Uwald$:
 \end{proof}
 
 
-We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is closed and convex, then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing, then again $o$ is Bayes iff $o$ is not strictly dominated.
+We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is convex then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing, then again $o$ is Bayes iff $o$ is not strictly dominated.
 
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
 
@@ -4649,11 +4650,10 @@ And so, for each $k>N$, $\nu^k_{\;D^*}(\{a^*\})=1$ and  so $\U(\nu^k)(\omega^*,D
 This gives us that $\U(\nu^k)(\omega^*,D^*)\longrightarrow\U(\nu^*)(\omega^*,D^*)$. 
 
 So we have that for any  $D\in E\cap S$, $\U(\nu^k)(\omega^*,D)\longrightarrow\U(\nu^*)(\omega^*,D)$.
-And we know that  $\mu^*(E\cap S)=1$.
-So, by a Dominated Convergence Theorem, as utilities are bounded, we have that
+As we know that  $\mu^*(E\cap S)=1$, we can use a Dominated Convergence Theorem (as utilities are bounded) to obtain
 $\Exp_{\mu^*}[\U(\nu^k)(\omega^*)]\longrightarrow\Exp_{\mu^*}[\U(\nu^*)(\omega^*)]$. That is, $\Uwald(\nu^k)(\omega^*)\longrightarrow\Uwald(\nu^*)(\omega^*)$. 
 
-As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes continuous on $\Nu$. 
+As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuous on $\Nu$. 
 \end{proof}
 \end{colored}
 
@@ -4718,7 +4718,11 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 \end{proof}
 
 
-
+\begin{colored}
+	{blue}
+	
+	Max underminig det strategies thing
+\end{colored}
 
 
 
