@@ -1633,7 +1633,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
  \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,h\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq h$.%
- \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
+ \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}%\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
  %, and without loss of generality, for each act $a \in \A$ and state $\omega\in\Omega$, $0 \leq a(\omega) \leq 1$. We write $\A$ for the set of possible acts. \todoold{CCM: I still think we should have U and a separated. At least we *need* to do something like that to make sense of applying EU to strategies! since we need to specify the utility of a strategy..??}%An act is a function $a$ that specifies an outcome in each state $a(s)$. A utility function specifies the utility of that outcome $U(a(s))$.  %\todoold{should utilities be separated??}
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
 %Note that we are essentially here holding the utility function fixed, for our purposes. 
@@ -1725,7 +1725,7 @@ We can now simply apply our notion of expected utility with the credences over $
 %$\s\in\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with \todo{I don't think we've defined $\EU$ by itself... what's going on here!}%$p\times \mu$. 
 %{ $p\times\mu$}, and 
 $\Strategies$ is the set of picking strategies. $\EU_{p\times \mu}(\Strategies)$ is the set of those picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
-{$p\times\mu$}, as in \cref{def:EU}.)
+{$p\times\mu$}, as in \cref{def:EU}.) This is proved in \Cref{sect:EU-appendix}.
 
 
 This shows that expected utility theory is not self-undermining in the way the Allais-permitting decision theories considered in the previous section are self-undermining. Expected utility picking strategies are themselves maximisers of expected utility. 
@@ -1745,9 +1745,7 @@ If $\c$ is a choice function and $\s$ is a picking strategy, then $\s$ \emph{$\m
 	So, if $\s$ does not $\mu$-surely pick for $\EU_p$, then $\s\notin\EU_{p\times\mu}(\Strategies)$. 
 \end{proposition}
 
-We thus have that $\s \in \EU_{p\times \mu}(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$.
-
-The proofs of all the results in the paper are in the appendix.
+This is proved in \Cref{sect:EU-appendix}. We thus have that $\s \in \EU_{p\times \mu}(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$. 
 
 It is worth noting that the reasoning that delivers these results only holds when we have assumed that the state of the world is independent of the act chosen, i.e., where we are using Savage's (\citeyear{savage1954fs}) version of expected utility theory, in which the states of the world are independent of the acts chosen. %It is a further question whether the causal or evidential versions of expected utility theory are self-undermining in the current sense. We leave that for future work.%\footnote{In his discussion of evidential and causal decision theory, from which we borrow his use of the terminology `self-recommending', Brian \citet{skyrms1982cdt} gives a similar sort of argument against both of those rival theories. He imagines that you know the sequence of decisions that you will face, and you ask your decision theory whether it would recommend committing to using itself as the theory with which you face those decisions. And he notes that there are sequences for which causal decision theory would not recommend itself, and there are sequences for which evidential decision theory would not recommend itself. This is analogous to the money-pump arguments we mentioned earlier, since it shows that there is some sequence of choices such that causal decision theory does not permit you to use causal decision theory to make them, and there is some sequence of choices such that evidential decision theory does not permit you to use evidential decision theory to make them. But it is still an open question whether, when there is uncertainty about the decision you'll make, one of these theories would not permit you to use itself when making whatever decision you face.}
 
@@ -1781,6 +1779,7 @@ We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-unique
 \begin{proposition}\label{thm:eu-dep}
 	$\s\in\EU_b(\Strategies)$ iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proposition}
+This is proved in \Cref{sect:EU-appendix}.
 
 
 %It is also important that we assumed that you think that the decision you'll face is independent of the state of the world. It's clear that these results will fail without this assumption. Suppose you might face the decision whether or not to take a bet on whether it is raining or not; if you do, you maximize expected utility by taking the bet; but suppose I arrange things so that you face that decision only if it isn't raining. Then of course the best picking strategy will tell you to not to take the bet. More generally, if you might face a decision problem, and your decision theory recommends an act that does not dominate another available one, i.e., when there is some state in which the other one is better, then if you're only going to face that decision problem in that possibility, then, while uncertain which decision problem you'll face, your decision theory will prefer a picking strategy that picks the other act. 
@@ -3472,13 +3471,13 @@ As in \cref{thm:EU-complete-measurable}, $\varphi$ is a weakly measurable corres
 \section{EU and E-admissibility}
 
 	
-\subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}
+\subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}\label{sect:EU-appendix}
 Our first series of results rely on the fact that a picking strategy has maximal expected utility iff it $\mu$-surely picks for expected utility theory combined with a particular probability. This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of decision-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
 
 We will prove the result in generality to cover all these cases. 
 
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
@@ -3495,7 +3494,7 @@ We will prove the result in generality to cover all these cases.
 %
 %\end{proof}
 
-\begin{theorem}\label{thm:EU appendix} 
+\begin{theorem}\label{thm:EU-appendix} 
 	\hspace*{1mm}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 		\item  If $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\n'$, $\Exp_b[\U(\n)]\geq\Exp_b[\U(\n')]$
@@ -3572,7 +3571,7 @@ Our claims follow from this.
 %$
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
-\begin{corollary}\label{thm:EU appendix corollary}
+\begin{corollary}\label{thm:EU-appendix corollary}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
 		\item \label{itm:eu-2}Suppose $\Nu$ contains some $\nu^b$ that picks for $\EU_{b(\cdot|-)}$.  Then $\nu\in\EU_b(\Nu)$ iff $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
@@ -3580,9 +3579,9 @@ Our claims follow from this.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	\ref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
+	\ref{itm:eu-1} is immediate from \cref{thm:EU-appendix}. 
 	
-	For \ref{itm:eu-2}, if $\nu$ does not $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then \cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \ref{itm:eu-2}, if $\nu$ does not $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then \cref{thm:EU-appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
@@ -3632,7 +3631,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %%A picking strategy $\s$ \emph{$b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$} iff \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$.
 %%\end{definition}
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
@@ -3671,7 +3670,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %	
 %\end{proof}
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\nu'$, $\Exp_b[\U(\nu)]\geq\Exp_b[\U(\nu')]$
 %	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\nu'$ does not, then $\Exp_b[\U(\nu)]>\Exp_b[\U(\nu')]$.
@@ -3684,7 +3683,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %
 %
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\hspace*{1mm}
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
@@ -3732,7 +3731,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %\end{proof}
 %
 %\begin{color}{red}
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %\hspace*{1mm}
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
@@ -3775,7 +3774,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %	\end{proof}
 %
 %
-%\begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
+%\begin{theorem}\label{thm:EU-appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
 %	\begin{enumerate}
 %		\item  If $\n$ $\mu$-surely picks for $\EU_p$ then, for any $\n'$, $\EU_{p\times\mu}[\U(\n)]\geq\EU_{p\times\mu}[\U(\n')]$
 %		\item If $\n$ $\mu$-surely picks for $\EU_p$, and $\n'$ does not, then $\EU_{p\times\mu}[\U(\n)]>\EU_{p\times\mu}[\U(\n')]$.
@@ -3864,7 +3863,7 @@ Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it i
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU appendix}.
+	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU-appendix}.
 \end{proof}
 This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-equiv[dep]}. For \cref{thm:ead-existence[dep],thm:ead-existence[indep]}, we will use a further lemma. 
 
@@ -4608,7 +4607,7 @@ Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete.%, and ob
 	for all $\nu'\in\Nu$, $p(\Uwald(\nu))\geq p(\Uwald(\nu'))$. That is, $\Exp_p[\Exp_{\mu^*}[\U(\nu)]]\geq \Exp_p[\Exp_{\mu^*}[\U(\nu')]]$. 
 	This is when $\nu\in\EU_{p\times\mu^*}(\Nu)$. 
 	
-	By \cref{thm:EU appendix corollary}, using the $\EU$-completeness of $\Nu$, this is just when $\nu$ $\mu^*$-surely picks for $\EU_p$.
+	By \cref{thm:EU-appendix corollary}, using the $\EU$-completeness of $\Nu$, this is just when $\nu$ $\mu^*$-surely picks for $\EU_p$.
 	
 	By $\EU$-completeness, for any $p$ there is some such $\nu\in\Nu$. So $\Nu$ is Bayes-existing, relative to $\Uwald$. 
 \end{proof}
@@ -4669,7 +4668,7 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 %Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
 %$$\Exp_{\mu^*}[\U(\n^{p_n})(\omega)] \longrightarrow \Exp_{\mu^*}[\U(\n^{p^*})(\omega)]$$which is what we wish to prove.
 %
-%We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
+%We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU-appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
 %and $\n^{p_n}$ ${\mu^*}$-surely pick for $\EU_{p_n}$. 
 %Let:
 %\begin{itemize}
@@ -4697,7 +4696,7 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
 \begin{proof}
-	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
+	By \cref{thm:EU-appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
 \cref{thm:max-nu} follows from this.% \todo{Let's double checkt hat that's true.}
 
@@ -4966,7 +4965,7 @@ For any $p\in\IP$, let $x_p$ be the unique largest subset of $\IP$ such that
 
 
 %%	thm:chiocefns-nu-reg-nec,thm:gamma}
-%	 follow from this, making use of \cref{thm:EU appendix}.
+%	 follow from this, making use of \cref{thm:EU-appendix}.
 %	 
 %{\color{violet}	
 %	 \begin{proof}[Proof illustration]
