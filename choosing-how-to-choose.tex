@@ -3431,25 +3431,28 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
 With the clarification that we restrict to \emph{measurable} selection functions, $\Nu$ being $\EU$-complete is taken to mean that for every probability $p$ over $\Omega$ there is some $\nu\in\Nu$ which picks for $\EU_p$. 
 
-\begin{lemma}
+\begin{lemma}\label{thm:EU-complete-measurable}
 	For every probability $p$ there is a measurable $\s\in\S$ which picks for $\EU_p$. 
 \end{lemma}
 \begin{proof}
-	$\phi:\Decs\twoheadrightarrow\A$ by $\phi(D)=D$ is a weakly measurable correspondence: for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is open in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}.
 	
-	$\Exp_p[\U(a)]=\sum_{\omega\in\Omega}p(\omega)\U(a)(\omega)$ is a continuous function of $a$. Conceiving of it as a function from $\A\times\Decs\to\Re$ which doesn't depend on $D$, we also see that it is trivially measurable as a function of $D$. 
+	Define $\phi$ a measurable correspondence from $\Decs$ to $\A$ by $\phi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
 	
-	So this follows from the Measurable Maximum Theorem \citep[Theorem 18.19]{aliprantis2006infinite}. 
+	$\Exp_p[\U(a)]=\sum_{\omega\in\Omega}p(\omega)\,\U(a)(\omega)$ is a continuous function of $a$. Conceiving of it as a function from $\A\times\Decs\to\Re$ which doesn't depend on $D$, it is trivially measurable as a function of $D$. 
+	It is thus a Carathéodory function and we obtain a measurable selector for $\EU_p$, as required. 
 \end{proof}
 
 Similarly for being conditional $\EU$-complete: it requires the existence of \emph{measurable} picking strategies for $\EU_{b(\cdot|-)}$. 
 
-\begin{lemma}
+\begin{lemma}\label{thm:EU-complete-measurable[dep]}
 	For every probability $b$ over $\Omega\times\Decs$, there is some measurable $\s\in\S$ which picks for $\EU_{b(\cdot|-)}$. 
 \end{lemma}
 
 \begin{proof}
-	$\phi:\Decs\twoheadrightarrow\A$ by $\phi(D)=D$ is a weakly measurable correspondence: for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is open in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
+	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}. 
+
+Define $\phi$ a measurable correspondence from $\Decs$ to $\A$ by $\phi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}.
 	
 	Consider $\Exp_{b(\cdot|D)}[\U(a)]$, a function from $\Decs\times\A\to\Re$. 
 	
@@ -3457,7 +3460,7 @@ Similarly for being conditional $\EU$-complete: it requires the existence of \em
 	
 	We need to show that it is measurable in $D$, for fixed $a$. This holds because $D\mapsto b(\cdot|D)$ is measurable. 
 	
-	Then the existence of a measurable picking function then follows from the Measurable Maximum Theorem \citep[Theorem 18.19]{aliprantis2006infinite}. 
+	It is thus a Carathéodory function and we obtain a measurable selector for $\EU_{b(\cdot|-)}$, as required. 
 \end{proof}
 
 \Cref{thm:EU-complete} thus follows from these. 
@@ -3982,10 +3985,14 @@ Then there is $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$.
 	\end{itemize} 
 	
 	As they are disjoint, this is well-defined. 
-	\begin{colored}
-		{blue}
-		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
+	
+	\begin{colored}{violet}
+		Moreover, such an $\s$ can be chosen to be measurable. For each $q$ there is a measurable $\s_q$ (\cref{thm:EU-complete-measurable}) and so we can specify $\s(D)=\s_q(D)$ for $D\in E_q$ and $\s(D)=\s_{q_0}(D)$ for $D\notin \bigcup_{q\in\IP}E_q$ where $q_0\in\IP$. As $E_q$ are assumed to be measurable, this will be a measurable function. 
 	\end{colored}
+%	\begin{colored}
+%		{blue}
+%		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
+%	\end{colored}
 	
 	Then consider any $p \times \mu\in\IB$. 
 	If $\s(D)\in\EU_q(D)$ and $\EU_p(D)\cap\EU_q(D)=\emptyset$, then $\s(D)\notin\EU_p(D)$. 
