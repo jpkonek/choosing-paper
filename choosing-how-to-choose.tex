@@ -2281,12 +2281,13 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 	 \begin{proposition}\label{thm:ead-existence[dep]}
 	 	If $b\in\IB$ and $\s$ picks for $\EU_{b(\cdot|-)}$, then $\s$ both picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_{\IB(\cdot|-)}$.
 		
-		These are both proved in \Cref{sect:EAd-EU-appendix}.
-	 	
+			 	
 	 	There thus always exists some strategies which pick for $\EAd_\IP$ and are in $\EAd_{\IB(\cdot|-)}$. 
 		
 		For every $D\in\Decs$ and $a\in\EAd_{\IB(\cdot|-)}(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 	\end{proposition}
+	These are both proved in \Cref{sect:EAd-EU-appendix}.
+
 
 	Whilst some of its picking strategies are not ruled out, often some will be ruled out. 
 %\end{colored}
@@ -4416,14 +4417,9 @@ Relative to $\Uwald$:
 		Now, $X\in\cl(\Dom_X )$, and so $p(X)\geq c'$, and so $p(X) \geq p(Z)$, for all $Z\in \Uwald(\O)\subseteq \Conv(\Uwald(\O))$, as required.
 	\end{proof}
 	
-		This now gives us:
-	\begin{corollary}
-		If $\Uwald(\O)$ is convex, then 
-		$o$ is Bayes in $\O$ iff $o$ is not strictly dominated in $\O$.
-	\end{corollary}
-	Note that this requires $\Uwald(\O)$ to be convex, not $\O$.
+		This now gives us a standard version of Wald's Complete Class Theorem, which says: if $\Uwald(\O)$ is convex, then $o$ is Bayes in $\O$ iff $o$ is not strictly dominated in $\O$.\footnote{Note that this requires that $\Uwald(\O)$ is convex, not $\O$.} But this is not the version we apply to obtain our results. So we continue.
 	
-	However, this doesn't show that if it is not Bayes it is strictly dominated by something that is itself not dominated, and thus is Bayes. We get that from the next result. 
+	This result doesn't show that, if $o$ is not Bayes, it is strictly dominated by something that is itself not dominated, and thus is Bayes. We get that from the next result. 
 	
 	%\begin{corollary}
 	%	Suppose $\Uwald(\O)$ is convex. If $X$ is not Bayes in $\Uwald(\O)$ then it is strictly dominated in $\Uwald(\O)$. \todoold{For this case we don't have the result that it's strictly dominated by a Bayes option using \cref{thm:cct:dominator on boundry} and the fact that the $Z\in\cl(\Uwald(\O))$ which dominates it is not weakly dominated, and thus, by what we already have here, it is Bayes.. }
@@ -4593,7 +4589,7 @@ We now have two versions of Wald's Complete Class Theorem: the first we proved a
 
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 
 \begin{itemize}
 	\item Fix $\mu^*$ a measure over $\D$. 
@@ -4665,7 +4661,7 @@ $\Exp_{\mu^*}[\U(\nu^k)(\omega^*)]\longrightarrow\Exp_{\mu^*}[\U(\nu^*)(\omega^*
 
 As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuous on $\Nu$. 
 \end{proof}
-\end{colored}
+%\end{colored}
 
 %\begin{proof}
 %Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})\longrightarrow\Uwald(\n^{p^*})$. 
@@ -4726,13 +4722,6 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 	$b_\D\{D\given \Maximality_{\IB(\cdot|-)}(D)\not\subseteq\EU_p(D)\}>0$, we have $\mu^*\{D\given \nu(\EU_p(D))<1\}>0$.
 	 So $\nu$ does not $\mu^*$-surely pick for $\EU_p$. Since this holds for any $p \in \IP$, \cref{cor:max-dom} tells us that $\nu\notin\Maximality_\IB(\Nu)$. 
 \end{proof}
-
-
-\begin{colored}
-	{blue}
-	
-	Max underminig det strategies thing
-\end{colored}
 
 
 
