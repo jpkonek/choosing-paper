@@ -2288,7 +2288,9 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]}
 Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 
-Then there is $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+Then there is $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but which is not in $\EAd_{\IB}(\S)$.
+
+
 \end{proposition}
 %	\end{colored}
 
@@ -2656,12 +2658,19 @@ This follows from a version of Wald's Complete Class Theorem. Using that, we sho
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IB(\cdot|-)}$ but that does not belong to $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IP}$ but that does not belong to $\Maximality_\IB(\S)$.
 
 \begin{proposition}\label{thm:max-existsimpermissible[dep]}
-Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+	Suppose $\Nu$ is $\EU$-complete. Suppose that 
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-Then there is $\s$ that picks for $\Maximality_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+	
+	Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\in\IP$, 
+	\[
+	\mu\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+	\]
+	
+	Then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maximality_\IB(\S)$. 
 \end{proposition}
 
 
