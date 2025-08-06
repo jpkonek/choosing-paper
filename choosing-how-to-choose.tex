@@ -4233,8 +4233,8 @@ We state it in a general setting and then explain how they apply to our case. Al
 \begin{itemize}
 	\item $\Omega$ is a finite set of states.
 	\item A probability function over $\Omega$ is a normalised function $p : \Omega \to [0, 1]$, i.e., $\sum_{\omega \in \Omega} p(w) = 1$. Given a random variable (or vector) $X\in\Re^\Omega$, we write $p(X)$ for the expectation of $X$, i.e., $p(X)=\Exp_p[X] = \sum_{\omega\in\Omega}p(\omega)X(\omega)$.% applying the probability function to random variables. 
-	\item $\O$ is a set of ``options''. In our application they will be various (probabilistic) picking strategies, $\n$.
-	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}[\U(\n,\omega)]=\Exp_{\mu^*}[\Exp_{\n_D}[\U(a)(\omega)]]$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
+	\item $\O$ is a set of ``options''. In our application it will be $\Nu$, containing (probabilistic) picking strategies, $\n$.
+	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}[\U(\n,\omega)]$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
 		\item Given an option $o$, the utility profile of $o$ is the random variable (or vector) $\Uwald(o) \in\Re^\Omega$ with $\Uwald(o)(\omega)=\Uwald(o,\omega)$.%, however $\Uwald$ is specified. 
 		\item So, given an option $o$ and a probability function $p$ over $\Omega$, $p(\Uwald(o)) = \Exp_p[\Uwald(o)] = \sum_{\omega \in \Omega} p(\omega) \Uwald(o)(\omega) = \sum_{\omega \in \Omega} p(\omega) \Uwald(o, \omega)$.
 	\end{itemize}
