@@ -2479,19 +2479,21 @@ Our results all transpose to the probabilistic setting for any choice of $\Nu$ w
 \begin{definition}\label{def:EU-complete}
 	A set of probabilistic picking strategies, $\Nu$:
 	
-	$\Nu$ is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
+	\begin{itemize}
+		\item $\Nu$ is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
 	
-	$\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
+	\item $\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
 
 		
-	$\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
+	\item $\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
+	\end{itemize}
 
 		
 
 	%	
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\n$ in $\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
-If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is deterministically full. 
+If it contains some $\nu^\c$ for every possible choice function then $\Nu$ is deterministically full. 
 \begin{proposition}\label{thm:EU-complete}
  $\Nu$ is deterministically full
 		$\implies$  $\Nu$ is  conditional-$\EU$-complete 
@@ -2528,7 +2530,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 Since a probabilistic picking strategy is in $\EAd_\IB$ iff, for some $b$ in $\IB$, it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
-If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
+If for some $p\times \mu\in \IB$, $\n$ $\mu$-surely picks for $\EU_p$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
 Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is conditional-$\EU$-complete: 
 $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
