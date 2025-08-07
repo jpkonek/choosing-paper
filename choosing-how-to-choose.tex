@@ -40,18 +40,18 @@
 \newcommand{\TBstrut}{\Tstrut\Bstrut} % top&bottom struts
 
 
-\newtheorem{theorem}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem{axiom}{Axiom}
 \newtheorem{metatheorem}[theorem]{Metatheorem}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}[theorem]{Definition}
 \newtheorem{metadefinition}[theorem]{Metadefinition}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{metaproposition}[theorem]{Metaproposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{metalemma}[theorem]{Metalemma}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{metacorollary}{Metacorollary}
-\newtheorem{example}{Example}
+\newtheorem{metacorollary}[theorem]{Metacorollary}
+\newtheorem{example}[theorem]{Example}
 \newtheorem{ruleinf}{Rule of Inference}
 \newtheorem{sublemma}{Sublemma}[theorem]
 %\doublespacing
@@ -212,9 +212,9 @@ Todo/questions:
 \end{comment}
 
 
-\todo{somewhere need reference to Seidenfeld ``DECISION THEORY WITHOUT
-	"INDEPENDENCE" OR WITHOUT
-	"ORDERING"''}
+%\todo{somewhere need reference to Seidenfeld ``DECISION THEORY WITHOUT
+%	"INDEPENDENCE" OR WITHOUT
+%	"ORDERING"''}
 
 
 
@@ -830,7 +830,8 @@ The decision among picking strategies thus amounts to this decision:
 	\s_{\mathrm{Risky}}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 1m}
 \end{array}
 $$
-But of course, this is extensionally equivalent to the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$. And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but only on the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
+But of course, this exactly mirrors the choice of 1A vs 1B in $D^{\mathrm{Allais}}_1$. And so, assuming her decision theory is structural, in the sense that its recommendations don't depend on the content of the outcomes but only on the list of credences of various utility outcomes, then she should also judge $\s_{\mathrm{Safe}}$ to be preferable to $\s_{\mathrm{Risky}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Risky.
+
 %This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she preferred 2B over 2A, matching the observed preferences. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe.
 
 Given the choice of what to write as instructions for her stockbroker, she prefers to instruct them to act differently from how she would act were she facing the decision herself. Given the choice over which proxy to nominate, she thinks it is better to nominate one she knows won't choose in the way she would were she in the situation herself. 
@@ -869,7 +870,7 @@ $$
 	\s_{\mathrm{Risky}}& \text{\pounds 0m}&\text{\pounds 5m}& \text{\pounds 0}
 \end{array}
 $$
-This is now extensionally equivalent to the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she holds the Allais preferences of 2B over 2A. In this scenario, then, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe. \todo{this isn't actually ``extensional equivalent'' as it depends on the probabilities too!}
+This exactly mirrors the choice of 2A vs 2B in $D^{\mathrm{Allais}}_2$, and we have supposed that she holds the Allais preferences of 2B over 2A. In this scenario, then, assuming again that her decision theory is structural in the sense described above, she will evaluate the picking strategy $\s_{\mathrm{Risky}}$ to be preferable to $\s_{\mathrm{Safe}}$, even though, when faced with  $D^{\mathrm{Allais}}_{\mathrm{local}}$ herself, she prefers Safe. %\todo{this isn't actually ``extensional equivalent'' as it depends on the probabilities too!}
 
 Thus, if her decision theory endorses the Allais preferences and is opinionated over what to choose in $D^{\mathrm{Allais}}_{\mathrm{local}}$ then it is undermining in the sense that there is some uncertainty over which decision problem she'll face where the decision theory rules its own way of picking as impermissible. 
 
@@ -903,7 +904,7 @@ And so again, the decision theory deems it impermissible to pick in accordance w
 Any failure of the Marschak's (\citeyear{marschak1950rb}) Independence Principle will generate a case where the decision theory is self-undermining.
 This principle says that, if the decision theory deems action $a_1$ preferable to action $a_2$, then it deems a probabilistic mixture $\alpha a_1+(1-\alpha)b$ preferable to $\alpha a_2+(1-\alpha)b$. 
 Such a mixture is often interpreted as the act of using a randomization device, such as the toss of a biased coin, to determine which action to perform. 
-But it can also be interpreted as evaluating picking strategies if you're uncertain over which decision problem you'll face. With probability $\alpha$, you'll face the decision between action $a_1$ and action $a_2$; with probability $1-\alpha$, you'll face the decision with just one option, namely, action $b$. The picking strategies are determined by their pick of either $a_1$ or $a_2$, and they are extensionally equivalent to the mixed acts. So, if a decision theory gives rise to a failure of the Independence Principle in which it prefers $a_1$ over $a_2$, but $\alpha a_2+(1-\alpha)b$ over $\alpha a_2+(1-\alpha)b$, then it will prefer strategy $\s_{a_2}$, which picks $a_2$ over $a_1$, over strategy $\s_{a_1}$, which picks $a_1$ over $a_2$, and yet $s_{a_1}$ is the strategy that does what the decision theory demands. So, it is self-undermining.%
+But it can also be interpreted as evaluating picking strategies if you're uncertain over which decision problem you'll face. With probability $\alpha$, you'll face the decision between action $a_1$ and action $a_2$; with probability $1-\alpha$, you'll face the decision with just one option, namely, action $b$. The picking strategies are determined by their pick of either $a_1$ or $a_2$, and they exactly mirror the mixed acts. So, if a decision theory gives rise to a failure of the Independence Principle in which it prefers $a_1$ over $a_2$, but $\alpha a_2+(1-\alpha)b$ over $\alpha a_2+(1-\alpha)b$, then it will prefer strategy $\s_{a_2}$, which picks $a_2$ over $a_1$, over strategy $\s_{a_1}$, which picks $a_1$ over $a_2$, and yet $s_{a_1}$ is the strategy that does what the decision theory demands. So, it is self-undermining.%
 \footnote{
 	In the case where we have $a_1\succ a_2$ and $\alpha a_1 +(1-\alpha)b\prec \alpha a_2 + (1-\alpha)b$, this is immediate. 
 	If the reversal is merely weak, so that $a_1\succ a_2$ and $\alpha a_1 +(1-\alpha)b\preceq \alpha a_2 + (1-\alpha)b$, we appeal to an Ordering principle, to give $\alpha a_1 +(1-\alpha)b\sim \alpha a_2 + (1-\alpha)b$, and an Archimedeanicity principle to produce $a^+_2$ such that $a_1\succ a^+_2$ and $\alpha a_1 +(1-\alpha)b\prec \alpha a^+_2 + (1-\alpha)b$. 
@@ -1128,7 +1129,7 @@ We're also used to that in cases of act-state dependence. Causal decision theori
 
 	Perhaps the defender of a self-undermining decision theory will say it was never their intention that their theory should be used for these higher-order decisions. They might say they are offering a theory of first-order rational choice; not a fully general theory that covers any sort of decision, including these higher-order decisions between picking strategies. 
 	
-But that can't be right, for these theories are presented by their proponents as universal decision theories---they are intended to cover any sort of decision, providing we can determine credences and utilities and any other parameters that must be fixed. In their descriptions, it is not specified that they are to be applied only to a certain sort of decision, such as decisions between first-order actions. They are intended to be what above we called structural: that is, their recommendations don't depend on the content of the outcomes, but only on the list of credences of various utility outcomes. And, as we saw in our treatment of the Allais decisions above, for any higher-order decision between picking strategies under uncertainty about the decision problem you'll face, there is an extensionally equivalent decision between ordinary first-order actions. If the defender of a self-undermining decision theory were to respond in the way outlined, they'd have to deny that their decision theory is structural in this sense and they'd have to say why that is the case.
+But that can't be right, for these theories are presented by their proponents as universal decision theories---they are intended to cover any sort of decision, providing we can determine credences and utilities and any other parameters that must be fixed. In their descriptions, it is not specified that they are to be applied only to a certain sort of decision, such as decisions between first-order actions. They are intended to be what above we called structural: that is, their recommendations don't depend on the content of the outcomes, but only on the list of credences of various utility outcomes. And, as we saw in our treatment of the Allais decisions above, for any higher-order decision between picking strategies under uncertainty about the decision problem you'll face, there is a decision between ordinary first-order actions that exactly mirrors it. If the defender of a self-undermining decision theory were to respond in the way outlined, they'd have to deny that their decision theory is structural in this sense and they'd have to say why that is the case.
 	
 	
 
@@ -1632,7 +1633,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
  \emph{Utilities } $\U$ is the agent's utility function. It takes each act $a$ in $\A$ and state $\omega$ in $\Omega$ and returns a utility value $\U(a)(\omega)\in\Re$. We will assume that utilities are bounded above and below. That is, there are $l,h\in\Re$ such that for all acts, $a\in\A$, $l\leq \U(a)(\omega)\leq h$.%
- \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
+ \footnote{We will also assume that $\U(\A)$ is a Borel set in $\Re^\Omega\cong\Re^n$.}%\todo{I added our assumption... but then shouldn't we do so for s and nu etc???}
  %, and without loss of generality, for each act $a \in \A$ and state $\omega\in\Omega$, $0 \leq a(\omega) \leq 1$. We write $\A$ for the set of possible acts. \todoold{CCM: I still think we should have U and a separated. At least we *need* to do something like that to make sense of applying EU to strategies! since we need to specify the utility of a strategy..??}%An act is a function $a$ that specifies an outcome in each state $a(s)$. A utility function specifies the utility of that outcome $U(a(s))$.  %\todoold{should utilities be separated??}
 %An act is a function $a$ that takes each state $s_i$ returns a utility $a(s_i)$, where $0 \leq a(s_i) \leq 1$. This needn't include all functions from $\S$ to $[0, 1]$, for we might take only certain acts to be possible.
 %Note that we are essentially here holding the utility function fixed, for our purposes. 
@@ -1675,7 +1676,7 @@ $\A$ is a non-empty set. It is the set of all possible acts.
 
 
 
-\emph{Picking strategy } As above, a picking strategy, $\s$, specifies an act from each decision problem, so that $\s(D)\in D$, for each $D$ in $\D$. The set of all picking strategies is $\S$.
+\emph{Picking strategy } As above, a picking strategy, $\s$, specifies an act from each decision problem, so that $\s(D)\in D$, for each $D$ in $\D$. The set of all picking strategies is $\S$.\footnote{In fact, we restrict attention to the picking strategies that are measurable in the sense defined in \cref{sect:appendix:measure}.}
 
 A picking strategy picks for a choice function $\c$ if it never picks an option that $\c$ deems impermissible. That is: 
 \begin{definition}\label{def:picks for}
@@ -1724,7 +1725,7 @@ We can now simply apply our notion of expected utility with the credences over $
 %$\s\in\EU_{p\times \mu}$ is the choice function to which $\EU$ gives rise when coupled with \todo{I don't think we've defined $\EU$ by itself... what's going on here!}%$p\times \mu$. 
 %{ $p\times\mu$}, and 
 $\Strategies$ is the set of picking strategies. $\EU_{p\times \mu}(\Strategies)$ is the set of those picking strategies that maximize expected utility by the lights of %$p\times \mu$. 
-{$p\times\mu$}, as in \cref{def:EU}.)
+{$p\times\mu$}, as in \cref{def:EU}.) This is proved in \Cref{sect:EU-appendix}.
 
 
 This shows that expected utility theory is not self-undermining in the way the Allais-permitting decision theories considered in the previous section are self-undermining. Expected utility picking strategies are themselves maximisers of expected utility. 
@@ -1744,9 +1745,7 @@ If $\c$ is a choice function and $\s$ is a picking strategy, then $\s$ \emph{$\m
 	So, if $\s$ does not $\mu$-surely pick for $\EU_p$, then $\s\notin\EU_{p\times\mu}(\Strategies)$. 
 \end{proposition}
 
-We thus have that $\s \in \EU_{p\times \mu}(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$.
-
-The proofs of all the results in the paper are in the appendix.
+This is proved in \Cref{sect:EU-appendix}. We thus have that $\s \in \EU_{p\times \mu}(\Strategies)$ iff $\s$ $\mu$-surely picks for $\EU_p$. 
 
 It is worth noting that the reasoning that delivers these results only holds when we have assumed that the state of the world is independent of the act chosen, i.e., where we are using Savage's (\citeyear{savage1954fs}) version of expected utility theory, in which the states of the world are independent of the acts chosen. %It is a further question whether the causal or evidential versions of expected utility theory are self-undermining in the current sense. We leave that for future work.%\footnote{In his discussion of evidential and causal decision theory, from which we borrow his use of the terminology `self-recommending', Brian \citet{skyrms1982cdt} gives a similar sort of argument against both of those rival theories. He imagines that you know the sequence of decisions that you will face, and you ask your decision theory whether it would recommend committing to using itself as the theory with which you face those decisions. And he notes that there are sequences for which causal decision theory would not recommend itself, and there are sequences for which evidential decision theory would not recommend itself. This is analogous to the money-pump arguments we mentioned earlier, since it shows that there is some sequence of choices such that causal decision theory does not permit you to use causal decision theory to make them, and there is some sequence of choices such that evidential decision theory does not permit you to use evidential decision theory to make them. But it is still an open question whether, when there is uncertainty about the decision you'll make, one of these theories would not permit you to use itself when making whatever decision you face.}
 
@@ -1780,6 +1779,7 @@ We can then show the more general version of \cref{thm:eu-self-rec,thm:eu-unique
 \begin{proposition}\label{thm:eu-dep}
 	$\s\in\EU_b(\Strategies)$ iff $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proposition}
+This is proved in \Cref{sect:EU-appendix}.
 
 
 %It is also important that we assumed that you think that the decision you'll face is independent of the state of the world. It's clear that these results will fail without this assumption. Suppose you might face the decision whether or not to take a bet on whether it is raining or not; if you do, you maximize expected utility by taking the bet; but suppose I arrange things so that you face that decision only if it isn't raining. Then of course the best picking strategy will tell you to not to take the bet. More generally, if you might face a decision problem, and your decision theory recommends an act that does not dominate another available one, i.e., when there is some state in which the other one is better, then if you're only going to face that decision problem in that possibility, then, while uncertain which decision problem you'll face, your decision theory will prefer a picking strategy that picks the other act. 
@@ -1846,7 +1846,7 @@ So, we represent your uncertainty as a set, $\IB$, of (higher-order) probabiliti
 %So we are considering $\IB=\{p\times \mu^*\given p\in\IP\}$, 
 {That is, your credal set is $\IB=\{p\times\mu^* \given p\in\IP\}$, where $\mu^*$ is this probability over $\D$, and $\IP$ is the credal set as described in the Ellsberg case.}
 
-Observe, then, that (i) $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but (ii) $\Exp_{\mu^*}\U(\s_{\text{1F,2E}})(\omega)=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$. And so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
+Observe, then, that (i) $\Exp_{\mu^*}[\U(\s_{\text{1E,2F}})(\omega)]=5$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$, but (ii) $\Exp_{\mu^*}[\U(\s_{\text{1F,2E}})(\omega)]=6$ for each $\omega$ in $\Set{\emph{Red}, \emph{Black}, \emph{Yellow}}$. So, for any $p$ with $p\times \mu^*\in \IB$,  $\EU_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and  $\EU_{p\times\mu^*}\U(\s_{\text{1F,2E}})=6$. And so $\s_{\mathrm{Ellsberg}}=\s_{\text{1E,2F}}\notin\Maximin_{\IB}(\S)$. 
 
 
 	This example is closely related to another phenomenon: Dutch book type challenges or paradoxes of sequential choice, which can be constructed against agents on the basis of such examples \citep{seidenfeld2004contrast,elga2010sp}. \todo{Shouldn't it be a ref to Seidenfel;s other one??}
@@ -1983,7 +1983,7 @@ By \cref{thm:eu-self-rec}, for any $b\in\IB$ that has the form $p\times\mu$, if 
 	If, for every $p\in\IP$, there is some $\mu$ such that $p\times\mu\in\IB$, then for every $D\in\Decs$ and $a\in\EAd_\IP(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 \end{proposition}
 
-
+This is proved in \Cref{sect:EAd-EU-appendix}.
 
 %\begin{colored}{red}
 	
@@ -2069,6 +2069,8 @@ We might hope to be able to apply \cref{thm:eu-uniquely-optimal} to get that it 
 %	If $\s$ does not $\mu$-surely pick for $\EU_p$, for any $p\times \mu\in \IB$, then $\s$ is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
 
+This is proved in \Cref{sect:EAd-EU-appendix}.
+
 So the rather strong judgment of complete independence has rather strong implications for your views about picking strategies. The only strategies that are permissible by the lights of E-Admissibility in this case are ones that pick for expected utility theory, \emph{i.e.}, always pick options that maximize $p$-expected utility, for some $p\times \mu\in\IB$.
 
 
@@ -2112,6 +2114,8 @@ Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, on
 
 Then there is $\s$ which picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
 \end{proposition}
+This is proved in \Cref{sect:appendix:eadundermining}.
+
 In certain cases, such as the Ellsberg ones, we  can straightforwardly verify that this sufficient condition holds. 
 We can also show it holds under some plenitude conditions: if each $\mu$ assigns strictly positive measure to every collection of take-it-or-leave-it decisions generated by a non-empty open subset of $\A$, that is, $\mu(\{\{a,0\}\given a\in V\})>0$, for $V$ a non-empty open subset of $\A$; or if each $\mu$ assigns strictly positive measure to every non-empty open set of decisions. In such cases, we can select two disjoint $E_1,E_2$ such that for any $p\neq q$, and for $i = 1, 2$, $\mu(\{D\in E_i \mid \EU_p(D)\cap \EU_q(D)=\emptyset\})>0$. Then by selecting any distinct $q^*_1,q^*_2$ from $\IP$, we can see that the conditions of \cref{thm:ead-existence[indep]} hold. We discuss these in \cref{sect:appendix:eadundermining}.
 
@@ -2231,6 +2235,7 @@ Since Maximality is a more permissive decision theory than E-Admissibility, \cre
 %	If $\s$ picks for $\EU_{b(\cdot|-)}$ for some $b\in\IB$, then $\s$ picks for $\Maximality_{\IB(\cdot|-)}$ and $\s\in \Maximality_\IB(\Strategies)$. 
 	%and is not in $\EAd_\IB(\Strategies)$.
 \end{proposition}
+This is proved in \Cref{sect:maximality-appendix}.
 %Here, we extended maximality to apply to dependence in the analogous way: conditionalise the probabilities on which decision problem you're faced with. 
 \end{comment}
 
@@ -2242,7 +2247,7 @@ Unlike for E-Admissibility, we do not get the converse result (even under the as
 This happens, for example, in the Ellsberg case if one's probability over which decision problem you think you'll face is sufficiently imprecise or if it's precise and pretty confident about which one you will face. 
 %, as when $\mu$ does assign high enough confidence to facing $D^{\mathrm{Ellsberg}}_1$, then it evaluates any strategy as permissible. 
 
-If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}\U(\s_{\text{1E,2F}})(\omega)=5$ for each $\omega$ and $\Exp_{\mu^*}\U(\s_{\text{2E,1F}})(\omega)=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}\U(\s_{\text{1E,2F}})=5$ and $\Exp_{p\times\mu^*}\U(\s_{\text{2E,1F}})=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
+If, however, you think it's precise and equally likely that you'll face each of $D^{\mathrm{Ellsberg}}_1$ and $D^{\mathrm{Ellsberg}}_2$, so your credal set is given by $\IB=\{p\times\mu^*\given p\in\IP\}$, where $\mu^*(D^{\mathrm{Ellsberg}}_1)=\mu^*(D^{\mathrm{Ellsberg}}_2)=0.5$, then as we observed in \cref{sect:gamma}, $\Exp_{\mu^*}[\U(\s_{\text{1E,2F}})(\omega)]=5$ for each $\omega$ and $\Exp_{\mu^*}[\U(\s_{\text{2E,1F}})(\omega)]=6$; so then for every probability $p$, $\Exp_{p\times\mu^*}[\U(\s_{\text{1E,2F}})]=5$ and $\Exp_{p\times\mu^*}[\U(\s_{\text{2E,1F}})]=6$, so  $\s_{\text{1E,2F}}\notin\Maximality_\IB(\Strategies)$. 
 
 We will be able to show that, if your credences over which decision problem you'll face are precise, and also have a further property, that they require almost everywhere decisiveness,\footnote{The example using the Ellsberg case does not have this property, which requires many decision problems to be possible. If, for example, we had selected $\mu^*(D^{\mathrm{Ellsberg}}_1)=0.1$, then one can check that no strategies are ruled out by Maximality.} then we can show that the only strategies that Maximality does not rule as impermissible are the expected utility strategies. We will discuss this and give the details in \cref{sect:nu:Max}, but we first note that our results so far hold in a more general setting, one where we allow for decision-state dependence. 
 
@@ -2275,11 +2280,14 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 	And so:
 	 \begin{proposition}\label{thm:ead-existence[dep]}
 	 	If $b\in\IB$ and $\s$ picks for $\EU_{b(\cdot|-)}$, then $\s$ both picks for $\EAd_{\IB(\cdot|-)}$ and is in $\EAd_{\IB(\cdot|-)}$.
-	 	
+		
+			 	
 	 	There thus always exists some strategies which pick for $\EAd_\IP$ and are in $\EAd_{\IB(\cdot|-)}$. 
 		
 		For every $D\in\Decs$ and $a\in\EAd_{\IB(\cdot|-)}(D)$, there is some $\s$ such that $\s(D)=a$ and $\s\in\EAd_\IB(\S)$. 
 	\end{proposition}
+	These are both proved in \Cref{sect:EAd-EU-appendix}.
+
 
 	Whilst some of its picking strategies are not ruled out, often some will be ruled out. 
 %\end{colored}
@@ -2288,8 +2296,11 @@ To avoid the various independence assumptions we employed in \cref{sect:e-admiss
 \begin{proposition}\label{thm:ead-existsimpermissible[dep]}
 Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
 
-Then there is $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+Then there is $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but which is not in $\EAd_{\IB}(\S)$.
+
+
 \end{proposition}
+This is proved in \Cref{sect:appendix:eadundermining}.
 %	\end{colored}
 
 Similarly, for Maximality, we can define: 
@@ -2299,7 +2310,7 @@ Similarly, for Maximality, we can define:
 	Since $\s\in\EAd_\IB(\S)$ implies $\s\in\Maximality_\IB(\S)$, we obtain, as a consequence of \cref{thm:ead-equiv[dep]}:
 	\begin{proposition}\label{thm:max-suff[dep]}
 	If for some $b$ in $\IB$, $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\s\in\Maximality_\IB(\Strategies)$. 
-\end{proposition}And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
+\end{proposition}This is proved in \Cref{sect:maximality-appendix}. And thus, there is always some $\s$ which picks for $\Maximality_{\IB(\cdot|-)}$ which is itself not rejected according to $\Maximality_\IB(\Strategies)$. However, again, we do not have %the converse result 
 an analogue of \cref{thm:ead-equiv[dep]} unless we impose additional particular restrictions on $\IB$ (\cref{sect:nu:Max}).
 
 
@@ -2414,7 +2425,7 @@ Secondly, you might think that, once your decision theory gives its choice set, 
 Before discussing some alternatives, we will now show that under either of these ways of thinking about judging the outcomes of adopting a decision theory, all our previous claims carry over, and in fact in some cases even get worse since the strategies that align with expected utility theory arise from extremal picking strategies which we might want to rule out under this way of thinking. 
 
 
-%Either way, what we formally have, is, for each decision problem $D$ and picking strategy $C$, some probability $\n$ over the options which are not ruled out by $C$. Then we have $\U(C,D,\omega)$ as $\Exp_{\n^C_D}\U(a,D,\omega)$; which we think of as your expected utility of having adopted the choice function $C$. 
+%Either way, what we formally have, is, for each decision problem $D$ and picking strategy $C$, some probability $\n$ over the options which are not ruled out by $C$. Then we have $\U(C,D,\omega)$ as $\Exp_{\n^C_D}[\U(a,D,\omega)]$; which we think of as your expected utility of having adopted the choice function $C$. 
 
 
 
@@ -2479,20 +2490,22 @@ Our results all transpose to the probabilistic setting for any choice of $\Nu$ w
 \begin{definition}\label{def:EU-complete}
 	A set of probabilistic picking strategies, $\Nu$:
 	
-	$\Nu$ is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
+	\begin{itemize}
+		\item $\Nu$ is \emph{$\EU$-complete} if, for every probability $p$ over $\Omega$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_p$.
 	
-	$\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
+	\item $\Nu$ is \emph{conditional-$\EU$-complete} if, for every probability $b$ over $\Omega\times\Decs$, there is some $\n$ in $\Nu$ such that $\n$ picks for $\EU_{b(\cdot|-)}$.
 
 		
-	$\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
+	\item $\Nu$ is \emph{deterministically full} if $\Nu\supseteq\S$, that is, if $\Nu$  contains all the deterministic picking strategies. 
+	\end{itemize}
 
 		
 
 	%	
 	%A set of probabilistic picking strategies is \emph{$\EU$-complete (for $\IB$)} if, for each $p\times \mu\in \IB$, there is $\n$ in $\negies$ such that $\n$ $\mu$-surely picks for $\EU_p$.
 \end{definition}
-If it contains some $\nu^\c$ for every possible choice funciton then $\Nu$ is deterministically full. 
-\begin{proposition}
+If it contains some $\nu^\c$ for every possible choice function then $\Nu$ is deterministically full. 
+\begin{proposition}\label{thm:EU-complete}
  $\Nu$ is deterministically full
 		$\implies$  $\Nu$ is  conditional-$\EU$-complete 
 		$\implies$  $\Nu$ is  $\EU$-complete.
@@ -2519,7 +2532,7 @@ $$\n \in \EU_{p\times \mu}(\Nu) \Leftrightarrow \n \text{ $\mu$-surely picks for
 If $\Nu$ is conditional-$\EU$-complete, then
 $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
 \end{proposition}
-
+This is proved in \Cref{sect:EU-appendix}.
 
 \subsubsection{E-Admissibility}
 \Cref{thm:ead-equiv[dep],thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[indep]} also generalise to the probabilistic picking strategy setting. 
@@ -2528,7 +2541,7 @@ $$\n \in \EU_{b}(\Nu) \Leftrightarrow \n \text{ $b_\Decs$-surely picks for $\EU_
 
 Since a probabilistic picking strategy is in $\EAd_\IB$ iff, for some $b$ in $\IB$, it is in $\EU_b$, we get as an immediate consequence of \cref{thm:eu-nu-nec-suff}:
 \begin{proposition}\label{thm:ead-nu-nec-suff}
-If $\n$ $\mu$-surely picks for $\EU_p$ for some $p\times \mu\in \IB$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
+If for some $p\times \mu\in \IB$, $\n$ $\mu$-surely picks for $\EU_p$, then $\n\in\EAd_\IB(\Nu)$. More generally, if for some $b\in\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\EAd_\IB(\Nu)$. 
 
 Moreover, these are the only members of $\EAd_\IB$, at least assuming that $\Nu$ is conditional-$\EU$-complete: 
 $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.}$$
@@ -2537,6 +2550,7 @@ $$\n \in \EAd_\IB(\Nu) \Leftrightarrow \text{for some $b$ in $\IB$, $\n$ $b_\Dec
 
 %If $\negies$ is $\EU$-complete, then $$\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}$$
 \end{proposition}
+This is proved in \Cref{sect:EAd-EU-appendix}.
 %In fact, the former result does not depend on any features of $\IB$ such as the strong independence. 
 
 %\begin{proposition}\label{thm:ead-nu-reg-nec}
@@ -2564,7 +2578,7 @@ That is, for all $b\in \IB$, $b_\D\{D\given \text{there is $b'\in\IB$ with }\EU_
 %Let's see the final part of this theorem at work in a very simple example. 
 %Consider the Ellsberg setup, \cref{sect:Ellsberg} and suppose that you're in fact certain that you'll face decision problem $D^{\mathrm{Ellsberg}}_1=\{\text{1A, 1B}\}$. And you have a credal set $\{\}
 %Suppose you're certain you'll face a decision problem $D = \{a_1, a_2\}$. So $\mu(D) = 1$. Suppose $\IP = \{p_1, p_2\}$, where $p_1$ expects $a_1$ to be strictly better than $a_2$, while $p_2$ expects $a_2$ to be strictly better than $a_1$. So E-Admissibility with $\IP$ says that both $a_1$ and $a_2$ are choiceworthy. Then for any picking strategy $\n$ such that $\n_D$ gives positive probability to $a_1$ and $a_2$, $p_1$ doesn't expect it to be best, and nor does $p_2$. So, by E-Admissibility, that picking strategy is not rationally permissible.
-
+This is proved in \Cref{sect:appendix:eadundermining}.
 
 Let's see this at work. Consider again the Ellsberg setup, \cref{sect:Ellsberg}. Recall that $\EAd_\IP(D^{\mathrm{Ellsberg}}_1)=\{\text{1E,1F}\}$ and $\EAd_\IP(D^{\mathrm{Ellsberg}}_2)=\{\text{2E,2F}\}$. 
 Every probability in $\IP$ rules out at least one of the E-Admissible options as impermissible. For example, any $p(\emph{Black})>\nicefrac{7}{30}$ rules 1E as excluded, i.e., not in $\EU_p$, but there's some positive chance that $\n_{D^{\mathrm{Ellsberg}}_1}$ picks 1E, by the assumption that it is regular for $\EAd_\IP$. 
@@ -2613,6 +2627,7 @@ As in \cref{sect:Max}, since Maximality is more permissive than E-Admissibility,
 		
 		More generally, if for some $b\in \IB$, $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then $\n\in\Maximality_\IB(\Nu)$. 
 \end{proposition}
+This is proved in \Cref{sect:maximality-appendix}.
 
 For E-Admissibility, we were able to show that it is only these strategies that are judged acceptable by the decision theory. This result does not immediately apply to Maximality in a similar way because, for a strategy to be deemed impermissible, the various probabilities $b\in \IB$ have to agree on a particular alternative as better.
 
@@ -2639,7 +2654,7 @@ Then we have the following result.%
 	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
-This follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}\U(\n')]>\Exp_p[\Exp_{\mu^*}\U(\n)]$, i.e., $\Exp_{p\times \mu^*}\U(\n')>\Exp_{p\times\mu^*}\U(\n)$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
+This is proved in \Cref{sect:wald:appendix}. It follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$, i.e., $\Exp_{p\times \mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
 	
 %	\todooldinfo{Either we incldue a ref to SSK's finite randomisation stuff or we drop the comment that $\negies$ is convex. }
 	
@@ -2648,18 +2663,25 @@ This follows from a version of Wald's Complete Class Theorem. Using that, we sho
 
 	
 %	 If $\n$ is not Bayes\todooldinfo{here!}
-%	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then by \cref{thm:eu-nu-nec-suff}, $\n\notin \EU_{p\times\mu^*}(\negies)$. We can then use a version of Wald's Complete Class Theorem to show that there is some $\n'$ where $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$, and thus for all $p$, $\EU_{p\times\mu^*}\U(\n')>\EU_{p\times\mu^*}\U(\n)$, so $\n\notin\Maximality_\IB(\negies)$. 
-%	What we can show is that if $\n$ is such that there is no probability function with $\Exp_{p}\Exp_{\mu^*}\U(\n)$
+%	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then by \cref{thm:eu-nu-nec-suff}, $\n\notin \EU_{p\times\mu^*}(\negies)$. We can then use a version of Wald's Complete Class Theorem to show that there is some $\n'$ where $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$, and thus for all $p$, $\EU_{p\times\mu^*}\U(\n')>\EU_{p\times\mu^*}\U(\n)$, so $\n\notin\Maximality_\IB(\negies)$. 
+%	What we can show is that if $\n$ is such that there is no probability function with $\Exp_{p}\Exp_{\mu^*}[\U(\n)]$
 %	 which shows that non-Bayes options are dominated. We 
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IB(\cdot|-)}$ but that does not belong to $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IP}$ but that does not belong to $\Maximality_\IB(\S)$.
 
 \begin{proposition}\label{thm:max-existsimpermissible[dep]}
-Suppose there is a selection of pairwise disjoint events $E_{b'}\subseteq\Decs$, one for each $b'\in\IB$ (some of which may be empty),  such that for all $b\in\IB$, $$b_\Decs\left(\bigcup_{b'\in\IB}\{D\in E_{b'}\given \EU_{b(\cdot|-)}(D)\cap \EU_{b'(\cdot|-)}(D)=\emptyset\}\right)>0.$$
+	Suppose $\Nu$ is $\EU$-complete. Suppose that 
+	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-Then there is $\s$ that picks for $\Maximality_{\IB(\cdot|-)}$ but for which there is no $b\in\IB$ such that $\s$  $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$. 
+	
+	Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\in\IP$, 
+	\[
+	\mu^*\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+	\]
+	
+	Then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maximality_\IB(\S)$. 
 \end{proposition}
 
 
@@ -2681,6 +2703,7 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Suppose that for every probability $p$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}< 1$.\footnote{Equivalently, that for every probability $p$ there is a non-negligible set of decision problems for which there is some $a\in D$ which is not an $\EU_p$ act but which is Maximal: $\mu^*\{D\given \exists a\in D\left[(\exists b{\in} D \, \Exp_{p}(a)<\Exp_{p}(b))\text{ and }\forall b{\in} D\, \exists p'{\in}\IP \,\Exp_{p'}(b)\leq \Exp_{p'}(a)\right]\}>0$} %\todo{this might actaully need to say every p rather than every p in P, no??? It's supposed to say, it's not an EU strategy, so that we can use the fact that it does not mu surely pick for any EUp???!!!}
 	Then, if $\n$ is a regular picking strategy for $\Maximality_{\IB(\cdot|-)}$ then $\n\notin \Maximality_\IB(\Nu)$.%\todo{do we also state that there is a strategy ruled out? Is it affected by our issues with EAd?}
 \end{proposition}
+This is proved in \Cref{sect:wald:appendix}.
 
 
 	The lesson from this result is that you should not pick amongst the options that are not ruled out by applying a (regular) randomisation device; nor should you be uncertain over how you'll pick in a way which amounts to randomisation; at least when your opinions over which decision problem you'll face are precise and require almost everywhere decisiveness. 
@@ -2694,12 +2717,12 @@ Just as we got a more challenging result for E-Admissibility when we restricted 
 
 %Our core result is that if $\n$
 
-%{\color{violet}This isn't unique to Maximality. It also doesn't depend on any strong independence condition. What we actually show is that if $\n$ is not Bayes, then there is $\n'$ such that $\Exp_{\mu^*}\U(\n)(\omega)<\Exp_{\mu^*}\U(\n')(\omega)$ for all $\omega$. So if $\c$ is any choice function allowing some non-$\EU_p$ strategies, then any regular $\n$ gives some positive probability to these non-$\EU_p$ options; which are thus not Bayes and thus dominated in expectation by some alternative. }
+%{\color{violet}This isn't unique to Maximality. It also doesn't depend on any strong independence condition. What we actually show is that if $\n$ is not Bayes, then there is $\n'$ such that $\Exp_{\mu^*}[\U(\n)(\omega)]<\Exp_{\mu^*}[\U(\n')(\omega)]$ for all $\omega$. So if $\c$ is any choice function allowing some non-$\EU_p$ strategies, then any regular $\n$ gives some positive probability to these non-$\EU_p$ options; which are thus not Bayes and thus dominated in expectation by some alternative. }
 %
 % It will hold for all {
 %	\color{orange} manner of choice functions. 
 %
-%	For a choice function $\c$, let $\c_{\mu^*}$ be an extension of $\c$ to $\Omega\times \D$ which treats $\D$ as being governed by the precise probability $\mu^*$ and respects dominance, i.e., if $\Exp_{\mu^*}\U(\n)(\omega)<\Exp_{\mu^*}\U(\n')(\omega)$ for all $\omega\in\Omega$, then $\n\notin \c_{\mu^*}(\negies)$. 
+%	For a choice function $\c$, let $\c_{\mu^*}$ be an extension of $\c$ to $\Omega\times \D$ which treats $\D$ as being governed by the precise probability $\mu^*$ and respects dominance, i.e., if $\Exp_{\mu^*}[\U(\n)(\omega)]<\Exp_{\mu^*}[\U(\n')(\omega)]$ for all $\omega\in\Omega$, then $\n\notin \c_{\mu^*}(\negies)$. 
 %	}
 %	\todooldinfo{Qu again for JK if this formulation is right}
 %
@@ -2771,8 +2794,9 @@ The conclusions of \cref{thm:max-nu,thm:max-nu-reg-nec} hold without the assumpt
 
 
 
-	\paragraph{Uncertainty about decisions}
-	Unlike for the E-Admissibility case, we have had to assume something particular about your uncertainty concerning the decision you'll face: we assume you have precise probabilities over the possible decision problems, and those probabilities are broad enough to ensure that they require almost everywhere decisiveness. It is, however, quite general, applying in a much broader range of cases than particular uncertainty generated from specific cases like the Ellsberg or Allais cases (see \cref{sect:reu:other mu}).
+	\subsubsection{Uncertainty about decisions}
+	\todo{change from paragraph to something else. }
+	For both these Maximality and $\Gamma$-Maximin results, we have had to assume something particular about your uncertainty concerning the decision you'll face: we assume you have precise probabilities over the possible decision problems, and those probabilities are broad enough to ensure that they require almost everywhere decisiveness. It is, however, quite general, applying in a much broader range of cases than particular uncertainty generated from specific cases like the Ellsberg or Allais cases (see \cref{sect:reu:other mu}).
 	
 %	There may be some Maximality picking strategies that do not amount to picking in accordance 
 	
@@ -3160,10 +3184,10 @@ the situation is less clear, as picking in accordance with expected utility theo
 	\]
 	
 	
-	%\begin{colored}{red}\todo{I no longer use in pf so get rid of it?
-	%	}
-	%	Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. 
-	%\end{colored}
+	\begin{colored}{red}\todo{I no longer use in pf so get rid of it?
+		}
+		Note that this is identical to the Vietoris, or hit-and-miss, topology which is generated by the subbasis consisting of $\{D\in \Decs\given D\cap U\neq \emptyset\}$ and $\{D \in\Decs\given D\subseteq U\}$ for $U$ open subset of $\A$. 
+	\end{colored}
 	
 
 	
@@ -3236,6 +3260,8 @@ the situation is less clear, as picking in accordance with expected utility theo
 
 	
 	All the results in this paper are restricted to \emph{measurable} picking strategies, either of the deterministic form, $\s:\Decs\to\A$, or measurable probabilistic picking strategies $\n:\Decs\to\Delta(\A)$. This ensures that the induced payoffs, $\U(\s),\U(\n):\Omega\times\Decs\to\Re$, are measurable random variables with respect to $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$ (recalling that $\U(\n)(\omega,D):=\Exp_{\n_D}[\U(\cdot)(\omega)]$). 
+	
+
 	
 	
 	
@@ -3421,17 +3447,59 @@ That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 %
 %Note that if $b$ is a product, $p\times\mu$, then $b_\Decs$ is just $\mu$ and $b(\cdot|D)=p$ for all $D$. 
 \end{colored}
+
+
+
+
+\subsection{$\EU$-completeness and measurability}
+
+With the clarification that we restrict to \emph{measurable} selection functions, $\Nu$ being $\EU$-complete is taken to mean that for every probability $p$ over $\Omega$ there is some $\nu\in\Nu$ which picks for $\EU_p$. 
+
+\begin{lemma}\label{thm:EU-complete-measurable}
+	For every probability $p$ there is a measurable $\s\in\S$ which picks for $\EU_p$. 
+\end{lemma}
+\begin{proof}
+	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}.
+	
+	Define $\varphi$ a measurable correspondence from $\Decs$ to $\A$ by $\varphi(D)=D$. It is weakly measurable, i.e., for $U$ open $\subseteq\A$, $\{D\given U\cap D\neq\emptyset\}$ is measurable (in fact, open) in $\Decs$ \citep[3.91]{aliprantis2006infinite}. It also takes non-empty compact values by specification of $\Decs$. 
+	
+	$\Exp_p[\U(a)]=\sum_{\omega\in\Omega}p(\omega)\,\U(a)(\omega)$ is a continuous function of $a$. Conceiving of it as a function from $\A\times\Decs\to\Re$ which doesn't depend on $D$, it is trivially measurable as a function of $D$. 
+	It is thus a Carathéodory function and we obtain a measurable selector for $\EU_p$, as required. 
+\end{proof}
+
+Similarly for being conditional $\EU$-complete: it requires the existence of \emph{measurable} picking strategies for $\EU_{b(\cdot|-)}$. 
+
+\begin{lemma}\label{thm:EU-complete-measurable[dep]}
+	For every probability $b$ over $\Omega\times\Decs$, there is some measurable $\s\in\S$ which picks for $\EU_{b(\cdot|-)}$. 
+\end{lemma}
+
+\begin{proof}
+	We will apply the Measurable Maximum Theorem of \citet[Theorem 18.19]{aliprantis2006infinite}. 
+
+As in \cref{thm:EU-complete-measurable}, $\varphi$ is a weakly measurable correspondence from $\Decs$ to $\A$ which takes non-empty compact values. 
+	
+	Consider $\Exp_{b(\cdot|D)}[\U(a)]$, a function from $\Decs\times\A\to\Re$. 
+	
+	For fixed $D$, this is $=\sum_{\omega\in\Omega}b(\cdot|D)(\omega)\U(a)(\omega)$, which is linear and continuous in $a$. 
+	
+	We need to show that it is measurable in $D$, for fixed $a$. This holds because $D\mapsto b(\cdot|D)$ is measurable. 
+	
+	It is thus a Carathéodory function and we obtain a measurable selector for $\EU_{b(\cdot|-)}$, as required. 
+\end{proof}
+
+\Cref{thm:EU-complete} thus follows from these. 
+
 \end{colored}
 \section{EU and E-admissibility}
 
 	
-\subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}
+\subsection{EU (\cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep})}\label{sect:EU-appendix}
 Our first series of results rely on the fact that a picking strategy has maximal expected utility iff it $\mu$-surely picks for expected utility theory combined with a particular probability. This core result, stated in \cref{thm:eu-self-rec,thm:eu-uniquely-optimal}, is then extended to cover cases of decision-state dependence (\cref{thm:eu-dep}) and probabilistic picking strategies (\cref{thm:eu-nu-nec-suff}). 
 
 We will prove the result in generality to cover all these cases. 
 
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
@@ -3448,7 +3516,7 @@ We will prove the result in generality to cover all these cases.
 %
 %\end{proof}
 
-\begin{theorem}\label{thm:EU appendix} 
+\begin{theorem}\label{thm:EU-appendix} 
 	\hspace*{1mm}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 		\item  If $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\n'$, $\Exp_b[\U(\n)]\geq\Exp_b[\U(\n')]$
@@ -3525,7 +3593,7 @@ Our claims follow from this.
 %$
 %obtains its maximum at $\Exp_{b_\Decs}[t_b(D)]$ when $\n_D(\EU_{b(\cdot|-)}(D))=1$ for $b_\D$-almost all $D$, i.e., when $\n$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
 \end{proof}
-\begin{corollary}\label{thm:EU appendix corollary}
+\begin{corollary}\label{thm:EU-appendix corollary}
 	\begin{enumerate}[label=\normalfont(\roman*), ref=(\roman*)]
 		\item\label{itm:eu-1} If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then $\nu\in\EU_b(\Nu)$.
 		\item \label{itm:eu-2}Suppose $\Nu$ contains some $\nu^b$ that picks for $\EU_{b(\cdot|-)}$.  Then $\nu\in\EU_b(\Nu)$ iff $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$.
@@ -3533,9 +3601,9 @@ Our claims follow from this.
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	\ref{itm:eu-1} is immediate from \cref{thm:EU appendix}. 
+	\ref{itm:eu-1} is immediate from \cref{thm:EU-appendix}. 
 	
-	For \ref{itm:eu-2}, if $\nu$ does not $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then \cref{thm:EU appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
+	For \ref{itm:eu-2}, if $\nu$ does not $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$, then \cref{thm:EU-appendix} implies that $\Exp_b[\U(\nu^b)]>\Exp_b[\U(\nu)]$, so $\nu\notin\EU_b(\Nu)$. 
 \end{proof}
 
 This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep}.
@@ -3585,7 +3653,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %%A picking strategy $\s$ \emph{$b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$} iff \[b\{\seq{\omega,D}\given\omega\in\Omega,\, \s(D)\in \EU_{b(\cdot|-)}(D)\}=1\] i.e., for the marginal $b_\D$, $b_\D\{D\given \s(D)\in\EU_{b(\cdot|-)}(D)\}=1$.
 %%\end{definition}
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ then, for any $\nu'$, $\Exp_{p\times\mu}[\U(\nu)]\geq\Exp_{p\times\mu}[\U(\nu')]$
 %		\item  If $\nu$ $\mu$-surely picks for $\EU_{p}$ and $\nu'$ does not, then $\Exp_{p\times\mu}[\U(\nu)]>\Exp_{p\times\mu}[\U(\nu')]$.
@@ -3624,7 +3692,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %	
 %\end{proof}
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\nu'$, $\Exp_b[\U(\nu)]\geq\Exp_b[\U(\nu')]$
 %	\item  If $\nu$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ and $\nu'$ does not, then $\Exp_b[\U(\nu)]>\Exp_b[\U(\nu')]$.
@@ -3637,7 +3705,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %
 %
 %
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %	\hspace*{1mm}
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
@@ -3685,7 +3753,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %\end{proof}
 %
 %\begin{color}{red}
-%\begin{theorem}\label{thm:EU appendix} 
+%\begin{theorem}\label{thm:EU-appendix} 
 %\hspace*{1mm}
 %	\begin{enumerate}[label=\normalfont(\roman*), ref=\roman*]
 %		\item  If $\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot|-)}$ then, for any $\s'$, $\Exp_b[\U(\s)]\geq\Exp_b[\U(\s')]$
@@ -3728,7 +3796,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %	\end{proof}
 %
 %
-%\begin{theorem}\label{thm:EU appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
+%\begin{theorem}\label{thm:EU-appendix}Suppose $p$ is a probability function over $\Omega$ and $\mu$ is a measure over $\D$. Then:
 %	\begin{enumerate}
 %		\item  If $\n$ $\mu$-surely picks for $\EU_p$ then, for any $\n'$, $\EU_{p\times\mu}[\U(\n)]\geq\EU_{p\times\mu}[\U(\n')]$
 %		\item If $\n$ $\mu$-surely picks for $\EU_p$, and $\n'$ does not, then $\EU_{p\times\mu}[\U(\n)]>\EU_{p\times\mu}[\U(\n')]$.
@@ -3743,7 +3811,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %%	
 %%	{\color{cyan}
 %%		If $P$ is probability over $\Omega\times\D$, 
-%%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%%		$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}[\U(\n)]$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}[\U(\n)]\leq m_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} m_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
 %%		
 %%%		$\Exp_P[\U(\n)]=\sum_{D\text{ s.t., }P(D)\neq 0} P(D)\sum_\omega \frac{P(D\wedge\omega)}{P(D)}\U(\n,D,\omega)$
 %%		}
@@ -3773,12 +3841,12 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 %\begin{comment}
 %	
 %In fact, we can create a version of this result allowing dependence between the decision problem you're faced with and the state of the world, assuming that when you make a decision you first conditionalise your probabilities on which decision problem you're faced with and then use expected utility using that updated probability to make the decision. 
-%This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}\U(\n)$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}\U(\n)$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
+%This is because $\Exp_b[\U(\n)]=\Exp_{b_\D}\Exp_{b(\cdot|D)}[\U(\n)]$, where $b_\D$ is the marginal. Each $\Exp_{b(\cdot|D)}[\U(\n)]$ is maximised when $\n_D(\EU_{b(\cdot|D)}(D))=1$, at least, whenever this is well-defined. So, similarly, $\Exp_b[\U(\n)]$  is maximised when $b_\D\{D\given \n_D(\EU_{b(\cdot|D)}(D))=1\}=1$.
 %\end{comment}
 %
 %%Since, 
 %%		If $P$ is probability over $\Omega\times\D$, 
-%%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}\U(\n)$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}\U(\n)\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
+%%$\Exp_P[\U(\n)]=\Exp_{P(\D)}\Exp_{P(\cdot|D)}[\U(\n)]$. This is a standard fact about iterated expectations. We have shown that $\Exp_{P(\cdot|D)}[\U(\n)]\leq t_D(p(\cdot|D))$, with equality iff $\n_D(\EU_{P(\cdot|D)}(D))=1$. Thus, $\Exp_P[\U(\n)]\leq\Exp_{P(\D)} t_D(p(\cdot|D))$ with equality only if $P(\{D\given\n_D(\EU_{P(\cdot|D)}(D))=1 \}=1$, i.e., only if $\n$ $P$-surely picks for $\EU_P$.)
 %
 %
 %
@@ -3787,7 +3855,7 @@ This suffices to prove \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-n
 
 %\begin{colored}{violet}
 %\subsection{E-Admissibility}
-\subsection{E-Admissibility and EU equivalences\\  (\cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff})}
+\subsection{E-Admissibility and EU equivalences\\  (\cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ead-equiv[dep],thm:ead-equiv[indep],thm:ead-nu-nec-suff})}\label{sect:EAd-EU-appendix}
 The results just stated imply many of the results about E-Admissible strategies.
 
 We will again state the results for probabilistic picking strategies, $\nu$. The results concerning deterministic picking strategies, $\s$, are then special cases, recalling that, when $\Nu=\S$, the same definitions apply.
@@ -3817,7 +3885,7 @@ Note that, if $\Nu$ is deterministically full, i.e., $\Nu\supseteq\S$, then it i
 	\end{enumerate}
 \end{corollary}
 \begin{proof}
-	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU appendix}.
+	Immediate from \cref{thm:appendix:ead:strategiesjudge,thm:EU-appendix}.
 \end{proof}
 This gives \cref{thm:ead-equiv[indep],thm:ead-nu-nec-suff,thm:ead-equiv[dep]}. For \cref{thm:ead-existence[dep],thm:ead-existence[indep]}, we will use a further lemma. 
 
@@ -3886,7 +3954,7 @@ We have thus proved \cref{thm:ead-existence[dep],thm:ead-existence[indep],thm:ea
 %	%If $\negies$ is $\EU$-complete, then $$\n \in \EAd_\IB(\negies) \Leftrightarrow \n \text{ $\mu$-surely picks for $\EU_p$, for some $p\times \mu$ in $\IB$.}$$
 %\end{proposition}
 
-\subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}
+\subsection{Maximality (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff})}\label{sect:maximality-appendix}
 As Maximality is a more permissive theory than E-Admissibility, \cref{thm:appendix:ead:exists,thm:appendix:ead:eu} also imply our results that the relevant expected utility strategies both pick for Maximality and are themselves judged as Maximal (\cref{thm:max-suff,thm:max-suff[dep],thm:max-nu-suff}); so that Maximality is not undermining in the way that we've seen the risk-sensitive decision theories or $\Gamma$-maximin are.
 
 \subsection{Underminingness of E-Admissibility \\(\cref{thm:ead-existsimpermissible[indep],thm:ead-existsimpermissible[dep],thm:ead-nu-reg-nec})}\label{sect:appendix:eadundermining}
@@ -3940,10 +4008,15 @@ Then there is $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$.
 	\item for $D\notin \bigcup_{q\in\IP}E_q$, $\s(D)$ is any member of $\EAd_\IB(D)$.
 	\end{itemize} 
 	
-	As they are disjoint, this is well-defined. \begin{colored}
-		{blue}
-		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
+	As they are disjoint, this is well-defined. 
+	
+	\begin{colored}{violet}
+		Moreover, such an $\s$ can be chosen to be measurable. For each $q$ there is a measurable $\s_q$ (\cref{thm:EU-complete-measurable}) and so we can specify $\s(D)=\s_q(D)$ for $D\in E_q$ and $\s(D)=\s_{q_0}(D)$ for $D\notin \bigcup_{q\in\IP}E_q$ where $q_0\in\IP$. As $E_q$ are assumed to be measurable, this will be a measurable function. 
 	\end{colored}
+%	\begin{colored}
+%		{blue}
+%		By requiring the selection to itself be measurable, we ensure that such an $\s$ can be found which is measurable, by the Kuratowski and Ryll-Nardzewski measurable selection theorem.\todo{requires selection theorem!!} DOES THIS WORK? I DON'T UNDERSTAND WELL ENOUGH.
+%	\end{colored}
 	
 	Then consider any $p \times \mu\in\IB$. 
 	If $\s(D)\in\EU_q(D)$ and $\EU_p(D)\cap\EU_q(D)=\emptyset$, then $\s(D)\notin\EU_p(D)$. 
@@ -4104,7 +4177,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 		
 		Otherwise, there is some $a_0\in \EU_{p}(D_0)\cap \EU_{q}(D_0)$. 
 		
-		As in \cref{thm:ead-existsimpermissible[indep]:CCM-1:nondegentakeleave}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$. And, moreover, we can choose a scalar $\lambda$ small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\U(\A)$.% (abusing notation). 
+		As in \cref{thm:ead-existsimpermissible[indep]}, we can find some $X^*$ such that $\Exp_{p}[X^*]>0>\Exp_{q}[X^*]$. And, moreover, we can choose a scalar $\lambda$ small enough so that $\U(a_0)+\lambda X^*\in[l,h]^n$ and thus that $a_0+\lambda X^*\in\U(\A)$.% (abusing notation). 
 		
 		So $\Exp_{p}[\U(a_0+\lambda X^*)]>\Exp_{p}[\U(a_0)]$ and $\Exp_{q}[\U(a_0+\lambda X^*)]<\Exp_{q}[\U(a_0)]$.
 		
@@ -4172,7 +4245,7 @@ The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} requir
 %\todo{add ref to the new undermining thm we're adding. }
 
 %\end{colored}
-\section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec,thm:max-existsimpermissible[dep]})}
+\section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec,thm:max-existsimpermissible[dep]})}\label{sect:wald:appendix}
 To prove \cref{thm:max-nu,thm:max-nu-reg-nec,,thm:max-existsimpermissible[dep]}, we turn to a version of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we prove as \Cref{thm:cct}. % \todo{what are the two versions referred to?}
 We state it in a general setting and then explain how they apply to our case. Along the way, we prove a more standard version of Wald's theorem.
 \subsection{Wald theorem}
@@ -4181,8 +4254,8 @@ We state it in a general setting and then explain how they apply to our case. Al
 \begin{itemize}
 	\item $\Omega$ is a finite set of states.
 	\item A probability function over $\Omega$ is a normalised function $p : \Omega \to [0, 1]$, i.e., $\sum_{\omega \in \Omega} p(w) = 1$. Given a random variable (or vector) $X\in\Re^\Omega$, we write $p(X)$ for the expectation of $X$, i.e., $p(X)=\Exp_p[X] = \sum_{\omega\in\Omega}p(\omega)X(\omega)$.% applying the probability function to random variables. 
-	\item $\O$ is a set of ``options''. In our application they will be various (probabilistic) picking strategies, $\n$.
-	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}[\U(\n,\omega)]=\Exp_{\mu^*}[\Exp_{\n_D}[\U(a)(\omega)]]$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
+	\item $\O$ is a set of ``options''. In our application it will be $\Nu$, containing (probabilistic) picking strategies, $\n$.
+	\item $\Uwald:\O\times\Omega\to [l,u]$ is a bounded ``utility function''. In our application, it will be $\Uwald(\n,\omega)=\Exp_{\mu^*}[\U(\n,\omega)]$.\footnote{We have assumed it is bounded; however all that is actually needed for the proof is that it is bounded above, i.e., we could allow $\Uwald:\O\times\Omega\to (-\infty,0]$.}
 		\item Given an option $o$, the utility profile of $o$ is the random variable (or vector) $\Uwald(o) \in\Re^\Omega$ with $\Uwald(o)(\omega)=\Uwald(o,\omega)$.%, however $\Uwald$ is specified. 
 		\item So, given an option $o$ and a probability function $p$ over $\Omega$, $p(\Uwald(o)) = \Exp_p[\Uwald(o)] = \sum_{\omega \in \Omega} p(\omega) \Uwald(o)(\omega) = \sum_{\omega \in \Omega} p(\omega) \Uwald(o, \omega)$.
 	\end{itemize}
@@ -4354,14 +4427,9 @@ Relative to $\Uwald$:
 		Now, $X\in\cl(\Dom_X )$, and so $p(X)\geq c'$, and so $p(X) \geq p(Z)$, for all $Z\in \Uwald(\O)\subseteq \Conv(\Uwald(\O))$, as required.
 	\end{proof}
 	
-		This now gives us:
-	\begin{corollary}
-		If $\Uwald(\O)$ is convex, then 
-		$o$ is Bayes in $\O$ iff $o$ is not strictly dominated in $\O$.
-	\end{corollary}
-	Note that this requires $\Uwald(\O)$ to be convex, not $\O$.
+		This now gives us a standard version of Wald's Complete Class Theorem, which says: if $\Uwald(\O)$ is convex, then $o$ is Bayes in $\O$ iff $o$ is not strictly dominated in $\O$.\footnote{Note that this requires that $\Uwald(\O)$ is convex, not $\O$.} But this is not the version we apply to obtain our results. So we continue.
 	
-	However, this doesn't show that if it is not Bayes it is strictly dominated by something that is itself not dominated, and thus is Bayes. We get that from the next result. 
+	This result doesn't show that, if $o$ is not Bayes, it is strictly dominated by something that is itself not dominated, and thus is Bayes. We get that from the next result. 
 	
 	%\begin{corollary}
 	%	Suppose $\Uwald(\O)$ is convex. If $X$ is not Bayes in $\Uwald(\O)$ then it is strictly dominated in $\Uwald(\O)$. \todoold{For this case we don't have the result that it's strictly dominated by a Bayes option using \cref{thm:cct:dominator on boundry} and the fact that the $Z\in\cl(\Uwald(\O))$ which dominates it is not weakly dominated, and thus, by what we already have here, it is Bayes.. }
@@ -4527,11 +4595,11 @@ Relative to $\Uwald$:
 \end{proof}
 
 
-We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is closed and convex, then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing, then again $o$ is Bayes iff $o$ is not strictly dominated.
+We now have two versions of Wald's Complete Class Theorem: the first we proved along the way to proving the second. First: if $\Uwald(\O)$ is convex then $o$ is Bayes iff $o$ is not strictly dominated. Second: if $\Uwald$ is Bayes-continuous over $\O$ and $\O$ is Bayes-existing, then again $o$ is Bayes iff $o$ is not strictly dominated.
 
 \subsection{Applying Wald's Complete Class Theorem to probabilistic picking strategies for imprecise decision theories}
 
-\begin{colored}{violet}
+%\begin{colored}{violet}
 
 \begin{itemize}
 	\item Fix $\mu^*$ a measure over $\D$. 
@@ -4539,7 +4607,7 @@ We now have two versions of Wald's Complete Class Theorem: the first we proved a
 \item The utility of a probabilistic picking strategy $\n$ at $\omega$ is the expectation of the utility you'll obtain at $\omega$ by picking in accordance with $\n$.
 \\$\Uwald:\Nu\times\Omega\to[l,u]$ defined by $\Uwald(\nu)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\nu)(\omega)]$. 
-\\That is, $\Uwald(\nu)(\omega)=\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}\U(a)(\omega)]$.
+\\That is, $\Uwald(\nu)(\omega)=\Exp_{D\sim \mu^*}[\U(\nu)(\omega,D)]=\Exp_{D\sim \mu^*}[\Exp_{a\sim \nu_D}[\U(a)(\omega)]]$.
 %\item $\Uwald(\n)(\omega):=\Exp_{\mu^*}[\U(\n, -)(\omega)]=\Exp_{\mu^*}[\Exp_{\n_{-}}[ \U(\cdot)(\omega)]$. 
 \end{itemize}
 
@@ -4556,7 +4624,7 @@ Recall \cref{def:EU-complete}, which says when $\Nu$ is $\EU$-complete.%, and ob
 	for all $\nu'\in\Nu$, $p(\Uwald(\nu))\geq p(\Uwald(\nu'))$. That is, $\Exp_p[\Exp_{\mu^*}[\U(\nu)]]\geq \Exp_p[\Exp_{\mu^*}[\U(\nu')]]$. 
 	This is when $\nu\in\EU_{p\times\mu^*}(\Nu)$. 
 	
-	By \cref{thm:EU appendix corollary}, using the $\EU$-completeness of $\Nu$, this is just when $\nu$ $\mu^*$-surely picks for $\EU_p$.
+	By \cref{thm:EU-appendix corollary}, using the $\EU$-completeness of $\Nu$, this is just when $\nu$ $\mu^*$-surely picks for $\EU_p$.
 	
 	By $\EU$-completeness, for any $p$ there is some such $\nu\in\Nu$. So $\Nu$ is Bayes-existing, relative to $\Uwald$. 
 \end{proof}
@@ -4571,13 +4639,13 @@ Recall \cref{def:suff spread}, which says when a measure requires almost everywh
 \end{lemma}%\todo{remove ctbly add}
 %Recall that we have assumed that all probabilities are countably additive. 
 \begin{proof}
-Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. 
+Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$.
 %	We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_k}$ which are Bayes for $p_k$, we have the utility profiles of $\n^{p_k}$ converge to the utility profile of $\nu^{p^*}$. 
 
-Take $\nu^*\in\Nu$ Bayes for $p^*$ and $\nu^1,\nu^2,\ldots$ in $\Nu$ with $\nu^k$ Bayes for $p_k$. This is possible by \cref{thm:cct-appln:existing}, and also by this, $\nu^*$ $\mu^*$-surely picks for $\EU_{p^*}$ and each $\nu^k$ $\mu^*$-surely picks for $\EU_{p_k}$. 
-That is, $\mu^*(\Set{D \given \n^*_D(\EU_{p^*}(D)) = 1})=1$, and $\mu^*(\Set{D  \given \n^k_D(\EU_{p_k}(D)) = 1})=1$ for each $k$.
+Take $\nu^*\in\Nu$ Bayes for $p^*$ and $\nu^1,\nu^2,\ldots$ in $\Nu$ with $\nu^k$ Bayes for $p_k$. This is possible by \cref{thm:cct-appln:existing}, and also by that \namecref{thm:cct-appln:existing}, $\nu^*$ $\mu^*$-surely picks for $\EU_{p^*}$ and each $\nu^k$ $\mu^*$-surely picks for $\EU_{p_k}$. 
+That is, $\mu^*(\Set{D \given \nu^*_{\;D}(\EU_{p^*}(D)) = 1})=1$, and $\mu^*(\Set{D  \given \nu^k_{\;D}(\EU_{p_k}(D)) = 1})=1$ for each $k$.
 
-Let $$E:=\Set{D\given \n^*_D(\EU_{p^*}(D)) = 1\text{ and for all $k$,  $\n^k_D(\EU_{p_k}(D)) = 1$}}.$$
+Let $$E:=\Set{D\given \nu^*_{\;D}(\EU_{p^*}(D)) = 1\text{ and for all $k$,  $\nu^k_{\;D}(\EU_{p_k}(D)) = 1$}}.$$
 By countable additivity, $\mu^*(E)=1$. 
 
 Let $$S:=\{D\given \EU_{p^*}(D)\text{ is a singleton}\}.$$ As $\mu^*$ requires almost everywhere decisiveness, $\mu^*(S)=1$. 
@@ -4586,25 +4654,24 @@ Let $$S:=\{D\given \EU_{p^*}(D)\text{ is a singleton}\}.$$ As $\mu^*$ requires a
 %
 %We will show that for each $\omega\in\Omega$,  $\Uwald(\n^{p_k})(\omega)\longrightarrow\Uwald(\nu^*)(\omega)$; that is, $\Exp_{\mu^*}[\U(\nu^k)(\omega)]\longrightarrow\Exp_{\mu^*}[\U(\nu^*)(\omega)]$. 
 
-Fix any $\omega^*\in\Omega$ and take any $D^*\in E\cap S$. 
+Take any $\omega^*\in\Omega$ and $D^*\in E\cap S$. 
 
-$\EU_{p^*}(D^*)$ is a singleton, so let $\EU_{p^*}(D^*)=\{a^*\}$. As $\nu^*_{D^*}(\{a^*\})=1$, observe that  $\U(\nu^*)(\omega^*,D^*)=\U(a^*)(\omega^*)$. 
+$\EU_{p^*}(D^*)$ is a singleton, so let $\EU_{p^*}(D^*)=\{a^*\}$. As $\nu^*_{\;D^*}(\{a^*\})=1$, observe that  $\U(\nu^*)(\omega^*,D^*)=\U(a^*)(\omega^*)$. 
 
-Expected utility is continuous as a function of probabilities; \todo{Any more comment or justification here?}i.e., for all $a\in\A$, $\Exp_{p_k}[\U(a)]\longrightarrow \Exp_{p^*}[\U(a)]$. Thus, as $D^*$ is finite, for some $N\in\mathbb{N}\setminus\{0\}$ and for all $k>N$, $\EU_{p_k}(D^*)=\{a^*\}$.%
-\footnote{If $D^*$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D^*)$ is upper hemi-continuous, so that if $p_k\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D^*)\subseteq V$, then there is some $N$ such that for all $k>N$, $\EU_{p_k}(D^*)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon\}$, which is open superset of $\EU_{p^*}(D^*)=\{a^*\}$. So there is some $N$ such that for all $k>N$, any $a_k\in\EU_{p_k}(D^*)$ is in $V_{\epsilon}$, and so $\abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon$; thus also $\abs{\U(\nu^k)- a^*(\omega^*)}<\epsilon$; so the utility converges for each $\omega\in\Omega$. } 
+Expected utility is continuous as a function of probabilities; \todo{Any more comment or justification here?}i.e., for all $a\in\A$, $\Exp_{p_k}[\U(a)]\longrightarrow \Exp_{p^*}[\U(a)]$. Thus, as $D^*$ is finite, there is some $N\in\mathbb{N}\setminus\{0\}$ such that for all $k>N$, $\EU_{p_k}(D^*)=\{a^*\}$.%
+\footnote{If $D^*$ is an infinite  compact set, one can use Berge's Maximum Theorem to observe that $\EU_p(D^*)$ is upper hemi-continuous, so that if $p_k\longrightarrow p^*$ and $V$ is an open set with $\EU_{p^*}(D^*)\subseteq V$, then there is some $N$ such that for all $k>N$, $\EU_{p_k}(D^*)\subseteq V$. Let $V_{\epsilon}=\{a\given \abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon\}$, which is open superset of $\EU_{p^*}(D^*)=\{a^*\}$. So there is some $N$ such that for all $k>N$, any $a_k\in\EU_{p_k}(D^*)$ is in $V_{\epsilon}$, and so $\abs{\U(a)(\omega^*)-\U(a^*)(\omega^*)}<\epsilon$; thus also $\abs{\U(\nu^k)- a^*(\omega^*)}<\epsilon$; so $\U(\nu^k)(\omega^*,D^*)\longrightarrow\U(\nu^*)(\omega^*,D^*)$. } 
 
-And so, for each $k>N$, $\nu^k_{D^*}(\{a^*\})=1$ and  so $\U(\nu^k)(\omega^*,D^*)=\U(a^*)(\omega^*)=\U(\nu^*)(\omega^*,D^*)$. 
+And so, for each $k>N$, $\nu^k_{\;D^*}(\{a^*\})=1$ and  so $\U(\nu^k)(\omega^*,D^*)=\U(a^*)(\omega^*)=\U(\nu^*)(\omega^*,D^*)$. 
 
 This gives us that $\U(\nu^k)(\omega^*,D^*)\longrightarrow\U(\nu^*)(\omega^*,D^*)$. 
 
 So we have that for any  $D\in E\cap S$, $\U(\nu^k)(\omega^*,D)\longrightarrow\U(\nu^*)(\omega^*,D)$.
-And we know that  $\mu^*(E\cap S)=1$.
-So, by a Dominated Convergence Theorem, as utilities are bounded, we have that
+As we know that  $\mu^*(E\cap S)=1$, we can use a Dominated Convergence Theorem (as utilities are bounded) to obtain
 $\Exp_{\mu^*}[\U(\nu^k)(\omega^*)]\longrightarrow\Exp_{\mu^*}[\U(\nu^*)(\omega^*)]$. That is, $\Uwald(\nu^k)(\omega^*)\longrightarrow\Uwald(\nu^*)(\omega^*)$. 
 
-As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes continuous on $\Nu$. 
+As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuous on $\Nu$. 
 \end{proof}
-\end{colored}
+%\end{colored}
 
 %\begin{proof}
 %Suppose $p^*$ is a probability function over $\Omega$. And suppose $p_1,p_2\ldots$ is a sequence of probability functions over $\Omega$ that converges to $p^*$, that is, $p_1,p_2\ldots \longrightarrow p^*$. We will show that for any $\n^{p^*}$ which is Bayes for $p^*$ and $\n^{p_n}$ which are Bayes for $p_n$, we have $\Uwald(\n^{p_n})\longrightarrow\Uwald(\n^{p^*})$. 
@@ -4616,9 +4683,9 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 %
 %
 %Next, we show that the set of $D$ for which (i), (ii), and (iii) hold has measure 1, and so, since the utilities are bounded, a Dominated Convergence Theorem gives us:
-%$$\Exp_{\mu^*}\U(\n^{p_n})(\omega) \longrightarrow \Exp_{\mu^*} \U(\n^{p^*})(\omega)$$which is what we wish to prove.
+%$$\Exp_{\mu^*}[\U(\n^{p_n})(\omega)] \longrightarrow \Exp_{\mu^*}[\U(\n^{p^*})(\omega)]$$which is what we wish to prove.
 %
-%We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
+%We have supposed that $\n^{p^*}$ is Bayes for $p^*$ and $\n^{p_n}$ are Bayes for $p_n$. Thus, by \cref{thm:EU-appendix}, $\n^{p^*}$ ${\mu^*}$-surely picks for $\EU_{p^*}$
 %and $\n^{p_n}$ ${\mu^*}$-surely pick for $\EU_{p_n}$. 
 %Let:
 %\begin{itemize}
@@ -4635,7 +4702,7 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 	
 %	If $\n$ does not $\mu^*$-surely pick for $p$, for any probability $p$, then there is some $\n'$
 	
-	If there is no probability $p$ over $\Omega$ for which $\n$ maximises $\Exp_{p}[\Exp_{\mu^*}[\U(\n)]]$; then there is some $\n'$ such that $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega\in\Omega$. 
+	If there is no probability $p$ over $\Omega$ for which $\n$ maximises $\Exp_{p}[\Exp_{\mu^*}[\U(\n)]]$; then there is some $\n'$ such that $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega\in\Omega$. 
 \end{corollary}
 \begin{proof}
 	This is immediate from \cref{thm:cct,thm:cct-appln:existing,thm:cct-appln:cts}.
@@ -4646,9 +4713,9 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 	If $\n$ does not $\mu^*$-surely pick for $\EU_p$ for any probability $p$, then there is some $\n'$ such that for all probabilities $p$, $\Exp_{p\times\mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. 
 \end{corollary}
 \begin{proof}
-	By \cref{thm:EU appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}\U(\n')(\omega)>\Exp_{\mu^*}\U(\n)(\omega)$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
+	By \cref{thm:EU-appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
-\cref{thm:max-nu} follows from this.% \todo{Let's double checkt hat that's true.}
+\cref{thm:max-nu} follows from this. \cref{thm:max-existsimpermissible[dep]} follows from this together with \cref{thm:ead-existsimpermissible[dep]}, since Maximality is more permissive than E-Admissibility.
 
 
 \begin{proposition}[\cref{thm:max-nu-reg-nec}]
@@ -4665,9 +4732,6 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 	$b_\D\{D\given \Maximality_{\IB(\cdot|-)}(D)\not\subseteq\EU_p(D)\}>0$, we have $\mu^*\{D\given \nu(\EU_p(D))<1\}>0$.
 	 So $\nu$ does not $\mu^*$-surely pick for $\EU_p$. Since this holds for any $p \in \IP$, \cref{cor:max-dom} tells us that $\nu\notin\Maximality_\IB(\Nu)$. 
 \end{proof}
-
-
-
 
 
 
@@ -4715,7 +4779,7 @@ As this holds for any $\omega^*\in\Omega$, we have that $\Uwald$ is Bayes contin
 
 
 %%	thm:chiocefns-nu-reg-nec,thm:gamma}
-%	 follow from this, making use of \cref{thm:EU appendix}.
+%	 follow from this, making use of \cref{thm:EU-appendix}.
 %	 
 %{\color{violet}	
 %	 \begin{proof}[Proof illustration]
