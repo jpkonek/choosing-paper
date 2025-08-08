@@ -4844,40 +4844,45 @@ $
 
 \section{CCM}
 \begin{theorem}
-	If $\mu^*$ is atomless and $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$ then there is $\s$ which picks for $\c$ but for no $p$ does not $\mu^*$-surely pick for $\EU_p$. 
+	If $\mu^*$ is atomless and $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$ then there is $\s$ which picks for $\c$ but for no $p$ does it $\mu^*$-surely pick for $\EU_p$. 
 \end{theorem}
 \begin{proof}
-	Let $F_p(D):=\sup_{a \in D} q\cdot a-\min_{b\in \c(D)}q\cdot b$
 	
-	$F_p(D)\geq 0$ and $F_p(D)>0$ iff $\c(D)\not\subseteq\EU_p(D)$. 
+	Let $t_q(D):=\sup_{a \in D} \Exp_q[\U(a)]$.
 	
-	As $\mu^*\{D\given  F_p(D)>0\}>0$ by countable additivity there is some $m(q)\in\mathbb{N}$ such that $\mu^*\{D\given  F_p(D)>\nicefrac{1}{m(q)}\}>0$.
+	Let $F_q(D):=t_q(D)-\min_{b\in \c(D)}\Exp_q[\U(b)]$
+	so that
+	$F_q(D)\geq 0$ and $F_q(D)>0$ iff $\c(D)\not\subseteq\EU_q(D)$. 
 	
-	Let $C_q:=\{D\given f_q(D)>\nicefrac{1}{m(q)}\}$. 
+	As $\mu^*\{D\given  F_q(D)>0\}>0$ by countable additivity there is some $m_q\in\mathbb{N}$ such that $\mu^*\{D\given  F_q(D)>\nicefrac{1}{m_q}\}>0$.
+	
+	Let $G_q(D):=\{b\in\c(D)\given t_q(D)>\Exp_q[b]+m_q\}$. 
 	
 	
-	Put $M=\max\{|l|,|h|\}$. 
+	Put $M=\max\{|l|,|h|\}$. 	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{1}{2Mm}\}$.
 	\begin{sublemma}
-		If $\|p-q\|<\nicefrac{1}{2Mm}$ and $\max_{y \in D} q\cdot y-q\cdot x>\nicefrac{1}{m}$ then $\max_{y \in D} p\cdot y-p\cdot x>0$, so that $x\notin\EU_p(D)$.
+		If $p\in U_q$ and $b\in G_q(D)$ then $b\notin\EU_p(D)$.
 	\end{sublemma}
 	\begin{proof}
-		Suppose $q\cdot y^*-q\cdot x>\nicefrac{1}{m}$. 
+		Let $a^*\in \EU_p(D)$. 
 		\begin{align}
-			p\cdot y^*-p\cdot x&=q\cdot y^*-q\cdot x+(p-p)\cdot(y^*-x)\geq \nicefrac{1}{m} -\|q-p\|\|y^*-x\|_\infty\geq  \nicefrac{1}{m} -\nicefrac{1}{2Mm}*M=\nicefrac{1}{m}>0
+			t_p(D)-\Exp_p[\U(b)]&=\Exp_p[\U(a^*)-\U(b)]\\
+			&=\Exp_q[\U(a^*)-\U(b)]+(p-q)\cdot(\U(a^*)-\U(b))\\
+			&\geq \nicefrac{1}{m} -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
+			&\geq  \nicefrac{1}{m} -\nicefrac{1}{2Mm}\times M=\nicefrac{1}{m}>0
 		\end{align}
 	\end{proof}
 	
 	
-	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{1}{2Mm}\}$.
-	
+
+
 	These are open, and cover $\Prob$ as $p\in U_p$. 
+	So by compactness, there is a finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
 	
-	So by compactness, there is y finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
-	
-	Let $C_i:=\{D\given f_{p_i}(D)>\nicefrac{1}{m(p_i)}\}$
+	Let $C_i:=\{D\given G_{q_i}(D)\neq\emptyset\}$.
 	
 	\begin{sublemma}
-		We can choose $E_i\subseteq C_i$ disjoint such that $\mu^*(E_i)>0$
+		We can choose $E_i\subseteq C_i$ pairwise disjoint and with $\mu^*(E_i)>0$
 	\end{sublemma}
 	\begin{proof}
 		This uses the atomlessness. Put $\alpha=\min\{\mu^*(C_1),\ldots,\mu^*(C_k)\}$. Then take $\beta=\nicefrac{\alpha}{k}$. 
@@ -4886,11 +4891,11 @@ $
 		And so on.
 	\end{proof}
 	
-	Then put $\s(D)\in\argmin_{x \in \c(D)}q_i\cdot x$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
+	Then put $\s(D)\in G_{q_i}(D)$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
 	
 	Observe that $\s(D)$ picks for $\c$ by definition. 
 	
-	And for any $p\in\Prob$, $p\in U_{q_i}$ for some $i$, and so by our sublemma,  $x\notin\EU_p(D)$.
+	And for any $p\in\Prob$, $p\in U_{q_i}$ for some $i$, and so by our sublemma,  $\s(D)\notin\EU_p(D)$.
 \end{proof}
 
 
