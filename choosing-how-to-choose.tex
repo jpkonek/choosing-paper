@@ -4850,16 +4850,24 @@ $
 	
 	Let $t_q(D):=\sup_{a \in D} \Exp_q[\U(a)]$.
 	
-	Let $F_q(D):=t_q(D)-\min_{b\in \c(D)}\Exp_q[\U(b)]$
-	so that
-	$F_q(D)\geq 0$ and $F_q(D)>0$ iff $\c(D)\not\subseteq\EU_q(D)$. 
+	Let $G(q,D,\epsilon):=\{b\in\c(D)\given t_q(D)>\Exp_q[b]+\epsilon\}$. 
 	
-	As $\mu^*\{D\given  F_q(D)>0\}>0$ by countable additivity there is some $m_q\in\mathbb{N}$ such that $\mu^*\{D\given  F_q(D)>\nicefrac{1}{m_q}\}>0$.
+	  \begin{sublemma}
+		There is some $\epsilon>0$ such that $\mu^*\{D\given G(q,D,\epsilon)\neq \emptyset\}$. 
+	\end{sublemma}
+	\begin{proof}
+		We have assumed that $\mu^*\{D\given \c(D)\not \subseteq\EU_p(D)\}>0$. 
+		
+		\begin{align}
+			\{D\given \c(D)\subseteq\EU_p(D)\}&=\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q(D) \}\\
+			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q(D)+\nicefrac{1}{k} \}\\
+			&=\bigcup_{k\in\mathbb{N}}\{D\given G(q,D,\nicefrac{1}{k})\neq \emptyset\}
+		\end{align}
+		so it follows from countable additivity that there is some $k$ such that $\mu^*\{D\given G(q,D,\nicefrac{1}{k})\neq \emptyset\}>0$. This gives us our $\epsilon$. 
+	\end{proof}
 	
-	Let $G_q(D):=\{b\in\c(D)\given t_q(D)>\Exp_q[b]+m_q\}$. 
 	
-	
-	Put $M=\max\{|l|,|h|\}$. 	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{1}{2Mm}\}$.
+	Put $M=\max\{|l|,|h|\}$. 	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{\epsilon}{2M}\}$.
 	\begin{sublemma}
 		If $p\in U_q$ and $b\in G_q(D)$ then $b\notin\EU_p(D)$.
 	\end{sublemma}
@@ -4868,8 +4876,8 @@ $
 		\begin{align}
 			t_p(D)-\Exp_p[\U(b)]&=\Exp_p[\U(a^*)-\U(b)]\\
 			&=\Exp_q[\U(a^*)-\U(b)]+(p-q)\cdot(\U(a^*)-\U(b))\\
-			&\geq \nicefrac{1}{m} -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
-			&\geq  \nicefrac{1}{m} -\nicefrac{1}{2Mm}\times M=\nicefrac{1}{m}>0
+			&\geq \epsilon -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
+			&\geq  \epsilon -\nicefrac{\epsilon}{2M}\times M=\nicefrac{\epsilon}{2}>0\qedhere
 		\end{align}
 	\end{proof}
 	
