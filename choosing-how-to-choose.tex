@@ -4738,27 +4738,20 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 
 \section{JK Results}
 
-Let $\c$ be any choice function.
+Let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable statistic, \textit{e.g.},  $r(D)=\Bigl(\sum_{x\in\c(D)}\|x\|^{2}\Bigr)\bmod 1$. 
 
 \begin{enumerate}
 \item[(A1)] \textbf{Positive disagreement\!.}\\[2pt]
-      For every $p\in P$
+      For every $p\in P$, $\mu(B_p)>0$, where
       \[
-        \mu\Bigl(\,D\in \Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\Bigr)>0.
-        \tag{$\dagger$}
+        B_{p}:=\bigl\{D\in\Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\bigr\}.
       \]
 \item[(A2)] \textbf{Menu richness\!.}\\[2pt]
       For every open interval $I\subset[0,1)$
       \[
         \mu\bigl(\,D\in B_{p}\given r(D)\in I \bigr)>0,
       \]
-      where
-      \[
-        r(D)=\Bigl(\sum_{x\in\c(D)}\|x\|^{2}\Bigr)\bmod 1,
-        \qquad
-        B_{p}:=\bigl\{D\in\Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\bigr\}.
-      \]
-      \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
+         \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
 \end{enumerate}
 
 
