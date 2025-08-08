@@ -4853,7 +4853,7 @@ $
 	Let $G(q,D,\epsilon):=\{b\in\c(D)\given t_q(D)>\Exp_q[b]+\epsilon\}$. 
 	
 	  \begin{sublemma}
-		There is some $\epsilon>0$ such that $\mu^*\{D\given G(q,D,\epsilon)\neq \emptyset\}$. 
+		There is some $\epsilon_q>0$ such that $\mu^*\{D\given G(q,D,\epsilon_q)\neq \emptyset\}$. 
 	\end{sublemma}
 	\begin{proof}
 		We have assumed that $\mu^*\{D\given \c(D)\not \subseteq\EU_p(D)\}>0$. 
@@ -4863,15 +4863,15 @@ $
 			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q(D)+\nicefrac{1}{k} \}\\
 			&=\bigcup_{k\in\mathbb{N}}\{D\given G(q,D,\nicefrac{1}{k})\neq \emptyset\}
 		\end{align}
-		so it follows from countable additivity that there is some $k$ such that $\mu^*\{D\given G(q,D,\nicefrac{1}{k})\neq \emptyset\}>0$. This gives us our $\epsilon$. 
+		so it follows from countable additivity that there is some $k$ such that $\mu^*\{D\given G(q,D,\nicefrac{1}{k})\neq \emptyset\}>0$. This gives us our $\epsilon_q$. 
 	\end{proof}
 	
 	
-	Put $M=\max\{|l|,|h|\}$. 	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{\epsilon}{2M}\}$.
+	Put $M=\max\{|l|,|h|\}$. 	Let $$U_q:=\{p\in\Prob\given \|p-q\|<\frac{\epsilon_q}{2M}\}.$$
 	These are open, and cover $\Prob$ as $p\in U_p$. 
 	So by compactness, there is a finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
 	
-	Let $C_i:=\{D\given G_{q_i}(D)\neq\emptyset\}$.
+	Let $$C_i:=\{D\given G(q_i,D,\epsilon_{q_i})\neq\emptyset\}.$$
 	
 	\begin{sublemma}
 		We can choose $E_i\subseteq C_i$ pairwise disjoint and with $\mu^*(E_i)>0$
@@ -4883,25 +4883,27 @@ $
 		And so on.
 	\end{proof}
 	
-	Then put $\s(D)\in G_{q_i}(D)$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
+	Then put $\s(D)\in G(q,D,\epsilon_q)$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
 	
 	Observe that $\s(D)$ picks for $\c$ by definition. 
 	
+	Take any $p\in\Prob$. 
 	
-	
-	Now, for any $p\in\Prob$, there is some $i$ such that $p\in U_{q_i}$ and so $\s(D)\notin\EU_p(D)$ by this sublemma:
+	There is some $i$ such that $p\in U_{q_i}$. This will entail $\s(D)\notin\EU_p(D)$ by this sublemma:
 		\begin{sublemma}
-		If $p\in U_q$ and $b\in G_q(D)$ then $b\notin\EU_p(D)$.
+		Suppose $p\in U_q$. If $b\in G(q,D,\epsilon_q)$ then $b\notin\EU_p(D)$.
 	\end{sublemma}
 	\begin{proof}
 		Let $a^*\in \EU_p(D)$. 
 		\begin{align}
 			t_p(D)-\Exp_p[\U(b)]&=\Exp_p[\U(a^*)-\U(b)]\\
 			&=\Exp_q[\U(a^*)-\U(b)]+(p-q)\cdot(\U(a^*)-\U(b))\\
-			&\geq \epsilon -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
-			&\geq  \epsilon -\nicefrac{\epsilon}{2M}\times M=\nicefrac{\epsilon}{2}>0\qedhere
+			&\geq \epsilon_q -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
+			&\geq  \epsilon_q -\nicefrac{\epsilon_q}{2M}\times M=\nicefrac{\epsilon_q}{2}>0\qedhere
 		\end{align}
 	\end{proof}
+	Since we have chosen $\s(D)\in G(q_i,D,\epsilon_{q_i})$ for $D\in E_i$, then 
+	So $\{D\given \s(D)\notin\EU_p(D)\}\supseteq E_i$, and thus, $\mu^*\{D\given \s(D)\notin\EU_p(D)\}>0$. 
 \end{proof}
 
 
