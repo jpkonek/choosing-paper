@@ -4877,12 +4877,17 @@ $
 		We can choose $E_i\subseteq C_i$ pairwise disjoint and with $\mu^*(E_i)>0$
 	\end{sublemma}
 	\begin{proof}
-		This uses the atomlessness. Put $\alpha=\min\{\mu^*(C_1),\ldots,\mu^*(C_k)\}$. 
+		This uses the atomlessness.
 		
-		Choose $E_1\subseteq C_1$ with $\mu^*(E_1)\leq \frac{\alpha}{k}$. So that $\mu^*(C_2\setminus E_1)\geq\alpha-\frac{\alpha}{k}\geq\frac{\alpha}{k}$.
+		Put $\alpha=\min\{\mu^*(C_1),\ldots,\mu^*(C_k)\}$. 
 		
-		Then choose $E_2\subseteq C_2\setminus E_1$ with $\mu^*(E_2)\leq\frac{\alpha}{k}$. So that $\mu^*(C_3\setminus(E_1\cup E_2))\geq\alpha-2\frac{\alpha}{k}\geq \frac{\alpha}{k}$.   
-		And so on.
+		Choose $E_1\subseteq C_1$ with $\mu^*(E_1)= \frac{\alpha}{k}$. 
+		
+		Then $\mu^*(C_2\setminus E_1)\geq\alpha-\frac{\alpha}{k}\geq\frac{\alpha}{k}$ so we can choose $E_2\subseteq C_2\setminus E_1$ with $\mu^*(E_2)=\frac{\alpha}{k}$. 
+		
+		Then $\mu^*(C_3\setminus(E_1\cup E_2))\geq\alpha-2\frac{\alpha}{k}\geq \frac{\alpha}{k}$ so we can choose $E_3\subseteq C_3\setminus (E_1\cup E_2)$ with $\mu^*(E_3)=\frac{\alpha}{k}$. 
+		
+		And so on, with the final stage ensuring $\mu^*(C_k\setminus(E_1\cup\ldots\cup E_{k-1}))\geq\alpha-(k-1)\frac{\alpha}{k}\geq \frac{\alpha}{k}$ so we can choose $E_k\subseteq C_k\setminus (E_1\cup \ldots\cup E_{k-1})$ with $\mu^*(E_k)=\frac{\alpha}{k}$.  
 	\end{proof}
 	
 	Then put $\s(D)\in G(q,D,\epsilon_q)\cap\c(D)$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
