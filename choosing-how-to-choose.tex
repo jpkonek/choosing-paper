@@ -4741,7 +4741,7 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 
 \section{JK Results}
 
-Let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable statistic, \textit{e.g.},  $r(D)=\Bigl(\sum_{x\in\c(D)}\|x\|^{2}\Bigr)\bmod 1$. 
+Let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable statistic, \textit{e.g.},  $r(D)=\Bigl(\sum_{x\in D}\|x\|^{2}\Bigr)\bmod 1$. 
 
 \begin{enumerate}
 \item[(A1)] \textbf{Positive disagreement\!.}\\[2pt]
@@ -4752,14 +4752,14 @@ Let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable
 \item[(A2)] \textbf{Menu richness\!.}\\[2pt]
       For every open interval $I\subset[0,1)$
       \[
-        \mu\bigl(\,D\in B_{p}\given r(D)\in I \bigr)>0,
+        \mu\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0,
       \]
          \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
 \end{enumerate}
 
 
 \begin{theorem}\label{thm:selection-func-exists}
-Under \textup{(A1)} and \textup{(A2)} there exists a measurable function
+Given \textup{(A1)} and \textup{(A2)}, there exists a measurable function
 $
   s:\Decs\to\mathbb \A
 $
@@ -4782,7 +4782,7 @@ $
 $.
 Define
 \[
-  k(D)=\min\bigl\{j:r(D)\in I_{j}(D)\bigr\},
+  k(D)=\min\bigl\{j\given r(\c(D))\in I_{j}(D)\bigr\},
   \qquad
   s(D)=x_{k(D)}(D).
 \]
@@ -4804,7 +4804,7 @@ If $r(D)\in I_{\beta(D)}(D)$ then $s(D)=x_{\beta(D)}(D)\notin\EU_{p}(D)$.
 \textbf{Step 2.}
 Define
 $
-  A_{p}:=\{D\in B_{p}\given r(D)\in I_{\beta(D)}(D)\}.
+  A_{p}:=\{D\in B_{p}\given r(\c(D))\in I_{\beta(D)}(D)\}.
 $
 Because $I_{\beta(D)}(D)$ has positive length $1/n_D$, assumption \textup{(A2)} says that $\mu(A_{p})>0$.
 
@@ -4878,6 +4878,36 @@ $
 	
 	And for any $p\in\Prob$, $p\in U_{q_i}$ for some $i$, and so by our sublemma,  $x\notin\EU_p(D)$.
 \end{proof}
+
+
+\begin{lemma}\label{lem:simple-suff-cond}
+If $\c$ is a choice function, \textup{(A1)} holds, $\mu$ is absolutely continuous with respect to the Borel measure on $(\Decs,\Sigma)$, $q:\Decs\rightarrow\mathbb{R}$ is a $\mu$-measurable statistic, $r:\Decs\rightarrow[0,1)$ is defined by $r(D):=|q(D)|\bmod 1$, and $f_p$ is the marginal density for $q$ of $\mu_p(\cdot):=\mu(\cdot\cap B_p)/\mu(B_p)$, then the following is sufficient for \textup{(A2)}: there exist $\tau\in\mathbb R$, $\delta\ge 1$, $\epsilon>0$ such that $f_p(t)\ge \epsilon$ for a.e.\ $t\in[\tau,\tau+\delta]$.
+\end{lemma}
+
+\begin{proof}
+For any open $I\subset[0,1)$,
+\[
+\mu_p(r(\c(D))\in I)\geq\mu_p(q(\c(D))\in [\tau,\tau+\delta])=\int_{[\tau,\tau+\delta]} f_p(t)\,dt\geq\epsilon\cdot\delta>0.
+\]
+This implies $\mu\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
