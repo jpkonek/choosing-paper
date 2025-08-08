@@ -4868,22 +4868,6 @@ $
 	
 	
 	Put $M=\max\{|l|,|h|\}$. 	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{\epsilon}{2M}\}$.
-	\begin{sublemma}
-		If $p\in U_q$ and $b\in G_q(D)$ then $b\notin\EU_p(D)$.
-	\end{sublemma}
-	\begin{proof}
-		Let $a^*\in \EU_p(D)$. 
-		\begin{align}
-			t_p(D)-\Exp_p[\U(b)]&=\Exp_p[\U(a^*)-\U(b)]\\
-			&=\Exp_q[\U(a^*)-\U(b)]+(p-q)\cdot(\U(a^*)-\U(b))\\
-			&\geq \epsilon -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
-			&\geq  \epsilon -\nicefrac{\epsilon}{2M}\times M=\nicefrac{\epsilon}{2}>0\qedhere
-		\end{align}
-	\end{proof}
-	
-	
-
-
 	These are open, and cover $\Prob$ as $p\in U_p$. 
 	So by compactness, there is a finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
 	
@@ -4903,7 +4887,21 @@ $
 	
 	Observe that $\s(D)$ picks for $\c$ by definition. 
 	
-	And for any $p\in\Prob$, $p\in U_{q_i}$ for some $i$, and so by our sublemma,  $\s(D)\notin\EU_p(D)$.
+	
+	
+	Now, for any $p\in\Prob$, there is some $i$ such that $p\in U_{q_i}$ and so $\s(D)\notin\EU_p(D)$ by this sublemma:
+		\begin{sublemma}
+		If $p\in U_q$ and $b\in G_q(D)$ then $b\notin\EU_p(D)$.
+	\end{sublemma}
+	\begin{proof}
+		Let $a^*\in \EU_p(D)$. 
+		\begin{align}
+			t_p(D)-\Exp_p[\U(b)]&=\Exp_p[\U(a^*)-\U(b)]\\
+			&=\Exp_q[\U(a^*)-\U(b)]+(p-q)\cdot(\U(a^*)-\U(b))\\
+			&\geq \epsilon -\|q-p\|\|\U(a^*)-\U(b)\|_\infty\\
+			&\geq  \epsilon -\nicefrac{\epsilon}{2M}\times M=\nicefrac{\epsilon}{2}>0\qedhere
+		\end{align}
+	\end{proof}
 \end{proof}
 
 
