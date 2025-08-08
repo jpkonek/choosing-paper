@@ -2755,10 +2755,13 @@ $\EU_p$, although such strategies may nonetheless be impermissible according to 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
 		Suppose that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
-\begin{colored}{blue}
-			Then there is some $\n$ which picks for $\Maximin_\IP$ and which is not in $\Maximin_\IB(\Nu)$ (in fact, any $\n$ which picks for $\EU_p$ with $p\in\IP$ will do). 
+		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
+		%double check thms... I removed ``in IP''!}\todo{This thm feels false}
+
+\begin{colored}{violet}
+		If, in addition, $\mu^*\{D\given \Maximin_\IP(D)\text{ is singleton}\}=1$, then 
+	 there is $\s$ which picks for $\Maximin_\IP$ but which is not in $\Maximin_\IB(\S)$. 
 \end{colored}
-		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$. \todo{JK looking at this}%double check thms... I removed ``in IP''!}\todo{This thm feels false}
 	\end{proposition}
 	
 %	Unlike in the case for Maximality, though, we do not have the corresponding existence, and often those picking functions which $\mu$-surely pick for $\EU_p$ are nonetheless ruled impermissible by $\Gamma$-Maximin, as we saw, for example, in the Ellsberg case (\cref{sect:gamma}). 
@@ -4825,6 +4828,56 @@ $
 
 
 
+\section{CCM}
+\begin{theorem}
+	If $\mu^*$ is atomless and $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$ then there is $\s$ which picks for $\c$ but for no $p$ does not $\mu^*$-surely pick for $\EU_p$. 
+\end{theorem}
+\begin{proof}
+	Let $F_p(D):=\sup_{a \in D} q\cdot a-\min_{b\in \c(D)}q\cdot b$
+	
+	$F_p(D)\geq 0$ and $F_p(D)>0$ iff $\c(D)\not\subseteq\EU_p(D)$. 
+	
+	As $\mu^*\{D\given  F_p(D)>0\}>0$ by countable additivity there is some $m(q)\in\mathbb{N}$ such that $\mu^*\{D\given  F_p(D)>\nicefrac{1}{m(q)}\}>0$.
+	
+	Let $C_q:=\{D\given f_q(D)>\nicefrac{1}{m(q)}\}$. 
+	
+	
+	Put $M=\max\{|l|,|h|\}$. 
+	\begin{sublemma}
+		If $\|p-q\|<\nicefrac{1}{2Mm}$ and $\max_{y \in D} q\cdot y-q\cdot x>\nicefrac{1}{m}$ then $\max_{y \in D} p\cdot y-p\cdot x>0$, so that $x\notin\EU_p(D)$.
+	\end{sublemma}
+	\begin{proof}
+		Suppose $q\cdot y^*-q\cdot x>\nicefrac{1}{m}$. 
+		\begin{align}
+			p\cdot y^*-p\cdot x&=q\cdot y^*-q\cdot x+(p-p)\cdot(y^*-x)\geq \nicefrac{1}{m} -\|q-p\|\|y^*-x\|_\infty\geq  \nicefrac{1}{m} -\nicefrac{1}{2Mm}*M=\nicefrac{1}{m}>0
+		\end{align}
+	\end{proof}
+	
+	
+	Let $U_q:=\{p\in\Prob\given \|p-q\|<\nicefrac{1}{2Mm}\}$.
+	
+	These are open, and cover $\Prob$ as $p\in U_p$. 
+	
+	So by compactness, there is y finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
+	
+	Let $C_i:=\{D\given f_{p_i}(D)>\nicefrac{1}{m(p_i)}\}$
+	
+	\begin{sublemma}
+		We can choose $E_i\subseteq C_i$ disjoint such that $\mu^*(E_i)>0$
+	\end{sublemma}
+	\begin{proof}
+		This uses the atomlessness. Put $\alpha=\min\{\mu^*(C_1),\ldots,\mu^*(C_k)\}$. Then take $\beta=\nicefrac{\alpha}{k}$. 
+		Choose $E_1\subseteq C_1$ with $\mu^*(E_1)=\beta$. So that $\mu^*(C_2\setminus E_1)\geq\alpha-\beta\geq\beta$.
+		Then choose $E_2\subseteq C_2\setminus E_1$ with $\mu^*(E_2)=\beta$. So that $\mu^*(C_3\setminus(E_1\cup E_2))\geq\alpha-2\beta\geq \beta$.   
+		And so on.
+	\end{proof}
+	
+	Then put $\s(D)\in\argmin_{x \in \c(D)}q_i\cdot x$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
+	
+	Observe that $\s(D)$ picks for $\c$ by definition. 
+	
+	And for any $p\in\Prob$, $p\in U_{q_i}$ for some $i$, and so by our sublemma,  $x\notin\EU_p(D)$.
+\end{proof}
 
 
 
@@ -4832,7 +4885,6 @@ $
 
 
 
-\end{document}
 
 \begin{colored}{red}
 	\subsection{Theorems}
@@ -5548,7 +5600,7 @@ Since $f_X\notin\EAd_x(X)$ for $X\in F\subseteq E_p=B_x$, $f_X\notin \EU_p(X)$. 
 
 
 
-
+\end{document}
 \subsection{An example}
 We can construct an example to illustrate our result using the Ellsberg paradox. 
 
@@ -5615,7 +5667,7 @@ So E-admissibility deems some of its strategies permissible and others not. In f
 
 
 
-\subsection{$\Gamma$-maximin}\label{sect:gamma}
+\subsection{$\Gamma$-maximin}
 Some decision theories go beyond E-Admissibility and permit only some subset of the E-Admissible acts. Any such theory will be susceptible to the same self-undermining concerns that we saw affecting E-admissibility above: there will be strategies that pick for the choice function given by that theory that the theory itself deems impermissible. The situation may in fact be worse for such theories because for E-Admissibility there are guaranteed to be some strategies that pick for E-Admissibility that E-Admissibility also permits: strategies that successfully coordinate across decisions. But for more restrictive theories these coordinated strategies may be ruled out by the theory, and we might have the result that all the strategies that pick for the theory's choice function are deemed impermissible by the theory. 
 
 A prominent example of a theory that is more restrictive than E-Admissibility is $\Gamma$-Maximin. 
