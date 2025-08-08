@@ -4736,6 +4736,98 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 
 
 
+\section{JK Results}
+
+Let $\c$ be any choice function.
+
+\begin{enumerate}
+\item[(A1)] \textbf{Positive disagreement\!.}\\[2pt]
+      For every $p\in P$
+      \[
+        \mu\Bigl(\,D\in \Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\Bigr)>0.
+        \tag{$\dagger$}
+      \]
+\item[(A2)] \textbf{Menu richness\!.}\\[2pt]
+      For every open interval $I\subset[0,1)$
+      \[
+        \mu\bigl(\,D\in B_{p}\given r(D)\in I \bigr)>0,
+      \]
+      where
+      \[
+        r(D)=\Bigl(\sum_{x\in\c(D)}\|x\|^{2}\Bigr)\bmod 1,
+        \qquad
+        B_{p}:=\bigl\{D\in\Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\bigr\}.
+      \]
+      \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
+\end{enumerate}
+
+
+\begin{theorem}\label{thm:selection-func-exists}
+Under \textup{(A1)} and \textup{(A2)} there exists a measurable function
+$
+  s:\Decs\to\mathbb \A
+$
+such that
+\begin{enumerate}
+\item $s(D)\in\c(D)$ for every $D\in \Decs$;\hfill (\emph{s picks for} $\c$)
+\item For every $p\in \IP$,
+      $\mu\bigl(\,D\given s(D)\in\EU_{p}(D)\bigr)<1$. \hfill (\emph{irrationalisability})
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Enumerate the choice set in lexicographic order
+$
+  \c(D)=\{x_{1}(D),\dots,x_{n_D}(D)\}.
+$
+where $n_D=|\c(D)|$. Partition $[0,1)$ into $n_D$ intervals
+$
+  I_{j}(D)=\bigl[\tfrac{j-1}{n_D},\tfrac{j}{n_D}\bigr)
+$.
+Define
+\[
+  k(D)=\min\bigl\{j:r(D)\in I_{j}(D)\bigr\},
+  \qquad
+  s(D)=x_{k(D)}(D).
+\]
+Measurability follows immediately from the measurability of $r$ and $\min$, and $s(D)\in\c(D)$ by construction.
+
+
+Choose $p\in\IP$.
+
+\medskip
+\noindent
+\textbf{Step 1.}  
+For each $D\in B_{p}$ choose
+$x_{\beta(D)}(D)\notin\EU_{p}(D)$.
+If $r(D)\in I_{\beta(D)}(D)$ then $s(D)=x_{\beta(D)}(D)\notin\EU_{p}(D)$.
+
+
+\medskip
+\noindent
+\textbf{Step 2.}
+Define
+$
+  A_{p}:=\{D\in B_{p}\given r(D)\in I_{\beta(D)}(D)\}.
+$
+Because $I_{\beta(D)}(D)$ has positive length $1/n_D$, assumption \textup{(A2)} says that $\mu(A_{p})>0$.
+
+
+
+
+\medskip
+\noindent
+\textbf{Step 3.}  
+For all $D\in A_{p}$, $s(D)\notin\EU_{p}(D)$, hence
+\[
+  \mu\bigl(\,D\given s(D)\notin\EU_{p}(D)\bigr)\ge\mu(A_{p})>0.
+\]
+Therefore
+$
+  \mu\bigl(\,D\given s(D)\in\EU_{p}(D)\bigr)<1,
+$
+
+\end{proof}
 
 
 
