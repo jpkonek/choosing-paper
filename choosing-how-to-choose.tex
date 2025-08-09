@@ -2755,7 +2755,7 @@ $\EU_p$, although such strategies may nonetheless be impermissible according to 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
 		Suppose that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
-		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
+		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.\todo{NO PROOF OF THIS YET. SAME AS EAD AND MAX. MAYBE JUST RUN THOSE PROOFS FOR GENERAL CHOICE FUNCTIONS AND THEN APPLY IT HERE.}
 		%double check thms... I removed ``in IP''!}\todo{This thm feels false}
 
 \begin{colored}{violet}
@@ -3275,10 +3275,14 @@ When we have decision-state dependence, we made use of the idea of conditional p
 
 For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$.
 
+
 When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula for those $D$ with $b(\Decs)>0$. 
 Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$-almost every $D$ (and $D\mapsto b(\cdot|D)$ is measurable). 
 Moreover, and importantly for us, the law of total expectation holds: for measurable integrable random variables $X:\Omega\times\Decs\to\Re$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$. We will in particular be applying this to $\U(\s)$ and $\U(\nu)$. 
 %\todo{Actually, we could probably instead remove it as a *background* assumption?? Just as we restrict to measurable $\s$ or $\n$, we could restrict to bounded or integrable strategies?? (though ``integrable'' is relative to a measure...) Anyway, I don't think we shoudl change this, but just to note it. }
+
+
+
 
 In the more general setting, we need to make use of further machinery.
 As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. 
@@ -3293,10 +3297,11 @@ For every non-negative (or bounded) measurable $X:\Omega\times\Decs\to\Re$, \beg
 \todo{Need better reference to disintegration theorem } 
 That is, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
+\begin{colored}{blue}
 Since $\Omega$ is finite, it could alternatively be constructed directly using Radon-Nikodym derivatives by putting $b(A|D)$ as $\frac{\diff b(A\times\cdot)}{\diff b_\Decs}(D)$ for $A\subseteq\Omega$. 
 By the Radon-Niokodym theorem, this is well-defined for $b_\Decs$-almost every $D$ (and each $D\mapsto b(A|D)$ is measurable in $b_\Decs$) and we obtain $b(A\times E)=\int_E b(A|D) b_\Decs(\diff D)$.
 As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are only finitely many $A\subseteq\Omega$, $b(\cdot|D)$ is still well-defined on $b_\Decs$-almost every $D$. It is also probabilistic by the linearity of Radon Nikodym derivatives. Thus, also for measurable integrable $X$, $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
-
+\end{colored}
 
 
 %For any $\omega$ with $b(\{\omega\}\times\Decs)>0$, let $\beta_\omega$ be the measure on $\Decs$ given by $\beta_\omega=b(\{\omega\}\times \cdot)$. 
