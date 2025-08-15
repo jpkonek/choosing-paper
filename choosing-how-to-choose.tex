@@ -3171,7 +3171,7 @@ the situation is less clear, as picking in accordance with expected utility theo
 	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 	
 	
 	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
-	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. 
+	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. 	\begin{colored}{blue}Since we have assumed that $\U$ is bounded, we can suppose that 	$\U\geq0$ WLOG. We do so for the remainder of the appendix.\end{colored}	
 	
 	We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
@@ -3271,10 +3271,21 @@ the situation is less clear, as picking in accordance with expected utility theo
 \section{Decision-State Dependence}\label{sect:appendix:decdep}
 
 
-When we have decision-state dependence, we made use of the idea of conditional probabilities. 
+When we have decision-state dependence, we made use of the idea of conditional probabilities. For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability measures, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$. Since both $(\Omega,\mathcal{F})$ and $(\Decs,\Sigma)$ are standard Borel, this follows immediately from the Conditional Distribution Disintegration Theorem \citep[Theorem 8.5]{kallenberg1997foundations}, which guarantees that $b(\cdot|D)$ is defined and unique for $b_\Decs$-almost every $D$, and that for every non-negative (or bounded) measurable $X$ and $b_\Decs$-almost every $D$:
+\begin{align}
+	\Exp_{b}[X | D] &=\sum_{\omega\in\Omega} X(\omega,D)b(\omega|D).
+\end{align}
+Then by the tower property of conditional expectation \citep[Theorem 8.1]{kallenberg1997foundations} we have $\Exp_b[X]=\Exp_{b}[\Exp_{b}[X | D]]$, which implies
+\begin{align}
+\Exp_{b}[\Exp_{b}[X | D]]&=\int_{\Omega\times \Decs} \Exp_{b}[X | D] b(\diff \omega, \diff D)\\
+&=\int_{\Decs} \Exp_{b}[X | D] b_\Decs(\diff \omega)\\
+&=\int_{\Decs} \left[\sum_{\omega\in\Omega} X(\omega,D)b(\omega|D)\right] b_\Decs(\diff \omega)\\
+&=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]
+\end{align}
+and hence $\Exp_b[X]=\Exp_{b_\Decs}[\Exp_{b(\cdot|D)}[X]]$.
 
-For $b$, a probability measure on $(\Omega\times\Decs,\mathcal{F}\otimes \Sigma)$, we assumed we had appropriate conditional probability functions, $b(\cdot | D)$, on $\Omega$, defined for $b_\Decs$-almost every $D$.
 
+\begin{comment}
 
 When $\Decs$ has finite support, we can simply define $b(\cdot|D)$ by the ratio formula for those $D$ with $b(\Decs)>0$. 
 Then $b(\cdot|D)$ is defined and probabilistic for $b_\Decs$-almost every $D$ (and $D\mapsto b(\cdot|D)$ is measurable). 
@@ -3285,7 +3296,8 @@ Moreover, and importantly for us, the law of total expectation holds: for measur
 
 
 In the more general setting, we need to make use of further machinery.
-As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. 
+
+As $\U(\A)$ is assumed to be a Borel subset of $\Re^\Omega$, $\Decs$ is standard Borel so the disintegration theorem can be used to find this \citep[Theorem 3.4]{kallenberg1997foundations}. %Theorem 8.5
 This will give $b(\cdot|D)$ defined and probabilistic for $b_\Decs$-almost every $D$, with $D\mapsto b(A|D)$ is measurable for every $A\subseteq\Omega$. 
 % and where for measurable $A\times E\subseteq\Omega\times\Decs$, 
 %\[
@@ -3324,9 +3336,9 @@ As each $b(A|D)$ is well defined on $b_\Decs$-almost every $D$ and there are onl
 %When $\Decs$ has finite support, we can just define $b(\cdot | D)$ by the ratio formula for any $D$ with $b_\Decs(D)>0$ and verify that the law of total expectation holds. 
 %
 %In the more general setting, we need to make use of further machinery to find this regular conditional probability kernel. As $\Omega$ is finite, this can just be done from Radon-Nikodym derivatives. 
+\end{comment}
 
-
-When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; and $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
+When $b=p\times\mu$, then $b_\Decs=\mu$ and $b(\cdot|D)=p$ for all $D$; so $\Exp_{p\times\mu}[X]=\Exp_{\mu}[\Exp_{p}[X]]$.
 
 
 
