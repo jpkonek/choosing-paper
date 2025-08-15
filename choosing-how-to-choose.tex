@@ -4762,34 +4762,29 @@ Let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable
 
 \begin{enumerate}
 \item[(A1)] \textbf{Positive disagreement\!.}\\[2pt]
-      For every $p\in P$, $\mu(B_p)>0$, where
+      For every $p\in P$, $\mu^*(B_p)>0$, where
       \[
-        B_{p}:=\bigl\{D\in\Decs\given \c(D)\setminus\EU_{p}(D)\neq\varnothing\bigr\}.
+        B_{p}:=\bigl\{D\in\Decs\given \c(D)\not \subseteq\EU_p(D)\bigr\}.
       \]
 \item[(A2)] \textbf{Menu richness\!.}\\[2pt]
       For every open interval $I\subset[0,1)$
       \[
-        \mu\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0,
+        \mu^*\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0,
       \]
-         \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
+%         \emph{Note:} For many choice functions (E-Admissibility, Maximality, $\Gamma$-Maximin) $(\text{A2})$ holds if decision problems in $\mu$'s support contain gambles with a component that can vary continuously over a sufficiently large range.
 \end{enumerate}
 
 
 \begin{theorem}\label{thm:selection-func-exists}
 Given \textup{(A1)} and \textup{(A2)}, there exists a measurable function
 $
-  s:\Decs\to\mathbb \A
+  \s:\Decs\to\mathbb \A
 $
-such that
-\begin{enumerate}
-\item $s(D)\in\c(D)$ for every $D\in \Decs$;\hfill (\emph{s picks for} $\c$)
-\item For every $p\in \IP$,
-      $\mu\bigl(\,D\given s(D)\in\EU_{p}(D)\bigr)<1$. \hfill (\emph{irrationalisability})
-\end{enumerate}
+which picks for $\c$ but for no $p$ does it $\mu^*$-surely pick for $\EU_p$. 
 \end{theorem}
 
 \begin{proof}
-Enumerate the choice set in lexicographic order
+For any $D\in\Decs$, enumerate the choice set in lexicographic order
 $
   \c(D)=\{x_{1}(D),\dots,x_{n_D}(D)\}.
 $
@@ -4803,8 +4798,7 @@ Define
   \qquad
   s(D)=x_{k(D)}(D).
 \]
-Measurability follows immediately from the measurability of $r$ and $\min$, and $s(D)\in\c(D)$ by construction.
-
+Measurability follows immediately from the measurability of $r$ and $\min$, and $s(D)\in\c(D)$ by construction. So $\s$ picks for $\c$.
 
 Choose $p\in\IP$.
 
@@ -4823,7 +4817,7 @@ Define
 $
   A_{p}:=\{D\in B_{p}\given r(\c(D))\in I_{\beta(D)}(D)\}.
 $
-Because $I_{\beta(D)}(D)$ has positive length $1/n_D$, assumption \textup{(A2)} says that $\mu(A_{p})>0$.
+Because $I_{\beta(D)}(D)$ has positive length $1/n_D$, assumption \textup{(A2)} implies $\mu^*(A_{p})>0$.
 
 
 
@@ -4833,12 +4827,13 @@ Because $I_{\beta(D)}(D)$ has positive length $1/n_D$, assumption \textup{(A2)} 
 \textbf{Step 3.}  
 For all $D\in A_{p}$, $s(D)\notin\EU_{p}(D)$, hence
 \[
-  \mu\bigl(\,D\given s(D)\notin\EU_{p}(D)\bigr)\ge\mu(A_{p})>0.
+  \mu^*\bigl(\,D\given s(D)\notin\EU_{p}(D)\bigr)\ge\mu^*(A_{p})>0.
 \]
 Therefore
 $
-  \mu\bigl(\,D\given s(D)\in\EU_{p}(D)\bigr)<1,
+  \mu^*\bigl(\,D\given s(D)\in\EU_{p}(D)\bigr)<1.
 $
+So $\s$ does not $\mu^*$-surely pick for $\EU_p$.
 
 \end{proof}
 
@@ -4846,15 +4841,15 @@ $
 
 
 \begin{lemma}\label{lem:simple-suff-cond}
-	If $\c$ is a choice function, \textup{(A1)} holds, $\mu$ is absolutely continuous with respect to the Borel measure on $(\Decs,\Sigma)$, $q:\Decs\rightarrow\mathbb{R}$ is a $\mu$-measurable statistic, $r:\Decs\rightarrow[0,1)$ is defined by $r(D):=|q(D)|\bmod 1$, and $f_p$ is the marginal density for $q$ of $\mu_p(\cdot):=\mu(\cdot\cap B_p)/\mu(B_p)$, then the following is sufficient for \textup{(A2)}: there exist $\tau\in\mathbb R$, $\delta\ge 1$, $\epsilon>0$ such that $f_p(t)\ge \epsilon$ for a.e.\ $t\in[\tau,\tau+\delta]$.
+	If $\c$ is a choice function, \textup{(A1)} holds, $\mu^*$ is absolutely continuous with respect to the Borel measure on $(\Decs,\Sigma)$, $q:\Decs\rightarrow\mathbb{R}$ is a $\mu^*$-measurable statistic, $r:\Decs\rightarrow[0,1)$ is defined by $r(D):=|q(D)|\bmod 1$, and $f_p$ is the marginal density for $q$ of $\mu^*_p(\cdot):=\mu^*(\cdot\cap B_p)/\mu^*(B_p)$, then the following is sufficient for \textup{(A2)}: there exist $\tau\in\mathbb R$, $\delta\ge 1$, $\epsilon>0$ such that $f_p(t)\ge \epsilon$ for a.e.\ $t\in[\tau,\tau+\delta]$.
 \end{lemma}
 
 \begin{proof}
 	For any open $I\subset[0,1)$,
 	\[
-	\mu_p(r(\c(D))\in I)\geq\mu_p(q(\c(D))\in [\tau,\tau+\delta])=\int_{[\tau,\tau+\delta]} f_p(t)\,dt\geq\epsilon\cdot\delta>0.
+	\mu^*_p(r(\c(D))\in I)\geq\mu^*_p(q(\c(D))\in [\tau,\tau+\delta])=\int_{[\tau,\tau+\delta]} f_p(t)\,dt\geq\epsilon\cdot\delta>0.
 	\]
-	This implies $\mu\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0$.
+	This implies $\mu^*\bigl(\,D\in B_{p}\given r(\c(D))\in I \bigr)>0$.
 \end{proof}
 
 
@@ -4870,21 +4865,21 @@ $
 	Let $G(q,D,\epsilon):=\{b\given t_q(D)>\Exp_q[b]+\epsilon\}$. 
 	
 	  \begin{sublemma}
-		There is some $\epsilon_q>0$ such that $\mu^*\{D\given G(q,D,\epsilon_q)\cap\c(D)\neq \emptyset\}$. 
+		There is some $\epsilon_q>0$ such that $\mu^*\{D\given G(q,D,\epsilon_q)\cap\c(D)\neq \emptyset\}>0$. 
 	\end{sublemma}
 	\begin{proof}
 		We have assumed that $\mu^*\{D\given \c(D)\not \subseteq\EU_p(D)\}>0$. 
 		Observe
 		\begin{align}
-			\{D\given \c(D)\not\subseteq\EU_p(D)\}&=\{D\given\exists b\in\c(D)\text{ and }t_q(D)>\Exp_q(D) \}\\
-			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q(D)+\nicefrac{1}{k} \}\\
+			\{D\given \c(D)\not\subseteq\EU_p(D)\}&=\{D\given\exists b\in\c(D)\text{ and }t_q(D)>\Exp_q[b] \}\\
+			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q[b]+\nicefrac{1}{k} \}\\
 			&=\bigcup_{k\in\mathbb{N}}\{D\given G(q,D,\nicefrac{1}{k})\cap c(D)\neq \emptyset\}
 		\end{align}
 		so it follows from countable additivity that there is some $k$ such that $\mu^*\{D\given G(q,D,\nicefrac{1}{k})\cap\c(D)\neq \emptyset\}>0$. This gives us our $\epsilon_q$ as $\nicefrac{1}{k}$ for this $k$. 
 	\end{proof}
 	
 	
-	We have assumed that utility is bounded. Put $M>0$ such that $\|\U(a)\|_\infty\leq M$ for all $a$, that is $M\geq\max\{|l|,|h|\}$ if $\U:\A\to[l,h]^\Omega$. 	Let $$U_q:=\{p\in\Prob\given \|q-p\|_1<\frac{\epsilon_q}{4M}\}.$$
+	We have assumed that utility is bounded. Put $M>0$ such that $\|\U(a)\|_\infty=\sup\{|\U(a)(\omega)|\given \omega\in\Omega\}\leq M$ for all $a$, that is $M\geq\max\{|l|,|h|\}$ if $\U:\A\to[l,h]^\Omega$. 	Let $$U_q:=\{p\in\Prob\given \|q-p\|_1<\frac{\epsilon_q}{4M}\}.$$
 	These are open, and cover $\Prob$ as $p\in U_p$. 
 	So by compactness, there is a finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
 	
@@ -4894,15 +4889,15 @@ $
 		We can choose $E_i\subseteq C_i$ pairwise disjoint and with $\mu^*(E_i)>0$
 	\end{sublemma}
 	\begin{proof}
-		This uses the atomlessness.
+		This uses the atomlessness of  $\mu^*$.
 		
 		Put $\alpha=\min\{\mu^*(C_1),\ldots,\mu^*(C_k)\}$. 
 		
 		Choose $E_1\subseteq C_1$ with $\mu^*(E_1)= \frac{\alpha}{k}$. 
 		
-		Then $\mu^*(C_2\setminus E_1)\geq\alpha-\frac{\alpha}{k}\geq\frac{\alpha}{k}$ so we can choose $E_2\subseteq C_2\setminus E_1$ with $\mu^*(E_2)=\frac{\alpha}{k}$. 
+		Then $\mu^*(C_2\setminus E_1)\geq\alpha-\frac{\alpha}{k}>\frac{\alpha}{k}$ so we can choose $E_2\subseteq C_2\setminus E_1$ with $\mu^*(E_2)=\frac{\alpha}{k}$. 
 		
-		Then $\mu^*(C_3\setminus(E_1\cup E_2))\geq\alpha-2\frac{\alpha}{k}\geq \frac{\alpha}{k}$ so we can choose $E_3\subseteq C_3\setminus (E_1\cup E_2)$ with $\mu^*(E_3)=\frac{\alpha}{k}$. 
+		Then $\mu^*(C_3\setminus(E_1\cup E_2))\geq\alpha-2\frac{\alpha}{k}> \frac{\alpha}{k}$ so we can choose $E_3\subseteq C_3\setminus (E_1\cup E_2)$ with $\mu^*(E_3)=\frac{\alpha}{k}$. 
 		
 		And so on, with the final stage ensuring $\mu^*(C_k\setminus(E_1\cup\ldots\cup E_{k-1}))\geq\alpha-(k-1)\frac{\alpha}{k}\geq \frac{\alpha}{k}$ so we can choose $E_k\subseteq C_k\setminus (E_1\cup \ldots\cup E_{k-1})$ with $\mu^*(E_k)=\frac{\alpha}{k}$.  
 	\end{proof}
@@ -4931,8 +4926,7 @@ $
 		\end{align}
 		This shows that $b\notin\EU_p(D)$. 
 	\end{proof}
-	Since we have chosen $\s(D)\in G(q_i,D,\epsilon_{q_i})$ for $D\in E_i$, then 
-	So $\{D\given \s(D)\notin\EU_p(D)\}\supseteq E_i$, and thus, $\mu^*\{D\given \s(D)\notin\EU_p(D)\}>0$. 
+	Since we have chosen $\s(D)\in G(q_i,D,\epsilon_{q_i})$ for $D\in E_i$, we have $\{D\given \s(D)\notin\EU_p(D)\}\supseteq E_i$, and thus, $\mu^*\{D\given \s(D)\notin\EU_p(D)\}>0$. 
 \end{proof}
 
 
