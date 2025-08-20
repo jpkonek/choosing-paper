@@ -1625,7 +1625,7 @@ In this section, we reassure ourselves that Savage-style expected utility theory
 
  \emph{States } $\Omega$ is the set of possible states of the world. We'll assume there are only finitely many.
 
-\emph{Uncertainty } The agent's uncertain beliefs about the world are represented by a single probability function $p$ over $\Omega$. 
+\emph{Uncertainty } The agent's uncertain beliefs about the world are represented by a single probability function $p$ over $\Omega$. The set of all such probabilities is $\Prob$.
 
 \emph{Acts }
 $\A$ is a non-empty set. It is the set of all possible acts. 
@@ -2307,8 +2307,10 @@ This is proved in \Cref{sect:appendix:eadundermining}.
 
 
 \begin{colored}{blue}
-\Cref{thm:ead-existsimpermissible[dep]} provides one example of a ``richness condition'' on the class of $b_\Decs$ that guarantees that they assign positive probability to a ``sufficiently inclusive'' set of decision problems that we can find a strategy $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but which is not in $\EAd_{\IB}(\S)$. But it is by no means the only one. For example, let $\c$ be any choice function (\textit{e.g.}, $\EAd_{\IB(\cdot|-)}, \Maximality_{\IB(\cdot|-)}$, etc.). Suppose that for any $b\in\IB$, $b_\Decs$ assigns positive probability to the set of decisions where $\c$ leaves open options that $b$ rejects, \textit{i.e.} $b_\Decs(U_b)>0$ where $U_b:=\bigl\{D\in\Decs\given \c(D)\not \subseteq\EU_{b(\cdot|-)}(D)\bigr\}$. Suppose further that there is some measurable property of decision problems; and each $b_\Decs$ sees a ``sufficiently inclusive'' subset of $U_b$ that it thinks $\c(D)$'s property-value %varies widely enough as you traverse $U_b$ that it 
-will end up falling in any open interval somewhere on $U_b$. More carefully, suppose there is some measurable statistic $r:\Decs\rightarrow[0,1)$, and that for any $b\in\IB$ and any open interval $I\subset[0,1)$, $b_\Decs\bigl(\,D\in U_b\given r(\c(D))\in I \bigr)>0$. This ``richness condition'' also guarantees that we can find a strategy $\s$ that picks for $\c$ but does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ for any $b\in\IB$. By \cref{thm:ead-equiv[dep]}, then, $\s$ is not in $\EAd_\IB(\Strategies)$.
+\Cref{thm:ead-existsimpermissible[dep]} provides one example of a ``richness condition'' on the class of $b_\Decs$ that guarantees that they assign positive probability to a ``sufficiently inclusive'' set of decision problems that we can find a strategy $\s$ that picks for $\EAd_{\IB(\cdot|-)}$ but which is not in $\EAd_{\IB}(\S)$. But it is by no means the only one. For example, let $\c$ be any choice function (\textit{e.g.}, $\EAd_{\IB(\cdot|-)}, \Maximality_{\IB(\cdot|-)}$, etc.). Suppose that for any $b\in\IB$, $b_\Decs$ assigns positive probability to the set of decisions where $\c$ leaves open options that $b$ rejects, \textit{i.e.} $b_\Decs(U_b)>0$ where $U_b:=\bigl\{D\in\Decs\given \c(D)\not \subseteq\EU_{b(\cdot|-)}(D)\bigr\}$. Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ (think: a gradable property of a decision problem), and that for any $b\in\IB$ and any open interval $I\subset[0,1)$, $b_\Decs\bigl(\,D\in U_b\given r(\c(D))\in I \bigr)>0$ (roughly: $b_\Decs$ sees a ``sufficiently inclusive'' subset of $U_b$ that it thinks $r(\c(D))$ spans $[0,1)$ on $U_b$). This ``richness condition'' also guarantees that we can find a strategy $\s$ that picks for $\c$ but does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$ for any $b\in\IB$. By \cref{thm:ead-equiv[dep]}, then, $\s$ is not in $\EAd_\IB(\Strategies)$.
+
+
+.
  
 
 
@@ -2715,35 +2717,72 @@ This is proved in \Cref{sect:wald:appendix}. It follows from a version of Wald's
 %%	Using this, we show that if $\n$ is not Bayes for any 
 %	if $\s$ does not $\mu^*$-surely pick for $\EU_p$, for some $p$ in $\IP$, then there is an alternative strategy $\s^*$ such that $\Exp_{\mu^*}[\U(\s)(\omega)] < \Exp_{\mu^*}[\U(\s^*)(\omega)]$, for each $\omega\in \Omega$; and thus also, $\Exp_{p\times\mu^*}[\U(\s)] < \Exp_{p\times \mu^*}[\U(\s^*)]$ for all $p\in\IP$ and thus $\s$ not in $\Maximality_\IB(\negies)$. }
 
-The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. And so, if we have $\IB$ that satisfies those conditions, we can appeal to \Cref{thm:ead-existsimpermissible[dep]}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\S$ that picks for $\Maximality_{\IP}$ but that does not belong to $\Maximality_\IB(\S)$.
+The set $\S$ of all deterministic picking strategies discussed in the earlier part of the paper is EU-complete, and so we obtain the result that we hinted at in \cref{sect:Max}, namely, that if we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, then it is only $\EU_p$ strategies that are in $\Maximality_\IB(\S)$. \begin{colored}{blue} Now consider the following corollary of \Cref{thm:ead-existsimpermissible[indep]}:
+
+
+
+\begin{corollary}\label{thm:ead-existsimpermissible[indep]-corr}
+
+ Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$.
+
+Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\in\Prob$, 
+\[
+\mu^*\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+\]
+
+Then there is $\s$ which picks for $\EAd_\IP$ but which does not $\mu^*$-surely pick for $\EU_p$ for any $p\in\Prob$.
+
+\end{corollary}
+
+If we have $\IB$ that satisfies the conditions of \Cref{thm:max-nu}, we can appeal to this corollary and \Cref{thm:max-nu}, together with the fact that E-Admissibility is at least as permissive as Maximality, to give sufficient conditions under which there is a deterministic strategy $\s$ that picks for $\Maximality_{\IP}$ but that does not belong to $\Maximality_\IB(\S)$.
+
+
+
 
 \begin{proposition}\label{thm:max-existsimpermissible[dep]}
 	Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-	
-	Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\in\IP$, 
-	\[
-	\mu^*\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
-	\]
+Suppose there is a selection of pairwise disjoint events $E_q\subseteq\Decs$, one for each $q\in\IP$ (some of which may be empty), such that for all $p\in\Prob$, 
+\[
+\mu^*\left(\bigcup_{q\in\IP}\{D\in E_q\given \EU_p(D)\cap\EU_q(D)=\emptyset\}\right)>0
+\]
+
 	
 	Then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maximality_\IB(\S)$. 
 \end{proposition}
 
 
-\begin{colored}{blue}
-We can also apply the same trick to \cref{thm:seed-suff-impermissible-strat}:
+
+
+
+We can also apply the same trick to \cref{thm:seed-suff-impermissible-strat}. Consider the following corollary:
+
+
+\begin{corollary}\label{thm:seed-suff-impermissible-strat-corr}
+	Suppose that for any $p\in\Prob$, $\mu^*(U_p)>0$ where 
+\[
+U_p:=\bigl\{D\in\Decs\given \c(D)\not \subseteq\EU_p(D)\bigr\}.
+\] 
+Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ such that for any $p\in\Prob$ and any open interval $I\subset[0,1)$, 
+\[
+\mu^*\bigl(\,D\in U_p\given r(\c(D))\in I \bigr)>0.
+\]
+Then there is $\s$ which picks for $\c$ but which does not $\mu^*$-surely pick for $\EU_p$ for any $p\in\Prob$.
+\end{corollary}
+
+This corollary and \Cref{thm:max-nu} give us:
 
 
 \begin{proposition}\label{thm:max-seed-existsimpermissible}
 	Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-Suppose that for any $p\in\IP$, $\mu^*(U_b)>0$ where 
+Suppose that for any $p\in\Prob$, $\mu^*(U_p)>0$ where 
 \[
-U_p:=\bigl\{D\in\Decs\given \Maximality_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}.
+U_p:=\bigl\{D\in\Decs\given \Maximality_\IP(D)\not \subseteq\EU_p(D)\bigr\}.
 \] 
-Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ such that for any $p\in\IP$ and any open interval $I\subset[0,1)$, 
+Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ such that for any $p\in\Prob$ and any open interval $I\subset[0,1)$, 
 \[
 \mu^*\bigl(\,D\in U_p\given r(\Maximality_\IP(D))\in I \bigr)>0.
 \]
@@ -2751,11 +2790,13 @@ Then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maxim
 \end{proposition}
 
 
-Given the conditions of \Cref{thm:max-nu}, there are additional natural richness conditions that guarantee the existence of deterministic $\s$ that pick for $\Maximality_{\IP}$ but do not belong to $\Maximality_\IB(\S)$. For example:
+%Given the conditions of \Cref{thm:max-nu}, there are additional natural richness conditions that guarantee the existence of deterministic $\s$ that pick for $\Maximality_{\IP}$ but do not belong to $\Maximality_\IB(\S)$. For example:
+
+There are various other natural richness conditions we might consider, \textit{e.g.},
 
 
 \begin{proposition}\label{thm:atomless-existsimpermissible}
-	For any choice function $\c$, if $\mu^*$ is atomless and for all $p\in\IP$, $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\c$ but for no $p$ does it $\mu^*$-surely pick for $\EU_p$. 
+	For any choice function $\c$, if $\mu^*$ is atomless and for all $p\in\Prob$, $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\c$ but for no $p\in\Prob$ does it $\mu^*$-surely pick for $\EU_p$. 
 \end{proposition}
 
 
@@ -2770,7 +2811,7 @@ As an immediate corollary of \cref{thm:max-nu} and \cref{thm:atomless-existsimpe
 	Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-	If $\mu^*$ is atomless and for all $p\in\IP$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maximality_\IB(\S)$. 
+	If $\mu^*$ is atomless and for all $p\in\Prob$, $\mu^*\{D\given \Maximality_\IP(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\Maximality_\IP$ but which is not in $\Maximality_\IB(\S)$. 
 	\end{corollary}
 
 
@@ -2836,25 +2877,25 @@ This is proved in \Cref{sect:wald:appendix}.
 
 
 \begin{colored}{blue}
-Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p$ % \todo{why in IP???}
+Since $\Gamma$-Maximin is a more restrictive theory than Maximality, for a strategy to be $\Gamma$-Maximin there must be some probability function $p\in\Prob$ % \todo{why in IP???}
 for which the strategy $\mu^*$ surely picks for
 % \todo{eg here should we replace?? I did so... changed order of quantifier}
 $\EU_p$. As a result we have:
 
 \begin{proposition}\label{thm:gamma-nu}
-	Suppose $\Nu$ is $\EU$-complete. 
-	Suppose that $\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. 
-	
-Suppose that for all $p\in\IP$, $\mu^*(U_p)>0$ where 
-\[
-U_p:=\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}.
-\] 
-Then, if $\n$ is a regular picking strategy for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
+
+Suppose $\Nu$ is $\EU$-complete. Suppose that 
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p\in\Prob$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
+		
+		Suppose further that for all $p\in\IP$, $\mu^*\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}>0$. Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
+
+
+
 	\end{proposition}
 
 This is proved in \Cref{sect:wald-app:appendix}.
 
-We can also use \cref{thm:seed-suff-impermissible-strat} and \cref{thm:atomless-existsimpermissible} to that there are deterministic strategies $\s$ that pick for $\Gamma_{\IP}$ but do not belong to $\Gamma_\IB(\S)$.
+We can also use \cref{thm:seed-suff-impermissible-strat-corr} and \cref{thm:atomless-existsimpermissible} to show that there are deterministic strategies $\s$ that pick for $\Gamma_{\IP}$ but do not belong to $\Gamma_\IB(\S)$.
 
 
 %Given this, \cref{thm:seed-suff-impermissible-strat} yields:
@@ -2864,16 +2905,19 @@ We can also use \cref{thm:seed-suff-impermissible-strat} and \cref{thm:atomless-
 	Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-Suppose that for any $p\in\IP$, $\mu^*(U_p)>0$ where 
+Suppose that for any $p\in\Prob$, $\mu^*(U_p)>0$ where 
 \[
-U_p:=\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}.
+U_p:=\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_p(D)\bigr\}.
 \] 
-Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ such that for any $p\in\IP$ and any open interval $I\subset[0,1)$, 
+Suppose further that there is some measurable statistic $r:\Decs\rightarrow[0,1)$ such that for any $p\in\Prob$ and any open interval $I\subset[0,1)$, 
 \[
 \mu^*\bigl(\,D\in U_p\given r(\Gamma_\IP(D))\in I \bigr)>0.
 \]
 Then there is $\s$ which picks for $\Gamma_\IP$ but which is not in $\Gamma_\IB(\S)$. 
 \end{corollary}
+
+
+
 
 
 Likewise, \cref{thm:atomless-existsimpermissible} yields:
@@ -2882,11 +2926,8 @@ Likewise, \cref{thm:atomless-existsimpermissible} yields:
 	Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
 
-	If $\mu^*$ is atomless and for all $p\in\IP$, $\mu^*\{D\given \Gamma_\IP(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\Gamma_\IP$ but which is not in $\Gamma_\IB(\S)$. 
+	If $\mu^*$ is atomless and for all $p\in\Prob$, $\mu^*\{D\given \Gamma_\IP(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\Gamma_\IP$ but which is not in $\Gamma_\IB(\S)$. 
 	\end{corollary}
-
-
-
 
 \end{colored}
 
@@ -4410,7 +4451,7 @@ and observe that the conditions of \cref{thm:ead-existsimpermissible[indep]} are
 
 
 
-
+\begin{colored}{blue}
 
 To prove \cref{thm:seed-suff-impermissible-strat}, let $\c$ be any choice function. Let $r:\Decs\rightarrow[0,1)$ be any measurable statistic, \textit{e.g.},  $r(D)=\Bigl(\sum_{x\in D}\|x\|^{2}\Bigr)\bmod 1$. 
 
@@ -4442,9 +4483,9 @@ $
 $.
 Define
 \[
-\alpha(D)=\min\bigl\{j\given r(\c(D))\in I_{j}(D)\bigr\},
+\alpha(D):=\min\bigl\{j\given r(\c(D))\in I_{j}(D)\bigr\},
   \qquad
-  s(D)=x_{\alpha(D)}(D).
+  s(D):=x_{\alpha(D)}(D).
 \]
 Measurability follows immediately from the measurability of $r$ and $\min$, and $s(D)\in\c(D)$ by construction. So $\s$ picks for $\c$.
 
@@ -4453,7 +4494,7 @@ Choose $b\in\IB$.
 
 For each $D\in U_b$, choose
 $x_{\beta(D)}(D)\in \c(D)\setminus\EU_{b(\cdot|-)}(D)$.
-If $r(D)\in I_{\beta(D)}(D)$ then $s(D)=x_{\beta(D)}(D)\notin\EU_{b(\cdot|-)}(D)$.
+If $r(\c(D))\in I_{\beta(D)}(D)$ then $s(D)=x_{\beta(D)}(D)\notin\EU_{b(\cdot|-)}(D)$.
 
 Define
 $
@@ -4472,7 +4513,7 @@ $
 So $\s$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$.
 
 \end{proof}
-
+\end{colored}
 
 So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:seed-suff-impermissible-strat,thm:ead-existsimpermissible[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
@@ -4951,38 +4992,44 @@ As this holds for any $\omega\in\Omega$, we have that $\Uwald$ is Bayes continuo
 \begin{proof}
 	By \cref{thm:EU-appendix}, if $\n$ does not $\mu^*$-surely pick for any probability $p$, $\n$ does not maximise $\Exp_{p\times\mu^*}[\U(\n)]$ for any $p$. Observe, also that $\Exp_p[\Exp_{\mu^*}[\U(\n)]]=\Exp_{p\times\mu^*}[\U(\n)]$. So by \cref{thm:cct-applns:corr}, there is $\n'$ with  $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$; and thus, $\Exp_{p}[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$ for all probabilities $p$; which gives us the claim.
 \end{proof}
-\cref{thm:max-nu} follows from this. \cref{thm:max-existsimpermissible[dep]} follows from this together with \cref{thm:ead-existsimpermissible[dep]}, since Maximality is more permissive than E-Admissibility.
+
+\begin{colored}{blue}
+
+\cref{thm:max-nu} follows from this. \cref{thm:max-existsimpermissible[dep]} follows from this together with \cref{thm:ead-existsimpermissible[indep]-corr}, since Maximality is more permissive than E-Admissibility.
 
 
 
-Let $\c$ be any choice function. 
+We now prove \cref{thm:atomless-existsimpermissible}. Let $\c$ be any choice function. 
 
 
 \begin{proposition}[\cref{thm:atomless-existsimpermissible}]
-	If $\mu^*$ is atomless and $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$ then there is $\s$ which picks for $\c$ but for no $p$ does it $\mu^*$-surely pick for $\EU_p$. 
+	For any choice function $\c$, if $\mu^*$ is atomless and for all $p\in\Prob$, $\mu^*\{D\given \c(D)\subseteq\EU_p(D)\}<1$, then there is $\s$ which picks for $\c$ but for no $p\in\Prob$ does it $\mu^*$-surely pick for $\EU_p$. 
 \end{proposition}
 \begin{proof}
 	
+	Choose $q\in\Prob$.
+	
 	Let $t_q(D):=\sup_{a \in D} \Exp_q[\U(a)]$.
 	
-	Let $G(q,D,\epsilon):=\{b\given t_q(D)>\Exp_q[b]+\epsilon\}$. 
+	Let $G(q,D,\epsilon):=\{b\in D\given t_q(D)>\Exp_q[\U(b)]+\epsilon\}$. 
 	
 	  \begin{sublemma}
-		There is some $\epsilon_q>0$ such that $\mu^*\{D\given G(q,D,\epsilon_q)\cap\c(D)\neq \emptyset\}>0$. 
+		There is some $\epsilon_q>0$ s.t. $\mu^*\{D\given G(q,D,\epsilon_q)\cap\c(D)\neq \emptyset\}>0$. 
 	\end{sublemma}
 	\begin{proof}
-		We have assumed that $\mu^*\{D\given \c(D)\not \subseteq\EU_p(D)\}>0$. 
+		We have assumed that $\mu^*\{D\given \c(D)\not \subseteq\EU_q(D)\}>0$, for all $q\in\Prob$.
+		 
 		Observe
 		\begin{align}
-			\{D\given \c(D)\not\subseteq\EU_p(D)\}&=\{D\given\exists b\in\c(D)\text{ and }t_q(D)>\Exp_q[b] \}\\
-			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q[b]+\nicefrac{1}{k} \}\\
+			\{D\given \c(D)\not\subseteq\EU_q(D)\}&=\{D\given\exists b\in\c(D)\text{ and }t_q(D)>\Exp_q[\U(b)] \}\\
+			&=\bigcup_{k\in\mathbb{N}}\{D\given\exists b\in \c(D)\text{ and }t_q(D)>\Exp_q[\U(b)]+\nicefrac{1}{k} \}\\
 			&=\bigcup_{k\in\mathbb{N}}\{D\given G(q,D,\nicefrac{1}{k})\cap c(D)\neq \emptyset\}
 		\end{align}
 		so it follows from countable additivity that there is some $k$ such that $\mu^*\{D\given G(q,D,\nicefrac{1}{k})\cap\c(D)\neq \emptyset\}>0$. This gives us our $\epsilon_q$ as $\nicefrac{1}{k}$ for this $k$. 
 	\end{proof}
 	
 	
-	We have assumed that utility is bounded. Put $M>0$ such that $\|\U(a)\|_\infty=\sup\{|\U(a)(\omega)|\given \omega\in\Omega\}\leq M$ for all $a$, that is $M\geq\max\{|l|,|h|\}$ if $\U:\A\to[l,h]^\Omega$. 	Let $$U_q:=\{p\in\Prob\given \|q-p\|_1<\frac{\epsilon_q}{4M}\}.$$
+	We have assumed that utility is bounded. Put $M>0$ such that $\|\U(a)\|_\infty=\sup\{|\U(a)(\omega)|\given \omega\in\Omega\}\leq M$ for all $a\in\A$, that is $M\geq\max\{|l|,|h|\}$ if $\U:\A\to[l,h]^\Omega$. 	Let $$U_q:=\{p\in\Prob\given \|q-p\|_1<\frac{\epsilon_q}{4M}\}.$$
 	These are open, and cover $\Prob$ as $p\in U_p$. 
 	So by compactness, there is a finite sub-cover, $U_{q_1},\ldots, U_{q_n}$. 
 	
@@ -5005,7 +5052,7 @@ Let $\c$ be any choice function.
 		And so on, with the final stage ensuring $\mu^*(C_k\setminus(E_1\cup\ldots\cup E_{k-1}))\geq\alpha-(k-1)\frac{\alpha}{k}=\frac{\alpha}{k}$ so we can choose $E_k\subseteq C_k\setminus (E_1\cup \ldots\cup E_{k-1})$ with $0<\mu^*(E_k)\leq\frac{\alpha}{k}$.  
 	\end{proof}
 	
-	Then put $\s(D)\in G(q,D,\epsilon_q)\cap\c(D)$ for $D\in E_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
+	Then put $\s(D)\in G(q_i,D,\epsilon_{q_i})\cap\c(D)$ for $D\in E_i\subseteq C_i$, and $\s(D)\in \c(D)$ for $D\notin\bigcup_{i=1,\ldots,k} E_i$. 
 	
 	Observe that $\s(D)$ picks for $\c$ by definition. 
 	
@@ -5016,7 +5063,7 @@ Let $\c$ be any choice function.
 		\begin{sublemma}
 		Suppose $p\in U_q$. If $b\in G(q,D,\epsilon_q)$ then $b\notin\EU_p(D)$.
 	\end{sublemma}
-	\begin{proof} As $b\in G(q,D,\epsilon_q)$,  $t_q(D)>\Exp_q[\U(b)]+\epsilon_q$, where $t_q(D)=\sup_{a \in D}\Exp_q[\U(a)]$. Take $a^*\in \EU_q(D)$ so that $\Exp_q[\U(a^*)]=t_q(D)$ so that $\Exp_q[\U(a^*)]-\Exp_q[\U(b)]\geq \epsilon_q$. 
+	\begin{proof} As $b\in G(q,D,\epsilon_q)$,  $t_q(D)>\Exp_q[\U(b)]+\epsilon_q$, where $t_q(D)=\sup_{a \in D}\Exp_q[\U(a)]$. Take $a^*\in \EU_q(D)$ so that $\Exp_q[\U(a^*)]=t_q(D)$ which implies $\Exp_q[\U(a^*)]-\Exp_q[\U(b)]\geq \epsilon_q$. 
 		
 		As  $p\in U_q$, we have $\|q-p\|_1<\frac{\epsilon_q}{4M}$.
 		
@@ -5035,7 +5082,7 @@ Let $\c$ be any choice function.
 
 
 
-
+\end{colored}
 
 
 
@@ -5065,9 +5112,9 @@ Let $\c$ be any choice function.
 
 \begin{proposition}[\cref{thm:gamma-nu}]
 Suppose $\Nu$ is $\EU$-complete. Suppose that 
-		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
+		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p\in\Prob$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
-		Suppose that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
+		Suppose further that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
 		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
 
 %		If, in addition, $\mu^*\{D\given \Maximin_\IP(D)\text{ is singleton}\}=1$, then 
