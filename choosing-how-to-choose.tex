@@ -2699,7 +2699,7 @@ Then we have the following result.%
 		 for which one needs to allow merely finitely additive randomisations \citep{schervish2020finite}.}}
 \begin{proposition}\label{thm:max-nu}Suppose $\Nu$ is $\EU$-complete. Suppose that 
 	$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness.
-	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
+	Then if $\n \in \Maximality_\IB(\Nu)$, then there is some probability $p\in\Prob$ such that $\n$ $\mu^*$-surely picks for $\EU_p$.%\todo{did we know that $p$ in $\IP$??}
 	\todoold{I removed the converse because I don't know if the probability has to be in the original set, not sure if that follows from the Wald..???}
 \end{proposition}
 This is proved in \Cref{sect:wald:appendix}. It follows from a version of Wald's Complete Class Theorem. Using that, we show that, if $\n$ is not in $\EU_{p\times\mu^*}$ for any $p$, then there is some alternative $\n'$---in fact, an alternative $\n'$ that picks for some $\EU_p$---such that $\Exp_{\mu^*}[\U(\n')(\omega)]>\Exp_{\mu^*}[\U(\n)(\omega)]$ for all $\omega$, and thus for all probabilistic $p$, $\Exp_p[\Exp_{\mu^*}[\U(\n')]]>\Exp_p[\Exp_{\mu^*}[\U(\n)]]$, i.e., $\Exp_{p\times \mu^*}[\U(\n')]>\Exp_{p\times\mu^*}[\U(\n)]$. It follows that $\n\notin\Maximality_\IB(\Nu)$. 
@@ -2887,7 +2887,7 @@ $\EU_p$. As a result we have:
 Suppose $\Nu$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p\in\Prob$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
-		Suppose further that for all $p\in\IP$, $\mu^*\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}>0$. Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
+		Suppose further that for all $p\in\Prob$, $\mu^*\bigl\{D\in\Decs\given \Gamma_\IP(D)\not \subseteq\EU_{p}(D)\bigr\}>0$. Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
 
 
 
@@ -4987,7 +4987,7 @@ We now prove \cref{thm:atomless-existsimpermissible}. Let $\c$ be any choice fun
 Suppose $\Nu$ is $\EU$-complete. Suppose that 
 		$\IB$ has the form $\{p\times \mu^*\given p\in \IP\}$ and $\mu^*$ requires almost everywhere decisiveness. Then if $\n \in \Maximin_\IB(\Nu)$, there is some probability $p\in\Prob$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 		
-		Suppose further that for every probability $p$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
+		Suppose further that for every probability $p\in\Prob$, $\mu^*\{D\given \Maximin_\IP(D)\subseteq\EU_p(D)\}<1$. 
 		Then if $\n$ is regular for $\Maximin_\IP$ then $\n\notin \Maximin_\IB(\Nu)$.
 
 %		If, in addition, $\mu^*\{D\given \Maximin_\IP(D)\text{ is singleton}\}=1$, then 
@@ -4997,16 +4997,16 @@ Suppose $\Nu$ is $\EU$-complete. Suppose that
 
 
 \begin{proof}
-	Suppose that $\n \in \Maximin_\IB(\Nu)\subseteq\Maximality_\IB(\Nu)$. By  \cref{thm:max-nu}, there is some probability $p$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
+	Suppose that $\n \in \Maximin_\IB(\Nu)\subseteq\Maximality_\IB(\Nu)$. By  \cref{thm:max-nu}, there is some probability $p\in\Prob$ where $\n$ $\mu^*$-surely picks for $\EU_p$.
 	
 	
 	Suppose $\nu$ is a regular picking strategy for $\Maximin_\IP$ and the conditions above hold. 
 	
-	Take any $p\in\IP$.
+	Take any $p\in\Prob$.
 	If $\Gamma_{\IP}(D)\not\subseteq\EU_p(D)$, then, since $\n_D$ is a regular probability function, $\nu_D(\EU_p(D))< 1$. 
 	Since 
 	$\mu^*\{D\given \Maximin_\IP(D)\not\subseteq\EU_p(D)\}>0$, we have $\mu^*\{D\given \nu(\EU_p(D))<1\}>0$.
-	 So $\nu$ does not $\mu^*$-surely pick for $\EU_p$. Since this holds for any $p \in \IP$, we must have $\n \not\in \Maximin_\IB(\Nu)$.
+	 So $\nu$ does not $\mu^*$-surely pick for $\EU_p$. Since this holds for any $p \in \Prob$, we must have $\n \not\in \Maximin_\IB(\Nu)$.
 	 
 \end{proof}
 \end{colored}
