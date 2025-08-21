@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,final]{article}
 \usepackage[pagewise]{lineno}
 \usepackage{amssymb}
 \usepackage{enumerate}
@@ -3343,9 +3343,10 @@ the situation is less clear, as picking in accordance with expected utility theo
 	Since $\Omega$ is finite, we can equip it with the discrete $\sigma$-algebra, $\mathcal{F}=\wp(\Omega)$, so that every subset of $\Omega$ is measurable. 	
 	
 	$\Decs$ is defined as finite subsets of the set of acts $\A$, with $\A$ simply being an arbitrary non-empty set. 
-	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. 	\begin{colored}{blue}Since we have assumed that $\U$ is bounded, we can suppose that 	$\U\geq0$ WLOG. We do so for the remainder of the appendix.\end{colored}	
+	The $\sigma$-algebra we generate will be defined relative to a utility function $\U:\A\to\Re^\Omega\cong\Re^n$. Recall that $\U$ is bounded, so in fact $\U:\A\to[l,h]^\Omega\cong[l,h]^n$.	
 	
-	We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
+	
+		We define a metric on $\A$ induced by $\Re^n$, that is $d(a,a'):=d(\U(a),\U(a'))$, with the Euclidean metric. 
 	This then defines the topology on $\A$ and the associated Borel $\sigma$-algebra. 
 	
 	In fact, if there are some $a,a'$ that have the same utility profile, $\U(a)=\U(a')$, then $d(a,a')=0$, so it is actually a pseudo-metric. Any measurable notions will treat such acts equivalently and it is Borel isomorphic to the structure which identifies any two such acts.
@@ -4390,12 +4391,13 @@ So $\s$ does not $b_\Decs$-surely pick for $\EU_{b(\cdot|-)}$.
 
 So we have proved \cref{thm:eu-self-rec,thm:eu-uniquely-optimal,thm:eu-nu-nec-suff,thm:eu-dep,thm:ead-equiv[indep],thm:ead-existence[dep],thm:seed-suff-impermissible-strat,thm:ead-existsimpermissible[indep],thm:ead-nu-nec-suff,thm:ead-nu-reg-nec,thm:ead-existence[indep],thm:max-suff,thm:max-suff[dep],thm:max-nu-suff,thm:ead-equiv[dep]}
 
-The remaining theorems, \cref{thm:max-nu,thm:max-nu-reg-nec,thm:gamma-nu} require a different approach.
+\cref{thm:max-nu,thm:max-existsimpermissible[dep],thm:max-nu-reg-nec,thm:gamma-nu,thm:atomless-existsimpermissible} require a different approach.
 %\todo{add ref to the new undermining thm we're adding. }
 
+
 %\end{colored}
-\section{Maximality \\(\cref{thm:max-nu,thm:max-nu-reg-nec,thm:max-existsimpermissible[dep]})}\label{sect:wald:appendix}
-To prove \cref{thm:max-nu,thm:max-nu-reg-nec,,thm:max-existsimpermissible[dep]}, we turn to a version of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we prove as \Cref{thm:cct}. % \todo{what are the two versions referred to?}
+\section{Maximality \\(\cref{thm:max-nu,thm:max-existsimpermissible[dep],thm:max-nu-reg-nec,thm:gamma-nu,thm:atomless-existsimpermissible})}\label{sect:wald:appendix}
+To prove \cref{thm:max-nu,thm:max-existsimpermissible[dep],thm:max-nu-reg-nec,thm:gamma-nu,thm:atomless-existsimpermissible}, we turn to a version of Abraham Wald's (\citeyear{wald1947cct}) Complete Class Theorem, which we prove as \Cref{thm:cct}. % \todo{what are the two versions referred to?}
 We state it in a general setting and then explain how they apply to our case. Along the way, we prove a more standard version of Wald's theorem.
 \subsection{Wald theorem}
  To state them, we need some definitions.
