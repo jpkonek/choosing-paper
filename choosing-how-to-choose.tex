@@ -5016,6 +5016,128 @@ Suppose $\Nu$ is $\EU$-complete. Suppose that
 
 
 
+\appendix
+\part{Erratum}
+
+\section{Measurability}
+\cref{thm:ead-existsimpermissible[indep]} (as C.10) fix:
+\begin{proposition}
+Suppose $\IB$ makes $\Omega$ and $\Decs$ completely independent (so every $b\in\IB$ has the form $p\times\mu$.)
+
+Suppose $E\subseteq\Decs$ is measurable and $\kappa:E\to\IP$ is a measurable assignment, such that for all $p\times\mu\in\IB$, 
+\[
+\mu\left(\{D\in E\given \EU_p(D)\cap\EU_{\kappa(D)}(D)=\emptyset\}\right)>0
+\]
+
+Then there is $\s$ that picks for $\EAd_\IP$ but which is not in $\EAd_\IB(\S)$. 
+\end{proposition}
+\begin{proof}
+Now the $\s$ constructed is guaranteed to be measurable. 
+\end{proof}
+An analogous fix works for C.11. 
+
+\begin{proposition}[\cref{thm:ead-existsimpermissible[dep]}]
+Suppose there is a measurable event $E\subseteq\Decs$ and a measurable function
+\[
+\kappa:E\to\IB
+\]
+such that, for every $b\in\IB$,
+\[
+b_\Decs\Bigl(
+\bigl\{
+D\in E
+\given
+\EU_{b(\cdot\mid-)}(D)
+\cap
+\EU_{\kappa(D)(\cdot\mid-)}(D)
+=
+\emptyset
+\bigr\}
+\Bigr)
+>0.
+\]
+
+Also we need to check measurability, disintegration theorem extending stuff. 
+
+Then there is a measurable picking strategy $\s$ which picks for
+$\EAd_{\IB(\cdot\mid-)}$, but for which there is no $b\in\IB$ such that
+$\s$ $b_\Decs$-surely picks for $\EU_{b(\cdot\mid-)}$.
+\end{proposition}
+
+
+D.12. needs measure selection argument.
+
+C.14 also needs measure stuff. 
+
+C.13 should have worked with $(l,h)^\Omega$, so that we make sure the constructed thing is still an act
+
+
+\section{Gap}
+In the measurable selector part, just work with complete independence. 
+
+\section{General risk result}
+Branden, with help of AI, has shown how to prove our intended risk result. 
+
+
+
+
+		\newcommand{\curlyl}{\prec}
+		\newcommand{\curlyleq}{\preceq}
+		\newcommand{\curlygeq}{\succeq}
+		\newcommand{\curlyg}{\succ}
+		\newcommand{\curlyeq}{\approx}
+		\newcommand{\curlylneq}{\precnsim}
+\newcommand{\curlygneq}{\succnsim}
+
+
+\begin{proof}
+
+Suppose $\curlyl_u$ is an ordering on $\Omega$ with $w\curlyl v\implies u(w)\leq u(v)$.
+
+$$\REU_{r,p}(u)= \sum_w u_w\left[r(p(v\curlygeq v))-r(p(v\curlyg w))\right]$$
+Note that this is linear within each ordering. 
+
+Observe that in the interior of $\curlyl$, 
+\[
+\nabla \REU_{r,p}(u)
+=
+\bigl(\left[r(p(v\curlygeq w_1))-r(p(v\curlyg w_1))\right],\ldots, \left[r(p(v\curlygeq w_1))-r(p(v\curlyg w_1))\right])\bigr).
+\]
+which are all constants.
+
+
+\begin{align}
+\REU_{r,b}(\s)&=l+\int_l^u r(b(U(\s)>x))dx\\
+&=l+\int_l^u r\left(\int_\Decs p(U(\s(D)>x))\right)dx&&\text{complete independence}\\
+\end{align}
+Let \begin{align}
+f_\s(x):=\int_\Decs p(U(\s(D)>x)
+\end{align}
+so that 
+\begin{align}
+\REU_{r,b}(\s)
+&=l+\int_l^u r(f_s(x))dx
+\end{align}
+
+Now, define $L_\s:[l,u]^n\to\Re$ so that
+\[
+\nabla L_\s(u)
+=
+\bigl(p_1\, r'(f_\s(u_1)),\ldots,p_n\,r'(f_\s(u_n))\bigr).
+\]
+$L_\s$ is the linear approximation to the effect of substituting one act for another in $\REU_{r,b}(\s)$.  
+
+If $r$ is risk-aware, its derivative is non-constant. 
+
+Let's assume first that it's risk-averse, so that its derivative is increasing. 
+
+
+
+
+\end{proof}
+
+
+
 
 
 

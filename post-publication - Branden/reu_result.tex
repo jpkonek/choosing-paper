@@ -1,0 +1,621 @@
+\documentclass[a4paper,final]{article}
+\usepackage[pagewise]{lineno}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsthm}
+%\usepackage{a4wide}
+\usepackage{setspace}
+\usepackage{makeidx}
+\usepackage[skip=5pt plus1pt]{parskip}
+\usepackage{natbib}
+\usepackage{latexsym}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=gray,hypertexnames=false]{hyperref} % the addition of hypertexnames is for autonum
+\usepackage[capitalize]{cleveref}
+\usepackage{tikz}
+\usepackage{xfrac}
+\usepackage{wrapfig}
+\usepackage{mathpazo}
+\usepackage{lscape}
+\usepackage{stmaryrd}
+%\usepackage{caption}\captionsetup{font=footnotesize} %% CCM: it was breaking labels that come after table!
+%\usepackage[USenglish]{babel}
+\usepackage{graphicx}
+
+\usepackage{showlabels}
+
+
+\usepackage{multirow}
+
+
+% Define "struts" as suggested by Claudio Beccari in
+% a piece in TeX and TUG News, Vol. 2, 1993.
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}       % "top" strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}} % "bottom" strut
+\newcommand{\TBstrut}{\Tstrut\Bstrut} % top&bottom struts
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{axiom}{Axiom}
+\newtheorem{metatheorem}[theorem]{Metatheorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{metadefinition}[theorem]{Metadefinition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{metaproposition}[theorem]{Metaproposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{metalemma}[theorem]{Metalemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{metacorollary}[theorem]{Metacorollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{ruleinf}{Rule of Inference}
+\newtheorem{sublemma}{Sublemma}[theorem]
+%\doublespacing
+
+%\linenumbersx
+
+\DeclareMathOperator*{\argmin}{\arg\,\min}
+\DeclareMathOperator*{\argmax}{\arg\,\max}
+
+\DeclareMathOperator*{\arginf}{\arg\,\inf}
+\DeclareMathOperator*{\argsup}{\arg\,\sup}
+\DeclareMathOperator{\posi}{posi}
+
+% Load amsfonts for \mathbb (optional, but recommended)
+%\usepackage{amsfonts}
+% Load mathbbol to extend \mathbb to Greek letters
+
+
+
+
+	\newcommand{\quotient}[2]{\left.#1\middle/#2\right.}
+
+\newcommand\F{\mathcal{F}}
+\newcommand\X{\mathcal{X}}
+\newcommand\Y{\mathcal{Y}}
+\newcommand\A{\mathcal{A}}
+\renewcommand\P{\mathbb{P}} % impreicse prob 
+\newcommand\cl{\mathrm{cl}}
+%\newcommand\PowN{\imprecpickstrat} % power set of set of prob strategies
+\newcommand\Uset{\mathbb{U}} % set of utility functions
+\newcommand\Prob{\mathcal{P}} % set of all probs
+
+\newcommand\C{\mathcal{C}}
+\newcommand\Exp{\mathsf{Exp}}
+\newcommand\RExp{\mathrm{R}\Exp} % Risk-weighted expected utility 
+\newcommand\EU{\mathrm{EU}}
+\newcommand\MEU{\mathrm{MEU}}
+\newcommand\REU{\mathrm{REU}}
+\newcommand\EAd{\mathrm{EAd}}
+\renewcommand\O{\mathcal{O}}
+\newcommand\U{\mathfrak{U}} % utility random variable 
+\newcommand\Uwald{\mathcal{U}} % utility random variable 
+\newcommand\ut{u}
+\newcommand\Maxi{\Gamma\mathrm{M}}
+\newcommand\Maximality{\mathrm{Max}}
+\newcommand\Maximin{\Gamma}
+\newcommand\GD{\mathrm{GD}}
+
+%\newcommand\D{\mathsf{DecProblems}}
+\newcommand{\D}{\mathcal{D}}
+	\newcommand{\Decs}{\mathcal{D}}
+		\newcommand{\mass}{\mathcal{M}}
+	
+\renewcommand\S{\mathcal{S}}
+\newcommand\s{\mathsf{s}}
+\renewcommand\c{\mathsf{c}} % choice function
+
+\newcommand{\n}{\mathsf{n}}
+\renewcommand{\nu}{\n}
+\newcommand\Nu{\mathcal{N}}
+\newcommand{\imprecpickstrat}{\mathbb{N}}
+
+\newcommand{\IB}{\mathbb{B}}
+\newcommand{\ID}{\mathbb{M}}
+\newcommand{\IP}{\P}
+\newcommand{\pb}{b}
+%\newcommand{b}{}
+%\renewcommand{\color}[2]{}
+\newcommand{\Dom}{\mathsf{Dom}}
+
+
+\renewcommand{\Re}{\mathbb{R}}
+
+
+\renewcommand{\mathsterling}{\text{\normalfont\textsterling}} % to be able to use \pounds in math mode
+\newcommand{\million}{\mathrm{m}}   % million shorthand
+
+
+% CCM added
+\usepackage[textsize=footnotesize,obeyFinal,backgroundcolor=orange!50,bordercolor=gray!20,linecolor=gray!20]{todonotes} % use "\PassOptionsToPackage{disable}{todonotes}" to disable in a document
+\newcommand{\todoinfo}[2][]{\todo[inline,{#1}]{#2}}
+\newcommand{\todoold}[2][]{\todo[backgroundcolor=white,bordercolor=orange!10,linecolor=gray!10, #1,caption={},textcolor=gray]{Pre-rev: #2}}
+\newcommand{\comment}[2][]{\todoold[#1]{#2}}
+\newcommand{\todooldinfo}[2][]{\todoold[#1]{#2}}
+\usepackage{booktabs}  % For improved table formatting
+
+
+\makeatletter
+\@ifclasswith{article}{final}{
+	% Redefine commands or settings for the final version.
+\renewcommand{\color}[1]{}
+}{
+	% Alternative definition for when final is not present.
+%	\renewcommand{\mycommand}{Draft Version}
+}
+\makeatother
+
+
+\usepackage{mathtools} % using it for definition of \Set
+\usepackage{autonum} % only number equations referenced to
+\usepackage{bm} % get bold greek symbols
+\newenvironment{colored}[1]{\leavevmode\color{#1}}{}
+\usepackage{nicefrac}
+
+\newcommand{\Strategies}{\S}
+\newcommand{\Conv}{\mathsf{ConvHull}}
+
+\newcommand\SetDelimiter[1][]{
+	\nonscript\,#1\vert \allowbreak \nonscript\,\mathopen{}}
+\providecommand\given{\SetDelimiter}
+\DeclarePairedDelimiterX\Set[1]{\lbrace}{\rbrace}%
+{ \renewcommand\given{\SetDelimiter[\delimsize]} #1 } % Spacing around \given in a set. \Set{x\given blah} has good spacing. Can also use starred version \Set*{x\given blah} when blah is multilined so it'll stretch to contain everything. 
+\DeclarePairedDelimiterX\seq[1]{\langle}{\rangle}%
+{ \renewcommand\given{\SetDelimiter[\delimsize]} #1 } % Spacing around \given in a set. \Set{x\given blah} has good spacing. Can also use starred version \Set*{x\given blah} when blah is multilined so it'll stretch to contain everything. 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+
+%\newrobustcmd*{\citefirstlastauthor}{\AtNextCite{\DeclareNameAlias{labelname}{given-family}}\citeauthor}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+%\newcommand{\vec}{def}
+
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+
+
+
+\newenvironment{CCM rewritten}
+{\begingroup\color{blue}} % Begin environment
+{\endgroup}              % End environment
+
+
+\usepackage{versions}
+\excludeversion{infversion}
+
+\begin{document}
+
+\title{Positive-Density Self-Undermining of Risk-Weighted Expected Utility in Finite Dimensions}
+\author{}
+\date{}
+\maketitle
+
+\begin{proof}
+Write
+\[
+\Phi(u):=\REU_{r,p}(u),
+\qquad u\in[l,h]^\Omega.
+\]
+For \(D=(u,v)\in\mathcal X\), denote the first and second acts by
+\(\pi_1(D)=u\) and \(\pi_2(D)=v\).
+
+Fix a measurable strategy \(s\) that selects a
+\(\Phi\)-maximising act from every decision problem. Define its
+aggregate survival function by
+\[
+Q(x)
+:=
+\int_{\mathcal X}p\bigl(s(D)>x\bigr)\,\mu(\mathrm dD),
+\qquad x\in[l,h].
+\]
+
+We first record some properties of \(Q\).
+
+For each \(\omega\in\Omega\), let
+\[
+Z_\omega(D):=s(D)(\omega).
+\]
+Since \(s(D)\) is one of the two acts in \(D=(u,v)\), one has
+\[
+\{D:Z_\omega(D)=c\}
+\subseteq
+\{D:u(\omega)=c\}\cup\{D:v(\omega)=c\}.
+\]
+Both sets on the right are Lebesgue-null hyperplanes. Since
+\(\mu\) is absolutely continuous with respect to Lebesgue measure,
+\[
+\mu(Z_\omega=c)=0
+\]
+for every \(c\in[l,h]\). Thus every \(Z_\omega\) has an atomless
+distribution under \(\mu\). Consequently,
+\[
+Q(x)=\sum_{\omega\in\Omega}
+p(\omega)\mu(Z_\omega>x)
+\]
+is continuous.
+
+Moreover, if \(l<x<y<h\), consider the nonempty open set
+\[
+B_{x,y}
+:=
+\left\{
+(u,v)\in\mathcal X:
+u(\omega),v(\omega)\in(x,y)
+\text{ for every }\omega\in\Omega
+\right\}.
+\]
+The density of \(\mu\) is positive almost everywhere on the
+interior, so
+\[
+\mu(B_{x,y})>0.
+\]
+For every \(D\in B_{x,y}\), whichever act \(s\) selects, all its
+coordinates lie in \((x,y)\). Hence
+\[
+p\bigl(x<s(D)\leq y\bigr)=1
+\]
+on \(B_{x,y}\), and therefore
+\[
+Q(x)-Q(y)
+=
+\int_{\mathcal X}
+p\bigl(x<s(D)\leq y\bigr)\,\mu(\mathrm dD)
+\geq \mu(B_{x,y})>0.
+\]
+Thus \(Q\) is strictly decreasing. Also, by atomlessness at \(l\),
+\[
+Q(l)=1,
+\qquad
+Q(h)=0.
+\]
+It follows that
+\[
+0<Q(x)<1
+\]
+for every \(x\in(l,h)\).
+
+Define
+\[
+w(x):=r'(Q(x)),
+\qquad x\in(l,h).
+\]
+Because \(Q\) is continuous, \(r'\) is continuous on \((0,1)\),
+and \(r'>0\), the function \(w\) is continuous and strictly
+positive on \((l,h)\).
+
+Now let
+\[
+a:=p(A),
+\qquad
+b:=r(a).
+\]
+Since \(A\) is nonempty and proper and \(p\) has full support,
+\[
+0<a<1.
+\]
+Strict monotonicity of \(r\) gives \(0<b<1\), and by assumption
+\(a\neq b\). Put
+\[
+\theta:=\frac{a+b}{2},
+\qquad
+d:=\frac{|b-a|}{2}>0.
+\]
+
+Choose some \(z\in(l,h)\). Since \(w(z)>0\) and \(w\) is continuous,
+we may choose \(\varepsilon>0\), with \(z+\varepsilon<h\), so small
+that
+\[
+\sup_{x\in[z,z+\varepsilon]}
+|w(x)-w(z)|
+<
+\frac{w(z)d}{2}.
+\]
+
+Define the event-contingent act
+\[
+R(\omega):=z+\varepsilon\mathbf 1_A(\omega)
+\]
+and the constant act
+\[
+C(\omega):=z+\theta\varepsilon.
+\]
+Both acts lie in the interior \((l,h)^\Omega\).
+
+Their risk-weighted expected utilities are
+\[
+\Phi(R)
+=
+z+\varepsilon r(p(A))
+=
+z+\varepsilon b
+\]
+and
+\[
+\Phi(C)=z+\theta\varepsilon.
+\]
+Their ordinary \(p\)-expectations are
+\[
+E_p[R]=z+a\varepsilon,
+\qquad
+E_p[C]=z+\theta\varepsilon.
+\]
+
+Define an ordered decision problem \(D^0=(u^0,v^0)\) as follows:
+\[
+(u^0,v^0)
+:=
+\begin{cases}
+(R,C),& b>a,\\
+(C,R),& b<a.
+\end{cases}
+\]
+By construction,
+\[
+\Phi(u^0)-\Phi(v^0)=d\varepsilon>0,
+\]
+whereas
+\[
+E_p[v^0]-E_p[u^0]=d\varepsilon>0.
+\]
+Thus \(u^0\) is uniquely preferred by the first-order
+risk-weighted criterion, but \(v^0\) has strictly greater ordinary
+expected utility.
+
+Set
+\[
+\Delta^0(x)
+:=
+p(v^0>x)-p(u^0>x).
+\]
+Because all coordinates of both \(u^0\) and \(v^0\) lie in
+\([z,z+\varepsilon]\),
+\[
+\Delta^0(x)=0
+\quad\text{outside }[z,z+\varepsilon].
+\]
+The ordinary layer-cake formula gives
+\[
+\int_l^h \Delta^0(x)\,\mathrm dx
+=
+E_p[v^0]-E_p[u^0]
+=
+d\varepsilon.
+\]
+Also,
+\[
+\int_l^h|\Delta^0(x)|\,\mathrm dx
+\leq\varepsilon,
+\]
+since \(|\Delta^0(x)|\leq1\) and it is supported on an interval of
+length \(\varepsilon\). It follows that
+\begin{align}
+\int_l^h w(x)\Delta^0(x)\,\mathrm dx
+&=
+w(z)\int_l^h\Delta^0(x)\,\mathrm dx
++
+\int_l^h\bigl(w(x)-w(z)\bigr)\Delta^0(x)\,\mathrm dx\\
+&\geq
+w(z)d\varepsilon
+-
+\sup_{x\in[z,z+\varepsilon]}|w(x)-w(z)|
+\int_l^h|\Delta^0(x)|\,\mathrm dx\\
+&>
+w(z)d\varepsilon-\frac{w(z)d}{2}\varepsilon\\
+&=
+\frac{w(z)d\varepsilon}{2}>0.
+\end{align}
+
+Choose a compact interval
+\[
+I\subset(l,h)
+\]
+whose interior contains all coordinates of \(u^0\) and \(v^0\).
+For acts \(u,v\) all of whose coordinates lie in \(I\), define
+\[
+G(u,v)
+:=
+\int_I
+w(x)\bigl(p(v>x)-p(u>x)\bigr)\,\mathrm dx.
+\]
+This is continuous in \((u,v)\). Indeed, if \(W\) is any primitive
+of \(w\) on \(I\), then
+\[
+G(u,v)
+=
+\sum_{\omega\in\Omega}
+p(\omega)\bigl(W(v(\omega))-W(u(\omega))\bigr).
+\]
+
+The map \(u\mapsto\Phi(u)\) is also continuous. To see this, if
+\(u_n\to u\), then
+\[
+r\bigl(p(u_n>x)\bigr)
+\longrightarrow
+r\bigl(p(u>x)\bigr)
+\]
+for every \(x\) except possibly the finitely many coordinate
+values of \(u\), and the integrands are bounded by \(1\);
+dominated convergence therefore applies.
+
+Since
+\[
+\Phi(u^0)-\Phi(v^0)>0
+\quad\text{and}\quad
+G(u^0,v^0)>0,
+\]
+there exist a nonempty open neighbourhood
+\[
+\mathcal O\subset ((l,h)^\Omega)^2
+\]
+of \(D^0\), and constants \(\eta,\gamma>0\), such that every
+\(D=(u,v)\in\mathcal O\) satisfies
+\[
+\Phi(u)-\Phi(v)>\eta
+\]
+and
+\[
+G(u,v)>\gamma.
+\]
+We may additionally take \(\mathcal O\) small enough that every
+coordinate of \(u\) and \(v\) belongs to \(I\).
+
+Because \(\mathcal O\) is a nonempty open subset of the interior
+and the density of \(\mu\) is positive almost everywhere there,
+\[
+\mu(\mathcal O)>0.
+\]
+For every \(D=(u,v)\in\mathcal O\), the first act \(u\) is the
+unique \(\Phi\)-maximiser. Hence
+\[
+s(D)=u
+\qquad
+\text{for every }D\in\mathcal O.
+\]
+
+We now switch the choice on a sufficiently small positive-measure
+subset of \(\mathcal O\).
+
+Since \(I\) is compactly contained in \((l,h)\) and \(Q\) is
+continuous with values in \((0,1)\), there is a number
+\(\kappa>0\) such that
+\[
+\kappa\leq Q(x)\leq1-\kappa
+\qquad
+\text{for every }x\in I.
+\]
+The measure \(\mu\) is nonatomic. Therefore, inside
+\(\mathcal O\), there are measurable sets of arbitrarily small
+positive measure. Choose a measurable
+\[
+E\subset\mathcal O
+\]
+with
+\[
+e:=\mu(E)>0
+\]
+sufficiently small; the precise smallness requirement will be
+specified below.
+
+Define
+\[
+t(D)
+:=
+\begin{cases}
+\pi_2(D),&D\in E,\\
+s(D),&D\notin E.
+\end{cases}
+\]
+This is a measurable picking strategy. On \(E\), \(s(D)=\pi_1(D)\)
+and the first act is the unique \(\Phi\)-maximiser, so \(t\) selects
+a non-maximising act there.
+
+Let
+\[
+\delta(x)
+:=
+\int_E
+\bigl(
+p(\pi_2(D)>x)-p(\pi_1(D)>x)
+\bigr)\,\mu(\mathrm dD).
+\]
+The aggregate survival function induced by \(t\) is then
+\[
+Q_t(x)=Q(x)+\delta(x).
+\]
+Because all coordinates of both acts in every \(D\in E\) lie in
+\(I\),
+\[
+\delta(x)=0
+\qquad\text{for }x\notin I.
+\]
+Moreover,
+\[
+|\delta(x)|\leq e
+\]
+for every \(x\).
+
+By Fubini's theorem,
+
+\begin{align}
+\int_I r'(Q(x))\delta(x)\,\mathrm dx
+&=
+\int_Iw(x)
+\int_E
+\bigl(
+p(\pi_2(D)>x)-p(\pi_1(D)>x)
+\bigr)
+\,\mu(\mathrm dD)\,\mathrm dx\\
+&=
+\int_EG(\pi_1(D),\pi_2(D))\,\mu(\mathrm dD)\\
+&\geq \gamma e.
+\end{align}
+
+Take \(e<\kappa/2\). Then, for \(x\in I\), both \(Q(x)\) and
+\(Q(x)+\delta(x)\) lie in the compact interval
+\[
+\left[\frac{\kappa}{2},1-\frac{\kappa}{2}\right].
+\]
+Since \(r\in C^2((0,1))\), there is a finite constant
+\[
+M:=
+\sup_{q\in[\kappa/2,\,1-\kappa/2]}|r''(q)|.
+\]
+Taylor's theorem therefore yields, pointwise on \(I\),
+\[
+r(Q+\delta)-r(Q)
+=
+r'(Q)\delta+R,
+\qquad
+|R|\leq\frac{M}{2}\delta^2.
+\]
+Consequently,
+\begin{align}
+\REU_{r,p\times\mu}(t)
+-
+\REU_{r,p\times\mu}(s)
+&=
+\int_I
+\bigl(r(Q(x)+\delta(x))-r(Q(x))\bigr)\,\mathrm dx\\
+&\geq
+\gamma e
+-
+\frac{M}{2}\int_I\delta(x)^2\,\mathrm dx\\
+&\geq
+\gamma e
+-
+\frac{M}{2}|I|e^2.
+\end{align}
+Choosing \(E\) so small that, in addition,
+\[
+\frac{M}{2}|I|e<\gamma
+\]
+gives
+\[
+\REU_{r,p\times\mu}(t)
+>
+\REU_{r,p\times\mu}(s).
+\]
+
+Finally, on \(E\), the two acts are distinct because
+\[
+\Phi(\pi_1(D))-\Phi(\pi_2(D))>\eta>0.
+\]
+Thus
+\[
+\{D:t(D)\neq s(D)\}=E
+\]
+up to a null set, and hence
+\[
+\mu\bigl(\{D:t(D)\neq s(D)\}\bigr)
+=
+\mu(E)>0.
+\]
+On this set, \(t\) selects the uniquely non-maximising second act.
+This proves all the claims.
+\end{proof}
+
+\end{document}
