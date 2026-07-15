@@ -194,428 +194,1052 @@
 \date{}
 \maketitle
 
+\section{Proof A (using Branden)}
+
+\begin{theorem}[Positive-density self-undermining of risk-weighted expected utility]
+\label{thm:reu-positive-density}
+
+Let $\Omega$ be a finite state space, and let $p$ be a probability
+function on $\Omega$ such that
+\[
+p(\omega)>0
+\]
+for every $\omega\in\Omega$. Fix $l<h$, and identify an act with its
+utility profile
+\[
+u\in[l,h]^\Omega.
+\]
+
+Let
+\[
+\Decs:=([l,h]^\Omega)^2
+\]
+be the space of ordered binary decision problems. Thus, if
+\[
+D=(u,v)\in\Decs,
+\]
+the acts available in $D$ are $u$ and $v$. A picking strategy is a
+measurable function
+\[
+\s:\Decs\longrightarrow[l,h]^\Omega
+\]
+such that
+\[
+\s(u,v)\in\{u,v\}
+\]
+for every $(u,v)\in\Decs$.
+
+Let
+\[
+r:[0,1]\longrightarrow[0,1]
+\]
+be continuous and strictly increasing, with
+\[
+r(0)=0,
+\qquad
+r(1)=1,
+\qquad
+r\in C^2((0,1)),
+\qquad
+r'(x)>0
+\]
+for every $x\in(0,1)$.
+
+For an act $u$, define
+\[
+\REU_{r,p}(u)
+:=
+l+\int_l^h
+r\bigl(p(\{\omega\in\Omega:u(\omega)>x\})\bigr)
+\,\mathrm{d}x.
+\]
+
+Let $\mu$ be a Borel probability measure on $\Decs$. Suppose that
+$\mu$ is absolutely continuous with respect to Lebesgue measure on
+$\Decs$, and that its density is positive almost everywhere on
+\[
+((l,h)^\Omega)^2.
+\]
+
+Assume complete independence between the state and the decision
+problem, so that the joint probability on $\Omega\times\Decs$ is
+\[
+b=p\times\mu.
+\]
+For a measurable picking strategy $\s$, define
+\[
+f_\s(x)
+:=
+\int_{\Decs}
+p\bigl(\{\omega\in\Omega:\s(D)(\omega)>x\}\bigr)
+\,\mu(\mathrm{d}D),
+\]
+and define its higher-order risk-weighted expected utility by
+\[
+\REU_{r,b}(\s)
+:=
+l+\int_l^h r(f_\s(x))\,\mathrm{d}x.
+\]
+
+Suppose there is a non-empty proper event
+\[
+A\subsetneq\Omega
+\]
+such that
+\[
+r\bigl(p(A)\bigr)\neq p(A).
+\]
+
+Then every measurable picking strategy $\s$ satisfying
+\[
+\s(D)\in
+\arg\max_{a\in D}\REU_{r,p}(a)
+\]
+for every $D\in\Decs$ is strictly suboptimal at the higher-order
+level. More precisely, there is a measurable picking strategy $\s'$
+such that
+\[
+\REU_{r,b}(\s')>\REU_{r,b}(\s).
+\]
+
+Moreover, $\s'$ can be chosen so that
+\[
+\mu\left(
+\left\{
+D\in\Decs:
+\s'(D)\notin
+\arg\max_{a\in D}\REU_{r,p}(a)
+\right\}
+\right)>0.
+\]
+\end{theorem}
+
+
 \begin{proof}
 Write
 \[
-\Phi(u):=\REU_{r,p}(u),
-\qquad u\in[l,h]^\Omega.
+\mathcal D:=([l,h]^\Omega)^2.
 \]
-For \(D=(u,v)\in\mathcal X\), denote the first and second acts by
-\(\pi_1(D)=u\) and \(\pi_2(D)=v\).
-
-Fix a measurable strategy \(s\) that selects a
-\(\Phi\)-maximising act from every decision problem. Define its
-aggregate survival function by
+For an act \(u\in[l,h]^\Omega\), define its tail function by
 \[
-Q(x)
+H_u(x)
 :=
-\int_{\mathcal X}p\bigl(s(D)>x\bigr)\,\mu(\mathrm dD),
-\qquad x\in[l,h].
+p\bigl(\{\omega\in\Omega:u(\omega)>x\}\bigr)
+=
+\sum_{\omega\in\Omega}
+p(\omega)\mathbf 1_{\{u(\omega)>x\}}.
+\]
+For a measurable picking strategy \(s\), define
+\[
+f_s(x)
+:=
+\int_{\mathcal D}H_{s(D)}(x)\,\mu(\mathrm dD).
+\]
+Then, by complete independence,
+\[
+\REU_{r,p\times\mu}(s)
+=
+l+\int_l^h r(f_s(x))\,\mathrm dx.
 \]
 
-We first record some properties of \(Q\).
+\medskip
+\noindent
+\textbf{Step 1: Regularity of the induced tail function.}
 
-For each \(\omega\in\Omega\), let
+For each \(\omega\in\Omega\), the selected utility
 \[
-Z_\omega(D):=s(D)(\omega).
+D\longmapsto s(D)(\omega)
 \]
-Since \(s(D)\) is one of the two acts in \(D=(u,v)\), one has
+has an atomless distribution under \(\mu\). Indeed, if
+\(N\subseteq[l,h]\) has Lebesgue measure zero, then
 \[
-\{D:Z_\omega(D)=c\}
+\{(u,v):s(u,v)(\omega)\in N\}
 \subseteq
-\{D:u(\omega)=c\}\cup\{D:v(\omega)=c\}.
+\{(u,v):u(\omega)\in N\}
+\cup
+\{(u,v):v(\omega)\in N\}.
 \]
-Both sets on the right are Lebesgue-null hyperplanes. Since
-\(\mu\) is absolutely continuous with respect to Lebesgue measure,
+Both sets on the right have \(\mu\)-measure zero because \(\mu\) is
+absolutely continuous with respect to Lebesgue measure. It follows that
 \[
-\mu(Z_\omega=c)=0
+x\longmapsto
+\mu\{D:s(D)(\omega)>x\}
 \]
-for every \(c\in[l,h]\). Thus every \(Z_\omega\) has an atomless
-distribution under \(\mu\). Consequently,
-\[
-Q(x)=\sum_{\omega\in\Omega}
-p(\omega)\mu(Z_\omega>x)
-\]
-is continuous.
+is continuous for every \(\omega\), and hence \(f_s\) is continuous.
 
-Moreover, if \(l<x<y<h\), consider the nonempty open set
+Moreover,
 \[
-B_{x,y}
+0<f_s(x)<1
+\]
+for every \(x\in(l,h)\). To see that \(f_s(x)>0\), consider the set
+\[
+G_x^+
 :=
 \left\{
-(u,v)\in\mathcal X:
-u(\omega),v(\omega)\in(x,y)
+(u,v)\in((l,h)^\Omega)^2:
+u(\omega)>x
+\text{ and }
+v(\omega)>x
 \text{ for every }\omega\in\Omega
 \right\}.
 \]
-The density of \(\mu\) is positive almost everywhere on the
-interior, so
+This is a non-empty open subset of the interior of \(\mathcal D\). On
+\(G_x^+\), whichever act \(s\) selects has utility greater than \(x\)
+in every state, and hence
 \[
-\mu(B_{x,y})>0.
+H_{s(D)}(x)=1.
 \]
-For every \(D\in B_{x,y}\), whichever act \(s\) selects, all its
-coordinates lie in \((x,y)\). Hence
+Since the density of \(\mu\) is positive almost everywhere,
 \[
-p\bigl(x<s(D)\leq y\bigr)=1
+\mu(G_x^+)>0,
 \]
-on \(B_{x,y}\), and therefore
+and therefore \(f_s(x)>0\).
+
+Similarly, the set
 \[
-Q(x)-Q(y)
+G_x^-
+:=
+\left\{
+(u,v)\in((l,h)^\Omega)^2:
+u(\omega)<x
+\text{ and }
+v(\omega)<x
+\text{ for every }\omega\in\Omega
+\right\}
+\]
+is non-empty and open. On this set,
+\[
+H_{s(D)}(x)=0.
+\]
+Thus \(\mu(G_x^-)>0\), and consequently \(f_s(x)<1\).
+
+\medskip
+\noindent
+\textbf{Step 2: The shadow value.}
+
+Fix \(y_0\in(l,h)\), and define
+\[
+W_s(y)
+:=
+\int_{y_0}^{y}r'(f_s(x))\,\mathrm dx.
+\]
+Then
+\[
+W_s'(y)=r'(f_s(y))>0.
+\]
+
+Define the shadow value of an act \(u\) by
+\[
+L_s(u)
+:=
+\sum_{\omega\in\Omega}
+p(\omega)W_s(u(\omega)).
+\]
+
+The significance of \(L_s\) is that it gives the first-order effect on
+the higher-order value of replacing one selected act by another. To
+see this, note that
+\begin{align}
+\int_l^h r'(f_s(x))H_u(x)\,\mathrm dx
+&=
+\sum_{\omega\in\Omega}
+p(\omega)
+\int_l^{u(\omega)}
+r'(f_s(x))\,\mathrm dx
+\\
+&=
+L_s(u)+C_s,
+\end{align}
+where
+\[
+C_s
+:=
+\sum_{\omega\in\Omega}
+p(\omega)
+\int_l^{y_0}r'(f_s(x))\,\mathrm dx
+\]
+does not depend on \(u\). Therefore, for any two acts \(u\) and \(v\),
+\[
+\int_l^h
+r'(f_s(x))
+\bigl(H_v(x)-H_u(x)\bigr)
+\,\mathrm dx
 =
-\int_{\mathcal X}
-p\bigl(x<s(D)\leq y\bigr)\,\mu(\mathrm dD)
-\geq \mu(B_{x,y})>0.
+L_s(v)-L_s(u).
 \]
-Thus \(Q\) is strictly decreasing. Also, by atomlessness at \(l\),
+
+\medskip
+\noindent
+\textbf{Step 3: A strict reversal between first-order REU and the
+shadow value.}
+
+By assumption, there is a non-empty proper event
 \[
-Q(l)=1,
+A\subsetneq\Omega
+\]
+such that
+\[
+r(p(A))\neq p(A).
+\]
+Put
+\[
+P:=p(A).
+\]
+Since \(p(\omega)>0\) for every \(\omega\), we have
+\[
+0<P<1.
+\]
+
+Consider the two-parameter family of acts
+\[
+u^{x,y}(\omega)
+:=
+\begin{cases}
+x, & \omega\in A,\\
+y, & \omega\notin A,
+\end{cases}
 \qquad
-Q(h)=0.
+l<x,y<h,
+\qquad
+x>y.
+\]
+For such an act,
+\[
+H_{u^{x,y}}(z)
+=
+\begin{cases}
+1, & z<y,\\
+P, & y\leq z<x,\\
+0, & z\geq x.
+\end{cases}
+\]
+Hence
+\[
+\REU_{r,p}(u^{x,y})
+=
+r(P)x+\bigl(1-r(P)\bigr)y.
+\]
+The common lower-bound term cancels in this expression.
+
+Meanwhile,
+\[
+L_s(u^{x,y})
+=
+P W_s(x)+(1-P)W_s(y).
+\]
+
+We claim that there are \(x>y\) and \(x'>y'\) such that
+\[
+\REU_{r,p}(u^{x,y})
+>
+\REU_{r,p}(u^{x',y'})
+\]
+but
+\[
+L_s(u^{x,y})
+<
+L_s(u^{x',y'}).
+\]
+
+Suppose not. Then the gradients of these two functions of \((x,y)\)
+must be positively collinear at every point of the open region
+\[
+\{(x,y)\in(l,h)^2:x>y\}.
+\]
+Indeed, if the gradients were not positively collinear at some point,
+there would be a direction \(d\in\mathbb R^2\) that increased the first
+function and decreased the second. A sufficiently small movement in
+that direction would produce the required strict reversal.
+
+The two gradients are
+\[
+\bigl(r(P),1-r(P)\bigr)
+\]
+and
+\[
+\bigl(PW_s'(x),(1-P)W_s'(y)\bigr).
+\]
+Positive collinearity therefore requires
+\[
+\frac{W_s'(x)}{W_s'(y)}
+=
+\frac{r(P)(1-P)}
+     {(1-r(P))P}
+=:C
+\]
+for every \(x>y\).
+
+Choose
+\[
+x>y>z.
+\]
+Then
+\[
+\frac{W_s'(x)}{W_s'(y)}=C
+\qquad\text{and}\qquad
+\frac{W_s'(y)}{W_s'(z)}=C,
+\]
+so
+\[
+\frac{W_s'(x)}{W_s'(z)}=C^2.
+\]
+But applying the same relation directly to \(x>z\) gives
+\[
+\frac{W_s'(x)}{W_s'(z)}=C.
+\]
+Therefore
+\[
+C^2=C.
+\]
+Since \(W_s'>0\), we have \(C>0\), and hence
+\[
+C=1.
 \]
 It follows that
 \[
-0<Q(x)<1
-\]
-for every \(x\in(l,h)\).
-
-Define
-\[
-w(x):=r'(Q(x)),
-\qquad x\in(l,h).
-\]
-Because \(Q\) is continuous, \(r'\) is continuous on \((0,1)\),
-and \(r'>0\), the function \(w\) is continuous and strictly
-positive on \((l,h)\).
-
-Now let
-\[
-a:=p(A),
-\qquad
-b:=r(a).
-\]
-Since \(A\) is nonempty and proper and \(p\) has full support,
-\[
-0<a<1.
-\]
-Strict monotonicity of \(r\) gives \(0<b<1\), and by assumption
-\(a\neq b\). Put
-\[
-\theta:=\frac{a+b}{2},
-\qquad
-d:=\frac{|b-a|}{2}>0.
-\]
-
-Choose some \(z\in(l,h)\). Since \(w(z)>0\) and \(w\) is continuous,
-we may choose \(\varepsilon>0\), with \(z+\varepsilon<h\), so small
-that
-\[
-\sup_{x\in[z,z+\varepsilon]}
-|w(x)-w(z)|
-<
-\frac{w(z)d}{2}.
-\]
-
-Define the event-contingent act
-\[
-R(\omega):=z+\varepsilon\mathbf 1_A(\omega)
-\]
-and the constant act
-\[
-C(\omega):=z+\theta\varepsilon.
-\]
-Both acts lie in the interior \((l,h)^\Omega\).
-
-Their risk-weighted expected utilities are
-\[
-\Phi(R)
+r(P)(1-P)
 =
-z+\varepsilon r(p(A))
-=
-z+\varepsilon b
+(1-r(P))P,
+\]
+and therefore
+\[
+r(P)=P.
+\]
+This contradicts
+\[
+r(p(A))\neq p(A).
+\]
+
+Thus there are two acts \(a,c\in((l,h)^\Omega)\) such that
+\[
+\REU_{r,p}(a)>\REU_{r,p}(c)
+\]
+but
+\[
+L_s(c)>L_s(a).
+\]
+
+\medskip
+\noindent
+\textbf{Step 4: Thickening the reversal to an open set of decision
+problems.}
+
+The two acts \(a\) and \(c\) obtained above are constant on \(A\) and
+on its complement. Although such acts lie in a lower-dimensional
+subset of the full act space, the two inequalities are strict.
+Risk-weighted expected utility is continuous in the utility profile,
+and \(L_s\) is continuous because \(W_s\) is continuously
+differentiable.
+
+Therefore there are open neighbourhoods
+\[
+O_a,O_c\subseteq(l,h)^\Omega
+\]
+of \(a\) and \(c\), respectively, and some \(\eta>0\), such that for
+every \(u\in O_a\) and \(v\in O_c\),
+\[
+\REU_{r,p}(u)>\REU_{r,p}(v)
 \]
 and
 \[
-\Phi(C)=z+\theta\varepsilon.
-\]
-Their ordinary \(p\)-expectations are
-\[
-E_p[R]=z+a\varepsilon,
-\qquad
-E_p[C]=z+\theta\varepsilon.
+L_s(v)-L_s(u)\geq\eta.
 \]
 
-Define an ordered decision problem \(D^0=(u^0,v^0)\) as follows:
+We may shrink \(O_a\) and \(O_c\) so that their closures are compact
+subsets of \((l,h)^\Omega\). Thus there is a compact interval
 \[
-(u^0,v^0)
-:=
-\begin{cases}
-(R,C),& b>a,\\
-(C,R),& b<a.
-\end{cases}
+J\subseteq(l,h)
 \]
-By construction,
+containing every coordinate of every act in
 \[
-\Phi(u^0)-\Phi(v^0)=d\varepsilon>0,
-\]
-whereas
-\[
-E_p[v^0]-E_p[u^0]=d\varepsilon>0.
-\]
-Thus \(u^0\) is uniquely preferred by the first-order
-risk-weighted criterion, but \(v^0\) has strictly greater ordinary
-expected utility.
-
-Set
-\[
-\Delta^0(x)
-:=
-p(v^0>x)-p(u^0>x).
-\]
-Because all coordinates of both \(u^0\) and \(v^0\) lie in
-\([z,z+\varepsilon]\),
-\[
-\Delta^0(x)=0
-\quad\text{outside }[z,z+\varepsilon].
-\]
-The ordinary layer-cake formula gives
-\[
-\int_l^h \Delta^0(x)\,\mathrm dx
-=
-E_p[v^0]-E_p[u^0]
-=
-d\varepsilon.
-\]
-Also,
-\[
-\int_l^h|\Delta^0(x)|\,\mathrm dx
-\leq\varepsilon,
-\]
-since \(|\Delta^0(x)|\leq1\) and it is supported on an interval of
-length \(\varepsilon\). It follows that
-\begin{align}
-\int_l^h w(x)\Delta^0(x)\,\mathrm dx
-&=
-w(z)\int_l^h\Delta^0(x)\,\mathrm dx
-+
-\int_l^h\bigl(w(x)-w(z)\bigr)\Delta^0(x)\,\mathrm dx\\
-&\geq
-w(z)d\varepsilon
--
-\sup_{x\in[z,z+\varepsilon]}|w(x)-w(z)|
-\int_l^h|\Delta^0(x)|\,\mathrm dx\\
-&>
-w(z)d\varepsilon-\frac{w(z)d}{2}\varepsilon\\
-&=
-\frac{w(z)d\varepsilon}{2}>0.
-\end{align}
-
-Choose a compact interval
-\[
-I\subset(l,h)
-\]
-whose interior contains all coordinates of \(u^0\) and \(v^0\).
-For acts \(u,v\) all of whose coordinates lie in \(I\), define
-\[
-G(u,v)
-:=
-\int_I
-w(x)\bigl(p(v>x)-p(u>x)\bigr)\,\mathrm dx.
-\]
-This is continuous in \((u,v)\). Indeed, if \(W\) is any primitive
-of \(w\) on \(I\), then
-\[
-G(u,v)
-=
-\sum_{\omega\in\Omega}
-p(\omega)\bigl(W(v(\omega))-W(u(\omega))\bigr).
+O_a\cup O_c.
 \]
 
-The map \(u\mapsto\Phi(u)\) is also continuous. To see this, if
-\(u_n\to u\), then
+Put
 \[
-r\bigl(p(u_n>x)\bigr)
-\longrightarrow
-r\bigl(p(u>x)\bigr)
+N:=O_a\times O_c.
 \]
-for every \(x\) except possibly the finitely many coordinate
-values of \(u\), and the integrands are bounded by \(1\);
-dominated convergence therefore applies.
+Then \(N\) is a non-empty open subset of the full-dimensional
+decision space
+\[
+((l,h)^\Omega)^2.
+\]
+Because the density of \(\mu\) is positive almost everywhere,
+\[
+\mu(N)>0.
+\]
 
-Since
+For every decision problem
 \[
-\Phi(u^0)-\Phi(v^0)>0
-\quad\text{and}\quad
-G(u^0,v^0)>0,
+D=(u,v)\in N,
 \]
-there exist a nonempty open neighbourhood
+we have
 \[
-\mathcal O\subset ((l,h)^\Omega)^2
+\REU_{r,p}(u)>\REU_{r,p}(v).
 \]
-of \(D^0\), and constants \(\eta,\gamma>0\), such that every
-\(D=(u,v)\in\mathcal O\) satisfies
-\[
-\Phi(u)-\Phi(v)>\eta
-\]
-and
-\[
-G(u,v)>\gamma.
-\]
-We may additionally take \(\mathcal O\) small enough that every
-coordinate of \(u\) and \(v\) belongs to \(I\).
-
-Because \(\mathcal O\) is a nonempty open subset of the interior
-and the density of \(\mu\) is positive almost everywhere there,
-\[
-\mu(\mathcal O)>0.
-\]
-For every \(D=(u,v)\in\mathcal O\), the first act \(u\) is the
-unique \(\Phi\)-maximiser. Hence
+Since \(s\) selects an \(\REU_{r,p}\)-maximising act,
 \[
 s(D)=u
-\qquad
-\text{for every }D\in\mathcal O.
+\]
+throughout \(N\). However,
+\[
+L_s(v)-L_s(s(D))
+=
+L_s(v)-L_s(u)
+\geq\eta.
 \]
 
-We now switch the choice on a sufficiently small positive-measure
-subset of \(\mathcal O\).
+\medskip
+\noindent
+\textbf{Step 5: A needle variation.}
 
-Since \(I\) is compactly contained in \((l,h)\) and \(Q\) is
-continuous with values in \((0,1)\), there is a number
-\(\kappa>0\) such that
+Since \(\mu\) is absolutely continuous, it is nonatomic. We may
+therefore choose a measurable set
 \[
-\kappa\leq Q(x)\leq1-\kappa
-\qquad
-\text{for every }x\in I.
+E\subseteq N
 \]
-The measure \(\mu\) is nonatomic. Therefore, inside
-\(\mathcal O\), there are measurable sets of arbitrarily small
-positive measure. Choose a measurable
+with arbitrarily small positive measure
 \[
-E\subset\mathcal O
+\mu(E)=\varepsilon.
 \]
-with
-\[
-e:=\mu(E)>0
-\]
-sufficiently small; the precise smallness requirement will be
-specified below.
 
-Define
+Define a new measurable picking strategy \(t\) by
 \[
 t(D)
 :=
 \begin{cases}
-\pi_2(D),&D\in E,\\
-s(D),&D\notin E.
+v, & D=(u,v)\in E,\\
+s(D), & D\notin E.
 \end{cases}
 \]
-This is a measurable picking strategy. On \(E\), \(s(D)=\pi_1(D)\)
-and the first act is the unique \(\Phi\)-maximiser, so \(t\) selects
-a non-maximising act there.
+Thus \(t\) differs from \(s\) only on \(E\), and on \(E\) it selects
+the act with the larger shadow value.
 
-Let
+Write
 \[
-\delta(x)
-:=
-\int_E
-\bigl(
-p(\pi_2(D)>x)-p(\pi_1(D)>x)
-\bigr)\,\mu(\mathrm dD).
+g_E(x):=f_t(x)-f_s(x).
 \]
-The aggregate survival function induced by \(t\) is then
+Since \(s\) and \(t\) differ only on a set of measure \(\varepsilon\),
+and since every tail function takes values in \([0,1]\),
 \[
-Q_t(x)=Q(x)+\delta(x).
-\]
-Because all coordinates of both acts in every \(D\in E\) lie in
-\(I\),
-\[
-\delta(x)=0
-\qquad\text{for }x\notin I.
-\]
-Moreover,
-\[
-|\delta(x)|\leq e
+|g_E(x)|\leq\varepsilon
 \]
 for every \(x\).
 
-By Fubini's theorem,
-
-\begin{align}
-\int_I r'(Q(x))\delta(x)\,\mathrm dx
-&=
-\int_Iw(x)
-\int_E
-\bigl(
-p(\pi_2(D)>x)-p(\pi_1(D)>x)
-\bigr)
-\,\mu(\mathrm dD)\,\mathrm dx\\
-&=
-\int_EG(\pi_1(D),\pi_2(D))\,\mu(\mathrm dD)\\
-&\geq \gamma e.
-\end{align}
-
-Take \(e<\kappa/2\). Then, for \(x\in I\), both \(Q(x)\) and
-\(Q(x)+\delta(x)\) lie in the compact interval
+Moreover,
 \[
-\left[\frac{\kappa}{2},1-\frac{\kappa}{2}\right].
+g_E(x)=0
 \]
-Since \(r\in C^2((0,1))\), there is a finite constant
+outside \(J\). Below the lower endpoint of \(J\), both selected acts
+have tail value \(1\); above the upper endpoint of \(J\), both have
+tail value \(0\).
+
+Define
 \[
-M:=
-\sup_{q\in[\kappa/2,\,1-\kappa/2]}|r''(q)|.
+B_r(y,z)
+:=
+r(y)-r(z)-r'(z)(y-z).
 \]
-Taylor's theorem therefore yields, pointwise on \(I\),
+Then
 \[
-r(Q+\delta)-r(Q)
+r(f_t(x))-r(f_s(x))
 =
-r'(Q)\delta+R,
-\qquad
-|R|\leq\frac{M}{2}\delta^2.
+r'(f_s(x))g_E(x)
++
+B_r(f_t(x),f_s(x)).
 \]
-Consequently,
+Therefore
 \begin{align}
 \REU_{r,p\times\mu}(t)
 -
 \REU_{r,p\times\mu}(s)
 &=
-\int_I
-\bigl(r(Q(x)+\delta(x))-r(Q(x))\bigr)\,\mathrm dx\\
-&\geq
-\gamma e
--
-\frac{M}{2}\int_I\delta(x)^2\,\mathrm dx\\
-&\geq
-\gamma e
--
-\frac{M}{2}|I|e^2.
+\int_l^h r'(f_s(x))g_E(x)\,\mathrm dx
+\\
+&\quad+
+\int_l^h
+B_r(f_t(x),f_s(x))
+\,\mathrm dx.
+\label{eq:reu-needle-decomposition}
 \end{align}
-Choosing \(E\) so small that, in addition,
+
+By the definition of \(f_s\) and \(f_t\), and by Fubini's theorem,
+\begin{align}
+\int_l^h r'(f_s(x))g_E(x)\,\mathrm dx
+&=
+\int_E
+\int_l^h
+r'(f_s(x))
+\bigl(H_{t(D)}(x)-H_{s(D)}(x)\bigr)
+\,\mathrm dx
+\,\mu(\mathrm dD)
+\\
+&=
+\int_E
+\bigl(L_s(t(D))-L_s(s(D))\bigr)
+\,\mu(\mathrm dD).
+\end{align}
+On \(E\),
 \[
-\frac{M}{2}|I|e<\gamma
+L_s(t(D))-L_s(s(D))\geq\eta.
 \]
-gives
+Hence
+\[
+\int_l^h r'(f_s(x))g_E(x)\,\mathrm dx
+\geq
+\eta\varepsilon.
+\]
+
+It remains to bound the second term in
+\eqref{eq:reu-needle-decomposition}. Since \(f_s\) is continuous and
+\[
+0<f_s(x)<1
+\]
+for every \(x\in(l,h)\), its image on the compact interval \(J\) lies
+in a compact subinterval of \((0,1)\). For sufficiently small
+\(\varepsilon\), the same is true of \(f_t\), because
+\[
+|f_t(x)-f_s(x)|\leq\varepsilon.
+\]
+
+Since \(r\in C^2((0,1))\), there is some \(M<\infty\) such that
+\[
+|r''(z)|\leq M
+\]
+for every value of \(z\) lying between \(f_s(x)\) and \(f_t(x)\), with
+\(x\in J\). Taylor's theorem therefore gives
+\[
+|B_r(f_t(x),f_s(x))|
+\leq
+\frac{M}{2}|g_E(x)|^2
+\leq
+\frac{M}{2}\varepsilon^2.
+\]
+Because \(g_E\) vanishes outside \(J\),
+\[
+\left|
+\int_l^h
+B_r(f_t(x),f_s(x))
+\,\mathrm dx
+\right|
+\leq
+\frac{M}{2}\lambda(J)\varepsilon^2,
+\]
+where \(\lambda(J)\) is the length of \(J\).
+
+Thus, for some constant \(C_0<\infty\),
+\[
+\REU_{r,p\times\mu}(t)
+-
+\REU_{r,p\times\mu}(s)
+\geq
+\eta\varepsilon-C_0\varepsilon^2.
+\]
+For sufficiently small \(\varepsilon>0\),
+\[
+\eta\varepsilon-C_0\varepsilon^2>0.
+\]
+Therefore
 \[
 \REU_{r,p\times\mu}(t)
 >
 \REU_{r,p\times\mu}(s).
 \]
 
-Finally, on \(E\), the two acts are distinct because
+Finally,
 \[
-\Phi(\pi_1(D))-\Phi(\pi_2(D))>\eta>0.
+\mu(E)=\varepsilon>0,
+\]
+and on every \(D\in E\), the strategy \(t\) selects the act \(v\)
+even though
+\[
+\REU_{r,p}(u)>\REU_{r,p}(v).
+\]
+Thus \(t\) fails to select an \(\REU_{r,p}\)-maximising act on a set
+of positive \(\mu\)-measure, as required.
+\end{proof}
+\section{Alternative proof}
+\begin{theorem}[Positive-density self-undermining of risk-averse REU]
+\label{thm:reu-positive-density}
+Let $\Omega$ be a finite state space with at least two elements, and let
+$p$ be a probability function on $\Omega$ such that
+\[
+p(\omega)>0
+\]
+for every $\omega\in\Omega$. Let
+\[
+\A:=[-1,1]^\Omega,
+\qquad
+\X:=\A^2,
+\]
+where $D=(a,b)\in\X$ is an ordered binary decision problem. A
+measurable picking strategy is a measurable function $\s:\X\to\A$
+such that
+\[
+\s(a,b)\in\{a,b\}
+\]
+for every $(a,b)\in\X$.
+
+Let $r:[0,1]\to[0,1]$ be continuous and strictly increasing, with
+\[
+r(0)=0,
+\qquad
+r(1)=1,
+\qquad
+r\in C^2((0,1)),
+\qquad
+r'(q)>0
+\]
+for every $q\in(0,1)$. Suppose moreover that
+\[
+r(q)<q
+\]
+for every $q\in(0,1)$.
+
+Let $\mu$ be a Borel probability measure on $\X$ that is absolutely
+continuous with respect to Lebesgue measure and whose density is
+positive almost everywhere on
+\[
+\bigl((-1,1)^\Omega\bigr)^2.
+\]
+For $a\in\A$ and $x\in[-1,1]$, write
+\[
+p(a>x):=p\bigl(\{\omega\in\Omega:a(\omega)>x\}\bigr),
+\]
+and define
+\[
+\REU_{r,p}(a)
+:=-1+\int_{-1}^{1}r\bigl(p(a>x)\bigr)\diff x.
+\]
+Under complete independence, define the risk-weighted expected utility
+of a picking strategy $\s$ by
+\[
+\REU_{r,p\times\mu}(\s)
+:=-1+\int_{-1}^{1}
+r\left(
+\int_\X p\bigl(\s(D)>x\bigr)\,\mu(\diff D)
+\right)\diff x.
+\]
+
+If $\s$ selects an $\REU_{r,p}$-maximising act from every decision
+problem, then there is a measurable picking strategy $\s'$ such that
+\[
+\REU_{r,p\times\mu}(\s')
+>
+\REU_{r,p\times\mu}(\s).
+\]
+Moreover,
+\[
+\mu\bigl(\{D\in\X:\s'(D)\neq\s(D)\}\bigr)>0,
+\]
+and, on this positive-measure set, $\s'$ selects the unique
+non-$\REU_{r,p}$-maximising act.
+\end{theorem}
+
+\begin{proof}
+We identify each number in $[-1,1]$ with the corresponding constant
+act. Write
+\[
+\Phi(a):=\REU_{r,p}(a).
+\]
+For the given strategy $\s$, define
+\[
+Q(x):=
+\int_\X p\bigl(\s(D)>x\bigr)\,\mu(\diff D),
+\qquad x\in[-1,1].
+\]
+
+We first show that $Q$ is continuous. For each $\omega\in\Omega$, let
+\[
+Y_\omega(D):=\s(D)(\omega).
+\]
+For every $t\in[-1,1]$,
+\[
+\{D:Y_\omega(D)=t\}
+\subseteq
+\{(a,b):a(\omega)=t\}
+\cup
+\{(a,b):b(\omega)=t\}.
+\]
+The two sets on the right are Lebesgue-null hyperplanes, and therefore
+have $\mu$-measure zero. Thus $Y_\omega$ has an atomless distribution
+under $\mu$. Since
+\[
+Q(x)=\sum_{\omega\in\Omega}
+p(\omega)\,\mu\bigl(Y_\omega>x\bigr),
+\]
+it follows that $Q$ is continuous.
+
+Let
+\begin{align}
+B_+
+&:=\{(a,b)\in\X:0<a(\omega)<1\text{ and }0<b(\omega)<1
+\text{ for every }\omega\in\Omega\},\\
+B_-
+&:=\{(a,b)\in\X:-1<a(\omega)<0\text{ and }-1<b(\omega)<0
+\text{ for every }\omega\in\Omega\}.
+\end{align}
+Both are non-empty open subsets of the interior of $\X$, so
+\[
+\mu(B_+)>0
+\qquad\text{and}\qquad
+\mu(B_-)>0.
+\]
+On $B_+$, whichever act $\s$ selects is strictly positive in every
+state; on $B_-$, whichever act it selects is strictly negative in every
+state. Hence
+\[
+0<Q(0)<1.
+\]
+By continuity, there are $\eta,\kappa>0$ such that
+\[
+I:=[-\eta,\eta]\subset(-1,1)
+\]
+and
+\[
+\kappa\leq Q(x)\leq1-\kappa
+\qquad
+\text{for every }x\in I.
+\]
+Define
+\[
+w(x):=r'(Q(x)),
+\qquad x\in I.
+\]
+Then $w$ is continuous and strictly positive on $I$.
+
+Fix a non-empty proper event $A\subsetneq\Omega$, and put
+\[
+\alpha:=p(A).
+\]
+Since $p$ has full support and $r(\alpha)<\alpha$, we may choose
+$c$ such that
+\[
+r(\alpha)<c<\alpha.
+\]
+For $\varepsilon>0$, define the act
+\[
+g_\varepsilon(\omega)
+:=\varepsilon\bigl(\mathbf 1_A(\omega)-c\bigr).
 \]
 Thus
 \[
-\{D:t(D)\neq s(D)\}=E
-\]
-up to a null set, and hence
-\[
-\mu\bigl(\{D:t(D)\neq s(D)\}\bigr)
+g_\varepsilon(\omega)
 =
-\mu(E)>0.
+\begin{cases}
+\varepsilon(1-c),&\omega\in A,\\
+-\varepsilon c,&\omega\notin A.
+\end{cases}
 \]
-On this set, \(t\) selects the uniquely non-maximising second act.
-This proves all the claims.
+For all sufficiently small $\varepsilon>0$, both the constant-zero act
+and $g_\varepsilon$ lie in the interior of $\A$, and all values taken
+by these acts lie in the interior of $I$. Moreover,
+\[
+\Phi(0)=0,
+\]
+while
+\begin{align}
+\Phi(g_\varepsilon)
+&=-1
++\int_{-1}^{-\varepsilon c}1\diff x
++\int_{-\varepsilon c}^{\varepsilon(1-c)}
+r(\alpha)\diff x\\
+&=\varepsilon\bigl(r(\alpha)-c\bigr)<0.
+\end{align}
+Thus, in the decision problem $(0,g_\varepsilon)$, the constant-zero
+act is the unique $\REU_{r,p}$-maximiser.
+
+We next establish the inequality that will make it beneficial to replace
+the constant-zero act by nearby gamble-like acts on a small open set of
+decision problems. Put
+\[
+J_\varepsilon
+:=\int_I
+w(x)\bigl(p(g_\varepsilon>x)-p(0>x)\bigr)\diff x.
+\]
+Apart from endpoints,
+\[
+p(g_\varepsilon>x)-p(0>x)
+=
+\begin{cases}
+-(1-\alpha),&-\varepsilon c<x<0,\\
+\alpha,&0<x<\varepsilon(1-c),\\
+0,&\text{otherwise}.
+\end{cases}
+\]
+Consequently,
+\[
+J_\varepsilon
+=-(1-\alpha)\int_{-\varepsilon c}^{0}w(x)\diff x
++\alpha\int_0^{\varepsilon(1-c)}w(x)\diff x.
+\]
+By continuity of $w$ at zero,
+\begin{align}
+\lim_{\varepsilon\downarrow0}\frac{J_\varepsilon}{\varepsilon}
+&=w(0)\bigl(-(1-\alpha)c+\alpha(1-c)\bigr)\\
+&=w(0)(\alpha-c)>0.
+\end{align}
+Fix $\varepsilon>0$ sufficiently small that
+\[
+J_\varepsilon>0
+\]
+and all values taken by $0$ and $g_\varepsilon$ lie in the interior of
+$I$. Set
+\[
+D^*:=\{0,g_\varepsilon\}.
+\]
+
+The map $\Phi:\A\to\Re$ is continuous. Indeed, if $a_n\to a$, then
+\[
+r\bigl(p(a_n>x)\bigr)\longrightarrow r\bigl(p(a>x)\bigr)
+\]
+for every $x$ except possibly the finitely many values
+\[
+\{a(\omega):\omega\in\Omega\},
+\]
+and dominated convergence applies.
+
+For acts $a,b$ whose values lie in the interior of $I$, define
+\[
+G(a,b)
+:=\int_I
+w(x)\bigl(p(b>x)-p(a>x)\bigr)\diff x.
+\]
+This map is continuous. To see this, let
+\[
+W(y):=\int_0^y w(x)\diff x,
+\qquad y\in I.
+\]
+Then
+\[
+G(a,b)
+=
+\sum_{\omega\in\Omega}
+p(\omega)\bigl(W(b(\omega))-W(a(\omega))\bigr).
+\]
+At $D^*$,
+\[
+\Phi(0)>\Phi(g_\varepsilon)
+\qquad\text{and}\qquad
+G(0,g_\varepsilon)=J_\varepsilon>0.
+\]
+Therefore there are an open neighbourhood $V$ of $D^*$ and a number
+$\gamma>0$ such that, for every $D=(a,b)\in V$,
+\[
+\Phi(a)>\Phi(b)
+\qquad\text{and}\qquad
+G(a,b)>\gamma.
+\]
+We may take $V$ small enough that every value of every act appearing
+in $V$ lies in the interior of $I$.
+
+Since $D^*$ lies in the interior of $\X$, sufficiently small open balls
+about $D^*$ are contained in $V$. Every such ball has positive
+$\mu$-measure, because the density of $\mu$ is positive almost
+everywhere on the interior. Their measures converge to zero as their
+radii converge to zero, because $\mu$ is absolutely continuous and
+therefore has no atoms.
+
+Let
+\[
+M:=
+\sup_{q\in[\kappa/2,\,1-\kappa/2]}
+|r''(q)|<\infty.
+\]
+Choose an open ball $\O$ about $D^*$, with $\O\subseteq V$, such that,
+writing
+\[
+m:=\mu(\O),
+\]
+we have
+\[
+0<m<\frac{\kappa}{2}
+\qquad\text{and}\qquad
+M\eta m<\gamma.
+\]
+For $D=\{a_D,b_D\}\in\O$, the first act $a_D$ is the unique
+$\REU_{r,p}$-maximiser, and hence
+\[
+\s(D)=a_D.
+\]
+Define
+\[
+\s'(D)
+:=
+\begin{cases}
+b_D,&D=(a_D,b_D)\in\O,\\
+\s(D),&D\notin\O.
+\end{cases}
+\]
+This is a measurable picking strategy. It takes the second act in every
+decision problem in $\O$.
+
+Define
+\[
+\delta(x)
+:=
+\int_\O
+\bigl(p(b_D>x)-p(a_D>x)\bigr)\,\mu(\diff D).
+\]
+The aggregate survival function generated by $\s'$ is
+\[
+Q_{\s'}(x)=Q(x)+\delta(x).
+\]
+Because all values of the acts in $\O$ lie in $I$,
+\[
+\delta(x)=0
+\qquad\text{for }x\notin I,
+\]
+and, for every $x$,
+\[
+|\delta(x)|\leq m.
+\]
+By Fubini's theorem,
+\begin{align}
+\int_I r'(Q(x))\delta(x)\diff x
+&=\int_\O G(a_D,b_D)\,\mu(\diff D)\\
+&\geq\gamma m.
+\end{align}
+
+For $x\in I$, both $Q(x)$ and $Q(x)+\delta(x)$ lie in
+\[
+[\kappa/2,1-\kappa/2].
+\]
+Taylor's theorem therefore gives
+\[
+r(Q(x)+\delta(x))-r(Q(x))
+\geq
+r'(Q(x))\delta(x)-\frac{M}{2}\delta(x)^2.
+\]
+Since $\delta$ vanishes outside $I$,
+\begin{align}
+&\REU_{r,p\times\mu}(\s')
+-\REU_{r,p\times\mu}(\s)\\
+&\quad=
+\int_I
+\bigl(r(Q(x)+\delta(x))-r(Q(x))\bigr)\diff x\\
+&\quad\geq
+\gamma m-\frac{M}{2}\int_I\delta(x)^2\diff x\\
+&\quad\geq
+\gamma m-M\eta m^2\\
+&\quad>0.
+\end{align}
+Thus
+\[
+\REU_{r,p\times\mu}(\s')
+>
+\REU_{r,p\times\mu}(\s).
+\]
+
+Finally, $\s'$ differs from $\s$ at every decision problem in $\O$, and
+only there. Hence
+\[
+\mu\bigl(\{D:\s'(D)\neq\s(D)\}\bigr)
+=\mu(\O)=m>0.
+\]
+On $\O$, $\s'$ selects $b_D$, which is the unique
+non-$\REU_{r,p}$-maximising act. This proves the result.
 \end{proof}
+
 
 \end{document}
