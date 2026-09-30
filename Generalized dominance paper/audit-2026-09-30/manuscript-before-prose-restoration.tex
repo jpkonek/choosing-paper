@@ -30,22 +30,19 @@
 
 
 \section{Models, losses, and dominance}\label{sec:setting}
-Let $\Omega$ and $\M$ be arbitrary nonempty sets of worlds and models. Let $L:\M\times\Omega\to[0,\infty]$ be a loss function. Loss functions measure some property or other relevant to evaluating how well the model performs at a given task in different states of the world. Losses are penalties. So smaller losses are better. The loss profile of $m$ is $L(m)=L(m,\cdot)$. %Fix a nonempty class $\C\subseteq\M$ of ``coherent models,'' and write $R=L(\M)$ and $K=L(\C)$.
+Let $\Omega$ and $\M$ be arbitrary nonempty sets of worlds and models. Let $L:\M_L\times\Omega\to[0,\infty]$ be a loss function, where $\varnothing\ne\M_L\subseteq\M$ is the class of models it evaluates. Loss functions measure some property or other relevant to evaluating how well the model performs at a given task in different states of the world. Losses are penalties. So smaller losses are better. The loss profile of $m$ is $L(m)=L(m,\cdot)$.
 
-A model $c$ \emph{weakly dominates} $m$ when $L(c)\le L(m)$, \textit{i.e.}, $L(c,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$. It \emph{dominates} $m$ when $L(c)\le L(m)$ and $L(c)\neq L(m)$, which we write $L(c)\lneq L(m)$. It \emph{strictly dominates} $m$ when $L(c)< L(m)$, \textit{i.e.}, $L(c,\omega)< L(m,\omega)$ at every world $\omega\in\Omega$. It \emph{uniformly dominates} $m$ when its losses are finite and some $\varepsilon>0$ satisfies $L(c,\omega)+\varepsilon\le L(m,\omega)$ at every world $\omega\in\Omega$. For finitely many worlds strict and uniform dominance coincide. For infinitely many worlds, one model can strictly dominate another without uniformly dominating it (if the differences in their respective losses is always positive but can be arbitrarily small).
+A model $c$ \emph{weakly dominates} $m$ (relative to $L$) when $L(c)\le L(m)$, \textit{i.e.}, $L(c,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$. It \emph{dominates} $m$ when $L(c)\le L(m)$ and $L(c)\neq L(m)$, which we write $L(c)\lneq L(m)$. It \emph{strictly dominates} $m$ when $L(c)< L(m)$, \textit{i.e.}, $L(c,\omega)< L(m,\omega)$ at every world $\omega\in\Omega$. It \emph{uniformly dominates} $m$ when its losses are finite and some $\varepsilon>0$ satisfies $L(c,\omega)+\varepsilon\le L(m,\omega)$ at every world $\omega\in\Omega$. For finitely many worlds strict and uniform dominance coincide. For infinitely many worlds, one model can strictly dominate another without uniformly dominating it (if the differences in their respective losses are always positive but can be made arbitrarily small).
 
-
-%Let $\U$ and $U_R$ be the undominated models and loss profiles, respectively. In principle, many different models could get mapped to the same loss profile. So $U_R=K$ need not imply $\U=\C$. Even if the undominated loss profiles are exactly the loss profiles of the coherent models, that does \textit{not} mean that the coherent models are exactly the non-dominated models. An incoherent model may, after all, share a loss profile with a coherent model. $U_R=K$ implies $\U=\C$ only if $\C$ is \emph{closed under equal profiles}, \textit{i.e.}, whenever $L(m)=L(c)$ for $c\in\C$, $m$ also belongs to $\C$. 
 
 For finite nonempty $F\subseteq\Omega$, let $\Delta_F$ be the probability simplex on $F$, with its usual Euclidean topology. Write $\Delta=\Delta_\Omega$ when $\Omega$ is finite. The support of $p$ is $\supp p=\{\omega:p_\omega>0\}$. A model is \emph{Bayes for} a finitely supported $p$ when it minimises
 \[
  p\cdot L(m)=\sum_{\omega\in\supp p}p_\omega L(m,\omega).
 \]
-Note that probability zero worlds ($p_\omega=0$) do not enter into this sum, even when the loss $L(m,\omega)$ is infinite. Let $V(p):=\inf_{m\in\M}p\cdot L(m)$, \textit{i.e.}, $V(p)$ is the greatest lower bound on expected loss relative to $p$ (roughly, the smallest possible expected loss relative to $p$). A model $m$ is Bayes for $p$ just in case $V(p)=p\cdot L(m)$. Without further assumptions about $L$ or $\M$, there is not much interesting that we can say about Bayes models. They need not be unique, undominated, or have any other interesting structural properties (\textit{e.g.}, coherence; see below).
+Note that probability zero worlds ($p_\omega=0$) do not enter into this sum, even when the loss $L(m,\omega)$ is infinite. Let $V_L(p):=\inf_{m\in\M_L}p\cdot L(m)$, \textit{i.e.}, $V_L(p)$ is the greatest lower bound on expected loss relative to $p$ (roughly, the smallest possible expected loss relative to $p$). A model $m$ is Bayes for $p$ just in case $V_L(p)=p\cdot L(m)$. Without further assumptions about $L$ or $\M_L$, there is not much interesting that we can say about Bayes models. They need not be unique, undominated, or have any other interesting structural properties (\textit{e.g.}, coherence; see below).
 
 
 A function $h$ is \emph{lower semicontinuous} when $\{h\le a\}$ is closed for every real $a$. In the metric spaces below this means $h(p)\le\liminf_n h(p_n)$ whenever $p_n\to p$. At a limit, loss may drop but cannot jump upwards. Equivalently, a fixed upper bound on loss survives passage to a limit. For general compact parameter spaces the same statement uses nets in place of sequences.
-
 
 
 \section{Axioms on loss functions}\label{sec:axioms}
@@ -53,8 +50,7 @@ A function $h$ is \emph{lower semicontinuous} when $\{h\le a\}$ is closed for ev
 What is a reasonable loss function? Given the generality of our framework, we should not expect to be able to say anything terribly informative. After all, we are considering loss functions for \textit{arbitrary} model types. We also allow loss functions to measure how well a model performs at \textit{any} task of interest.
 
 
-
-We will, however, assume that there is some class $\C$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. And we will assume that the class of reasonable loss functions reflects this fact as follows. 
+We will, however, assume that there is some nonempty class $\C\subseteq\M$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. And we will assume that the class of reasonable loss functions reflects this fact as follows. 
 
 
 Let $\mathfrak L$ be a class of reasonable loss functions. We assume first that every loss function $L\in\mathfrak L$ has a nonempty evaluation domain $\M_L\subseteq\M$ and is a function $L:\M_L\times\Omega\to[0,\infty]$. 
@@ -64,7 +60,7 @@ Say that a model is \emph{evaluable by $L$} precisely when it belongs to $\M_L$.
 \item \textbf{Evaluability.} $\M=\bigcup_{L\in\mathfrak L}\M_L$.
 \end{enumerate}
 
-Thirdly, for each reasonable loss $L\in\mathfrak L$, we assume that there is a maximal, nonempty class of evaluable ``coherent'' models, $\C_L\subseteq\C\cap\M_L$, which $L$ deems ``not obviously suboptimal'' in the sense of being \textit{undominated}. 
+Thirdly, for each reasonable loss $L\in\mathfrak L$, we assume that the full class of evaluable ``coherent'' models, $\C_L\subseteq\C\cap\M_L$, which $L$ deems ``not obviously suboptimal'' in the sense of being \textit{undominated} is nonempty. 
 
 \begin{enumerate}[label=\textbf{(LA)},leftmargin=*]
 \item \textbf{Loss-specific admissibility.} $\C_L:=\{c\in\C\cap\M_L : \neg(\exists m\in\M_L)L(m)\lneq L(c)\}\neq\varnothing$.
@@ -77,28 +73,6 @@ Fourthly, the loss functions $L\in\mathfrak L$ collectively render \textit{all} 
 \item \textbf{Coherent admissibility.} $\C=\bigcup_{L\in\mathfrak L}\C_L$.
 \end{enumerate}
 
-For a fixed loss function $L$, write
-\[
- R_L=L(\M_L),\qquad K_L=L(\C_L),\qquad
- \U_L=\{m\in\M_L:\neg(\exists m'\in\M_L)L(m')\lneq L(m)\},
-\]
-and let $U_{R_L}=L(\U_L)$ be the undominated loss profiles.
-
-
-
-Note that (LA) does \textit{not} rule out the possibility that additional, incoherent models ($m\in\M_L\setminus\C_L$) are undominated relative to $L$. As a result, (A) only guarantees that $K_L\subseteq U_{R_L}$, \textit{i.e.}, that all coherent loss profiles are undominated. It does not guarantee that all \textit{and only} coherent loss profiles are undominated ($K_L=U_{R_L}$). That is, we do not simply \textit{assume} that incoherent models are defective (dominated relative to all reasonable loss functions). The job of the dominance argument below is to \textit{prove} this stronger claim (modulo some minor subtleties, and with the help of some additional assumptions).
-
-
-
-
-On top of this, many different models could in principle get mapped to the same loss profile (\textit{e.g.}, if they only differ in some ``infinitesimal'' way). So $U_{R_L}=K_L$ need not imply $\U_L=\C_L$. An incoherent model may share a loss profile with a coherent model, in which case we would only have $\C_L\subseteq \U_L$. $U_{R_L}=K_L$ implies $\U_L=\C_L$ only if $\C_L$ is \emph{closed under equal profiles}, \textit{i.e.}, whenever $L(m)=L(c)$ for $c\in\C_L$, $m$ also belongs to $\C_L$. 
-
-
-
-
-
-
-\newpage
 
 For a fixed loss function $L$, write
 \[

@@ -1,5 +1,7 @@
 # Audit and revision, 30 September 2026
 
+**Subsequent correction at the author's request:** All source before the original `\newpage` has been restored verbatim from `manuscript-before.tex`. The added notation, identification condition, and explanatory material now occur after that break. The revisions described below are confined to that later content. The pre-restoration version, including intervening author edits, is saved as `manuscript-before-prose-restoration.tex`. The PDF has been rebuilt.
+
 Revised `Loss Dominance Generalized.tex` in place and rebuilt its PDF. Compared the draft with `CPMs/outputs/complete-class-research/kkm-calibration-v8.tex`. The original source and PDF are saved here as `manuscript-before.tex` and `manuscript-before.pdf`; `revision.diff` records the changes. The v8 source was not edited.
 
 ## Main findings and changes
