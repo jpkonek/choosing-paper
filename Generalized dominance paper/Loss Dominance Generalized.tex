@@ -112,17 +112,17 @@ Condition (S) implies condition (I), which says that we can parametrise the cohe
 \begin{enumerate}[label=\textbf{(I)},leftmargin=*]
 \item \textbf{Compact indexing.} There is a compact topological space of indices $\Theta$ and a map $c:\Theta\to\C_L$ which make $L(c_\theta,\omega)$ lower semicontinuous for all $\omega\in\Omega$ (as a function of $\theta$).
 \end{enumerate}
-If $\Omega$ infinite, we will need to assume condition (I) independently, together with a strengthening of condition (S). Note that condition (I) does not require a topology on all models. It also does not require the set of coherent loss profiles ($K_L$) to be closed. (Appendix~\ref{sec:countable} gives an example where $K_L$ is not closed.) 
+If $\Omega$ infinite, we will need to assume condition (I) independently, together with a generalisation of condition (S). Note that condition (I) does not require a topology on all models. It also does not require the set of coherent loss profiles ($K_L$) to be closed. (Appendix~\ref{sec:countable} gives an example where $K_L$ is not closed.) 
 
 
-The relevant strengthening of condition (S) is the following:
+The relevant generalisation of condition (S) is the following:
 \begin{enumerate}[label=\textbf{(S$_\infty$)},leftmargin=*]
 \item \textbf{Continuous choices.} There is a family $\F$ of finite nonempty subsets of $\Omega$ such that every finite subset of $\Omega$ is contained in some member of $\F$ (for instance, all finite nonempty subsets). And for each $F\in\F$, there is a continuous map $\sigma_F:\Delta_F\to\Theta$ such that no model in $\M_L$ strictly dominates $c_{\sigma_F(p)}$ on $\supp p$, for every $p\in\Delta_F$.
 \end{enumerate}
 
 This ensures that condition (S) holds separately on each $F\in\F$, and also requires that we choose the not-strictly-dominated $u_p$ via a continuous map $\sigma_F$ which assigns one of the indices from (I) to each probability mass function in $\Delta_F$. Continuity of $\sigma_F$, combined with (I), makes $L(c_{\sigma_F(p)},\omega)$ lower semicontinuous as a function of $p$.
 
-Together, (S$_\infty$) and (I) are fairly powerful technical assumptions. Choose a model $m\in\M_L$. As we will see shortly, for any of the finite sets of worlds $F\in\F$, Theorem~\ref{thm:kkm} gives us an index $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in F$ (apply Theorem~\ref{thm:kkm} using $\Delta_F$ with the models $c_{\sigma_F(p)}$). By (I), the set $T_F$ of such indices is closed. Any finite collection of such index sets, $T_{F_1},\dots, T_{F_k}$, will have a non-empty intersection. Compactness of $\Theta$ then ensures that there is some $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in \bigcup_{F\in\F}F$. Since every world lies in some $F\in\F$, $L(c_\theta,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$.
+Together, (S$_\infty$) and (I) are fairly powerful technical assumptions. Choose a model $m\in\M_L$. As we will see shortly, for any of the finite sets of worlds $F\in\F$, the argument of Theorem~\ref{thm:kkm} gives us an index $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in F$ (apply that argument using $\Delta_F$ with the models $c_{\sigma_F(p)}$). By (I), the set $T_F$ of such indices is closed. Any finite collection of such index sets, $T_{F_1},\dots, T_{F_k}$, will have a non-empty intersection. Compactness of $\Theta$ then ensures that there is some $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in \bigcup_{F\in\F}F$. Since every world lies in some $F\in\F$, $L(c_\theta,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$.
 
 
 
@@ -175,7 +175,7 @@ If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would d
 \subsection{$\Omega$ infinite}
 
 
-To obtain an analogue of theorem~\ref{thm:kkm} for infinite sample spaces, $\Omega$, we need stronger axioms: (LA), (I) and (S$_\infty$). Using these stronger axioms, we can reduce the infinite case to the finite one via compactness.
+To obtain an analogue of theorem~\ref{thm:kkm} for arbitrary sample spaces, $\Omega$, we need the axioms (LA), (I) and (S$_\infty$). For finite $\Omega$, (S) is equivalent to the package of (I) and (S$_\infty$).\footnote{For the left-to-right direction, take $\Theta=\Delta$, $c=u$, $\F=\{\Omega\}$ and let $\sigma_\Omega$ be the identity. For the right-to-left direction, some member of $\F$ contains $\Omega$, so $\Omega\in\F$; setting $u_p=c_{\sigma_\Omega(p)}$ gives us (S).} For arbitrary $\Omega$, (S) is not defined, since $\Delta$ is defined only for finite $\Omega$. So we must specify (I) and (S$_\infty$) independently. Using these axioms, we can reduce the arbitrary case to the finite one via compactness.
 
 \begin{corollary}\label{cor:infinite}
 Let $\Omega$ be any arbitrary sample space and assume that $L$ satisfies (LA), (I) and (S$_\infty$). Then every $m\in\M_L$ is weakly dominated by some undominated $c_\theta\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
@@ -189,27 +189,41 @@ which is closed (as a finite intersection of closed sets). For any $\omega\in F$
 \[
 A^F_\omega=\sigma_F^{-1}(\Theta_\omega)=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le L(m,\omega)\}.
 \]
-These are the sets $A_\omega$ of the proof of Theorem~\ref{thm:kkm}, with $\Delta_F$ in place of $\Delta$ and $c_{\sigma_F(p)}$ in place of $c_p$. They are closed because $\sigma_F$ is continuous, and $\bigcap_{\omega\in F}A^F_\omega=\sigma_F^{-1}(T_F)$. By (S$_\infty$), each $p\in\Delta_F$ lies in $A^F_\omega$ for some $\omega\in\supp p$. So lemma~\ref{lem:kkm} ensures that there is some $p_m\in\bigcap_{\omega\in F}A^F_\omega$. Hence $\sigma_F(p_m)\in T_F$. So $T_F$ is nonempty. For any $F_1,\dots,F_k\in\F$, there is some $G\in\F$ containing their union. In that case, $\varnothing\ne T_G\subseteq T_{F_1}\cap\dots\cap T_{F_k}$. Since $\Theta$ is compact, we must then have $\bigcap_{F\in\F}T_F\neq \varnothing$. (Otherwise the open sets $\Theta\setminus T_F$, $F\in\F$, would cover $\Theta$. By compactness, some finite collection of them, $\Theta\setminus T_{F_1},\dots,\Theta\setminus T_{F_k}$, must cover $\Theta$. But then $T_{F_1}\cap\dots\cap T_{F_k}=\varnothing$, contradicting the claim above.) Choose $\theta\in\bigcap_{F\in\F}T_F$ and $\omega\in\Omega$. (S$_\infty$) ensures that there is some $F\in\F$ with $\omega\in F$. Since $\theta\in T_F$, $L(c_\theta,\omega)\le L(m,\omega)$. Since $\omega$ was arbitrary, $L(c_\theta)\le L(m)$, \textit{i.e.}, $c_\theta$ weakly dominates $m$. The rest of the proof of Theorem~\ref{thm:kkm} applies unchanged.
+These are the sets $A_\omega$ of the proof of Theorem~\ref{thm:kkm}, with $\Delta_F$ in place of $\Delta$ and $c_{\sigma_F(p)}$ in place of $c_p$. They are closed because $\sigma_F$ is continuous, and $\bigcap_{\omega\in F}A^F_\omega=\sigma_F^{-1}(T_F)$. By (S$_\infty$), each $p\in\Delta_F$ lies in $A^F_\omega$ for some $\omega\in\supp p$. So lemma~\ref{lem:kkm} ensures that there is some $p_F\in\bigcap_{\omega\in F}A^F_\omega$. Hence $\sigma_F(p_F)\in T_F$. So $T_F$ is nonempty. For any $F_1,\dots,F_k\in\F$, there is some $G\in\F$ containing their union. In that case, $\varnothing\ne T_G\subseteq T_{F_1}\cap\dots\cap T_{F_k}$. Since $\Theta$ is compact, we must then have $\bigcap_{F\in\F}T_F\neq \varnothing$. (Otherwise the open sets $\Theta\setminus T_F$, $F\in\F$, would cover $\Theta$. By compactness, some finite collection of them, $\Theta\setminus T_{F_1},\dots,\Theta\setminus T_{F_k}$, must cover $\Theta$. But then $T_{F_1}\cap\dots\cap T_{F_k}=\varnothing$, contradicting the claim above.) Choose $\theta_m\in\bigcap_{F\in\F}T_F$ and $\omega\in\Omega$. (S$_\infty$) ensures that there is some $F\in\F$ with $\omega\in F$. Since $\theta_m\in T_F$, $L(c_{\theta_m},\omega)\le L(m,\omega)$. Since $\omega$ was arbitrary, $L(c_{\theta_m})\le L(m)$, \textit{i.e.}, $c_{\theta_m}$ weakly dominates $m$. The rest of the proof of Theorem~\ref{thm:kkm} applies unchanged, with $c_{\theta_m}$ in place of $c_{p_m}$.
 \end{proof}
 
 
 
 
-\subsection{Checking the choice condition}\label{rem:bayes-S}
-A useful sufficient check is Bayes optimality. If $c$ is Bayes for a finitely supported $\pi$ with $\supp\pi\subseteq\supp p$, no model can have strictly smaller losses than $c$ throughout $\supp p$: such a model would have finite losses on $\supp\pi$ and smaller $\pi$-expected loss. This argument remains valid when $c$ has infinite expected loss.
+\section{\textcolor{red}{Bayes choices}}\label{sec:strict}
+\textcolor{red}{This section does two things. First, it gives a sufficient condition for the requirement in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index (Lemma~\ref{lem:bayes-choice}). The applications in Section~\ref{sec:apps} all check (S) or (S$_\infty$) this way. Second, it shows that when the chosen models meet this sufficient condition, the conclusions of Section~\ref{sec:results} can be strengthened to dominance with margins.}
 
-We call an assignment in (S) or (S$_\infty$) a \emph{Bayes choice} if every assigned model is Bayes for some such $\pi$. The prior $\pi$ may differ from the index $p$, and need not vary continuously. Its role is to certify the comparison. The freedom to change the certifying prior is what makes the conditional construction in Section~\ref{sec:conditional} possible.
+\subsection{\textcolor{red}{A sufficient condition for (S) and (S$_\infty$)}}\label{rem:bayes-S}
+Call an assignment in (S) or (S$_\infty$) a \emph{Bayes choice} if the choice of model for any $p$ is Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$. The probability mass function $\pi$ may differ from the index $p$. Indeed, it need not even vary continuously with $p$. The role of $\pi$ is simply to guarantee that the chosen model is not strictly dominated on $\supp p$ (impossible if it is Bayes for $\pi$ and $\supp\pi\subseteq\supp p$). \textcolor{red}{The freedom to choose $\pi\ne p$ is what makes the construction in Section~\ref{sec:conditional} possible.}
+
+\begin{lemma}\label{lem:bayes-choice}
+\textcolor{red}{If $c$ is Bayes for a finitely supported $\pi$, then no model strictly dominates $c$ on any $S\supseteq\supp\pi$. Hence:}
+\begin{enumerate}[label=(\alph*)]
+\item \textcolor{red}{If $\Omega$ is finite, (S) holds whenever there is a map $u:\Delta\to\C_L$ which makes $L(u_p,\omega)$ lower semicontinuous for all $\omega\in\Omega$ (as a function of $p$), and which makes each $u_p$ Bayes for some $\pi\in\Delta$ with $\supp\pi\subseteq\supp p$.}
+\item \textcolor{red}{If (I) holds, (S$_\infty$) holds whenever there is a family $\F$ as in (S$_\infty$) and, for each $F\in\F$, a continuous map $\sigma_F:\Delta_F\to\Theta$ which makes each $c_{\sigma_F(p)}$ Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$.}
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\textcolor{red}{Suppose $L(m,\omega)<L(c,\omega)$ for every $\omega\in S$. Then $L(m,\omega)$ is finite for every $\omega\in\supp\pi$, so $\pi\cdot L(m)$ is finite. If $\pi\cdot L(c)=\infty$, then $\pi\cdot L(m)<\pi\cdot L(c)$. Otherwise the same strict inequality follows by summing, since $\supp\pi$ is nonempty and $\pi_\omega>0$ on it. Either way $c$ is not Bayes for $\pi$, a contradiction. Parts (a) and (b) follow by taking $S=\supp p$, since the other requirements of (S) and (S$_\infty$) are assumed.}
+\end{proof}
 
 This is a sufficient check, not the meaning of (S). A loss may satisfy (S) without admitting a Bayes choice; Section~\ref{sec:scope} gives an example. Nor does a Bayes choice require \emph{every} Bayes model to be coherent or undominated. It selects some suitable coherent models and leaves other Bayes models unrestricted.
+
+\textcolor{red}{In the other direction, the choice conditions imply that every finitely supported prior has a coherent Bayes model. So Lemma~\ref{lem:bayes-choice} gives a sufficient condition for (S) and for (S$_\infty$), and the following corollary gives a necessary one.}
 \begin{corollary}\label{cor:bayes}
 Under (S), or \textcolor{red}{(I)} and (S$_\infty$), every finitely supported prior $p$ has a Bayes model in $\C_L$.
 \end{corollary}
 \begin{proof}
 For finite $\Omega$, take $\Theta=\Delta$ and the chosen models as the family. The function $\theta\mapsto\sum_{\omega\in\supp p}p_\omega L(c_\theta,\omega)$ is lower semicontinuous on compact $\Theta$ and has a minimiser $\theta^*$. For each $m$, the first paragraph of the proof of Theorem~\ref{thm:kkm} (or of Corollary~\ref{cor:infinite}), apart from its last sentence, gives $\theta$ with $L(c_\theta)\le L(m)$. So $c_{\theta^*}$ has $p$-expected loss at most that of $c_\theta$, and so at most that of $m$.
 \end{proof}
-
 This existence conclusion should not be confused with a Bayes choice: it gives a minimiser for each prior, without making their losses vary regularly together. Appendix~\ref{sec:bounds} gives a further weakening of the choice condition, using attainable upper bounds on loss in place of actual chosen profiles.
-\section{Bayes choices and dominance margins}\label{sec:strict}
+
+\subsection{\textcolor{red}{Dominance with margins}}
 The results above give weak dominance, and dominance unless the profiles are equal. Uniform dominance implies strict dominance, and for finitely many worlds the two coincide. In general the results above give neither. For example, take two worlds, coherent models with profiles $(t,1-t)$ for $0\le t\le1$, and one further model with profile $(0,2)$. Condition (S) holds, with the Bayes choice that picks the model with $t=p_2$, but no model is better than the further model at world~$1$, so none strictly dominates it.
 
 When the choice is a Bayes choice, the proof of Theorem~\ref{thm:kkm} applies to any target vector in place of the profile of the competitor. This gives margins.
@@ -256,7 +270,7 @@ Thus $R^\uparrow$ is convex and closed in the topology of pointwise convergence.
 \begin{proof}
 The equality is Theorem~\ref{thm:margin}. Each inequality defines a closed half-space, since $\pi$ has finite support and $V(\pi)$ is finite. A mixture $x=\sum_j a_jL(m_j)$ satisfies every inequality, because $\pi\cdot L(m_j)\ge V(\pi)$ for every $j$. The same theorem supplies the coherent model below $x$.
 \end{proof}
-So although Bayes choices are stated without convexity, they imply that finite randomisation offers no profile that cannot be matched or improved by an original coherent model. The weaker condition (S) does not imply this. The quantitative theorem should therefore be distinguished from the general theorem's application to problems where randomisation changes the undominated class. It provides a sufficient route to this convexity property, rather than replacing classical separation arguments in settings where the property is already given.
+So although Bayes choices are stated without convexity, they imply that finite randomisation offers no profile that cannot be matched or improved by an original coherent model. The weaker condition (S) does not imply this\textcolor{red}{ (Proposition~\ref{prop:random})}.
 \section{Some applications of interest}\label{sec:apps}
 In the applications below, $\M_L$ is the stated evaluation domain and $\C$ is the stated, independently specified coherent class. We prove that every member of $\C$ is undominated, so that $\C_L=\C$. This verifies (LA) for the loss at hand; it verifies the family-wide condition (A) only when the losses under consideration collectively cover the intended coherent class. Here $K=L(\C_L)=L(\C)$.
 \subsection{Proper scores on finite domains}\label{sec:proper}
