@@ -171,21 +171,29 @@ If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would d
 
 
 
-\newpage
+
 \subsection{$\Omega$ infinite}
-For arbitrary $\Omega$, the compact family of \textcolor{red}{(I)} glues together the finite comparisons supplied by (S$_\infty$).
+
+
+To obtain an analogue of theorem~\ref{thm:kkm} for infinite sample spaces, $\Omega$, we need stronger axioms: (LA), (I) and (S$_\infty$). Using these stronger axioms, we can reduce the infinite case to the finite one via compactness.
+
 \begin{corollary}\label{cor:infinite}
-For arbitrary $\Omega$, the conclusions of Theorem~\ref{thm:kkm} hold under (LA), \textcolor{red}{(I)} and (S$_\infty$), with $c_\theta$ in place of $c_p$.
+Let $\Omega$ be any arbitrary sample space and assume that $L$ satisfies (LA), (I) and (S$_\infty$). Then every $m\in\M_L$ is weakly dominated by some undominated $c_\theta\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
 \end{corollary}
 \begin{proof}
-Fix $m$. For $F\in\F$, the first paragraph of the proof of Theorem~\ref{thm:kkm}, with $\Delta_F$ in place of $\Delta$ and $c_{\sigma_F(p)}$ in place of $c_p$, shows that the set
+Choose $m\in\M_L$. For any $\omega\in\Omega$, let $\Theta_\omega=\{\theta\in\Theta:L(c_\theta,\omega)\le L(m,\omega)\}$. By (I), each $\Theta_\omega$ is closed (as a sublevel set of a lower semicontinuous function, or all of $\Theta$ if $L(m,\omega)=\infty$). For any $F\in\F$, let
 \[
- T_F=\{\theta:L(c_\theta,\omega)\le L(m,\omega)\text{ for all }\omega\in F\}
+ T_F=\{\theta:L(c_\theta,\omega)\le L(m,\omega)\text{ for all }\omega\in F\} = \bigcap_{\omega\in F}\Theta_\omega,
 \]
-is nonempty; the sets $A_\omega$ are closed because $\sigma_F$ is continuous and \textcolor{red}{(I)} holds. By \textcolor{red}{(I)}, $T_F$ is closed. Given $F_1,\dots,F_r\in\F$, choose $G\in\F$ containing their union; then $\varnothing\ne T_G\subseteq T_{F_1}\cap\dots\cap T_{F_r}$. By compactness some $\theta$ lies in every $T_F$, and every world lies in some $F$, so $L(c_\theta)\le L(m)$. The rest of the proof of Theorem~\ref{thm:kkm} applies unchanged.
+which is closed (as a finite intersection of closed sets). For any $\omega\in F$, let 
+\[
+A^F_\omega=\sigma_F^{-1}(\Theta_\omega)=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le L(m,\omega)\}.
+\]
+These are the sets $A_\omega$ of the proof of Theorem~\ref{thm:kkm}, with $\Delta_F$ in place of $\Delta$ and $c_{\sigma_F(p)}$ in place of $c_p$. They are closed because $\sigma_F$ is continuous, and $\bigcap_{\omega\in F}A^F_\omega=\sigma_F^{-1}(T_F)$. By (S$_\infty$), each $p\in\Delta_F$ lies in $A^F_\omega$ for some $\omega\in\supp p$. So lemma~\ref{lem:kkm} ensures that there is some $p_m\in\bigcap_{\omega\in F}A^F_\omega$. Hence $\sigma_F(p_m)\in T_F$. So $T_F$ is nonempty. For any $F_1,\dots,F_k\in\F$, there is some $G\in\F$ containing their union. In that case, $\varnothing\ne T_G\subseteq T_{F_1}\cap\dots\cap T_{F_k}$. Since $\Theta$ is compact, we must then have $\bigcap_{F\in\F}T_F\neq \varnothing$. (Otherwise the open sets $\Theta\setminus T_F$, $F\in\F$, would cover $\Theta$. By compactness, some finite collection of them, $\Theta\setminus T_{F_1},\dots,\Theta\setminus T_{F_k}$, must cover $\Theta$. But then $T_{F_1}\cap\dots\cap T_{F_k}=\varnothing$, contradicting the claim above.) Choose $\theta\in\bigcap_{F\in\F}T_F$ and $\omega\in\Omega$. (S$_\infty$) ensures that there is some $F\in\F$ with $\omega\in F$. Since $\theta\in T_F$, $L(c_\theta,\omega)\le L(m,\omega)$. Since $\omega$ was arbitrary, $L(c_\theta)\le L(m)$, \textit{i.e.}, $c_\theta$ weakly dominates $m$. The rest of the proof of Theorem~\ref{thm:kkm} applies unchanged.
 \end{proof}
 
-Again, the compactness argument for weak dominance does not use admissibility; (LA) ensures that the chosen dominator is undominated.
+
+
 
 \subsection{Checking the choice condition}\label{rem:bayes-S}
 A useful sufficient check is Bayes optimality. If $c$ is Bayes for a finitely supported $\pi$ with $\supp\pi\subseteq\supp p$, no model can have strictly smaller losses than $c$ throughout $\supp p$: such a model would have finite losses on $\supp\pi$ and smaller $\pi$-expected loss. This argument remains valid when $c$ has infinite expected loss.
