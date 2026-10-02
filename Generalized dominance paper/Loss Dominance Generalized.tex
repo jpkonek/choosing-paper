@@ -160,12 +160,12 @@ Each $A_\omega$ is nonempty, since by hypothesis we always have
 Let $d_\omega(p)=\min_{q\in A_\omega}\lVert p-q \rVert$ and $D=\sum_{\omega\in F} d_\omega$. The map $G(p)_\omega=(p(\omega)+d_\omega(p))/(1+D(p))$ is continuous. Moreover, $G$ maps each $p\in\Delta_F$ to some point in $\Delta_F$ (since each coordinate $G(p)_\omega$ of $G(p)$ is nonnegative and these coordinates sum to 1). Brouwer's fixed-point theorem then guarantees that there is some $p\in\Delta_F$ with $G(p)=p$. This holds just in case $p(\omega)\cdot D(p)=d_\omega(p)$ for all $\omega\in F$. By assumption, there is some $\omega\in\supp p$ with $p\in A_\omega$. Choose some such $\omega$. Then $p(\omega)\cdot D(p)=0$, so $D(p)=0$ and hence $p\in\bigcap_{\omega\in F}A_\omega$.
 \end{proof}
 \begin{theorem}\label{thm:kkm}
-Let $\Omega$ be finite and assume that $L$ satifies (LA) and (S). Then every $m\in\M_L$ is weakly dominated by some undominated $c_p\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
+Let $\Omega$ be finite and assume that $L$ satisfies (LA) and (S). Then every $m\in\M_L$ is weakly dominated by some undominated $c_p\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
 \end{theorem}
 \begin{proof}
 Choose $m\in\M_L$. Let $A_\omega=\{p\in\Delta:L(c_p,\omega)\le L(m,\omega)\}$. These sets are closed because $L(c_p,\omega)$ is lower semicontinuous as a function of $p$. (Each $A_\omega$ is a sublevel set $\{h\le a\}$ with $h(p)=L(c_p,\omega)$ and $a=L(m,\omega)$, which are closed for every real $a$ by the definition of lower semicontinuity; if $a=\infty$, then $A_\omega=\Delta$.) By (S), $m$ does not strictly dominate $c_p$ on $\supp p$. So every $p$ lies in $A_\omega$ for some $\omega\in\supp p$. Lemma~\ref{lem:kkm} ensures that there is some $p_m\in\bigcap_\omega A_\omega$. Hence $L(c_{p_m})\le L(m)$. By (LA), $c_{p_m}$ is undominated.
 
-If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would dominate $m$. Hence $U_R\subseteq K$. The definition of $\C_L$ in (LA) ensures $\C_L\subseteq\U_L$ and hence $K\subseteq U_R$. So $U_R = K$. If $\C_L$ is closed under equal profiles, then any $m\in\M_L\setminus\C_L$ has $L(m)\ne L(c_{p_m})$. So $c_{p_m}$ dominates it.
+If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would dominate $m$. Hence $U_R\subseteq K$. The definition of $\C_L$ in (LA) ensures $\C_L\subseteq\U_L$ and hence $K\subseteq U_R$. So $U_R = K$. If $\C_L$ is closed under equal profiles, then any $m\in\M_L\setminus\C_L$ has $L(m)\ne L(c_{p_m})$. So $c_{p_m}$ dominates it. Therefore no model outside $\C_L$ is undominated. So $\U_L\subseteq\C_L$, and $\U_L=\C_L$.
 \end{proof}
 
 
