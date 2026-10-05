@@ -120,7 +120,7 @@ The relevant generalisation of condition (S) is the following:
 \item \textbf{Continuous choices.} There is a family $\F$ of finite nonempty subsets of $\Omega$ such that every finite subset of $\Omega$ is contained in some member of $\F$ (for instance, all finite nonempty subsets). And for each $F\in\F$, there is a continuous map $\sigma_F:\Delta_F\to\Theta$ such that no model in $\M_L$ strictly dominates $c_{\sigma_F(p)}$ on $\supp p$, for every $p\in\Delta_F$.
 \end{enumerate}
 
-This ensures that condition (S) holds separately on each $F\in\F$, and also requires that we choose the not-strictly-dominated $u_p$ via a continuous map $\sigma_F$ which assigns one of the indices from (I) to each probability mass function in $\Delta_F$. Continuity of $\sigma_F$, combined with (I), makes $L(c_{\sigma_F(p)},\omega)$ lower semicontinuous as a function of $p$.
+This ensures that condition (S) holds separately on each $F\in\F$, and also requires that we choose the not-strictly-dominated $u_p$ via a continuous map $\sigma_F$ which assigns one of the indices from (I) to each probability mass function in $\Delta_F$. Continuity of $\sigma_F$, combined with (I), makes $L(c_{\sigma_F(p)},\omega)$ lower semicontinuous as a function of $p$. We call the maps $u:\Delta\to\C_L$ and $\sigma_F:\Delta_F\to\Theta$ \emph{selection maps}, and call $u_p$ or $c_{\sigma_F(p)}$ the \emph{chosen model} for $p$. Conditions (S) and (S$_\infty$) require there to be selection maps with various properties.
 
 Together, (S$_\infty$) and (I) are fairly powerful technical assumptions. Choose a model $m\in\M_L$. As we will see shortly, for any of the finite sets of worlds $F\in\F$, the argument of Theorem~\ref{thm:kkm} gives us an index $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in F$ (apply that argument using $\Delta_F$ with the models $c_{\sigma_F(p)}$). By (I), the set $T_F$ of such indices is closed. Any finite collection of such index sets, $T_{F_1},\dots, T_{F_k}$, will have a non-empty intersection. Compactness of $\Theta$ then ensures that there is some $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in \bigcup_{F\in\F}F$. Since every world lies in some $F\in\F$, $L(c_\theta,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$.
 
@@ -172,7 +172,7 @@ If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would d
 
 
 
-\subsection{$\Omega$ infinite}
+\subsection{$\Omega$ infinite}\label{sec:infinite}
 
 
 To obtain an analogue of theorem~\ref{thm:kkm} for arbitrary sample spaces, $\Omega$, we need the axioms (LA), (I) and (S$_\infty$). For finite $\Omega$, (S) is equivalent to the package of (I) and (S$_\infty$).\footnote{For the left-to-right direction, take $\Theta=\Delta$, $c=u$, $\F=\{\Omega\}$ and let $\sigma_\Omega$ be the identity. For the right-to-left direction, some member of $\F$ contains $\Omega$, so $\Omega\in\F$; setting $u_p=c_{\sigma_\Omega(p)}$ gives us (S).} For arbitrary $\Omega$, (S) is not defined, since $\Delta$ is defined only for finite $\Omega$. So we must specify (I) and (S$_\infty$) independently. Using these axioms, we can reduce the arbitrary case to the finite one via compactness.
@@ -195,56 +195,71 @@ These are the sets $A_\omega$ of the proof of Theorem~\ref{thm:kkm}, with $\Delt
 
 
 
-\section{\textcolor{red}{Bayes choices}}\label{sec:strict}
-\textcolor{red}{This section does two things. First, it gives a sufficient condition for the requirement in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index (Lemma~\ref{lem:bayes-choice}). The applications in Section~\ref{sec:apps} all check (S) or (S$_\infty$) this way. Second, it shows that when the chosen models meet this sufficient condition, the conclusions of Section~\ref{sec:results} can be strengthened to dominance with margins.}
+\section{A sufficient condition for (S$_\infty$)}\label{sec:strict}
 
-\subsection{\textcolor{red}{A sufficient condition for (S) and (S$_\infty$)}}\label{rem:bayes-S}
-Call an assignment in (S) or (S$_\infty$) a \emph{Bayes choice} if the choice of model for any $p$ is Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$. The probability mass function $\pi$ may differ from the index $p$. Indeed, it need not even vary continuously with $p$. The role of $\pi$ is simply to guarantee that the chosen model is not strictly dominated on $\supp p$ (impossible if it is Bayes for $\pi$ and $\supp\pi\subseteq\supp p$). \textcolor{red}{The freedom to choose $\pi\ne p$ is what makes the construction in Section~\ref{sec:conditional} possible.}
+
+\subsection{Bayes choice}
+
+To make it easier to check (S$_\infty$), we will now provide a sufficient condition which ensures that chosen models are not strictly dominated on the support of their indices (Lemma~\ref{lem:bayes-choice}). The applications in Section~\ref{sec:apps} all verify (S) or (S$_\infty$) this way. We will also show that when the chosen models meet this sufficient condition, the conclusions of Section~\ref{sec:results} can be strengthened.
+
+
+
+We say that a selection map \emph{makes Bayes choices} if the chosen model for any $p$ ($u_p$ in (S), $c_{\sigma_F(p)}$ in (S$_\infty$)) is Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$. The probability mass function $\pi$ may differ from the index $p$. Indeed, it need not even vary continuously with $p$. The role of $\pi$ is simply to guarantee that the chosen model is not strictly dominated on $\supp p$ (impossible if it is Bayes for $\pi$ and $\supp\pi\subseteq\supp p$). The freedom to choose $\pi\ne p$ is necessary for certain constructions in section~\ref{sec:apps} (\textit{cf.} Section~\ref{sec:conditional}, Example~\ref{ex:conditional}).
+
+For finite $\Omega$, (S) is equivalent to (I) and (S$_\infty$), as noted at the start of Section~\ref{sec:infinite}. So (S) holds with a selection map that makes Bayes choices if and only if (I) and (S$_\infty$) hold with selection maps that make Bayes choices. From now on we state results under (I) and (S$_\infty$) only. For finite $\Omega$, we will continue to use the notation $c_p$ for the chosen model, rather than the more cumbersome $c_{\sigma_\Omega(p)}$. 
+
 
 \begin{lemma}\label{lem:bayes-choice}
-\textcolor{red}{If $c$ is Bayes for a finitely supported $\pi$, then no model strictly dominates $c$ on any $S\supseteq\supp\pi$. Hence:}
-\begin{enumerate}[label=(\alph*)]
-\item \textcolor{red}{If $\Omega$ is finite, (S) holds whenever there is a map $u:\Delta\to\C_L$ which makes $L(u_p,\omega)$ lower semicontinuous for all $\omega\in\Omega$ (as a function of $p$), and which makes each $u_p$ Bayes for some $\pi\in\Delta$ with $\supp\pi\subseteq\supp p$.}
-\item \textcolor{red}{If (I) holds, (S$_\infty$) holds whenever there is a family $\F$ as in (S$_\infty$) and, for each $F\in\F$, a continuous map $\sigma_F:\Delta_F\to\Theta$ which makes each $c_{\sigma_F(p)}$ Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$.}
-\end{enumerate}
+If $c$ is Bayes for a finitely supported $\pi$, then no model strictly dominates $c$ on any $S$ with $\supp\pi\subseteq S$. Therefore, if (I) holds, then (S$_\infty$) holds whenever there is a family $\F$ as in (S$_\infty$) and, for each $F\in\F$, a continuous map $\sigma_F:\Delta_F\to\Theta$ which makes each $c_{\sigma_F(p)}$ Bayes for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$.
 \end{lemma}
 \begin{proof}
-\textcolor{red}{Suppose $L(m,\omega)<L(c,\omega)$ for every $\omega\in S$. Then $L(m,\omega)$ is finite for every $\omega\in\supp\pi$, so $\pi\cdot L(m)$ is finite. If $\pi\cdot L(c)=\infty$, then $\pi\cdot L(m)<\pi\cdot L(c)$. Otherwise the same strict inequality follows by summing, since $\supp\pi$ is nonempty and $\pi_\omega>0$ on it. Either way $c$ is not Bayes for $\pi$, a contradiction. Parts (a) and (b) follow by taking $S=\supp p$, since the other requirements of (S) and (S$_\infty$) are assumed.}
+Suppose $c$ is strictly dominated by some model $m$ on $S$, \textit{i.e.}, $L(m,\omega)<L(c,\omega)$ for every $\omega\in S$. Then $L(m,\omega)$ is finite for every $\omega\in\supp\pi$, so $\pi\cdot L(m)$ is finite. If $\pi\cdot L(c)=\infty$, then $\pi\cdot L(m)<\pi\cdot L(c)$. If $\pi\cdot L(c)<\infty$, then $\pi\cdot L(m)<\pi\cdot L(c)$ follows trivially from the fact that $\supp\pi$ is nonempty and $\pi_\omega>0$ on it. Either way $c$ is not Bayes for $\pi$. The final claim follows by taking $S=\supp p$.
 \end{proof}
 
-This is a sufficient check, not the meaning of (S). A loss may satisfy (S) without admitting a Bayes choice; Section~\ref{sec:scope} gives an example. Nor does a Bayes choice require \emph{every} Bayes model to be coherent or undominated. It selects some suitable coherent models and leaves other Bayes models unrestricted.
+Making Bayes choices is merely sufficient for the relevant clause of (S)/(S$_\infty$). It is possible to satisfy (S) without a selection map that makes Bayes choices (see section~\ref{sec:scope} for an example). It is also important to emphasise that the Bayes choice condition does not require \emph{every} Bayes model to be coherent or undominated. It merely requires the special, selected coherent models to be Bayes (for some finitely supported $\pi$ with $\supp\pi\subseteq\supp p$). 
 
-\textcolor{red}{In the other direction, the choice conditions imply that every finitely supported prior has a coherent Bayes model. So Lemma~\ref{lem:bayes-choice} gives a sufficient condition for (S) and for (S$_\infty$), and the following corollary gives a necessary one.}
+
+
+In the other direction, conditions (I) and (S$_\infty$) imply that every finitely supported prior has a coherent Bayes model. 
 \begin{corollary}\label{cor:bayes}
-Under (S), or \textcolor{red}{(I)} and (S$_\infty$), every finitely supported prior $p$ has a Bayes model in $\C_L$.
+Under (I) and (S$_\infty$), every finitely supported probability $p$ has a Bayes model in $\C_L$.
 \end{corollary}
 \begin{proof}
-For finite $\Omega$, take $\Theta=\Delta$ and the chosen models as the family. The function $\theta\mapsto\sum_{\omega\in\supp p}p_\omega L(c_\theta,\omega)$ is lower semicontinuous on compact $\Theta$ and has a minimiser $\theta^*$. For each $m$, the first paragraph of the proof of Theorem~\ref{thm:kkm} (or of Corollary~\ref{cor:infinite}), apart from its last sentence, gives $\theta$ with $L(c_\theta)\le L(m)$. So $c_{\theta^*}$ has $p$-expected loss at most that of $c_\theta$, and so at most that of $m$.
+For any finitely supported $p$, the function $\theta\mapsto\sum_{\omega\in\supp p}p_\omega L(c_\theta,\omega)$ is lower semicontinuous on compact $\Theta$ and has a minimiser $\theta^*$. For each $m\in\M_L$, the proof of Corollary~\ref{cor:infinite} gives us some $\theta_m$ with $L(c_{\theta_m})\le L(m)$. So $c_{\theta^*}$ has $p$-expected loss at most that of $c_{\theta_m}$, and hence at most that of $m$.
 \end{proof}
-This existence conclusion should not be confused with a Bayes choice: it gives a minimiser for each prior, without making their losses vary regularly together. Appendix~\ref{sec:bounds} gives a further weakening of the choice condition, using attainable upper bounds on loss in place of actual chosen profiles.
+Corollary~\ref{cor:bayes} does \textit{not} show that (I) and (S$_\infty$) are sufficient to admit a selection map that makes Bayes choices. As we have noted, they are not. What it does show is that these conditions are sufficient to ensure that the selected \textit{class} of coherent models, $\C_L$, is rich enough to contain Bayes models for every finitely supported probability $p$.
 
-\subsection{\textcolor{red}{Dominance with margins}}
-The results above give weak dominance, and dominance unless the profiles are equal. Uniform dominance implies strict dominance, and for finitely many worlds the two coincide. In general the results above give neither. For example, take two worlds, coherent models with profiles $(t,1-t)$ for $0\le t\le1$, and one further model with profile $(0,2)$. Condition (S) holds, with the Bayes choice that picks the model with $t=p_2$, but no model is better than the further model at world~$1$, so none strictly dominates it.
 
-When the choice is a Bayes choice, the proof of Theorem~\ref{thm:kkm} applies to any target vector in place of the profile of the competitor. This gives margins.
+
+
+
+\subsection{Dominance with margins}
+
+
+If the selection maps in (S$_\infty$) make Bayes choices, then the proof of theorem~\ref{thm:kkm} delivers a stronger result.
 
 \begin{theorem}\label{thm:margin}
-Assume \textcolor{red}{(I)} and (S$_\infty$) with a Bayes choice; for finite $\Omega$ it suffices to assume (S) with a Bayes choice, the family then being that of the chosen models. Let $x:\Omega\to(-\infty,\infty]$. The following are equivalent:
+Assume (I) and (S$_\infty$) with selection maps that make Bayes choices. Let $x:\Omega\to(-\infty,\infty]$. The following are equivalent:
 \begin{enumerate}[label=(\alph*)]
 \item some model $c$ has $L(c)\le x$;
-\item some $c_\theta$ has $L(c_\theta)\le x$ (for finite $\Omega$ under (S), some chosen model $c_p$);
-\item $\sum_\omega\pi_\omega x(\omega)\ge V(\pi)$ for every finitely supported probability $\pi$.
+\item some $c_\theta$ has $L(c_\theta)\le x$ (for finite $\Omega$, some chosen model $c_p$);
+\item $V(\pi):=\inf_{m\in\M}\pi\cdot L(m)\le\pi\cdot x$ for every finitely supported probability $\pi$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Sums run over $\supp\pi$. Clearly (b) implies (a). If (a) holds, then $\sum_\omega\pi_\omega x(\omega)\ge\sum_\omega\pi_\omega L(c,\omega)\ge V(\pi)$; this is (c).
+%Sums run over $\supp\pi$. 
+Clearly (b) implies (a). If (a) holds, then
+\[
+V(\pi):=\inf_{m\in\M}\sum_{\omega\in\supp\pi}\pi_\omega L(m,\omega)\le\sum_{\omega\in\supp\pi}\pi_\omega L(c,\omega)\le\sum_{\omega\in\supp\pi}\pi_\omega x(\omega)
+\]
+which is (c).
 
-Assume (c). Fix $F\in\F$ and put $A_\omega=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le x(\omega)\}$ for $\omega\in F$. These sets are closed, by \textcolor{red}{(I)} and continuity of $\sigma_F$. Let $p\in\Delta_F$, and let $c=c_{\sigma_F(p)}$ be a Bayes model for $\pi$ with $\supp\pi\subseteq\supp p$. If $p$ lay in no $A_\omega$ with $\omega\in\supp p$, then $x(\omega)<L(c,\omega)$ for every $\omega\in\supp\pi$. So $x$ would be finite on $\supp\pi$, and $\sum_\omega\pi_\omega x(\omega)<\sum_\omega\pi_\omega L(c,\omega)=V(\pi)$ (the right-hand side may be $\infty$), contrary to (c). So Lemma~\ref{lem:kkm} applies and gives $p$ with $L(c_{\sigma_F(p)})\le x$ on $F$. Hence the closed sets $T_F=\{\theta:L(c_\theta,\omega)\le x(\omega)\text{ for all }\omega\in F\}$ are nonempty, and the compactness argument in the proof of Corollary~\ref{cor:infinite} gives $\theta$ in all of them.
+Assume (c). Fix $F\in\F$ and let $A_\omega=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le x(\omega)\}$ for all $\omega\in F$. Each $A_\omega$ is closed, by (I) and continuity of $\sigma_F$. Choose any $p\in\Delta_F$ and let $c=c_{\sigma_F(p)}$ be a Bayes model for $\pi$ with $\supp\pi\subseteq\supp p$. Suppose for contradiction that $p\not\in A_\omega$ for any $\omega\in\supp p$. Then $x(\omega)<L(c,\omega)$ for every $\omega\in\supp\pi$. So $x$ is finite on $\supp\pi$, and $\sum_\omega\pi_\omega x(\omega)<\sum_\omega\pi_\omega L(c,\omega)=V(\pi)$, which contradicts (c). So for every $p\in\Delta_F$, $p\in A_\omega$ for some $\omega\in\supp p$. Hence Lemma~\ref{lem:kkm} applies and gives us some $p$ with $L(c_{\sigma_F(p)})\le x$ on $F$. Hence the closed sets $T_F=\{\theta:L(c_\theta,\omega)\le x(\omega)\text{ for all }\omega\in F\}$ are all nonempty. Finally, the compactness argument in the proof of Corollary~\ref{cor:infinite} ensures $\bigcap_{F\in\F}T_F\neq \varnothing$.
 \end{proof}
 With $x=L(m)$, (c) always holds, and the theorem gives the first claim of Corollary~\ref{cor:infinite} for Bayes choices. With $x=L(m)-\eta$ for some $\eta:\Omega\to[0,\infty)$, where $\infty-t=\infty$, it gives margins $\eta$. If $L(m)$ is finite and $\eta$ is a positive constant $\varepsilon$, (a) says that $c$ uniformly dominates $m$. So a model with finite losses is uniformly dominated, by some model or equivalently by some $c_\theta$, if and only if, for some $\varepsilon>0$, its expected loss is at least $V(\pi)+\varepsilon$ for every finitely supported prior $\pi$.
 
 \begin{corollary}\label{cor:strict}
-Let $\Omega$ be finite and assume (S) with a Bayes choice. Suppose that $V$ is upper semicontinuous on $\Delta$. This holds if the chosen models have finite losses, and also if $V$ is finite, each $c_p$ is a Bayes model for $p$, and each $p\mapsto L(c_p,\omega)$ is continuous. Then a model is strictly dominated if and only if it is a Bayes model for no prior, and then some chosen model uniformly dominates it. In particular, if every Bayes model for every prior belongs to $\C_L$, every model in $\M_L\setminus\C_L$ is uniformly dominated by a coherent model, which is undominated by (LA).
+Let $\Omega$ be finite and assume \textcolor{red}{(I) and (S$_\infty$)}\textcolor{red}{, with selection maps that make Bayes choices}. Suppose that $V$ is upper semicontinuous on $\Delta$. This holds if the chosen models have finite losses, and also if $V$ is finite, each $c_p$ is a Bayes model for $p$, and each $p\mapsto L(c_p,\omega)$ is continuous. Then a model is strictly dominated if and only if it is a Bayes model for no prior, and then some chosen model uniformly dominates it. In particular, if every Bayes model for every prior belongs to $\C_L$, every model in $\M_L\setminus\C_L$ is uniformly dominated by a coherent model, which is undominated by (LA).
 \end{corollary}
 \begin{proof}[Proof for finite losses]
 Strict dominance makes a model worse in expectation for every prior. Conversely, if $m$ is not Bayes for any prior and has finite losses, then $V$ is finite and
@@ -271,10 +286,53 @@ Thus $R^\uparrow$ is convex and closed in the topology of pointwise convergence.
 The equality is Theorem~\ref{thm:margin}. Each inequality defines a closed half-space, since $\pi$ has finite support and $V(\pi)$ is finite. A mixture $x=\sum_j a_jL(m_j)$ satisfies every inequality, because $\pi\cdot L(m_j)\ge V(\pi)$ for every $j$. The same theorem supplies the coherent model below $x$.
 \end{proof}
 So although Bayes choices are stated without convexity, they imply that finite randomisation offers no profile that cannot be matched or improved by an original coherent model. The weaker condition (S) does not imply this\textcolor{red}{ (Proposition~\ref{prop:random})}.
+\section{Coherence and rational permissibility}\label{sec:argument}
+The axioms in Section~\ref{sec:axioms} distinguish three questions: which models a loss evaluates, which coherent models it leaves undominated, and whether the reasonable losses together vindicate every coherent model. Accuracy arguments combine such conditions with a principle linking dominance to rationality~\cite{Joyce,Pettigrew}. Here losses may measure accuracy, action guidance, or another respect relevant to evaluating models.
+
+Assume (E), (LA) and (A). For each reasonable loss assume (S) when $\Omega$ is finite, or \textcolor{red}{(I)} together with (S$_\infty$) or the bounds condition (B) in Appendix~\ref{sec:bounds}. These are conditions on the loss relative to its own $\M_L$ and $\C_L$. They do not require a common choice of models across losses. The additional normative premise is the one stated at the start:
+\begin{description}[leftmargin=0pt]
+\item[Dominance principle.] A model is irrational if every reasonable loss that applies to it makes it dominated by an undominated model. A model is rationally permissible if some reasonable loss that applies to it makes it undominated.
+\end{description}
+We take irrationality and rational permissibility to be mutually exclusive. The principle gives two sufficient conditions. The dominance theorems make them exhaustive: under each applicable loss a model is either undominated or dominated by an undominated model. The competing models must be evaluable under that same loss, and the dominator may depend on the loss. Condition (E) ensures that the collection of applicable losses is nonempty.
+
+\begin{proposition}\label{prop:permissible}
+Under these assumptions and the dominance principle, the rationally permissible models are exactly
+\[
+ \bigcup_{L\in\mathfrak L}\U_L
+ =\bigcup_{L\in\mathfrak L}
+ \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\}.
+\]
+This class contains $\C$. If each reasonable loss also satisfies \textcolor{red}{(C)}, it is exactly $\C$.
+\end{proposition}
+\begin{proof}
+Fix $L$ and $m\in\M_L$. Theorem~\ref{thm:kkm}, Corollary~\ref{cor:infinite}, or Theorem~\ref{thm:bounds} gives an undominated $c\in\C_L$ with $L(c)\le L(m)$. If $m$ is undominated, its profile must equal $L(c)$. Conversely, any model with the profile of a member of $\C_L$ is undominated. Every other evaluable model is dominated by such a $c$.
+
+A model in $\bigcup_L\U_L$ is permissible by the second clause of the principle. A model outside this union is dominated by an undominated model under every applicable loss, so is irrational by the first clause and hence not permissible. By (A), $\C=\bigcup_L\C_L\subseteq\bigcup_L\U_L$. Under \textcolor{red}{(C)}, $\U_L=\C_L$ for every $L$, so (A) gives equality with $\C$.
+\end{proof}
+
+Without \textcolor{red}{(C)}, the theorem still makes every coherent model permissible. It does not exclude incoherent models that share an undominated coherent profile under some applicable loss. Notice also that a coherent model may be dominated under one reasonable loss and undominated under another. The principle permits it because of the latter; it does not demand admissibility under every reasonable loss.
+
+\emph{Identification up to equivalence.} Sometimes the intended conclusion distinguishes models only up to an equivalence relation $\sim$ on $\M$, such as agreement up to a null set. Write $[X]=\{m\in\M:m\sim x\text{ for some }x\in X\}$. In place of \textcolor{red}{(C)}, suppose each reasonable loss satisfies
+\begin{equation}\tag{\textcolor{red}{C$_\sim$}}\label{eq:identification-equivalence}
+ \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\}
+ =\M_L\cap[\C_L].
+\end{equation}
+This identifies a class of models; it does not require equality of profiles to coincide with equivalence for every pair of models. Proposition~\ref{prop:permissible} now identifies the permissible class as
+\[
+ \bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L])\subseteq[\C].
+\]
+For equality with $[\C]$, the additional coverage requirement is
+\begin{equation}\tag{A$_\sim$}\label{eq:equivalence-coverage}
+ [\C]\subseteq\bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L]).
+\end{equation}
+Condition (A) alone covers coherent representatives, but need not cover all their equivalents under losses that vindicate those representatives. If evaluability is preserved under equivalence for every reasonable loss, (A) implies \eqref{eq:equivalence-coverage}: choose $L$ with $c\in\C_L$ and then every $m\sim c$ belongs to $\M_L\cap[\C_L]$. Likewise, if coherence is preserved under equivalence, $[\C]=\C$, so (A) suffices without any invariance assumption on the domains. Under \eqref{eq:identification-equivalence} and \eqref{eq:equivalence-coverage}, the permissible models are exactly $[\C]$. When equivalence is equality, these conditions reduce to \textcolor{red}{(C)} and (A).
+
+For the proper-score and conditional-report applications \textcolor{red}{in Section~\ref{sec:apps}}, the evaluation domain can be the whole model class, so (E) is immediate for any nonempty family of such losses. The applications verify the mathematical hypotheses for individual losses. The family-wide admissibility requirement and the dominance principle remain separate premises. Ordinary dominance permits ties at some worlds; strict dominance requires the additional hypotheses of Section~\ref{sec:strict}.
+
 \section{Some applications of interest}\label{sec:apps}
 In the applications below, $\M_L$ is the stated evaluation domain and $\C$ is the stated, independently specified coherent class. We prove that every member of $\C$ is undominated, so that $\C_L=\C$. This verifies (LA) for the loss at hand; it verifies the family-wide condition (A) only when the losses under consideration collectively cover the intended coherent class. Here $K=L(\C_L)=L(\C)$.
 \subsection{Proper scores on finite domains}\label{sec:proper}
-Let $\Omega$ be finite, $\C=\Delta\subseteq\M_L$, and let each $p\mapsto L(p,\omega)$ be lower semicontinuous on $\Delta$. Assume \emph{strict propriety relative to $\M_L$}: for every $p\in\Delta$, the model $p$ is a Bayes model for $p$ over all of $\M_L$, and every Bayes model for $p$ has profile $L(p)$. Then every $p\in\C$ is undominated, since a model weakly dominating $p$ is a Bayes model for $p$ and must have its profile. Hence $\C_L=\C$ and (LA) holds. The choice $c_p=p$ satisfies (S), and it is a Bayes choice (Section~\ref{rem:bayes-S}). So $U_R=K$. If, for every $p$, $p$ is the only Bayes model for $p$, then $\C$ is closed under equal profiles and $\U_L=\C$. Then also no incoherent model is a Bayes model for any prior. Moreover $V(p)=\sum_\omega p_\omega L(p,\omega)$ is finite when $\M_L$ has more than one element, since $V(p)=\infty$ would make every model a Bayes model for $p$. So if every probability has finite losses, or each $p\mapsto L(p,\omega)$ is continuous on $\Delta$, Corollary~\ref{cor:strict} shows that every incoherent model is uniformly dominated by a coherent one.
+Let $\Omega$ be finite, $\C=\Delta\subseteq\M_L$, and let each $p\mapsto L(p,\omega)$ be lower semicontinuous on $\Delta$. Assume \emph{strict propriety relative to $\M_L$}: for every $p\in\Delta$, the model $p$ is a Bayes model for $p$ over all of $\M_L$, and every Bayes model for $p$ has profile $L(p)$. Then every $p\in\C$ is undominated, since a model weakly dominating $p$ is a Bayes model for $p$ and must have its profile. Hence $\C_L=\C$ and (LA) holds. The \textcolor{red}{selection map $p\mapsto c_p=p$} satisfies (S), and it \textcolor{red}{makes Bayes choices} (\textcolor{red}{Lemma~\ref{lem:bayes-choice}}). So $U_R=K$. If, for every $p$, $p$ is the only Bayes model for $p$, then $\C$ is closed under equal profiles and $\U_L=\C$. Then also no incoherent model is a Bayes model for any prior. Moreover $V(p)=\sum_\omega p_\omega L(p,\omega)$ is finite when $\M_L$ has more than one element, since $V(p)=\infty$ would make every model a Bayes model for $p$. So if every probability has finite losses, or each $p\mapsto L(p,\omega)$ is continuous on $\Delta$, Corollary~\ref{cor:strict} shows that every incoherent model is uniformly dominated by a coherent one.
 
 This contains Pettigrew's Theorem~1~\cite{Pettigrew}. There $\Omega$ is finite, the models are the credence functions on all subsets of $\Omega$, and the coherent ones are the probabilities, which correspond to the points of $\Delta$. His strict propriety says that $p$ is the only Bayes model for $p$ (reading expected inaccuracies with $0\cdot\infty=0$), and his continuity of each $L(\cdot,\omega)$ on all credence functions implies continuity on the probabilities. His conclusion is that every incoherent credence is strictly dominated by a probability. Continuity cannot simply be dropped~\cite{SSK09}; the discontinuous strictly proper score of~\cite[Example~4]{SSK09} is not lower semicontinuous on the probabilities.
 
@@ -288,7 +346,7 @@ Quasi-strict propriety says that each probability regards its own report as opti
 \begin{proof}
 
 
-First we prove $\C_L=\C$, and hence (LA), adapting Nielsen's proof of his Theorem~2~\cite{Nielsen}. Suppose $L(m)\le L(q)$ with $q\in\C$ and $L(m,w)<L(q,w)$. Then $E_qL(m,\cdot)\le E_qL(q,\cdot)$, which is finite because quasi-strict propriety gives $E_qL(q,\cdot)<E_qL(m',\cdot)$ for any $m'\notin\C$; so equality holds, and $L(m,w)$ is finite. For $n\ge2$ put $q_n=\frac1n\delta_w+(1-\frac1n)q$. Expectations are linear in the probability~\cite[Appendix~A, Proposition~1]{Nielsen}, so quasi-strict propriety at $q_n$ and at $q$ gives $\frac1nL(m,w)+(1-\frac1n)E_qL(m,\cdot)\ge\frac1nL(q_n,w)+(1-\frac1n)E_qL(q,\cdot)$, that is, $L(q_n,w)\le L(m,w)$. Lower semicontinuity gives $L(q,w)\le L(m,w)$, a contradiction. For \textcolor{red}{(I)} take $\Theta=\C$ and $c_q=q$. For (S$_\infty$) let $\F$ consist of all finite nonempty sets and let $\sigma_F(p)$ be $p$, viewed as a member of $\C$. Quasi-strict propriety makes $\sigma_F(p)$ a Bayes model for $p$, so Section~\ref{rem:bayes-S} applies. If $L(m)=L(q)$ with $q\in\C$, then $E_qL(m,\cdot)=E_qL(q,\cdot)$, so $m\in\C$. Corollary~\ref{cor:infinite} completes the argument.
+First we prove $\C_L=\C$, and hence (LA), adapting Nielsen's proof of his Theorem~2~\cite{Nielsen}. Suppose $L(m)\le L(q)$ with $q\in\C$ and $L(m,w)<L(q,w)$. Then $E_qL(m,\cdot)\le E_qL(q,\cdot)$, which is finite because quasi-strict propriety gives $E_qL(q,\cdot)<E_qL(m',\cdot)$ for any $m'\notin\C$; so equality holds, and $L(m,w)$ is finite. For $n\ge2$ put $q_n=\frac1n\delta_w+(1-\frac1n)q$. Expectations are linear in the probability~\cite[Appendix~A, Proposition~1]{Nielsen}, so quasi-strict propriety at $q_n$ and at $q$ gives $\frac1nL(m,w)+(1-\frac1n)E_qL(m,\cdot)\ge\frac1nL(q_n,w)+(1-\frac1n)E_qL(q,\cdot)$, that is, $L(q_n,w)\le L(m,w)$. Lower semicontinuity gives $L(q,w)\le L(m,w)$, a contradiction. For \textcolor{red}{(I)} take $\Theta=\C$ and $c_q=q$. For (S$_\infty$) let $\F$ consist of all finite nonempty sets and let $\sigma_F(p)$ be $p$, viewed as a member of $\C$. Quasi-strict propriety makes $\sigma_F(p)$ a Bayes model for $p$, so \textcolor{red}{Lemma~\ref{lem:bayes-choice}} applies. If $L(m)=L(q)$ with $q\in\C$, then $E_qL(m,\cdot)=E_qL(q,\cdot)$, so $m\in\C$. Corollary~\ref{cor:infinite} completes the argument.
 
 \emph{Uniform dominance.} With local boundedness, every $m\notin\C$ is uniformly dominated. For $q\in\C$ put $D(q)=E_qL(m,\cdot)-E_qL(q,\cdot)$, which lies in $(0,\infty]$ by quasi-strict propriety. By local boundedness, $D$ is lower semicontinuous on $\C$~\cite[Lemma~3]{Nielsen}: $q\mapsto E_qL(m,\cdot)$ is a supremum of the continuous maps $q\mapsto q(h)$ over bounded $h\le L(m,\cdot)$, and, by quasi-strict propriety, $E_qL(q,\cdot)=\min_{q'\in\C}E_qL(q',\cdot)$ is an infimum of maps that are continuous~\cite[Lemma~1]{Nielsen} because each $L(q',\cdot)$ is bounded. So $D$ attains a positive minimum on the compact set $\C$; let $\varepsilon$ be a positive real number no larger than it. A finitely supported $p$ is a Bayes model for itself, so $\sum_\omega p_\omega L(m,\omega)=V(p)+D(p)\ge V(p)+\varepsilon$, and Theorem~\ref{thm:margin}, with the choices above and $x=L(m)-\varepsilon$, gives $q\in\C$ with $L(q,\omega)+\varepsilon\le L(m,\omega)$ for every $\omega$. Since $L(q,\cdot)$ is finite, $q$ strictly dominates $m$, and $\inf_\omega(L(m,\omega)-L(q,\omega))\ge\varepsilon$; so $q$ uniformly dominates $m$, and by (LA) it is undominated.
 \end{proof}
@@ -351,7 +409,7 @@ Condition (P) is a block-by-block optimality and identification requirement. Eac
 
 \emph{\textcolor{red}{(I)}.} $\Gamma$ is compact, and \textcolor{red}{(LSC)} is the lower semicontinuity required.
 
-\emph{(S$_\infty$).} Let $\F$ be all finite nonempty subsets of $\Omega$ and $\sigma_F$ the map of Lemma~\ref{lem:section}. Write $\sigma_F(p)=(q_0,\dots,q_k)$. By (P), each term on the right of \eqref{eq:blocks} is minimised at $x=\rho(\sigma_F(p))$; terms with $q_0(E_j)=0$ vanish. So $\rho(\sigma_F(p))$ is a Bayes model for $q_0$. Since $q_0$ is finitely supported and $\supp q_0\subseteq\supp p$, Section~\ref{rem:bayes-S} gives (S$_\infty$). Corollary~\ref{cor:infinite} gives the conclusions.
+\emph{(S$_\infty$).} Let $\F$ be all finite nonempty subsets of $\Omega$ and $\sigma_F$ the map of Lemma~\ref{lem:section}. Write $\sigma_F(p)=(q_0,\dots,q_k)$. By (P), each term on the right of \eqref{eq:blocks} is minimised at $x=\rho(\sigma_F(p))$; terms with $q_0(E_j)=0$ vanish. So $\rho(\sigma_F(p))$ is a Bayes model for $q_0$. Since $q_0$ is finitely supported and $\supp q_0\subseteq\supp p$, \textcolor{red}{Lemma~\ref{lem:bayes-choice}} gives (S$_\infty$). Corollary~\ref{cor:infinite} gives the conclusions.
 \end{proof}
 The proof of admissibility treats a null cell ($q_0(E_j)=0$) like any other: on $E_j$ the comparison is made against the cell's own conditional probability $q_j$, not against $q_0$. Nothing requires every Bayes model to be coherent (Example~\ref{ex:conditional}). Multiplying each world's loss by a positive weight $a(\omega)$ changes none of the conclusions (Proposition~\ref{prop:ordinal}). The restriction to finitely many cells matters. With countably many cells, if $q_0$ is finitely additive and not conglomerable in the partition, then under a uniform similarity condition on the scores the conditional forecasts given the cells are uniformly dominated~\cite[Theorem~2]{SSK14}; so $\C_L=\C$ can fail; the dominated coherent forecasts would not belong to $\C_L$.
 
@@ -370,7 +428,7 @@ This is the block form with $X_0=[0,1]^3$, $X_1=[0,1]^2$, $X_2=[0,1]$, $\rho$ re
 \]
 so conditional reports remain normalised even when their conditioning event has probability zero. For a probability vector $q$ on a block, $q(S(x,\cdot))=\sum_\nu(x_\nu-q_\nu)^2+\sum_\nu q_\nu(1-q_\nu)$, whose unique minimiser is $x=q$. The losses are continuous. By Proposition~\ref{prop:blocks}, $\U_L=\C$ and every incoherent model is dominated by a coherent one.
 
-With $k=2$ and $\eta=\tfrac14$, Lemma~\ref{lem:section} (with $F=\Omega$) chooses $u=1$ for $p_3\le\tfrac14$, $u=\tfrac32-2p_3$ for $\tfrac14\le p_3\le\tfrac34$, $u=0$ for $p_3\ge\tfrac34$, and $v=p_1/(p_1+p_2)$ for $p_3\le\tfrac34$, $v=\tfrac12+2(p_1-p_2)$ for $p_3\ge\tfrac34$. Ordinary conditioning, $v=p_1/(p_1+p_2)$, has no continuous extension to $p=\delta_3$.
+With $k=2$ and $\eta=\tfrac14$, Lemma~\ref{lem:section} (with $F=\Omega$) chooses $u=1$ for $p_3\le\tfrac14$, $u=\tfrac32-2p_3$ for $\tfrac14\le p_3\le\tfrac34$, $u=0$ for $p_3\ge\tfrac34$, and $v=p_1/(p_1+p_2)$ for $p_3\le\tfrac34$, $v=\tfrac12+2(p_1-p_2)$ for $p_3\ge\tfrac34$. Ordinary conditioning, $v=p_1/(p_1+p_2)$, has no continuous extension to $p=\delta_3$. \textcolor{red}{More strongly, no choice $p\mapsto c_p$ with lower semicontinuous losses makes every $c_p$ Bayes for $p$ itself. If $p_1,p_2,p_3>0$ and $s=p_1+p_2$, then by \eqref{eq:blocks} the unique Bayes model for $p$ is $(p_1,p_2,p_3,p_1/s,p_2/s,1)$. Along $p=(\varepsilon t,\varepsilon(1-t),1-\varepsilon)$ with $0<t<1$ and $\varepsilon\downarrow0$, its losses at worlds $1$ and $2$ tend to $2+2(1-t)^2$ and $2+2t^2$. Since this holds for every $t\in(0,1)$, lower semicontinuity at $\delta_3$ requires $L_1(c_{\delta_3})\le2$ and $L_2(c_{\delta_3})\le2$. But a Bayes model for $\delta_3$ has $L_3=0$, so $x=y=0$ and $z=c=1$, and then $L_1+L_2=4+(1-a)^2+a^2+b^2+(1-b)^2\ge5$.}
 
 Some Bayes models are dominated. The model $(0,0,1,0,0,1)$ is a Bayes model for $\delta_3$ and has profile $(3,3,0)$. The coherent model $(0,0,1,\tfrac12,\tfrac12,1)$ has profile $(\tfrac52,\tfrac52,0)$ and dominates it. Being a Bayes model for $\delta_3$, the incoherent model has the least possible loss at world~$3$, so no model strictly dominates it.
 \end{example}
@@ -381,7 +439,7 @@ The main theorem is a sufficient condition for identifying the original undomina
 
 \subsection{Changes of scale and randomisation}\label{sec:ordinal}
 \begin{proposition}\label{prop:ordinal}
-Let each $f_\omega$ be a strictly increasing function from a set containing the values of $L(\cdot,\omega)$ into $[0,\infty]$, and $L'(m,\omega)=f_\omega(L(m,\omega))$. Then $L$ and $L'$ have the same domination relation, the same undominated models, and the same strict dominance relation on any set of worlds. With the same evaluation domain and coherent class, $\C_{L\prime}=\C_L$. Thus (LA) and the existence of coherent ideal models hold for $L'$ iff they hold for $L$, and so do the requirements in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index. If every $f_\omega$ is continuous, lower semicontinuity of losses along a choice or a family transfers from $L$ to $L'$, and with it (S), \textcolor{red}{(I)} and (S$_\infty$). The conclusions of Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite}, and strict dominance, being statements about comparisons of losses at single worlds, transfer from $L$ to $L'$ for any strictly increasing $f_\omega$.
+Let each $f_\omega$ be a strictly increasing function from a set containing the values of $L(\cdot,\omega)$ into $[0,\infty]$, and $L'(m,\omega)=f_\omega(L(m,\omega))$. Then $L$ and $L'$ have the same domination relation, the same undominated models, and the same strict dominance relation on any set of worlds. With the same evaluation domain and coherent class, $\C_{L\prime}=\C_L$. Thus (LA) and the existence of coherent ideal models hold for $L'$ iff they hold for $L$, and so do the requirements in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index. If every $f_\omega$ is continuous, lower semicontinuity of losses along a \textcolor{red}{selection map} or a family transfers from $L$ to $L'$, and with it (S), \textcolor{red}{(I)} and (S$_\infty$). The conclusions of Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite}, and strict dominance, being statements about comparisons of losses at single worlds, transfer from $L$ to $L'$ for any strictly increasing $f_\omega$.
 \end{proposition}
 \begin{proof}
 Each $f_\omega$ preserves and reflects $\le$ and $<$. A continuous increasing function of a lower semicontinuous function is lower semicontinuous.
@@ -399,7 +457,7 @@ Write $c=(s+k,1-s+k)$, where $s=(1+c_1-c_2)/2\in[0,1]$. Its profile is $\bigl(2(
 
 \end{example}
 
-In this example, the identity assignment of probabilities satisfies (S), because the original quadratic loss does and the change of scale is continuous and strictly increasing. But every prior has only endpoint Bayes models: the expected loss is a positive weighted sum of square roots, strictly concave when both weights are positive, with its minimum at an endpoint. A Bayes choice would therefore have to switch between the two endpoints. Lower semicontinuity would make each of their inverse images closed; both are nonempty because of the vertex requirements. This would disconnect the indexing interval. Hence no Bayes choice exists.\label{rem:bayeschoice}
+In this example, the identity \textcolor{red}{selection map} satisfies (S), because the original quadratic loss does and the change of scale is continuous and strictly increasing. But every prior has only endpoint Bayes models: the expected loss is a positive weighted sum of square roots, strictly concave when both weights are positive, with its minimum at an endpoint. \textcolor{red}{A selection map that makes Bayes choices} would therefore have to switch between the two endpoints. Lower semicontinuity would make each of their inverse images closed; both are nonempty because of the vertex requirements. This would disconnect the indexing interval. Hence no \textcolor{red}{selection map makes Bayes choices}.\label{rem:bayeschoice}
 
 \label{sec:random}
 \begin{proposition}\label{prop:random}
@@ -425,52 +483,9 @@ Truth-directedness says that moving every component of a credence towards its tr
 
 Appendix~\ref{sec:joyce} gives a continuous truth-directed loss on three partition credences for which every coherent credence is undominated, with no incoherent ties, but some incoherent credence is undominated. This contradicts Joyce's partition theorem as stated~\cite[Theorem~2]{Joyce}. The appendix distinguishes a tie problem for credences summing to less than one from a separate sign error for credences summing to more than one. The main theorem here provides a sufficient additional condition; it does not derive that condition from truth-directedness.
 
-\section{Coherence and rational permissibility}\label{sec:argument}
-The axioms in Section~\ref{sec:axioms} distinguish three questions: which models a loss evaluates, which coherent models it leaves undominated, and whether the reasonable losses together vindicate every coherent model. Accuracy arguments combine such conditions with a principle linking dominance to rationality~\cite{Joyce,Pettigrew}. Here losses may measure accuracy, action guidance, or another respect relevant to evaluating models.
-
-Assume (E), (LA) and (A). For each reasonable loss assume (S) when $\Omega$ is finite, or \textcolor{red}{(I)} together with (S$_\infty$) or the bounds condition (B) in Appendix~\ref{sec:bounds}. These are conditions on the loss relative to its own $\M_L$ and $\C_L$. They do not require a common choice of models across losses. The additional normative premise is the one stated at the start:
-\begin{description}[leftmargin=0pt]
-\item[Dominance principle.] A model is irrational if every reasonable loss that applies to it makes it dominated by an undominated model. A model is rationally permissible if some reasonable loss that applies to it makes it undominated.
-\end{description}
-We take irrationality and rational permissibility to be mutually exclusive. The principle gives two sufficient conditions. The dominance theorems make them exhaustive: under each applicable loss a model is either undominated or dominated by an undominated model. The competing models must be evaluable under that same loss, and the dominator may depend on the loss. Condition (E) ensures that the collection of applicable losses is nonempty.
-
-\begin{proposition}\label{prop:permissible}
-Under these assumptions and the dominance principle, the rationally permissible models are exactly
-\[
- \bigcup_{L\in\mathfrak L}\U_L
- =\bigcup_{L\in\mathfrak L}
- \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\}.
-\]
-This class contains $\C$. If each reasonable loss also satisfies \textcolor{red}{(C)}, it is exactly $\C$.
-\end{proposition}
-\begin{proof}
-Fix $L$ and $m\in\M_L$. Theorem~\ref{thm:kkm}, Corollary~\ref{cor:infinite}, or Theorem~\ref{thm:bounds} gives an undominated $c\in\C_L$ with $L(c)\le L(m)$. If $m$ is undominated, its profile must equal $L(c)$. Conversely, any model with the profile of a member of $\C_L$ is undominated. Every other evaluable model is dominated by such a $c$.
-
-A model in $\bigcup_L\U_L$ is permissible by the second clause of the principle. A model outside this union is dominated by an undominated model under every applicable loss, so is irrational by the first clause and hence not permissible. By (A), $\C=\bigcup_L\C_L\subseteq\bigcup_L\U_L$. Under \textcolor{red}{(C)}, $\U_L=\C_L$ for every $L$, so (A) gives equality with $\C$.
-\end{proof}
-
-Without \textcolor{red}{(C)}, the theorem still makes every coherent model permissible. It does not exclude incoherent models that share an undominated coherent profile under some applicable loss. Notice also that a coherent model may be dominated under one reasonable loss and undominated under another. The principle permits it because of the latter; it does not demand admissibility under every reasonable loss.
-
-\emph{Identification up to equivalence.} Sometimes the intended conclusion distinguishes models only up to an equivalence relation $\sim$ on $\M$, such as agreement up to a null set. Write $[X]=\{m\in\M:m\sim x\text{ for some }x\in X\}$. In place of \textcolor{red}{(C)}, suppose each reasonable loss satisfies
-\begin{equation}\tag{\textcolor{red}{C$_\sim$}}\label{eq:identification-equivalence}
- \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\}
- =\M_L\cap[\C_L].
-\end{equation}
-This identifies a class of models; it does not require equality of profiles to coincide with equivalence for every pair of models. Proposition~\ref{prop:permissible} now identifies the permissible class as
-\[
- \bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L])\subseteq[\C].
-\]
-For equality with $[\C]$, the additional coverage requirement is
-\begin{equation}\tag{A$_\sim$}\label{eq:equivalence-coverage}
- [\C]\subseteq\bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L]).
-\end{equation}
-Condition (A) alone covers coherent representatives, but need not cover all their equivalents under losses that vindicate those representatives. If evaluability is preserved under equivalence for every reasonable loss, (A) implies \eqref{eq:equivalence-coverage}: choose $L$ with $c\in\C_L$ and then every $m\sim c$ belongs to $\M_L\cap[\C_L]$. Likewise, if coherence is preserved under equivalence, $[\C]=\C$, so (A) suffices without any invariance assumption on the domains. Under \eqref{eq:identification-equivalence} and \eqref{eq:equivalence-coverage}, the permissible models are exactly $[\C]$. When equivalence is equality, these conditions reduce to \textcolor{red}{(C)} and (A).
-
-For the proper-score and conditional-report applications, the evaluation domain can be the whole model class, so (E) is immediate for any nonempty family of such losses. The applications verify the mathematical hypotheses for individual losses. The family-wide admissibility requirement and the dominance principle remain separate premises. Ordinary dominance permits ties at some worlds; strict dominance requires the additional hypotheses of Section~\ref{sec:strict}.
-
 \appendix
 \section{Bounds instead of choices}\label{sec:bounds}
-The proofs above use less than (S) or (S$_\infty$). For each $p$ they need bounds on the losses that some coherent model meets, and only these bounds have to vary regularly with $p$; the models meeting them may jump.
+The proofs above use less than \textcolor{red}{(S$_\infty$)}. For each $p$ they need bounds on the losses that some coherent model meets, and only these bounds have to vary regularly with $p$; the models meeting them may jump.
 \begin{enumerate}[label=\textbf{(B)},leftmargin=*]
 \item \textbf{Bounds.} There is a family $\F$ as in (S$_\infty$), and for each $F\in\F$ a map $Q_F:\Delta_F\to[0,\infty]^F$ such that each $p\mapsto Q_F(p)(\omega)$ is lower semicontinuous and, for every $p\in\Delta_F$,
 \begin{enumerate}[label=(\roman*)]
@@ -494,7 +509,7 @@ Unlike the requirement in (S), condition (ii) is not automatic when $p$ charges 
 Let $F\in\F$ and $p\in\Delta_F$, and let $c_\theta$ be a Bayes model for a probability $\pi$ with $\supp\pi\subseteq\supp p$. If $Q_F(p)(\omega)=L(c_\theta,\omega)$ for $\omega\in\supp\pi$ and $Q_F(p)(\omega)\ge L(c_\theta,\omega)$ for $\omega\in F$, then (i) and (ii) hold at $p$.
 \end{lemma}
 \begin{proof}
-(i) holds with this $\theta$. A model whose profile strictly dominates $Q_F(p)$ on $\supp p$ would strictly dominate $c_\theta$ on $\supp\pi$, contrary to Section~\ref{rem:bayes-S}.
+(i) holds with this $\theta$. A model whose profile strictly dominates $Q_F(p)$ on $\supp p$ would strictly dominate $c_\theta$ on $\supp\pi$, contrary to \textcolor{red}{Lemma~\ref{lem:bayes-choice}}.
 \end{proof}
 In the lemma, the bounds equal the losses of the certifying model at the worlds charged by the certifying prior. At the other worlds of $F$ they may exceed those losses. Appendix~\ref{sec:finite} gives a problem in which (S) cannot be met but \textcolor{red}{(I)} and (B) can (Proposition~\ref{prop:threeworld} and Remark~\ref{rem:threeworld-bounds}); there the bounds are not of the form in Lemma~\ref{lem:bayesbounds}. It also shows that for finitely many worlds and compact $K$, \textcolor{red}{(I)} and (B) can be met whenever every model is weakly dominated by a coherent one (Proposition~\ref{prop:necessary}).
 
@@ -505,7 +520,7 @@ In this section $\Omega$ is finite and losses are finite. We work with $\C_L$ as
 
 \subsection{Lower semicontinuity is needed}
 \begin{example}\label{ex:continuity-needed}
-There are three worlds and three coherent models, with profiles $(0,1,1)$, $(1,0,1)$ and $(1,1,0)$, and a fourth model with profile $(\tfrac12,\tfrac12,\tfrac12)$. All four are undominated, so (LA) holds, and each coherent model is ideal at one world, so coherent ideal models exist. For each $p$ choose the coherent model whose zero coordinate is at the least member of $\supp p$. Its loss there is $0$, so no model strictly dominates it on $\supp p$. But no coherent model weakly dominates the fourth model. The choice is not lower semicontinuous: at $p=\delta_2$ the chosen model has loss $1$ at world~$1$, while at nearby $p$ with support $\{1,2\}$ it has loss $0$ there. Choices of models that are not strictly dominated on the support of the index are not enough without lower semicontinuity.
+There are three worlds and three coherent models, with profiles $(0,1,1)$, $(1,0,1)$ and $(1,1,0)$, and a fourth model with profile $(\tfrac12,\tfrac12,\tfrac12)$. All four are undominated, so (LA) holds, and each coherent model is ideal at one world, so coherent ideal models exist. For each $p$ choose the coherent model whose zero coordinate is at the least member of $\supp p$. Its loss there is $0$, so no model strictly dominates it on $\supp p$. But no coherent model weakly dominates the fourth model. The \textcolor{red}{selection map} is not lower semicontinuous: at $p=\delta_2$ the chosen model has loss $1$ at world~$1$, while at nearby $p$ with support $\{1,2\}$ it has loss $0$ there. Choices of models that are not strictly dominated on the support of the index are not enough without lower semicontinuity.
 \end{example}
 
 \subsection{Continuous choices of coherent profiles}\label{sec:connect}
@@ -516,7 +531,7 @@ For nonempty $S\subseteq\Omega$ let
 the profiles of coherent models that no model strictly dominates on $S$. Each $K^S$ is closed in $K$. If $S'\subseteq S$ then $K^{S'}\subseteq K^S$. By (LA), $K^\Omega=K$. The set $K^{\{\omega\}}$ consists of the profiles of coherent models ideal at $\omega$. In this notation the requirement in (S) that no model strictly dominate $c_p$ on $\supp p$ says that $L(c_p)\in K^{\supp p}$ for every $p$.
 
 \begin{lemma}\label{lem:profcont}
-Let $K$ be compact, and let $p\mapsto c_p$ be a choice of coherent models with lower semicontinuous losses. Then $P(p)=L(c_p)$ defines a continuous map $P:\Delta\to K$.
+Let $K$ be compact, and let $p\mapsto c_p$ be a \textcolor{red}{selection map} with lower semicontinuous losses. Then $P(p)=L(c_p)$ defines a continuous map $P:\Delta\to K$.
 \end{lemma}
 \begin{proof}
 Let $p_n\to p$. Every subsequence of $(P(p_n))$ has a further subsequence converging to some $k'\in K$, since $K$ is compact. By lower semicontinuity along that subsequence, $P(p)\le k'$. By (LA), $k'$ is not dominated, so $P(p)=k'$. Hence $P(p_n)\to P(p)$.
@@ -596,7 +611,7 @@ Let $\Omega=\mathbb N=\{1,2,\dots\}$, let $\M_L$ be the square-summable $m\in[0,
 \begin{proof}
 Let $\Theta=\PP(\mathbb N)$ (Section~\ref{sec:conditional}) and $c_\theta=(\theta\{n\})_n$. Each $\theta\mapsto\theta\{n\}$ is continuous, so $\theta\mapsto\sum_n\theta\{n\}^2$, a supremum of continuous partial sums, is lower semicontinuous, and so is each $\theta\mapsto L(c_\theta,\omega)$. This gives \textcolor{red}{(I)}.
 
-For $\F=\{\{1,\dots,N\}\}_N$ and $\sigma_F(p)=p$ we have $\sum_\omega p_\omega(L(m,\omega)-L(p,\omega))=\|m-p\|^2\ge0$, so $p$ is a Bayes model for itself, and Section~\ref{rem:bayes-S} gives (S$_\infty$).
+For $\F=\{\{1,\dots,N\}\}_N$ and $\sigma_F(p)=p$ we have $\sum_\omega p_\omega(L(m,\omega)-L(p,\omega))=\|m-p\|^2\ge0$, so $p$ is a Bayes model for itself, and \textcolor{red}{Lemma~\ref{lem:bayes-choice}} gives (S$_\infty$).
 
 \emph{Admissibility and closure.} Let $c\in\C$ and $\theta=\sum_nc_n\delta_n+(1-\sum_nc_n)\theta_\infty$, where $\theta_\infty\in\PP(\mathbb N)$ vanishes on finite sets (for instance a limit along a free ultrafilter). For $m\in\M_L$, $m_\omega\to0$, so $\theta(m)=\sum_nc_nm_n$ and $\theta(L(m,\cdot))-\theta(L(c,\cdot))=\|m-c\|^2$. Hence $L(m)\le L(c)$ forces $m=c$. So $\C_L=\C$, (LA) holds and $\C$ is closed under equal profiles, and Corollary~\ref{cor:infinite} gives the first two claims.
 
@@ -681,7 +696,7 @@ Its Lemma~$1^*$ asserts the negative signs needed at omitted vertices of a mixtu
 
 Proposition~\ref{prop:joyce-cex} gives a direct failure. For $c=(1,1,0)$ the vertices are $b^1=(1,0,0)$, $b^2=(0,1,0)$ and $b^3=(\tfrac12,\tfrac12,0)$. At $p=b^3$, choose mixture coefficients $(0,0,1)$. The signs required at the two omitted vertices would be $f_i(p)=L_i(p)-L_i(c)<0$, $i=1,2$. In fact both are positive. By symmetry $s_1(p)=s_2(p)$, and the bound $s_3(p)>1/5$ from the proposition gives $L_1(p)=L_2(p)>9/25$. The same proof gives $L_1(c)=L_2(c)<9/25$.
 
-The counterexample satisfies even the stronger requirement that excludes all ties with coherent credences. Its loss is continuous but not proper: at $p=(\tfrac12,\tfrac12,0)$, $\sum_ip_iL_i(x^*)\approx0.338<0.380\approx\sum_ip_iL_i(p)$. For strictly proper scores, Schervish, Seidenfeld and Kadane~\cite{SSK09} show by examples that continuity cannot simply be dropped. So an additional loss condition is needed for the general probabilism conclusion; (S), checked through Section~\ref{rem:bayes-S}, is one such condition. Joyce's theorem is therefore not a special case of the results here, since it fails as stated. Under his assumptions, Proposition~\ref{prop:joyce-sub} shows that every credence summing to less than one is weakly dominated by an undominated coherent one, and strictly dominated by a coherent one under the stronger condition that excludes ties. Which natural condition on a merely truth-directed loss makes every credence summing to more than one dominated is a question about Joyce's framework rather than about Theorem~\ref{thm:kkm}, and we leave it aside. Unlike the partition construction, Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite} impose no internal structure on models and allow infinitely many worlds.
+The counterexample satisfies even the stronger requirement that excludes all ties with coherent credences. Its loss is continuous but not proper: at $p=(\tfrac12,\tfrac12,0)$, $\sum_ip_iL_i(x^*)\approx0.338<0.380\approx\sum_ip_iL_i(p)$. For strictly proper scores, Schervish, Seidenfeld and Kadane~\cite{SSK09} show by examples that continuity cannot simply be dropped. So an additional loss condition is needed for the general probabilism conclusion; (S), checked through \textcolor{red}{Lemma~\ref{lem:bayes-choice}}, is one such condition. Joyce's theorem is therefore not a special case of the results here, since it fails as stated. Under his assumptions, Proposition~\ref{prop:joyce-sub} shows that every credence summing to less than one is weakly dominated by an undominated coherent one, and strictly dominated by a coherent one under the stronger condition that excludes ties. Which natural condition on a merely truth-directed loss makes every credence summing to more than one dominated is a question about Joyce's framework rather than about Theorem~\ref{thm:kkm}, and we leave it aside. Unlike the partition construction, Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite} impose no internal structure on models and allow infinitely many worlds.
 
 \section{Further details on strict dominance}\label{sec:strictproof}
 \subsection{Proof of Corollary~\ref{cor:strict} with infinite losses}
@@ -691,7 +706,7 @@ If $c$ strictly dominates $m$, then $L(c)$ is finite, and $c$ has smaller $\pi$-
 Conversely, let $m$ be a Bayes model for no prior. Then $V$ is finite, since $V(\pi)=\infty$ would make every model a Bayes model for $\pi$. Let $\Omega_\infty=\{\omega:L(m,\omega)=\infty\}$, and for $n\ge1$ let $x_n(\omega)=L(m,\omega)-1/n$ for $\omega\notin\Omega_\infty$ and $x_n(\omega)=n$ for $\omega\in\Omega_\infty$. The functions $g_n(\pi)=\sum_\omega\pi_\omega x_n(\omega)-V(\pi)$ are lower semicontinuous on $\Delta$ and increase with $n$. If $\pi(\Omega_\infty)=0$, then $g_n(\pi)$ converges to $\sum_\omega\pi_\omega L(m,\omega)-V(\pi)$, which is positive because $m$ is not a Bayes model for $\pi$; if $\pi(\Omega_\infty)>0$, then $g_n(\pi)\to\infty$. So the closed sets $\{\pi:g_n(\pi)\le0\}$ decrease and have empty intersection, and by compactness of $\Delta$ one of them, for $n=N$ say, is empty. Theorem~\ref{thm:margin} with $x=x_N$ gives a chosen model $c_p$ with $L(c_p)\le x_N$. Then $L(c_p,\omega)\le L(m,\omega)-1/N$ for $\omega\notin\Omega_\infty$, and $L(c_p,\omega)\le N<L(m,\omega)$ for $\omega\in\Omega_\infty$; so $c_p$ uniformly dominates $m$.
 \end{proof}
 \subsection{Finite event forecasts}\label{sec:forecasts}
-\emph{Forecasts of finitely many events.} Predd et al.~\cite[Theorem~1]{Predd} fix a nonempty set $\Omega$, events $E_1,\dots,E_n$, and a continuous map $s:\{0,1\}\times[0,1]\to[0,\infty]$ that is strictly proper: for every $t\in[0,1]$, the function $G_t(y)=ts(1,y)+(1-t)s(0,y)$ has the unique minimiser $y=t$. The models are the forecasts $f\in[0,1]^n$, with loss $L(f,\omega)=\sum_is(\one_{E_i}(\omega),f_i)$, and a forecast is coherent if it is $(\pi(E_1),\dots,\pi(E_n))$ for some probability $\pi$. Their theorem says that no forecast other than a coherent $f$ weakly dominates $f$, and that every incoherent forecast is strictly dominated by a coherent one. This is a special case of the results above. The loss depends on $\omega$ only through $\tau(\omega)=(\one_{E_i}(\omega))_i$, so profiles on $\Omega$ and on the finite set $\tau(\Omega)$ determine each other, and we may replace $\Omega$ by $\tau(\Omega)$. (Alternatively, \textcolor{red}{(I)} and (S$_\infty$) hold on $\Omega$ itself, with $\Theta=\Delta_{\tau(\Omega)}$ and $\sigma_F(p)$ the image of $p$ under $\tau$.) For $p\in\Delta_{\tau(\Omega)}$ put $p(E_i)=\sum_{v:v_i=1}p_v$; the coherent forecasts are the $c_p=(p(E_1),\dots,p(E_n))$. With $0\cdot\infty=0$, the $p$-expected loss of $f$ is $\sum_iG_{p(E_i)}(f_i)$. Each $G_t$ has a finite minimum, since otherwise $G_t\equiv\infty$ would have many minimisers. So $V$ is finite, and $c_p$ is the only Bayes model for $p$. Hence a forecast weakly dominating $c_p$ is a Bayes model for $p$, and so equals $c_p$; in particular $\C_L=\C$ and (LA) holds. Continuity of $s$ makes $p\mapsto L(c_p,\omega)$ continuous, so $p\mapsto c_p$ is a Bayes choice satisfying (S), and no incoherent forecast is a Bayes model for any prior. So Corollary~\ref{cor:strict}, in its second case, applies: every incoherent forecast is uniformly dominated by a coherent one.
+\emph{Forecasts of finitely many events.} Predd et al.~\cite[Theorem~1]{Predd} fix a nonempty set $\Omega$, events $E_1,\dots,E_n$, and a continuous map $s:\{0,1\}\times[0,1]\to[0,\infty]$ that is strictly proper: for every $t\in[0,1]$, the function $G_t(y)=ts(1,y)+(1-t)s(0,y)$ has the unique minimiser $y=t$. The models are the forecasts $f\in[0,1]^n$, with loss $L(f,\omega)=\sum_is(\one_{E_i}(\omega),f_i)$, and a forecast is coherent if it is $(\pi(E_1),\dots,\pi(E_n))$ for some probability $\pi$. Their theorem says that no forecast other than a coherent $f$ weakly dominates $f$, and that every incoherent forecast is strictly dominated by a coherent one. This is a special case of the results above. The loss depends on $\omega$ only through $\tau(\omega)=(\one_{E_i}(\omega))_i$, so profiles on $\Omega$ and on the finite set $\tau(\Omega)$ determine each other, and we may replace $\Omega$ by $\tau(\Omega)$. (Alternatively, \textcolor{red}{(I)} and (S$_\infty$) hold on $\Omega$ itself, with $\Theta=\Delta_{\tau(\Omega)}$ and $\sigma_F(p)$ the image of $p$ under $\tau$.) For $p\in\Delta_{\tau(\Omega)}$ put $p(E_i)=\sum_{v:v_i=1}p_v$; the coherent forecasts are the $c_p=(p(E_1),\dots,p(E_n))$. With $0\cdot\infty=0$, the $p$-expected loss of $f$ is $\sum_iG_{p(E_i)}(f_i)$. Each $G_t$ has a finite minimum, since otherwise $G_t\equiv\infty$ would have many minimisers. So $V$ is finite, and $c_p$ is the only Bayes model for $p$. Hence a forecast weakly dominating $c_p$ is a Bayes model for $p$, and so equals $c_p$; in particular $\C_L=\C$ and (LA) holds. Continuity of $s$ makes $p\mapsto L(c_p,\omega)$ continuous, so $p\mapsto c_p$ is a \textcolor{red}{selection map that makes Bayes choices and satisfies} (S), and no incoherent forecast is a Bayes model for any prior. So Corollary~\ref{cor:strict}, in its second case, applies: every incoherent forecast is uniformly dominated by a coherent one.
 
 
 \subsection{A direct proof when the index is the Bayes prior}\label{sec:direct}
