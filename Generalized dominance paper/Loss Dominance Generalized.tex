@@ -299,18 +299,41 @@ Without the assumption that selection maps make Bayes choices, mixtures of model
 
 \section{Coherence and rational permissibility}\label{sec:argument}
 
-What do these results tells (if anything) about whether coherent models are rationally preferable to incoherent models?
+What do these results tell us (if anything) about whether coherent models are rationally preferable to incoherent models?
 
-We assume that models are used to perform some task or other. They perform better or worse in different states of the world. And loss functions measure some property or other relevant to evaluating how well they perform in those states. 
+Models are used for some purpose or other. For example, a set of precise forecasts for a range of weather events might be used to estimate whether those events will occur or not. A set of interval forecasts for a range of public health events might be used to guide policymakers in their decisions. Whatever the purpose or task, we assume that models perform better or worse in different states of the world. And loss functions measure some property or other relevant to evaluating how well they perform in those states. 
+
+Note, however, that it may not be perfectly determinate what \textit{performing well} amounts to, even once we specify the purpose or task of interest carefully. This may be true for a variety of reasons. Here is an especially clear one though: good performance is often multi-dimensional. Running a restaurant well, for example, involves putting out creative dishes, executing those dishes consistently, serving customers promptly, minimising costs, etc. There may be a number of different reasonable ways to weigh up overall performance as a function of performance in these various dimensions. Each one yields a different notion of \textit{performing well}.
+
+In Section~\ref{sec:axioms}, we assumed that the set $\mathfrak L$ of loss functions is putatively complete class, in the sense that it contains all and only the loss functions that measure how well the models in $\M$ perform a given task, and do so in a reasonable fashion. We allowed that each loss function $L\in\mathfrak L$ might only evaluate a certain subset of models, $\M_L\subseteq\M$. But we assumed that as a class, $\mathfrak L$ collectively evaluates every model (\textit{i.e.}, $\M=\bigcup_{L\in\mathfrak L}\M_L$). This was assumption (E).
 
 
-There may well be a number of different reasonable ways of evaluating performance.
 
-In particular, when overall performance is multi-dimensional, there may be a number of different reasonable ways to weight up overall performance as a function of performance in these various dimensions.
 
-For example, 
+The verdicts of the \textit{entire class of reasonable loss functions} are what matters for whether or not it is rationally permissible to use a given model for some purpose or not. In particular, we assume:
 
-Different loss functions $L\in\mathfrak L$ measure slightly different properties...
+
+\begin{enumerate}[label=\textbf{(D)},leftmargin=*]
+\item \textbf{Dominance.} A model $m\in\M$ is irrational if, for every $L\in\mathfrak L$ with $m\in\M_L$, there is some $m_L^\prime\in\U_L$ with $L(m_L^\prime)\lneq L(m)$. A model $m$ is rationally permissible if $m\in\U_L$ for some $L\in\mathfrak L$.
+\end{enumerate}
+
+
+This says that it is irrational to use a model $m$ for a given purpose or task if on \textit{any} reasonable way of measuring good performance at that task (any $L\in\mathfrak L$), there is some alternative $m_L^\prime$ that dominates it, in the sense that it could not possibly do worse and might do better (according to $L$); moreover the alternative does not itself suffer this defect (it is undominated, \textit{i.e.}, $m_L^\prime\in\U_L$). On the flip side, it is rationally permissible use a model for a purpose if there is \textit{some} reasonable way of measuring good performance that renders $m$ free of the defect of domination. Of course, some particular evaluator (a single forecaster or decision-maker, a governmental organisation, etc.) might care about some ways of measuring good performance and not others. In that case, we must tailor $\mathfrak L$ appropriately.
+
+
+With this dominance principle in hand, we can provide a general recipe for how to argue that the rationally permissible models are exactly the coherent ones. 
+
+\begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*]
+\item $\mathfrak L$ satisfies (E), (LA), (A), (I) and (S$_\infty$).
+\item \textbf{Dominance.}
+\item Proposition~\ref{prop:permissible}.
+\item[\textbf{(C)}] The rationally permissible models are exactly the members of $\bigcup_{L\in\mathfrak L}\U_L$. 
+
+\end{enumerate}
+
+\newpage
+
+
 
 \begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*]
 \item \textcolor{red}{Every model is evaluable by some reasonable loss: (E) holds.}
