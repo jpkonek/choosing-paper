@@ -333,56 +333,33 @@ With this dominance principle in hand, we can provide a general recipe for how t
 
 \newpage
 
-
-
-\begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*]
-\item \textcolor{red}{Every model is evaluable by some reasonable loss: (E) holds.}
-\item \textcolor{red}{For every $L\in\mathfrak L$, some evaluable coherent model is undominated relative to $L$: (LA) holds.}
-\item \textcolor{red}{Every coherent model is evaluable by, and undominated relative to, some reasonable loss: (A) holds.}
-\item \textcolor{red}{Every $L\in\mathfrak L$ satisfies (I) and (S$_\infty$).}
-\item \textcolor{red}{A model $m$ is irrational if, for every $L\in\mathfrak L$ with $m\in\M_L$, some $m'\in\U_L$ has $L(m')\lneq L(m)$.}
-\item \textcolor{red}{A model $m$ is rationally permissible if $m\in\U_L$ for some $L\in\mathfrak L$.}
-\item \textcolor{red}{No model is both irrational and rationally permissible.}
-\end{enumerate}
-\begin{description}[leftmargin=0pt]
-\item[\textcolor{red}{Conclusion 1.}] \textcolor{red}{The rationally permissible models are exactly the members of $\bigcup_{L\in\mathfrak L}\U_L$. Every coherent model is rationally permissible.}
-\end{description}
-\begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*,start=8]
-\item \textcolor{red}{Every $L\in\mathfrak L$ satisfies (C).}
-\end{enumerate}
-\begin{description}[leftmargin=0pt]
-\item[\textcolor{red}{Conclusion 2.}] \textcolor{red}{The rationally permissible models are exactly the coherent models.}
-\end{description}
-
 \begin{proposition}\label{prop:permissible}
-\textcolor{red}{Premises (P1)--(P7) entail Conclusion~1. More precisely, they entail that the rationally permissible models are exactly}
+\textcolor{red}{Suppose that every $L\in\mathfrak L$ satisfies (LA), (I) and (S$_\infty$). Then, for every $L\in\mathfrak L$,}
 \[
- \bigcup_{L\in\mathfrak L}\U_L
- =\bigcup_{L\in\mathfrak L}
- \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\},
+ \textcolor{red}{\U_L}=\{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\},
 \]
-\textcolor{red}{and that this class contains $\C$. Premises (P1)--(P8) entail Conclusion~2.}
+\textcolor{red}{and every $m\in\M_L\setminus\U_L$ is dominated by some $c\in\C_L$, \textit{i.e.}, $L(c)\lneq L(m)$. Consequently, a model $m\in\M$ lies outside $\bigcup_{L\in\mathfrak L}\U_L$ if and only if, for every $L\in\mathfrak L$ with $m\in\M_L$, some $m'\in\U_L$ has $L(m')\lneq L(m)$. If (A) holds, then $\C\subseteq\bigcup_{L\in\mathfrak L}\U_L$, with equality if every $L\in\mathfrak L$ also satisfies (C).}
 \end{proposition}
 \begin{proof}
-Fix $L$ and $m\in\M_L$. \textcolor{red}{By (P2), (P4) and Corollary~\ref{cor:infinite}, some undominated $c\in\C_L$ has $L(c)\le L(m)$.} If $m$ is undominated, its profile must equal $L(c)$. Conversely, any model with the profile of a member of $\C_L$ is undominated. Every other evaluable model is dominated by such a $c$.
+\textcolor{red}{Fix $L$ and $m\in\M_L$. By Corollary~\ref{cor:infinite}, some undominated $c\in\C_L$ has $L(c)\le L(m)$. If $m$ is undominated, then $L(m)=L(c)$. Conversely, any model with the profile of a member of $\C_L$ is undominated. This gives the displayed equality. If $m\notin\U_L$, then $L(m)\ne L(c)$, so $L(c)\lneq L(m)$.}
 
-A model in $\bigcup_L\U_L$ is permissible by \textcolor{red}{(P6)}. A model outside this union is dominated by an undominated model under every \textcolor{red}{loss that evaluates it, so it is irrational by (P5) and hence, by (P7),} not permissible. By \textcolor{red}{(P3)}, $\C=\bigcup_L\C_L\subseteq\bigcup_L\U_L$. Under \textcolor{red}{(P8), Corollary~\ref{cor:infinite} gives} $\U_L=\C_L$ for every $L$, so \textcolor{red}{(P3)} gives equality with $\C$.
+\textcolor{red}{If $m\notin\bigcup_L\U_L$, then $m\notin\U_L$ for every $L$ with $m\in\M_L$, so some member of $\C_L\subseteq\U_L$ dominates $m$ relative to each such $L$. Conversely, if $m\in\U_L$ for some $L$, then no model dominates $m$ relative to that $L$. By (A), $\C=\bigcup_L\C_L\subseteq\bigcup_L\U_L$. If every $L$ satisfies (C), Corollary~\ref{cor:infinite} gives $\U_L=\C_L$ for every $L$, and so $\bigcup_L\U_L=\bigcup_L\C_L=\C$.}
 \end{proof}
 
 \begin{proposition}\label{prop:permissible-equivalence}
-\textcolor{red}{Let $\sim$ be an equivalence relation on $\M$, and put $[X]:=\{m\in\M:m\sim x\text{ for some }x\in X\}$ for $X\subseteq\M$. Suppose that every $L\in\mathfrak L$ satisfies}
+\textcolor{red}{Suppose that every $L\in\mathfrak L$ satisfies (LA), (I) and (S$_\infty$). Let $\sim$ be an equivalence relation on $\M$, and put $[X]:=\{m\in\M:m\sim x\text{ for some }x\in X\}$ for $X\subseteq\M$. If every $L\in\mathfrak L$ satisfies}
 \begin{equation}\tag{C$_\sim$}\label{eq:identification-equivalence}
  \{m\in\M_L:L(m)=L(c)\text{ for some }c\in\C_L\}
  =\M_L\cap[\C_L],
 \end{equation}
-\textcolor{red}{and that}
+\textcolor{red}{then $\bigcup_{L\in\mathfrak L}\U_L=\bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L])\subseteq[\C]$. If, in addition,}
 \begin{equation}\tag{A$_\sim$}\label{eq:equivalence-coverage}
- [\C]\subseteq\bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L]).
+ [\C]\subseteq\bigcup_{L\in\mathfrak L}(\M_L\cap[\C_L]),
 \end{equation}
-\textcolor{red}{Then (P1)--(P7) entail that the rationally permissible models are exactly the members of $[\C]$. Condition (A$_\sim$) follows from (A) if every $\M_L$ is closed under $\sim$, or if $\C$ is. When $\sim$ is equality, (C$_\sim$) is (C) and (A$_\sim$) is (A).}
+\textcolor{red}{then $\bigcup_{L\in\mathfrak L}\U_L=[\C]$. Condition (A$_\sim$) follows from (A) if every $\M_L$ is closed under $\sim$, or if $\C$ is. When $\sim$ is equality, (C$_\sim$) is (C) and (A$_\sim$) is (A).}
 \end{proposition}
 \begin{proof}
-\textcolor{red}{By Proposition~\ref{prop:permissible} and (C$_\sim$), the permissible models are the members of $\bigcup_L(\M_L\cap[\C_L])$, which is contained in $[\C]$ because $\C_L\subseteq\C$. (A$_\sim$) gives the reverse inclusion. If every $\M_L$ is closed under $\sim$ and $m\sim c\in\C$, choose $L$ with $c\in\C_L$ by (A); then $m\in\M_L\cap[\C_L]$. If $\C$ is closed under $\sim$, then $[\C]=\C=\bigcup_L\C_L\subseteq\bigcup_L(\M_L\cap[\C_L])$ by (A). When $\sim$ is equality, $[X]=X$. Then (C$_\sim$) says that every $m\in\M_L$ with the profile of a member of $\C_L$ belongs to $\C_L$, which is (C), and (A$_\sim$) says that $\C\subseteq\bigcup_L\C_L$, which, since each $\C_L\subseteq\C$, is (A).}
+\textcolor{red}{By Proposition~\ref{prop:permissible} and (C$_\sim$), $\U_L=\M_L\cap[\C_L]$ for every $L$, and $\M_L\cap[\C_L]\subseteq[\C]$ because $\C_L\subseteq\C$. (A$_\sim$) gives the reverse inclusion. If every $\M_L$ is closed under $\sim$ and $m\sim c\in\C$, choose $L$ with $c\in\C_L$ by (A); then $m\in\M_L\cap[\C_L]$. If $\C$ is closed under $\sim$, then $[\C]=\C=\bigcup_L\C_L\subseteq\bigcup_L(\M_L\cap[\C_L])$ by (A). When $\sim$ is equality, $[X]=X$. Then (C$_\sim$) says that every $m\in\M_L$ with the profile of a member of $\C_L$ belongs to $\C_L$, which is (C), and (A$_\sim$) says that $\C\subseteq\bigcup_L\C_L$, which, since each $\C_L\subseteq\C$, is (A).}
 \end{proof}
 
 
