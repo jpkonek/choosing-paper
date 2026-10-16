@@ -1,0 +1,443 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{Closed Choice Beyond Ordinary Integrals}
+\author{}\date{9 October 2026}
+\begin{document}\maketitle
+
+\noindent
+The unrestricted problem remains open. This note strengthens the obstruction
+in \emph{Closed Choice for Independent Rankings} (CC), and shows why one
+apparently promising proof strategy cannot work.
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+\item Finitely additive penalties do not escape the obstruction. Even an
+incomplete ranking with a strictly guidance-respecting finitely additive
+weak extension on regular models cannot leave the vacuous model undominated
+when $n\ge3$ (Theorem~\ref{thm:fa}).
+\item Nevertheless, (S) does \emph{not} force an ordinary additive weak
+extension on regular models. A complete, real-valued ranking satisfies
+(G), (IB), (LA), (S), and (C), but has no such extension
+(Proposition~\ref{prop:example}). Thus CC's Theorem~1 cannot become a general
+impossibility proof simply by deriving its extra hypothesis from (S).
+\item Closed choice forces continuity of any measure-continuous real primary
+along two-world edges. It also rules out nontrivial priorities based solely
+on advice in arbitrarily small sets (Section~\ref{sec:primary}).
+\end{itemize}
+The first result uses the additive obstruction already proved in v3.
+It does not assume that independence entails an additive representation.
+
+\section{Setting and the facts needed from the earlier notes}
+
+There are $n$ worlds. Put
+$\Delta=\{p\in\R^n:p\ge0,\ \sum_i p_i=1\}$ and
+$H=\{g\in\R^n:g_1>0\}$. We normalize Gaussian measure on $H$ to have mass
+one and call it $\mu$. All models are measurable, and equality means equality
+outside a null set. At each binary problem $\{g,-g\}$ a model accepts $g$
+only, accepts neither, accepts $-g$ only, or accepts both. Its guidance rank
+$r_i(g,\Dscr)$ at world $i$ is respectively $0,1,2,3$ when the advice is
+good, silent, bad, or contradictory. Which decisive recommendation is good
+depends on the sign of $g_i$; coordinate hyperplanes are null.
+
+The ideal is $D_i=\{g:g_i>0\}$. A model is \emph{regular} if it never
+contradicts itself and is correct on unanimous problems. Every coherent
+model is regular. Write $H'$ for the mixed problems in $H$.
+
+A coherent model has, up to a null set, the form
+\[
+ \Dscr_M=\{g:\underline{P_M}(g)>0\}\cup\{g\ge0:g\ne0\},
+ \qquad \underline{P_M}(g)=\min_{m\in M}m\cdot g,
+\]
+where $M$ is a nonempty compact convex subset of $\Delta$.
+The vacuous model is $\Dscr_\Delta$.
+
+At each world $\preceq_i$ is a preorder, with smaller meaning better.
+\textbf{(G)} preserves weak pointwise improvement in guidance rank, and makes
+the comparison strict if the improvement occurs on a positive-measure set.
+\textbf{(IB)} says that replacing advice shared by two models on any measurable
+set of binary problems leaves their comparison unchanged.
+
+A model $C$ is competitive on $S$ if, for every $\Dscr$, some $i\in S$
+satisfies $C\preceq_i\Dscr$. Requirement \textbf{(S)} supplies coherent
+undominated models $C_p$, $p\in\Delta$, competitive on $\supp p$, with
+\[
+ A_i(\Dscr)=\{p:C_p\preceq_i\Dscr\}\quad\text{closed for every }i,\Dscr.
+ \tag{S}
+\]
+Requirement \textbf{(LA)} asks that coherent undominated models exist.
+Requirement \textbf{(C)} says that a model tied everywhere with a coherent
+undominated model is itself coherent and undominated.
+
+We need the following consequence of (S), which does not require complete
+rankings.
+\begin{lemma}\label{lem:dominator}
+Every model has a selected coherent weak dominator at all worlds. Every
+undominated model is tied everywhere with a selected model, and is therefore
+competitive on some nonempty support.
+\end{lemma}
+\begin{proof}
+Fix $\Dscr$. The closed sets $A_i=A_i(\Dscr)$ cover each face by its own
+indices, by competitiveness. Put $d_i(p)=\operatorname{dist}(p,A_i)$ and
+\[
+ F_i(p)=\frac{p_i+d_i(p)}{1+\sum_jd_j(p)}.
+\]
+Each $A_i$ contains $e_i$. A fixed point exists by Brouwer's theorem.
+At a fixed point, $d_i=p_i\sum_jd_j$. Some supported $i$ belongs to $A_i$,
+so $d_i=0$ and $p_i>0$, forcing every $d_j=0$. This gives a common point of
+the $A_i$. If $\Dscr$ is undominated, its weak dominator can be strictly
+better nowhere, so all comparisons are ties. Transitivity transfers
+competitiveness across those ties.
+\end{proof}
+
+We also use the following established result from v3, Appendix C:
+\begin{quote}
+For ordinary integral penalties that strictly order good, silence, bad,
+and contradiction and have an integrable envelope, suppose a coherent
+expected-loss minimizer exists at every prior. If $n\ge3$, no
+$\Dscr_M$ with $M$ containing three simplex vertices is an expected-loss
+minimizer at any prior. Each such model is strictly dominated at all worlds
+for these penalties.
+\end{quote}
+The last conclusion follows by separation: the closure of the attainable
+loss vectors is convex, by atomless splitting. Absence of a strict
+dominator gives a supporting nonnegative weight vector, hence an
+expected-loss minimum. This is the only earlier obstruction used below.
+
+\section{Finitely additive penalties still cannot give full coverage}
+
+Finite additivity allows an evaluation to give positive weight to sets
+whose Gaussian measures tend to zero. Thus these penalties need not be
+continuous in measure. The next theorem includes this possibility.
+
+Let $\nu_{ik}$, $i\le n$, $1\le k\le3$, be finite nonnegative finitely
+additive measures on the measurable subsets of $H$, satisfying
+\begin{equation}
+ \nu_{ik}(A)=0\text{ if }\mu(A)=0,
+ \qquad \nu_{ik}(A)>0\text{ if }\mu(A)>0.
+ \label{eq:positive}
+\end{equation}
+Define the finite losses
+\begin{equation}
+ L_i(\Dscr)=\sum_{k=1}^3\nu_{ik}\{g:r_i(g,\Dscr)\ge k\}.
+ \label{eq:fa}
+\end{equation}
+The three measures charge the successive deteriorations in guidance.
+Ordinary local penalties are the special case where the measures have
+integrable densities. Equation~\eqref{eq:fa} satisfies (G) and (IB).
+
+\begin{theorem}\label{thm:fa}
+Let $n\ge3$. Suppose a ranking satisfies (G), (LA), and (S), and for each
+world it has a loss of the form \eqref{eq:fa} such that
+\begin{equation}
+ \Dscr\preceq_i\Escr\ \Longrightarrow\ L_i(\Dscr)\le L_i(\Escr)
+ \qquad\text{for regular }\Dscr,\Escr.
+ \label{eq:weak}
+\end{equation}
+Then every $\Dscr_M$ whose credal set contains three simplex vertices is
+dominated by a coherent model. If the ranking is represented by $L$ itself,
+the coherent dominator is strictly better at every world.
+\end{theorem}
+
+The proof separates a penalty into an ordinary integral and a part that
+can be held fixed while advice is changed almost everywhere else. Two
+short lemmas make this precise.
+
+\begin{lemma}\label{lem:split}
+There are strictly guidance-ordered ordinary integral losses $L_i^c$ and
+nonnegative finitely additive losses $L_i^s$ with $L_i=L_i^c+L_i^s$.
+There are measurable $Z_m$ with $\mu(Z_m)\to0$ such that, if $X$ gives the
+advice of $A$ on $Z_m$ and of $B$ elsewhere, then
+\[
+ L_i^s(X)=L_i^s(A),\qquad
+ |L_i^c(X)-L_i^c(B)|\le\int_{Z_m}h_i\,d\mu\longrightarrow0,
+\]
+where $h_i$ is a fixed integrable function. The bound is uniform in $A,B$.
+\end{lemma}
+\begin{proof}
+The Yosida--Hewitt decomposition and its concentration property
+\cite[Theorem 1 and its proof]{PP} give
+\[
+ \nu_{ik}(A)=\int_A f_{ik}\,d\mu+\pi_{ik}(A),\qquad f_{ik}\ge0,
+\]
+and sets $Z_m$ with $\mu(Z_m)\to0$ and
+$\pi_{ik}(H\setminus Z_m)=0$ for every $i,k$. A finite union gives common
+sets for all the measures.
+
+In fact $f_{ik}>0$ a.e. If it vanished on a positive-measure $A$, choose
+$m$ with $\mu(Z_m)<\mu(A)$. Then $B=A\setminus Z_m$ has positive measure,
+but both terms in $\nu_{ik}(B)$ vanish, contradicting
+\eqref{eq:positive}. Summing the densities over the exceeded ranks gives
+$L_i^c$, with strictly positive successive increments and envelope
+$h_i=\sum_k f_{ik}$. Summing the pure parts gives $L_i^s$.
+Concentration on $Z_m$ proves the first displayed equality; the envelope
+proves the bound.
+\end{proof}
+
+\begin{lemma}\label{lem:compact}
+The coherent models are sequentially compact for convergence in measure
+of their advice. Each $L_i^c$ is continuous for this convergence.
+\end{lemma}
+\begin{proof}
+The nonempty compact convex subsets of the compact simplex are compact
+in Hausdorff distance. If $M_m\to M$, then
+$\underline{P_{M_m}}(g)\to\underline{P_M}(g)$ for every $g$.
+The zero set of $\underline{P_M}$ is null: on each line parallel to
+$\one=(1,\ldots,1)$,
+$\underline{P_M}(g+t\one)=\underline{P_M}(g)+t$, so there is just one zero;
+apply Fubini. The same applies to $-g$. Advice therefore converges a.e.,
+and hence in measure. Finally,
+$|L_i^c(A)-L_i^c(B)|\le\int_{\{a_A\ne a_B\}}h_i\,d\mu$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:fa}]
+\emph{First obtain coherent expected-loss minima for $L^c$.}
+Fix a prior $p$. Among regular models let
+\[
+ a=\min_B\sum_i p_i L_i^c(B),\qquad
+ b=\inf_A\sum_i p_i L_i^s(A).
+\]
+The first minimum exists by choosing a least costly advice at each problem.
+Its minimizer $B$ is regular. All quantities are finite and nonnegative.
+Choose regular $A_m$ with pure expected loss tending to $b$, and let $X_m$
+use $A_m$ on $Z_m$ and $B$ elsewhere. Then
+\[
+ \sum_i p_i L_i(X_m)\longrightarrow a+b.
+\]
+Lemma~\ref{lem:dominator} supplies a selected coherent $C_m$ with
+$C_m\preceq_i X_m$ for every $i$. Both are regular, so \eqref{eq:weak} gives
+\[
+ a\le\sum_i p_iL_i^c(C_m)
+ \le\sum_i p_iL_i(X_m)-b\longrightarrow a.
+\]
+By Lemma~\ref{lem:compact}, a subsequence converges in measure to a coherent
+model attaining $a$. Thus coherent $L^c$-Bayes models exist at every prior.
+Notice that we have not assumed that a finitely additive expected-loss
+infimum is attained.
+
+\emph{Next transfer strict domination back to $L$.}
+The v3 obstruction applies to $L^c$. For any target $T=\Dscr_M$ as in the
+theorem, there is a regular $B$ with $L_i^c(B)<L_i^c(T)$ at every world.
+Let $X_m$ agree with $T$ on $Z_m$ and with $B$ elsewhere. Then
+\[
+ L_i(X_m)-L_i(T)=L_i^c(X_m)-L_i^c(T)
+ \longrightarrow L_i^c(B)-L_i^c(T)<0.
+\]
+For large $m$, $X_m$ strictly improves every $L_i$.
+
+If $T$ were undominated for the original ranking, Lemma~\ref{lem:dominator}
+would make it competitive on some support. In particular
+$T\preceq_i X_m$ for some $i$, contrary to \eqref{eq:weak}. So $T$ is
+dominated. Applying Lemma~\ref{lem:dominator} to a dominator gives a coherent
+dominator by transitivity. When $L$ represents the ranking, $X_m$ itself
+strictly dominates $T$ at every world; a selected weak dominator of $X_m$
+retains all these strict inequalities.
+\end{proof}
+
+\section{Closed choice does not force an ordinary additive extension}
+
+The preceding theorem is strictly stronger than the ordinary-integral
+obstruction. The following example satisfies closed choice but lies outside
+the older theorem's extra hypothesis, even on regular models.
+
+Write $g=R\theta$ under normalized Gaussian measure on $H$. Direction
+$\theta$ and radius $R$ are independent. If $F$ is the continuous distribution
+function of $R$, then $t=F(R)$ is uniform on $(0,1)$ and independent of
+$\theta$. Fix a nonprincipal ultrafilter $\mathcal U$ on the positive
+integers and define, for measurable $A\subseteq H$,
+\[
+ \eta(A)=\lim_{m\to\mathcal U}m\,\mu(A\cap\{t<1/m\}),
+ \qquad \nu=\tfrac12\mu+\tfrac12\eta.
+\]
+An ultrafilter limit chooses a limit consistently for every bounded real
+sequence; it preserves sums, inequalities, and ordinary limits. Thus $\eta$
+is a finitely additive probability, vanishes on $\mu$-null sets, and gives
+mass one to every $\{t<1/m\}$. It is not countably additive. On functions
+of direction alone its integral agrees with $\mu$.
+
+Put $b_i(g)=|g_i|/\|g\|$. At world $i$ assign the four ranks the costs
+\begin{equation}
+ 0,\quad \tfrac34 b_i(g),\quad b_i(g),\quad 2b_i(g),
+ \qquad L_i(\Dscr)=\int_H\ell_i(g,a_\Dscr(g))\,d\nu.
+ \label{eq:example}
+\end{equation}
+These are finite losses of the form \eqref{eq:fa}.
+
+\begin{proposition}\label{prop:example}
+For every $n\ge2$, the complete ranking represented by \eqref{eq:example}
+satisfies (G), (IB), (LA), (S), and (C), with
+$C_p=\Dscr_{\{p\}}$. It has no ordinary strictly guidance-ordered additive
+weak extension on regular models, at any world.
+\end{proposition}
+\begin{proof}
+Strict (G) follows from the $\mu/2$ term, and (IB) from finite additivity.
+For a prior $p$, let $B_+$ and $B_-$ be the expected costs of recommending
+$g$ and $-g$. The cost of silence is
+$3(B_++B_-)/4$, strictly greater than $\min(B_+,B_-)$ except on a null set.
+Contradiction is worse still. The preferred decisive advice is determined
+by the sign of $p\cdot g$. Its tie hyperplane is null for both $\mu$ and
+$\eta$, since it depends only on direction. Thus $C_p$ is the unique Bayes
+model modulo null sets: any different model has a strictly positive
+expected-loss gap under the $\mu/2$ term.
+
+Bayes optimality gives competitiveness on $\supp p$. Uniqueness gives
+undominatedness, including for boundary priors. For coherent models
+both the advice and the costs depend only on direction, so
+\[
+ L_i(C_p)=\int_H\ell_i(g,a_{C_p}(g))\,d\mu.
+\]
+This is continuous in $p$ by dominated convergence. Therefore all sections
+$\{p:L_i(C_p)\le L_i(\Dscr)\}$ are closed, proving (S).
+Lemma~\ref{lem:dominator} now makes every undominated model tied everywhere
+with a selected $C_p$; uniqueness of that $p$-Bayes model makes it equal to
+$C_p$ a.e. The same reasoning applies to any model tied with it, proving (C).
+
+Fix a world $i$ and a mixed cone $Q\subseteq H'$ of positive measure.
+Let $B_m$ be regular, silent on $Q\cap\{t<1/m\}$, and ideal at $i$
+elsewhere. Then $B_m\to D_i$ in measure but
+\[
+ L_i(B_m)\ge a\coloneqq\frac38\int_Q b_i\,d\mu>0.
+\]
+Choose a regular $E\ne D_i$ that is silent on a sufficiently small
+positive-measure subset of $H'\cap\{t>1/2\}$ and ideal at $i$ elsewhere.
+Then $0<L_i(E)<a$, so $E\prec_i B_m$ for every $m$.
+An ordinary integral weak extension $\Lambda_i$ on regular models would
+give
+\[
+ \Lambda_i(E)\le\Lambda_i(B_m)\longrightarrow\Lambda_i(D_i),
+\]
+contradicting its strict reward for the guidance improvement from $E$ to
+$D_i$. This proves the claimed failure of an ordinary weak extension.
+\end{proof}
+
+This is not a coverage construction: Theorem~\ref{thm:fa} excludes the
+vacuous target for $n\ge3$. It shows, however, that neither completeness,
+real-valuedness, independence, nor closed choice supplies the ordinary
+extension assumed by CC's Theorem~1. The discontinuity can occur on mixed
+problems themselves, not just on errors in unanimous problems.
+
+\section{What closed choice forces on real primary criteria}\label{sec:primary}
+
+A \emph{primary} at world $i$ is a real function $\Phi$ such that
+$\Phi(A)<\Phi(B)$ implies $A\prec_i B$. It automatically weakly respects
+$\preceq_i$: otherwise a weak comparison would contradict a strict reverse
+comparison. The remaining ranking may be incomplete.
+
+The next lemma uses only small guidance improvements and the closed
+sections in (S). In particular, it does not assume (IB).
+
+\begin{lemma}[Continuity along an edge]\label{lem:edge-continuity}
+Assume (G) and (S), and let $\Phi$ be a primary at $i$, continuous in measure
+on regular models. For $j\ne i$, the function
+$p\mapsto\Phi(C_p)$ is continuous on the edge $[e_i,e_j]$.
+\end{lemma}
+\begin{proof}
+First, competitiveness and strict (G) force every selected credal set on
+this edge to lie on the edge. Otherwise correcting advice where both edge
+worlds are positive and an unsupported world is sufficiently negative
+strictly improves both supported worlds. The endpoint selections are
+therefore $D_i,D_j$.
+
+Write $f(p)=\Phi(C_p)$. It is lower semicontinuous. Indeed, if
+$p_m\to p$ and $f(p_m)\le f(p)-\epsilon$, a regular model $E$ can be chosen
+with $f(p)-\epsilon<\Phi(E)<f(p)$. To obtain $E$, continuously replace one
+regular model by another on a growing measurable set and use continuity
+of $\Phi$. Then $C_{p_m}\prec_i E$ while $E\prec_i C_p$, contradicting the
+closed section $\{q:C_q\preceq_i E\}$.
+
+For upper semicontinuity suppose instead $f(p_m)\ge f(p)+\epsilon$.
+If $C_p=D_j$, this is impossible: at world $i$, $D_j$ is guidance-worst
+among coherent edge models. Otherwise $C_p$ can be strictly improved at
+$j$ on an arbitrarily small positive-measure set. Choose such a regular
+$E\prec_j C_p$ with $\Phi(E)<f(p)+\epsilon$.
+Then $C_{p_m}\not\preceq_i E$, by the primary property. Competitiveness
+on the edge forces $C_{p_m}\preceq_j E$. Closedness gives
+$C_p\preceq_j E$, a contradiction.
+\end{proof}
+
+\begin{remark}
+The upper-semicontinuity argument extends to a face $\Delta_S$ at any
+selected $C_p=\Dscr_K$ with $\max_{m\in K}m_i>0$.
+There is then an open set of problems with an option positive at every world
+in $S\setminus\{i\}$ that $C_p$ fails to recommend.
+A correction on a small subset strictly improves all these worlds.
+Competitiveness and a finite subsequence argument give the same contradiction.
+Thus at a selected vacuous model every measure-continuous primary is
+continuous along the simplex. This does not establish continuity of the
+rankings on all models.
+\end{remark}
+
+There is an even sharper conclusion when a primary ignores some
+positive-measure part of every region. This includes priorities determined
+by purely finitely additive measures or by finitely many null-invariant ultrafilter
+evaluations.
+
+\begin{theorem}[No priority confined to arbitrarily small sets]\label{thm:blind}
+Assume (G) and (S). Let $\Phi$ be a primary at world $i$ with this property:
+for every positive-measure $Q\subseteq H'$ there is a positive-measure
+$B\subseteq Q$ such that changing regular advice only on $B$ never changes
+$\Phi$. Then $\Phi(C_p)$ is constant on every edge $[e_i,e_j]$.
+In particular, $\Phi(D_i)=\Phi(D_j)$ for every $j$.
+\end{theorem}
+\begin{proof}
+Fix an edge and put $f(p)=\Phi(C_p)$. If $C_p\ne D_i$, improve its advice
+at $i$ on a positive-measure subset ignored by $\Phi$. The resulting regular
+$E$ has $E\prec_i C_p$ and $\Phi(E)=f(p)$. Closedness excludes
+$C_q\preceq_i E$ near $p$, forcing $f(q)\ge f(p)$. If $C_p=D_i$, the same
+inequality holds globally because $D_i$ is guidance-best at $i$.
+
+Similarly, if $C_p\ne D_j$, improve it at $j$ on an ignored subset,
+obtaining $F\prec_j C_p$ with $\Phi(F)=f(p)$. Near $p$, closedness excludes
+$C_q\preceq_j F$. Competitiveness forces $C_q\preceq_i F$, and therefore
+$f(q)\le f(p)$. If $C_p=D_j$, this inequality holds globally because $D_j$
+is guidance-worst at $i$ among coherent edge models.
+
+Thus $f$ is locally constant everywhere on the connected edge, so it is
+constant.
+\end{proof}
+
+For example, if finitely many pure charges determine a primary, choose
+a common concentrating set $Z$ with $\mu(Z)<\mu(Q)$. Its complement inside
+$Q$ is an ignored positive-measure set. Theorem~\ref{thm:blind} therefore
+rules out the construction as soon as the primary distinguishes two edge
+ideals. The later criteria and possible incomparabilities do not help.
+
+\section{The remaining gap}
+
+CC's conjecture has not been proved or refuted. The strongest conclusion
+here is that a successful ranking cannot have even a finitely additive
+strict-guidance weak extension on regular models. This includes incomplete
+rankings; simply dropping countable additivity is insufficient.
+
+There are two different obstacles to completing the argument.
+First, (IB) cancels common advice, but it does not supply the finite
+cancellation conditions needed for an additive weak extension. The
+six-region example in BA already witnesses that distinction for partial
+rankings. Second, closed choice does not repair it by forcing an ordinary
+integral extension: Proposition~\ref{prop:example} explicitly disproves
+that inference, even on regular models.
+
+A general proof would still need to derive a suitable stronger consistency
+property from competitive coherent choice, or directly contradict that
+choice without an additive representation. No such implication is assumed
+in the results above. A construction outside these classes would still
+have to verify competitiveness against \emph{every} measurable model and
+closedness of every comparison section.
+
+\begin{thebibliography}{9}
+\bibitem{PP} T.~Pennanen and A.-P.~Perkki\"o,
+Topological duals of locally convex function spaces,
+\emph{Positivity} 26, article 2 (2022), Theorem 1.
+\href{https://doi.org/10.1007/s11117-022-00867-4}{doi:10.1007/s11117-022-00867-4}.
+\end{thebibliography}
+\end{document}

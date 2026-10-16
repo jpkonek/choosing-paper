@@ -1,0 +1,3 @@
+(a) NP splits nested across levels (500 random faces, no ties): True
+(b) level-1 optimum [0] level-2 optimum [2, 3] crossing: True
+    equal (level, psi3) profile of two distinct level-1 optima [0] [1] : True

@@ -1,0 +1,17 @@
+(1) (1,0) is in U (P_K'((1,0)) = 1-be > 0): True
+    M+ directions within angle 0.1 of (1,0): min x = 0.786357
+    M+ directions within angle 0.01 of (1,0): min x = 0.977103
+    M+ directions within angle 0.001 of (1,0): min x = 0.997698
+    M+ directions within angle 0.0001 of (1,0): min x = 0.999771
+    M- directions with theta within 0.1 of alpha' (dU): min x = 0.685204
+    M- directions with theta within 0.01 of alpha' (dU): min x = 0.969149
+    M- directions with theta within 0.001 of alpha' (dU): min x = 0.996926
+(2) levels x >= 1-0.1: fraction in near-unanimous part M+ = 0.4525
+(2) levels x >= 1-0.03: fraction in near-unanimous part M+ = 0.4410
+(2) levels x >= 1-0.01: fraction in near-unanimous part M+ = 0.4377
+(2) levels x >= 1-0.003: fraction in near-unanimous part M+ = 0.4367
+(3) density of lambda|sector(1,0) in x on [0.9,1): min 0.437, max 0.468 (should be > 0 up to 1)
+(4) int_sector 1/(1-x) dlambda over x <= 1-2^-4: 0.2658
+(4) int_sector 1/(1-x) dlambda over x <= 1-2^-8: 1.4941
+(4) int_sector 1/(1-x) dlambda over x <= 1-2^-12: 2.7000
+(4) int_sector 1/(1-x) dlambda over x <= 1-2^-16: 3.9480

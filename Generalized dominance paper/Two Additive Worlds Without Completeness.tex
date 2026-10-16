@@ -1,0 +1,3202 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\cred}{\mathrm{credit}}
+\newcommand{\sil}{\mathrm{silence}}
+\newcommand{\Band}{\Xi}
+\newcommand{\Phihat}{\widehat\Phi}
+\newcommand{\Psitil}{\widetilde\Psi}
+\newcommand{\psitil}{\tilde\psi}
+\newcommand{\ftil}{\tilde f}
+\newcommand{\htil}{\tilde h}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+\newcommand{\essinf}{\operatorname*{ess\,inf}}
+\title{Two Additive Worlds Without Completeness}
+\author{}\date{11 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues IC (\emph{Independence Chains and Two Additive Worlds}),
+DT (\emph{Dense Thresholds and Debt Reduction}), ECS (\emph{Edge Cycles and
+Separability}) and CCF (\emph{Closed Choice Forces Fineness}).
+It also uses CC (\emph{What Closed Competitive Choice Requires of
+Independent Rankings}), CBOI (\emph{Closed Choice Beyond Ordinary Integrals}),
+EDL (\emph{Edge Dichotomy and Leverage}) and FAED (\emph{Finitely Additive Edge
+Dichotomy}). It settles the
+three-world case in which two worlds carry one-sided additive weak
+extensions, with no completeness assumption at the third world.
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item \emph{Main theorem} (Theorem~\ref{thm:main}). Let $n=3$ and assume (G)
+at every world and (S). Let world~$1$ be any preorder satisfying (IB);
+completeness is not assumed. Let worlds $2,3$ be preorders that have
+one-sided weak extensions \eqref{eq:W} of CBOI's finitely additive form, with
+arbitrary finitely additive charges. Then $V$ is dominated. For $n=3$ this
+removes the completeness hypothesis from CCF's Theorem~18.
+\item \emph{Two special cases with shorter proofs.} (I) Worlds $2,3$ are
+ranked exactly by ordinary additive losses (Theorem~\ref{thm:I}). This is the
+sub-case of IC, DT and ECS, which was open there for an incomplete world~$1$.
+(II) Worlds $2,3$ are preorders satisfying (G) with one-sided ordinary
+additive extensions (Theorem~\ref{thm:II}).
+\item \emph{Routing primaries} (Theorems~\ref{thm:debtprimary}
+and~\ref{thm:creditprimary}). World~$1$ compares debt sets, and separately
+credit sets, strictly according to explicit additive weights $\Phi$ and
+$\Psi$, whenever the lighter of the two sets is bounded (and, in the
+finitely additive case, clean); the heavier set is arbitrary. These
+comparisons are derived from moves at the edge selections alone. No
+completeness is involved.
+\item \emph{Silent targets} (Section~\ref{sec:silent}). Near the edge
+$[e_2,e_3]$ there are priors whose Bayes model, for an auxiliary world-1
+weight, never gives credit. At a jump corner of the separable debt boundary
+this Bayes model is not coherent. A KKM dominator of it (a selected
+model weakly better at every world, given by (K1), the KKM-type lemma of
+CBOI; Section~\ref{sec:setting}) then yields a pure
+trade of debt for credit at a ratio that the forced trades of the edge
+selections forbid.
+\item \emph{The finitely additive case} (Sections~\ref{sec:faclean}
+to~\ref{sec:main}). Closedness of the section at the \emph{other} world of an
+edge excludes the germs of the charges along the edges
+(Theorems~\ref{thm:rightgerm}, \ref{thm:zerogerm}, \ref{thm:rightgerm22}
+and~\ref{thm:crossgerm}). The edge $[e_2,e_3]$
+has the endpoint property, and Pareto bounds at its selections control the
+purely finitely additive parts there (Theorem~\ref{thm:pureratio}). Pure
+separability (Theorem~\ref{thm:puresep}) gives a debt primary that weighs
+finitely additive mass exactly (Theorem~\ref{thm:dirtyprimary}). With these,
+the fixed KKM targets of the ordinary proof work again, and no splicing of
+targets is needed.
+\end{enumerate}
+Completeness is used at no world. (IB) is used only at world~$1$. At
+worlds~$2,3$ we use transitivity, strict (G), closedness of their sections
+and \eqref{eq:W}, but neither completeness nor (IB).
+
+\emph{What remains open.} First, the general conjecture for incomplete
+rankings when no world carries an additive extension. Second, the case of
+complete rankings at all worlds with no additive world. By CCF's
+Theorem~16 that case reduces to the endpoint property on every edge; it has
+been reduced further in separate work. Within the present setting a few
+questions are left open because the proof does not need them; they are
+listed in Remark~\ref{rem:notneeded}.
+
+The arguments were checked, in the working notes on which this note is
+based, by independent referees in four parts: the routing primaries and their
+consequences (Sections~\ref{sec:routing} and~\ref{sec:totals}), the
+silent-target argument (Section~\ref{sec:silent}), the one-sided ordinary
+case (Section~\ref{sec:onesided}), and the finitely additive case
+(Sections~\ref{sec:faclean}--\ref{sec:main}). Their corrections are
+incorporated. Results taken from those working notes are proved in full
+below.
+
+\section{Setting and inputs}\label{sec:setting}
+
+\subsection{Problems, models and regions}
+
+We use the setting of CC, CBOI, EDL, FAED, IC, DT, ECS and CCF. There
+are three worlds. Put $\Delta\coloneqq\{p\in\R^3:p\ge0,\
+\sum_ip_i=1\}$, with vertices $e_1,e_2,e_3$; for $S\subseteq\{1,2,3\}$,
+$\Delta_S$ is the face of $\Delta$ spanned by $\{e_i:i\in S\}$, and
+$\supp p\coloneqq\{i:p_i>0\}$. Binary problems $\{g,-g\}$ are represented by
+$g\in H\coloneqq\{g\in\R^3:g_1>0\}$, with the normalized Gaussian
+measure~$\mu$. Models are measurable and identified modulo $\mu$-null sets.
+At world $i$ the advice of a model $\Dscr$ at $g$ has a guidance rank
+$r_i(g,\Dscr)\in\{0,1,2,3\}$: good, silent, bad, contradictory. A model is
+\emph{regular} if it is never contradictory and correct on unanimous
+problems. A coherent model $\Dscr_K$, with $K\subseteq\Delta$ nonempty,
+compact and convex, accepts $g$ if and only if $\min_{m\in K}m\cdot g>0$
+(and accepts every nonzero $g\ge0$); coherent models are regular, and
+$V\coloneqq\Dscr_\Delta$. The ideal model $D_i\coloneqq\{g:g_i>0\}$ of
+world~$i$ gives the advice good at~$i$ on every problem. Write $H'$ for the mixed problems in $H$ and
+\[
+ P_1\coloneqq\{g_2<0,\ g_3<0\},\qquad P_2\coloneqq\{g_2<0<g_3\},\qquad
+ P_3\coloneqq\{g_2>0>g_3\}
+\]
+(inside $H$), so $H'=P_1\cup P_2\cup P_3$ up to null sets. As in IC, $o_K$
+denotes the option that is good exactly at the worlds in $K$:
+\begin{center}
+\begin{tabular}{c|c|c}
+ & accept $g$ (credit) & accept $-g$ (debt)\\\hline
+$P_1$ & $o_1$ & $o_{23}$\\
+$P_2$ & $o_{13}$ & $o_2$\\
+$P_3$ & $o_{12}$ & $o_3$
+\end{tabular}
+\end{center}
+At world~$1$, accepting $g$ is \emph{credit} (rank $0$), silence has rank
+$1$, and accepting $-g$ is \emph{debt} (rank $2$). On $H'$ a regular model is
+an advice function with these three values. For a regular $M$ and a
+measurable $Q\subseteq H'$, $M+\debt(Q)$, $M+\cred(Q)$ and $M+o(Q)$ agree
+with $M$ except that they give debt, credit, or the option $o$ on $\pm Q$;
+``$M$ silenced on $Q$'' gives silence there. On $P_2\cup P_3$ write
+$\omega_2$ for the option good at world~$2$ and bad at world~$3$ ($o_2$ on
+$P_2$, $o_{12}$ on $P_3$), and $\omega_3$ for the option good at $3$ and bad
+at $2$ ($o_{13}$ on $P_2$, $o_3$ on $P_3$).
+
+Coordinates are
+\[
+ x\coloneqq\frac{g_1}{|g_2|}\ \text{on }D_x\coloneqq P_1\cup P_2,\qquad
+ y\coloneqq\frac{g_1}{|g_3|}\ \text{on }D_y\coloneqq P_1\cup P_3,\qquad
+ t\coloneqq\frac{|g_2|}{|g_3|}\ \text{on }P_2\cup P_3,
+\]
+that is, $x=t_{12}$, $y=t_{13}$ and $t=t_{23}$ in IC's notation. The law of
+$(x,y)$ under $\mu|_{P_1}$ has the same null sets as Lebesgue measure on
+$(0,\infty)^2$ (ECS, Lemma~1). The laws of $x$ on $D_x$, of $y$ on $D_y$, of
+$t$ on $P_2\cup P_3$, and the joint laws of $(x,t)$ on $P_2$ and of $(y,t)$
+on $P_3$ have a.e.\ positive densities (IC, Section~1). Level sets of these
+coordinates are null. For sets defined by coordinates we use the shorthand
+$D_x\cap[a,b)\coloneqq D_x\cap\{a\le x<b\}$, and similarly for $y$ on $D_y$
+and $t$ on $P_2\cup P_3$; on $P_2\cup P_3$ we also write $(a,b)$ for
+$(P_2\cup P_3)\cap\{a<t<b\}$.
+
+\paragraph{Symmetry.} Exchanging worlds $2$ and $3$ exchanges $P_2$ and
+$P_3$, $x$ and $y$, $D_x$ and $D_y$, the edges $[e_1,e_2]$ and $[e_1,e_3]$,
+and replaces $t$ by $1/t$. All hypotheses below are invariant. A statement
+obtained in this way is called the \emph{mirror} of the original.
+
+\subsection{Axioms and their first consequences}
+
+Each $\preceq_i$ is a preorder on models (Definition~\ref{def:H});
+smaller is better, and $X\prec_iY$ means that $X\preceq_iY$ and not
+$Y\preceq_iX$. (G) at world~$i$ is guidance monotonicity: a weak pointwise
+improvement in the rank $r_i$ gives $\preceq_i$, and an improvement on a
+non-null set gives $\prec_i$; the second half is \emph{strict (G)}. (IB) is
+independence under replacement of shared advice: replacing advice that
+two models share on a measurable set of problems by other shared advice
+leaves their comparison unchanged. (S) supplies coherent undominated models $C_p$,
+$p\in\Delta$, competitive on $\supp p$, with closed sections
+$A_i(X)\coloneqq\{p:C_p\preceq_iX\}$ for every model $X$ and every world $i$.
+A model $C$ is \emph{competitive} on $S$ if for every model $X$ some $i\in S$
+has $C\preceq_iX$. A model $M$ is \emph{dominated} if some model $X$ has
+$X\preceq_iM$ at every world and $X\prec_iM$ at some world, and
+\emph{undominated} otherwise. We use:
+\begin{enumerate}[label=(K\arabic*),leftmargin=*,itemsep=2pt]
+\item every model $X$ has a selected $C_q$ with $C_q\preceq_iX$ for
+$i=1,2,3$ (CBOI, Lemma~1; its proof uses Brouwer's theorem and no
+completeness); this is the KKM-type lemma of CBOI, and such a $C_q$ is
+called a \emph{KKM dominator} of~$X$;
+\item every undominated model is tied at every world with some selected
+$C_p$ and is competitive on $\supp p$ (CBOI, Lemma~1);
+\item the face lemma (CC, Lemma~7, as used in IC and CCF; see also FAED,
+Section~1): the credal set of a coherent model competitive on $S$ lies in the
+face $\Delta_S$, by strict (G); in particular the credal set of $C_q$ lies in
+$\Delta_{\supp q}$, and $C_{e_i}=D_i$;
+\item if $V$ is undominated, it is competitive on $\{1,2,3\}$ (IC,
+Section~1; by (K2) and the face lemma applied to $V$, whose credal set is
+$\Delta$).
+\end{enumerate}
+By (IB), whether $M\preceq_1M'$ holds, for regular models that differ exactly
+on $\pm Q$, depends only on their advice on $Q$. As in IC, Section~1, a change
+is \emph{accepted} at world~$1$ in a context if the model before the change
+is $\preceq_1$ the model after it; an accepted change transfers to every
+context that has the same advice on the change set. A \emph{chain} is a
+finite sequence of accepted changes, each applied to a model that has the
+base's advice on the change set. By transitivity the start of a chain is
+$\preceq_1$ its end.
+
+\subsection{Losses at worlds 2 and 3}
+
+Following CBOI, for $k=2,3$ let $\nu_{k1},\nu_{k2},\nu_{k3}$ be finite
+nonnegative finitely additive measures (\emph{charges}) on the measurable
+subsets of $H$ with
+\begin{equation}
+ \nu_{kl}(A)=0\text{ if }\mu(A)=0,\qquad\nu_{kl}(A)>0\text{ if }\mu(A)>0,
+ \label{eq:positive}
+\end{equation}
+and put $L_k(\Dscr)\coloneqq\sum_{l=1}^3\nu_{kl}\{g:r_k(g,\Dscr)\ge l\}$. The
+one-sided bound is
+\begin{equation}
+ B\text{ coherent undominated},\ X\text{ regular},\ B\preceq_kX
+ \ \Longrightarrow\ L_k(B)\le L_k(X).
+ \tag{W$_k$}\label{eq:W}
+\end{equation}
+
+\begin{definition}\label{def:H}
+Hypothesis (H) consists of: $n=3$; (G) at every world; $\preceq_1$ is a
+preorder satisfying (IB); $\preceq_2,\preceq_3$ are preorders with losses
+$L_2,L_3$ of the above form satisfying \eqref{eq:positive} and
+\eqref{eq:W}; and (S). Hypothesis (H$_{\rm II}$) is (H) with charges of the
+form $\nu_{kl}=c_{kl}\,\mu$, $c_{kl}$ integrable; then $L_k$ is an ordinary
+additive loss with strictly ordered local penalties and an integrable
+envelope. Hypothesis (H$_{\rm I}$) is (H$_{\rm II}$) with
+$X\preceq_kY\iff L_k(X)\le L_k(Y)$ for $k=2,3$.
+\end{definition}
+
+Under (H$_{\rm I}$), (G) at worlds $2,3$ and \eqref{eq:W} are automatic, so
+(H$_{\rm I}$) is the standing hypothesis (SH) of IC, Section~3, without the
+assumption that $V$ is undominated.
+
+\paragraph{Ranks at worlds 2 and 3.} On $D_x$ (where $g_2<0$) world~$2$ ranks
+debt $0$, silence $1$ and credit $2$; on $P_3$ it ranks credit $0$, silence
+$1$, debt $2$. On $D_y$ world~$3$ ranks debt $0$, silence $1$, credit $2$; on
+$P_2$ it ranks credit $0$, silence $1$, debt $2$. For a regular $M$ put
+$R^k_l(M)\coloneqq\{g\in H':r_k(g,M)\ge l\}$. Regular models have rank $0$ on
+unanimous problems and never rank $3$, so
+$L_k(M)=\nu_{k1}(R^k_1(M))+\nu_{k2}(R^k_2(M))$.
+
+\begin{lemma}\label{lem:diff}
+If regular $M,M'$ agree off a measurable $Q\subseteq H'$, then for $k=2,3$
+\[
+ L_k(M')-L_k(M)=\sum_{l=1}^2\bigl[\nu_{kl}(Q\cap R^k_l(M'))
+ -\nu_{kl}(Q\cap R^k_l(M))\bigr].
+\]
+\end{lemma}
+\begin{proof}
+$R^k_l(M')$ is the disjoint union of $Q\cap R^k_l(M')$ and
+$R^k_l(M)\setminus Q$; likewise for $M$. Apply finite additivity.
+\end{proof}
+
+Per unit of charge, the changes from silence are as follows (the reverse
+change flips both signs, and a change between credit and debt is the sum of
+two such changes):
+\begin{equation}
+\begin{tabular}{c|c|c}
+ & silence $\to$ credit & silence $\to$ debt\\\hline
+$P_1$ & $(+\nu_{22},\,+\nu_{32})$ & $(-\nu_{21},\,-\nu_{31})$\\
+$P_2$ & $(+\nu_{22},\,-\nu_{31})$ & $(-\nu_{21},\,+\nu_{32})$\\
+$P_3$ & $(-\nu_{21},\,+\nu_{32})$ & $(+\nu_{22},\,-\nu_{31})$
+\end{tabular}
+\label{eq:table}
+\end{equation}
+The entries are the changes of $(L_2,L_3)$. On $P_2\cup P_3$, silence
+$\to\omega_2$ changes them by $(-\nu_{21},+\nu_{32})$, and silence
+$\to\omega_3$ by $(+\nu_{22},-\nu_{31})$.
+
+\begin{lemma}\label{lem:YH}
+Assume (H). There are integrable functions $c_{kl}>0$ a.e.\ ($k=2,3$,
+$l=1,2$) and measurable sets $Z_1\supseteq Z_2\supseteq\cdots$ with
+$\mu(Z_m)\to0$ such that $\pi_{kl}\coloneqq\nu_{kl}-c_{kl}\,\mu$ is a
+nonnegative charge vanishing on $\mu$-null sets, with $\pi_{kl}(H\setminus
+Z_m)=0$ for all $m,k,l$. Under (H$_{\rm II}$) one can take $Z_m=\varnothing$.
+\end{lemma}
+\begin{proof}
+CBOI, Lemma~3, gives the Yosida--Hewitt decomposition
+$\nu_{kl}=c_{kl}\,\mu+\pi_{kl}$ with $c_{kl}\ge0$ integrable, $\pi_{kl}\ge0$
+purely finitely additive, sets $Z'_m$ with $\mu(Z'_m)\to0$ and
+$\pi_{kl}(H\setminus Z'_m)=0$ \cite{YH,PP}; and $c_{kl}>0$ a.e.\ by
+\eqref{eq:positive}, as in the proof of CBOI, Lemma~3: if $c_{kl}=0$ on a
+non-null $A$, then $\nu_{kl}(A\setminus Z'_m)=c_{kl}(A\setminus Z'_m)=0$ while
+$\mu(A\setminus Z'_m)>0$ for large $m$. Since $0\le\pi_{kl}\le\nu_{kl}$, $\pi_{kl}$ vanishes on null
+sets. Put $Z_m\coloneqq Z'_1\cap\dots\cap Z'_m$. Then $\mu(Z_m)\le\mu(Z'_m)$
+and $\pi_{kl}(H\setminus Z_m)\le\sum_{i\le m}\pi_{kl}(H\setminus Z'_i)=0$.
+\end{proof}
+
+Fix these objects. Write
+\[
+ c_2\coloneqq c_{21},\quad v\coloneqq c_{22},\quad c_3\coloneqq c_{31},\quad
+ u\coloneqq c_{32}.
+\]
+Under (H$_{\rm II}$) these are IC's and ECS's densities: $c_k$ is the silence
+penalty and $v=b_2-c_2$, $u=b_3-c_3$. For an integrable $w\ge0$ and
+measurable $A$ write $w(A)\coloneqq\int_Aw\,d\mu$. A measurable set $Q$ is
+\emph{clean} if $Q\cap Z_m=\varnothing$ for some $m$; then
+$\nu_{kl}(Q')=c_{kl}(Q')$ for all measurable $Q'\subseteq Q$ and all $k,l$.
+Under (H$_{\rm II}$) every set is clean. Always
+$\nu_{kl}(Q)\ge c_{kl}(Q)$. Since $\mu(Z_m)\to0$, $w(A\setminus Z_m)\to w(A)$
+for every integrable $w\ge0$. Each $w\,d\mu$ is atomless, so for
+$A_0\subseteq A$ every value in $[w(A_0),w(A)]$ is $w(A')$ for some
+$A_0\subseteq A'\subseteq A$ \cite{Sierpinski}. Hence any finite list of
+strict requirements on the masses $w(A')$ of a set $A'\subseteq A$ that can
+be met inside $A$ can be met by a clean $A'$: work inside $A\setminus Z_m$
+for large $m$. We say that such sets are \emph{chosen clean}.
+
+\begin{remark}\label{rem:cleanside}
+\emph{Clean-side rule.} By Lemma~\ref{lem:diff} and \eqref{eq:table}, the
+change of $L_k$ under a change of advice on a finite union of disjoint sets
+is a signed sum of charges of these sets. If every set that enters with the
+sign $+$ is clean, then the change is at most the same signed sum with every
+charge replaced by its density mass.
+\end{remark}
+
+\subsection{Forced comparisons}
+
+\begin{lemma}\label{lem:forced}
+Assume (H). Let $B$ be coherent and undominated, competitive on a set $S$ of
+worlds with $1\in S$, and let $X$ be regular with $L_k(X)<L_k(B)$ for every
+$k\in S\setminus\{1\}$. Then $B\preceq_1X$. If $B$ and $X$ differ exactly on
+$\pm Q$, the change from $B$'s advice to $X$'s advice on $Q$ is accepted at
+world~$1$ in every context having $B$'s advice on $Q$. If $B$ is competitive
+on $\{2,3\}$, no regular $X$ has both $L_2(X)<L_2(B)$ and $L_3(X)<L_3(B)$.
+\end{lemma}
+\begin{proof}
+By \eqref{eq:W} in contrapositive form, $B\not\preceq_kX$ for $k\in
+S\setminus\{1\}$. Competitiveness gives some $i\in S$ with $B\preceq_iX$, so
+$i=1$. The transfer is (IB) at world~$1$. The last statement is the same
+argument with $S=\{2,3\}$.
+\end{proof}
+
+We call the last statement the \emph{Pareto property}. Lemma~\ref{lem:forced}
+and the inequality $L_k(C)\le L_k(X)$ for a selected $C\preceq_kX$ (KKM
+accounting) are the only ways in which the losses $L_2,L_3$ enter the proofs
+below, apart from the results quoted from ECS and DT in
+Section~\ref{sec:onesided}, the inputs from CCF in
+Lemma~\ref{lem:edges}(a) and from EDL and FAED in Lemma~\ref{lem:FG}, and
+Lemma~\ref{lem:otherworld}. These also use the losses only in the same two
+forms: \eqref{eq:W} for a selected model, in contrapositive form or as
+$L_k(C)\le L_k(X)$.
+
+For measurable $B,C\subseteq H'$ define, as in CCF, Section~3,
+\[
+ B\preceq_dC\ :\Longleftrightarrow\ V+\debt(B)\preceq_1V+\debt(C),\quad
+ B\preceq_cC\ :\Longleftrightarrow\ V+\cred(C)\preceq_1V+\cred(B).
+\]
+So $B\preceq_dC$ says that debt on $B$ is no worse than debt on $C$, and
+$B\preceq_cC$ that credit on $B$ is worth no more than credit on $C$. Strict
+relations are $\prec_d,\prec_c$.
+
+\begin{lemma}\label{lem:F}
+Assume (G) and (IB) at world~$1$.
+\begin{enumerate}[label=(F\arabic*),leftmargin=*,itemsep=1pt]
+\item $\preceq_d$ and $\preceq_c$ are preorders; chains may pass through
+overlapping sets.
+\item $B\subseteq C$ implies $B\preceq_dC$ and $B\preceq_cC$, strictly if
+$C\setminus B$ is non-null.
+\item $B\preceq_dC$ if and only if $B\setminus C\preceq_dC\setminus B$, and
+likewise for $\prec_d$, $\preceq_c$, $\prec_c$.
+\item If $B_i\preceq_dC_i$ for $i\le r$, where the $B_i$ are pairwise
+disjoint, the $C_i$ are pairwise disjoint and $B_i\cap C_j=\varnothing$ for
+all $i,j$, then $\bigcup_iB_i\preceq_d\bigcup_iC_i$. Likewise for
+$\preceq_c$.
+\item If $N$ is regular and silent on $B\cup C$, then $B\preceq_dC$ if and
+only if $N+\debt(B)\preceq_1N+\debt(C)$; likewise for $\preceq_c$, $\prec_d$,
+$\prec_c$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(F1) is transitivity of $\preceq_1$ in the single context $V$. (F2) is (G):
+$V+\debt(C)$ is a pointwise world-1 worsening of $V+\debt(B)$, and
+$V+\cred(C)$ an improvement of $V+\cred(B)$. (F3) and (F5) are (IB): the two
+pairs differ on the same set, $B\triangle C$ in (F3), with the same advice
+there. (F4): at step $k$ compare $V+\debt(E\cup B_k)$ and
+$V+\debt(E\cup C_k)$ with
+$E\coloneqq\bigcup_{i<k}C_i\cup\bigcup_{i>k}B_i$, which is disjoint from
+$B_k\cup C_k$; by (F5) this comparison is $B_k\preceq_dC_k$. Transitivity
+finishes.
+\end{proof}
+
+\subsection{Edge selections}
+
+On $[e_1,e_2]$ the families of IC, Section~1, are: $E_1(a)$, $a\in[0,\infty]$,
+with credit on $D_x\cap\{x>a\}$ and silence on the rest of $D_x$; $E_2(b)$,
+$b\in[0,\infty]$, with debt on $D_x\cap\{x<b\}$ and silence on the rest of
+$D_x$. Both give credit ($o_{12}$) on $P_3$. Then $E_1(0)=D_1$,
+$E_2(\infty)=D_2$ and $E_1(\infty)=E_2(0)=V_{12}\coloneqq\Dscr_{[e_1,e_2]}$.
+On $[e_1,e_3]$ the families $E_1'(a)$ and $E_3(b)$ are defined in the same
+way with $y$ on $D_y$, and give credit ($o_{13}$) on $P_2$;
+$V_{13}\coloneqq\Dscr_{[e_1,e_3]}$. In CCF's notation, $E_1(a)=E^2_1(a)$ and
+$E_2(b)=E_2(b)$, and CCF parametrizes both families on $[e_1,e_2]$ by one
+parameter: $M_s\coloneqq E_1(-1/s)$ for $s<0$, $M_{-\infty}\coloneqq D_1$,
+$M_s\coloneqq E_2(s)$ for $s\ge0$. By strict (G) (CCF, (2)), $s<s'$ implies
+$M_s\prec_1M_{s'}$ and $M_{s'}\prec_2M_s$.
+
+\begin{lemma}\label{lem:edges}
+Assume (H) and that $V$ is undominated.
+\begin{enumerate}[label=(\alph*)]
+\item Every selection $C_q$ with $q\in[e_1,e_2]$ has $e_1$ or $e_2$ in its
+credal set; likewise on $[e_1,e_3]$.
+\item There is a continuous map $s\colon[e_1,e_2]\to[-\infty,\infty]$ with
+$C_q=M_{s(q)}$, $s(e_1)=-\infty$, $s(e_2)=\infty$. Every $M_s$ is selected;
+for finite $s$ only at points of the open edge, so that $V_{12}$, $E_1(a)$
+and $E_2(b)$, $a,b\in(0,\infty)$, are competitive on $\{1,2\}$.
+\item If $s_n\to s^*$ in $[-\infty,\infty]$, with $s_n<s^*$ for all $n$ or
+$s_n>s^*$ for all $n$, then, after passing to a subsequence of
+$(s_n)$, there are indices $q_n\to q^*$ on the edge with
+$C_{q_n}=M_{s_n}$ and $C_{q^*}=M_{s^*}$.
+\item In the situation of (c), if $Y$ is regular and $M_{s^*}\not\preceq_1Y$,
+then there is $n_0$ such that $M_s\not\preceq_1Y$ for every $s$ between
+$s_{n_0}$ and $s^*$ (inclusive). The same holds with world~$2$ in place of
+world~$1$.
+\end{enumerate}
+The mirror statements of (b)--(d) hold on $[e_1,e_3]$.
+\end{lemma}
+\begin{proof}
+(a) Selections at $e_1,e_2$ are $D_1,D_2$ (K3). A selection at an open-edge
+point is coherent, undominated and competitive on $\{1,2\}$, so CCF,
+Proposition~17, applies; its hypotheses are (G), (S), (IB) at world~$1$, $V$
+undominated, and losses at worlds $2,3$ with \eqref{eq:positive} and
+\eqref{eq:W}, and it uses no completeness. (In the ordinary case this is IC,
+Proposition~3; both rest on IC's chain lemma, IC, Lemma~2.) (b) is CCF, Lemma~3, which needs
+(G) at worlds $1$ and $2$, (S), and (a). (c) Choose $q_n$ with
+$s(q_n)=s_n$, by (b), and pass to a convergent subsequence (so (c) holds
+along a subsequence of $(s_n)$, which suffices for every use below);
+continuity gives $s(q^*)=s^*$. (d) CCF, Lemma~4, gives $q^*$ with $s(q^*)=s^*$, hence
+$C_{q^*}=M_{s^*}$, such that every neighbourhood $N$ of $q^*$ has the property:
+for some $n_0$ every $s$ between $s_{n_0}$ and $s^*$ is $s(q)$ for some $q\in
+N$. Since $q^*\notin A_1(Y)$ and $A_1(Y)$ is closed, some neighbourhood $N$
+misses $A_1(Y)$, and every $M_s$ with $s$ between $s_{n_0}$ and $s^*$ is
+$C_q$ for some $q\in N$. For world~$2$ use $A_2(Y)$.
+\end{proof}
+
+\paragraph{Forced moves.} For the next lemma recall that $E_2(s)$ has debt on
+$D_x\cap\{x<s\}$ and silence on $D_x\cap\{x\ge s\}$, and $E_1(s)$ credit on
+$D_x\cap\{x>s\}$ and silence on $D_x\cap\{x\le s\}$.
+
+\begin{lemma}\label{lem:moves}
+Assume (H) and that $V$ is undominated. Let $s\in(0,\infty)$.
+\begin{enumerate}[label=(M\arabic*),leftmargin=*,itemsep=1pt]
+\item If $Q\subseteq D_x\cap\{x<s\}$, $W\subseteq D_x\cap\{x\ge s\}$ and
+$\nu_{21}(Q)<\nu_{21}(W)$, then $Q\preceq_dW$. In particular this holds if
+$Q$ is clean and $c_2(Q)<c_2(W)$.
+\item The mirror: $Q\subseteq D_y\cap\{y<s\}$, $W\subseteq D_y\cap\{y\ge s\}$,
+$\nu_{31}(Q)<\nu_{31}(W)$ imply $Q\preceq_dW$.
+\item If $T\subseteq D_x\cap\{x>s\}$, $T'\subseteq D_x\cap\{x\le s\}$ and
+$\nu_{22}(T')<\nu_{22}(T)$, then $T'\preceq_cT$. In particular this holds if
+$T'$ is clean and $v(T')<v(T)$.
+\item The mirror: $T\subseteq D_y\cap\{y>s\}$, $T'\subseteq D_y\cap\{y\le
+s\}$, $\nu_{32}(T')<\nu_{32}(T)$ imply $T'\preceq_cT$.
+\item If $A,T\subseteq D_x$ are disjoint and $\nu_{22}(T)<\nu_{21}(A)$, then
+$V\preceq_1V+\debt(A)+\cred(T)$. In particular this holds if $T$ is clean
+and $v(T)<c_2(A)$. The mirror holds on $D_y$ with $\nu_{32},\nu_{31}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(M1) The base $E_2(s)$ is selected at an open-edge index, hence competitive
+on $\{1,2\}$ (Lemma~\ref{lem:edges}). It has debt on $Q$ and is silent on $W$.
+Let $X$ be $E_2(s)$ with silence on $Q$ and debt on $W$. On $D_x$, debt has
+world-2 rank $0$ and silence rank $1$, so by Lemma~\ref{lem:diff}
+$L_2(X)-L_2(E_2(s))=\nu_{21}(Q)-\nu_{21}(W)<0$. Lemma~\ref{lem:forced} gives
+$E_2(s)\preceq_1X$, and (IB) transfers the change to the context $V$. The
+clean case follows from $\nu_{21}(Q)=c_2(Q)$ and $\nu_{21}(W)\ge c_2(W)$.
+(M3) The base $E_1(s)$ has credit on $T$ and is silent on $T'$; moving the
+credit from $T$ to $T'$ changes $L_2$ by $\nu_{22}(T')-\nu_{22}(T)<0$, so
+$V+\cred(T)\preceq_1V+\cred(T')$, that is, $T'\preceq_cT$. (M5) The base
+$V_{12}$ is competitive on $\{1,2\}$ and silent on $D_x$; adding debt on $A$
+and credit on $T$ changes $L_2$ by $-\nu_{21}(A)+\nu_{22}(T)<0$. $V_{12}$ and
+$V$ differ only on $P_3$, so (IB) transfers the accepted change to $V$. (M2),
+(M4) and the mirror of (M5) are the same with $E_3$, $E_1'$, $V_{13}$ and
+$L_3$.
+\end{proof}
+
+In (M1)--(M4) the sets are disjoint because of the threshold. In (M1) and
+(M2) only the \emph{source} $Q$ needs to be clean for the density version,
+in (M3) and (M4) only the \emph{destination} $T'$, and in (M5) only the credit
+set $T$. A \emph{debt chain} is a finite sequence of sets in which
+consecutive sets are related by (M1) or (M2); its first set is $\preceq_d$ its
+last. Each link is a statement in the context $V$, so only consecutive sets
+need to be disjoint. Credit chains are defined in the same way with (M3),
+(M4).
+
+\subsection{Further inputs}
+
+\begin{lemma}\label{lem:FG}
+Assume (H) and that $V$ is undominated. There are nondecreasing functions
+$F,G\colon(0,\infty)\to(0,\infty)$ with
+\[
+ c_2=F(t)\,u,\qquad v=G(t)\,c_3\qquad\text{a.e.\ on }P_2\cup P_3,
+\]
+and $d\coloneqq\sup F\le g_0\coloneqq\inf G$; $d$ and $g_0$ are positive and
+finite.
+\end{lemma}
+\begin{proof}
+Under (H$_{\rm II}$) this is EDL, Theorem~8, and its proof (Steps 2, 5
+and~6), as recorded in IC, Section~3. Under (H) the same holds for the
+densities $c_{kl}$: FAED, Proposition~6, proves Steps 1 and~3 of EDL's proof
+for the ordinary parts, and Steps 2, 4, 5 and~6 use only the ordinary
+penalties. EDL's $F$ and $G$ take values in $[0,\infty]$. Since $c_2/u$ and
+$v/c_3$ are a.e.\ positive and finite, $\{F=0\}$ and $\{G=\infty\}$ are
+intervals of Lebesgue measure zero at the ends of $(0,\infty)$, hence empty;
+and $F\le\kappa^*\le G$ with $0<\kappa^*<\infty$, where $\kappa^*$ is
+EDL's constant (Step~4 of the proof of EDL, Theorem~8; the inequality is
+EDL's Step~5).
+\end{proof}
+
+We also use the following results as stated: IC, Lemma~14 (composition), which
+uses only (IB) at world~$1$; IC, Lemma~11 (shape of a good base), which is a
+statement about coherent models only; CBOI, Lemma~4 (compactness): the
+coherent models are sequentially compact for Hausdorff convergence of credal
+sets, along which advice converges a.e., and ordinary integral losses are
+continuous along it.
+
+\section{Preliminaries valid in all three cases}\label{sec:prelim}
+
+Throughout Sections~\ref{sec:prelim}--\ref{sec:totals} we assume (H) and
+that $V$ is undominated; the results are steps towards a contradiction. All
+of them hold in the three cases (H$_{\rm I}$), (H$_{\rm II}$) and (H).
+
+\subsection{Non-comparisons from closed sections}
+
+\begin{lemma}\label{lem:noncomp}
+Let $0<a<b<\infty$.
+\begin{enumerate}[label=(\alph*)]
+\item If $B_0\subseteq D_x\cap\{x<a\}$ is non-null, there is $S_0$ with
+$B_0\not\preceq_dD_x\cap\{x\ge s\}$ for all $s\ge S_0$.
+\item If $B_0\subseteq D_x\cap\{x<a\}$ is non-null, there is $\delta>0$ with
+$B_0\not\preceq_dD_x\cap[s,b)$ for all $s\in(b-\delta,b)$.
+\item If $Z\subseteq D_x\cap\{x\ge b\}$ is non-null, there is $\delta>0$ with
+$V\not\preceq_1V+\debt(D_x\cap[s,b))+\cred(Z)$ for all $s\in(b-\delta,b)$.
+\item If $T_0\subseteq D_x\cap\{x<a\}$ is non-null, there is $S_0$ with
+$T_0\not\preceq_cD_x\cap\{x>s\}$ for all $s\ge S_0$.
+\item If $T_0\subseteq D_x\cap\{x<a\}$ is non-null, there is $\delta>0$ with
+$T_0\not\preceq_cD_x\cap\{s<x\le b\}$ for all $s\in(b-\delta,b)$.
+\end{enumerate}
+The mirror statements hold on $D_y$ with $y$, $E_3$, $E_1'$ and $V_{13}$.
+\end{lemma}
+\begin{proof}
+In each case we name a regular $Y$ and a model $M_{s^*}$ with
+$Y\prec_1M_{s^*}$ by strict (G), so that $M_{s^*}\not\preceq_1Y$, and apply
+Lemma~\ref{lem:edges}(d) to an approach $M_s\to M_{s^*}$. Then we identify
+$M_s\preceq_1Y$ with the displayed comparison by (IB).
+
+(a) $Y\coloneqq D_2$ silenced on $B_0$, and $D_2=E_2(\infty)$ is approached by
+$E_2(s)$, $s\to\infty$. For $s\ge a$, $E_2(s)$ and $Y$ differ exactly on
+$B_0$ (debt, silence) and on $D_x\cap\{x\ge s\}$ (silence, debt). So
+$E_2(s)\preceq_1Y$ if and only if $B_0\preceq_dD_x\cap\{x\ge s\}$.
+
+(b) $Y\coloneqq E_2(b)$ silenced on $B_0$, approached by $E_2(s)$, $s\uparrow
+b$. For $a\le s<b$ the two models differ exactly on $B_0$ (debt, silence)
+and on $D_x\cap[s,b)$ (silence, debt).
+
+(c) $Y\coloneqq E_2(b)+\cred(Z)$; $E_2(b)$ is silent on $Z$. Approach by
+$E_2(s)$, $s\uparrow b$. The two models differ exactly on $D_x\cap[s,b)$
+(silence, debt) and on $Z$ (silence, credit), as do $V$ and
+$V+\debt(D_x\cap[s,b))+\cred(Z)$.
+
+(d) $Y\coloneqq V_{12}+\cred(T_0)$, and $V_{12}=M_0$ is approached by
+$E_1(s)=M_{-1/s}$, $s\to\infty$. For $s\ge a$, $E_1(s)$ and $Y$ differ
+exactly on $D_x\cap\{x>s\}$ (credit, silence) and on $T_0$ (silence, credit).
+So $E_1(s)\preceq_1Y$ if and only if
+$V+\cred(D_x\cap\{x>s\})\preceq_1V+\cred(T_0)$, that is,
+$T_0\preceq_cD_x\cap\{x>s\}$.
+
+(e) $Y\coloneqq E_1(b)+\cred(T_0)$; $E_1(b)$ is silent on $T_0$. Approach by
+$E_1(s)=M_{-1/s}$, $s\uparrow b$, so that the parameter increases to
+$-1/b$. For $a\le s<b$, $E_1(s)$ and $Y$ differ exactly on $D_x\cap\{s<x\le
+b\}$ (credit, silence) and on $T_0$ (silence, credit).
+\end{proof}
+
+\subsection{Closing, ratio criterion, and \texorpdfstring{$d<g_0$}{d<g0}}
+
+For $b'\in(0,\infty)$ and $n>1/b'$ put
+$\Band_n\coloneqq D_y\cap\{b'-1/n\le y<b'\}$, and let $\debt(\Band_n)$ be
+debt there ($o_{23}$ on $P_1$, $o_3$ on $P_3$); this is the advice of
+$E_3(b')$ there.
+
+\begin{lemma}\label{lem:closing}
+There are no $b'\in(0,\infty)$ and non-null $S\subseteq P_3\cap\{y\ge b'\}$
+such that $V\preceq_1V+o_{12}(S)+\debt(\Band_n)$ for all large $n$. The mirror
+statement holds on $[e_1,e_2]$, with $S\subseteq P_2\cap\{x\ge b'\}$, $o_{13}$
+and the bands $D_x\cap\{b'-1/n\le x<b'\}$.
+\end{lemma}
+\begin{proof}
+This is IC, Lemma~13. Its proof identifies the limit selection through
+continuity and injectivity of $L_3$ on the edge, which needs exact
+representation; we replace that step by the threshold map. Put
+$X\coloneqq E_3(b')+o_{12}(S)$. For each $n$, $E_3(b'-1/n)$ and $X$ differ
+exactly on $\Band_n$ (silence, debt) and on $S$ (silence, $o_{12}$), as do the
+two models in the hypothesis. So by (IB) the hypothesis says
+$E_3(b'-1/n)\preceq_1X$. By Lemma~\ref{lem:edges}(c), after passing to a
+subsequence, there are indices $q_n\to q^*$ with $C_{q_n}=E_3(b'-1/n)$ and $C_{q^*}=E_3(b')$. Closedness of
+$A_1(X)$ gives $E_3(b')\preceq_1X$. But $X$ improves $E_3(b')$ at world~$1$ by
+credit on its silent set $S$, so $X\prec_1E_3(b')$ by strict (G). This is a
+contradiction.
+\end{proof}
+
+\begin{lemma}\label{lem:ratio}
+Let $S_0\subseteq P_3\cap\{y\ge1\}$ be clean and non-null, and let
+$0<\ell_0<\infty$. Suppose that for every $R>0$ there is $s(R)>0$ with the
+following property: for every $S'\subseteq S_0$ with $0<u(S')\le s(R)$ and
+every $W\subseteq P_1\cap\{x\ge\ell_0\}$ with $c_2(W)\ge u(S')/R$, some
+$D'\subseteq W$ has $c_2(D')\le u(S')/R$ and
+$V\preceq_1V+o_{12}(S')+o_{23}(D')$. Then (H) and the undominatedness of $V$
+are contradictory. The mirror statement holds with $S_0\subseteq P_2\cap\{x\ge
+1\}$, $o_{13}$, $v$, $c_3$ and $W\subseteq P_1\cap\{y\ge\ell_0\}$.
+\end{lemma}
+\begin{proof}
+This is IC, Lemma~15, whose statement contains a good base only to place
+$S_0$; its proof does not use one. Take $b'=1$ and $S\coloneqq S_0$. Given
+$n\ge2$, the set $W_n\coloneqq\Band_n\cap P_1\cap\{x\ge\ell_0\}$ has
+$c_2(W_n)>0$. Choose $R$ with $u(S)/R<c_2(W_n)/2$ and split $S$ into disjoint
+pieces $S_j$ with $u(S_j)\le s(R)$. Choose $D_j$ successively inside
+$W_n\setminus(D_1\cup\dots\cup D_{j-1})$; this set has $c_2$-mass at least
+$c_2(W_n)-\sum_iu(S_i)/R\ge c_2(W_n)/2\ge u(S_j)/R$. IC, Lemma~14, gives
+$V\preceq_1V+o_{12}(S)+o_{23}(\bigcup_jD_j)$. Adding debt on the rest of
+$\Band_n$ is a world-1 worsening, and $\Band_n\cap S=\varnothing$ since
+$S\subseteq\{y\ge1\}$. So $V\preceq_1V+o_{12}(S)+\debt(\Band_n)$ for every
+$n\ge2$, contrary to Lemma~\ref{lem:closing}. The mirror is the same on
+$[e_1,e_2]$.
+\end{proof}
+
+\begin{proposition}\label{prop:dg}
+$d<g_0$.
+\end{proposition}
+\begin{proof}
+The chain below is run for small prize pieces and fed into
+Lemma~\ref{lem:ratio}. (With a fixed prize set the auxiliary sets $T_1,T_2$
+below would have to carry a fixed mass while the thresholds $t,t'$ escape to
+$\infty$ and $0$, which is impossible when $F<d$ and $G>g_0$ everywhere.)
+Suppose $d=g_0$ (Lemma~\ref{lem:FG} gives $d\le
+g_0$). Then $F$ increases to $d$ at $\infty$ and $G$ decreases to $g_0$ at
+$0+$. Fix $a'>1$, a clean non-null $S_0\subseteq P_3\cap\{1\le y\le
+a'\}$, and $\ell>0$. Given $R>0$ choose $0<t'<t$ with
+$\eta\coloneqq G(t'+)-F(t-)<1/(3R)$; note $\eta\ge0$. Put
+\[
+ s(R)\coloneqq\tfrac12\min\bigl\{u(P_3\cap\{t_{23}>t,\ y>a'\}),\
+ c_3(P_2\cap\{t_{23}<t'\}),\ \tfrac R2\,c_2(P_1\cap\{x<\ell,\ y<\tfrac12\})
+ \bigr\}.
+\]
+(Here $t_{23}$ is the coordinate and $t,t'$ are numbers.) Let $S'\subseteq
+S_0$ with $s\coloneqq u(S')\le s(R)$, and $W\subseteq P_1\cap\{x\ge\ell\}$
+with $c_2(W)\ge s/R$. Choose clean sets
+\[
+ T_1\subseteq P_3\cap\{t_{23}>t,\ y>a'\},\quad
+ T_2\subseteq P_2\cap\{t_{23}<t'\},\quad
+ Q\subseteq P_1\cap\{x<\ell,\ y<\tfrac12\},
+\]
+with $u(T_1)=c_3(T_2)=u_1\in(s,2s)$ and $c_2(Q)\in(\eta u_1,s/R)$; the
+interval is nonempty because $\eta u_1<2s/(3R)$. Choose $D'\subseteq W$ with
+$c_2(D')\in(c_2(Q),s/R]$. The chain:
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=2pt]
+\item At $V$: add $o_{12}(T_1)$, $o_{13}(T_2)$, $o_{23}(Q)$. On $T_1$,
+$c_2=F(t_{23})u\ge F(t-)u$; on $T_2$, $v=G(t_{23})c_3\le G(t'+)c_3$. By
+\eqref{eq:table}, with $T_1,T_2$ clean,
+\begin{gather*}
+ \Delta L_2\le-F(t-)u_1+G(t'+)u_1-c_2(Q)=\eta u_1-c_2(Q)<0,\\
+ \Delta L_3\le u(T_1)-c_3(T_2)-c_3(Q)=-c_3(Q)<0.
+\end{gather*}
+$V$ is competitive on $\{1,2,3\}$ (K4), so the change is accepted
+(Lemma~\ref{lem:forced}).
+\item Base $E_1'(a')$, with credit on $D_y\cap\{y>a'\}$ and silence on
+$D_y\cap\{y\le a'\}$: move the credit from $T_1$ to $S'$. Then $\Delta
+L_3=-\nu_{32}(T_1)+u(S')\le s-u_1<0$ ($S'$ is clean). The current model has
+the base's advice on $T_1\cup S'$. This is (M4).
+\item By (G): $T_2\colon o_{13}\to$ silence.
+\item Base $E_2(\ell)$: move the debt from $Q$ to $D'$. This is (M1): $Q$ is
+clean and $c_2(D')>c_2(Q)$.
+\end{enumerate}
+The end is $V+o_{12}(S')+o_{23}(D')$, with $c_2(D')\le u(S')/R$. All sets
+involved are pairwise disjoint: $T_1$, $S'$ lie in $P_3$ and are separated
+by $y$; $T_2\subseteq P_2$; $Q$ and $D'$ lie in $P_1$ and are separated by
+$x$. So the hypothesis of Lemma~\ref{lem:ratio} holds with $\ell_0=\ell$,
+which is a contradiction.
+\end{proof}
+
+\subsection{The edge \texorpdfstring{$[e_2,e_3]$}{[e2,e3]} and full-support selections}
+
+\begin{lemma}\label{lem:noedge}
+No selection $C_q$, at any index $q$, has a credal set contained in
+$[e_2,e_3]$ that contains neither $e_2$ nor $e_3$. In particular every
+selection on the edge $[e_2,e_3]$ has $e_2$ or $e_3$ in its credal set.
+\end{lemma}
+\begin{proof}
+Let $C=\Dscr_K$ with $K\subseteq[e_2,e_3]$, $e_2,e_3\notin K$. Then every
+$m\in K$ has $m_2,m_3>0$, and by compactness
+$0<\tau_{\rm lo}\coloneqq\min_Km_3/m_2\le\tau_{\rm hi}\coloneqq\max_Km_3/m_2<\infty$.
+On $P_2$, $m\cdot g=g_3(m_3-m_2t)$, so $C$ gives $o_2$ on $\{t>\tau_{\rm
+hi}\}$; on $P_3$, $m\cdot g=|g_3|(m_2t-m_3)$, so $C$ gives $o_3$ on
+$\{t<\tau_{\rm lo}\}$. Fix $\epsilon>0$ with $d(1+\epsilon)<g_0$
+(Proposition~\ref{prop:dg}), choose a clean non-null $W_2\subseteq
+P_3\cap\{t<\tau_{\rm lo}\}$, and then a clean $W_1\subseteq P_2\cap\{t>\tau_{\rm
+hi}\}$ with $u(W_1)=(1+\epsilon)c_3(W_2)$. Let $X$ be $C$ silenced on
+$W_1\cup W_2$. By \eqref{eq:table} and Lemma~\ref{lem:FG},
+\begin{align*}
+ L_2(X)-L_2(C)&=c_2(W_1)-\nu_{22}(W_2)\le d\,u(W_1)-g_0c_3(W_2)
+ =\bigl(d(1+\epsilon)-g_0\bigr)c_3(W_2)<0,\\
+ L_3(X)-L_3(C)&=-\nu_{32}(W_1)+c_3(W_2)\le-\epsilon\,c_3(W_2)<0.
+\end{align*}
+So $C\not\preceq_2X$ and $C\not\preceq_3X$ by \eqref{eq:W}. Also $X\prec_1C$
+by strict (G), since $X$ removes debt. This contradicts competitiveness of
+$C$ on $\supp q$.
+\end{proof}
+
+\begin{lemma}\label{lem:noboth}
+No full-support selection gives both $o_{13}$ and $o_2$ on non-null parts of
+$P_2$.
+\end{lemma}
+\begin{proof}
+This is IC, Lemma~10. Its Case~2 used IC's tied-level lemma (Lemma~9), which
+needs exact representation; here it cannot occur, by
+Proposition~\ref{prop:dg}. We give the argument of Case~1 with clean sets.
+Let $C$ be such a selection, $A_+\coloneqq\{C=o_{13}\}\cap P_2$ and
+$A_-\coloneqq\{C=o_2\}\cap P_2$, both non-null. Choose clean non-null
+$T'\subseteq A_+$ and $B'\subseteq A_-$. Then
+$a\coloneqq\esssup_{B'}F(t)\le d<g_0\le b\coloneqq\essinf_{T'}G(t)$. Shrink
+$B'$ (replacing it by a non-null subset) so that $\tau\coloneqq\essinf_{B'}x>0$
+and
+$c_2(B')<c_2(P_1\cap\{x<\tau\})$, and so that $u(B')$ is small enough for the
+choices below. Fix $\alpha_0>0$ with $P_3\cap\{F(t)>\alpha_0\}$ non-null.
+
+Take nested $T_\lambda\subseteq T'$, $\lambda\in[0,1]$, with
+$c_3(T_\lambda)=\lambda u(B')$ (this needs $u(B')\le c_3(T')$), and
+put $\chi(\lambda)\coloneqq v(T_\lambda)-c_2(B')$. It is continuous and
+increasing, $\chi(0)<0$, and $\chi(\lambda)\ge(b\lambda-a)u(B')>0$ for
+$\lambda>a/b$, because $v=Gc_3\ge bc_3$ on $T'$ and $c_2=Fu\le au$ on $B'$.
+Let $\lambda_0\in(0,a/b]$ be its smallest zero; $a/b<1$. For $\lambda\in
+(\lambda_0,1)$ close to $\lambda_0$, $\delta\coloneqq\chi(\lambda)>0$ is as
+small as we like; put $T\coloneqq T_\lambda$. Choose $\eta>0$ small, a clean
+$B\subseteq P_1\cap\{x<\tau\}$ with $c_2(B)=c_2(B')-\eta$, and a clean
+$S\subseteq P_3\cap\{F(t)>\alpha_0\}$ with $c_2(S)=2(\delta+\eta)$. Then
+$u(S)\le c_2(S)/\alpha_0<c_3(T)$ once $\delta,\eta$ are small, since
+$c_3(T)\ge\lambda_0u(B')$. The chain:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item At $V$: add $o_{13}(T)$, $o_{23}(B)$, $o_{12}(S)$. With $T$ and $S$
+clean, $\Delta L_2\le v(T)-c_2(B)-c_2(S)=-\delta-\eta<0$ and $\Delta
+L_3\le-c_3(T)-c_3(B)+u(S)<0$. Accepted, by (K4) and Lemma~\ref{lem:forced}.
+\item Base $E_2(\tau)$, with debt on $B\subseteq\{x<\tau\}$ and silence on
+$B'\subseteq\{x\ge\tau\}$: move the debt from $B$ to $B'$. This is (M1), since
+$B$ is clean and $c_2(B')>c_2(B)$.
+\item Base $C$, which gives $o_{13}$ on $T$ and $o_2$ on $B'$: silence both.
+With $T$ and $B'$ clean, $\Delta L_2\le-v(T)+c_2(B')=-\delta<0$ and $\Delta
+L_3\le c_3(T)-u(B')=(\lambda-1)u(B')<0$. $C$ is competitive on $\{1,2,3\}$,
+so the change is accepted.
+\end{itemize}
+The end is $V+o_{12}(S)$, a strict world-1 improvement of $V$. This
+contradicts strict (G).
+\end{proof}
+
+\subsection{Separability and positivity}
+
+\begin{theorem}\label{thm:sep}
+There are nondecreasing functions
+$f,h,\ftil,\htil\colon(0,\infty)\to(0,\infty)$ such that, a.e.\ on $P_1$,
+\[
+ \frac{c_3}{c_2}=\frac{f(x)}{h(y)},\qquad\frac uv=\frac{\ftil(x)}{\htil(y)}.
+\]
+\end{theorem}
+\begin{proof}
+Under (H$_{\rm I}$) this is ECS, Theorem~14. ECS uses its standing
+hypothesis only through its Lemma~2 (moves along the edges). That lemma cites
+IC, Lemma~7, for the selection of the edge models, which is
+Lemma~\ref{lem:edges}(b) here, and uses the losses only to conclude
+$E\not\preceq_kE'$ from $L_k(E')<L_k(E)$; so its four parts are (M1)--(M4)
+for clean sources, resp.\ clean destinations. In the proofs of ECS's
+Lemmas~4 and~5 every set that is moved, and every set to which advice is
+moved, is chosen inside one of the sets of a cycle, and the contradiction is
+strict (G) at world~$1$. Given a cycle $(X_i,Y_i)$ of negative weight,
+replace each of its sets by its intersection with $H\setminus Z_m$, with $m$
+so large that all of them are non-null. By the remark after ECS,
+Definition~3, the result is a cycle of no larger weight, and now every chosen
+set is clean. So ECS's Lemmas~4 and~5 hold for $\zeta_\rho=\log(c_3/c_2)$ and
+$\zeta_\sigma=\log(u/v)$, and ECS, Proposition~13, which is pure measure
+theory, gives the factorizations.
+\end{proof}
+
+By ECS, Remark~17, the one-sided limits and the multiplicative jump ratios
+$f(a+)/f(a-)$, $h(a+)/h(a-)$ are determined by $c_3/c_2$. Put
+\[
+ \varphi\coloneqq f(x)\,c_2\ \text{on }D_x,\quad
+ \varphi\coloneqq h(y)\,c_3\ \text{on }P_3;\qquad
+ \psi\coloneqq\ftil(x)\,v\ \text{on }D_x,\quad
+ \psi\coloneqq\htil(y)\,u\ \text{on }P_3.
+\]
+On $P_1$, $f(x)c_2=h(y)c_3$ and $\ftil(x)v=\htil(y)u$ a.e., so
+$\varphi=h(y)c_3$ and $\psi=\htil(y)u$ a.e.\ on $D_y$ as well. For
+measurable $Q\subseteq H'$ put $\Phi(Q)\coloneqq\int_Q\varphi\,d\mu$ and
+$\Psi(Q)\coloneqq\int_Q\psi\,d\mu$, with values in $[0,\infty]$. Both
+densities are a.e.\ positive on $H'$.
+
+\begin{lemma}\label{lem:pos}
+$f(0+)>0$ and $h(0+)>0$.
+\end{lemma}
+\begin{proof}
+Suppose $h(0+)=0$. On
+$P_1\cap\{\tfrac12<x<1\}$ we have $c_3/c_2\ge f(\tfrac12)/h(y)$, so for every
+$R'>0$ the set $P_1\cap\{x<1,\ y<1,\ c_3>R'c_2\}$ is non-null. Fix a clean
+non-null $S_0\subseteq P_3\cap\{y\ge1\}$; we verify the hypothesis of
+Lemma~\ref{lem:ratio} with $\ell_0=1$. Given $R$, put $R'\coloneqq3R$ and
+$s(R)\coloneqq\frac14c_3(P_1\cap\{x<1,\ y<1,\ c_3>R'c_2\})$. Let
+$S'\subseteq S_0$ with $s\coloneqq u(S')\le s(R)$, and $W\subseteq
+P_1\cap\{x\ge1\}$ with $c_2(W)\ge s/R$. Choose a clean $B\subseteq
+P_1\cap\{x<1,\ y<1,\ c_3>R'c_2\}$ with $c_3(B)=2s$, which exists since
+$2s$ is less than the $c_3$-mass of this set; then $c_2(B)\le2s/R'$.
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=1pt]
+\item At $V$: add $o_{12}(S')$ and $o_{23}(B)$. With $S'$ clean, $\Delta
+L_2\le-c_2(S')-c_2(B)<0$ and $\Delta L_3\le s-2s<0$. Accepted.
+\item Base $E_2(1)$: move the debt from $B$ to $D'\subseteq W$ with
+$c_2(D')=\frac43c_2(B)$; this is possible since $\frac43c_2(B)\le
+\frac{8s}{9R}<c_2(W)$. It is (M1).
+\end{enumerate}
+The end is $V+o_{12}(S')+o_{23}(D')$ with $c_2(D')\le8s/(9R)\le s/R$.
+Lemma~\ref{lem:ratio} gives a contradiction. If $f(0+)=0$, the mirror
+argument (exchange worlds $2,3$; mirror of Lemma~\ref{lem:ratio}) applies.
+\end{proof}
+
+\section{Routing primaries}\label{sec:routing}
+
+The two theorems of this section show that world~$1$ compares debt sets, and
+credit sets, strictly according to $\Phi$ and $\Psi$, provided the
+lighter set is bounded and clean; the heavier set is arbitrary. The proofs route advice through
+$P_1$ by edge moves only.
+
+For $b\in(0,\infty)$ put
+\[
+ R_b\coloneqq(P_2\cap\{x<b\})\cup(P_3\cap\{y<b\})\cup
+ (P_1\cap(\{x<b\}\cup\{y<b\})),\qquad F_b\coloneqq H'\setminus R_b .
+\]
+So $F_b=(P_2\cap\{x\ge b\})\cup(P_3\cap\{y\ge b\})\cup(P_1\cap\{x\ge b,\
+y\ge b\})$. A set is \emph{bounded} if it lies in some $R_b$. Since
+$R_b\subseteq(D_x\cap\{x<b\})\cup(D_y\cap\{y<b\})$, and $\varphi\le f(b)c_2$,
+$\psi\le\ftil(b)v$ on $D_x\cap\{x<b\}$, and $\varphi\le h(b)c_3$, $\psi\le
+\htil(b)u$ on $D_y\cap\{y<b\}$, we have $\Phi(R_b),\Psi(R_b)<\infty$.
+
+\begin{lemma}\label{lem:windows}
+Let $w\colon(0,\infty)\to(0,\infty)$ be nondecreasing, $0<\alpha<\beta<\infty$,
+$\epsilon>0$ and $\theta>0$. There are finitely many disjoint intervals
+$U_l=[a_l,b_l)\subseteq[\alpha,\beta)$ with $w(b_l-)\le(1+\epsilon)w(a_l)$
+(\emph{$\epsilon$-windows} of $w$) whose union covers $[\alpha,\beta)$ up to a
+set of Lebesgue measure less than $\theta$.
+\end{lemma}
+\begin{proof}
+$g\coloneqq\log w$ is nondecreasing and finite on $[\alpha,\beta]$, with
+$\Gamma\coloneqq g(\beta)-g(\alpha)<\infty$. Put
+$\eta\coloneqq\log(1+\epsilon)$. Only finitely many points (at most
+$2\Gamma/\eta+2$, the endpoints $\alpha,\beta$ included) of
+$[\alpha,\beta]$ carry a jump $g(z+)-g(z-)\ge\eta/2$. Delete relatively open
+intervals of total length less than $\theta$ around them. What remains is a
+finite union of closed intervals $[p,q]$, at every point of which
+$g(z+)-g(z)<\eta/2$. On such an interval put $z_0\coloneqq p$ and
+\[
+ z_{k+1}\coloneqq\min\bigl(q,\ \inf\{z>z_k:g(z)\ge g(z_k)+\eta/2\}\bigr).
+\]
+Then $z_{k+1}>z_k$, because $g<g(z_k)+\eta/2$ on a right neighbourhood of
+$z_k$. On $[z_k,z_{k+1})$ we have $g<g(z_k)+\eta/2$, so
+$w(z_{k+1}-)\le e^{\eta/2}w(z_k)\le(1+\epsilon)w(z_k)$. If $z_{k+1}<q$ then
+$g(z)\ge g(z_k)+\eta/2$ for all $z>z_{k+1}$, so $g(z_{k+2})\ge
+g(z_k)+\eta/2$. Hence $z_k=q$ after at most $4\Gamma/\eta+2$ steps. The
+intervals $[z_k,z_{k+1})$ are the windows on $[p,q]$.
+\end{proof}
+
+\begin{lemma}\label{lem:windowmoves}
+Let $U=[a,b)$ be an $\epsilon$-window of $f$, and $a<s<b$. If
+$Q\subseteq D_x\cap[a,s)$ is clean, $W\subseteq D_x\cap[s,b)$ and
+$c_2(Q)<c_2(W)\le(1+\epsilon)c_2(Q)$, then $Q\preceq_dW$ and
+$\Phi(W)\le(1+\epsilon)^2\Phi(Q)$. The same holds for windows of $h$ with
+$D_y$, $y$ and $c_3$. If $U$ is an $\epsilon$-window of $\ftil$,
+$T\subseteq D_x\cap\{s<x<b\}$, $T'\subseteq D_x\cap\{a\le x\le s\}$ is clean
+and $v(T)/(1+\epsilon)\le v(T')<v(T)$, then $T'\preceq_cT$ and
+$\Psi(T')\ge\Psi(T)/(1+\epsilon)^2$. The same holds for windows of $\htil$
+with $D_y$, $y$ and $u$.
+\end{lemma}
+\begin{proof}
+$Q\preceq_dW$ is (M1). On $D_x\cap\{x\in U\}$,
+$f(a)c_2\le\varphi\le f(b-)c_2\le(1+\epsilon)f(a)c_2$, so
+$\Phi(W)\le(1+\epsilon)f(a)c_2(W)\le(1+\epsilon)^2f(a)c_2(Q)\le
+(1+\epsilon)^2\Phi(Q)$. For credit, $T'\preceq_cT$ is (M3), and
+$\Psi(T')\ge\ftil(a)v(T')\ge\ftil(a)v(T)/(1+\epsilon)\ge
+\Psi(T)/(1+\epsilon)^2$, since $\Psi(T)\le(1+\epsilon)\ftil(a)v(T)$. On $D_y$
+use (M2), (M4) and $\varphi=h(y)c_3$, $\psi=\htil(y)u$.
+\end{proof}
+
+\begin{lemma}\label{lem:cells}
+For nonempty open intervals $I,J\subseteq(0,\infty)$ the sets
+$P_1\cap\{x\in I,\ y\in J\}$, $P_2\cap\{x\in I\}$ and $P_3\cap\{y\in J\}$ are
+non-null. Hence, for all large $m$, their parts outside $Z_m$ have positive
+$c_2$-, $c_3$-, $v$-, $u$-, $\Phi$- and $\Psi$-mass.
+\end{lemma}
+\begin{proof}
+The coordinate laws have a.e.\ positive densities (Section~\ref{sec:setting}),
+the six densities are a.e.\ positive, and $\mu(Z_m)\to0$.
+\end{proof}
+
+\begin{theorem}\label{thm:debtprimary}
+Let $B,C\subseteq H'$ be disjoint, $B$ bounded and clean, and
+$\Phi(B)<\Phi(C)$, where $\Phi(C)=\infty$ is allowed. Then $B\prec_dC$.
+\end{theorem}
+\begin{proof}
+\emph{Step 0.} Choose a bounded $C_0\subseteq C$ with
+$\Phi(B)<\Phi(C_0)<\infty$ and $C\setminus C_0$ non-null. This is possible:
+$\Phi(C\cap R_b)\uparrow\Phi(C)$ as $b\to\infty$; if $\Phi(C)=\infty$ take
+$C_0=C\cap R_b$ for large $b$, and otherwise remove from a suitable $C\cap
+R_b$ a non-null piece of small $\Phi$-mass. By (F2), $C_0\prec_dC$, so it
+suffices to prove $B\preceq_dC_0$. If $B$ is null this is (F2). Otherwise put
+$\Omega\coloneqq\Phi(C_0)-\Phi(B)>0$ and fix $b_0$ with $B\cup C_0\subseteq
+R_{b_0}$. Every set chosen below is chosen clean.
+
+\emph{Step 1: windows and hubs.} Fix $\epsilon\in(0,1)$ with
+$(1+\epsilon)^9\Phi(B)<\Phi(B)+\Omega/4$. By Lemma~\ref{lem:windows} on
+$[b_0+1,b_0+2)$, fix an $\epsilon$-window $U_*=[\xi_a,\xi_b)$ of $f$ and an
+$\epsilon$-window $U_H=[y_a,y_b)$ of $h$, both inside $[b_0+1,b_0+2)$, and
+interior points $\xi_m\in U_*$, $y_m\in U_H$. Put
+\[
+ HL\coloneqq P_1\cap\{y_a\le y<y_m\},\qquad HU\coloneqq P_1\cap\{y_m\le
+ y<y_b\}.
+\]
+Then choose $a_*,\theta>0$ small (Step~5) and, by Lemma~\ref{lem:windows},
+finite families $\mathcal U_x$ of $\epsilon$-windows of $f$ and $\mathcal U_y$
+of $\epsilon$-windows of $h$ in $[a_*,b_0)$, each covering $[a_*,b_0)$
+up to Lebesgue measure less than $\theta$. Give each window $U=[a,b)$ a
+slice width $\theta_U\in(0,(b-a)/2)$, also fixed in Step~5.
+
+\emph{Step 2: classes.} Put $B_x\coloneqq B\cap(P_2\cup(P_1\cap\{x<b_0\}))$
+and $B_y\coloneqq B\setminus B_x$. Since $B\subseteq R_{b_0}$, $B_x\subseteq
+D_x\cap\{x<b_0\}$ and $B_y\subseteq D_y\cap\{y<b_0\}$. The \emph{source
+pieces} are $B_x\cap\{a\le x<b-\theta_U\}$ for $U=[a,b)\in\mathcal U_x$ (type
+X) and $B_y\cap\{a\le y<b-\theta_U\}$ for $U\in\mathcal U_y$ (type Y). The
+rest of $B_x$ is the residue $R_x$, and the rest of $B_y$ is $R_y$: points
+whose coordinate lies in $(0,a_*)$, in the uncovered set, or in a top slice
+$[b-\theta_U,b)$. Define $C_{0,x}$, $C_{0,y}$ in the same way. The
+\emph{target pieces} are $C_{0,x}\cap\{a+\theta_U\le x<b\}$ (type X$'$) and
+$C_{0,y}\cap\{a+\theta_U\le y<b\}$ (type Y$'$); the rest of $C_0$ is the
+target residue $R'$, which is not used.
+
+\emph{Step 3: from a source to the hub.} Let $Q$ be a subset of a source
+piece or of the residue. We route $Q$ by a debt chain to a set
+$W_1\subseteq HL$, and record a bound $e(Q)\ge\Phi(W_1)$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Type X, window $[a,b)$: $W_1\subseteq HL\cap\{b-\theta_U\le x<b\}$
+with $c_2(W_1)\in(c_2(Q),(1+\epsilon)c_2(Q)]$, by Lemma~\ref{lem:windowmoves}
+at $s=b-\theta_U$. Put $e(Q)\coloneqq(1+\epsilon)^2\Phi(Q)$.
+\item Type Y, window $[a,b)$ of $h$: first $W_0\subseteq P_1\cap\{b-\theta_U\le
+y<b\}\cap\{\xi_a\le x<\xi_m\}$ with $c_3(W_0)\in(c_3(Q),(1+\epsilon)c_3(Q)]$,
+by Lemma~\ref{lem:windowmoves} at $s=b-\theta_U$; then $W_1\subseteq
+HL\cap\{\xi_m\le x<\xi_b\}$ with $c_2(W_1)\in(c_2(W_0),(1+\epsilon)c_2(W_0)]$,
+by Lemma~\ref{lem:windowmoves} in $U_*$ at $s=\xi_m$. Put
+$e(Q)\coloneqq(1+\epsilon)^4\Phi(Q)$.
+\item $Q\subseteq R_x$: $W_1\subseteq HL\cap\{\xi_m\le x<\xi_b\}$ with
+$c_2(W_1)\in(c_2(Q),(1+\epsilon)c_2(Q)]$, by (M1) at $E_2(\xi_m)$, since
+$Q\subseteq\{x<b_0\}$. Then $\Phi(W_1)\le f(\xi_b)c_2(W_1)$; put
+$e(Q)\coloneqq(1+\epsilon)f(\xi_b)c_2(Q)$.
+\item $Q\subseteq R_y$: $W_1\subseteq HL$ with
+$c_3(W_1)\in(c_3(Q),(1+\epsilon)c_3(Q)]$, by (M2) at $E_3(y_a)$, since
+$Q\subseteq\{y<b_0\}$. Then $\Phi(W_1)\le h(y_m)c_3(W_1)$; put
+$e(Q)\coloneqq(1+\epsilon)h(y_b)c_3(Q)$.
+\end{itemize}
+The first link uses only that $Q$ is clean, as a subset of $B$.
+
+\emph{Step 4: from the hub to a target.} Let $W_1\subseteq HL$ and let $T'$
+be a subset of a target piece.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Type X$'$, window $[a,b)$: $W_2\subseteq HU\cap\{a\le x<a+\theta_U\}$
+with $c_3(W_2)\in(c_3(W_1),(1+\epsilon)c_3(W_1)]$, by
+Lemma~\ref{lem:windowmoves} in $U_H$ at $s=y_m$; then $W_2\to T'$ by (M1) at
+$E_2(a+\theta_U)$.
+\item Type Y$'$, window $[a,b)$ of $h$: $W_2\subseteq HU\cap\{\xi_a\le
+x<\xi_m\}$ as before; $W_3\subseteq P_1\cap\{\xi_m\le x<\xi_b\}\cap\{a\le
+y<a+\theta_U\}$ with $c_2(W_3)\in(c_2(W_2),(1+\epsilon)c_2(W_2)]$, by
+Lemma~\ref{lem:windowmoves} in $U_*$ at $s=\xi_m$; then $W_3\to T'$ by (M2) at
+$E_3(a+\theta_U)$.
+\end{itemize}
+The last intermediate $S$ ($W_2$ or $W_3$) and $T'$ lie in the same window
+$[a,b)$ of $f$ (resp.\ $h$). The last link needs $c_2(T')>c_2(S)$ (resp.\
+$c_3$), and $c_2(S)\le\Phi(S)/f(a)$, $c_2(T')\ge\Phi(T')/((1+\epsilon)f(a))$.
+Each window move multiplies $\Phi$ by at most $(1+\epsilon)^2$. So the route
+exists whenever $\Phi(T')>(1+\epsilon)^5\Phi(W_1)$, and in particular
+whenever $\Phi(T')>(1+\epsilon)^5e(Q)$. The last link uses only that its
+source is clean; $T'$ may be dirty.
+
+\emph{Capacities.} All intermediate sets lie in finitely many fixed cells,
+each with positive clean $c_2$- and $c_3$-mass (Lemma~\ref{lem:cells}). Their
+prescribed masses are bounded by a constant, depending only on the windows,
+times $e(Q)$; for instance $c_3(W_1)\le\Phi(W_1)/h(y_a)$ on $HL$. So every
+route exists once $e(Q)$ is small, which we arrange by subdividing. Different
+routes may use overlapping intermediate sets, since every link is a separate
+statement in the context $V$.
+
+\emph{Step 5: budget.} Summing over a partition of $B$ into the sets $Q$,
+\[
+ (1+\epsilon)^5\sum_Qe(Q)\le(1+\epsilon)^9\Phi(B)
+ +(1+\epsilon)^6\bigl(f(\xi_b)c_2(R_x)+h(y_b)c_3(R_y)\bigr),
+\]
+and the target pieces have total $\Phi$-mass $\Phi(C_0)-\Phi(R')$. The
+$x$-marginals of $c_2\,\mu$ and of $\varphi\,\mu$ on $D_x\cap\{x<b_0\}$, and
+the $y$-marginals of $c_3\,\mu$ and $\varphi\,\mu$ on $D_y\cap\{y<b_0\}$, are
+finite measures absolutely continuous with respect to Lebesgue measure. So
+there is $\lambda>0$ such that sets of these coordinates of Lebesgue measure
+less than $\lambda$ carry less than $\Omega/(8(1+\epsilon)^6(f(\xi_b)+
+h(y_b)+1))$ of each. The residues $R_x,R_y,R'$ have coordinates in
+$(0,a_*)$, in the uncovered sets or in slices. Choose $a_*+2\theta<
+\lambda/2$, then the windows, then slice widths with $\sum_U\theta_U<
+\lambda/2$. This order is not circular, because the bound holds for all sets
+of small Lebesgue measure. Then the residue term above and $\Phi(R')$ are both
+less than $\Omega/4$, and
+\[
+ (1+\epsilon)^5\sum_Qe(Q)<\Phi(B)+\tfrac{\Omega}{2}<\Phi(C_0)-\Phi(R').
+\]
+
+\emph{Matching.} Lay out the sets $Q$ as consecutive intervals of lengths
+$(1+\epsilon)^5e(Q)$ on $[0,A]$, and the target pieces as consecutive
+intervals of lengths $\Phi(T')$ on $[0,A']$; $A<A'$ by Step~5. Rescale the
+second layout by $A/A'$ and take the common refinement of the two partitions
+of $[0,A]$. Each interval $J$ of it lies in the interval of one $Q$ and in the
+rescaled interval of one target piece. Since $e(Q)$ is a constant multiple of
+$\Phi(Q)$, $c_2(Q)$ or $c_3(Q)$, and these measures are atomless, we can split
+$Q$ into pieces $Q_J$ with $(1+\epsilon)^5e(Q_J)=|J|$, and the target piece
+into pieces $T'_J$ with $\Phi(T'_J)=|J|A'/A>|J|$. Then
+$\Phi(T'_J)>(1+\epsilon)^5e(Q_J)$, and Steps~3 and~4 give $Q_J\preceq_dT'_J$.
+
+\emph{Step 6.} The $Q_J$ are pairwise disjoint and cover $B$, the $T'_J$ are
+pairwise disjoint subsets of $C_0$, and $B\cap C_0=\varnothing$. By (F4) and
+(F2), $B\preceq_d\bigcup_JT'_J\preceq_dC_0$.
+\end{proof}
+
+\begin{theorem}\label{thm:creditprimary}
+Let $B,C\subseteq H'$ be disjoint, $B$ bounded and clean, and
+$\Psi(B)<\Psi(C)$, where $\Psi(C)=\infty$ is allowed. Then $B\prec_cC$.
+\end{theorem}
+\begin{proof}
+Credit moves \emph{down} in $x$ and $y$ ((M3), (M4)), and a credit chain from
+$T$ to $T'$ gives $T'\preceq_cT$. So the chains now run from the heavier set
+to the lighter set: the sources lie in $C$, and the lighter set $B$ is the
+target, which must be covered completely.
+
+\emph{Step 0.} As before, choose a bounded $C_0\subseteq C$ with
+$\Psi(B)<\Psi(C_0)<\infty$ and $C\setminus C_0$ non-null, so $C_0\prec_cC$;
+it suffices to prove $B\preceq_cC_0$. Assume $B$ non-null, put
+$\Omega\coloneqq\Psi(C_0)-\Psi(B)$ and fix $b_0$ with $B\cup C_0\subseteq
+R_{b_0}$. All intermediate sets are chosen clean.
+
+\emph{Step 1.} Fix $\epsilon\in(0,1)$ with
+$(1+\epsilon)^9\Psi(B)<\Psi(B)+\Omega/4$, an $\epsilon$-window
+$U_*=[\xi_a,\xi_b)$ of $\ftil$ and an $\epsilon$-window $U_H=[y_a,y_b)$ of
+$\htil$ inside $[b_0+1,b_0+2)$, with interior points $\xi_m$, $y_m$, and the
+hubs
+\[
+ HU^c\coloneqq P_1\cap\{y_m<y<y_b\},\qquad HL^c\coloneqq P_1\cap\{y_a\le y\le
+ y_m\}.
+\]
+Windows $\mathcal U_x$ of $\ftil$ and $\mathcal U_y$ of $\htil$ in
+$[a_*,b_0)$, and slice widths $\theta_U$, are chosen as in
+Theorem~\ref{thm:debtprimary}, with Step~5 below.
+
+\emph{Step 2: classes.} $B_x,B_y$ and $C_{0,x},C_{0,y}$ are as in
+Theorem~\ref{thm:debtprimary}. Source pieces: $C_{0,x}\cap\{a+\theta_U<x<b\}$
+(type X) and $C_{0,y}\cap\{a+\theta_U<y<b\}$ (type Y), for windows $[a,b)$; the
+rest of $C_0$ (coordinates in $(0,a_*)$, uncovered, or in a bottom slice
+$[a,a+\theta_U]$) is discarded. Target pieces: $B_x\cap\{a\le x\le
+b-\theta_U\}$ (type X$'$) and $B_y\cap\{a\le y\le b-\theta_U\}$ (type Y$'$);
+the target residue $R'_x$ (resp.\ $R'_y$) consists of the points of $B_x$
+(resp.\ $B_y$) whose coordinate lies in $(0,a_*)$, in the uncovered set,
+or in a \emph{top} slice $(b-\theta_U,b)$.
+
+\emph{Step 3: from a source to the hub.} Let $Q$ be a subset of a source
+piece. It is routed by a credit chain to $S_1\subseteq HU^c$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Type X, window $[a,b)$ of $\ftil$: $S_1\subseteq HU^c\cap\{a\le x\le
+a+\theta_U\}$ with $v(S_1)\in[v(Q)/(1+\epsilon),v(Q))$, by
+Lemma~\ref{lem:windowmoves} (base $E_1(a+\theta_U)$). Then
+$\Psi(S_1)\ge\Psi(Q)/(1+\epsilon)^2$.
+\item Type Y, window $[a,b)$ of $\htil$: $S_0\subseteq P_1\cap\{a\le y\le
+a+\theta_U\}\cap\{\xi_m<x<\xi_b\}$ with $u(S_0)\in[u(Q)/(1+\epsilon),u(Q))$
+(base $E_1'(a+\theta_U)$); then $S_1\subseteq HU^c\cap\{\xi_a\le x\le\xi_m\}$
+with $v(S_1)\in[v(S_0)/(1+\epsilon),v(S_0))$ (base $E_1(\xi_m)$, window
+$U_*$). Then $\Psi(S_1)\ge\Psi(Q)/(1+\epsilon)^4$.
+\end{itemize}
+These links need only that the destinations are clean; $Q$ may be dirty.
+
+\emph{Step 4: from the hub to a target.} Let $S_1\subseteq HU^c$ and let $T'$
+be a subset of $B$ of one of the following kinds.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Type X$'$, window $[a,b)$: $S_2\subseteq HL^c\cap\{b-\theta_U<x<b\}$
+with $u(S_2)\in[u(S_1)/(1+\epsilon),u(S_1))$ (base $E_1'(y_m)$, window
+$U_H$); then $S_2\to T'$ by (M3) at $E_1(b-\theta_U)$.
+\item Type Y$'$, window $[a,b)$: $S_2\subseteq HL^c\cap\{\xi_m<x<\xi_b\}$
+(base $E_1'(y_m)$); $S_3\subseteq P_1\cap\{\xi_a\le x\le\xi_m\}\cap
+\{b-\theta_U<y<b\}$ with $v(S_3)\in[v(S_2)/(1+\epsilon),v(S_2))$ (base
+$E_1(\xi_m)$, window $U_*$); then $S_3\to T'$ by (M4) at $E_1'(b-\theta_U)$.
+\item $T'\subseteq R'_x$: $S_2\subseteq HL^c\cap\{\xi_m<x<\xi_b\}$ as in
+type Y$'$; then $S_2\to T'$ by (M3) at $E_1(b_0)$, since
+$T'\subseteq\{x<b_0\}$.
+\item $T'\subseteq R'_y$: $S_1\to T'$ by (M4) at $E_1'(b_0)$, since
+$T'\subseteq\{y<b_0\}$.
+\end{itemize}
+In the first two cases the last intermediate $S$ and $T'$ lie in the same
+window of $\ftil$ (resp.\ $\htil$); the last link needs $v(T')<v(S)$
+(resp.\ $u(T')<u(S)$), and
+$v(S)\ge\Psi(S)/((1+\epsilon)\ftil(a))$, $v(T')\le\Psi(T')/\ftil(a)$
+(resp.\ the same with $u$ and $\htil$). For
+$R'_x$, $v(S_2)\ge\Psi(S_2)/\ftil(\xi_b)$; for $R'_y$,
+$u(S_1)\ge\Psi(S_1)/\htil(y_b)$. Put
+\[
+ e(T')\coloneqq
+ \begin{cases}
+ (1+\epsilon)^5\Psi(T') & \text{(types X$'$, Y$'$)},\\
+ (1+\epsilon)^2\ftil(\xi_b)v(T') & (T'\subseteq R'_x),\\
+ \htil(y_b)u(T') & (T'\subseteq R'_y).
+ \end{cases}
+\]
+Then the route from $S_1$ to $T'$ exists whenever $\Psi(S_1)>e(T')$, and the
+whole route from $Q$ to $T'$ whenever $\Psi(Q)>(1+\epsilon)^4e(T')$. The last
+link uses that $T'$ is clean, as a subset of $B$. Capacities are handled as
+in Theorem~\ref{thm:debtprimary}.
+
+\emph{Step 5: budget.} Summing over a partition of $B$ into sets $T'$,
+\[
+ (1+\epsilon)^4\sum_{T'}e(T')\le(1+\epsilon)^9\Psi(B)+(1+\epsilon)^6
+ \bigl(\ftil(\xi_b)v(R'_x)+\htil(y_b)u(R'_y)\bigr),
+\]
+while the source pieces have total $\Psi$-mass $\Psi(C_0)$ minus the
+discarded part. By absolute continuity of the coordinate marginals of $v\,\mu$,
+$u\,\mu$ and $\psi\,\mu$ on the bounded region, as in
+Theorem~\ref{thm:debtprimary}, choose $a_*,\theta$ and the slice widths so
+that the residue term and the discarded mass are both less than $\Omega/4$.
+Then $(1+\epsilon)^4\sum e(T')<\Psi(C_0)-\Psi(\text{discarded})$.
+
+\emph{Matching} is as in Theorem~\ref{thm:debtprimary}, with the roles
+exchanged: lay out the $T'$ with lengths $(1+\epsilon)^4e(T')$ on $[0,A]$ and
+the source pieces with lengths $\Psi$ on $[0,A']$, $A<A'$; the common
+refinement gives pairs $(Q_J,T'_J)$ with $\Psi(Q_J)>(1+\epsilon)^4e(T'_J)$,
+where the $T'_J$ partition $B$ and the $Q_J$ are disjoint subsets of $C_0$.
+Then $T'_J\preceq_cQ_J$, and (F4), (F2) give $B\preceq_c\bigcup_JQ_J\preceq_c
+C_0$.
+\end{proof}
+
+\begin{remark}\label{rem:bounded}
+The lighter side must be bounded in both theorems. Debt moves only up and
+credit only down, and an unbounded far tail can be neither the start of an
+upward chain nor the end of a downward one. Under (H) the lighter side must
+also be clean: in the debt chains it is the first source, and in the credit
+chains it receives the last destination. The heavier side is arbitrary.
+\end{remark}
+
+\begin{corollary}\label{cor:agree}
+If $B\preceq_dC$ and $C$ is bounded and clean, then $\Phi(B)\le\Phi(C)$. If
+$B\preceq_cC$ and $C$ is bounded and clean, then $\Psi(B)\le\Psi(C)$.
+\end{corollary}
+\begin{proof}
+If $\Phi(B)>\Phi(C)$, then $\Phi(B\setminus C)>\Phi(C\setminus B)$, since
+$\Phi(B\cap C)\le\Phi(C)<\infty$. Theorem~\ref{thm:debtprimary} applied to
+the bounded clean set $C\setminus B$ gives $C\setminus B\prec_dB\setminus C$,
+hence $C\prec_dB$ by (F3), contradicting $B\preceq_dC$. Credit is the same.
+\end{proof}
+
+\section{Totals and trade ratios}\label{sec:totals}
+
+A \emph{pair} $(A,T)$ consists of disjoint, bounded, clean sets
+$A,T\subseteq H'$. It is \emph{AC} if $V\preceq_1V+\debt(A)+\cred(T)$, and
+\emph{WI} if $V+\debt(A)+\cred(T)\preceq_1V$. By (IB) these properties do not
+change if $V$ is replaced by any regular model silent on $A\cup T$. Pairwise
+disjoint AC pairs compose to an AC pair, by (IB) and transitivity, as in IC,
+Lemma~14.
+
+\begin{lemma}\label{lem:totals}
+$\Phi(H')<\infty$ and $\Psi(H')<\infty$. Moreover
+$\Phi(D_x\cap\{x\ge s\})\to0$ and $\Psi(D_x\cap\{x>s\})\to0$ as $s\to\infty$,
+and likewise on $D_y$ in $y$.
+\end{lemma}
+\begin{proof}
+Let $B_0\subseteq D_x\cap\{x<1\}$ be clean and non-null. By
+Lemma~\ref{lem:noncomp}(a) there is $S_0\ge1$ with $B_0\not\preceq_d
+D_x\cap\{x\ge s\}$ for $s\ge S_0$. If $\Phi(D_x\cap\{x\ge s\})>\Phi(B_0)$ for
+such an $s$, monotone convergence gives $s'$ with $\Phi(D_x\cap[s,s'))>
+\Phi(B_0)$, and Theorem~\ref{thm:debtprimary} and (F2) give
+$B_0\prec_dD_x\cap[s,s')\preceq_dD_x\cap\{x\ge s\}$, a contradiction. So
+$\Phi(D_x\cap\{x\ge s\})\le\Phi(B_0)$ for $s\ge S_0$. Since $B_0$ can have
+arbitrarily small $\Phi$-mass, the tail tends to $0$. The same argument with
+Lemma~\ref{lem:noncomp}(d) and Theorem~\ref{thm:creditprimary} (lighter side
+$T_0\subseteq D_x\cap\{x<1\}$, clean) gives the credit tail, and the mirrors
+give the tails on $D_y$. Finally $F_s\subseteq(D_x\cap\{x\ge s\})\cup(D_y
+\cap\{y\ge s\})$ and $\Phi(R_s),\Psi(R_s)<\infty$.
+\end{proof}
+
+\begin{lemma}\label{lem:splus}
+$s_+\coloneqq\inf\{\Phi(A)/\Psi(T):(A,T)\text{ an AC pair},\ \Psi(T)>0\}$ is
+positive.
+\end{lemma}
+\begin{proof}
+(a) Fix $b\in(0,\infty)$. Let $c>0$; choose a clean non-null bounded
+$Z\subseteq D_x\cap\{x\ge b\}$ with $\Psi(Z)<c/3$. By
+Lemma~\ref{lem:noncomp}(c) there is $\delta>0$ such that, for
+$s\in(b-\delta,b)$ and $\Band\coloneqq D_x\cap[s,b)$, the pair $(\Band,Z)$
+satisfies $V\not\preceq_1V+\debt(\Band)+\cred(Z)$. Fix such an $s$ with
+$\Psi(\Band)<c/3$ and put $\eta\coloneqq\Phi(\Band)>0$. The order of choices
+is $c$, $Z$, $\delta$, $s$, $\eta$.
+
+(b) \emph{No AC pair $(A,T)$ has $\Phi(A)<\eta$ and $\Psi(T)\ge c$.} Let
+$T_r\coloneqq T\setminus(\Band\cup Z)$, so $\Psi(T_r)\ge
+\Psi(T)-\Psi(\Band)-\Psi(Z)>\Psi(Z)$. Starting from the AC relation
+$V\preceq_1V+\debt(A)+\cred(T)$:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item drop the credit on $T\cap(\Band\cup Z)$: a world-1 worsening, by (G);
+\item replace the debt on $A$ by debt on $\Band$: Theorem~\ref{thm:debtprimary}
+gives $A\setminus\Band\prec_d\Band\setminus A$, since $A$ is clean and
+bounded and $\Phi(A\setminus\Band)<\Phi(\Band\setminus A)$; transfer it by
+(F5) to the context $\cred(T_r)+\debt(A\cap\Band)$, which is silent on
+$A\triangle\Band$;
+\item replace the credit on $T_r$ by credit on $Z$: Theorem~\ref{thm:creditprimary}
+gives $Z\prec_cT_r$ ($Z$ clean and bounded); transfer it to the context
+$\debt(\Band)$, which is silent on $Z\cup T_r$.
+\end{itemize}
+Each step is a weak worsening, so $V\preceq_1V+\debt(\Band)+\cred(Z)$,
+contrary to (a).
+
+(c) Suppose AC pairs $(A_n,T_n)$ with $\Psi(T_n)>0$ have
+$r_n\coloneqq\Phi(A_n)/\Psi(T_n)\to0$. If $\Psi(T_n)\ge c>0$ along a
+subsequence, then $\Phi(A_n)\le r_n\Psi(H')\to0$ by Lemma~\ref{lem:totals},
+so $\Phi(A_n)<\eta$ eventually, contradicting (b). Otherwise
+$\Psi(T_n)\to0$ along a subsequence. Note $A_n$ is non-null: otherwise
+$V+\cred(T_n)\prec_1V$ would contradict the AC property. Put
+$Q_T\coloneqq P_2\cap\{1\le x<2\}$, $Q_A\coloneqq P_1\cap\{x<1,\ y<1\}$ and
+$c\coloneqq\Psi(Q_T)/4$. On the bounded set $Q_T$ the finite measures $\Phi$
+and $\Psi$ are mutually absolutely continuous, so $\Psi(Q_T\cap A_n)\to0$.
+Fix $\delta\in(0,\frac12)$. For large $n$ let $N_n\coloneqq\lceil
+c/\Psi(T_n)\rceil$ and choose, successively for $k\le N_n$, pairwise
+disjoint clean sets
+\[
+ T^*_k\subseteq Q_T\setminus A_n,\ \ \Psi(T^*_k)\in((1-\delta)\Psi(T_n),
+ \Psi(T_n)),\qquad
+ A^*_k\subseteq Q_A,\ \ \Phi(A^*_k)\in(\Phi(A_n),(1+\delta)\Phi(A_n)).
+\]
+There is room: the $T^*_k$ need $\Psi$-mass at most $c+\Psi(T_n)\le2c$, and
+the $A^*_k$ need $\Phi$-mass at most $(1+\delta)(cr_n+\Phi(A_n))\to0$. Each
+$(A^*_k,T^*_k)$ is AC:
+\[
+ V\preceq_1V+\debt(A_n)+\cred(T_n)\preceq_1V+\debt(A_n)+\cred(T^*_k)
+ \preceq_1V+\debt(A^*_k)+\cred(T^*_k).
+\]
+The second step is $T^*_k\prec_cT_n$ (Theorem~\ref{thm:creditprimary} on
+$T^*_k\setminus T_n$ and $T_n\setminus T^*_k$, with (F3)) in the context
+$\debt(A_n)$, silent on $T_n\cup T^*_k$; the third is $A_n\prec_dA^*_k$
+(Theorem~\ref{thm:debtprimary} on $A_n\setminus A^*_k$ and $A^*_k\setminus
+A_n$) in the context $\cred(T^*_k)$, silent on $A_n\cup A^*_k$. The composite
+of these disjoint AC pairs is an AC pair with credit mass at least
+$(1-\delta)c$ and debt mass at most $(1+\delta)(cr_n+\Phi(A_n))\to0$. This
+reduces to the first case, with $(1-\delta)c$ in place of $c$.
+\end{proof}
+
+\begin{corollary}\label{cor:kappaV}
+$M_f\coloneqq\sup\ftil$ and $M_h\coloneqq\sup\htil$ are finite, and
+\[
+ s_+\le\kappa_V\coloneqq\min\{f(0+)/M_f,\ h(0+)/M_h\}.
+\]
+\end{corollary}
+\begin{proof}
+Let $0<\eta'<X$ and $\epsilon>0$. Choose a clean $T\subseteq
+D_x\cap[X,X+1)$ with small $v(T)>0$ and a clean $A\subseteq D_x\cap\{x<\eta'\}$
+with $c_2(A)=(1+\epsilon)v(T)$. By (M5), $(A,T)$ is AC. Its ratio is at most
+$f(\eta')c_2(A)/(\ftil(X)v(T))=(1+\epsilon)f(\eta')/\ftil(X)$. Hence $s_+\le
+f(0+)/\sup\ftil$, and Lemma~\ref{lem:splus} forces $\sup\ftil<\infty$ (and
+again $f(0+)>0$). The mirror, with $V_{13}$, gives the bound with $h$.
+\end{proof}
+
+\begin{remark}\label{rem:ftil0}
+Nothing is claimed about $\ftil(0+)$ or $\htil(0+)$. They can vanish: for
+payoff-proportional penalties $\sigma$ is a constant times $x/y$, so
+$\ftil(x)$ may be taken proportional to $x$. No argument below uses a lower
+bound on $\ftil$ or $\htil$ near $0$.
+\end{remark}
+
+The next lemma bounds the ratios of WI pairs by the ratio of small forced AC
+pairs. It is not needed for the main results: the proof of Theorem~\ref{thm:I}
+uses the shorter credit cap of Lemma~\ref{lem:cap}, and the finitely additive
+case uses Lemma~\ref{lem:Vcap}.
+
+\begin{lemma}\label{lem:WI}
+If $(A_0,T_0)$ is a WI pair, then $\Phi(A_0)\le\kappa_V\Psi(T_0)$.
+\end{lemma}
+\begin{proof}
+Suppose $\Phi(A_0)>(\kappa_V+2\gamma)\Psi(T_0)$ with $\gamma>0$. If $T_0$ is
+null, then $A_0$ is non-null and $V+\debt(A_0)\preceq_1V$ contradicts strict
+(G); so $\Psi(T_0)>0$. Assume $\kappa_V=f(0+)/M_f$; otherwise use the mirror.
+Fix $b$ with $A_0\cup T_0\subseteq R_b$ and put $m_1\coloneqq
+\Psi(R_{b+1}\setminus R_b)>0$. Fix $\delta\in(0,\frac12)$ with
+$\delta\Psi(T_0)<m_1/8$ and $(1+\delta)^4\kappa_V<\kappa_V+\gamma$, and then
+$0<\eta'<X$ with
+$(1+\delta)^4f(\eta')/\ftil(X)<\kappa_V+\gamma$ and $\Psi(N_a)<m_1/4$, where
+$N_a\coloneqq D_x\cap\{x<\eta'\}$.
+
+\emph{The forced pair and its relocated copies.} Choose a clean $t'\subseteq
+D_x\cap[X,X+1)$ with $0<\Psi(t')<m_1/8$, small enough for the conditions
+below, and a clean $a'\subseteq N_a$ with $c_2(a')=(1+\delta)v(t')$. By (M5),
+$(a',t')$ is AC, and $\Phi(a')\le(1+\delta)f(\eta')\Psi(t')/\ftil(X)$. Let
+$N$ be the least integer with $N(1-\delta)\Psi(t')>\Psi(T_0)$. Choose pairwise
+disjoint clean sets
+\begin{gather*}
+ t^*_k\subseteq\bigl(T_0\cup(R_{b+1}\setminus R_b)\bigr)\setminus N_a,\qquad
+ \Psi(t^*_k)\in((1-\delta)\Psi(t'),\Psi(t')),\\
+ a^*_k\subseteq A_0,\qquad\Phi(a^*_k)\in(\Phi(a'),(1+\delta)\Phi(a')),
+\end{gather*}
+for $k\le N$. There is room. The $t^*_k$ need $\Psi$-mass at most
+$N\Psi(t')\le(\Psi(T_0)+\Psi(t'))/(1-\delta)<\Psi(T_0)+m_1/2$, while the
+ambient set has $\Psi$-mass at least $\Psi(T_0)+m_1-\Psi(N_a)$. The
+$a^*_k$ need $\Phi$-mass at most
+\[
+ N(1+\delta)\Phi(a')\le\frac{(1+\delta)^2f(\eta')}{(1-\delta)\ftil(X)}
+ \bigl(\Psi(T_0)+\Psi(t')\bigr)<(\kappa_V+\gamma)\bigl(\Psi(T_0)+\Psi(t')
+ \bigr)<\Phi(A_0)
+\]
+for small $\Psi(t')$, using $1/(1-\delta)\le(1+\delta)^2$. Each
+$(a^*_k,t^*_k)$ is AC:
+\[
+ V\preceq_1V+\debt(a')+\cred(t')\preceq_1V+\debt(a')+\cred(t^*_k)
+ \preceq_1V+\debt(a^*_k)+\cred(t^*_k),
+\]
+by Theorem~\ref{thm:creditprimary} in the context $\debt(a')$ (silent on
+$t'\cup t^*_k$, since $t^*_k\cap N_a=\varnothing$), and then
+Theorem~\ref{thm:debtprimary} in the context $\cred(t^*_k)$ (silent on
+$a'\cup a^*_k$, since $t^*_k\cap A_0=\varnothing$). The same forced pair
+$(a',t')$ serves every copy, because each relation is established separately
+in the context $V$.
+
+\emph{Conclusion.} Let $a\coloneqq\bigcup_ka^*_k$ and
+$t\coloneqq\bigcup_kt^*_k$. Then $(a,t)$ is AC, $a\subseteq A_0$ with
+$A_0\setminus a$ non-null, $t\cap A_0=\varnothing$ and $\Psi(t)>\Psi(T_0)$.
+Hence
+\begin{align*}
+ V+\debt(a)+\cred(t)&\prec_1V+\debt(A_0)+\cred(t)\prec_1V+\debt(A_0)+
+ \cred(T_0)\\
+ &\preceq_1V\preceq_1V+\debt(a)+\cred(t).
+\end{align*}
+The first step adds debt on the silent set $A_0\setminus a$ (strict (G)); the
+second is $T_0\prec_ct$ (Theorem~\ref{thm:creditprimary}, lighter side
+$T_0\setminus t$) in the context $\debt(A_0)$; the third is the WI property;
+the last is the AC property. This is a contradiction.
+\end{proof}
+
+\section{Silent targets: the ordinary case}\label{sec:silent}
+
+In this section we assume (H$_{\rm II}$) and that $V$ is undominated; every
+set is clean. Let
+$\ell_2\coloneqq c_2\one_{\{r_2\ge1\}}+v\one_{\{r_2\ge2\}}$ and
+$\ell_3\coloneqq c_3\one_{\{r_3\ge1\}}+u\one_{\{r_3\ge2\}}$ be the local
+penalties, so $L_k(M)=\int\ell_k(g,M(g))\,d\mu$ for regular $M$, and put
+$\bar e_2\coloneqq c_2+v$, $\bar e_3\coloneqq c_3+u$, integrable bounds for $\ell_2,
+\ell_3$ on $H'$.
+
+Fix $r\coloneqq(d+g_0)/2\in(d,g_0)$ (Proposition~\ref{prop:dg}). For
+$\kappa>0$ let $\lambda_\kappa$ be the auxiliary world-1 weight on $H'$:
+$\lambda_\kappa=\varphi$ for debt, $0$ for silence and $-\kappa\psi$ for
+credit. It is not claimed to represent $\preceq_1$; $\kappa$ is a free
+parameter. With $M_f,M_h$ from Corollary~\ref{cor:kappaV} put
+\[
+ s_0(\kappa)\coloneqq\min\Bigl\{\frac{r-d}{\kappa M_h},\
+ \frac{1-r/g_0}{\kappa M_f}\Bigr\}>0.
+\]
+For $0<s<s_0(\kappa)$ let $p\coloneqq(s,1,r)/(1+s+r)$, so $p_1=sp_2$ and
+$p_3=rp_2$, and put
+$\ell_p(g,a)\coloneqq p_1\lambda_\kappa(g,a)+p_2\ell_2(g,a)+p_3\ell_3(g,a)$.
+
+\begin{lemma}\label{lem:silent}
+Let $0<s<s_0(\kappa)$. Relative to silence, the costs $\ell_p$ of the
+decisive options are, divided by $p_2$:
+\begin{center}
+\begin{tabular}{c|l|l}
+ & credit & debt\\\hline
+$P_1$ & $v(1-s\kappa\ftil)+ru$ & $c_2\,\bigl[sf-1-rf/h\bigr]$\\
+$P_2$ & $c_3\,\bigl[G(1-s\kappa\ftil)-r\bigr]$ & $u\,\bigl[F(sf-1)+r\bigr]$\\
+$P_3$ & $u\,\bigl[r-s\kappa\htil-F\bigr]$ & $c_3\,\bigl[sh+G-r\bigr]$
+\end{tabular}
+\end{center}
+with $f=f(x)$, $\ftil=\ftil(x)$ on $D_x$, $h=h(y)$, $\htil=\htil(y)$ on
+$D_y$, and $F=F(t)$, $G=G(t)$. All entries except the debt entry on $P_1$
+are a.e.\ positive. Hence the a.e.-unique pointwise minimizer $\Sigma_p$ of
+$\ell_p$ over regular advice gives debt on
+\[
+ \Theta_s\coloneqq\{g\in P_1:s<1/f(x)+r/h(y)\}
+\]
+and silence on the rest of $H'$; uniqueness can fail only on the level set
+$\{g\in P_1:s=1/f(x)+r/h(y)\}$. $\Sigma_p$ never gives credit.
+\end{lemma}
+\begin{proof}
+The entries follow from \eqref{eq:table} with densities, the world-1
+increments $\varphi$ (debt) and $-\kappa\psi$ (credit), and the identities
+$c_2=Fu$, $v=Gc_3$ on $P_2\cup P_3$, $c_3=(f/h)c_2$, $u=(\ftil/\htil)v$ on
+$P_1$, $\varphi=fc_2=hc_3$ and $\psi=\ftil v=\htil u$. For example, debt on
+$P_1$ costs $p_1fc_2-p_2c_2-p_3c_3=p_2c_2[sf-1-rf/h]$. Positivity uses
+$F\le d$, $G\ge g_0$, $\ftil\le M_f$, $\htil\le M_h$ and $c_2,c_3,u,v>0$ a.e.:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $P_1$ credit: $v(1-s\kappa M_f)+ru>0$, since $s\kappa M_f<1-r/g_0<1$;
+\item $P_2$ credit: $1-s\kappa\ftil>0$, so $G(1-s\kappa\ftil)-r\ge
+g_0(1-s\kappa M_f)-r>0$;
+\item $P_2$ debt: $F(sf-1)+r\ge r-F\ge r-d>0$;
+\item $P_3$ credit: $r-s\kappa\htil-F\ge r-d-s\kappa M_h>0$;
+\item $P_3$ debt: $sh+G-r\ge g_0-r>0$.
+\end{itemize}
+The debt entry on $P_1$ is negative exactly on $\Theta_s$. On unanimous
+problems regular advice is fixed.
+\end{proof}
+
+For a regular $M$ put $\delta_M(g)\coloneqq\ell_p(g,M(g))-\ell_p(g,\Sigma_p(g))$.
+Then $\delta_M\ge0$ on $H'$, and $|\delta_M|\le p_1(\varphi+\kappa\psi)+p_2\bar e_2
++p_3\bar e_3$, which is integrable on every $R_b$.
+
+\begin{lemma}\label{lem:corner}
+Let $\kappa>0$. Suppose $f$ jumps at $x_1$ and $h$ jumps at $y_1$, and
+$1/f(x_1+)+r/h(y_1+)<s_0(\kappa)$. Put $a_-\coloneqq1/f(x_1+)<a_+\coloneqq
+1/f(x_1-)$, $b_-\coloneqq1/h(y_1+)<b_+\coloneqq1/h(y_1-)$ and
+\[
+ I\coloneqq\bigl(a_-+rb_-,\ \min\{a_++rb_-,\ a_-+rb_+,\ s_0(\kappa)\}\bigr)
+ \ne\varnothing .
+\]
+For all but countably many $s\in I$, with $p$ as above and
+$b_0\coloneqq2\max(x_1,y_1)+2$,
+\[
+ \eta\coloneqq\inf\Bigl\{\int_{R_{b_0}}\delta_C\,d\mu:C\text{ coherent}\Bigr\}>0 .
+\]
+\end{lemma}
+\begin{proof}
+(a) \emph{Coherent debt sets are convex in a chart.} On $P_1$ use the chart
+$(\xi_1,\xi_2)\coloneqq(1/x,1/y)=(|g_2|/g_1,|g_3|/g_1)$. A coherent
+$\Dscr_K$ gives debt at $g\in P_1$ iff $\max_Km\cdot g<0$, that is, iff
+$m_2\xi_1+m_3\xi_2>m_1$ for all $m\in K$. Since $K$ is compact, this set
+$O_K\subseteq(0,\infty)^2$ is open, and as an intersection of open half-planes
+it is convex.
+
+(b) \emph{The debt set of $\Sigma_p$ is not convex near the corner.} In the
+chart, $\Theta_s$ is $U_s\coloneqq\{\alpha(\xi_1)+r\beta(\xi_2)>s\}$ with
+$\alpha(\xi)\coloneqq1/f(1/\xi)$ and $\beta(\xi)\coloneqq1/h(1/\xi)$, both
+nondecreasing. Put $X_1\coloneqq1/x_1$, $Y_1\coloneqq1/y_1$. Then
+$\alpha\le a_-$ on $(0,X_1)$, $\alpha\ge a_+$ on $(X_1,\infty)$ and
+$\alpha(\xi)\to a_-$ as $\xi\uparrow X_1$; likewise $\beta$ with $b_\pm$ and
+$Y_1$. Since $s<a_++rb_-$ and $s<a_-+rb_+$, there is
+$\delta\in(0,\min(X_1,Y_1)/4)$ with $a_++r\beta(Y_1-2\delta)>s$ and
+$\alpha(X_1-2\delta)+rb_+>s$. Put $\epsilon\coloneqq\delta/4$ and
+\[
+ B_P\coloneqq(X_1+\delta\pm\epsilon)\times(Y_1-\delta\pm\epsilon),\qquad
+ B_Q\coloneqq(X_1-\delta\pm\epsilon)\times(Y_1+\delta\pm\epsilon),
+\]
+where $(z\pm\epsilon)$ denotes $(z-\epsilon,z+\epsilon)$. On $B_P$,
+$\alpha\ge a_+$ and $\beta\ge\beta(Y_1-2\delta)$, so $B_P\subseteq U_s$;
+likewise $B_Q\subseteq U_s$. Their midpoint set
+$B_M\coloneqq\frac12(B_P+B_Q)=(X_1\pm\epsilon)\times(Y_1\pm\epsilon)$ contains
+$B_M^-\coloneqq(X_1-\epsilon,X_1)\times(Y_1-\epsilon,Y_1)$, on which
+$\alpha+r\beta\le a_-+rb_-<s$; so $B_M^-\cap U_s=\varnothing$. Suppose an open
+convex $O$ equals $U_s$ Lebesgue-a.e.\ on $B_P\cup B_Q\cup B_M$. Then $O\cap
+B_P$ and $O\cap B_Q$ have full measure in $B_P$ and $B_Q$. For $z\in B_M$ the
+set $O_z\coloneqq\{w\in B_P:2z-w\in B_Q\}$ is open and nonempty, hence of
+positive measure. Both $O\cap O_z$ and $\{w\in O_z:2z-w\in O\}$ have full
+measure in $O_z$, the second because $w\mapsto2z-w$ preserves Lebesgue
+measure. So some $w$ has $w\in O$ and $2z-w\in O$, and by convexity $z\in O$.
+Hence $B_M^-\subseteq O$, while $B_M^-$ misses $U_s$ and has positive
+measure. This is a contradiction.
+
+(c) \emph{Transfer to $\mu$.} The law of $(x,y)$ under $\mu|_{P_1}$ has the
+same null sets as Lebesgue measure (ECS, Lemma~1), and so does that of
+$(\xi_1,\xi_2)$, since $(x,y)\mapsto(1/x,1/y)$ is a diffeomorphism. So by
+(a) and (b) no coherent model gives debt $\mu$-a.e.\ exactly on $\Theta_s$
+within the region $P_1\cap(\xi_1,\xi_2)^{-1}(B_P\cup B_Q\cup B_M)$. In this
+region $\xi_1>X_1-5\delta/4>\frac{11}{16}X_1$, so $x<2x_1<b_0$, and the region
+lies in $R_{b_0}$.
+
+(d) \emph{Strictness.} By Lemma~\ref{lem:silent}, $\delta_C(g)>0$ wherever
+$C(g)\ne\Sigma_p(g)$, except on the level set $\{s=1/f(x)+r/h(y)\}$. These
+level sets are disjoint for different $s$, so only countably many of them
+have positive measure; exclude those $s$.
+
+(e) \emph{Compactness.} If $\eta=0$, choose coherent $\Dscr_{K_n}$ with
+$\int_{R_{b_0}}\delta_{\Dscr_{K_n}}\to0$, and a subsequence with $K_n\to K$
+in Hausdorff distance. By CBOI, Lemma~4, the advice of $\Dscr_{K_n}$ converges
+a.e.\ to that of $\Dscr_K$. By dominated convergence
+$\int_{R_{b_0}}\delta_{\Dscr_K}=0$, so by (d) $\Dscr_K=\Sigma_p$ a.e.\ on
+$R_{b_0}$, contradicting (c).
+\end{proof}
+
+A pair $(A,T)$ of disjoint bounded sets is \emph{SI} if
+$V+\debt(A)+\cred(T)\prec_1V$.
+
+\begin{lemma}\label{lem:kkmsilent}
+Let $\kappa$, $s$, $p$, $b_0$ and $\eta$ be as in Lemma~\ref{lem:corner}.
+There are an SI pair $(A_3,T)$ and $\theta>0$ with
+$\Phi(A_3)>\kappa\Psi(T)+\theta$.
+\end{lemma}
+\begin{proof}
+Put $\epsilon_k(b)\coloneqq \bar e_k(F_b)$; it tends to $0$ as $b\to\infty$. Fix
+$b\ge b_0$ with $p_2\epsilon_2(b)+p_3\epsilon_3(b)<\eta/2$. Let $\Sigma^b$
+be $\Sigma_p$ on $R_b$ and credit on $F_b$; it is regular. By (K1) there is a
+selected $C$ with $C\preceq_i\Sigma^b$ for $i=1,2,3$.
+
+(i) \emph{Accounting.} By \eqref{eq:W}, $L_k(C)\le L_k(\Sigma^b)$ for
+$k=2,3$. Splitting the integrals over $R_b$ and $F_b$, and using $0\le\ell_k\le
+\bar e_k$,
+\[
+ \int_{R_b}\bigl(\ell_k(C)-\ell_k(\Sigma_p)\bigr)\,d\mu
+ \le\int_{F_b}\bigl(\ell_k(\cred)-\ell_k(C)\bigr)\,d\mu\le\epsilon_k(b).
+\]
+Since $C$ is coherent, $\delta_C\ge0$ and $b\ge b_0$,
+$\int_{R_b}\delta_C\ge\eta$. As
+$\delta_C=p_1(\lambda_\kappa(C)-\lambda_\kappa(\Sigma_p))+p_2(\ell_2(C)-
+\ell_2(\Sigma_p))+p_3(\ell_3(C)-\ell_3(\Sigma_p))$,
+\[
+ p_1\int_{R_b}\bigl(\lambda_\kappa(C)-\lambda_\kappa(\Sigma_p)\bigr)\,d\mu
+ \ge\eta-p_2\epsilon_2(b)-p_3\epsilon_3(b)>\eta/2 .
+\]
+
+(ii) \emph{World 1.} Let $\widetilde\Sigma$ be $\Sigma_p$ on $R_b$ and $C$ on
+$F_b$. Credit has world-1 rank $0$, so $\widetilde\Sigma$ is a pointwise weak
+world-1 worsening of $\Sigma^b$, and $C\preceq_1\Sigma^b\preceq_1
+\widetilde\Sigma$ by (G). The set $D\coloneqq\{C\ne\widetilde\Sigma\}$ lies
+in $R_b$, where $\widetilde\Sigma$ gives only debt (on $\Theta_s$) or
+silence. Put
+\[
+ A\coloneqq D\cap\{C\text{ debt}\},\qquad A'\coloneqq D\cap\{\widetilde\Sigma
+ \text{ debt}\},\qquad T\coloneqq D\cap\{C\text{ credit}\},
+\]
+and let $N$ be $\widetilde\Sigma$ silenced on $D$. Then
+$\widetilde\Sigma=N+\debt(A')$ and $C=N+\debt(A)+\cred(T)$; $A$ is disjoint
+from $A'\cup T$, while $A'\cap T$ may be non-null. Since $\Sigma_p$ gives no
+credit, there is no cell where $\widetilde\Sigma$ gives credit, and
+\[
+ \int_{R_b}\bigl(\lambda_\kappa(C)-\lambda_\kappa(\Sigma_p)\bigr)\,d\mu
+ =\Phi(A)-\Phi(A')-\kappa\Psi(T)\ge\frac\eta{2p_1}\eqqcolon2\theta .
+\]
+
+(iii) \emph{Reduction to a pure trade.} Since $\Phi$ is finite and atomless
+on $R_b$, choose $A_2\subseteq A$ with $\Phi(A')<\Phi(A_2)<\Phi(A')+\theta$.
+$A'$ is bounded and disjoint from $A_2$, so Theorem~\ref{thm:debtprimary}
+gives $A'\prec_dA_2$, and (F5), with $N$ silent on $A'\cup A_2$, gives
+$\widetilde\Sigma=N+\debt(A')\prec_1Y\coloneqq N+\debt(A_2)$. Put
+$A_3\coloneqq A\setminus A_2$. $Y$ is silent on $A_3\cup T$, and
+$C=Y+\debt(A_3)+\cred(T)$; on $A'\cap T$ both give credit, on $A'\setminus T$
+both are silent. Hence $Y+\debt(A_3)+\cred(T)\preceq_1\widetilde\Sigma
+\prec_1Y$, and (IB) gives $V+\debt(A_3)+\cred(T)\prec_1V$. Finally
+$\Phi(A_3)=\Phi(A)-\Phi(A_2)>\kappa\Psi(T)+\theta$, and $A_3,T\subseteq R_b$.
+\end{proof}
+
+\begin{lemma}\label{lem:cap}
+Let $Q_1\coloneqq P_2\cap\{\frac12\le x<1\}$, $Q_2\coloneqq P_2\cap\{1\le
+x<2\}$, and $\omega(\delta)\coloneqq\sup\{c_2(E):E\subseteq Q_1,\ v(E)\le
+\delta\}$, so $\omega(\delta)\to0$ as $\delta\to0$. Choose
+$\kappa_*\ge2f(1)/\ftil(1)$ so large that $\tau\coloneqq\Phi(H')/\kappa_*$
+satisfies $2\tau<\Psi(Q_2)$ and $\omega(\tau/\ftil(\frac12))+2\tau/\ftil(1)<
+c_2(Q_1)$. Then no SI pair $(A,T)$ has $\Phi(A)>\kappa_*\Psi(T)$.
+\end{lemma}
+\begin{proof}
+$\kappa_*$ exists by Lemma~\ref{lem:totals}. Suppose $(A,T)$ is SI with
+$\Phi(A)>\kappa_*\Psi(T)$. Then $\Phi(A)\le\Phi(H')$, so $\Psi(T)<\tau$.
+Also $T$ is non-null, since otherwise $V+\debt(A)\prec_1V$ with $A$
+non-null, contrary to (G). Choose $T'\subseteq Q_2$ with
+$\Psi(T)<\Psi(T')<2\Psi(T)$. Since $\psi=\ftil(x)v\ge\ftil(1)v$ on $Q_2$,
+$v(T')<2\tau/\ftil(1)$. Since $\psi\ge\ftil(\frac12)v$ on $Q_1$,
+$v(Q_1\cap T)<\tau/\ftil(\frac12)$, so $c_2(Q_1\setminus T)>c_2(Q_1)-
+\omega(\tau/\ftil(\frac12))>v(T')$. Choose $a\subseteq Q_1\setminus T$ with
+$v(T')<c_2(a)<v(T')+\gamma$, where
+$\gamma\coloneqq\frac12\min\{c_2(Q_1\setminus T)-v(T'),\
+(\Phi(A)-\kappa_*\Psi(T))/f(1)\}$. As $\varphi=f(x)c_2\le f(1)c_2$ on $Q_1$,
+\[
+ \Phi(a)\le f(1)c_2(a)<\frac{f(1)}{\ftil(1)}\Psi(T')+f(1)\gamma
+ \le\kappa_*\Psi(T)+\tfrac12\bigl(\Phi(A)-\kappa_*\Psi(T)\bigr)<\Phi(A).
+\]
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=1pt]
+\item $V+\debt(a)+\cred(T)\prec_1V+\debt(A)+\cred(T)$: apply
+Theorem~\ref{thm:debtprimary} to $a\setminus A$ and $A\setminus a$, and (IB)
+in the context $\debt(a\cap A)+\cred(T)$; $T$ is disjoint from $a\cup A$. So
+$(a,T)$ is SI.
+\item $V+\debt(a)+\cred(T')\prec_1V+\debt(a)+\cred(T)$: apply
+Theorem~\ref{thm:creditprimary} to $T\setminus T'$ and $T'\setminus T$, and
+(IB) in the context $\cred(T\cap T')+\debt(a)$; $a$ is disjoint from
+$T\cup T'$. So $(a,T')$ is SI.
+\item $a,T'\subseteq D_x$ are disjoint and $c_2(a)>v(T')$, so (M5) gives
+$V\preceq_1V+\debt(a)+\cred(T')$.
+\end{enumerate}
+Steps 3 and 2 give $V\prec_1V$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:I}
+Assume (H$_{\rm I}$): $n=3$; worlds $2,3$ are ranked exactly by ordinary
+additive losses with strictly ordered local penalties and an integrable
+envelope; world~$1$ is any preorder satisfying (G) and (IB); and (S) holds.
+Then $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Suppose $V$ is undominated. All results of Sections~\ref{sec:prelim}
+to~\ref{sec:silent} apply. By Theorem~\ref{thm:sep}, $c_3/c_2=f(x)/h(y)$ on
+$P_1$ with $f,h$ positive and nondecreasing. If, for some $J<\infty$ and
+$a_0<\infty$, $f(a+)/f(a-)\le J$ for all $a>a_0$, or the same holds for $h$,
+then DT, Theorem~10, gives a contradiction. Otherwise, for every $J$ and $a_0$
+there is $a>a_0$ with $f(a+)>Jf(a-)\ge Jf(1)$; so $f$ is unbounded and has
+jumps beyond every point; the same holds for $h$.
+
+Take $\kappa\coloneqq\kappa_*$ from Lemma~\ref{lem:cap}, $r=(d+g_0)/2$ and
+$s_0\coloneqq s_0(\kappa_*)$. Choose a jump point $x_1$ of $f$ with
+$f(x_1+)>2/s_0$ and a jump point $y_1$ of $h$ with $h(y_1+)>2r/s_0$; then
+$1/f(x_1+)+r/h(y_1+)<s_0$. Lemma~\ref{lem:corner} gives $s$, $p$, $b_0$ and
+$\eta>0$, and Lemma~\ref{lem:kkmsilent} gives an SI pair $(A_3,T)$ with
+$\Phi(A_3)>\kappa_*\Psi(T)$. This contradicts Lemma~\ref{lem:cap}.
+
+The order of choices is: the configuration (which determines
+$f,h,\ftil,\htil,F,G,\Phi,\Psi$); then $\kappa_*$, which depends only on
+$f(1)$, $\ftil(\frac12)$, $\ftil(1)$, $\Phi(H')$ and $c_2,v$ on $Q_1\cup Q_2$;
+then $r$ and $s_0$; then $(x_1,y_1)$; then $s$, $p$, $b_0$, $\eta$; then $b$;
+then $C$. There is no circularity.
+\end{proof}
+
+\begin{remark}\label{rem:split}
+The case split is exhaustive. Its first branch contains the cases in which
+$f$ or $h$ is continuous beyond some point, or bounded: a bounded factor has
+jump ratios at most $\sup f/f(a_0)$ on $(a_0,\infty)$. In the second branch
+both factors have unbounded jump ratios on every $(a_0,\infty)$, and
+Lemma~\ref{lem:corner} needs only one large jump of each. Jump points and
+jump ratios do not depend on the choice of the factors (ECS, Remark~17).
+Completeness of world~$1$ is never used: positive world-1 comparisons come
+only from Lemma~\ref{lem:forced}, (G), (IB), transitivity and
+Theorems~\ref{thm:debtprimary}, \ref{thm:creditprimary}, which are themselves
+chain consequences; closedness of $A_1$ at fixed models produces only
+non-comparisons. The silent target has no credit on $R_b$, so the KKM
+comparison reduces to a pure trade of debt for credit
+(Lemma~\ref{lem:kkmsilent}(iii)), and $\kappa$ is free because non-coherence
+of $\Sigma_p$ is shown directly (Lemma~\ref{lem:corner}).
+\end{remark}
+
+\begin{remark}\label{rem:A1fails}
+In terms of the axioms, the residual branch of the proof shows the following.
+Suppose (G) and (IB) hold at world~$1$, (G) and \eqref{eq:W} at worlds $2,3$
+with ordinary additive losses $L_2,L_3$ as in (H$_{\rm II}$),
+the selection consists of coherent undominated models competitive on their
+supports, all sections $A_2(Y),A_3(Y)$ are closed, and $A_1(Y)$ is closed for
+$Y=V$ and for the edge models and their perturbations used in
+Sections~\ref{sec:prelim}--\ref{sec:totals} (in (K4) and
+Lemmas~\ref{lem:edges}, \ref{lem:noncomp} and~\ref{lem:closing}). If $V$ is
+undominated and $f,h$ have unbounded jump ratios, then $A_1(\Sigma^b_p)$ is
+not closed for the silent targets $\Sigma^b_p$ of Lemma~\ref{lem:kkmsilent}:
+otherwise (K1) would apply to $\Sigma^b_p$ and give a selected dominator,
+which Lemmas~\ref{lem:kkmsilent} and~\ref{lem:cap} exclude. So the property of
+(S) that fails first is closedness of the world-1 section at a silent target.
+\end{remark}
+
+\section{One-sided ordinary extensions}\label{sec:onesided}
+
+\begin{theorem}\label{thm:II}
+Assume (H$_{\rm II}$): $n=3$; (G) at every world; world~$1$ is any preorder
+satisfying (IB); worlds $2,3$ are preorders that have ordinary additive
+losses $L_2,L_3$ with strictly ordered local penalties and an integrable
+envelope satisfying \eqref{eq:W}; and (S) holds. Then $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Sections~\ref{sec:prelim}--\ref{sec:totals} were proved under (H), and the
+lemmas of Section~\ref{sec:silent} under (H$_{\rm II}$). In all of them the
+losses $L_2,L_3$ enter only through Lemma~\ref{lem:forced} and through
+$L_k(C)\le L_k(X)$ for selected $C\preceq_kX$, both of which are consequences
+of \eqref{eq:W}. The proof of Theorem~\ref{thm:I} uses exact representation at
+one point only: DT, Theorem~10, which is stated under exact representation.
+So it suffices to check that DT, Theorem~10, holds under (H$_{\rm II}$) when
+$V$ is undominated. Its proof uses DT, Theorem~2 (dense thresholds), DT,
+Lemma~9 and the local debt cycle of DT, Lemma~5, and the facts (i)--(vi) of
+DT, Section~1. We go through every use of worlds $2,3$.
+\begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=2pt]
+\item DT's fact~(iii) is IC, Lemma~7, whose proof derives the selection of the
+edge models from continuity of $q\mapsto L_2(C_q)$ (EDL, Lemma~4(c)); that
+needs $L_2$ to be a primary at world~$2$, that is, exactness. It is replaced
+by Lemma~\ref{lem:edges}.
+\item DT's fact~(vi) is IC, Lemma~13, whose proof identifies the limit
+selection through continuity and injectivity of $L_3$ on the edge. It is
+replaced by Lemma~\ref{lem:closing}.
+\item The second sentence of DT's fact~(ii) is IC, Lemma~9 (tied levels),
+which exhibits a dominator of $V$ through exact losses. It is used only in
+DT, Lemma~1, to obtain $G>\kappa$ a.e.\ for $\kappa=F(\theta+)$. By
+Proposition~\ref{prop:dg}, $G\ge g_0>d\ge\kappa$ everywhere, so it is not
+needed. Proposition~\ref{prop:dg} is proved from forced comparisons only.
+\item DT's fact~(iv): IC, Lemma~10, is Lemma~\ref{lem:noboth}. IC, Lemma~8, is
+used in DT, Theorem~2, only to show that a selection with credal set in
+$\{m_1=0\}$ containing neither $e_2$ nor $e_3$ does not exist; that is
+Lemma~\ref{lem:noedge}. (IC's proof of Lemma~8(c) ends in IC, Lemma~9.)
+\item In DT, Theorem~2, the KKM dominators $C_j\preceq_iX_j$ are selected, so
+\eqref{eq:W} gives $L_k(C_j)\le L_k(X_j)$. This is all that the proof uses: if
+$s>b_j$ or $s<a_j$, then $L_2(B_s)>L_2(X_j)$, resp.\ $L_3(B_s)>L_3(X_j)$, so
+$C_j\ne B_s$; if $a_j\le s\le b_j$, then $X_j\prec_1B_s$ by strict (G),
+while $C_j\preceq_1X_j$, so again $C_j\ne B_s$. The limit step uses only the
+continuity of ordinary losses along Hausdorff-convergent coherent models
+(CBOI, Lemma~4), and DT, Lemma~1, is a statement about the densities, applied
+to the coherent limit.
+\item In DT, Lemmas~5 and~9, every step of the chains is a move (M1) at
+$E_2(\ell)$, a move (M2) at $E_3(\theta_0)$, a change at a good base or at
+$V$ that decreases both $L_2$ and $L_3$ (Lemma~\ref{lem:forced} with
+$S=\{1,2,3\}$), or a world-1 worsening by (G); the chains close by
+Lemma~\ref{lem:closing}.
+\item DT, Theorem~10, itself uses only the above and properties of $F$ and of
+the good bases.
+\end{enumerate}
+No step derives a positive comparison at world~$2$ or~$3$ from the losses,
+and no step exhibits a dominator of $V$ through the losses at worlds $2,3$:
+every contradiction is with strict (G) at world~$1$ or with closedness. The
+proof of Theorem~\ref{thm:I} then applies verbatim.
+\end{proof}
+
+\begin{remark}\label{rem:exactness}
+In the working notes on which Sections~\ref{sec:routing}--\ref{sec:silent}
+are based, exactness entered in four places: IC, Lemma~7, and IC, Lemma~13
+(both replaced here from the start by Lemmas~\ref{lem:edges}
+and~\ref{lem:closing}); IC, Lemma~9 (not used); and the continuity of
+$q\mapsto L_k(C_q)$, which was used only for a reformulation like
+Remark~\ref{rem:A1fails}. At worlds $2,3$ the proof uses transitivity (in
+(K2)), strict (G) (in CCF, Lemma~3, and the face lemma), closedness of the
+sections $A_2,A_3$ (in CCF, Lemma~3, inside (K1) and (K2), including
+their use at $V$ for (K4), and at the coherent Bayes models of Step~1 of the
+proof of EDL, Theorem~8, and of FAED, Proposition~6, which enter through
+Lemma~\ref{lem:FG}) and \eqref{eq:W}; it uses neither
+completeness nor (IB).
+\end{remark}
+
+\section{The finitely additive case: what carries over}\label{sec:faclean}
+
+From now on we assume (H) and that $V$ is undominated. All results of
+Sections~\ref{sec:prelim}--\ref{sec:totals} hold: they were proved under (H),
+with clean sets wherever the charges matter. In particular we have the edge
+selections (Lemma~\ref{lem:edges}), the forced moves in charge form
+(Lemma~\ref{lem:moves}), $F$, $G$ and $d<g_0$ (Lemma~\ref{lem:FG},
+Proposition~\ref{prop:dg}), Lemmas~\ref{lem:noedge} and~\ref{lem:noboth},
+the factorizations $f,h,\ftil,\htil$ of the densities
+(Theorem~\ref{thm:sep}), $f(0+),h(0+)>0$ (Lemma~\ref{lem:pos}), the routing
+primaries with a clean lighter side (Theorems~\ref{thm:debtprimary},
+\ref{thm:creditprimary}, Corollary~\ref{cor:agree}),
+$\Phi(H'),\Psi(H')<\infty$ (Lemma~\ref{lem:totals}) and $s_+>0$ for clean AC
+pairs (Lemma~\ref{lem:splus}). Here $\Phi,\Psi$ are the density weights.
+
+Two steps of the ordinary proof do not carry over directly. First, the KKM
+accounting of Lemma~\ref{lem:kkmsilent}(i) used $L_k(C)\le L_k(\Sigma^b)$ to
+bound integrals of densities. Under (H), \eqref{eq:W} bounds only the sum of
+the ordinary and the purely finitely additive parts, and a coherent $C$ can be
+better than $\Sigma^b$ in the pure parts at worlds $2$ and $3$ at once, on
+sets of small measure. Second, the limit step in DT, Theorem~2 (used through
+DT, Theorem~10): pure parts are not continuous along Hausdorff-convergent
+coherent models. Splicing the targets on the concentration sets $Z_m$, as in
+CBOI's proof of its Theorem~2, does not repair this: it controls only the
+weighted sum $L_2+\kappa L_3$, while DT's argument needs the two losses
+separately, and in Lemma~\ref{lem:kkmsilent} it puts dirty sets into the
+world-1 comparison. Moreover, Lemma~\ref{lem:cap} needs a clean credit set.
+Sections~\ref{sec:germs}--\ref{sec:dense} show that the pure parts are tame
+enough for fixed targets to work.
+
+\paragraph{Germs.} Let $\nu$ be a charge on the measurable subsets of $D_x$,
+vanishing on null sets. For $b\in(0,\infty)$ its \emph{right germ} at $b$ is
+$\lim_{s\downarrow b}\nu(D_x\cap[b,s))$ and its \emph{left germ} is
+$\lim_{s\uparrow b}\nu(D_x\cap[s,b))$; its \emph{germ at $0+$} is
+$\lim_{s\downarrow0}\nu(D_x\cap\{x<s\})$, and its \emph{germ at $\infty$} is
+$\lim_{s\to\infty}\nu(D_x\cap\{x\ge s\})$. The limits exist by monotonicity.
+Since level sets of $x$ are null, it does not matter whether the endpoints
+are included. The same terms are used on $D_y$ in $y$, and on $P_2\cup P_3$
+in $t$, and for restrictions of $\nu$ to subsets.
+
+\begin{lemma}\label{lem:slabs}
+If $\nu$ has no germs on $D_x$, then for every $\epsilon>0$ there is a
+finite partition of $(0,\infty)$ into intervals $J_1,\dots,J_N$ with
+$\nu(D_x\cap\{x\in J_i\})<\epsilon$ for all $i$. More generally, if
+$I\subseteq[0,\infty]$ is a compact interval and the germs of $\nu$ vanish at
+the points of $I$ (at $0+$ if $0\in I$, at $\infty$ if $\infty\in I$), then
+$I\cap(0,\infty)$ has such a finite partition.
+\end{lemma}
+\begin{proof}
+Every point of $[0,\infty]$ (resp.\ of $I$) has a neighbourhood $N$
+in $[0,\infty]$ with $\nu(D_x\cap\{x\in N\})<\epsilon$: for $b\in(0,\infty)$ the mass of $(b-\delta,b+\delta)$ is at
+most the sum of the left and right masses near $b$, because $\{x=b\}$ is null
+and hence $\nu$-null. Compactness of $[0,\infty]$ (resp.\ $I$) gives
+finitely many such neighbourhoods; take the partition of $(0,\infty)$
+(resp.\ $I\cap(0,\infty)$) they generate.
+\end{proof}
+
+\begin{lemma}\label{lem:tails}
+(a) $\nu_{21}(D_x\cap\{x\ge s\})\to0$ and $\nu_{22}(D_x\cap\{x>s\})\to0$ as
+$s\to\infty$. (b) For every $b\in(0,\infty)$, the left germs of $\nu_{21}$
+and $\nu_{22}$ on $D_x$ at $b$ vanish. The mirror statements hold for
+$\nu_{31},\nu_{32}$ on $D_y$ in $y$.
+\end{lemma}
+\begin{proof}
+(a) Let $B_0\subseteq D_x\cap\{x<1\}$ be clean and non-null. By
+Lemma~\ref{lem:noncomp}(a), $B_0\not\preceq_dD_x\cap\{x\ge s\}$ for $s\ge
+S_0$. If $\nu_{21}(D_x\cap\{x\ge s\})>c_2(B_0)$ for some $s\ge\max(S_0,1)$,
+(M1) at $E_2(1)$ (clean source $B_0$) gives the opposite. So
+$\nu_{21}(D_x\cap\{x\ge s\})\le c_2(B_0)$ for large $s$, and $c_2(B_0)$ is
+arbitrarily small. For $\nu_{22}$ take $T_0\subseteq D_x\cap\{x<1\}$ clean
+and non-null; by Lemma~\ref{lem:noncomp}(d), $T_0\not\preceq_cD_x\cap\{x>s\}$
+for large $s$, while (M3) at $E_1(1)$ (clean destination $T_0$) gives
+$T_0\preceq_cD_x\cap\{x>s\}$ whenever $\nu_{22}(D_x\cap\{x>s\})>v(T_0)$.
+
+(b) Let $0<a<b$ and $B_0\subseteq D_x\cap\{x<a\}$ clean and non-null. By
+Lemma~\ref{lem:noncomp}(b), $B_0\not\preceq_dD_x\cap[s,b)$ for $s$ near $b$,
+while (M1) at $E_2(s)$ gives $B_0\preceq_dD_x\cap[s,b)$ for $s>a$ whenever
+$\nu_{21}(D_x\cap[s,b))>c_2(B_0)$. For $\nu_{22}$ use
+Lemma~\ref{lem:noncomp}(e) with a clean $T_0\subseteq D_x\cap\{x<a\}$ and
+(M3) at $E_1(s)$.
+\end{proof}
+
+\section{Germs on the edges \texorpdfstring{$[e_1,e_2]$}{[e1,e2]} and
+\texorpdfstring{$[e_1,e_3]$}{[e1,e3]}}\label{sec:germs}
+
+The non-comparisons of Lemma~\ref{lem:noncomp} come from closedness of
+world-1 sections. They exclude left germs, but not right germs: approaching
+$E_2(b)$ from the right, $E_2(s)$ is world-1 worse than $E_2(b)$, and nothing
+follows. The missing tool is closedness of the section at the \emph{other}
+world of the edge, fed by a world-1 non-comparison produced by forced moves.
+
+\begin{lemma}\label{lem:otherworld}
+Let $\{i,j\}$ be the support of an edge, let $q_n\to q^*$ with $q_n$ in the
+open edge, and let $Y$ be regular with $C_{q_n}\not\preceq_iY$ for all $n$.
+Then $C_{q^*}\preceq_jY$; if $j\in\{2,3\}$, then $L_j(C_{q^*})\le L_j(Y)$.
+\end{lemma}
+\begin{proof}
+$C_{q_n}$ is competitive on $\{i,j\}$, so $C_{q_n}\preceq_jY$, that is,
+$q_n\in A_j(Y)$. This set is closed, so $q^*\in A_j(Y)$. For $j\in\{2,3\}$
+apply \eqref{eq:W} to the selected $C_{q^*}$.
+\end{proof}
+
+\begin{theorem}\label{thm:rightgerm}
+For every $b\in(0,\infty)$ the right germ of $\nu_{21}$ on $D_x$ at $b$
+vanishes.
+\end{theorem}
+\begin{proof}
+Let $\delta_0$ be the right germ and $\nu(\epsilon)\coloneqq
+\nu_{21}(D_x\cap[b,b+\epsilon))-\delta_0\ge0$; then $\nu(\epsilon)\to0$ as
+$\epsilon\downarrow0$. Fix a small $\epsilon\in(0,1)$. Choose clean sets
+\begin{gather*}
+ Q'\subseteq D_x\cap[b+1,b+2),\qquad \nu(\epsilon)<c_2(Q')<\nu(\epsilon)+
+ \epsilon,\\
+ B_0\subseteq D_x\cap[\tfrac b2,b),\qquad c_2(B_0)=\frac{2f(b+2)
+ (\nu(\epsilon)+\epsilon)}{f(b/2)};
+\end{gather*}
+this is possible for small $\epsilon$. Then $\Phi(Q')\le f(b+2)c_2(Q')<
+\frac12f(\frac b2)c_2(B_0)\le\frac12\Phi(B_0)$.
+
+For $s\in(b,b+\epsilon)$ put $\Band_s\coloneqq D_x\cap[s,b+\epsilon)$. Since
+$\nu_{21}(D_x\cap[b,s))\ge\delta_0$,
+\[
+ \nu_{21}(\Band_s)=\nu_{21}(D_x\cap[b,b+\epsilon))-\nu_{21}(D_x\cap[b,s))
+ \le\nu(\epsilon)<c_2(Q')=\nu_{21}(Q').
+\]
+(M1) at $E_2(b+\epsilon)$ gives $\Band_s\preceq_dQ'$; its source $\Band_s$
+may be dirty, since (M1) compares charges. Theorem~\ref{thm:debtprimary},
+with the clean bounded lighter side $Q'$, gives $Q'\prec_dB_0$. Hence
+$\Band_s\prec_dB_0$, and so $B_0\not\preceq_d\Band_s$.
+
+Let $Y$ be $E_2(b+\epsilon)$ silenced on $B_0$. For $s\in(b,b+\epsilon)$,
+$E_2(s)$ and $Y$ differ exactly on $B_0$ (debt, silence) and on $\Band_s$
+(silence, debt). By (IB), $E_2(s)\preceq_1Y$ if and only if
+$B_0\preceq_d\Band_s$; so $E_2(s)\not\preceq_1Y$. By
+Lemma~\ref{lem:edges}(c), with $s_n\downarrow b$ and after passing to a
+subsequence, there are open-edge indices
+$q_n\to q^*$ with $C_{q_n}=E_2(s_n)$ and $C_{q^*}=E_2(b)$.
+Lemma~\ref{lem:otherworld} (with $i=1$, $j=2$) gives
+$L_2(E_2(b))\le L_2(Y)$. By Lemma~\ref{lem:diff}, $Y$ and $E_2(b)$ differ on
+$B_0$, where $Y$ raises the world-2 rank from $0$ to $1$, and on
+$D_x\cap[b,b+\epsilon)$, where it lowers it from $1$ to $0$. Hence
+\[
+ \delta_0\le\nu_{21}(D_x\cap[b,b+\epsilon))\le c_2(B_0)
+ =\frac{2f(b+2)(\nu(\epsilon)+\epsilon)}{f(b/2)}\longrightarrow0 .\qedhere
+\]
+\end{proof}
+
+The model $Y$ carries the germ's world-2 value, because the germ lies in
+$[b,s)$ for every $s>b$, while its extra debt $\Band_s$ misses the germ. This
+is why the world-2 section, and not the world-1 section, does the work.
+
+\begin{theorem}\label{thm:zerogerm}
+The germ of $\nu_{21}$ on $D_x$ at $0+$ vanishes.
+\end{theorem}
+\begin{proof}
+Let $\delta_0$ be the germ and $\nu(\epsilon)\coloneqq\nu_{21}(D_x\cap
+\{x<\epsilon\})-\delta_0\to0$. For small $\epsilon\in(0,\frac12)$ choose clean
+sets
+\[
+ Q'\subseteq D_x\cap[\epsilon,1),\ \ \nu(\epsilon)<c_2(Q')<\nu(\epsilon)+
+ \epsilon,\qquad
+ T_0\subseteq D_x\cap[1,2),\ \ \Psi(T_0)=\frac{2f(1)(\nu(\epsilon)+\epsilon)}
+ {s_+},
+\]
+with $s_+>0$ from Lemma~\ref{lem:splus}. Then $\Phi(Q')<f(1)(\nu(\epsilon)+
+\epsilon)$, so $\Phi(Q')/\Psi(T_0)<s_+/2$ and the clean pair $(Q',T_0)$ is
+not AC. For $s\in(0,\epsilon)$ put $\Band_s\coloneqq D_x\cap[s,\epsilon)$.
+As before $\nu_{21}(\Band_s)\le\nu(\epsilon)<c_2(Q')$, so (M1) at
+$E_2(\epsilon)$ gives $\Band_s\preceq_dQ'$. If
+$V\preceq_1V+\debt(\Band_s)+\cred(T_0)$, then (F5) in the context
+$\cred(T_0)$, which is silent on $\Band_s\cup Q'$, gives
+$V\preceq_1V+\debt(Q')+\cred(T_0)$, which is false. Let
+$Y\coloneqq E_2(\epsilon)+\cred(T_0)$. For $s\in(0,\epsilon)$, $E_2(s)$ and
+$Y$ differ exactly on $\Band_s$ (silence, debt) and $T_0$ (silence, credit),
+so $E_2(s)\not\preceq_1Y$. With $s_n\downarrow0$, Lemma~\ref{lem:edges}(c)
+gives, along a subsequence, $q_n\to q^*$ with $C_{q^*}=E_2(0)=V_{12}$, and
+Lemma~\ref{lem:otherworld} gives $L_2(V_{12})\le L_2(Y)$. Now
+$L_2(Y)-L_2(V_{12})=-\nu_{21}(D_x\cap\{x<\epsilon\})+v(T_0)$, and
+$v(T_0)\le\Psi(T_0)/\ftil(1)$. So $\delta_0\le2f(1)(\nu(\epsilon)+\epsilon)/
+(s_+\ftil(1))\to0$.
+\end{proof}
+
+\begin{theorem}\label{thm:rightgerm22}
+For every $b\in(0,\infty)$ the right germ of $\nu_{22}$ on $D_x$ at $b$
+vanishes.
+\end{theorem}
+\begin{proof}
+Let $\delta_0$ be the germ and $\nu(\epsilon)\coloneqq\nu_{22}(D_x\cap
+\{b<x\le b+\epsilon\})-\delta_0\to0$. Choose clean sets
+\begin{gather*}
+ T''\subseteq D_x\cap\{b+1<x\le b+2\},\qquad\nu(\epsilon)<v(T'')<
+ \nu(\epsilon)+\epsilon,\\
+ T_0\subseteq D_x\cap[\tfrac b2,b],\qquad\Psi(T_0)=2\ftil(b+2)(\nu(\epsilon)+
+ \epsilon).
+\end{gather*}
+For $s\in(b,b+\epsilon)$ let $\Band'_s\coloneqq D_x\cap\{s<x\le b+\epsilon\}$;
+then $\nu_{22}(\Band'_s)\le\nu(\epsilon)<v(T'')$. (M3) at $E_1(b+\epsilon)$,
+moving credit from $T''$ down to $\Band'_s$, gives $\Band'_s\preceq_cT''$;
+here the destination $\Band'_s$ may be dirty because (M3) compares charges.
+Theorem~\ref{thm:creditprimary}, with the clean lighter side $T''$
+($\Psi(T'')\le\ftil(b+2)v(T'')<\Psi(T_0)$), gives $T''\prec_cT_0$. Hence
+$\Band'_s\prec_cT_0$, so $T_0\not\preceq_c\Band'_s$. Let
+$Y\coloneqq E_1(b+\epsilon)+\cred(T_0)$. For $s\in(b,b+\epsilon)$, $E_1(s)$
+and $Y$ differ exactly on $\Band'_s$ (credit, silence) and on $T_0$
+(silence, credit), so $E_1(s)\preceq_1Y$ iff $T_0\preceq_c\Band'_s$, which is
+false. Lemma~\ref{lem:edges}(c) ($E_1(s)\to E_1(b)$ as $s\downarrow b$,
+along a subsequence) and
+Lemma~\ref{lem:otherworld} give $L_2(E_1(b))\le L_2(Y)=L_2(E_1(b))-
+\nu_{22}(D_x\cap\{b<x\le b+\epsilon\})+v(T_0)$, since credit has world-2 rank
+$2$ on $D_x$. So $\delta_0\le v(T_0)\le\Psi(T_0)/\ftil(\frac b2)\to0$.
+\end{proof}
+
+\begin{corollary}\label{cor:mirrorgerms}
+On $D_y$ in $y$: $\nu_{31}$ has no right germ at any $b\in(0,\infty)$ and no
+germ at $0+$; $\nu_{32}$ has no right germ at any $b\in(0,\infty)$.
+\end{corollary}
+\begin{proof}
+These are the mirrors of Theorems~\ref{thm:rightgerm}, \ref{thm:zerogerm}
+and~\ref{thm:rightgerm22}, on the edge $[e_1,e_3]$ with $E_3$, $E_1'$,
+$V_{13}$, (M2), (M4), and $s_+$ as before (its definition is symmetric). In
+the analogue of Theorem~\ref{thm:zerogerm} one uses
+$u(T_0)\le\Psi(T_0)/\htil(1)$.
+\end{proof}
+
+\begin{corollary}\label{cor:strong}
+$\nu_{21}$ has no germs on $D_x$, and $\nu_{31}$ has none on $D_y$. The
+charges $\nu_{22}$ on $D_x$ and $\nu_{32}$ on $D_y$ have no germs except
+possibly at $0+$. Hence Lemma~\ref{lem:slabs} applies to $\nu_{21}$ on $D_x$
+and to $\nu_{31}$ on $D_y$, and to $\nu_{22}$, $\nu_{32}$ on every set
+$\{x\ge\eta\}$, resp.\ $\{y\ge\eta\}$, $\eta>0$.
+\end{corollary}
+\begin{proof}
+Left germs: Lemma~\ref{lem:tails}(b); right germs:
+Theorems~\ref{thm:rightgerm}, \ref{thm:rightgerm22} and
+Corollary~\ref{cor:mirrorgerms}; $0+$: Theorem~\ref{thm:zerogerm} and
+Corollary~\ref{cor:mirrorgerms}; $\infty$: Lemma~\ref{lem:tails}(a).
+\end{proof}
+
+\begin{theorem}\label{thm:crossgerm}
+(a) For every $y_0\in[0,\infty)$, $\nu_{21}(P_1\cap\{|y-y_0|<\delta\})\to0$
+as $\delta\downarrow0$ (for $y_0=0$ read $\{y<\delta\}$). (b) For every
+$x_0\in[0,\infty)$, $\nu_{31}(P_1\cap\{|x-x_0|<\delta\})\to0$ as
+$\delta\downarrow0$.
+\end{theorem}
+\begin{proof}
+(a) Let $\epsilon>0$. By Theorem~\ref{thm:zerogerm} and
+Lemma~\ref{lem:tails}(a) choose $0<a'<B<\infty$ with
+$\nu_{21}(D_x\cap\{x<a'\})<\epsilon$ and $\nu_{21}(D_x\cap\{x\ge B\})<
+\epsilon$. Put $W_\delta\coloneqq P_1\cap\{|y-y_0|<\delta\}\cap\{a'\le
+x<B\}$ and $\mathrm{cap}\coloneqq\frac12c_2(P_2\cap[\frac{a'}2,a')\setminus
+Z_m)$ for a large $m$; $\mathrm{cap}>0$. Let $e'\in(0,1)$. Choose a clean
+$Q\subseteq P_2\cap[\frac{a'}2,a')$ with $c_2(Q)=(1-e')\min\{\nu_{21}(
+W_\delta),\mathrm{cap}\}$; if $\nu_{21}(W_\delta)>0$, (M1) at $E_2(a')$ gives
+$Q\preceq_dW_\delta$ (dirty destination). Choose a clean $Q'\subseteq
+P_3\cap[y_0+\delta,y_0+1)$ with $\nu_{31}(W_\delta)<c_3(Q')<\nu_{31}(
+W_\delta)+e'$; (M2) at $E_3(y_0+\delta)$ gives $W_\delta\preceq_dQ'$ (dirty
+source). So $Q\preceq_dQ'$, and Corollary~\ref{cor:agree} ($Q'$ clean and
+bounded) gives $\Phi(Q)\le\Phi(Q')$, that is,
+\[
+ f(\tfrac{a'}2)(1-e')\min\{\nu_{21}(W_\delta),\mathrm{cap}\}\le
+ h(y_0+1)\bigl(\nu_{31}(W_\delta)+e'\bigr).
+\]
+Let $e'\to0$. As $\delta\to0$, $\nu_{31}(W_\delta)\le\nu_{31}(D_y\cap
+\{|y-y_0|<\delta\})\to0$ by Corollary~\ref{cor:strong} (no germs of
+$\nu_{31}$ at $y_0$; at $y_0=0$ the germ at $0+$). Hence
+$\nu_{21}(W_\delta)\to0$, and $\nu_{21}(P_1\cap\{|y-y_0|<\delta\})<
+2\epsilon+\nu_{21}(W_\delta)$. (b) is the mirror of (a).
+\end{proof}
+
+Consequently, for every compact interval $J\subseteq[0,\infty)$ and
+$\epsilon>0$, $P_1\cap\{y\in J\}$ has a finite partition into $y$-slabs of
+$\nu_{21}$-mass less than $\epsilon$, and $P_1\cap\{x\in J\}$ one into
+$x$-slabs of $\nu_{31}$-mass less than $\epsilon$ (compactness, as in
+Lemma~\ref{lem:slabs}).
+
+\begin{remark}\label{rem:notcontrolled}
+Two kinds of mass are not controlled by these results: $\nu_{21}$ on
+$P_1\cap\{x\text{ bounded},\ y\to\infty\}$ and $\nu_{31}$ on
+$P_1\cap\{y\text{ bounded},\ x\to\infty\}$ (cross mass at infinity, for which
+only the one-sided bounds of Corollary~\ref{cor:onesidedinfty} are proved),
+and the germs of $\nu_{22}$ at $x\to0+$ and of $\nu_{32}$ at $y\to0+$. The
+approach $E_1(a)\to D_1$ ends at a vertex, and every fixed $Y$ with
+$L_2(Y)<L_2(D_1)$ removes credit of $D_1$ on a fixed set, so no
+non-comparison with all $E_1(a)$, $a$ small, is available. These masses are
+harmless below: credit is only ever bounded from above
+(Lemma~\ref{lem:Vcap}), and the cross mass at infinity enters only through
+one-sided bounds.
+\end{remark}
+
+\section{The edge \texorpdfstring{$[e_2,e_3]$}{[e2,e3]}}\label{sec:edge23}
+
+For $s\in[0,\infty]$ let $n_s\coloneqq(0,\frac1{1+s},\frac s{1+s})$ (with
+$n_\infty=e_3$). Let $B_s$ be the coherent model with credal set
+$\operatorname{conv}\{e_2,n_s\}$, and $B'_s$ the one with credal set
+$\operatorname{conv}\{e_3,n_s\}$. For $m=(0,m_2,m_3)$ we have $m\cdot
+g=g_3(m_3-m_2t)$ on $P_2$ and $m\cdot g=|g_3|(m_2t-m_3)$ on $P_3$. Hence both
+give debt ($o_{23}$) on $P_1$; $B_s$ gives $\omega_2$ on $(s,\infty)$ and is
+silent on $(0,s)$; $B'_s$ gives $\omega_3$ on $(0,s)$ and is silent on
+$(s,\infty)$. Here and below $(a,b)$ denotes $(P_2\cup P_3)\cap\{a<t<b\}$.
+Then $B_0=D_2$, $B_\infty=V_{23}\coloneqq\Dscr_{[e_2,e_3]}=B'_0$ and
+$B'_\infty=D_3$. In DT's notation $B_\theta$ is the same model.
+
+Index both families by $\sigma\in[0,2]$: $N_\sigma\coloneqq B_{\sigma/(1-
+\sigma)}$ for $\sigma\in[0,1)$, $N_1\coloneqq V_{23}$, and
+$N_\sigma\coloneqq B'_{(\sigma-1)/(2-\sigma)}$ for $\sigma\in(1,2]$. If
+$\sigma<\sigma'$, then on a non-null $t$-band $N_\sigma$ gives $\omega_2$
+where $N_{\sigma'}$ is silent, or is silent where $N_{\sigma'}$ gives
+$\omega_3$, and they agree elsewhere. At world~$2$ the ranks of $\omega_2$,
+silence and $\omega_3$ are $0,1,2$, and at world~$3$ they are $2,1,0$. By
+strict (G),
+\begin{equation}
+ \sigma<\sigma'\ \Longrightarrow\ N_\sigma\prec_2N_{\sigma'}\quad\text{and}
+ \quad N_{\sigma'}\prec_3N_\sigma .
+ \label{eq:order23}
+\end{equation}
+
+\begin{lemma}\label{lem:sel23}
+There is a continuous map $\sigma\colon[e_2,e_3]\to[0,2]$ with
+$C_q=N_{\sigma(q)}$, $\sigma(e_2)=0$ and $\sigma(e_3)=2$. Every $N_\sigma$ is
+selected; for $\sigma\in(0,2)$ only at points of the open edge, so that
+$B_s$ ($0<s\le\infty$) and $B'_s$ ($0\le s<\infty$) are competitive on
+$\{2,3\}$. Parts (c) and (d) of Lemma~\ref{lem:edges} hold for this family,
+with worlds $2,3$ in place of $1,2$.
+\end{lemma}
+\begin{proof}
+By the face lemma and Lemma~\ref{lem:noedge}, every selection on the edge is
+some $B_s$ or $B'_s$, hence some $N_\sigma$. The proofs of CCF, Lemmas~3
+and~4, apply verbatim with worlds $(2,3)$ in place of $(1,j)$ and
+\eqref{eq:order23} in place of CCF's (2): they use only (G) at the two edge
+worlds, the endpoint property, and closedness of the sections $A_2$, $A_3$ at
+the fixed models $N_\sigma$. For $\sigma\in(0,2)$, $N_\sigma\notin\{D_2,D_3\}$,
+so it is not selected at a vertex.
+\end{proof}
+
+On $P_2\cup P_3$ write
+\[
+ \alpha\coloneqq\nu_{21},\quad\beta\coloneqq\nu_{32},\quad
+ \alpha'\coloneqq\nu_{22},\quad\beta'\coloneqq\nu_{31},
+\]
+restricted to subsets of $P_2\cup P_3$, with pure parts $\alpha^\pi,\beta^\pi,
+\alpha'^\pi,\beta'^\pi$. By \eqref{eq:table}, silence $\to\omega_2$ changes
+$(L_2,L_3)$ by $(-\alpha,+\beta)$ and silence $\to\omega_3$ by
+$(+\alpha',-\beta')$. The densities are $c_2=Fu$, $u$, $v=Gc_3$ and $c_3$.
+
+\begin{lemma}\label{lem:pareto}
+Let $W\subseteq P_2\cup P_3$ be measurable (not necessarily clean), and let
+$0<s'<s<\infty$. All compensators below are clean.
+\begin{enumerate}[label=(P\arabic*),leftmargin=*,itemsep=2pt]
+\item ($B_s$; add $\omega_2$ on $W\subseteq(0,s)$, remove it on
+$W_1\subseteq(s,\infty)$.) If $u(W_1)>\beta(W)$, then $\alpha(W)\le
+c_2(W_1)$.
+\item ($B_s$; remove $\omega_2$ on $W\subseteq(s,\infty)$, add it on
+$W_2\subseteq(0,s)$.) If $c_2(W_2)>\alpha(W)$, then $\beta(W)\le u(W_2)$;
+if $W_2\subseteq(s',s)$, then $u(W_2)\le c_2(W_2)/F(s')$.
+\item ($B'_s$; add $\omega_3$ on $W\subseteq(s,\infty)$, remove it on
+$W_4\subseteq(0,s)$.) If $v(W_4)>\alpha'(W)$, then $\beta'(W)\le c_3(W_4)\le
+v(W_4)/g_0$.
+\item ($B'_s$; remove $\omega_3$ on $W\subseteq(0,s)$, add it on
+$W_5\subseteq(s,\infty)$.) If $c_3(W_5)>\beta'(W)$, then $\alpha'(W)\le
+v(W_5)$.
+\item ($V_{23}$; add $\omega_2$ on $W$ and $\omega_3$ on $W_3$, disjoint
+from $W$.) If $c_3(W_3)>\beta(W)$, then $\alpha(W)\le v(W_3)$.
+\item ($V_{23}$; add $\omega_3$ on $W$ and $\omega_2$ on $W_6$, disjoint
+from $W$.) If $c_2(W_6)>\alpha'(W)$, then $\beta'(W)\le u(W_6)$.
+\item ($B_s$; add $\omega_3$ on $W\subseteq(0,s)$, or replace $\omega_2$ by
+$\omega_3$ on $W\subseteq(s,\infty)$; add $\omega_2$ on $W_7\subseteq(s',s)$,
+disjoint from $W$.) If $c_2(W_7)>\alpha'(W)$, resp.\
+$c_2(W_7)>(\alpha+\alpha')(W)$, then $\beta'(W)\le c_2(W_7)/F(s')$, resp.\
+$(\beta+\beta')(W)\le c_2(W_7)/F(s')$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+In each case let $X$ be the named base, which is selected and competitive on
+$\{2,3\}$ by Lemma~\ref{lem:sel23}, with the stated changes; the changes are
+well defined because each compensator lies where the base has the opposite
+advice. By Lemma~\ref{lem:diff} and the clean-side rule, $(L_2,L_3)(X)$ minus
+the value at the base is
+\begin{gather*}
+ \text{(P1)}\ (-\alpha(W)+c_2(W_1),\ \beta(W)-u(W_1));\qquad
+ \text{(P2)}\ (\alpha(W)-c_2(W_2),\ -\beta(W)+u(W_2));\\
+ \text{(P3)}\ (\alpha'(W)-v(W_4),\ -\beta'(W)+c_3(W_4));\qquad
+ \text{(P4)}\ (-\alpha'(W)+v(W_5),\ \beta'(W)-c_3(W_5));\\
+ \text{(P5)}\ (-\alpha(W)+v(W_3),\ \beta(W)-c_3(W_3));\qquad
+ \text{(P6)}\ (\alpha'(W)-c_2(W_6),\ -\beta'(W)+u(W_6));\\
+ \text{(P7)}\ (\alpha'(W)[+\alpha(W)]-c_2(W_7),\ -\beta'(W)[-\beta(W)]+u(W_7)).
+\end{gather*}
+In each case the hypothesis makes one coordinate negative, and the Pareto
+property (Lemma~\ref{lem:forced}) forces the other to be nonnegative. This is
+the conclusion. The bounds $u\le c_2/F(s')$ on $(s',\infty)$ and $c_3\le v/g_0$
+use $c_2=Fu$, $F$ nondecreasing, and $v=Gc_3$ with $G\ge g_0$.
+\end{proof}
+
+\begin{theorem}\label{thm:tgerms}
+(a) $\alpha$ and $\beta$ have no left or right $t$-germs at any
+$b\in(0,\infty)$; $\alpha$ has no germ at $0+$; $\alpha$ and $\beta$ have no
+germ at $\infty$. (b) $\alpha'$ and $\beta'$ have no left or right $t$-germs
+at any $b\in(0,\infty)$; $\alpha'$ and $\beta'$ have no germ at $0+$;
+$\beta'$ has no germ at $\infty$.
+\end{theorem}
+\begin{proof}
+We use Lemma~\ref{lem:otherworld} on $[e_2,e_3]$, with indices from
+Lemma~\ref{lem:edges}(c) for the family $N_\sigma$
+(Lemma~\ref{lem:sel23}), and the non-comparison supplied by \eqref{eq:W}:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item[(KF)] if $N_{\sigma_n}\to N_{\sigma^*}$ along indices $q_n\to q^*$
+with $q_n$ in the open edge, and $Y$ is regular with
+$L_3(Y)<L_3(N_{\sigma_n})$ for all $n$, then $L_2(N_{\sigma^*})\le L_2(Y)$;
+and symmetrically with $2,3$ exchanged.
+\end{itemize}
+In each item $\gamma$ denotes the germ in question, and $W,W'$ are clean
+sets of the indicated small mass. The identities for $L_k(B_s)$ follow from
+Lemma~\ref{lem:diff}.
+
+(a) \emph{Left germ of $\beta$ at $b$.} For $s<b$,
+$L_3(B_s)=L_3(B_b)+\beta((s,b))\ge L_3(B_b)+\gamma$. If $\gamma>0$, let
+$Y\coloneqq B_b+\omega_2(W')$ with $W'\subseteq(0,b)$, $u(W')<\gamma$. Then
+$L_3(Y)<L_3(B_s)$ for all $s<b$, and (KF) gives $L_2(B_b)\le L_2(Y)=
+L_2(B_b)-c_2(W')$, a contradiction.
+
+\emph{Right germ of $\alpha$ at $b$.} For $s>b$,
+$L_2(B_s)=L_2(B_b)+\alpha((b,s))$. If $\gamma>0$, let $Y$ be $B_b$ with
+$\omega_2$ removed on $W\subseteq(b,\infty)$, $c_2(W)<\gamma$. Then
+$L_2(Y)<L_2(B_s)$ for all $s>b$, and (KF) gives $L_3(B_b)\le L_3(Y)=L_3(B_b)-
+u(W)$, a contradiction.
+
+\emph{Left germ of $\alpha$ at $b$.} (P1) at $B_b$ with $W=(b-\eta,b)$ and
+$W_1\subseteq(b,b+1)$, $u(W_1)=\beta(W)+\eta'$, gives $\alpha(W)\le
+c_2(W_1)\le d(\beta(W)+\eta')$. As $\eta\to0$, $\beta(W)\to0$ by the first
+item, and $\eta'>0$ is arbitrary.
+
+\emph{Right germ of $\beta$ at $b$.} (P2) at $B_b$ with $W=(b,b+\eta)$ and
+$W_2\subseteq(\frac b2,b)$, $c_2(W_2)=\alpha(W)+\eta'$, gives $\beta(W)\le
+(\alpha(W)+\eta')/F(\frac b2)$, which tends to $0$ by the second item.
+
+\emph{$\alpha$ at $0+$.} As $s\downarrow0$, $B_s\to B_0=D_2$, selected at the
+vertex $e_2$. $L_2(B_s)=L_2(D_2)+\alpha((0,s))\ge L_2(D_2)+\gamma$. Let $Y$ be
+$D_2$ with $\omega_2$ removed on $W$, $c_2(W)<\gamma$; (KF) gives
+$L_3(D_2)\le L_3(Y)=L_3(D_2)-u(W)$.
+
+\emph{$\beta$ at $\infty$.} As $s\to\infty$, $B_s\to V_{23}$.
+$L_3(B_s)=L_3(V_{23})+\beta((s,\infty))$. Let $Y\coloneqq
+V_{23}+\omega_2(W')$, $u(W')<\gamma$; (KF) gives $L_2(V_{23})\le
+L_2(V_{23})-c_2(W')$.
+
+\emph{$\alpha$ at $\infty$.} (P5) with $W=(S,\infty)$, $S>2$, and
+$W_3\subseteq(1,2)$, $c_3(W_3)=\beta(W)+\eta'$, gives $\alpha(W)\le
+v(W_3)\le G(2)(\beta(W)+\eta')$, which tends to $0$ as $S\to\infty$ by the
+previous item.
+
+(b) \emph{Left germ of $\beta'$ at $b$.} For $s<b$,
+$L_3(B'_s)=L_3(B'_b)+\beta'((s,b))$. Let $Y$ be $B'_b$ with $\omega_3$
+removed on $W\subseteq(0,b)$, $c_3(W)<\gamma$; (KF) gives $L_2(B'_b)\le
+L_2(Y)=L_2(B'_b)-v(W)$.
+
+\emph{Right germ of $\alpha'$ at $b$.} For $s>b$,
+$L_2(B'_s)=L_2(B'_b)+\alpha'((b,s))$. Let $Y\coloneqq B'_b+\omega_3(W)$,
+$W\subseteq(b,\infty)$, $v(W)<\gamma$; (KF) gives $L_3(B'_b)\le L_3(Y)=
+L_3(B'_b)-c_3(W)$.
+
+\emph{Left germ of $\alpha'$ at $b$.} (P4) at $B'_b$ with $W=(b-\eta,b)$,
+$W_5\subseteq(b,b+1)$, $c_3(W_5)=\beta'(W)+\eta'$: $\alpha'(W)\le v(W_5)\le
+G(b+1)(\beta'(W)+\eta')\to0$.
+
+\emph{Right germ of $\beta'$ at $b$.} (P3) at $B'_b$ with $W=(b,b+\eta)$,
+$W_4\subseteq(\frac b2,b)$, $v(W_4)=\alpha'(W)+\eta'$: $\beta'(W)\le
+(\alpha'(W)+\eta')/g_0\to0$.
+
+\emph{$\alpha'$ at $0+$.} As $s\downarrow0$, $B'_s\to B'_0=V_{23}$.
+$L_2(B'_s)=L_2(V_{23})+\alpha'((0,s))$. Let $Y\coloneqq V_{23}+\omega_3(W)$,
+$v(W)<\gamma$; (KF) gives $L_3(V_{23})\le L_3(V_{23})-c_3(W)$.
+
+\emph{$\beta'$ at $0+$.} (P6) with $W=(0,\eta)$, $W_6\subseteq(1,2)$,
+$c_2(W_6)=\alpha'(W)+\eta'$: $\beta'(W)\le u(W_6)\le(\alpha'(W)+\eta')/F(1)
+\to0$.
+
+\emph{$\beta'$ at $\infty$.} As $s\to\infty$, $B'_s\to D_3$, selected at the
+vertex $e_3$. $L_3(B'_s)=L_3(D_3)+\beta'((s,\infty))$. Let $Y$ be $D_3$ with
+$\omega_3$ removed on $W$, $c_3(W)<\gamma$; (KF) gives $L_2(D_3)\le
+L_2(Y)=L_2(D_3)-v(W)$.
+
+Each item uses only items proved before it.
+\end{proof}
+
+The germs not excluded are those of $\beta$ at $0+$ and of $\alpha'$ at
+$\infty$. Exchanging worlds $2$ and $3$ maps $\alpha\leftrightarrow\beta'$
+and $\beta\leftrightarrow\alpha'$ and replaces $t$ by $1/t$; it maps this
+pair of possible germs onto itself.
+
+\begin{corollary}\label{cor:tstrong}
+$\alpha$ and $\beta'$ have no $t$-germs on $P_2\cup P_3$; $\beta$ has none on
+$\{t\ge\eta\}$ and $\alpha'$ none on $\{t\le S\}$, for all $\eta>0$, $S<\infty$.
+So Lemma~\ref{lem:slabs} applies to them on these sets.
+\end{corollary}
+
+\begin{theorem}\label{thm:pureratio}
+For every $\epsilon>0$ and every measurable $W\subseteq P_2\cup P_3$:
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=1pt]
+\item $\alpha^\pi(W)\le d\,\beta^\pi(W)+\epsilon$;
+\item $\alpha'^\pi(W)\ge g_0\,\beta'^\pi(W)-\epsilon$.
+\end{enumerate}
+For $\theta\in(0,\infty)$ and $\kappa\coloneqq F(\theta+)$:
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=1pt,start=3]
+\item $\alpha^\pi(W)\le\kappa\beta^\pi(W)+\epsilon$ if $W\subseteq(0,\theta)$;
+\item $\alpha^\pi(W)\ge\kappa\beta^\pi(W)-\epsilon$ if $W\subseteq(\theta,\infty)$;
+\item $(\alpha^\pi+\alpha'^\pi)(W)\ge\kappa(\beta^\pi+\beta'^\pi)(W)-\epsilon$ if
+$W\subseteq(\theta,\infty)$.
+\end{enumerate}
+The auxiliary choices in the proof depend on $\epsilon$ (and $\theta$) only,
+not on $W$.
+\end{theorem}
+\begin{proof}
+Pure parts vanish off $Z_m$, so $\alpha^\pi(A)=\alpha^\pi(A\cap Z_m)\le
+\alpha(A\cap Z_m)$ for every $A$ and $m$, and $\beta(A\cap Z_m)\le\beta^\pi(A)+
+u(Z_m)$; likewise for $\alpha',\beta'$ with $v$, $c_3$.
+
+(i) Choose $S>1$ with $\alpha((S,\infty))<\epsilon/4$ and $\eta_0\in(0,1)$
+with $\alpha((0,\eta_0))<\epsilon/4$ (Theorem~\ref{thm:tgerms}(a)). Let
+$U\coloneqq u((S,S+1)\setminus Z_{m_0})>0$ for some $m_0$. By
+Corollary~\ref{cor:tstrong} cut $[\eta_0,S]$ into finitely many $t$-slabs
+$J_1,\dots,J_N$ with $\beta(J_k)<U/4$. Fix $e\in(0,U/2)$ with $dNe<\epsilon/4$
+and $m\ge m_0$ with $d\,u(Z_m)<\epsilon/4$. For $W_k\coloneqq W\cap J_k\cap
+Z_m$, apply (P1) at $B_S$ with a clean $W_1\subseteq(S,S+1)$ of $u$-mass
+$\beta(W_k)+e<U$: $\alpha(W_k)\le c_2(W_1)\le d(\beta(W_k)+e)$, since $F\le d$.
+Summing over $k$,
+\[
+ \alpha^\pi(W)\le\tfrac\epsilon2+\alpha(W\cap[\eta_0,S]\cap Z_m)\le
+ \tfrac\epsilon2+d\bigl(\beta^\pi(W)+u(Z_m)\bigr)+dNe\le d\beta^\pi(W)+\epsilon.
+\]
+
+(ii) Choose $\eta_0>0$ and $S<\infty$ with $g_0\beta'((0,\eta_0))<
+\epsilon/4$ and $g_0\beta'((S,\infty))<\epsilon/4$
+(Theorem~\ref{thm:tgerms}(b)). Let $C_0\coloneqq v((\frac{\eta_0}2,\eta_0)
+\setminus Z_{m_0})>0$, and cut $[\eta_0,S]$ into $t$-slabs $J_k$, $k\le N$,
+with $\alpha'(J_k)<C_0/4$ (Corollary~\ref{cor:tstrong}). Fix $e\in(0,C_0/2)$
+with $Ne<\epsilon/4$ and $m\ge m_0$ with $v(Z_m)<\epsilon/4$. For
+$W_k\coloneqq W\cap J_k\cap Z_m$, apply (P3) at $B'_{\eta_0}$ with a clean
+$W_4\subseteq(\frac{\eta_0}2,\eta_0)$ of $v$-mass $\alpha'(W_k)+e$:
+$g_0\beta'(W_k)\le\alpha'(W_k)+e$. Summing,
+\[
+ g_0\beta'^\pi(W)\le\tfrac\epsilon2+g_0\beta'(W\cap[\eta_0,S]\cap Z_m)\le
+ \tfrac\epsilon2+\alpha'^\pi(W)+v(Z_m)+Ne\le\alpha'^\pi(W)+\epsilon.
+\]
+
+(iii) Fix $\epsilon_1>0$ with $\epsilon_1\beta^\pi(P_2\cup P_3)<\epsilon/4$,
+then $\delta>0$ with $F((\theta+\delta)-)<\kappa+\epsilon_1$, and
+$U\coloneqq u((\theta,\theta+\delta)\setminus Z_{m_0})>0$. Choose
+$\eta_0\in(0,\theta/2)$ and $\eta_1\in(0,\theta/2)$ with
+$\alpha((0,\eta_0))<\epsilon/8$ and $\alpha((\theta-\eta_1,\theta))<
+\epsilon/8$ (no germ of $\alpha$ at $0+$, no left germ at $\theta$). Cut
+$[\eta_0,\theta-\eta_1]$ into slabs $J_k$, $k\le N$, with $\beta(J_k)<U/4$.
+Fix $e$ and $m$ with $(\kappa+\epsilon_1)(Ne+u(Z_m))<\epsilon/4$, $e<U/2$.
+(P1) at $B_\theta$ with clean $W_1\subseteq(\theta,\theta+\delta)$ of $u$-mass
+$\beta(W_k)+e$ gives $\alpha(W_k)\le(\kappa+\epsilon_1)(\beta(W_k)+e)$.
+Summing, $\alpha^\pi(W)\le\frac\epsilon4+(\kappa+\epsilon_1)(\beta^\pi(W)+
+u(Z_m)+Ne)\le\kappa\beta^\pi(W)+\epsilon$.
+
+(iv) Choose $\eta_1>0$ with $\kappa\beta((\theta,\theta+\eta_1))<\epsilon/4$
+(no right germ of $\beta$ at $\theta$) and $S>\theta+\eta_1$ with
+$\kappa\beta((S,\infty))<\epsilon/4$. Put $\theta'\coloneqq\theta+\eta_1/2$
+and $C_0\coloneqq c_2((\theta,\theta')\setminus Z_{m_0})>0$; cut
+$[\theta+\eta_1,S]$ into slabs $J_k$, $k\le N$, with $\alpha(J_k)<C_0/4$; fix
+$e<C_0/2$ and $m$ with $Ne+c_2(Z_m)<\epsilon/4$. (P2) at $B_{\theta'}$, with
+$W_k\coloneqq W\cap J_k\cap Z_m\subseteq(\theta',\infty)$ and a clean
+$W_2\subseteq(\theta,\theta')$ of $c_2$-mass $\alpha(W_k)+e$, gives
+$\beta(W_k)\le u(W_2)\le c_2(W_2)/F(\theta+)$, since $F\ge F(\theta+)=\kappa$
+on $(\theta,\theta')$. So $\kappa\beta(W_k)\le\alpha(W_k)+e$, and summing,
+$\kappa\beta^\pi(W)\le\frac\epsilon2+\alpha^\pi(W)+c_2(Z_m)+Ne\le
+\alpha^\pi(W)+\epsilon$.
+
+(v) Add (iv) and (ii), each with $\epsilon/2$, and use $g_0>d\ge\kappa$.
+\end{proof}
+
+\section{Localization: world 1 weighs dirty debt exactly}\label{sec:local}
+
+For a bounded Borel function $a$ of the coordinates and a charge $\nu$, the
+integral $\int_Qa\,d\nu$ is defined as the uniform limit of integrals of
+simple functions \cite[Chapter~4]{RR}; for bounded measurable $a,b$ and a
+charge $\pi$, the charge $b\cdot\pi\colon Q\mapsto\int_Qb\,d\pi$ satisfies
+$\int a\,d(b\cdot\pi)=\int ab\,d\pi$ (true for simple $a$, then by uniform
+limits). The forced moves (M1), (M2), read with a dirty set, are the
+\emph{bracket links} used below: if $Q\subseteq D_x\cap\{x<a\}$ is clean,
+$W\subseteq D_x\cap\{x\ge a\}$ and $c_2(Q)<\nu_{21}(W)$, then $Q\preceq_dW$;
+if $W\subseteq D_x\cap\{x<a\}$, $Q'\subseteq D_x\cap\{x\ge a\}$ is clean and
+$c_2(Q')>\nu_{21}(W)$, then $W\preceq_dQ'$; and the same on $D_y$ with
+$\nu_{31}$, $c_3$.
+
+\begin{theorem}\label{thm:puresep}
+Let $b,b'<\infty$. For every measurable $Q\subseteq P_1\cap\{x<b,\ y<b'\}$,
+\[
+ \int_Qf(x)\,d\nu_{21}=\int_Qh(y)\,d\nu_{31},\qquad\text{equivalently}\qquad
+ \int_Qf(x)\,d\pi_{21}=\int_Qh(y)\,d\pi_{31}.
+\]
+\end{theorem}
+\begin{proof}
+The two forms are equivalent because $f(x)c_2=h(y)c_3$ a.e.\ on $P_1$
+(Theorem~\ref{thm:sep}). Put $\mathrm{Rect}\coloneqq P_1\cap\{x<b,\ y<b'\}$
+and fix $\epsilon\in(0,1)$ and $\epsilon'>0$.
+
+\emph{Residue.} Choose $\alpha_0\in(0,\min(b,b')/2)$ such that $\nu_{21}$ and
+$\nu_{31}$ each give mass less than $\epsilon'$ to $P_1\cap\{x<\alpha_0\}$
+and to $P_1\cap\{y<\alpha_0\}$; this uses Theorem~\ref{thm:zerogerm},
+Corollary~\ref{cor:mirrorgerms} and Theorem~\ref{thm:crossgerm} at $x_0=0$,
+$y_0=0$. Apply the construction of Lemma~\ref{lem:windows} to $f$ on
+$[\alpha_0,b)$ and to $h$ on $[\alpha_0,b')$. The large jumps are finitely
+many points; choose their deleted neighbourhoods so small that, in total,
+$P_1\cap\{x\in N_x\}$ and $P_1\cap\{y\in N_y\}$ (with $N_x,N_y$ the unions of
+these neighbourhoods) carry $\nu_{21}$- and $\nu_{31}$-mass less than
+$\epsilon'$ each; this is possible by Corollary~\ref{cor:strong} and
+Theorem~\ref{thm:crossgerm}. This gives finitely many $\epsilon$-windows
+$U_i=[a_i,a_i')$ of $f$ and $V_j=[c_j,c_j')$ of $h$. Then choose $\theta_1>0$
+so small that the slices of width $\theta_1$ at the finitely many window
+endpoints carry, in total, $\nu_{21}$- and $\nu_{31}$-mass less than
+$\epsilon'$ each, in both coordinates. Put $U_i^o\coloneqq[a_i+\theta_1,a_i'-\theta_1)$, $V_j^o
+\coloneqq[c_j+\theta_1,c_j'-\theta_1)$, $R_{ij}\coloneqq P_1\cap\{x\in
+U_i^o,\ y\in V_j^o\}$, and let $\mathrm{Rz}$ be the rest of
+$\mathrm{Rect}$. Then $\nu_{21}(\mathrm{Rz})<6\epsilon'$ and
+$\nu_{31}(\mathrm{Rz})<6\epsilon'$.
+
+\emph{Brackets.} Let $\mathrm{cap}>0$ be the minimum, over all $i,j$, of the
+clean $c_2$-masses of $P_2\cap[a_i,a_i+\theta_1)$ and
+$P_2\cap[a_i'-\theta_1,a_i')$ and the clean $c_3$-masses of
+$P_3\cap\{c_j\le y<c_j+\theta_1\}$ and $P_3\cap\{c_j'-\theta_1\le y<c_j'\}$
+(Lemma~\ref{lem:cells}). Cut each $Q\cap R_{ij}$ into finitely many pieces
+$w$ with $\nu_{21}(w)<\mathrm{cap}/2$ and $\nu_{31}(w)<\mathrm{cap}/2$, using
+$x$-slabs for $\nu_{21}$ and $y$-slabs for $\nu_{31}$
+(Corollary~\ref{cor:strong}). Fix a piece $w\subseteq R_{ij}$ and $e>0$
+small.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Lower $x$, upper $y$: a clean $Q_1\subseteq P_2\cap[a_i,a_i+\theta_1)$
+with $c_2(Q_1)=(1-e)\nu_{21}(w)$ satisfies $Q_1\preceq_dw$ (bracket at
+$a_i+\theta_1$); a clean $Q_2\subseteq P_3\cap\{c_j'-\theta_1\le y<c_j'\}$
+with $c_3(Q_2)=\nu_{31}(w)+e$ satisfies $w\preceq_dQ_2$ (bracket at
+$c_j'-\theta_1$). So $Q_1\preceq_dQ_2$, and Corollary~\ref{cor:agree} gives
+$\Phi(Q_1)\le\Phi(Q_2)$:
+\[
+ f(a_i)(1-e)\nu_{21}(w)\le h(c_j'-)(\nu_{31}(w)+e)\le(1+\epsilon)h(c_j)
+ (\nu_{31}(w)+e).
+\]
+\item Lower $y$, upper $x$: a clean $Q_3\subseteq P_3\cap\{c_j\le
+y<c_j+\theta_1\}$ with $c_3(Q_3)=(1-e)\nu_{31}(w)$ and a clean
+$Q_4\subseteq P_2\cap[a_i'-\theta_1,a_i')$ with $c_2(Q_4)=\nu_{21}(w)+e$ give
+$Q_3\preceq_dw\preceq_dQ_4$, hence
+$h(c_j)(1-e)\nu_{31}(w)\le(1+\epsilon)f(a_i)(\nu_{21}(w)+e)$.
+\end{itemize}
+Let $e\to0$. On $w$, $f\in[f(a_i),(1+\epsilon)f(a_i)]$ and
+$h\in[h(c_j),(1+\epsilon)h(c_j)]$, so
+\[
+ (1+\epsilon)^{-2}\int_wf\,d\nu_{21}\le\int_wh\,d\nu_{31}\le(1+\epsilon)^2
+ \int_wf\,d\nu_{21}.
+\]
+
+\emph{Summation.} Summing over the pieces and adding the residue,
+\[
+ \Bigl|\int_Qf\,d\nu_{21}-\int_Qh\,d\nu_{31}\Bigr|\le
+ \bigl((1+\epsilon)^2-1\bigr)(1+\epsilon)^2f(b)\nu_{21}(P_1)+
+ f(b)\nu_{21}(\mathrm{Rz})+h(b')\nu_{31}(\mathrm{Rz}).
+\]
+Since $\epsilon$ and $\epsilon'$ are arbitrary, the two integrals are equal.
+\end{proof}
+
+In other words, the charges $f\cdot\pi_{21}$ and $h\cdot\pi_{31}$ coincide on
+every bounded rectangle of $P_1$, and so do $f\cdot\nu_{21}$ and
+$h\cdot\nu_{31}$.
+
+\begin{corollary}\label{cor:onesidedinfty}
+(a) If $Q\subseteq P_1\cap\{x<b\}$ with $b<\infty$, then
+$\pi_{31}(Q)\le\int_Q(f/h)\,d\pi_{21}$. (b) If $Q\subseteq P_1\cap\{y<b\}$,
+then $\pi_{21}(Q)\le\int_Q(h/f)\,d\pi_{31}$.
+\end{corollary}
+\begin{proof}
+(a) On $Q$, $f/h\le f(b)/h(0+)$, which is finite by Lemma~\ref{lem:pos}. For
+$Y<\infty$, Theorem~\ref{thm:puresep} on $P_1\cap\{x<b,\ y<Y\}$, integrated
+against the bounded function $1/h$, gives
+$\pi_{31}(Q\cap\{y<Y\})=\int_{Q\cap\{y<Y\}}(f/h)\,d\pi_{21}\le\int_Q(f/h)\,
+d\pi_{21}$. Also $\pi_{31}(Q\cap\{y\ge Y\})\le\nu_{31}(D_y\cap\{y\ge Y\})\to0$
+as $Y\to\infty$ (Lemma~\ref{lem:tails}). (b) is the mirror.
+\end{proof}
+
+\begin{definition}\label{def:Phihat}
+For $Q\subseteq R_b$ put $Q_x\coloneqq Q\cap(P_2\cup(P_1\cap\{x<b\}))$,
+$Q_y\coloneqq Q\setminus Q_x$, and
+\[
+ \Phihat(Q)\coloneqq\int_{Q_x}f(x)\,d\nu_{21}+\int_{Q_y}h(y)\,d\nu_{31}.
+\]
+For arbitrary $Q\subseteq H'$ put $\Phihat(Q)\coloneqq\sup_b\Phihat(Q\cap
+R_b)$.
+\end{definition}
+
+The integrands are bounded: $Q_x\subseteq D_x\cap\{x<b\}$ and $Q_y\subseteq
+D_y\cap\{y<b\}$. The value does not depend on the admissible $b$: passing
+from $b$ to $b'>b$ moves $Q\cap P_1\cap\{b\le x<b'\}$, which lies in
+$\{y<b\}$ because $Q\subseteq R_b$, from the second integral to the first,
+and Theorem~\ref{thm:puresep} on $P_1\cap\{x<b',\ y<b\}$ shows that the two
+values agree. So $\Phihat$ is a finite charge on the subsets of each $R_b$,
+nondecreasing in $b$, and $\Phihat=\Phi+\Phi^\pi$ with $\Phi^\pi$ given by the
+same formula with $\pi_{21},\pi_{31}$. On clean sets $\Phihat=\Phi$.
+
+\begin{lemma}\label{lem:ivt}
+Let $A$ be bounded and $\delta>0$. For every $c\in[0,\Phihat(A)]$ there is
+$A'\subseteq A$ with $|\Phihat(A')-c|<\delta$. The same holds with
+$\Phihat$ replaced by $\nu_{21}$ on subsets of $D_x$, or by $\nu_{31}$ on
+subsets of $D_y$.
+\end{lemma}
+\begin{proof}
+Let $A\subseteq R_b$. By Corollary~\ref{cor:strong}, $A_x$ has a finite
+partition into $x$-slabs with $\Phi^\pi$-mass at most $f(b)\pi_{21}<\delta/2$
+each, and $A_y$ one into $y$-slabs with $\Phi^\pi$-mass at most
+$h(b)\pi_{31}<\delta/2$ each. Order the pieces $A_1,\dots,A_N$. In each piece
+choose an increasing family $(S_r)_{r\in[0,1]}$ with $S_0=\varnothing$,
+$S_1=A_i$ and $\Phi(S_r)=r\Phi(A_i)$; it exists because $\Phi$ is atomless.
+Then $r\mapsto\Phihat(A_1\cup\dots\cup A_{i-1}\cup S_r)$ is nondecreasing, the
+sum of a continuous function and a nondecreasing function of total increase
+less than $\delta/2$; so it takes every value between its endpoints up to
+an error less than $\delta/2$. Concatenating over $i$ gives the claim. The
+same argument applies to $\nu_{21}$ and $\nu_{31}$.
+\end{proof}
+
+\begin{lemma}\label{lem:matching}
+Let $Q_1,\dots,Q_M$ (sources) and $T_1,\dots,T_N$ (targets) be disjoint
+bounded sets, let $\lambda_s$ and $\lambda_t$ be finite nonnegative charges on
+their subsets with the approximation property of Lemma~\ref{lem:ivt}
+at every accuracy (for every $\delta'>0$, every subset $A$ of a source,
+resp.\ target, and every $c\in[0,\lambda(A)]$ there is $A'\subseteq A$ with
+$|\lambda(A')-c|<\delta'$), let $\delta>0$, and suppose
+$\sum_i\lambda_s(Q_i)+2\delta(M+N)<\sum_j\lambda_t(T_j)$. Then there are
+finitely many pairs $(Q'_k,T'_k)$ such that the $Q'_k$ partition
+$\bigcup_iQ_i$, each $Q'_k$ lies in some $Q_i$, the $T'_k$ are pairwise
+disjoint, each lies in some $T_j$, and $\lambda_t(T'_k)>\lambda_s(Q'_k)$ for
+every $k$.
+\end{lemma}
+\begin{proof}
+Treat the sources and targets in order, keeping a current source $Q$ and a
+current target $T$ (the unused parts). If
+$\lambda_t(T)\ge\lambda_s(Q)+2\delta$, cut $T'\subseteq T$ with
+$|\lambda_t(T')-(\lambda_s(Q)+\delta)|<\delta/2$ (accuracy $\delta/2$)
+and pair it with $Q$; the
+source is finished. If $\lambda_t(T)\le2\delta$, discard $T$. Otherwise
+$2\delta<\lambda_t(T)<\lambda_s(Q)+2\delta$; cut $Q'\subseteq Q$ with
+$|\lambda_s(Q')-(\lambda_t(T)-\frac32\delta)|<\delta/2$, or take $Q'=Q$ if
+$\lambda_t(T)-\frac32\delta>\lambda_s(Q)$, and pair $Q'$ with $T$; then
+$\lambda_s(Q')<\lambda_t(T)-\delta$, and the target is finished. Each step finishes a source or a target, so
+there are at most $M+N$ steps. A step that finishes a source uses at most
+$\lambda_s(Q)+\frac32\delta$ of target mass; a step that finishes or discards
+a target uses at most $2\delta$ more target mass than source mass. So the
+targets are not exhausted before the sources.
+\end{proof}
+
+\begin{theorem}\label{thm:dirtyprimary}
+Let $B,C\subseteq H'$ be disjoint, $B$ bounded, and
+$\Phihat(B)<\Phihat(C)$. Then $B\prec_dC$. Neither set needs to be clean.
+\end{theorem}
+\begin{proof}
+We follow the proof of Theorem~\ref{thm:debtprimary} with $\Phihat$ in place
+of $\Phi$ for $B$ and $C$. Intermediate sets are clean, as before, so their
+$\Phi$-values are unchanged. We list every change.
+
+\emph{Step 0.} $\Phihat(C\cap R_b)\uparrow\Phihat(C)$ by definition. Choose a
+bounded $C_0\subseteq C$ with $\Phihat(B)<\Phihat(C_0)<\infty$ and
+$C\setminus C_0$ non-null (if $\Phihat(C)<\infty$, remove from a suitable
+$C\cap R_b$ a non-null piece of small $\Phihat$-mass, which exists by FAED,
+Lemma~1; if $\Phihat(C)=\infty$, $C\setminus R_b$ has infinite $\Phihat$-mass
+and is non-null). Put $\Omega\coloneqq\Phihat(C_0)-\Phihat(B)$.
+
+\emph{Step 1.} In addition to the requirements on the density masses of the
+residues, choose $a_*$, the deleted neighbourhoods of the large jumps and
+the slice widths so small that $\pi_{21}$ of the $x$-residue zones and
+$\pi_{31}$ of the $y$-residue zones (of $B$ and of $C_0$) are less than
+$\gamma\coloneqq\Omega/(16(1+\epsilon)^6(1+f(\xi_b)+h(y_b)+f(b_0)+h(b_0)))$.
+This is possible in the order of Theorem~\ref{thm:debtprimary}: $\xi_b,y_b$ are fixed
+first, the large jumps depend only on $\epsilon$ (by
+Lemma~\ref{lem:pos}, $f(0+),h(0+)>0$, so $\log f$ and $\log h$ have finite
+variation on $(0,b_0]$, and only finitely many jumps of size at least
+$\log(1+\epsilon)/2$ there, whatever $a_*$ is), and all residue zones are
+neighbourhoods of finitely many points or of $0$, which carry small pure mass
+by Corollary~\ref{cor:strong}.
+
+\emph{Step 3.} Subdivide the source pieces into sub-pieces $Q$ of small
+charge $\nu_{21}(Q)$ (types X and $R_x$) or $\nu_{31}(Q)$ (types Y and $R_y$),
+using finer slabs and atomlessness of the densities. The first link of a
+type X route is the bracket link from the possibly dirty $Q$, in the window
+$[a,b)$, to a clean $W_1\subseteq HL\cap\{b-\theta_U\le x<b\}$ with
+$c_2(W_1)\in(\nu_{21}(Q),(1+\epsilon)\nu_{21}(Q)]$. Since $f\ge f(a)$ on
+$Q$, $\Phihat(Q)\ge f(a)\nu_{21}(Q)$, and
+$\Phi(W_1)\le(1+\epsilon)f(a)c_2(W_1)\le(1+\epsilon)^2\Phihat(Q)$. Put
+$e(Q)\coloneqq(1+\epsilon)^2\Phihat(Q)$. Type Y is the same with $h$,
+$\nu_{31}$, $c_3$, and $e(Q)\coloneqq(1+\epsilon)^4\Phihat(Q)$. For residue
+pieces the first link uses $c_2(W_1)\in(\nu_{21}(Q),(1+\epsilon)\nu_{21}(Q)]$,
+resp.\ $c_3$, and $e(Q)\coloneqq(1+\epsilon)f(\xi_b)\nu_{21}(Q)$, resp.\
+$(1+\epsilon)h(y_b)\nu_{31}(Q)$. All later links are between clean chosen
+sets and are unchanged.
+
+\emph{Step 4.} The last link into a possibly dirty target sub-piece $T'$ in a
+window $[a,b)$ of $f$ is the bracket link from a clean $S$; it needs
+$c_2(S)<\nu_{21}(T')$. Now $c_2(S)\le\Phi(S)/f(a)$ and $\nu_{21}(T')\ge
+\Phihat(T')/((1+\epsilon)f(a))$, so $\Phihat(T')>(1+\epsilon)\Phi(S)$
+suffices; likewise in $y$. So the route exists whenever
+$\Phihat(T')>(1+\epsilon)^5e(Q)$.
+
+\emph{Step 5.} The budget becomes
+\[
+ (1+\epsilon)^5\sum_Qe(Q)\le(1+\epsilon)^9\Phihat(B)+(1+\epsilon)^6
+ \bigl(f(\xi_b)\nu_{21}(R_x)+h(y_b)\nu_{31}(R_y)\bigr),
+\]
+against the target mass $\Phihat(C_0)-\Phihat(R')$. With $\epsilon$ chosen
+so that $(1+\epsilon)^9\Phihat(B)<\Phihat(B)+\Omega/4$, and with the
+density and pure parts of the residue term and of $\Phihat(R')$ each less
+than $\Omega/16$ (by Step~1 and the absolute continuity argument of
+Theorem~\ref{thm:debtprimary}), the target mass exceeds the source budget by
+at least $\Omega/2$. Instead of exact splitting, use
+Lemma~\ref{lem:matching} with $\lambda_s\coloneqq(1+\epsilon)^5e$ and
+$\lambda_t\coloneqq\Phihat$ and $\delta$ so small that $2\delta(M+N)<
+\Omega/4$, where $M,N$ are the numbers of source and target sub-pieces,
+fixed before $\delta$. Both charges have the approximation property, by
+Lemma~\ref{lem:ivt}.
+
+\emph{Step 6} is unchanged. No other step of the proof of
+Theorem~\ref{thm:debtprimary} uses the weight of $B$ or $C$.
+\end{proof}
+
+\begin{corollary}\label{cor:dirtyagree}
+(a) If $B\preceq_dC$ and $C$ is bounded, then $\Phihat(B)\le\Phihat(C)$.
+(b) $\Phihat(H')<\infty$.
+\end{corollary}
+\begin{proof}
+(a) As in Corollary~\ref{cor:agree}, with Theorem~\ref{thm:dirtyprimary}; for
+unbounded $B$, $\Phihat(B)=\Phihat(B\setminus C)+\Phihat(B\cap C)$ holds by
+passing to the supremum over $b$. (b) Let $B_0\subseteq D_x\cap\{x<1\}$ be
+clean and non-null. By Lemma~\ref{lem:noncomp}(a), $B_0\not\preceq_d
+D_x\cap\{x\ge s\}$ for $s\ge S_0\ge1$. If $\Phihat(D_x\cap\{x\ge s\})>
+\Phi(B_0)$ for such $s$, then some bounded $E\coloneqq D_x\cap\{x\ge s\}\cap
+R_{b}$ has $\Phihat(E)>\Phi(B_0)$, and Theorem~\ref{thm:dirtyprimary} gives
+$B_0\prec_dE\preceq_dD_x\cap\{x\ge s\}$, a contradiction. So
+$\Phihat(D_x\cap\{x\ge s\})\le\Phi(B_0)$, and likewise
+$\Phihat(D_y\cap\{y\ge s\})\le\Phi(B'_0)$ for large $s$. For $b\ge s$ and
+$b'>b$, $R_{b'}\setminus R_b\subseteq F_b\subseteq(D_x\cap\{x\ge b\})\cup
+(D_y\cap\{y\ge b\})$, so $\Phihat(R_{b'})\le f(b)\nu_{21}(H)+h(b)\nu_{31}(H)
++\Phi(B_0)+\Phi(B'_0)$, uniformly in $b'$.
+\end{proof}
+
+\section{Silent targets in the finitely additive case}\label{sec:silentfa}
+
+We keep the fixed targets of Section~\ref{sec:silent} and put the pure parts
+into the accounting. World~$1$'s debt weight is $\Phihat$, which is tight by
+Theorem~\ref{thm:dirtyprimary}; credit gets a crude weight that is only an
+upper bound, certified by a change at $V$ (Lemma~\ref{lem:Vcap}).
+
+\paragraph{Credit weight.} Put
+\[
+ \Psitil(T)\coloneqq h(1)\Bigl[\nu_{32}(T\cap D_y)+\frac{\nu_{22}(T\cap
+ D_x)}{F(1)}\Bigr],\qquad
+ \psitil\coloneqq h(1)\Bigl[u\one_{D_y}+\frac{v\one_{D_x}}{F(1)}\Bigr],
+\]
+so $\Psitil$ is a finite charge with density $\psitil$ and pure part
+$\Psitil^\pi$ (the same formula with $\pi_{32},\pi_{22}$). For $\kappa>0$ let
+$\tilde\lambda_\kappa$ be $\varphi$ for debt, $0$ for silence and
+$-\kappa\psitil$ for credit, and with $r=(d+g_0)/2$ put
+\[
+ s_0'(\kappa)\coloneqq\frac{\min\{F(1)(1-r/g_0),\ r-d\}}{\kappa h(1)}>0 .
+\]
+For $0<s<s_0'(\kappa)$ let $p\coloneqq(s,1,r)/(1+s+r)$ and
+$\tilde\ell_p\coloneqq p_1\tilde\lambda_\kappa+p_2\ell_2+p_3\ell_3$, where
+$\ell_2,\ell_3$ are the local penalties of the densities, as in
+Section~\ref{sec:silent}.
+
+\begin{lemma}\label{lem:silentfa}
+For $0<s<s_0'(\kappa)$ the costs $\tilde\ell_p$ relative to silence are,
+divided by $p_2$:
+\begin{center}
+\begin{tabular}{c|l|l}
+ & credit & debt\\\hline
+$P_1$ & $v\bigl(1-s\kappa h(1)/F(1)\bigr)+u\bigl(r-s\kappa h(1)\bigr)$ &
+$c_2\,[sf-1-rf/h]$\\
+$P_2$ & $c_3\,[G(1-s\kappa h(1)/F(1))-r]$ & $u\,[F(sf-1)+r]$\\
+$P_3$ & $u\,[r-s\kappa h(1)-F]$ & $c_3\,[sh+G-r]$
+\end{tabular}
+\end{center}
+All entries except the debt entry on $P_1$ are a.e.\ positive. So the
+a.e.-unique pointwise minimizer is again $\Sigma_p$: debt on $\Theta_s$,
+silence elsewhere, never credit.
+\end{lemma}
+\begin{proof}
+As for Lemma~\ref{lem:silent}, with the credit increment $-\kappa\psitil$.
+Now $s\kappa h(1)<F(1)(1-r/g_0)<F(1)$ and $s\kappa h(1)<r-d<r$, so
+$1-s\kappa h(1)/F(1)>r/g_0$; hence the $P_2$ credit entry is at least
+$c_3[g_0(1-s\kappa h(1)/F(1))-r]>0$, and the $P_3$ credit entry at least
+$u(r-d-s\kappa h(1))>0$. The debt entries are as before. No bound on
+$\ftil$ or $\htil$ is used.
+\end{proof}
+
+\begin{lemma}\label{lem:cornerfa}
+Lemma~\ref{lem:corner} holds with $\tilde\lambda_\kappa$, $\tilde\ell_p$,
+$s_0'(\kappa)$ and $\delta_M\coloneqq\tilde\ell_p(\cdot,M)-\tilde\ell_p(\cdot,
+\Sigma_p)$ in place of $\lambda_\kappa$, $\ell_p$, $s_0(\kappa)$ and the
+former $\delta_M$.
+\end{lemma}
+\begin{proof}
+The proof of Lemma~\ref{lem:corner} uses only the shape of the minimizer and
+the strict positivity of the other costs, now given by
+Lemma~\ref{lem:silentfa}, and the integrable bound
+$|\delta_M|\le p_1(\varphi+\kappa\psitil)+p_2\bar e_2+p_3\bar e_3$ on $R_{b_0}$.
+\end{proof}
+
+\paragraph{The finitely additive cost.} For a regular $M$ let $\debt_M$ and
+$\cred_M$ be its debt and credit sets in $H'$, and for $b<\infty$ put
+\[
+ \Gamma_b(M)\coloneqq p_1\bigl[\Phihat(\debt_M\cap R_b)-\kappa\Psitil(\cred_M
+ \cap R_b)\bigr]+\sum_{k=2,3}p_k\sum_{l=1,2}\nu_{kl}(R^k_l(M)\cap R_b).
+\]
+Its density part is $\int_{R_b}\tilde\ell_p(g,M(g))\,d\mu$. The rest,
+$\Pi_b(M)$, is the same expression with every charge replaced by its pure
+part ($\Phi^\pi$, $\Psitil^\pi$, $\pi_{kl}$).
+
+\begin{lemma}\label{lem:pureopt}
+Suppose $f$ and $h$ are unbounded. Let $\kappa$, $s$ and $p$ be as in
+Lemma~\ref{lem:silentfa}, and $b<\infty$. Then
+$\Pi_b(M)\ge\Pi_b(\Sigma_p)-\epsilon$ for every $\epsilon>0$ and every
+regular $M$; that is, $\Pi_b(M)\ge\Pi_b(\Sigma_p)$.
+\end{lemma}
+\begin{proof}
+Fix $\epsilon>0$. We choose $\epsilon'>0$ and then $X,Y\ge b$, depending
+on $\epsilon,b,p,\kappa$ and the configuration only, not on $M$.
+By finite additivity, $\Pi_b(M)-\Pi_b(\Sigma_p)$ is a finite sum over cells:
+the sets $E=R_b\cap P\cap\{\Sigma_p=o,\ M=o'\}$, where $P$ runs through the
+regions below and $(o,o')$ through the pairs of advice. The contribution of
+a cell is $p_1$ times the change of $\Phi^\pi$ (for debt) and of
+$-\kappa\Psitil^\pi$ (for credit), plus $p_k$ times the changes of the
+$\pi_{kl}$ of the rank sets. We bound every cell from below, using
+Theorem~\ref{thm:pureratio}(i), (ii) with an $\epsilon'>0$ fixed at the end;
+recall $r-s\kappa h(1)>d$, $g_0(1-s\kappa h(1)/F(1))>r$ and $g_0>r$.
+
+\emph{$P_2\cap R_b$ and $P_3\cap R_b$}, where $\Sigma_p$ is silent. On $P_2$,
+$\Psitil^\pi=h(1)\alpha'^\pi/F(1)$; on $P_3$, $\Psitil^\pi=h(1)\beta^\pi$.
+Dropping the nonnegative terms $p_1\Phi^\pi$, the four cells contribute at
+least
+\begin{align*}
+ M=\omega_2\text{ on }P_2\ (o_2)&:\ p_2\bigl[r\beta^\pi-\alpha^\pi\bigr]
+ \ge p_2\bigl[(r-d)\beta^\pi-\epsilon'\bigr]\ge-p_2\epsilon',\\
+ M=\omega_2\text{ on }P_3\ (o_{12})&:\ p_2\bigl[(r-s\kappa h(1))\beta^\pi-
+ \alpha^\pi\bigr]\ge-p_2\epsilon',\\
+ M=\omega_3\text{ on }P_2\ (o_{13})&:\ p_2\bigl[(1-s\kappa h(1)/F(1))
+ \alpha'^\pi-r\beta'^\pi\bigr]\ge-p_2\epsilon',\\
+ M=\omega_3\text{ on }P_3\ (o_3)&:\ p_2\bigl[\alpha'^\pi-r\beta'^\pi\bigr]
+ \ge-p_2\epsilon',
+\end{align*}
+all evaluated at the cell. The first two use (i) of
+Theorem~\ref{thm:pureratio}, the last two use (ii) and
+$g_0(1-s\kappa h(1)/F(1))>r$, $g_0>r$.
+
+\emph{$P_1\cap R_b$.} Here $P_1\cap R_b$ is the disjoint union of
+\begin{gather*}
+ \mathrm{Rect}_1\coloneqq P_1\cap\{x<b,\ y<Y\},\qquad
+ \mathrm{Rect}_2\coloneqq P_1\cap\{b\le x<X,\ y<b\},\\
+ \mathrm{Tail}_y\coloneqq P_1\cap\{x<b,\ y\ge Y\},\qquad
+ \mathrm{Tail}_x\coloneqq P_1\cap\{x\ge X,\ y<b\}.
+\end{gather*}
+By Definition~\ref{def:Phihat}, $\Phi^\pi=f\cdot\pi_{21}$ on
+$P_1\cap\{x<b\}$ and $\Phi^\pi=h\cdot\pi_{31}$ on $P_1\cap\{x\ge b\}$. Write
+$\varrho\coloneqq1/f(x)+r/h(y)$, so $\Theta_s=\{\varrho>s\}$. The cell
+contributions are:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item ($\Sigma_p$ debt, $M$ silent), $E\subseteq\Theta_s$:
+$-p_1\Phi^\pi(E)+p_2\pi_{21}(E)+p_3\pi_{31}(E)$;
+\item ($\Sigma_p$ silent, $M$ debt), $E\subseteq P_1\setminus\Theta_s$:
+$p_1\Phi^\pi(E)-p_2\pi_{21}(E)-p_3\pi_{31}(E)$;
+\item ($\Sigma_p$ debt, $M$ credit): the first expression plus
+$p_2[(1-s\kappa h(1)/F(1))\pi_{22}+(r-s\kappa h(1))\pi_{32}](E)$, which is at
+least the first expression;
+\item ($\Sigma_p$ silent, $M$ credit):
+$p_2[(1-s\kappa h(1)/F(1))\pi_{22}+(r-s\kappa h(1))\pi_{32}](E)\ge0$.
+\end{itemize}
+On $\mathrm{Rect}_1$, Theorem~\ref{thm:puresep} gives
+$\pi_{31}=(f/h)\cdot\pi_{21}$ (integrate the bounded function $1/h$). So the
+first contribution is $p_2\int_Ef(\varrho-s)\,d\pi_{21}\ge0$ and the second
+is $p_2\int_Ef(s-\varrho)\,d\pi_{21}\ge0$. On $\mathrm{Rect}_2$,
+Theorem~\ref{thm:puresep} on $P_1\cap\{x<X,\ y<b\}$ gives
+$\pi_{21}=(h/f)\cdot\pi_{31}$, and the two contributions are
+$p_2\int_Eh(\varrho-s)\,d\pi_{31}\ge0$ and $p_2\int_Eh(s-\varrho)\,d\pi_{31}
+\ge0$. On $\mathrm{Tail}_y$, Corollary~\ref{cor:onesidedinfty}(a) gives
+$\pi_{31}(E)\le\int_E(f/h)\,d\pi_{21}$. The second contribution is then at
+least $p_2\int_Ef(s-\varrho)\,d\pi_{21}\ge0$. For the first, drop
+$p_3\pi_{31}\ge0$: it is at least $p_2\int_E(1-sf)\,d\pi_{21}$, and on
+$\Theta_s$, $1-sf>-rf/h\ge-rf(b)/h(Y)$; so it is at least
+$-p_2rf(b)\pi_{21}(E)/h(Y)$. On $\mathrm{Tail}_x$, by
+Corollary~\ref{cor:onesidedinfty}(b), the second contribution is at least
+$p_2\int_Eh(s-\varrho)\,d\pi_{31}\ge0$, and the first at least
+$p_2\int_E(r-sh)\,d\pi_{31}\ge-p_2h(b)\pi_{31}(E)/f(X)$, since $r-sh>-h/f$
+on $\Theta_s$.
+
+Summing, $\Pi_b(M)-\Pi_b(\Sigma_p)\ge-4p_2\epsilon'-p_2rf(b)\pi_{21}(P_1)/h(Y)
+-p_2h(b)\pi_{31}(P_1)/f(X)$. Choose $\epsilon'$, and then $Y,X\ge b$ with
+$h(Y)$, $f(X)$ large, so that this is at least $-\epsilon$. Since
+$\epsilon$ is arbitrary, $\Pi_b(M)\ge\Pi_b(\Sigma_p)$.
+\end{proof}
+
+\begin{theorem}\label{thm:kkmfa}
+Suppose $f$ and $h$ are unbounded. Let $\kappa>0$, and let $s$, $p$, $b_0$
+and $\eta$ be as in Lemma~\ref{lem:cornerfa}. There are disjoint bounded sets
+$A_3,T$ and $\theta>0$ with $V+\debt(A_3)+\cred(T)\prec_1V$ and
+$\Phihat(A_3)>\kappa\Psitil(T)+\theta$.
+\end{theorem}
+\begin{proof}
+Put $\epsilon_2(b)\coloneqq(\nu_{21}+\nu_{22})(D_x\cap\{x\ge b\})$ and
+$\epsilon_3(b)\coloneqq(\nu_{31}+\nu_{32})(D_y\cap\{y\ge b\})$; both tend to
+$0$ (Lemma~\ref{lem:tails}). Fix $b\ge b_0$ with
+$p_2\epsilon_2(b)+p_3\epsilon_3(b)<\eta/8$, and then apply
+Lemma~\ref{lem:pureopt} with $\epsilon=\eta/8$ at this $b$. Let $\Sigma^b$ be
+$\Sigma_p$ on $R_b$ and credit on $F_b$. By (K1), applied to this fixed
+model, there is a selected $C$ with $C\preceq_i\Sigma^b$ for $i=1,2,3$.
+
+(i) By \eqref{eq:W}, $L_k(C)\le L_k(\Sigma^b)$. Split each rank set into its
+parts in $R_b$ and $F_b$. On $F_b$, $\Sigma^b$ gives credit, which has
+world-2 rank $2$ on $(P_1\cup P_2)\cap F_b\subseteq D_x\cap\{x\ge b\}$ and
+rank $0$ on $P_3$, and world-3 rank $2$ on $(P_1\cup P_3)\cap
+F_b\subseteq D_y\cap\{y\ge b\}$ and rank $0$ on $P_2$. So the $F_b$-part of
+$L_k(C)-L_k(\Sigma^b)$ is at least $-\epsilon_k(b)$, and the $R_b$-part of
+$L_k(C)-L_k(\Sigma_p)$ is at most $\epsilon_k(b)$.
+
+(ii) $\Gamma_b(C)-\Gamma_b(\Sigma_p)=\int_{R_b}\delta_C\,d\mu+\Pi_b(C)-
+\Pi_b(\Sigma_p)\ge\eta-\eta/8$, by Lemma~\ref{lem:cornerfa} ($C$ is
+coherent, $\delta_C\ge0$, $b\ge b_0$) and Lemma~\ref{lem:pureopt}.
+
+(iii) With $\Lambda(M)\coloneqq\Phihat(\debt_M\cap R_b)-\kappa
+\Psitil(\cred_M\cap R_b)$, (i) and (ii) give $p_1[\Lambda(C)-
+\Lambda(\Sigma_p)]\ge\frac78\eta-\frac18\eta=\frac34\eta$.
+
+(iv) As in Lemma~\ref{lem:kkmsilent}(ii), let $\widetilde\Sigma$ be
+$\Sigma_p$ on $R_b$ and $C$ on $F_b$, so $C\preceq_1\widetilde\Sigma$; let
+$D$, $A$, $A'$, $T$ and $N$ be as there, so $\widetilde\Sigma=N+\debt(A')$
+and $C=N+\debt(A)+\cred(T)$. Since $\Sigma_p$ gives no credit on $R_b$,
+$\cred_C\cap R_b=T$; and $\debt_C\cap R_b$ and $\Theta_s\cap R_b$ are the
+disjoint unions of $\debt_C\cap\Theta_s\cap R_b$ with $A$ and with $A'$. As
+$\Phihat$ is additive on subsets of $R_b$,
+\[
+ \Lambda(C)-\Lambda(\Sigma_p)=\Phihat(A)-\Phihat(A')-\kappa\Psitil(T)\ge
+ \frac{3\eta}{4p_1}\eqqcolon3\theta .
+\]
+
+(v) By Lemma~\ref{lem:ivt} choose $A_2\subseteq A$ with
+$\Phihat(A')+\theta<\Phihat(A_2)<\Phihat(A')+2\theta$. $A'$ is bounded,
+possibly dirty, and disjoint from $A_2$, so Theorem~\ref{thm:dirtyprimary}
+gives $A'\prec_dA_2$. Conclude as in Lemma~\ref{lem:kkmsilent}(iii): with
+$A_3\coloneqq A\setminus A_2$, $V+\debt(A_3)+\cred(T)\prec_1V$, and
+$\Phihat(A_3)=\Phihat(A)-\Phihat(A_2)>\kappa\Psitil(T)+\theta$.
+\end{proof}
+
+\begin{lemma}\label{lem:Vcap}
+Let $S_{\rm reg}\coloneqq P_3\cap\{1\le t<2\}$, $M_{\rm reg}\coloneqq
+P_1\cap\{x<1,\ y<1\}$ and $\omega(\delta)\coloneqq\sup\{c_3(E):E\subseteq
+M_{\rm reg},\ u(E)\le\delta\}$. Choose $\tau_c>0$ with
+\[
+ c_2(S_{\rm reg})-d\tau_c/h(1)>2F(1)\tau_c/h(1),\qquad
+ c_3(M_{\rm reg})-\omega(\tau_c/h(1))>3\tau_c/h(1).
+\]
+Then there is no pair of disjoint sets $A_3,T\subseteq H'$, with $A_3$
+bounded, $\Psitil(T)\le\tau_c$, $\Phihat(A_3)>\Psitil(T)$ and
+$V+\debt(A_3)+\cred(T)\prec_1V$.
+\end{lemma}
+\begin{proof}
+Suppose there is one, and write $T_k\coloneqq T\cap P_k$. Let $e>0$ be
+small. Since $c_2=Fu\le du$ on $P_3$ and $u(T_3)\le\nu_{32}(T_3)\le
+\Psitil(T)/h(1)$, $c_2(S_{\rm reg}\cap T)\le d\tau_c/h(1)$; and since
+$u(T_1)\le\nu_{32}(T_1)\le\tau_c/h(1)$, $c_3(M_{\rm reg}\cap T)\le
+\omega(\tau_c/h(1))$. So we can choose clean sets
+\begin{gather*}
+ S\subseteq S_{\rm reg}\setminus T,\qquad c_2(S)=\nu_{22}(T_1\cup T_2)+e,\\
+ M\subseteq M_{\rm reg}\setminus T,\qquad c_3(M)=\nu_{32}(T_1\cup T_3)+
+ c_2(S)/F(1)+e;
+\end{gather*}
+indeed $\nu_{22}(T_1\cup T_2)\le F(1)\tau_c/h(1)$ and the required $c_3$-mass
+is less than $3\tau_c/h(1)$ for small $e$. Let $X\coloneqq
+V+\cred(T\cup S)+\debt(M)$. By \eqref{eq:table}, with $S,M$ clean,
+\begin{align*}
+ L_2(X)-L_2(V)&=\nu_{22}(T_1)+\nu_{22}(T_2)-\nu_{21}(T_3)-c_2(S)-c_2(M)\\
+ &\le\nu_{22}(T_1\cup T_2)-c_2(S)=-e,\\
+ L_3(X)-L_3(V)&=\nu_{32}(T_1)-\nu_{31}(T_2)+\nu_{32}(T_3)+u(S)-c_3(M)\\
+ &\le\nu_{32}(T_1\cup T_3)+c_2(S)/F(1)-c_3(M)=-e,
+\end{align*}
+using $u=c_2/F\le c_2/F(1)$ on $S\subseteq\{t\ge1\}$. By (K4) and
+Lemma~\ref{lem:forced}, $V\preceq_1X$. By strict (G),
+$X\prec_1V+\debt(M)+\cred(T)$, since $X$ adds credit on the silent set $S$.
+Next, $\varphi=h(y)c_3\le h(1)c_3$ on $M_{\rm reg}$, so
+\[
+ \Phi(M)\le h(1)c_3(M)=\Psitil(T)+h(1)e\bigl(1+1/F(1)\bigr)<\Phihat(A_3)
+\]
+for small $e$. Since $M$ is clean, $\Phihat(M\setminus A_3)=\Phi(M)-\Phi(M\cap
+A_3)<\Phihat(A_3)-\Phihat(A_3\cap M)=\Phihat(A_3\setminus M)$, and
+Theorem~\ref{thm:dirtyprimary} (lighter side $M\setminus A_3$) with (F3) gives
+$M\prec_dA_3$. By (F5) in the context $\cred(T)$, which is silent on $M\cup
+A_3$, $V+\debt(M)+\cred(T)\prec_1V+\debt(A_3)+\cred(T)$. Hence
+\[
+ V+\debt(A_3)+\cred(T)\prec_1V\preceq_1X\prec_1V+\debt(M)+\cred(T)\prec_1
+ V+\debt(A_3)+\cred(T),
+\]
+a contradiction.
+\end{proof}
+
+The credit set $T$ is never relocated here; it is bounded only through its
+own charges. This removes the need for clean credit that
+Lemma~\ref{lem:cap} has, and also handles possible germs of $\nu_{22}$,
+$\nu_{32}$ at $0+$ (Remark~\ref{rem:notcontrolled}).
+
+\begin{theorem}\label{thm:residualfa}
+If $f$ and $h$ are unbounded and have jumps beyond every point, then (H) and
+the undominatedness of $V$ are contradictory.
+\end{theorem}
+\begin{proof}
+Let $\tau_c$ be as in Lemma~\ref{lem:Vcap} and $\kappa_c\coloneqq
+\max\{1,\Phihat(H')/\tau_c\}$, finite by Corollary~\ref{cor:dirtyagree}.
+Let $r=(d+g_0)/2$ and $s_0'\coloneqq s_0'(\kappa_c)$. Choose jump points
+$x_1$ of $f$ and $y_1$ of $h$ with $f(x_1+)>2/s_0'$ and $h(y_1+)>2r/s_0'$.
+Lemma~\ref{lem:cornerfa} gives $s$, $p$, $b_0$ and $\eta$, and
+Theorem~\ref{thm:kkmfa} with $\kappa=\kappa_c$ gives disjoint bounded $A_3,T$
+with $V+\debt(A_3)+\cred(T)\prec_1V$ and $\Phihat(A_3)>\kappa_c\Psitil(T)$.
+Then $\Psitil(T)<\Phihat(H')/\kappa_c\le\tau_c$ and $\Phihat(A_3)>
+\Psitil(T)$, contrary to Lemma~\ref{lem:Vcap}. The order of choices is: the
+configuration; $\Phihat(H')$ and $\tau_c$; $\kappa_c$; $r$ and $s_0'$;
+$(x_1,y_1)$; $s$, $p$, $b_0$, $\eta$; $b$ (with
+$p_2\epsilon_2(b)+p_3\epsilon_3(b)<\eta/8$); then $C$. Lemma~\ref{lem:pureopt}
+at this $b$ holds for every regular $M$, and the constants $\epsilon'$, $Y$,
+$X$ of its proof are chosen after $b$; since $b$ does not depend on them,
+there is no circularity.
+\end{proof}
+
+\section{Dense thresholds in the finitely additive case}\label{sec:dense}
+
+Fix $\theta\in(0,\infty)$ and $\kappa\coloneqq F(\theta+)$, so $0<\kappa\le
+d<g_0$. Write $\mathcal L\coloneqq L_2+\kappa L_3$, and $\mathcal L^c$, $\mathcal L^s$ for its ordinary
+and pure parts:
+$\mathcal L^c(M)=\int(\ell_2+\kappa\ell_3)(g,M(g))\,d\mu$ and
+$\mathcal L^s(M)=\sum_l\pi_{2l}(R^2_l(M))+\kappa\sum_l\pi_{3l}(R^3_l(M))$ for regular
+$M$. Write $L_k^c$, $L_k^s$ for the parts of $L_k$. By DT, Lemma~1, $B_\theta$
+minimizes $\mathcal L^c$ over all models, and every coherent minimizer of $\mathcal L^c$ is a
+model $B_s$; DT's proof uses its tied-level fact only to obtain $G>\kappa$
+a.e., which holds here because $G\ge g_0>d\ge\kappa$.
+
+\begin{lemma}\label{lem:weightedpure}
+For every $\epsilon>0$ and every regular $M$,
+$\mathcal L^s(M)\ge \mathcal L^s(B_\theta)-\epsilon$.
+\end{lemma}
+\begin{proof}
+On $P_1$, $B_\theta$ gives $o_{23}$, which has rank $0$ at worlds $2$ and
+$3$, so $M$'s pure contribution there is not smaller. On $P_2\cup P_3$,
+$B_\theta$ gives $\omega_2$ on $(\theta,\infty)$ and silence on
+$(0,\theta)$, and $M$ gives $\omega_2$, silence or $\omega_3$. The pure
+weighted cost of $M$ relative to $B_\theta$ on a cell $E$ is:
+$-\alpha^\pi+\kappa\beta^\pi$ ($E\subseteq(0,\theta)$, $M=\omega_2$);
+$\alpha'^\pi-\kappa\beta'^\pi$ ($E\subseteq(0,\theta)$, $M=\omega_3$);
+$\alpha^\pi-\kappa\beta^\pi$ ($E\subseteq(\theta,\infty)$, $M$ silent);
+$(\alpha^\pi+\alpha'^\pi)-\kappa(\beta^\pi+\beta'^\pi)$ ($E\subseteq(\theta,
+\infty)$, $M=\omega_3$). By Theorem~\ref{thm:pureratio} (iii), (ii) (with
+$g_0\ge\kappa$), (iv) and (v), each is at least $-\epsilon/4$.
+\end{proof}
+
+\begin{lemma}\label{lem:deviation}
+Let $s\in[0,\infty]$, let $K_s$ be the credal set of $B_s$, let compact convex
+$K_j\to K_s$ in Hausdorff distance $\epsilon_j\to0$, and $C_j\coloneqq
+\Dscr_{K_j}$.
+\begin{enumerate}[label=(\alph*)]
+\item If $s>\theta$, then for large $j$, $\{C_j=\omega_2\}\cap(0,\theta)
+\subseteq P_3\cap\{y>Y_j\}$ with $Y_j\to\infty$.
+\item If $s<\theta$, then for large $j$,
+$\bigl((\theta,\infty)\setminus\{C_j=\omega_2\}\bigr)\cup\bigl(\{C_j=\omega_3\}
+\cap(0,\theta)\bigr)\subseteq(P_2\cap\{x>X_j\})\cup(0,\sqrt{\epsilon_j})$
+with $X_j\to\infty$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+On $P_2$, $g=g_3(xt,-t,1)$, so $m\cdot g/g_3=m_1xt-m_2t+m_3$; on $P_3$,
+$g=|g_3|(y,t,-1)$, so $m\cdot g/|g_3|=m_1y+m_2t-m_3$. $C_j$ gives $\omega_2$
+on $P_2$ iff the first expression is negative for all $m\in K_j$, and
+$\omega_3$ iff it is positive for all $m$; on $P_3$, $\omega_2$ iff the second
+is positive for all $m$, and $\omega_3$ iff it is negative for all $m$. Every
+$m'\in K_s$ has $m'_1=0$, $m'_2\ge1/(1+s)$ and $m'_3\le sm'_2$ (if
+$s<\infty$).
+
+(a) Choose $m\in K_j$ within $\epsilon_j$ of $n_s$ (of $e_3$ if $s=\infty$).
+On $P_2\cap\{t<\theta\}$, $\omega_2$ would need $m_3<t(m_2-m_1x)\le\theta m_2$,
+impossible for large $j$ since $m_3/m_2\to s>\theta$. On
+$P_3\cap\{t<\theta\}$, $\omega_2$ needs $m_1y>m_3-m_2\theta\ge c_j$, where
+$c_j\coloneqq(s-\theta)/(1+s)-\epsilon_j(1+\theta)$ (or
+$1-\epsilon_j(1+\theta)$ if $s=\infty$) is positive for large $j$; as
+$m_1\le\epsilon_j$, this forces $y>Y_j\coloneqq c_j/\epsilon_j$.
+
+(b) Every $m\in K_j$ is within $\epsilon_j$ of some $m'\in K_s$. For
+$t>\theta$ on $P_2$,
+\[
+ m_1xt-m_2t+m_3\le\epsilon_jxt-m'_2(t-s)+\epsilon_j(t+1)\le
+ t\bigl[\epsilon_jx+\epsilon_j(1+1/\theta)-(1-s/\theta)/(1+s)\bigr],
+\]
+which is negative unless $x\ge X_j^{(1)}\coloneqq[(1-s/\theta)/(1+s)-
+\epsilon_j(1+1/\theta)]/\epsilon_j$. For $t>\theta$ on $P_3$,
+$m_1y+m_2t-m_3\ge m'_2(t-s)-\epsilon_j(t+1)>0$ for large $j$. So
+$(\theta,\infty)\setminus\{C_j=\omega_2\}\subseteq P_2\cap\{x\ge X_j^{(1)}\}$.
+For $t<\theta$, take $m''\in K_j$ within $\epsilon_j$ of $e_2\in K_s$. On
+$P_2$, $\omega_3$ needs $\epsilon_jxt>(1-\epsilon_j)t-\epsilon_j$, so either
+$t<\sqrt{\epsilon_j}$ or $x>X_j^{(2)}\coloneqq(1-\epsilon_j-
+\sqrt{\epsilon_j})/\epsilon_j$. On $P_3$, $\omega_3$ needs
+$(1-\epsilon_j)t-\epsilon_j<0$, so $t<\epsilon_j/(1-\epsilon_j)<
+\sqrt{\epsilon_j}$ for small $\epsilon_j$. Put
+$X_j\coloneqq\min(X_j^{(1)},X_j^{(2)})$.
+\end{proof}
+
+\begin{theorem}\label{thm:densefa}
+For every $\theta\in(0,\infty)$ there are good bases $C_j=\Dscr_{K_j}$, in
+the sense of DT, Section~1, item~(v), with $K_j\to K_\theta$ in Hausdorff
+distance. In particular $\tau_j\to\theta$ and $\tau_{2,j}\to\infty$.
+\end{theorem}
+\begin{proof}
+\emph{(a) Targets.} As in DT, Theorem~2, choose $a_j\uparrow\theta$ and
+$b_j\downarrow\theta$ with $u(A_j)=u(T_j)=z_j>0$, where $A_j\coloneqq
+P_2\cap(\theta,b_j)$ and $T_j\coloneqq P_3\cap(a_j,\theta)$, and a
+\emph{clean} non-null $Q_j\subseteq P_1$ with $\mu(Q_j)\to0$ and
+\[
+ c_2(Q_j)<c_2(P_3\cap(\theta,b_j))+c_2(T_j),\qquad
+ c_3(Q_j)<u((a_j,\theta)),
+\]
+which are DT's conditions (1) and (2). Let $X_j$ be $B_\theta$ silenced on
+$Q_j\cup A_j$, with credit ($o_{12}$) added on $T_j$. By (K1) at the fixed
+model $X_j$ there is a selected $C_j=\Dscr_{K_j}$ with $C_j\preceq_iX_j$ for
+$i=1,2,3$, and \eqref{eq:W} gives $L_k(C_j)\le L_k(X_j)$, $k=2,3$.
+
+\emph{(b) $C_j$ is no $B_{s'}$.} If $s'\in[a_j,b_j]$, $X_j$ is a pointwise
+world-1 improvement of $B_{s'}$, strict on $Q_j$: on $P_2$, $X_j$ has debt
+only on $\{t\ge b_j\}\subseteq\{t>s'\}$; on $P_3$ it has credit on
+$\{t>a_j\}\supseteq\{t>s'\}$; on $P_1$ it removes debt on $Q_j$. So
+$X_j\prec_1B_{s'}$, while $C_j\preceq_1X_j$. If $s'>b_j$ (including
+$s'=\infty$), the world-2 rank-1 sets give
+$L_2^s(B_{s'})-L_2^s(X_j)=\pi_{21}(P_2\cap[b_j,s'))+\pi_{21}(P_3\cap[a_j,s'))
+-\pi_{21}(Q_j)\ge0$, as $Q_j$ is clean; and by DT's computation and (1),
+$L_2^c(B_{s'})-L_2^c(B_\theta)\ge c_2((\theta,b_j))>L_2^c(X_j)-
+L_2^c(B_\theta)$. So $L_2(B_{s'})>L_2(X_j)\ge L_2(C_j)$. If $s'<a_j$, the
+world-3 rank sets give $L_3^s(B_{s'})-L_3^s(X_j)=\pi_{32}(P_2\cap(s',b_j))
++\pi_{32}(P_3\cap(s',a_j])-\pi_{31}(Q_j)\ge0$, and by (2)
+$L_3^c(B_{s'})-L_3^c(B_\theta)\ge u((a_j,\theta))>c_3(Q_j)=L_3^c(X_j)-
+L_3^c(B_\theta)$. So $L_3(B_{s'})>L_3(C_j)$. In all cases $C_j\ne B_{s'}$.
+
+\emph{(c) The targets converge in value.} By Lemma~\ref{lem:diff},
+$L_2(X_j)-L_2(B_\theta)=c_2(Q_j)+\alpha(A_j)-\alpha(T_j)$ and
+$L_3(X_j)-L_3(B_\theta)=c_3(Q_j)-\beta(A_j)+\beta(T_j)$. The bands $A_j$,
+$T_j$ shrink to $\{t=\theta\}$ from the two sides, and $\alpha,\beta$ have no
+germs at $\theta$ (Theorem~\ref{thm:tgerms}(a)); so both differences tend to
+$0$, and so do their ordinary and pure parts separately.
+
+\emph{(d) Weighted step.} Pass to a subsequence with $K_j\to K_*$ and put
+$C_*\coloneqq\Dscr_{K_*}$. By Lemma~\ref{lem:weightedpure},
+$\mathcal L^c(C_j)=\mathcal L(C_j)-\mathcal L^s(C_j)\le \mathcal L(X_j)-\mathcal L^s(B_\theta)+\epsilon$, which tends to
+$\mathcal L^c(B_\theta)+\epsilon$ by (c). Only ordinary parts are passed to the limit:
+$\mathcal L^c(C_j)\to \mathcal L^c(C_*)$ by CBOI, Lemma~4. So $\mathcal L^c(C_*)\le \mathcal L^c(B_\theta)$, and
+$C_*$ is a coherent minimizer of $\mathcal L^c$, hence $C_*=B_s$ for some
+$s\in[0,\infty]$.
+
+\emph{(e) Separate step: $s=\theta$.} Suppose $s>\theta$. From
+$L_2(C_j)\le L_2(X_j)$ and (c),
+$L_2^c(C_j)\le L_2^c(B_\theta)+[L_2^s(B_\theta)-L_2^s(C_j)]+o(1)$. The
+world-2 rank-1 set of $B_\theta$ is $(0,\theta)$ and its rank-2 set is empty,
+so $L_2^s(B_\theta)-L_2^s(C_j)\le\pi_{21}(G_j)\le\alpha(G_j)$ with
+$G_j\coloneqq\{C_j=\omega_2\}\cap(0,\theta)$. By
+Lemma~\ref{lem:deviation}(a), $G_j\subseteq P_3\cap\{y>Y_j\}$, so
+$\beta(G_j)\le\nu_{32}(D_y\cap\{y>Y_j\})\to0$ (Lemma~\ref{lem:tails}), and
+(P1) at the selected $B_\theta$, with a clean $W_1\subseteq(\theta,\theta+1)$
+of $u$-mass $2\beta(G_j)+1/j$, gives $\alpha(G_j)\le d(2\beta(G_j)+1/j)\to0$.
+Hence $L_2^c(C_*)\le L_2^c(B_\theta)$, while $L_2^c(B_s)-L_2^c(B_\theta)=
+c_2((\theta,s))>0$. This is a contradiction.
+
+Suppose $s<\theta$. In the same way $L_3^c(C_j)\le L_3^c(B_\theta)+
+[L_3^s(B_\theta)-L_3^s(C_j)]+o(1)$. The world-3 rank-$\ge1$ set of
+$B_\theta$ is $P_2\cup P_3$ and its rank-2 set is $(\theta,\infty)$. With
+$H_j\coloneqq(\theta,\infty)\setminus\{C_j=\omega_2\}$ and
+$K'_j\coloneqq\{C_j=\omega_3\}\cap(0,\theta)$, therefore,
+\[
+ L_3^s(B_\theta)-L_3^s(C_j)\le(\beta+\beta')(H_j)+\beta'(K'_j).
+\]
+By Lemma~\ref{lem:deviation}(b), $H_j\subseteq\mathcal E_j\coloneqq P_2\cap(\theta,
+\infty)\cap\{x>X_j\}$ for large $j$. (P7), second case, at $B_\theta$ with
+$W=\mathcal E_j$ and a clean $W_7\subseteq P_3\cap(\frac\theta2,\theta)$ of $c_2$-mass
+$(\alpha+\alpha')(\mathcal E_j)+1/j$, gives $(\beta+\beta')(\mathcal E_j)\le c_2(W_7)/F(\frac\theta2)
+\to0$, since $(\alpha+\alpha')(\mathcal E_j)\le(\nu_{21}+\nu_{22})(D_x\cap\{x>X_j\})\to0$
+(Lemma~\ref{lem:tails}). The part of $K'_j$ in $P_2\cap\{x>X_j\}$ is handled
+by (P7), first case, in the same way, and the rest lies in
+$(0,\sqrt{\epsilon_j})$, where $\beta'\to0$ because $\beta'$ has no germ at
+$0+$ (Theorem~\ref{thm:tgerms}(b)). Hence $L_3^c(C_*)\le L_3^c(B_\theta)$,
+while $L_3^c(B_s)-L_3^c(B_\theta)=u((s,\theta))>0$. This is a
+contradiction. So every convergent subsequence has limit $K_\theta$, and
+$K_j\to K_\theta$.
+
+\emph{(f) Good bases.} For large $j$, $\min_{K_j}m_2>0$ and some $m\in K_j$
+has $m_3>0$. If $K_j\subseteq\{m_1=0\}$, then $e_3\notin K_j$, so
+Lemma~\ref{lem:noedge} gives $e_2\in K_j$ and $C_j=B_{s'}$, excluded by (b).
+So some $m\in K_j$ has $m_1>0$, and by the face lemma the index of $C_j$ has
+full support. Every $m\in K_j$ is within $\epsilon_j$ of some $m'\in
+K_\theta$, so on $P_2\cap\{x<1,\ 2\theta+1<t<2\theta+3\}$,
+$m_1xt-m_2t+m_3\le\epsilon_j(3t+1)-(t-\theta)/(1+\theta)<0$ for large $j$:
+$C_j$ gives $o_2$ on this non-null set. By Lemma~\ref{lem:noboth} it gives no
+$o_{13}$ on $P_2$. Hence $e_2\in K_j$: otherwise $\min_{K_j}(m_1+m_3)>0$, and
+$(1,-\eta,1)$, and an open cone around it, would be accepted for small
+$\eta>0$. So $C_j$ is a good base. Finally $\tau_j=\max_{K_j}m_3/m_2\to
+\theta$, and $\tau_{2,j}=\min_{m\in K_j,\,m_1>0}m_2/m_1\ge
+(1/(1+\theta)-\epsilon_j)/\epsilon_j\to\infty$.
+\end{proof}
+
+\begin{corollary}\label{cor:factorfa}
+If $f$ or $h$ has bounded multiplicative jump ratios beyond some $a_0$, then
+(H) and the undominatedness of $V$ are contradictory.
+\end{corollary}
+\begin{proof}
+Suppose the bound holds for $f$. We run the proof of DT, Theorem~10, with
+Theorem~\ref{thm:densefa} in place of DT, Theorem~2. That proof applies DT,
+Lemma~9, at the good bases $C_j$; Lemma~9 chooses the sets $Y$, $Y_0'$,
+$M_0$, $R$ and $S$ of DT, Lemma~5, by conditions on densities and on the
+advice of $C_j$ only, and we choose all of them clean. Then every set chosen
+in the rounds of DT, Lemma~5 ($Q_k\subseteq R$, $Y_k\subseteq Y$,
+$Y_k'\subseteq Y_0'$, $M_k\subseteq M_0$) is clean. The steps are: the
+change at $V$ adding $o_{12}(S)$ and $o_{23}(Q_0)$, which raises $L_3$ only
+on the clean $S$; the move (M1) at $E_2(\ell)$ with clean source $Q_k$; the
+change at the good base silencing $Y_k$, crediting $Y_k'$ and adding debt on
+$M_k$, which raises $L_2$ only on the clean $Y_k$ and $L_3$ only on the clean
+$Y_k'$ (Lemma~\ref{lem:forced} with $S=\{1,2,3\}$ and the clean-side rule);
+the world-1 worsening by (G); the move (M2) at $E_3(\theta_0)$ with clean
+source $M_k$; and the closing move into the set $D_n$ of the proof of DT, Lemma~5
+(DT's notation), which may be dirty since only
+its source must be clean, followed by Lemma~\ref{lem:closing}. So DT's density
+estimates bound the loss changes, and DT's proof goes through. For $h$ use the
+mirror. Its proof needs the mirror of Theorem~\ref{thm:densefa}; the
+hypotheses are symmetric, and exchanging worlds $2,3$ maps the list of
+germs excluded in Theorem~\ref{thm:tgerms} onto itself ($\alpha\leftrightarrow
+\beta'$, $\beta\leftrightarrow\alpha'$, $t\leftrightarrow1/t$), so every step
+of the proof of Theorem~\ref{thm:densefa} has a valid mirror.
+\end{proof}
+
+\section{The main theorem}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+Let $n=3$ and assume (G) at every world and (S). Let world~$1$ be a preorder
+satisfying (IB); completeness is not assumed. Let worlds $2,3$ be preorders
+with losses $L_2,L_3$ of CBOI's form, with finite charges satisfying
+\eqref{eq:positive}, such that \eqref{eq:W} holds for $k=2,3$. Then $V$ is
+dominated.
+\end{theorem}
+\begin{proof}
+Suppose $V$ is undominated. All results of
+Sections~\ref{sec:prelim}--\ref{sec:totals} and~\ref{sec:faclean}--\ref{sec:dense}
+apply. By Theorem~\ref{thm:sep}, $c_3/c_2=f(x)/h(y)$ on $P_1$ with $f,h$
+positive and nondecreasing. If $f$ or $h$ has bounded jump ratios beyond some
+$a_0$, Corollary~\ref{cor:factorfa} gives a contradiction. Otherwise both
+have unbounded jump ratios on every $(a_0,\infty)$, hence both are unbounded
+and have jumps beyond every point (as in the proof of
+Theorem~\ref{thm:I}), and
+Theorem~\ref{thm:residualfa} gives a contradiction.
+\end{proof}
+
+Theorems~\ref{thm:I} and~\ref{thm:II} are special cases, with shorter proofs.
+
+\begin{corollary}\label{cor:atmostone}
+Let $n=3$, assume (G) and (S), and let every world be a preorder satisfying
+(IB). If $V$ is undominated, then at most one world has a loss of CBOI's form
+with \eqref{eq:positive} and \eqref{eq:W}.
+\end{corollary}
+\begin{proof}
+If two worlds have such losses, relabel so that they are worlds $2,3$ and
+apply Theorem~\ref{thm:main}; world~$1$ then satisfies (IB) by hypothesis.
+Relabelling permutes the coordinates of $g$, so problems are then
+represented on a half-space $\{g_u>0\}$ in place of $H$. The map
+$g\mapsto\operatorname{sgn}(g_1)\,g$ carries it to $H$ off a null set and
+preserves $\mu$, so the losses, \eqref{eq:positive} and \eqref{eq:W}
+transport to the form of Section~\ref{sec:setting}, as in CCF's proof of
+Theorem~16.
+\end{proof}
+
+This is CCF, Corollary~20(a), without completeness. By EDL, Theorem~2, the
+other two worlds then carry leverage sequences.
+
+\begin{remark}\label{rem:dust}
+\emph{Dust.} Germ exclusion does not make the pure parts countably additive
+on cones. Let $U_1\supseteq U_2\supseteq\cdots$ be cones in $P_1$, each a
+union of finitely many thin cones over a fine grid of the chart
+$(\xi_1,\xi_2)$, with $\mu(U_m)=\mu(P_1)/m$ and
+$\mu(R\cap U_m)/\mu(U_m)\to\mu(R)/\mu(P_1)$ for every cone $R$ over a
+rectangle; and let $\eta(A)\coloneqq\lim_{\mathcal U}\mu(A\cap U_m)/\mu(U_m)$
+for a non-principal ultrafilter $\mathcal U$. Then $\eta$ is a pure charge
+($\eta(H\setminus U_m)=0$ and $\mu(U_m)\to0$), it agrees with
+$\mu/\mu(P_1)$ on cones over rectangles, so it has no germs in $x$ or $y$,
+but $\eta(U_m)=1$ for all $m$ while the cones $U_m$ decrease to a null cone.
+Such charges are not excluded by Sections~\ref{sec:germs}
+and~\ref{sec:edge23}. They are nevertheless handled: the arguments of
+Sections~\ref{sec:local}--\ref{sec:dense} use only germ exclusion, the
+Pareto bounds and pure separability, and never countable additivity of the
+pure parts on any family of sets.
+\end{remark}
+
+\begin{remark}\label{rem:harmless}
+\emph{Germs that remain.} Not all germs are excluded. The proof leaves open
+the germs of $\nu_{22}$ on $D_x$ at $x\to0+$ and of $\nu_{32}$ on $D_y$ at
+$y\to0+$ (Remark~\ref{rem:notcontrolled}); the germs of $\beta=\nu_{32}$ on
+$P_2\cup P_3$ at $t\to0+$ and of $\alpha'=\nu_{22}$ at $t\to\infty$
+(Theorem~\ref{thm:tgerms}); and the cross mass at infinity of
+Remark~\ref{rem:notcontrolled}. They are harmless. The first two are pure
+credit mass, which enters only Lemma~\ref{lem:Vcap}, through its own charges,
+and Lemma~\ref{lem:pureopt}, with nonnegative coefficients. A germ of
+$\beta$ at $0+$ makes $\omega_2$ more costly at world~$3$ and a germ of
+$\alpha'$ at $\infty$ makes $\omega_3$ more costly at world~$2$; both enter
+Theorem~\ref{thm:pureratio} and Lemmas~\ref{lem:pureopt},
+\ref{lem:weightedpure} only on the favourable side of the inequalities, and
+the proof of Theorem~\ref{thm:pureratio} cuts them off by slabs of small
+$\alpha$- resp.\ $\beta'$-mass. The cross mass at infinity enters only
+through the one-sided bounds of Corollary~\ref{cor:onesidedinfty}. Whether
+these germs can occur at all is moot: by Theorem~\ref{thm:main} no
+configuration satisfying the hypotheses has $V$ undominated.
+\end{remark}
+
+\section{Remarks}\label{sec:remarks}
+
+\begin{remark}\label{rem:uses}
+\emph{Which hypotheses are used where.}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \emph{Completeness} is used at no world. Every positive world-1
+comparison comes from Lemma~\ref{lem:forced} (competitiveness and
+\eqref{eq:W}), (G), (IB) and transitivity; every use of closedness of a
+world-1 section produces a non-comparison (Lemmas~\ref{lem:noncomp},
+\ref{lem:closing}, \ref{lem:edges}(d)), which is then contradicted by a
+positive chain; strictness $X\prec_1Y$ is always used as ``$X\preceq_1Y$ and
+not $Y\preceq_1X$''.
+\item \emph{(IB)} is used only at world~$1$: in transferring accepted changes
+between contexts, in (F1)--(F5), and in compositions.
+\item \emph{\eqref{eq:W}} is applied only to selected models (edge models,
+$B_s$, $B'_s$, $V_{23}$, $D_2$, $D_3$, KKM dominators) and to $V$, and only in
+the form ``$C\preceq_kX\Rightarrow L_k(C)\le L_k(X)$'' or its contrapositive:
+in forced comparisons, in KKM accounting at fixed targets, in the Pareto
+property, and in Lemma~\ref{lem:otherworld}. No positive comparison at
+worlds $2,3$ is derived from the losses.
+\item \emph{(S)}: KKM (K1) at fixed targets only ($\Sigma^b$, $X_j$, and
+inside DT); (K1) and (K2) at $V$, for (K4); the edge Bayes targets of
+Step~1 of the proof of EDL, Theorem~8, and of FAED, Proposition~6, inside
+Lemma~\ref{lem:FG}; closedness of $A_1$ at fixed edge models and their
+perturbations; closedness of $A_2,A_3$ in CCF, Lemma~3, in
+Lemma~\ref{lem:sel23} and in Lemma~\ref{lem:otherworld}, and inside
+(K1), (K2) and the EDL/FAED Step~1 just mentioned.
+\item At worlds $2,3$, transitivity enters through (K2), strict (G) through
+the face lemma, CCF, Lemma~3, and \eqref{eq:order23}. Completeness and (IB)
+at worlds $2,3$ are not used.
+\end{itemize}
+\end{remark}
+
+\begin{remark}\label{rem:relation}
+\emph{Relation to CCF and CBOI.} CCF, Theorem~18, proves the conclusion of
+Theorem~\ref{thm:main} when the third world is complete, by constructing a
+finitely additive weak extension at that world (CCF, Theorem~15) and then
+applying CBOI, Theorem~2. Completeness entered there in three places: CCF's
+comparison (T1) near an edge selection, the comparative-probability step with
+the Savage--Wakker theorem (CCF, Theorem~9; \cite{Savage,Wakker}), and the dichotomy between strict improvements and accepted
+changes. Here no extension at world~$1$ is constructed. The routing primaries
+replace the comparative probabilities on bounded sets; the silent targets
+make the KKM comparison one-sided in credit, so no dichotomy of trades is
+needed; and the far tails, where the primaries say nothing, are cut off by
+the truncation of the target and by Lemma~\ref{lem:totals}. CBOI, Theorem~2,
+needs weak extensions at all worlds (one-sided by EDL, Proposition~1);
+Theorem~\ref{thm:main} needs them at two worlds of three, at the price of
+(IB) at the third. For $n\ge4$ the method does not apply as it stands: it
+uses the geometry of three worlds (the regions $P_1,P_2,P_3$, the two edges
+at world~$1$ and the edge $[e_2,e_3]$).
+\end{remark}
+
+\begin{remark}\label{rem:notneeded}
+\emph{Questions left open because they are not needed.} (a) Whether the
+germs listed in Remark~\ref{rem:harmless} can be excluded. (b) A KKM lemma in
+which the dominator can be made to agree with a modification of the target
+on the concentration sets $Z_m$; the proof uses fixed targets instead. (c)
+Whether world~$1$ must have a finitely additive weak extension when worlds
+$2,3$ do; Theorem~\ref{thm:main} shows only that the configuration is
+impossible.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{Sierpinski} W.~Sierpi\'nski, Sur les fonctions d'ensemble additives et
+continues, \emph{Fundamenta Mathematicae} 3 (1922), 240--246.
+\bibitem{YH} K.~Yosida and E.~Hewitt, Finitely additive measures,
+\emph{Transactions of the American Mathematical Society} 72 (1952), 46--66.
+\bibitem{PP} T.~Pennanen and A.-P.~Perkki\"o, Topological duals of locally
+convex function spaces, \emph{Positivity} 26 (2022), article~2.
+\bibitem{RR} K.~P.~S.~Bhaskara Rao and M.~Bhaskara Rao, \emph{Theory of
+Charges}, Academic Press, London, 1983.
+\bibitem{Savage} L.~J.~Savage, \emph{The Foundations of Statistics},
+Wiley, New York, 1954. Chapter~3, \S3.
+\bibitem{Wakker} P.~Wakker, Agreeing probability measures for
+comparative probability structures, \emph{Annals of Statistics} 9 (1981),
+658--662.
+\end{thebibliography}
+\end{document}

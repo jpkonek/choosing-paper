@@ -1,0 +1,433 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Loss Relations from Credal Families}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dH}{d_{\mathrm H}}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\Ub}{\overline U}
+\newcommand{\sd}{\mathbin{\nabla}}
+\newcommand{\Leb}{\mathrm{Leb}}
+\newcommand{\up}{\mathord{\uparrow}}
+\newcommand{\ws}{\preceq^{*}}
+\newcommand{\wss}{\prec^{*}}
+\newcommand{\wst}{\sim^{*}}
+\newcommand{\wl}{\preceq^{\mathrm L}}
+\newcommand{\wls}{\prec^{\mathrm L}}
+\newcommand{\aev}{\ \text{a.e.}}
+
+\title{Loss Relations from Credal Families}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Setting}\label{sec:setting}
+
+\paragraph{Worlds, gambles, probabilities.}
+Fix $n\ge2$ and worlds $\omega_1,\dots,\omega_n$; $[n]:=\{1,\dots,n\}$ and $S^c:=[n]\setminus S$. A \emph{gamble} is $g\in\R^n$, with payoff $g_i$ at $\omega_i$. For $g,h\in\R^n$: $g\cdot h:=\sum_kg_kh_k$, $\|g\|_1:=\sum_k|g_k|$, $\|g\|_\infty:=\max_k|g_k|$; $g\ge h$ means $g_k\ge h_k$ for all $k$; $g\gneq0$ means $g\ge0$ and $g\ne0$; $g\gg0$ means $g_k>0$ for all $k$. $\one:=(1,\dots,1)$ and $e_i$ is the $i$th unit vector. $\Delta:=\{p\in\R^n:p\ge0,\ \sum_kp_k=1\}$, $\supp p:=\{k:p_k>0\}$, $p(S):=\sum_{k\in S}p_k$, and $\Delta_S:=\{p\in\Delta:\supp p\subseteq S\}$. $\operatorname{int}\Delta:=\{p\in\Delta:p\gg0\}$.
+
+\paragraph{Credal sets.}
+A \emph{credal set} is a nonempty closed convex $K\subseteq\Delta$. For credal sets $K,K'$, $g\in\R^n$ and $i\in[n]$, let
+\begin{gather*}
+\varphi_K(g):=\min_{m\in K}m\cdot g,\qquad \Ub_K(i):=\max_{m\in K}m_i,\\
+D_K:=\{g:\varphi_K(g)>0\}\cup\{g:g\gneq0\},\\
+\dH(K,K'):=\max\Big\{\max_{m\in K}\min_{m'\in K'}\|m-m'\|_1,\ \max_{m'\in K'}\min_{m\in K}\|m-m'\|_1\Big\}.
+\end{gather*}
+
+\paragraph{Null sets and models.}
+$\Leb$ is Lebesgue measure on $\R^n$. A set $Y$ is \emph{null} if $\Leb(Y)=0$; nonempty open sets are not null. $Y\sd Z:=(Y\setminus Z)\cup(Z\setminus Y)$; $Y\subseteq Z$ a.e.\ means $Y\setminus Z$ is null; $Y\approx Z$ means $Y\sd Z$ is null. A \emph{model} is a Lebesgue measurable $X\subseteq\R^n$. A set $D\subseteq\R^n$ is a \emph{coherent set of desirable gambles} if (D1) $0\notin D$; (D2) $g\gneq0\Rightarrow g\in D$; (D3) $g\in D,\ \lambda>0\Rightarrow\lambda g\in D$; (D4) $g,h\in D\Rightarrow g+h\in D$. Such a $D$ is convex, hence measurable. A model $X$ is \emph{coherent} if $X\approx D$ for some coherent set of desirable gambles $D$.
+
+\paragraph{Errors and the background order.}
+$G_i:=\{g:g_i>0\}$ and, for $i\ne j$, $W_{ij}:=\{g:g_i>0\ge g_j\}$. The \emph{error set} of $X$ at $\omega_i$ is $E_i(X):=X\sd G_i$. Write
+\begin{gather*}
+X\le_iY\ :\iff\ E_i(X)\subseteq E_i(Y)\aev,\\
+X<_iY\ :\iff\ X\le_iY\text{ and }E_i(Y)\setminus E_i(X)\text{ is not null}.
+\end{gather*}
+
+\paragraph{Rankings.}
+A \emph{ranking} is a tuple of preorders (reflexive, transitive relations) $\preceq_1,\dots,\preceq_n$ on models. $X\prec_iY$ means $X\preceq_iY$ and not $Y\preceq_iX$; $X\sim_iY$ means $X\preceq_iY$ and $Y\preceq_iX$. The ranking \emph{respects the background order} if
+\begin{enumerate}[label=(B\arabic*),itemsep=0pt]
+\item $X\le_iY\Rightarrow X\preceq_iY$;
+\item $X<_iY\Rightarrow X\prec_iY$.
+\end{enumerate}
+$X$ \emph{weakly dominates} $Y$ if $X\preceq_iY$ for all $i$. $X$ and $Y$ have the \emph{same profile} if $X\sim_iY$ for all $i$. $X$ \emph{dominates} $Y$ if $X$ weakly dominates $Y$ and they do not have the same profile. $X$ \emph{strictly dominates} $Y$ if $X\prec_iY$ for all $i$. $Y$ is \emph{undominated} if no model dominates it. For $S\subseteq[n]$, $X$ is \emph{competitive on $S$} if for every model $Y$ some $i\in S$ has $X\preceq_iY$.
+
+\paragraph{Axioms.}
+Following \cite{KCM}, for a ranking let $\mathcal C_L$ be the set of coherent undominated models, and consider:
+\begin{enumerate}[itemsep=0pt]
+\item[\textbf{(LA)}] $\mathcal C_L\ne\varnothing$.
+\item[\textbf{(S)}] There is $u:\Delta\to\mathcal C_L$ such that, for every $p\in\Delta$, $u_p$ is competitive on $\supp p$, and, for every model $X$ and $i\in[n]$, $\{p\in\Delta:u_p\preceq_iX\}$ is closed.
+\item[\textbf{(C)}] Every model with the same profile as a member of $\mathcal C_L$ belongs to $\mathcal C_L$.
+\end{enumerate}
+For a class of rankings, \textbf{(A)} says that every coherent model belongs to $\mathcal C_L$ for some ranking in the class. Every ranking here is defined on all models, so the evaluability axiom (E) of \cite{KCM} holds trivially.
+
+\begin{lemma}\label{lem:kkm}
+Let $A_1,\dots,A_n\subseteq\Delta$ be closed, and suppose every $q\in\Delta$ lies in $A_i$ for some $i\in\supp q$. Then $\bigcap_iA_i\ne\varnothing$.
+\end{lemma}
+
+This is the Knaster--Kuratowski--Mazurkiewicz lemma \cite{KKM}: the hypothesis gives $\Delta_S\subseteq\bigcup_{i\in S}A_i$ for every nonempty $S\subseteq[n]$.
+
+\begin{lemma}\label{lem:basic}
+Let $K,K'$ be credal sets, $g,h\in\R^n$, $t\in\R$, $c\ge0$, $i\in[n]$.
+\begin{enumerate}[label=(\roman*)]
+\item $\varphi_K(g+t\one)=\varphi_K(g)+t$, $\varphi_K(cg)=c\varphi_K(g)$, $\varphi_K(g+h)\ge\varphi_K(g)+\varphi_K(h)$.
+\item $|\varphi_K(g)-\varphi_K(h)|\le\|g-h\|_\infty$, $|\varphi_K(g)-\varphi_{K'}(g)|\le\dH(K,K')\|g\|_\infty$ and $|\Ub_K(i)-\Ub_{K'}(i)|\le\dH(K,K')$.
+\item $\varphi_K(\one-ce_i)=1-c\,\Ub_K(i)$.
+\item $D_K$ is a Borel coherent set of desirable gambles; $\{g:\varphi_K(g)=0\}$ and $D_K\sd\{g:\varphi_K(g)>0\}$ are null; $\varphi_K(g)<0$ implies $g\notin D_K$; and $D_K\cap\{g:g\le0\}=\varnothing$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) $m\cdot\one=1$ for $m\in\Delta$; a minimum of a sum is at least the sum of the minima.
+
+(ii) For $m\in\Delta$, $|m\cdot g-m\cdot h|\le\|g-h\|_\infty$; take minima. Given $m\in K$ attaining $\varphi_K(g)$, pick $m'\in K'$ with $\|m-m'\|_1\le\dH(K,K')$; then $\varphi_{K'}(g)\le m'\cdot g\le\varphi_K(g)+\dH(K,K')\|g\|_\infty$; exchange $K,K'$. Similarly, with $m\in K$ attaining $\Ub_K(i)$, $\Ub_{K'}(i)\ge m'_i\ge\Ub_K(i)-\dH(K,K')$.
+
+(iii) $m\cdot(\one-ce_i)=1-cm_i$.
+
+(iv) If $g\gneq0$ then $\varphi_K(g)\ge0$; so $\varphi_K\ge0$ on $D_K$ and $\varphi_K(g)<0$ implies $g\notin D_K$. If $g\le0$ then $\varphi_K(g)\le0$ and $g\not\gneq0$, so $g\notin D_K$. (D1) and (D2) are immediate, (D3) follows from (i). (D4): if $g,h\gneq0$ then $g+h\gneq0$; otherwise one of $\varphi_K(g),\varphi_K(h)$ is positive and the other nonnegative, so $\varphi_K(g+h)>0$. $\{\varphi_K>0\}$ is open by (ii), so $D_K$ is Borel. By (i), every line $\{h+t\one:t\in\R\}$ meets $\{\varphi_K=0\}$ in exactly one point, so $\{\varphi_K=0\}$ is null by Fubini's theorem. Finally, if $g\in D_K$ and $\varphi_K(g)\le0$, then $g\gneq0$ and $m\cdot g=0$ for some $m\in K$, so $g_k=0$ for $k\in\supp m$; hence $D_K\setminus\{\varphi_K>0\}\subseteq\bigcup_k\{g:g_k=0\}$, which is null.
+\end{proof}
+
+\begin{lemma}\label{lem:faces}
+Let $K$ be a credal set and $S\subseteq[n]$ nonempty with $K\subseteq\Delta_S$. If $X\le_kD_K$ for every $k\in S$, then $X\approx D_K$.
+\end{lemma}
+
+\begin{proof}
+Let $g\in X\setminus D_K$. For $k\in S$, $g\in E_k(X)\setminus E_k(D_K)$ iff $g_k\le0$. So, up to a null set, $g_k>0$ for all $k\in S$; then $m\cdot g>0$ for all $m\in K\subseteq\Delta_S$, so $\varphi_K(g)>0$ and $g\in D_K$, a contradiction. Hence $X\setminus D_K$ is null. Let $g\in D_K\setminus X$. For $k\in S$, $g\in E_k(X)\setminus E_k(D_K)$ iff $g_k>0$. So, up to a null set, $g_k\le0$ for all $k\in S$; then $\varphi_K(g)\le0$, so $g\gneq0$ and $g_k=0$ for $k\in S$, which happens only on a null set. Hence $D_K\setminus X$ is null.
+\end{proof}
+
+\section{Families, family orders and the extension}\label{sec:extension}
+
+A \emph{family} is a map $p\mapsto K_p$ from $\Delta$ to credal sets. Write $\varphi_p:=\varphi_{K_p}$, $\Ub_p:=\Ub_{K_p}$ and $D_p:=D_{K_p}$. \emph{Family orders} are preorders $\sqsubseteq_1,\dots,\sqsubseteq_n$ on $\Delta$; $q\sqsubseteq_ip$ is read ``$D_q$ is at least as good as $D_p$ at $\omega_i$''. For a model $X$, $i\in[n]$ and $A\subseteq\Delta$, let
+\[
+\Pc_i(X):=\{p\in\Delta:X\le_iD_p\},\qquad \up_iA:=\{p\in\Delta:a\sqsubseteq_ip\text{ for some }a\in A\},
+\]
+and define the \emph{extension}
+\[
+X\ws_iY\ :\iff\ \Pc_i(Y)\subseteq\up_i\Pc_i(X).
+\]
+$\wss_i$ and $\wst_i$ are its strict part and its symmetric part. Consider the condition
+\begin{enumerate}[itemsep=0pt]
+\item[\textbf{(Fa)}] if $p\in\Pc_i(D_q)$ then $q\sqsubseteq_ip$.
+\end{enumerate}
+
+\begin{lemma}\label{lem:extension}
+\begin{enumerate}[label=(\alph*)]
+\item $\ws_i$ is a preorder satisfying (B1), and $X\approx Y$ implies $X\wst_iY$ for all $i$.
+\item Under (Fa), for all $p,q\in\Delta$ and models $X$:
+$D_q\ws_iD_p\iff q\sqsubseteq_ip$;\quad $D_q\ws_iX\iff q\sqsubseteq_ip$ for every $p\in\Pc_i(X)$;\quad $X\ws_iD_q\iff p\sqsubseteq_iq$ for some $p\in\Pc_i(X)$.
+\item Under (Fa), let $\preceq_i$ be any preorder on models satisfying (B1) with $D_q\preceq_iD_p\iff q\sqsubseteq_ip$. Then $D_q\preceq_iX\Rightarrow D_q\ws_iX$ and $X\ws_iD_q\Rightarrow X\preceq_iD_q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Reflexivity: $\Pc_i(X)\subseteq\up_i\Pc_i(X)$. Transitivity: if $\Pc_i(Y)\subseteq\up_i\Pc_i(X)$ then $\up_i\Pc_i(Y)\subseteq\up_i\Pc_i(X)$. (B1): $X\le_iY$ gives $\Pc_i(Y)\subseteq\Pc_i(X)$. If $X\approx Y$ then $\Pc_i(X)=\Pc_i(Y)$.
+
+(b) $q\in\Pc_i(D_q)$, and (Fa) gives $\Pc_i(D_q)\subseteq\up_i\{q\}$; so $\up_i\Pc_i(D_q)=\up_i\{q\}$. Hence $D_q\ws_iX$ iff $\Pc_i(X)\subseteq\up_i\{q\}$. Next, $X\ws_iD_q$ iff $\Pc_i(D_q)\subseteq\up_i\Pc_i(X)$ iff $q\in\up_i\Pc_i(X)$, since $\up_i\Pc_i(X)$ is upward closed and contains $\up_i\{q\}\supseteq\Pc_i(D_q)$ when it contains $q$. The first claim follows from the second and (Fa).
+
+(c) If $D_q\preceq_iX$ and $p\in\Pc_i(X)$, then $X\preceq_iD_p$ by (B1), so $D_q\preceq_iD_p$ and $q\sqsubseteq_ip$. If $p\in\Pc_i(X)$ and $p\sqsubseteq_iq$, then $X\preceq_iD_p\preceq_iD_q$.
+\end{proof}
+
+So, under (Fa), among rankings that respect (B1) and agree with the family orders on the family, $\ws$ makes the most comparisons $D_q\preceq_iX$ and the fewest comparisons $X\preceq_iD_q$.
+
+\begin{definition}\label{def:glue}
+For distinct $i,j\in[n]$ and $p,p'\in\Delta$, $(p,i)$ and $(p',j)$ \emph{glue} if
+\[
+D_p\cap W_{ij}\subseteq D_{p'}\aev\qquad\text{and}\qquad D_{p'}\cap W_{ji}\subseteq D_p\aev
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:glue}
+If $i\ne j$, $p\in\Pc_i(X)$ and $p'\in\Pc_j(X)$, then $(p,i)$ and $(p',j)$ glue.
+\end{lemma}
+
+\begin{proof}
+$W_{ij}\subseteq G_i\setminus G_j$, so for every model $Y$: $E_i(Y)\cap W_{ij}=W_{ij}\setminus Y$ and $E_j(Y)\cap W_{ij}=Y\cap W_{ij}$. From $X\le_iD_p$: $D_p\cap W_{ij}\subseteq X$ a.e. From $X\le_jD_{p'}$: $X\cap W_{ij}\subseteq D_{p'}$ a.e. Hence $D_p\cap W_{ij}\subseteq D_{p'}$ a.e. Exchanging the roles of $(p,i)$ and $(p',j)$ gives the second inclusion.
+\end{proof}
+
+\section{The general theorem}\label{sec:general}
+
+Consider the following conditions on a family and family orders.
+\begin{enumerate}[itemsep=2pt]
+\item[\textbf{(G)}] If $(p,i)$ and $(p',j)$ glue, then $p'\sqsubseteq_ip$.
+\item[\textbf{(FC)}] For all $p,q\in\Delta$ there is $i\in\supp q$ with $q\sqsubseteq_ip$.
+\item[\textbf{(ND)}] If $p\sqsubseteq_iq$ for every $i\in[n]$, then $p=q$.
+\item[\textbf{(Cl)}] For every $p\in\Delta$ and $i\in[n]$, the set $\{q\in\Delta:q\sqsubseteq_ip\}$ is closed.
+\end{enumerate}
+(G) implies (Fa): if $p\in\Pc_i(D_q)$, pick $j\ne i$; then $q\in\Pc_j(D_q)$, so $(p,i)$ and $(q,j)$ glue by Lemma~\ref{lem:glue}, and (G) gives $q\sqsubseteq_ip$.
+
+\begin{theorem}\label{thm:general}
+Assume (G), (FC), (ND) and (Cl), and rank models by $\ws$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $\ws$ satisfies (B1);
+\item every $D_q$ is competitive on $\supp q$;
+\item for every model $X$ and $i\in[n]$, $\{q\in\Delta:D_q\ws_iX\}$ is closed;
+\item if $X$ weakly dominates $D_q$, then $X\approx D_q$;
+\item every model is weakly dominated by some $D_q$, and every model $X$ with $X\not\approx D_p$ for all $p\in\Delta$ is dominated by some $D_q$.
+\end{enumerate}
+Consequently, the undominated models are exactly the models $X\approx D_p$ with $p\in\Delta$; all are coherent; and (LA), (S) with $u_p:=D_p$, and (C) hold.
+\end{theorem}
+
+\begin{proof}
+(a) Lemma~\ref{lem:extension}(a).
+
+(b) Suppose some model $X$ and $q\in\Delta$ have $D_q\not\ws_iX$ for every $i\in S:=\supp q$. By Lemma~\ref{lem:extension}(b), each $i\in S$ has $p^i\in\Pc_i(X)$ with $q\not\sqsubseteq_ip^i$. Fix $j\in S$. For $i\in S\setminus\{j\}$, $(p^i,i)$ and $(p^j,j)$ glue (Lemma~\ref{lem:glue}), so $p^j\sqsubseteq_ip^i$ by (G); if $q\sqsubseteq_ip^j$ then $q\sqsubseteq_ip^i$, which is false. So $q\not\sqsubseteq_ip^j$ for every $i\in S$, contradicting (FC) for the pair $p^j,q$.
+
+(c) By Lemma~\ref{lem:extension}(b), the set equals $\bigcap_{p\in\Pc_i(X)}\{q:q\sqsubseteq_ip\}$ (all of $\Delta$ if $\Pc_i(X)=\varnothing$), which is closed by (Cl).
+
+(d) By Lemma~\ref{lem:extension}(b), each $i$ has $p^i\in\Pc_i(X)$ with $p^i\sqsubseteq_iq$. Fix $j$. For $i\ne j$, $(p^i,i)$ and $(p^j,j)$ glue, so $p^j\sqsubseteq_ip^i\sqsubseteq_iq$ by (G); also $p^j\sqsubseteq_jq$. By (ND), $p^j=q$. As $j$ was arbitrary, $X\le_jD_q$ for all $j$, and Lemma~\ref{lem:faces} with $S=[n]$ gives $X\approx D_q$.
+
+(e) Fix $X$ and let $A_i:=\{q:D_q\ws_iX\}$. By (c) and (b), Lemma~\ref{lem:kkm} applies, so some $q$ lies in every $A_i$: $D_q$ weakly dominates $X$. If $X$ and $D_q$ had the same profile, $X$ would weakly dominate $D_q$, and $X\approx D_q$ by (d).
+
+Finally, by Lemma~\ref{lem:extension}(a), a model $X\approx D_p$ has the profile of $D_p$, and anything dominating $X$ would dominate $D_p$, contradicting (d). By (e), no other model is undominated. Each $D_p$ is coherent by Lemma~\ref{lem:basic}(iv). So $\mathcal C_L=\{X:X\approx D_p\text{ for some }p\}$; (b) and (c) give (S) with $u_p:=D_p$; and if $X$ has the profile of some $D_p$ then $X\approx D_p$ by (d), which gives (C).
+\end{proof}
+
+\begin{remark}\label{rem:flat}
+The family orders in Theorem~\ref{thm:general} may be partial. $\ws$ need not satisfy (B2): a model can have strictly fewer errors than $D_q$ at $\omega_i$ and still satisfy $X\wst_iD_q$ (Proposition~\ref{prop:noclosed}).
+\end{remark}
+
+\section{Bets, upper-probability orders and level orders}\label{sec:instances}
+
+\begin{lemma}\label{lem:bets}
+Let $i\ne j$. If $D_{p'}\cap W_{ji}\subseteq D_p$ a.e., then $\Ub_p(i)\le\Ub_{p'}(i)$. In particular, this holds if $(p,i)$ and $(p',j)$ glue.
+\end{lemma}
+
+\begin{proof}
+Suppose $\Ub_p(i)>\Ub_{p'}(i)$. Then $\Ub_{p'}(i)<1$ and $\Ub_p(i)>0$. Choose $c$ with
+\[
+\max\{1,1/\Ub_p(i)\}<c<1/\Ub_{p'}(i)\qquad(1/0:=\infty),
+\]
+and let $g^0:=\one-ce_i$. Then $g^0_i<0<g^0_j$, and by Lemma~\ref{lem:basic}(iii), $\varphi_{p'}(g^0)>0>\varphi_p(g^0)$. By Lemma~\ref{lem:basic}(ii), the set
+\[
+O:=\{g:g_i<0<g_j,\ \varphi_{p'}(g)>0>\varphi_p(g)\}
+\]
+is open; it contains $g^0$, so it is not null. By Lemma~\ref{lem:basic}(iv), $O\subseteq(D_{p'}\cap W_{ji})\setminus D_p$, contradicting the hypothesis.
+\end{proof}
+
+Consider the following conditions on a family.
+\begin{enumerate}[itemsep=2pt]
+\item[\textbf{(U)}] If $p_i>q_i$, then $\Ub_p(i)>\Ub_q(i)$.
+\item[\textbf{(R)}] $p\mapsto K_p$ is continuous for $\dH$.
+\item[\textbf{(F)}] $K_p\subseteq\Delta_{\supp p}$ for every $p\in\Delta$.
+\end{enumerate}
+
+\begin{corollary}\label{cor:upper}
+Assume (R), and suppose:
+\begin{enumerate}[itemsep=0pt]
+\item[\textbf{(FC$_U$)}] there are no $p,q\in\Delta$ with $\Ub_p(i)>\Ub_q(i)$ for every $i\in\supp q$;
+\item[\textbf{(ND$_U$)}] if $\Ub_p(i)\ge\Ub_q(i)$ for every $i$, then $p=q$.
+\end{enumerate}
+Let $q\sqsubseteq_ip:\iff\Ub_q(i)\ge\Ub_p(i)$. Then the conclusions of Theorem~\ref{thm:general} hold.
+\end{corollary}
+
+\begin{proof}
+(G) is Lemma~\ref{lem:bets}. (FC) and (ND) are (FC$_U$) and (ND$_U$). (Cl): $q\mapsto\Ub_q(i)$ is continuous by (R) and Lemma~\ref{lem:basic}(ii).
+\end{proof}
+
+\begin{corollary}\label{cor:level}
+Assume (U), and let $q\sqsubseteq_ip:\iff q_i\ge p_i$ (the \emph{level orders}). Then (G), (FC), (ND) and (Cl) hold, so the conclusions of Theorem~\ref{thm:general} hold.
+\end{corollary}
+
+\begin{proof}
+(G): if $(p,i)$ and $(p',j)$ glue, then $\Ub_p(i)\le\Ub_{p'}(i)$ by Lemma~\ref{lem:bets}, so $p_i\le p'_i$ by (U). (FC): $\sum_{i\in\supp q}q_i=1\ge\sum_{i\in\supp q}p_i$, so some $i\in\supp q$ has $q_i\ge p_i$. (ND): $p\ge q$ and $\sum_kp_k=\sum_kq_k$ give $p=q$. (Cl): $\{q:q_i\ge p_i\}$ is closed.
+\end{proof}
+
+(U) implies (FC$_U$) and (ND$_U$): by (U), $\Ub_p(i)\ge\Ub_q(i)$ implies $p_i\ge q_i$.
+
+From now on assume (U) and use the level orders; by Corollary~\ref{cor:level}, (G) and hence (Fa) hold. For a model $X$ let
+\[
+T(X):=\{i\in[n]:\Pc_i(X)\ne\varnothing\},\qquad a_i(X):=\sup\{p_i:p\in\Pc_i(X)\}\quad(i\in T(X)).
+\]
+By Lemma~\ref{lem:extension}(b): for $i\in T(X)$, $D_q\ws_iX$ iff $q_i\ge a_i(X)$, and $X\ws_iD_q$ iff some $p\in\Pc_i(X)$ has $p_i\ge q_i$; for $i\notin T(X)$, $D_q\wss_iX$.
+
+\section{Strict refinement}\label{sec:strict}
+
+\begin{lemma}\label{lem:budget}
+Assume (U). Let $X$ be a model with $T:=T(X)\ne\varnothing$.
+\begin{enumerate}[label=(\alph*)]
+\item $\sum_{i\in T}a_i(X)\le1$.
+\item Assume also (F). If $p^i\in\Pc_i(X)$ for $i\in T$ and $\sum_{i\in T}p^i_i=1$, then all $p^i$ are equal to one $p\in\Delta$, and $X\approx D_p$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $p^i\in\Pc_i(X)$ for $i\in T$, and $\rho:=1-\sum_{i\in T}p^i_i$. Fix $j\in T$. Since $1=p^j_j+\sum_{k\in T\setminus\{j\}}p^j_k+p^j(T^c)$,
+\begin{equation}\label{eq:rho}
+\rho=p^j(T^c)+\sum_{k\in T\setminus\{j\}}\big(p^j_k-p^k_k\big).
+\end{equation}
+For $k\in T\setminus\{j\}$, $(p^k,k)$ and $(p^j,j)$ glue (Lemma~\ref{lem:glue}), so $p^j_k\ge p^k_k$ by Lemma~\ref{lem:bets} and (U). So every term of \eqref{eq:rho} is nonnegative.
+
+(a) $\rho\ge0$ for every choice of the $p^i$; take suprema.
+
+(b) Here $\rho=0$, so every term of \eqref{eq:rho} vanishes, for every $j\in T$: $p^j(T^c)=0$ and $p^j_k=p^k_k$ for $k\in T$. So every $p^j$ equals the vector $p$ with $p_k:=p^k_k$ for $k\in T$ and $p_k:=0$ for $k\notin T$. Then $\supp p\subseteq T$ and $X\le_kD_p$ for every $k\in\supp p$. By (F) and Lemma~\ref{lem:faces}, $X\approx D_p$.
+\end{proof}
+
+\begin{lemma}\label{lem:closedcovers}
+Assume (R). Then $\Pc_i(X)$ is closed for every model $X$ and $i\in[n]$.
+\end{lemma}
+
+\begin{proof}
+Let $p^k\in\Pc_i(X)$ with $p^k\to p$. Put $U_k:=\{\varphi_{p^k}>0\}$ and $U:=\{\varphi_p>0\}$. The set
+\[
+N:=\{\varphi_p=0\}\cup(D_p\sd U)\cup\bigcup_k\big(D_{p^k}\sd U_k\big)\cup\bigcup_k\big(E_i(X)\setminus E_i(D_{p^k})\big)
+\]
+is null by Lemma~\ref{lem:basic}(iv). Let $g\in E_i(X)\setminus N$. For each $k$, $g\in E_i(D_{p^k})=D_{p^k}\sd G_i$ and $g\notin D_{p^k}\sd U_k$, so $g\in U_k\sd G_i$. By (R) and Lemma~\ref{lem:basic}(ii), $\varphi_{p^k}(g)\to\varphi_p(g)\ne0$, so for large $k$, $g\in U_k$ iff $g\in U$. Hence $g\in U\sd G_i=D_p\sd G_i=E_i(D_p)$ (using $g\notin D_p\sd U$). So $E_i(X)\setminus E_i(D_p)\subseteq N$.
+\end{proof}
+
+\begin{definition}\label{def:lex}
+$X\wl_iY\ :\iff\ X\wss_iY$, or ($X\wst_iY$ and $E_i(X)\subseteq E_i(Y)$ a.e.).
+\end{definition}
+
+\begin{lemma}\label{lem:lex}
+$\wl_i$ is a preorder satisfying (B1) and (B2). Moreover $X\wl_iY\Rightarrow X\ws_iY$, $X\wss_iY\Rightarrow X\wls_iY$, and $X\approx Y\Rightarrow X\sim^{\mathrm L}_iY$.
+\end{lemma}
+
+\begin{proof}
+Reflexivity is clear. Transitivity: if $X\wl_iY\wl_iZ$ and one step is strict for $\ws_i$, then $X\wss_iZ$; otherwise $X\wst_iZ$ and $E_i(X)\subseteq E_i(Z)$ a.e. (B1): $X\le_iY$ gives $X\ws_iY$, and in case of a tie $E_i(X)\subseteq E_i(Y)$ a.e. (B2): if $X<_iY$ then $X\wl_iY$ as before, and $Y\wl_iX$ would need $Y\wss_iX$ (false, as $X\ws_iY$) or $E_i(Y)\subseteq E_i(X)$ a.e.\ (false). The remaining claims are immediate.
+\end{proof}
+
+\begin{theorem}\label{thm:strict}
+Assume (U) and (F), use the level orders, and rank models by $\wl$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $\wl$ satisfies (B1) and (B2);
+\item every $D_q$ is competitive on $\supp q$;
+\item if $X$ weakly dominates $D_q$, then $X\approx D_q$;
+\item under (R), every model $X$ with $X\not\approx D_p$ for all $p\in\Delta$ is strictly dominated by some $D_q$, both under $\wl$ and under $\ws$.
+\end{enumerate}
+Consequently, under (R), the undominated models are exactly the models $X\approx D_p$, all are coherent, and (LA) and (C) hold.
+\end{theorem}
+
+\begin{proof}
+(a) Lemma~\ref{lem:lex}.
+
+(b) Suppose $D_q\not\wl_iX$ for every $i\in S:=\supp q$. If $i\notin T:=T(X)$ then $D_q\wss_iX$; so $S\subseteq T$. For $i\in S$, $D_q\not\wl_iX$ means: either $q_i<a_i(X)$; or $D_q\wst_iX$, i.e.\ $q_i=a_i(X)$ and some $p\in\Pc_i(X)$ has $p_i=q_i$, and $E_i(D_q)\not\subseteq E_i(X)$ a.e. In both cases $a_i(X)\ge q_i$. By Lemma~\ref{lem:budget}(a), $1=\sum_{i\in S}q_i\le\sum_{i\in S}a_i(X)\le\sum_{i\in T}a_i(X)\le1$. So $a_i(X)=q_i$ for $i\in S$, $a_i(X)=0$ for $i\in T\setminus S$, and the second case holds at every $i\in S$. Choose $p^i\in\Pc_i(X)$ with $p^i_i=q_i$ for $i\in S$, and any $p^i\in\Pc_i(X)$ for $i\in T\setminus S$ (then $p^i_i=0$). Then $\sum_{i\in T}p^i_i=1$, and Lemma~\ref{lem:budget}(b) gives $X\approx D_p$ with $p_k=q_k$ for $k\in S$, so $p=q$. Then $E_i(D_q)\subseteq E_i(X)$ a.e., a contradiction.
+
+(c) $X\wl_iD_q$ for all $i$ gives $X\ws_iD_q$ for all $i$; apply Theorem~\ref{thm:general}(d) via Corollary~\ref{cor:level}.
+
+(d) By Lemma~\ref{lem:closedcovers}, each $\Pc_i(X)$ ($i\in T$) is compact, so each $a_i(X)$ is attained. If $\sum_{i\in T}a_i(X)=1$, Lemma~\ref{lem:budget}(b) gives $X\approx D_p$ for some $p$. So $\sum_{i\in T}a_i(X)<1$ (also if $T=\varnothing$). Put $a_i:=a_i(X)$ for $i\in T$, $a_i:=0$ otherwise, and $q:=a+\frac1n\big(1-\sum_ka_k\big)\one\in\Delta$. For $i\in T$, $q_i>a_i$, so $D_q\ws_iX$ and no $p\in\Pc_i(X)$ has $p_i\ge q_i$; hence $D_q\wss_iX$. For $i\notin T$, $D_q\wss_iX$. By Lemma~\ref{lem:lex}, $D_q\wls_iX$ for all $i$.
+
+The consequences follow as in Theorem~\ref{thm:general}, using Lemma~\ref{lem:lex} for $X\approx D_p$.
+\end{proof}
+
+Theorem~\ref{thm:strict} does not give the closedness clause of (S). For rankings that refine the strict comparisons of $\ws$, this cannot be repaired by any selection (Proposition~\ref{prop:noselection}).
+
+\begin{proposition}\label{prop:noclosed}
+Assume (U), and use the level orders. Let $\preceq$ be any ranking satisfying (B2) such that $X\wss_iY$ implies $X\prec_iY$ for all $i$ (for instance $\wl$). Let $q\in\Delta$, and let $i\ne j$ with $q_j>0$. Then there is a model $X$ with $X<_iD_q$ and $X\wst_iD_q$ such that $\{r\in\Delta:D_r\preceq_iX\}$ contains every $r$ with $r_i>q_i$ but not $q$. In particular, this set is not closed.
+\end{proposition}
+
+\begin{proof}
+Since $q_j>0=(e_i)_j$, (U) gives $\Ub_q(j)>0$; pick $m\in K_q$ with $m_j>0$. Let $A:=\{g:g_i>0,\ \varphi_q(g)<0\}$. $A$ is open, and nonempty: $g:=\one-ce_j$ with $c>1/m_j$ has $g_i=1$ and $m\cdot g<0$. So $A$ is not null, and $A\cap D_q=\varnothing$ by Lemma~\ref{lem:basic}(iv). Let $X:=D_q\cup A$. Since $A\subseteq G_i$, $E_i(X)=E_i(D_q)\setminus A$, so $X<_iD_q$ and $q\in\Pc_i(X)$. Let $p\in\Pc_i(X)$. Since $W_{ji}\cap G_i=\varnothing$, $E_i(Y)\cap W_{ji}=Y\cap W_{ji}$ for every model $Y$, so $X\cap W_{ji}\subseteq D_p$ a.e.; and $X\cap W_{ji}=D_q\cap W_{ji}$ because $A\cap W_{ji}=\varnothing$. Hence $D_q\cap W_{ji}\subseteq D_p$ a.e., and Lemma~\ref{lem:bets} and (U) give $p_i\le q_i$. So $a_i(X)=q_i$, attained at $q$, and $X\wst_iD_q$.
+
+For $r\in\Delta$ with $r_i>q_i$: $r_i\ge a_i(X)$ and no $p\in\Pc_i(X)$ has $p_i\ge r_i$, so $D_r\wss_iX$, hence $D_r\preceq_iX$. By (B2), $X\prec_iD_q$, so $D_q\not\preceq_iX$. The points $q+t(e_i-e_j)$, $0<t\le q_j$, lie in the set and converge to $q$.
+\end{proof}
+
+\begin{proposition}\label{prop:noselection}
+Assume (U), (F) and (R), and use the level orders. Let $\preceq$ be any ranking satisfying (B1) and (B2) such that $X\wss_iY$ implies $X\prec_iY$ for all $i$ (for instance $\wl$). Then no selection $u:\Delta\to\mathcal C_L$ satisfies (S).
+\end{proposition}
+
+\begin{proof}
+Suppose $u$ satisfies (S). By Theorem~\ref{thm:strict}(d), every model $X$ with $X\not\approx D_r$ for all $r$ is strictly dominated under $\ws$, hence under $\preceq$; so for each $p$ there is $\sigma(p)\in\Delta$ with $u_p\approx D_{\sigma(p)}$. It is unique: if $D_r\approx D_{r'}$, then $r'\in\Pc_i(D_r)$ and $r\in\Pc_i(D_{r'})$ for all $i$, so (Fa) gives $r\sqsubseteq_ir'$ and $r'\sqsubseteq_ir$ for all $i$, and (ND) gives $r=r'$. By (B1), $u_p\sim_iD_{\sigma(p)}$ for all $i$, so $\{p:u_p\preceq_iX\}=\sigma^{-1}(\Sigma_i(X))$ with $\Sigma_i(X):=\{r:D_r\preceq_iX\}$.
+
+First, $\sigma(e_i)=e_i$: otherwise $\sigma(e_i)_i<1$, so $D_{e_i}\wss_iD_{\sigma(e_i)}$, hence $D_{e_i}\prec_iu_{e_i}$, and $u_{e_i}$ is not competitive on $\{i\}$.
+
+Next, $\sigma$ is locally constant. Fix $p_0$ and $r_0:=\sigma(p_0)$. For each $i$ with $r_0\ne e_i$, pick $j\ne i$ with $(r_0)_j>0$ and let $X$ be the model of Proposition~\ref{prop:noclosed} for $q:=r_0$. Then $\Sigma_i(X)$ contains every $r$ with $r_i>(r_0)_i$ but not $r_0$. Since $\sigma^{-1}(\Sigma_i(X))$ is closed and does not contain $p_0$, some neighbourhood $N_i$ of $p_0$ has $\sigma(p)_i\le(r_0)_i$ for $p\in N_i$. If $r_0$ is not a vertex of $\Delta$, this holds for every $i$, so $\sigma(p)\le r_0$, hence $\sigma(p)=r_0$, on $\bigcap_iN_i$. If $r_0=e_v$, it holds for every $i\ne v$, so $\sigma(p)=e_v$ on $\bigcap_{i\ne v}N_i$.
+
+Since $\Delta$ is connected, $\sigma$ is constant, contradicting $\sigma(e_1)=e_1\ne e_2=\sigma(e_2)$.
+\end{proof}
+
+\begin{remark}\label{rem:lift}
+Proposition~\ref{prop:noclosed} locates the failure. For the set $\{r:D_r\preceq_iX\}$ to be closed, a ranking satisfying (B2) must have $D_r\not\preceq_iX$ for every $r$ near $q$ with $r_i>q_i$, although $\ws$ ranks all such $D_r$ strictly better than $X$ at $\omega_i$. In level terms, $X$ must be placed at a level strictly above $a_i(X)=q_i$. The loss $L_\eta$ of \cite[Theorem~2.2]{LR} does this: it raises the level of $X$ at $\omega_i$ above that of its best cover by $\eta$ times a measure of the errors $X$ avoids relative to that cover. It does not refine the strict comparisons of $\ws$, and it satisfies (B1), (B2), (LA), (S) and (C) for families with (U), a Lipschitz form of (R), and $\Ub_p(i)\le Bp_i$.
+\end{remark}
+
+\section{Credal sets in the interior of the simplex}\label{sec:interior}
+
+Let $M\subseteq\operatorname{int}\Delta$ be a credal set. Put $u_k:=\Ub_M(k)$. Since $M$ is compact and $M\subseteq\operatorname{int}\Delta$, $0<u_k<1$ for every $k$. Fix $p^*\in M$; then $0<p^*_k\le u_k<1$. For $k\in[n]$ let $h_k:[0,1]\to[0,1]$ be the piecewise linear function through $(0,0)$, $(p^*_k,u_k)$ and $(1,1)$:
+\[
+h_k(t):=\begin{cases}\dfrac{u_k}{p^*_k}\,t,&0\le t\le p^*_k,\\[6pt] u_k+\dfrac{1-u_k}{1-p^*_k}\,(t-p^*_k),&p^*_k\le t\le1.\end{cases}
+\]
+Each $h_k$ is strictly increasing and concave (its slopes satisfy $u_k/p^*_k\ge1\ge(1-u_k)/(1-p^*_k)>0$), so $t\le h_k(t)\le(u_k/p^*_k)\,t$. For $p\in\Delta$ let
+\begin{gather*}
+\theta(p):=\min\Big\{1,\ \min_k\frac{h_k(p_k)}{u_k},\ \min_k\frac{1-h_k(p_k)}{1-u_k}\Big\}\in[0,1],\\
+K_p:=\{m\in\Delta:m_k\le h_k(p_k)\text{ for all }k\}\cap\{\theta(p)a+(1-\theta(p))r:a\in M,\ r\in\Delta\}.
+\end{gather*}
+
+\begin{proposition}\label{prop:family}
+\begin{enumerate}[label=(\roman*)]
+\item Each $K_p$ is a credal set, and $K_{p^*}=M$.
+\item $\Ub_p(i)=h_i(p_i)$ for all $p\in\Delta$ and $i\in[n]$. Hence (U) holds, and $\Ub_p(i)\le(u_i/p^*_i)\,p_i$.
+\item (F) holds.
+\item $\dH(K_p,K_{p'})\le2\|h(p)-h(p')\|_1+4|\theta(p)-\theta(p')|$, where $h(p):=(h_1(p_1),\dots,h_n(p_n))$. Both $h$ and $\theta$ are Lipschitz, so $p\mapsto K_p$ is Lipschitz for $\dH$; in particular (R) holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Write $\theta:=\theta(p)$. Every $m\in K_p$ can be written $m=\theta a+z$ with $a\in M$, $z\ge0$, $\sum_kz_k=1-\theta$, and $\theta a+z\le h(p)$. For any $a\in M$, the vector $w:=h(p)-\theta a$ satisfies
+\begin{equation}\label{eq:w}
+w\ge0,\qquad \sum_kw_k\ge1-\theta,
+\end{equation}
+since $\theta a_k\le\theta u_k\le h_k(p_k)$ and $\sum_kh_k(p_k)\ge\sum_kp_k=1$.
+
+(ii) $m\le h(p)$ gives $\Ub_p(i)\le h_i(p_i)$. Pick $a\in M$ with $a_i=u_i$, and let $w$ be as in \eqref{eq:w}. Then $w_i=h_i(p_i)-\theta u_i\le1-\theta$, because $\theta\le(1-h_i(p_i))/(1-u_i)$. So there is $z$ with $z_i=w_i$, $0\le z_k\le w_k$ for $k\ne i$, and $\sum_kz_k=1-\theta$. Let $m:=\theta a+z$. Then $m\ge0$, $\sum_km_k=1$, $m\le\theta a+w=h(p)$, and $m_i=h_i(p_i)$. If $\theta<1$, $m=\theta a+(1-\theta)\big(z/(1-\theta)\big)$; if $\theta=1$, then $z=0$ and $m=a$. So $m\in K_p$. The bound on $\Ub_p(i)$ follows from $h_i(t)\le(u_i/p^*_i)t$; (U) follows from strict monotonicity of $h_i$.
+
+(i) $K_p$ is the intersection of a closed convex set with a compact convex set (a Minkowski sum of two compact convex sets), and it is nonempty by (ii). At $p^*$, $h_k(p^*_k)=u_k$, so $\theta(p^*)=1$ and $K_{p^*}=\{m\in\Delta:m\le u\}\cap M=M$.
+
+(iii) $m\le h(p)$ and $h_k(0)=0$.
+
+(iv) Let $\theta':=\theta(p')$ and $m=\theta a+z\in K_p$ as above. Let $w':=h(p')-\theta'a$, which satisfies \eqref{eq:w} for $p'$. Let $\tilde z:=\min\{z,w'\}$ coordinatewise. Since $z\le h(p)-\theta a$,
+\[
+\|z-\tilde z\|_1=\sum_k(z_k-w'_k)^+\le\|h(p)-h(p')\|_1+|\theta-\theta'|=:d,
+\]
+using $\sum_ka_k=1$. So $\sigma:=\sum_k\tilde z_k$ satisfies $|\sigma-(1-\theta')|\le d+|\theta-\theta'|$. If $\sigma<1-\theta'$, let $z':=\tilde z+t(w'-\tilde z)$ with $t:=(1-\theta'-\sigma)/(\sum_kw'_k-\sigma)\in(0,1]$; if $\sigma>1-\theta'$, let $z':=(1-t)\tilde z$ with $t:=(\sigma-1+\theta')/\sigma\in(0,1]$; otherwise $z':=\tilde z$. Then $0\le z'\le w'$, $\sum_kz'_k=1-\theta'$ and $\|z'-\tilde z\|_1=|\sigma-(1-\theta')|$. As in (ii), $m':=\theta'a+z'\in K_{p'}$, and
+\[
+\|m'-m\|_1\le|\theta-\theta'|+\|z'-z\|_1\le2\|h(p)-h(p')\|_1+4|\theta-\theta'|.
+\]
+Exchanging $p$ and $p'$ gives the bound on $\dH$. Each $h_k$ is Lipschitz with constant $u_k/p^*_k$, so each term in the definition of $\theta$ is Lipschitz, and a minimum of finitely many Lipschitz functions is Lipschitz.
+\end{proof}
+
+\begin{corollary}\label{cor:main}
+Let $M\subseteq\operatorname{int}\Delta$ be a credal set, and let $p\mapsto K_p$ be the family of Proposition~\ref{prop:family}, with level orders. Then:
+\begin{enumerate}[label=(\alph*)]
+\item Under $\ws$: (B1), (LA), (S) with $u_p:=D_p$, and (C) hold; $D_M=D_{p^*}$ is undominated; every model $X$ with $X\not\approx D_p$ for all $p$ is strictly dominated by some $D_q$; and (B2) fails.
+\item Under $\wl$: (B1), (B2), (LA) and (C) hold; every $D_p$, in particular $D_M$, is undominated and competitive on $\supp p$; every model $X$ with $X\not\approx D_p$ for all $p$ is strictly dominated by some $D_q$; and no selection satisfies (S).
+\item Under the loss $L_\eta$ of \cite[Theorem~2.2]{LR} built from this family, for $\eta$ small enough: (B1), (B2), (LA), (S) with $u_p:=D_p$, and (C) hold, and $D_M$ is undominated.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:family} gives (U), (F) and (R). (a) Corollary~\ref{cor:level}, Theorem~\ref{thm:general} and Theorem~\ref{thm:strict}(d); (B2) fails by Proposition~\ref{prop:noclosed}, since $X<_iD_q$ and $X\wst_iD_q$ there. (b) Theorem~\ref{thm:strict} and Proposition~\ref{prop:noselection}. (c) Proposition~\ref{prop:family}(ii),(iv) give the hypotheses of \cite[Theorem~2.2]{LR}: (U), a Lipschitz bound for $\dH(K_p,K_{p'})$, and $\Ub_p(i)\le Bp_i$ with $B:=\max_ku_k/p^*_k$.
+\end{proof}
+
+\begin{remark}\label{rem:class}
+Let $\mathfrak L$ consist of the rankings of Corollary~\ref{cor:main}(b), or of Corollary~\ref{cor:main}(c), one for each credal set $M\subseteq\operatorname{int}\Delta$ with a fixed choice of $p^*\in M$. Every coherent model $X\approx D_M$ with $M\subseteq\operatorname{int}\Delta$ belongs to $\mathcal C_L$ for some ranking in $\mathfrak L$, and every model in some $\mathcal C_L$ is coherent. The construction uses $M\subseteq\operatorname{int}\Delta$ only through $0<u_k<1$ and $p^*_k>0$. Under (U), a member $K_{p}$ with $\Ub_p(i)=1$ forces $p=e_i$ (apply (U) to $e_i$ and $p$), and (F) then forces $K_p=\{e_i\}$; so no family with (U) and (F) contains a credal set that contains a vertex $e_i$ and is not $\{e_i\}$.
+\end{remark}
+
+\begin{example}\label{ex:n3}
+Let $n=3$, $M:=\{m\in\Delta:m_k\ge\frac16\text{ for all }k\}$ (the $\varepsilon$-contamination of the uniform $\bar q:=(\frac13,\frac13,\frac13)$ with $\varepsilon=\frac12$), and $p^*:=\bar q$. Then $u_k=\frac23$, $h_k(t)=\min\{2t,\frac12(1+t)\}$, $\theta(p)=\min\{1,\ \min_k\frac32h_k(p_k),\ \min_k3(1-h_k(p_k))\}$, and, since $\theta M+(1-\theta)\Delta=\{m\in\Delta:m_k\ge\theta/6\text{ for all }k\}$,
+\[
+K_p=\Big\{m\in\Delta:\tfrac16\theta(p)\le m_k\le h_k(p_k)\text{ for }k=1,2,3\Big\}.
+\]
+So $K_{\bar q}=M$, $K_{e_1}=\{e_1\}$, and $\Ub_p(i)=\min\{2p_i,\frac12(1+p_i)\}$.
+\end{example}
+
+\begin{thebibliography}{9}
+\bibitem{KKM} B.~Knaster, C.~Kuratowski and S.~Mazurkiewicz. Ein Beweis des Fixpunktsatzes f\"ur $n$-dimensionale Simplexe. \emph{Fundamenta Mathematicae} 14 (1929), 132--137.
+\bibitem{KCM} J.~Konek and C.~Campbell-Moore. Coherence, dominance, and generalized loss. Manuscript.
+\bibitem{LR} Loss relations for sets of desirable gambles. Companion note, 2026.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,909 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,booktabs}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\lpr}[1]{\underline{P_{#1}}}
+\newcommand{\lowprob}[1]{\underline{p_{#1}}}
+\newcommand{\upprob}[1]{\overline{p_{#1}}}
+\title{Independent Rankings of Binary Advice\\[3pt]\large Version 3: two-world coverage and a higher-dimensional obstruction}
+\author{}
+\date{9 October 2026}
+\begin{document}
+\maketitle
+
+\noindent
+We rank good advice above silence, silence above bad advice, and bad advice
+above contradictory advice. We also require that a comparison between two
+models depend only on the binary problems on which they differ.
+The ordinal benchmark recipe of v2 fails this independence requirement.
+A different construction, using penalties for individual binary problems,
+satisfies independence and gives full coverage of coherent sets of desirable
+gambles when there are two worlds. It includes boundary and vacuous targets.
+For three or more worlds, no additive construction of this kind can give
+full coverage: under the remaining axioms, the vacuous model must be strictly
+dominated. Full coverage by more general independent ordinal rankings
+remains open.
+
+The proof has three steps. Specify penalties for the four kinds of advice;
+show that their probability-weighted minima describe coherent models; then
+use those minima to obtain competitiveness, closed comparison sets, and
+undominated targets. The two-world construction makes every step explicit.
+It uses neither benchmark scores nor a bonus depending on the whole model.
+The final section explains why this method cannot give full coverage in
+higher dimensions; its proof is kept in Appendix~\ref{app:obstruction}.
+
+\section{Binary advice and the requirements}
+
+Let $\Omega=\{\omega_1,\ldots,\omega_n\}$, $n\ge2$, and
+$\Delta=\{p\in\R^n:p\ge0,\ \sum_i p_i=1\}$.
+Write $e_i$ for the $i$th unit vector, $\one=(1,\ldots,1)$, and
+$\supp p=\{i:p_i>0\}$. A gamble $g$ pays $g_i$ at $\omega_i$.
+A model is a Lebesgue-measurable acceptance set $\Dscr\subseteq\R^n$.
+Fix standard Gaussian measure $\mu$; it has the same null sets as Lebesgue
+measure. Write $\Dscr\approx\Escr$ when $\mu(\Dscr\sd\Escr)=0$.
+Every comparison in this note ignores changes on null sets.
+
+A pair $\{g,-g\}$ represents a binary decision problem: if $g=f-h$, accepting
+$g$ recommends $f$ over $h$, while accepting $-g$ recommends $h$ over $f$.
+Neither acceptance gives no recommendation; both give contradictory
+recommendations. To count each pair once, use
+\[
+ H=\{g:g_1>0\}.
+\]
+Pairs in $\{g_1=0\}$, and worlds with $g_i=0$, can be ignored because the
+coordinate hyperplanes are null. The advice of $\Dscr$ at $g\in H$ is
+\[
+ a_{\Dscr}(g)=
+ \begin{cases}
+ +,&g\in\Dscr,\ -g\notin\Dscr,\\
+ 0,&g\notin\Dscr,\ -g\notin\Dscr,\\
+ -,&g\notin\Dscr,\ -g\in\Dscr,\\
+ \times,&g\in\Dscr,\ -g\in\Dscr.
+ \end{cases}
+\]
+At $\omega_i$, $+$ is good and $-$ is bad when $g_i>0$; their roles reverse
+when $g_i<0$. The background order, with better advice first, is
+\begin{equation}
+ \boxed{\text{good}\;\prec\;\text{no advice}\;\prec\;\text{bad}\;\prec\;\text{contradictory}.}
+ \label{eq:advice-order}
+\end{equation}
+Write $\Dscr\unlhd_i\Escr$ when $\Dscr$ gives advice at least as good for almost
+every $g\in H$. Its strict part requires strictly better advice on a
+positive-measure set of pairs. The ideal acceptance set is
+$D_i=\{g:g_i>0\}$.
+
+This replaces the earlier error-inclusion order. The two orders agree on
+comparisons between models that never give contradictory advice, but differ
+on comparisons involving contradictions. In particular, removing the sole
+correct recommendation from a contradictory pair now improves the advice,
+whereas it increased the earlier error set.
+
+A ranking consists of a preorder $\preceq_i$ at each world; smaller means
+better. Its strict part is $\prec_i$. A model dominates another if it is at
+least as good at every world and strictly better at some world; it strictly
+dominates if it is strictly better at every world. A model is undominated
+if none dominates it. It is competitive on $S\ne\varnothing$ if, against
+every model, it is at least as good at some world in $S$.
+
+We impose two requirements on comparisons:
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+\item[\textbf{(G)}] \textbf{Guidance improvement.} Both weak and strict
+background comparisons are respected:
+$\Dscr\unlhd_i\Escr\Rightarrow\Dscr\preceq_i\Escr$, and strict background
+improvement implies $\Dscr\prec_i\Escr$.
+\item[\textbf{(IB)}] \textbf{Independence across binary problems.} For every
+measurable $A=-A$ and all measurable $F,G\subseteq A^c$,
+\begin{equation}
+ \begin{aligned}
+ (\Dscr\cap A)\cup F&\preceq_i(\Escr\cap A)\cup F\\
+ &\Longleftrightarrow\\[-6pt]
+ (\Dscr\cap A)\cup G&\preceq_i(\Escr\cap A)\cup G.
+ \end{aligned}\label{eq:independence}
+\end{equation}
+The symmetry of $A$ keeps the two orientations of each binary problem
+together. Replacing shared advice outside $A$ cannot change the comparison.
+\end{enumerate}
+
+A coherent set of desirable gambles excludes $0$, contains every nonzero
+$g\ge0$, and is closed under addition and positive scaling.
+A credal set is a nonempty closed convex $M\subseteq\Delta$. Write
+\[
+ \lpr{M}(g)=\min_{m\in M}m\cdot g,\qquad
+ \Dscr_M=\{g:\lpr{M}(g)>0\}\cup\{g\ge0:g\ne0\}.
+\]
+Also write $\lowprob{M}(\omega_i)=\min_{m\in M}m_i$ and
+$\upprob{M}(\omega_i)=\max_{m\in M}m_i$.
+Every coherent set agrees a.e. with some $\Dscr_M$; an elementary proof is in
+Appendix~\ref{app:representation}.
+
+Let $\mathcal C$ comprise all models coherent up to a null set. For a class
+$\mathfrak R$ of rankings, let $\mathcal C_R$ be the coherent undominated
+models evaluated by $R$. We retain the following requirements:
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item[\textbf{(E)}] Every model is evaluated by some $R\in\mathfrak R$.
+\item[\textbf{(LA)}] $\mathcal C_R\ne\varnothing$ for every $R\in\mathfrak R$.
+\item[\textbf{(A)}] Every member of $\mathcal C$ belongs to some $\mathcal C_R$.
+\item[\textbf{(S)}] Each ranking admits a selection $p\mapsto C_p\in\mathcal C_R$
+that is competitive on $\supp p$ and for which
+$\{p:C_p\preceq_i\Dscr\}$ is closed for every $i,\Dscr$.
+\item[\textbf{(C)}] A model tied at every world with a member of $\mathcal C_R$
+also belongs to $\mathcal C_R$.
+\end{enumerate}
+All rankings constructed below evaluate every measurable model.
+
+\section{Why the ordinal benchmark recipe fails independence}
+
+The difficulty is structural. A model accepting every strictly negative
+gamble cannot improve on any coherent benchmark at any world: those
+acceptances are errors at every world. This holds for the original background
+order and for \eqref{eq:advice-order}. In the ordinal recipe of v2, this leaves
+no available index anywhere. Both comparison levels then take their default
+value, and comparisons revert to the background order. Adding the same
+contradictions to two otherwise consistent models can therefore erase an
+earlier comparison.
+
+The next proposition isolates this problem without depending on the
+particular family, the maximum defining a score, or the size of a bonus.
+
+\begin{proposition}[A common change can erase a comparison]\label{prop:obstruction}
+Suppose a ranking on all measurable models has both properties below:
+\begin{enumerate}[label=(\alph*)]
+\item Every model not coherent modulo null sets is strictly dominated at
+every world by a coherent model.
+\item When both models accept all of $B=\R^n_{>0}\cup\R^n_{<0}$ and give
+no contradictory advice outside $B$, their comparison at each world is exactly
+$\unlhd_i$.
+\end{enumerate}
+Then the ranking fails \textbf{(IB)}.
+\end{proposition}
+\begin{proof}
+Let $\Escr$ follow $D_1$ on $\{g:\|g\|_2<1\}$ and $D_2$ on its complement.
+The radius condition is unchanged by $g\mapsto-g$, so $\Escr$ gives exactly
+one recommendation on almost every pair. It follows the unanimously better
+option when all payoffs have the same sign. It is not coherent even modulo
+null sets: on directions with $g_1>0>g_2$, it accepts at radii below one and
+rejects at radii above one. No cone can agree with this on almost every ray;
+polar integration makes the disagreement positive in measure.
+
+By (a), some coherent $C$ satisfies $C\prec_i\Escr$ at every world.
+Nevertheless $C\unlhd_i\Escr$ cannot hold at every world. On any pair where
+$C$ differs from $\Escr$, the latter gives a definite recommendation that is
+good at at least one world (world 1 or world 2). At such a world, $C$ gives
+silence or the opposite recommendation, so is worse. Since $C\not\approx\Escr$
+and there are finitely many worlds, this happens on a positive-measure set
+at some fixed world $i$.
+
+Put $B=\R^n_{>0}\cup\R^n_{<0}$ and $A=B^c$. Both $C$ and $\Escr$ accept
+exactly $\R^n_{>0}$ on $B$, up to null sets. Replace that common advice by
+acceptance of all of $B$, giving $C'=C\cup B$ and $\Escr'=\Escr\cup B$.
+Both now give contradictory advice on $B$ and nowhere else, up to null sets.
+Their background comparison on
+$A$ is unchanged, so $C'\not\unlhd_i\Escr'$ at the world just found. By (b),
+$C'\not\preceq_i\Escr'$. Originally $C\prec_i\Escr$. This contradicts
+\eqref{eq:independence}, with common outside advice changed from
+$\R^n_{>0}$ to $B$.
+\end{proof}
+
+The original ordinal construction has both properties: its background order
+agrees with $\unlhd_i$ outside $B$ on these otherwise consistent models, and
+the models give identical advice on $B$. Updating it to the new background
+order while retaining its strict dominance conclusion and default comparison
+also leaves the obstruction intact.
+This is not an impossibility theorem for independent rankings in general.
+The next construction avoids the model-wide change of comparison rule.
+
+\begin{remark}[Keeping the old indices does not give a local Bayes construction]
+There is a second, narrower obstacle. For the three-world vacuous target,
+the homothetic family in v2 has $K_p=\{p\}$ on the boundary and
+$K_{(1/3,1/3,1/3)}=\Delta$. Take
+\[
+ p=(2/3,0,1/3),\qquad q=(0,2/3,1/3),\qquad g=(2,1,-1).
+\]
+Both $C_p$ and $C_q$ recommend $+$, whereas $C_{(p+q)/2}$ gives no advice.
+These facts persist on an open neighbourhood of $g$. For fixed local
+penalties, if $+$ uniquely minimizes expected penalty at both $p$ and $q$,
+it also does so at their average: average its strict comparisons with each
+other action. Thus this family cannot be the unique pointwise Bayes family
+with those same probability indices. This does not rule out reindexing,
+other families, or more general ordinal rankings.
+\end{remark}
+
+\section{Penalties for individual binary problems}
+
+A direct way to ensure independence is to assign each piece of advice its own
+penalty and add these penalties over problems. The penalty at a problem may
+depend on its payoffs and the target, but never on the model's advice elsewhere.
+
+For $g\in H$ and world $i$, choose measurable local penalties
+$\ell_i(g,a)$, $a\in\{+,0,-,\times\}$, with
+\begin{equation}
+ \ell_i(g,\text{good})=0
+ <\ell_i(g,0)
+ <\ell_i(g,\text{bad})
+ <\ell_i(g,\times)\le h_i(g),
+ \qquad \int_Hh_i\,d\mu<\infty.
+ \label{eq:local-penalties}
+\end{equation}
+These inequalities are required off the null coordinate hyperplanes.
+Define
+\begin{equation}
+ L(\Dscr,\omega_i)=\int_H\ell_i(g,a_{\Dscr}(g))\,d\mu(g),
+ \qquad
+ \Dscr\preceq_i\Escr\ \Longleftrightarrow\
+ L(\Dscr,\omega_i)\le L(\Escr,\omega_i).
+ \label{eq:integral-loss}
+\end{equation}
+These losses are finite and uniformly bounded over models.
+
+\begin{lemma}\label{lem:local-independence}
+The ranking \eqref{eq:integral-loss} satisfies \textbf{(G)} and \textbf{(IB)}.
+\end{lemma}
+\begin{proof}
+A guidance improvement decreases the integrand pointwise, strictly on a
+positive-measure set when the improvement is strict. Its integral therefore
+decreases accordingly. For independence, $A=-A$ means that a pair lies wholly
+inside $A$ or wholly outside it. The common outside contribution cancels from
+the difference of the two finite losses. Thus both comparisons in
+\eqref{eq:independence} depend only on the same integral over $H\cap A$.
+\end{proof}
+
+It remains to make the undominated models coherent and to include the target.
+The next theorem reduces both tasks to a pointwise calculation with four
+numbers. A model is called $p$-Bayes if it minimizes
+$\sum_i p_iL(\Dscr,\omega_i)$.
+
+\begin{theorem}[A sufficient construction in any number of worlds]\label{thm:general}
+Suppose \eqref{eq:local-penalties} holds. Suppose also that, for every
+$p\in\Delta$, the minimizing advice in
+\begin{equation}
+ \min_{a\in\{+,0,-,\times\}}\sum_i p_i\ell_i(g,a)
+ \label{eq:pointwise-bayes}
+\end{equation}
+is unique for almost every $g\in H$ and agrees a.e. with the advice of a
+coherent model $C_p$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $C_p$ is the unique $p$-Bayes model modulo null sets and is undominated.
+\item Each $C_p$ is competitive on $\supp p$; every map
+$p\mapsto L(C_p,\omega_i)$ is continuous, giving the closedness in \textbf{(S)}.
+\item Every model outside $\{C_p:p\in\Delta\}$ modulo null sets is strictly
+dominated at every world by some $C_q$.
+\end{enumerate}
+The ranking satisfies \textbf{(LA)}, \textbf{(S)}, \textbf{(C)}, \textbf{(G)},
+and \textbf{(IB)}, and evaluates every model. If such penalties can be chosen
+through each coherent target, their class satisfies \textbf{(A)} as well.
+\end{theorem}
+\begin{proof}
+For any $\Dscr$, subtract the pointwise minimum from its expected local loss
+and integrate. The difference is nonnegative, and is positive unless the
+advice agrees a.e. with that of $C_p$. Agreement of advice on almost every
+pair is equivalent to agreement of acceptance sets a.e. Thus $C_p$ is uniquely
+$p$-Bayes modulo null sets. A model dominating it would also be $p$-Bayes,
+hence agree with it a.e. and tie everywhere, a contradiction.
+
+For continuity, let $p_k\to p$. At almost every $g$, the unique minimizing
+action at $p$ has a positive gap over the other three actions. Since their
+expected penalties are linear in $p$, the minimizing action is eventually
+unchanged. For each $k$ we may discard the null exceptional set in the
+hypothesis; their countable union is still null. Dominated convergence, with
+bound $h_i$, gives $L(C_{p_k},\omega_i)\to L(C_p,\omega_i)$.
+Bayes optimality ensures that some $i\in\supp p$ has
+$L(C_p,\omega_i)\le L(\Dscr,\omega_i)$, proving competitiveness.
+
+For (c), fix $\Dscr$ outside the selected family modulo null sets. Uniqueness
+gives a strictly positive, continuous function on the compact simplex:
+\[
+ d(p)=\sum_i p_i\bigl(L(\Dscr,\omega_i)-L(C_p,\omega_i)\bigr)>0.
+\]
+Let $\delta=\min_pd(p)>0$. The closed sets
+\[
+ A_i=\{p:L(C_p,\omega_i)\le L(\Dscr,\omega_i)-\delta/2\}
+\]
+cover each face in the required sense: for every $p$, some $i\in\supp p$
+has $p\in A_i$, since the weighted average improvement is at least $\delta$.
+The simplex lemma in Appendix~\ref{app:simplex} gives a common $q\in\bigcap_iA_i$.
+Thus $C_q$ improves on $\Dscr$ at every world by at least $\delta/2$.
+
+Finally, a model tied everywhere with $C_p$ is also $p$-Bayes and so agrees
+with $C_p$ a.e., proving (C). The remaining requirements follow from the
+properties just proved and Lemma~\ref{lem:local-independence}.
+\end{proof}
+
+This is a sufficient method, not a representation theorem for all rankings
+satisfying independence. In particular, it places no restriction on what a
+more general, incomplete ordinal ranking might achieve.
+
+\section{Full coverage in two worlds}
+
+Now let $n=2$, identifying a distribution with its first coordinate
+$t\in[0,1]$. Every credal set is an interval $[l,u]\subseteq[0,1]$.
+The whole class of rankings will have just one parameter, $w\in[0,1]$.
+Larger $w$ makes silence cheaper. To cover a target interval, take $w$ to be
+its width.
+
+At a mixed-sign pair, write its representative in $H$ as $g=(a,-b)$ with
+$a,b>0$. Give silence the same penalty at both worlds:
+\begin{equation}
+ \boxed{\quad c_w(a,b)=\frac{ab}{(1+w)(a+b)}.\quad}
+ \label{eq:silence-costs}
+\end{equation}
+The complete table of penalty vectors is
+\begin{equation}
+ \begin{array}{c|cccc}
+ \text{advice}&+&0&-&\times\\ \hline
+ (\ell_1,\ell_2)&(0,b)&(c_w,c_w)&(a,0)&(2a,2b).
+ \end{array}
+ \label{eq:mixed-table}
+\end{equation}
+Thus good advice costs nothing; bad advice incurs the payoff shortfall;
+contradictory advice twice that amount; and silence an intermediate penalty,
+since $0<c_w<\min\{a,b\}$. At a unanimous pair $g=(a,b)$ with $a,b>0$, put
+\begin{equation}
+ \begin{array}{c|cccc}
+ \text{advice}&+&0&-&\times\\ \hline
+ (\ell_1,\ell_2)&(0,0)&(a/2,b/2)&(a,b)&(2a,2b).
+ \end{array}
+ \label{eq:unanimous-table}
+\end{equation}
+Values on the coordinate hyperplanes are immaterial.
+Every penalty at world $i$ is at most $2|g_i|$, which is integrable under
+Gaussian measure. Thus \eqref{eq:local-penalties} holds.
+
+The next calculation explains the choice \eqref{eq:silence-costs}.
+The two probabilities at which the best advice changes will become the
+endpoints of a coherent credal interval.
+
+\begin{lemma}[When each recommendation minimizes expected penalty]\label{lem:thresholds}
+For $g=(a,-b)$ put $r=b/(a+b)$. Under prior $(t,1-t)$, the unique minimizing
+advice, except at the displayed thresholds, is
+\begin{equation}
+ \begin{cases}
+ -,&t<r/(1+w),\\
+ 0,&r/(1+w)<t<(r+w)/(1+w),\\
+ +,&t>(r+w)/(1+w).
+ \end{cases}\label{eq:thresholds}
+\end{equation}
+For $w=0$ the silence interval is empty and the thresholds coincide at $r$.
+At a unanimous pair, $+$ uniquely minimizes expected penalty for every $t$.
+\end{lemma}
+\begin{proof}
+The expected penalties for $-$, $0$, and $+$ are
+\[
+ ta,\qquad c_w(a,b),\qquad (1-t)b.
+\]
+The constant middle term meets the first at $t=r/(1+w)$ and the last at
+$t=(r+w)/(1+w)$. The first and last terms meet at $t=r$, between these two
+thresholds. This gives \eqref{eq:thresholds}, including its limiting case
+$w=0$. Contradictory advice has a strictly greater penalty at both worlds
+than any other choice. The unanimous case is immediate.
+\end{proof}
+
+The resulting family consists of intervals of width $w$, shortened where
+necessary to remain in $[0,1]$:
+\begin{equation}
+ \boxed{\quad
+ K_t=[l_w(t),u_w(t)]
+ =\bigl[\max\{0,(1+w)t-w\},\ \min\{1,(1+w)t\}\bigr].
+ \quad}\label{eq:interval-family}
+\end{equation}
+It is nonempty, since $l_w(t)\le t\le u_w(t)$.
+Its lower and upper probabilities at $\omega_1$ are $l_w(t)$ and $u_w(t)$;
+at $\omega_2$ they are $1-u_w(t)$ and $1-l_w(t)$.
+Put $C_t=\Dscr_{K_t}$.
+
+\begin{proposition}\label{prop:bayes-interval}
+For every $t\in[0,1]$, the pointwise minimizing advice agrees a.e. with $C_t$
+and is unique a.e. Consequently Theorem~\ref{thm:general} applies, including
+at $t=0$, $t=1$, and $w=0$.
+\end{proposition}
+\begin{proof}
+For $g=(a,-b)$,
+\[
+ \lpr{K_t}(g)=(a+b)l_w(t)-b,\qquad
+ \lpr{K_t}(-g)=b-(a+b)u_w(t).
+\]
+Thus $C_t$ accepts $g$ exactly when $l_w(t)>r$, equivalent to
+$t>(r+w)/(1+w)$. It accepts $-g$ exactly when $u_w(t)<r$, equivalent to
+$t<r/(1+w)$. Between these thresholds it accepts neither. This agrees with
+Lemma~\ref{lem:thresholds}. Every unanimous positive gamble is accepted.
+
+For fixed $t$, a tie can occur only on a line with constant
+$r=b/(a+b)$, or on the coordinate hyperplanes. These sets are Lebesgue-null,
+also when $w=0$ and all three noncontradictory choices tie on the same line.
+The thresholds lie strictly inside $(0,1)$, so the endpoint priors create no
+additional ties. In particular, $C_0\approx D_2$ and $C_1\approx D_1$.
+\end{proof}
+
+The reference intervals have now been derived from the advice penalties.
+The next theorem shows that every target appears in one of these families.
+
+\begin{theorem}[Full two-world coverage with independence]\label{thm:full}
+For two worlds, the class of finite loss rankings defined by
+\eqref{eq:mixed-table}--\eqref{eq:unanimous-table}, as $w$ ranges over $[0,1]$,
+satisfies \textbf{(E)}, \textbf{(LA)}, \textbf{(A)}, \textbf{(S)}, \textbf{(C)},
+\textbf{(G)}, and \textbf{(IB)}. Every coherent set of desirable gambles is
+undominated under some ranking in this class, including precise, boundary,
+and vacuous targets.
+\end{theorem}
+\begin{proof}
+Fix any target interval $M=[l,u]$, $0\le l\le u\le1$. Set
+\begin{equation}
+ \boxed{\quad w=u-l,\qquad t_0=\frac{u}{1+w}.\quad}
+ \label{eq:target-parameters}
+\end{equation}
+Then $w\in[0,1]$, $t_0\in[0,1]$, and substitution in
+\eqref{eq:interval-family} gives
+\[
+ l_w(t_0)=u-w=l,\qquad u_w(t_0)=u.
+\]
+Hence $C_{t_0}=\Dscr_M$. Proposition~\ref{prop:bayes-interval} and
+Theorem~\ref{thm:general} give all the ranking-specific requirements, and
+make the target undominated. This includes singletons ($w=0$), intervals
+containing either vertex, and the vacuous interval ($w=1$).
+
+Every coherent set agrees a.e. with $\Dscr_M$ for some interval $M$ by
+Appendix~\ref{app:representation}. Thus the class satisfies (A). Every ranking
+evaluates every measurable model, giving (E).
+\end{proof}
+
+\paragraph{Why the target is undominated.}
+At the prior $t_0$ in \eqref{eq:target-parameters}, its recommendation minimizes
+expected penalty in almost every binary problem. Any different recommendation
+on a positive-measure set raises the expected total penalty. The pointwise
+uniqueness also rules out domination when the target prior is an endpoint.
+
+\paragraph{The vacuous target.}
+For $M=[0,1]$, take $w=1$ and $t_0=1/2$. Then
+\begin{equation}
+ c_1(a,b)=\frac{ab}{2(a+b)},\qquad
+ K_t=[\max\{0,2t-1\},\ \min\{1,2t\}].
+ \label{eq:vacuous}
+\end{equation}
+At the uniform prior, the penalty for silence is strictly below both $a/2$
+and $b/2$. So silence uniquely minimizes expected penalty in every
+mixed-sign problem. In unanimous problems, choosing the better option
+uniquely minimizes it. These are exactly the recommendations of the vacuous
+coherent set, modulo null sets.
+
+\section{Three or more worlds: an obstruction to additive penalties}
+
+The two-world result does not extend to this whole additive method. Allowing
+silence penalties to depend on the world, or changing the penalties for bad
+advice, cannot restore full coverage. The obstruction also allows ties: it
+does not assume the uniqueness hypothesis of Theorem~\ref{thm:general}.
+
+\begin{theorem}[No full additive coverage in three or more worlds]\label{thm:additive-obstruction}
+Let $n\ge3$. A ranking of all measurable models with losses
+\eqref{eq:integral-loss} and strictly ordered local penalties
+\eqref{eq:local-penalties} cannot satisfy \textbf{(LA)}, \textbf{(S)}, and
+make the vacuous model $\Dscr_\Delta$ undominated.
+In fact, if \textbf{(LA)} and \textbf{(S)} hold, every $\Dscr_M$ whose credal
+set contains three distinct simplex vertices is strictly dominated at every
+world by a coherent model.
+Consequently no class of these rankings satisfies full \textbf{(A)}.
+\end{theorem}
+
+The proof, given in Appendix~\ref{app:obstruction}, proceeds as follows.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item The axioms require a coherent minimum of expected loss at every prior.
+\item An undominated target must minimize expected loss at some prior.
+\item A target containing three vertices forces silence on each associated
+two-world face, at suitable priors.
+\item Those faces impose incompatible requirements on a coherent model when
+a third payoff changes sign.
+\end{itemize}
+
+The last step explains the dimensional difference. With only two worlds,
+there is no third payoff across which the separate trade-offs must fit
+together. The interval construction exploits exactly that freedom.
+
+This result covers arbitrary measurable, world-dependent local penalties,
+not just payoff-shortfall penalties or a common cost of silence. It assumes
+neither continuity nor homogeneity of those penalties and does not prescribe
+a credal family or its indexing. It also does not use \textbf{(C)}.
+
+\paragraph{Allowing infinite additive losses does not avoid this result.}
+For nonnegative local penalties on all measurable models, strict
+\textbf{(G)} forces the penalty of the everywhere-contradictory model to be
+finite at each world. Otherwise split its infinite penalty between two
+measurable sets of pairs, each still having infinite penalty. Correcting its
+advice on one set is a strict guidance improvement, but leaves the total
+penalty infinite. This violates \textbf{(G)}. Such a split exists because
+the measure on binary problems has no atoms; when the density is finite,
+one can partition it into finite-mass pieces and distribute them into two
+divergent sums, and an infinite-valued part of positive measure can itself
+be split in two. The worst local penalty is therefore an integrable envelope,
+as already required in \eqref{eq:local-penalties}.
+
+\paragraph{What remains open.}
+Independence \textbf{(IB)} alone has not been shown to imply an additive
+representation. The theorem therefore leaves open full coverage by more
+general independent ordinal rankings, and by nonadditive real-valued or
+extended-real-valued losses. It does not show that incomparabilities are
+necessary. What it does establish is that changing the local penalty formula
+cannot solve the general problem within the additive approach.
+
+There are still positive results in every dimension. Penalties
+$0,|g_i|/2,|g_i|,2|g_i|$ for good, no, bad, and contradictory advice yield
+the precise Bayes family $C_p\approx\{g:p\cdot g>0\}$, so
+Theorem~\ref{thm:general} applies. The remaining coverage of imprecise targets
+within the additive class is not classified here.
+
+\appendix
+\section{Representing coherent sets by credal sets}\label{app:representation}
+
+For completeness, this connects coverage of credal targets to coverage of all
+coherent sets, including coherent sets with different boundary conventions.
+
+\begin{lemma}\label{lem:representation}
+For every coherent $\Dscr\subseteq\R^n$, the set
+\[
+ M=\{m\in\Delta:m\cdot g\ge0\text{ for every }g\in\Dscr\}
+\]
+is a credal set, and
+$\{\lpr{M}>0\}\subseteq\Dscr\subseteq\{\lpr{M}\ge0\}$.
+Consequently $\Dscr$ is Lebesgue measurable and $\Dscr\approx\Dscr_M$.
+Conversely $\Dscr_M$ is coherent for every credal set $M$.
+\end{lemma}
+\begin{proof}
+Let $C=\overline\Dscr$. It is a closed convex cone containing zero.
+No strictly negative vector lies in $C$: coherence excludes every nonzero
+$g\le0$, since adding $-g\in\Dscr$ would put zero in $\Dscr$.
+A strictly negative vector has a neighbourhood of excluded vectors.
+
+If $h\notin C$, choose $c\in C$ nearest to $h$ in Euclidean distance and put
+$w=c-h\ne0$. Minimality along segments in $C$ gives
+$w\cdot(x-c)\ge0$ for all $x\in C$ (expand the squared distance along the
+segment and let its length tend to zero). Taking $x=0$ and $x=2c$ gives
+$w\cdot c=0$. Hence $w\cdot x\ge0$ on $C$ and
+$w\cdot h=-\|w\|_2^2<0$. Since $e_i\in\Dscr$, each $w_i\ge0$.
+Normalization gives $m=w/\sum_iw_i\in M$ with $m\cdot h<0$.
+Applying this to $h=-\one$ proves that $M$ is nonempty. It is closed and convex
+by definition.
+
+The inclusion $\Dscr\subseteq\{\lpr{M}\ge0\}$ is immediate.
+If $\lpr{M}(g)=2\varepsilon>0$, put $h=g-\varepsilon\one$. Since
+$\lpr{M}(h)=\varepsilon>0$, the separation just proved gives $h\in C$.
+Choose $h'\in\Dscr$ with $\|h'-h\|_\infty<\varepsilon$. Every coordinate of
+$g-h'$ is positive, so coherence gives $g=h'+(g-h')\in\Dscr$.
+
+The lower prevision is continuous, since
+$|\lpr{M}(g)-\lpr{M}(h)|\le\|g-h\|_\infty$, and
+$\lpr{M}(g+t\one)=\lpr{M}(g)+t$. Its zero set therefore meets each line
+parallel to $\one$ once and is null by Fubini's theorem. Both $\Dscr$ and
+$\Dscr_M$ differ from the open set $\{\lpr{M}>0\}$ only within this null set,
+proving measurability and agreement a.e.
+
+Conversely, positive homogeneity and
+$\lpr{M}(g+h)\ge\lpr{M}(g)+\lpr{M}(h)$ show that $\Dscr_M$ is closed under
+positive scaling and addition; it includes the nonzero nonnegative gambles
+and excludes zero by definition. Thus it is coherent.
+\end{proof}
+
+\section{The simplex lemma used for strict dominance}\label{app:simplex}
+
+\begin{lemma}\label{lem:kkm}
+Suppose closed sets $A_1,\ldots,A_n\subseteq\Delta$ have the property that,
+for every $p\in\Delta$, some $i\in\supp p$ satisfies $p\in A_i$.
+Then $\bigcap_iA_i\ne\varnothing$.
+\end{lemma}
+\begin{proof}
+Each $A_i$ contains $e_i$ and is nonempty. Let $d_i(p)$ be the Euclidean
+distance from $p$ to $A_i$ and let $s(p)=\sum_i d_i(p)$.
+The map $F:\Delta\to\Delta$ defined by
+\[
+ F_i(p)=\frac{p_i+d_i(p)}{1+s(p)}
+\]
+is continuous. Brouwer's fixed-point theorem supplies $F(p)=p$.
+Thus $p_i s(p)=d_i(p)$ for every $i$. By the hypothesis some $i$ has
+$p_i>0$ and $d_i(p)=0$, so $s(p)=0$. Every $d_i(p)$ is therefore zero,
+and closedness gives $p\in\bigcap_iA_i$.
+\end{proof}
+
+For two worlds, only the elementary interval case is needed: two closed sets
+covering $[0,1]$, one containing $0$ and the other containing $1$, must intersect.
+Otherwise they would partition the interval into disjoint nonempty closed
+sets, contradicting its connectedness.
+
+\section{Why additive full coverage fails for three or more worlds}\label{app:obstruction}
+
+There are two parts to the proof. First, the axioms turn the coverage question
+into a question about expected-loss minima. Then a three-world argument
+shows that the required minima cannot all be coherent.
+
+\subsection*{From the axioms to coherent expected-loss minima}
+
+\begin{lemma}\label{lem:bayes-necessary}
+For losses \eqref{eq:integral-loss} satisfying
+\eqref{eq:local-penalties}:
+\begin{enumerate}[label=(\alph*)]
+\item If \textbf{(LA)} and \textbf{(S)} hold, a coherent $p$-Bayes model
+exists for every $p\in\Delta$.
+\item If a model is not strictly dominated at every world, it is $p$-Bayes
+for some $p\in\Delta$.
+\item If $\Dscr_M$ is $p$-Bayes, then $M\subseteq\Delta_{\supp p}$, where
+$\Delta_S=\{m\in\Delta:m_j=0\text{ for }j\notin S\}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Choose a measurable pointwise minimizing action in
+\eqref{eq:pointwise-bayes}, breaking ties in a fixed order, and call the
+resulting model $B$. It is $p$-Bayes. Apply Lemma~\ref{lem:kkm} to
+\[
+ A_i=\{q:C_q\preceq_i B\},
+\]
+using the selection in (S). Closedness and the covering condition are
+exactly the two parts of (S). Some coherent $C_q$ therefore does at least
+as well as $B$ at every world. It must also be $p$-Bayes.
+
+(b) Let $\mathcal L\subseteq\R^n$ be the attainable loss vectors. Its closure
+is convex. Here is the needed elementary approximation argument. Given
+two advice rules and $0\le t\le1$, approximate their vector of local loss
+differences in $L^1$ by a simple function. In each cell of its finite
+partition, choose a measurable subset with proportion $t$ of the cell's
+measure. Such subsets exist because Gaussian measure has no atoms. Follow
+the first rule on these subsets and the second elsewhere. Its loss vector
+approaches the weighted average of the two original loss vectors as the
+approximation error tends to zero. The same conclusion for limits proves
+convexity of $\overline{\mathcal L}$.
+
+Let $v$ be the loss vector of the model in (b).
+The convex sets $\overline{\mathcal L}$ and $v-(0,\infty)^n$ are disjoint:
+a point of their intersection could be approximated by an attainable vector
+strictly below $v$ in every coordinate. The separating-hyperplane theorem
+therefore gives a nonzero $p\ge0$ with
+\[
+ p\cdot x\ge p\cdot v\qquad(x\in\overline{\mathcal L}).
+\]
+The coefficients are nonnegative because $v-(0,\infty)^n$ is unbounded in
+every negative coordinate direction. Normalize them to sum to one. This
+is exactly $p$-Bayes optimality.
+
+(c) Write $S=\supp p$. Whenever $g_i>0$ for every $i\in S$, accepting $g$
+is uniquely best in expected local penalty. A coherent $p$-Bayes model must
+therefore accept almost every such gamble, whatever its other coordinates.
+If some $m\in M$ had $m_j>0$ outside $S$, setting the coordinates in $S$
+positive and $g_j$ sufficiently negative would give an open set of these
+gambles with $m\cdot g<0$. None can be accepted by $\Dscr_M$, a contradiction.
+Thus $M\subseteq\Delta_S$. In particular, the model's advice depends only
+on the coordinates in $S$, up to null sets.
+\end{proof}
+
+\subsection*{The compatibility requirement imposed by a third world}
+
+The following lemma isolates the geometric difficulty. A positive contrast
+means that accepting a gamble beats silence. The lemma does not assume
+that the contrasts are continuous or homogeneous. Coherence itself forces
+the two-world trade-offs to depend only on payoff ratios.
+
+\begin{lemma}[Three-world compatibility]\label{lem:three-world}
+Let $I$ contain at least three world indices, and write
+$p\cdot\psi=\sum_{i\in I}p_i\psi_i$. Let measurable functions
+$\psi_i(g)$, $i\in I$, be finite and satisfy
+$\operatorname{sgn}\psi_i(g)=\operatorname{sgn}g_i$ off null sets.
+Suppose that for every $p\in\Delta_I$ there is a coherent $\Dscr_{K_p}$ with
+$K_p\subseteq\Delta_{\supp p}$ such that, up to null sets,
+\begin{equation}
+ \{g:p\cdot\psi(g)>0\}\ \subseteq\ \Dscr_{K_p}
+ \subseteq\ \{g:p\cdot\psi(g)\ge0\}.
+ \label{eq:contrast-completion}
+\end{equation}
+For each distinct $i,j\in I$, on $\{g_i>0>g_j\}$ there is a positive,
+finite, nondecreasing function $F_{ij}:(0,\infty)\to(0,\infty)$ such that
+\begin{equation}
+ \frac{\psi_i(g)}{-\psi_j(g)}
+ =F_{ij}\!\left(\frac{g_i}{-g_j}\right)\quad\text{a.e.},
+ \qquad \lim_{t\to\infty}F_{ij}(t)=\infty.
+ \label{eq:edge-ratio}
+\end{equation}
+In particular, that contrast ratio cannot have a finite upper bound.
+\end{lemma}
+\begin{proof}
+\emph{First obtain the functions $F_{ij}$.}
+Fix $i\ne j$ and restrict to $g_i>0>g_j$. Put
+$R(g)=\psi_i(g)/(-\psi_j(g))$.
+For weights proportional to $(1,s)$ on these two worlds,
+\eqref{eq:contrast-completion} says
+\[
+ \{R>s\}\subseteq\Dscr_{K_s}\subseteq\{R\ge s\}
+ \quad\text{on this region, a.e.}
+\]
+Since $K_s$ lies on the two-world edge, its acceptance set here is, up to a
+null set, an upper interval in the single ratio $g_i/(-g_j)$; it is
+independent of all other payoffs. Ties cause no difficulty: for each
+rational $t>0$,
+\[
+ \{R>t\}=\bigcup_{\substack{s\in\mathbb Q\\s>t}}\Dscr_{K_s}
+ \quad\text{on this region, a.e.}
+\]
+Every set on the right is an upper interval in that payoff ratio.
+The rational strict level sets therefore show that
+$R(g)=F_{ij}(g_i/(-g_j))$ a.e. for a nondecreasing $F_{ij}$.
+It is positive and finite: a zero or infinite value at an interior argument
+would, by monotonicity, make $R$ zero or infinite on a positive-measure set.
+
+\emph{Now rule out a finite upper bound.}
+Suppose $d=\lim_{t\to\infty}F_{ij}(t)<\infty$, and choose $k\in I$ distinct
+from $i,j$. Initially suppose $F_{ik}$ is nonconstant. Write
+$B=\lim_{t\to\infty}F_{ik}(t)$, allowing $B=\infty$.
+Choose a continuity point $t>0$ of this monotone function with
+$a=F_{ik}(t)<B$. For a sufficiently small $\varepsilon>0$, the positive
+weights
+\begin{equation}
+ q_i=1,\qquad q_j=\varepsilon,\qquad
+ q_k=a\left(1-\frac{\varepsilon}{2d}\right)
+ \quad\text{satisfy}\quad
+ 1>\frac{\varepsilon}{d}+\frac{q_k}{B},
+ \label{eq:three-weights}
+\end{equation}
+where $q_k/B=0$ if $B=\infty$. Apply the hypothesis at the prior
+$p=q/(q_i+q_j+q_k)$, with zero weight elsewhere. We compute signs using
+the unnormalised weights $q$, which gives the same signs as $p$.
+
+Near the three-payoff vector $(g_i,g_j,g_k)=(t,0,-1)$, the sign of
+$q\cdot\psi$ changes incompatibly across $g_j=0$. On the positive side,
+divide by $-\psi_k$ to obtain
+\[
+ \frac{q\cdot\psi}{-\psi_k}
+ =F_{ik}\!\left(\frac{g_i}{-g_k}\right)
+   +\varepsilon F_{jk}\!\left(\frac{g_j}{-g_k}\right)-q_k>0.
+\]
+This holds throughout a sufficiently small positive-side neighbourhood,
+since $a-q_k=\varepsilon a/(2d)>0$.
+On the negative side, divide by $\psi_i$:
+\[
+ \frac{q\cdot\psi}{\psi_i}
+ =1-\frac{\varepsilon}{F_{ij}(g_i/(-g_j))}
+     -\frac{q_k}{F_{ik}(g_i/(-g_k))}<0.
+\]
+Indeed $F_{ij}\le d$, and at $g_i/(-g_k)=t$ the right side is at most
+$1-\varepsilon/d-q_k/a=-\varepsilon/(2d)$. Continuity at $t$ preserves
+the strict inequality nearby. These statements hold a.e.; all additional
+world coordinates are immaterial to them.
+
+Yet for $(g_i,g_j,g_k)=(T,-1,-1)$ with $T$ sufficiently large,
+\eqref{eq:three-weights} gives
+\[
+ 1-\frac{\varepsilon}{F_{ij}(T)}-\frac{q_k}{F_{ik}(T)}>0.
+\]
+The inequality also holds on a neighbourhood. A coherent cone cannot
+contain the positive-side neighbourhood near $(t,0,-1)$ and this additional
+point with $g_j<0$, while excluding the adjacent negative-side neighbourhood.
+Taking a small convex combination with the additional point crosses into
+that excluded neighbourhood. The contradiction is unchanged by null sets:
+the interior of a coherent cone contains every open set it contains a.e.,
+and cannot meet an open set it excludes a.e.
+
+If $F_{ik}$ is constant but $F_{ij}$ is not, interchange $j$ and $k$ in the
+argument. Both relevant upper bounds are now finite, so it applies again.
+Finally, if $F_{ij}=A$ and $F_{ik}=B$ are both constant, use weights
+\[
+ q_i=1,\qquad q_j=3A/4,\qquad q_k=3B/4.
+\]
+The contrast is strictly positive whenever $g_i,g_j>0>g_k$, and whenever
+$g_i,g_k>0>g_j$, but strictly negative whenever $g_i>0>g_j,g_k$.
+For example, in the three indicated coordinates, it accepts
+$(1,2,-3)$ and $(1,-3,2)$ but excludes their sum $(2,-1,-1)$, with the same
+strict signs on neighbourhoods. This again contradicts coherence.
+All cases rule out $d<\infty$.
+\end{proof}
+
+\subsection*{Why a target containing three vertices violates that requirement}
+
+We now apply the lemma to arbitrary local advice penalties. Extend the
+penalties from $H$ to both orientations of each pair. Write $c_i(g)$ for
+the penalty of silence and $b_i(g)$ for that of bad advice. Thus
+$0<c_i(g)<b_i(g)$ and both functions are unchanged by $g\mapsto-g$.
+At prior $p$, the three relevant expected penalties are
+\begin{equation}
+ V=\sum_{g_i<0}p_i b_i\quad\text{for }+,\qquad
+ C=\sum_i p_i c_i\quad\text{for }0,\qquad
+ U=\sum_{g_i>0}p_i b_i\quad\text{for }-.
+ \label{eq:three-costs}
+\end{equation}
+Contradictory advice is always strictly worse. Minimizing total expected
+loss is equivalent to minimizing these local penalties a.e.: integrate
+the nonnegative difference from their pointwise minimum.
+
+\begin{proposition}\label{prop:bayes-vertex-obstruction}
+Suppose a coherent $p$-Bayes model exists for every $p\in\Delta$.
+No coherent $\Dscr_M$ with three distinct simplex vertices in $M$ can be
+$p^0$-Bayes at any prior $p^0$.
+\end{proposition}
+\begin{proof}
+Suppose otherwise, and let $I$ be three indices whose vertices lie in $M$.
+Lemma~\ref{lem:bayes-necessary}(c) gives $p_i^0>0$ for $i\in I$.
+For each distinct $i,j\in I$, consider the two-world prior
+\[
+ r^{ij}=\frac{p_i^0e_i+p_j^0e_j}{p_i^0+p_j^0}.
+\]
+Any coherent $r^{ij}$-Bayes model is the vacuous model on this edge.
+To see this, first take gambles with $g_j<0$ and every other coordinate
+positive. The target gives silence, since $e_j\in M$ prevents acceptance
+of $g$ and $e_i\in M$ prevents acceptance of $-g$.
+Its $p^0$-Bayes optimality gives
+\[
+ \sum_{h\ne j}p_h^0c_h\le p_j^0(b_j-c_j).
+\]
+There is a third index in $I$ with positive weight and positive silence
+penalty, so
+$p_i^0c_i<p_j^0(b_j-c_j)$.
+At $r^{ij}$, accepting $g$ is therefore strictly worse than silence on
+this entire sign region, a.e.
+By Lemma~\ref{lem:bayes-necessary}(c), a coherent $r^{ij}$-Bayes model
+depends only on $(g_i,g_j)$. It consequently accepts none of the region
+$g_i>0>g_j$, up to null sets, whatever the other payoffs.
+Interchanging $i,j$ excludes acceptance on $g_j>0>g_i$ as well.
+On unanimous two-world payoffs the better recommendation is uniquely best.
+Thus its credal set is exactly the edge $\Delta_{\{i,j\}}$.
+
+In particular, silence is $r^{ij}$-Bayes on every problem with
+$g_i>0>g_j$, up to null sets. Comparing it with both recommendations gives
+\begin{equation}
+ \frac{c_i}{b_j-c_j}\le\frac{p_j^0}{p_i^0},
+ \qquad
+ \frac{c_i}{b_i}+\frac{c_j}{b_j}\le1.
+ \label{eq:forced-edge-bounds}
+\end{equation}
+For the second inequality, multiply
+$p_i^0c_i\le p_j^0(b_j-c_j)$ and
+$p_j^0c_j\le p_i^0(b_i-c_i)$, then cancel the positive weights.
+These conclusions apply to every opposite-sign pair of indices in $I$.
+
+Define the acceptance-versus-silence contrasts
+\begin{equation}
+ \psi_i(g)=
+ \begin{cases}
+ c_i(g),&g_i>0,\\
+ -(b_i(g)-c_i(g)),&g_i<0,
+ \end{cases}
+ \qquad i\in I.
+ \label{eq:silence-contrast}
+\end{equation}
+They are strictly sign-preserving. For any $p\in\Delta_I$,
+$p\cdot\psi=C-V$. If this is negative, accepting $g$ is not Bayes.
+If it is positive, accepting $g$ uniquely minimizes expected penalty.
+The latter assertion needs a check against the other recommendation.
+When the supported payoffs have both signs, the second inequality in
+\eqref{eq:forced-edge-bounds} allows a number $0<\lambda<1$ with
+\[
+ c_i\le\lambda b_i\quad(g_i>0, i\in\supp p),\qquad
+ c_j\le(1-\lambda)b_j\quad(g_j<0, j\in\supp p).
+\]
+For example choose $\lambda$ between the largest positive-side $c_i/b_i$
+and one minus the largest negative-side $c_j/b_j$.
+Hence $C\le\lambda U+(1-\lambda)V$. If $V<C$, then also $V<U$.
+For unanimous supported payoffs the assertion is immediate.
+
+Every coherent $p$-Bayes model, $p\in\Delta_I$, therefore satisfies
+\eqref{eq:contrast-completion}; its credal set lies in
+$\Delta_{\supp p}$. Lemma~\ref{lem:three-world} applies.
+But the first inequality in \eqref{eq:forced-edge-bounds} bounds
+$\psi_i/(-\psi_j)$ by $p_j^0/p_i^0$ on $g_i>0>g_j$.
+This is the contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:additive-obstruction}]
+By Lemma~\ref{lem:bayes-necessary}(a), (LA) and (S) supply coherent Bayes
+models at all priors. Proposition~\ref{prop:bayes-vertex-obstruction} rules
+out Bayes optimality of the stated targets at every prior.
+Lemma~\ref{lem:bayes-necessary}(b) therefore gives a model strictly better
+than the target at every world. The same simplex argument used in (a)
+gives a coherent model weakly better than this model at every world,
+hence strictly better than the target everywhere.
+Since $\Delta$ contains three vertices when $n\ge3$, the vacuous case follows.
+\end{proof}
+
+\end{document}

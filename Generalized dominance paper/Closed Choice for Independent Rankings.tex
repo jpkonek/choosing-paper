@@ -1,0 +1,603 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\Ascr}{\mathcal A}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{What Closed Competitive Choice Requires of Independent Rankings}
+\author{}\date{9 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues \emph{Independent Rankings of Binary Advice} (v3) and
+\emph{Beyond Additive Guidance Rankings} (BA). It does not construct a ranking
+satisfying (S) together with the other requirements for $n\ge3$ worlds. That
+problem remains open. It proves four things that narrow it.
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item The additive obstruction needs an additive weak extension only for
+comparisons between \emph{regular} models: models that never contradict
+themselves and are correct on unanimous problems
+(Theorem~\ref{thm:regular}). Comparisons involving the selected models are
+not the right class: an explicit ranking satisfies (S) although those
+comparisons have no additive weak extension (Proposition~\ref{prop:priority}).
+The non-additive witness in BA uses non-regular models, and it collapses on
+regular models (Remark~\ref{rem:collapse}).
+\item Continuity forces additivity. If, on regular models, each world's ranking
+is complete and continuous in measure, or an intersection of such rankings,
+then it has an additive weak extension. So the vacuous model is dominated
+(Theorem~\ref{thm:continuous}).
+\item (S) forces specific structure: face support of competitive coherent
+models, uncountably many distinct selected models on every edge, and limits
+on real-valued primary criteria (Section~\ref{sec:structure}).
+\item A remaining solution must be discontinuous or incomplete in a specific
+sense. We conjecture that none exists (Section~\ref{sec:remaining}).
+\end{enumerate}
+
+\section{Setting}
+
+We use the setting of v3 and BA without change. There are $n$ worlds and
+$\Delta=\{p\ge0:\sum_ip_i=1\}$. Models are measurable acceptance sets
+$\Dscr\subseteq\R^n$, identified modulo null sets. Binary problems are pairs
+$\{g,-g\}$ represented by $g\in H=\{g:g_1>0\}$, and $\mu$ is standard Gaussian
+measure. The advice $a_\Dscr(g)\in\{+,0,-,\times\}$ has guidance rank
+$r_i(g,\Dscr)\in\{0,1,2,3\}$ at world $i$ (good, silent, bad, contradictory).
+We write $\Dscr\unlhd_i\Escr$ when $r_i(\cdot,\Dscr)\le r_i(\cdot,\Escr)$ a.e.
+A ranking is a family of preorders $\preceq_i$, smaller meaning better.
+The requirements (E), (G), (IB), (LA), (A), (S), (C) are those of v3 and BA.
+An \emph{additive guidance loss} is
+$L_i(\Dscr)=\int_H\ell_i(g,a_\Dscr(g))\,d\mu$ with
+$0=\ell_i(\mathrm{good})<\ell_i(0)<\ell_i(\mathrm{bad})<\ell_i(\times)$ a.e.
+and an integrable envelope.
+
+A problem is \emph{unanimous} if all its payoffs have the same sign, and
+\emph{mixed} otherwise. Write $H'$ for the mixed problems in $H$.
+
+A model is \emph{regular} if, up to null sets, it is correct on every
+unanimous problem and never gives contradictory advice. Every coherent model
+is regular: it accepts every nonzero nonnegative gamble, and it cannot accept
+both $g$ and $-g$, since their sum is $0$.
+
+The \emph{regularization} $\Escr^\circ$ of a model $\Escr$ gives the correct
+advice on unanimous problems, silence where $\Escr$ contradicts itself on a
+mixed problem, and the advice of $\Escr$ elsewhere. It is regular and
+satisfies $\Escr^\circ\unlhd_i\Escr$ at every world.
+
+We use BA's Lemma~1 (from (LA) and (S) by the simplex lemma):
+\begin{enumerate}[label=(KKM\alph*),leftmargin=*]
+\item every model is weakly dominated at all worlds by some selected $C_q$;
+\item every undominated model is tied at every world with some selected
+$C_p$, and is competitive on $\supp p$.
+\end{enumerate}
+
+\section{Regular comparisons suffice for the obstruction}
+
+\begin{theorem}\label{thm:regular}
+Let $n\ge3$. Suppose a ranking of all measurable models satisfies (G), (LA)
+and (S). Suppose also that for each world $i$ some additive guidance loss
+$L_i$ satisfies
+\begin{equation}
+ \Dscr\preceq_i\Escr\ \Longrightarrow\ L_i(\Dscr)\le L_i(\Escr)
+ \qquad\text{for all regular }\Dscr,\Escr.
+ \label{eq:regular-extension}
+\end{equation}
+Then every $\Dscr_M$ whose credal set contains three simplex vertices is
+dominated by a coherent model. In particular the vacuous model is dominated.
+\end{theorem}
+\begin{proof}
+\emph{Coherent Bayes models at every prior.} Fix $p\in\Delta$ and choose, at
+each problem, an advice minimizing $\sum_ip_i\ell_i(g,\cdot)$, breaking ties
+in a fixed order. Call the resulting model $B$. It is $p$-Bayes for $L$.
+
+$B$ is regular. On a unanimous problem, correct advice costs $0$ at every
+world and any other advice costs more. Contradictory advice costs strictly
+more than silence at every world.
+
+By (KKMa), some selected $C_q$ has $C_q\preceq_jB$ at every world. Both
+models are regular, so \eqref{eq:regular-extension} gives
+$L_j(C_q)\le L_j(B)$ for all $j$. Hence $C_q$ is a coherent $p$-Bayes model.
+
+\emph{The target is Bayes somewhere.} Suppose $\Dscr_M$ is undominated. By
+(KKMb) it is competitive on $\supp p$ for some $p$. Take any model $\Escr$.
+Competitiveness gives some $j$ with $\Dscr_M\preceq_j\Escr^\circ$. Both models
+are regular, and penalties are ordered by guidance rank. So
+\[
+ L_j(\Dscr_M)\le L_j(\Escr^\circ)\le L_j(\Escr).
+\]
+Thus no model is strictly better than $\Dscr_M$ for $L$ at every world. By
+v3's Lemma~11(b), which holds for every additive guidance loss,
+$\Dscr_M$ is $L$-Bayes at some prior.
+
+\emph{Contradiction.} Coherent $L$-Bayes models exist at every prior, so v3's
+Proposition~13 forbids this. Hence some $\Escr$
+dominates $\Dscr_M$. By (KKMa), some selected $C_q$ satisfies
+$C_q\preceq_j\Escr$ at every world, so $C_q$ dominates $\Dscr_M$.
+\end{proof}
+
+Theorem~\ref{thm:regular} strengthens BA's Theorem~2, which assumed
+\eqref{eq:regular-extension} for all models. The regularization step also
+supplies the line ``hence competitive for $L$'' in BA's proof, which needs an
+argument when $L$ respects only some comparisons.
+
+\begin{remark}[The six-region witness is not regular]\label{rem:collapse}
+In BA's six-region construction, each region $B_j$ contains unanimous and
+mixed problems. Its non-additivity witnesses are silent on whole regions, so
+they are not regular. On regular models, the corresponding family compares by
+inclusion.
+
+To see this, fix a world $i$ and $A\subseteq\{1,\ldots,6\}$. Let $F_A$ be regular,
+silent on the mixed problems of $B_j$ for $j\in A$, and correct at $i$ on the
+other mixed problems. At a sampled tuple, let $S$ be the set of coordinates
+falling in mixed problems. The rank vector of $F_A$ at world $i$ is then
+$\one_{A\cap S}$. Every $S$ occurs with positive probability, since the
+draws are independent and each region contains both kinds of problem. So
+$F_A\preceq_iF_B$ requires $A\cap S\le_QB\cap S$ for every $S$.
+
+For $j\in A\setminus B$, take $S=\{j\}$. This would need $\{j\}\le_Q\varnothing$,
+which is false. Conversely, inclusion implies the comparison. So the
+certificate in BA (four comparisons summing to $-e_1$) has no regular
+counterpart in this family.
+
+Restricting the regions to mixed problems restores the witness on regular
+models: the rank vector is $\one_A$ at every tuple. But BA's proof that
+coherent models are undominated pairs a region with unanimous problems in
+the other regions, and so does not apply as stated.
+\end{remark}
+
+The obvious alternative to \eqref{eq:regular-extension} uses comparisons
+involving the selected models. That class does not work: an additive weak
+extension of those comparisons can fail to exist while (S) holds. BA's final
+section suggested this route.
+
+\begin{proposition}\label{prop:priority}
+Let $L$ be an additive guidance ranking satisfying the hypotheses of v3's
+Theorem~4, with selection $C_p$. Write $U$ for the unanimous problems
+in $H$, and put
+\[
+ P_i(\Dscr)\coloneqq\mu\{g\in U:r_i(g,\Dscr)\ge1\},
+\]
+\[
+ \Dscr\preceq'_i\Escr\iff P_i(\Dscr)<P_i(\Escr)\ \text{ or }\
+ \bigl(P_i(\Dscr)=P_i(\Escr)\text{ and }L_i(\Dscr)\le L_i(\Escr)\bigr).
+\]
+Then $\preceq'$ satisfies (G), (IB), (LA), (S) and (C) with the same
+selection. Moreover, no additive guidance loss $\Lambda$ satisfies
+$\Lambda_i(C_p)\le\Lambda_i(\Escr)$ whenever $C_p\preceq'_i\Escr$.
+\end{proposition}
+\begin{proof}
+\emph{Preorder, (IB), (G).} A lexicographic combination of two complete
+preorders is a complete preorder. Both $P_i$ and $L_i$ are integrals of local
+penalties, so comparisons depend only on the problems where two models
+differ; this is (IB).
+
+A weak guidance improvement weakly decreases both $P_i$ and $L_i$. A strict
+one strictly decreases $L_i$ and weakly decreases $P_i$. Either way the
+improvement is strict for $\preceq'_i$.
+
+\emph{(S).} Every coherent model is correct on $U$, so $P_i(C_p)=0$. Fix
+$\Escr$. If $P_i(\Escr)>0$ for some $i\in\supp p$, then $C_p\prec'_i\Escr$.
+Otherwise the comparisons at worlds in $\supp p$ are those of $L$, and
+competitiveness for $L$ supplies some $i\in\supp p$ with
+$L_i(C_p)\le L_i(\Escr)$. Closedness holds because
+\[
+ \{p:C_p\preceq'_i\Escr\}=
+ \begin{cases}
+ \Delta, & P_i(\Escr)>0,\\
+ \{p:L_i(C_p)\le L_i(\Escr)\}, & P_i(\Escr)=0.
+ \end{cases}
+\]
+The second set is closed by v3's Theorem~4(b).
+
+\emph{(LA), (C).} A model weakly dominating $C_p$ has $P\equiv0$, so it
+weakly dominates $C_p$ for $L$. Hence $C_p$ is undominated, and a model
+tied with $C_p$ is $L$-tied with it and therefore agrees with $C_p$ a.e.
+
+\emph{No additive weak extension.} Suppose $\Lambda$ were one. Fix an
+interior $p$. Since $C_p$ cannot agree a.e.\ with both ideal models $D_1$ and
+$D_2$, choose $i\in\{1,2\}$ with $C_p\not\approx D_i$. Let $\Escr_\varepsilon$ be $D_i$ made
+silent on a set $Z_\varepsilon\subseteq U$ with $\mu(Z_\varepsilon)=\varepsilon$.
+Then $P_i(\Escr_\varepsilon)>0$, so $C_p\prec'_i\Escr_\varepsilon$, and
+\[
+ \Lambda_i(C_p)\le\Lambda_i(\Escr_\varepsilon)
+ \le\Lambda_i(D_i)+\int_{Z_\varepsilon}h\,d\mu,
+\]
+where $h$ is the integrable envelope. Letting $\varepsilon\to0$ gives
+$\Lambda_i(C_p)\le\Lambda_i(D_i)$. But $D_i$ is a strict guidance
+improvement of $C_p$ at $i$, so strictly ordered penalties give
+$\Lambda_i(D_i)<\Lambda_i(C_p)$. This is a contradiction.
+\end{proof}
+
+Proposition~\ref{prop:priority} covers exactly the targets its additive base
+covers, so it does not bear on full coverage. Its role is diagnostic: it
+satisfies (S) although its comparisons involving selected models have no
+additive weak extension. On regular models it coincides with $L$, as
+Theorem~\ref{thm:regular} requires.
+
+\section{Continuity forces additivity}
+
+Fix a world $i$. A regular model is determined by its rank function at $i$
+on mixed problems: rank $0$ means the advice correct at $i$, rank $1$ silence,
+rank $2$ the advice incorrect at $i$. Every measurable rank function arises.
+So the regular models correspond bijectively to
+\[
+ \Ascr\coloneqq\{x:H'\to\{0,1,2\}\text{ measurable}\}\ \text{modulo null sets},
+ \qquad \delta(x,y)\coloneqq\mu\{x\ne y\}.
+\]
+For $Q\subseteq H'$ write $x\one_Q$ for the function equal to $x$ on $Q$ and
+$0$ elsewhere. A preorder $\sqsubseteq$ on $\Ascr$ is
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \emph{independent} if, whenever $x=x'$ and $y=y'$ on $Q$ while $x=y$ and
+$x'=y'$ off $Q$, we have $x\sqsubseteq y\iff x'\sqsubseteq y'$;
+\item \emph{weakly monotone} if $x\le y$ a.e.\ implies $x\sqsubseteq y$, and
+\emph{strictly monotone} if moreover $x\sqsubset y$ when $x\ne y$ on a set of
+positive measure;
+\item \emph{continuous} if $\{x:x\sqsubset y\}$ and $\{x:y\sqsubset x\}$ are
+$\delta$-open for every $y$.
+\end{itemize}
+These are (IB), weak or strict (G), and continuity in measure, transcribed
+for regular models.
+
+\begin{lemma}\label{lem:debreu}
+Let $\sqsubseteq$ be a complete, independent, weakly monotone, continuous
+preorder on $\Ascr$. Then there are measurable $0\le\ell_1\le\ell_2$ on $H'$
+with $\int\ell_2\,d\mu<\infty$ such that, with $\ell_0\coloneqq0$,
+\[
+ x\sqsubseteq y\iff\int_{H'}\ell_{x(g)}(g)\,d\mu\le\int_{H'}\ell_{y(g)}(g)\,d\mu .
+\]
+If $\sqsubseteq$ is strictly monotone, then $0<\ell_1<\ell_2$ a.e.
+\end{lemma}
+\begin{proof}
+\emph{Step 1: inessential sets.} Call $Q$ \emph{inessential} if $x\sim y$
+whenever $x=y$ off $Q$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item A finite union of inessential sets is inessential. If $x=y$ off
+$Q_1\cup Q_2$, let $z=y$ on $Q_1$ and $z=x$ elsewhere. Then $x\sim z$, since
+they differ only on $Q_1$, and $z\sim y$, since they differ only on
+$Q_2\setminus Q_1$.
+\item A countable union of inessential sets is inessential. If $x=y$ off
+$\bigcup_mQ_m$, let $z_m=y$ on $Q_1\cup\dots\cup Q_m$ and $z_m=x$ elsewhere. Then
+$x\sim z_m$ and $\delta(z_m,y)\to0$. If $x\sqsubset y$, the open set
+$\{w:x\sqsubset w\}$ contains $y$, hence some $z_m$, which is impossible.
+The case $y\sqsubset x$ is symmetric. By completeness, $x\sim y$.
+\end{itemize}
+Choose inessential sets whose measures approach the supremum of all such
+measures, and let $N_0$ be their union. Then $N_0$ is inessential, and every
+non-null subset of $S\coloneqq H'\setminus N_0$ is essential: otherwise its
+union with $N_0$ would exceed the supremum.
+
+Every $x$ satisfies $x\sim x\one_S$, since these differ only on $N_0$. So
+$\sqsubseteq$ is determined by its restriction to functions on $S$. If
+$\mu(S)=0$, take $\ell_1=\ell_2=0$. Under strict monotonicity, $N_0$ is null:
+otherwise $0\sqsubset\one_{N_0}$ would contradict inessentiality.
+
+\emph{Step 2: Debreu's theorem.} Let $P$ be a finite partition of $S$ into
+$k\ge3$ non-null pieces. Then $\Ascr_S$ is the product of the spaces
+$\Ascr_Q$, $Q\in P$, and $\delta$ is the sum of the piece metrics, so it
+induces the product topology.
+
+Each $\Ascr_Q$ is separable: simple functions over a countable generating
+algebra are dense. Each is path-connected: given $x,y$, let
+$x_t=y$ on $Q\cap\{\Phi(g_2)<t\}$ and $x_t=x$ elsewhere on $Q$, where $\Phi$ is
+the standard normal distribution function. Then $t\mapsto x_t$ is continuous
+from $x_0=x$ to $x_1=y$.
+
+Every piece is essential, and independence holds for every union of pieces.
+So $\sqsubseteq$ is a continuous weak order on a product of at least three
+connected separable essential factors, with all subsets of factors
+independent. Debreu's theorem \cite{Debreu,Wakker} gives continuous
+$u_Q$ with
+\[
+ x\sqsubseteq y\iff\sum_{Q\in P}u_Q(x|_Q)\le\sum_{Q\in P}u_Q(y|_Q).
+\]
+This representation is unique up to a common positive scale and additive
+constants.
+
+Fix one such partition $P_0$ with representation $U$, and let $P$ be any finite
+partition of $S$. Let $P'$ be the common refinement of $P$ and $P_0$, with
+null cells discarded. Debreu's theorem for $P'$ gives a continuous
+$P'$-additive representation $W$. Grouping its terms along the cells of $P_0$
+makes $W$ a continuous $P_0$-additive representation, so $W=aU+b$ with $a>0$.
+Hence $U$ is $P'$-additive, and grouping along $P$ shows it is $P$-additive.
+Normalizing,
+\begin{equation}
+ U(x)-U(0)=\sum_{Q\in P}\bigl(U(x\one_Q)-U(0)\bigr)
+ \qquad\text{for every finite partition }P\text{ of }S.
+ \label{eq:partition-additive}
+\end{equation}
+
+\emph{Step 3: densities.} For measurable $Q\subseteq S$ and $k=1,2$, put
+$\nu_k(Q)\coloneqq U(k\one_Q)-U(0)$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Applying \eqref{eq:partition-additive} to $k\one_{Q\cup Q'}$ with the
+partition $\{Q,Q',S\setminus(Q\cup Q')\}$ shows that $\nu_k$ is finitely
+additive.
+\item If $Q_m\downarrow$ with null intersection, then
+$\delta(k\one_{Q_m},0)\to0$, and continuity of $U$ gives $\nu_k(Q_m)\to0$.
+So $\nu_k$ is countably additive.
+\item Weak monotonicity gives $0\le\nu_1\le\nu_2$, and both vanish on null sets.
+\end{itemize}
+The Radon--Nikodym theorem gives densities $\ell_k$ on $S$ with
+$0\le\ell_1\le\ell_2$ a.e.\ and $\int\ell_2=\nu_2(S)<\infty$. Set $\ell_k=0$ on
+$N_0$. For any $x$, apply \eqref{eq:partition-additive} to the partition of
+$S$ by the value of $x$:
+\[
+ U(x\one_S)-U(0)=\nu_1\{x=1\}+\nu_2\{x=2\}=\int\ell_{x(g)}(g)\,d\mu .
+\]
+Since $x\sim x\one_S$, this proves the representation.
+
+Under strict monotonicity, $0\sqsubset\one_Q$ and $\one_Q\sqsubset2\one_Q$ for
+every non-null $Q$. Hence $\int_Q\ell_1>0$ and $\int_Q(\ell_2-\ell_1)>0$ for
+every such $Q$, which gives $0<\ell_1<\ell_2$ a.e.
+\end{proof}
+
+\begin{theorem}\label{thm:continuous}
+Let $n\ge3$, and let a ranking of all measurable models satisfy (G), (LA)
+and (S). Suppose that, at each world $i$, the restriction of $\preceq_i$ to
+regular models is the intersection of a family $\{\sqsubseteq_i^\alpha\}$ of
+complete, independent, weakly monotone, continuous preorders. Then every
+$\Dscr_M$ whose credal set contains three simplex vertices is dominated by a
+coherent model. This applies in particular when each $\preceq_i$ is complete
+and continuous on regular models.
+\end{theorem}
+\begin{proof}
+Fix $i$. Lemma~\ref{lem:debreu} gives densities $\ell^\alpha_1\le\ell^\alpha_2$
+for each $\alpha$; put $\ell^\alpha_0=0$.
+
+For $k=1,2$, the sets $\{\ell^\alpha_k>\ell^\alpha_{k-1}\}$ cover $H'$ up to a
+null set. Otherwise some non-null $Q$ misses all of them. The regular models
+with rank functions $(k-1)\one_Q$ and $k\one_Q$ differ by a strict guidance
+improvement, so by strict (G) the second is not ranked at least as well as
+the first. Hence some $\sqsubseteq^\alpha_i$ ranks it strictly worse, giving
+$\int_Q(\ell^\alpha_k-\ell^\alpha_{k-1})>0$. This is a contradiction.
+
+A family of measurable sets has a countable subfamily with the same essential
+union (BA, proof of the Corollary). So there are $\alpha_1,\alpha_2,\ldots$ for
+which
+\[
+ \ell_k\coloneqq\sum_mc_m\ell^{\alpha_m}_k,\qquad
+ c_m\coloneqq\frac{2^{-m}}{1+\int\ell^{\alpha_m}_2\,d\mu},
+\]
+satisfy $0<\ell_1<\ell_2$ a.e.\ and $\int\ell_2\le1$.
+
+Define local penalties at world $i$. On mixed problems, ranks $0,1,2,3$ cost
+$0,\ell_1,\ell_2,\ell_2+1$. On unanimous problems they cost $0,1,2,3$. This is
+an additive guidance loss $L_i$.
+
+For regular $\Dscr\preceq_i\Escr$, every $\sqsubseteq^{\alpha_m}_i$ compares
+them the same way, so each integral is weakly ordered, and therefore so is
+their weighted sum. The unanimous contributions are both zero. Thus
+\eqref{eq:regular-extension} holds, and Theorem~\ref{thm:regular} applies.
+\end{proof}
+
+Every additive guidance loss is continuous in measure:
+$|L_i(\Dscr)-L_i(\Escr)|\le\int_Zh_i\,d\mu$, where $Z$ is the set of problems on
+which the models differ. So Theorem~\ref{thm:continuous} contains the additive
+case and BA's Corollary. Its content is that no complete continuous ranking
+escapes, however non-additive its definition looks: Lemma~\ref{lem:debreu}
+makes it additive on regular models.
+
+\begin{remark}[A closed graph is not enough]\label{rem:closed-graph}
+Theorem~\ref{thm:continuous} needs open strict contour sets. A weaker notion
+of continuity does not suffice. Take BA's six-region tuple ranking, but with
+the six regions partitioning $H'$, and intersect it with the background
+comparison $\unlhd_i$ restricted to unanimous problems.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Its graph is closed in measure. If models converge in measure, their
+rank vectors converge in product measure, hence a.e.\ along a subsequence.
+Ranks take finitely many values, so a.e.\ inequalities pass to the limit.
+\item It satisfies (IB) and strict (G). For the tuple part this is BA's
+argument; the unanimous part is a pointwise comparison. A strict improvement
+is strict in at least one of the two parts and weak in the other.
+\item On regular models the unanimous parts agree, so it reduces to the tuple
+ranking.
+\item It is not an intersection as in Theorem~\ref{thm:continuous}. The regular
+models $F_A$ of Remark~\ref{rem:collapse} now have rank vector $\one_A$ at
+every tuple, so they compare exactly as $Q$. The proof of
+Theorem~\ref{thm:continuous} would produce strictly positive weights
+$w_j=\int_{B_j}\ell_1$ respecting $Q$, contradicting BA's certificate.
+\end{itemize}
+This ranking fails (S) by BA's finite-sample theorem.
+\end{remark}
+
+\section{Structure forced by (S)}\label{sec:structure}
+
+In the additive case, (S) produces Bayes models at every prior. Without
+additivity no prior is available. Competitiveness of $C_p$ depends only on
+$\supp p$, so the numerical index enters (S) only through closedness. This
+section records what remains.
+
+\begin{lemma}\label{lem:face}
+Suppose $\preceq$ satisfies strict (G), and a coherent model $\Dscr_K$ is
+competitive on $S$. Then $K\subseteq\Delta_S\coloneqq\{m\in\Delta:m_j=0\text{ for }j\notin S\}$.
+\end{lemma}
+\begin{proof}
+Suppose $m\in K$ has $m_j>0$ for some $j\notin S$. Consider gambles $g$ with
+$g_s>0$ for every $s\in S$ and $g_j$ so negative that $m\cdot g<0$. They form a
+non-null open set. $\Dscr_K$ does not accept them, since its lower prevision
+is negative there. So on the corresponding problems its advice is silence or
+acceptance of $-g$, and neither is good at any world of $S$.
+
+Let $\Escr$ agree with $\Dscr_K$ except that it accepts exactly $g$ on these
+problems. Then $\Escr$ is a strict guidance improvement of $\Dscr_K$ at every
+world of $S$. By strict (G), $\Escr\prec_s\Dscr_K$ for all $s\in S$, so
+$\Dscr_K$ is not competitive on $S$.
+\end{proof}
+
+\begin{corollary}\label{cor:face}
+Under (G), (LA) and (S):
+\begin{enumerate}[label=(\alph*)]
+\item each vertex selection satisfies $C_{e_i}\approx D_i$, the ideal model;
+\item each edge selection has credal set on that edge, so its advice depends
+only on the two edge coordinates;
+\item if the vacuous model $\Dscr_\Delta$ is undominated, it is tied at every
+world only with selected models of full-support index.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) and (b) follow from Lemma~\ref{lem:face} and v3's representation of
+coherent sets. For (c), (KKMb) makes $\Dscr_\Delta$ competitive on $\supp p$
+whenever it is tied with $C_p$. Lemma~\ref{lem:face} with $K=\Delta$ then
+forces $\supp p$ to be all worlds.
+\end{proof}
+
+For a selected model $A$, let
+$T_A\coloneqq\{p:C_p\text{ is tied with }A\text{ at every world}\}$.
+
+\begin{lemma}\label{lem:fibres}
+Assume (G), (LA) and (S).
+\begin{enumerate}[label=(\alph*)]
+\item $T_A=\bigcap_i\{p:C_p\preceq_iA\}$, and it is closed.
+\item Along every path in $\Delta$ from $e_i$ to $e_j$, $i\ne j$, the selection
+takes uncountably many values, no two tied at every world.
+\item If every $\preceq_l$ is complete, then each selected $A$ has, at some
+world $l$, no immediate strict predecessor: whenever $F\prec_lA$, some $G$
+satisfies $F\prec_lG\prec_lA$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) If $C_p\preceq_iA$ at every world, undominatedness of $A$ makes each
+comparison a tie. Closedness is part of (S).
+
+(b) Let $\gamma:[0,1]\to\Delta$ be such a path. The preimages
+$\gamma^{-1}(T_A)$, for distinct tie classes, are disjoint closed sets
+covering $[0,1]$. At least two are nonempty: $C_{e_i}\approx D_i$ and
+$C_{e_j}\approx D_j$ by Corollary~\ref{cor:face}, and $D_i\prec_iD_j$ by strict (G).
+By Sierpi\'nski's theorem \cite{Sierpinski}, $[0,1]$ is not a countable union
+of two or more pairwise disjoint nonempty closed sets. So there are
+uncountably many tie classes.
+
+(c) Suppose instead that at every world $l$ some $F_l\prec_lA$ has nothing
+strictly between it and $A$. Take $q\in T_A$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Since $C_q\sim_lA\succ_lF_l$, the point $q$ lies outside the closed set
+$\{p:C_p\preceq_lF_l\}$. So some neighbourhood $N$ of $q$ satisfies
+$C_p\not\preceq_lF_l$ for every $l$ and $p\in N$.
+\item Completeness gives $F_l\prec_lC_p$ for $p\in N$. Then $C_p\prec_lA$ is
+impossible, since nothing lies strictly between $F_l$ and $A$, so
+$A\preceq_lC_p$.
+\item This holds at every world. Since $C_p$ is undominated, $C_p$ is tied
+with $A$, so $N\subseteq T_A$.
+\end{itemize}
+Thus $T_A$ is open as well as closed. Since $\Delta$ is connected,
+$T_A=\Delta$. This contradicts $D_1\prec_1D_2$.
+\end{proof}
+
+The next lemma generalizes the countability argument of BA's Proposition~6.
+A \emph{primary} at world $l$ is a function $\Phi$ from models to $\R$ such
+that $\Phi(\Dscr)<\Phi(\Escr)$ implies $\Dscr\prec_l\Escr$. A model $\Dscr$ has
+an \emph{invisible improvement} at $l$ if some $\Escr\prec_l\Dscr$ has
+$\Phi(\Escr)=\Phi(\Dscr)$.
+
+\begin{lemma}\label{lem:primary}
+Assume (S), and let $\Phi$ be a primary at world $l$.
+\begin{enumerate}[label=(\alph*)]
+\item The values $\Phi(C_p)$, over selected models with an invisible
+improvement at $l$, form a countable set.
+\item If $t<\Phi(C_p)$ and $t=\Phi(\Dscr)$ for some model $\Dscr$, then
+$\Phi(C_q)\ge t$ for all $q$ near $p$.
+\item If (LA) also holds, then undominated models with an invisible
+improvement at $l$ take only countably many values of $\Phi$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $\Escr$ be an invisible improvement of $C_p$. The point $p$ lies
+outside the closed set $\{q:C_q\preceq_l\Escr\}$, so a neighbourhood $N$ of $p$
+satisfies $C_q\not\preceq_l\Escr$. For $q\in N$ this forces
+$\Phi(C_q)\ge\Phi(\Escr)=\Phi(C_p)$. So $p$ is a local minimizer of
+$f(q)=\Phi(C_q)$.
+
+The local-minimum values of a real function on a second-countable space form
+a countable set. For each such value choose a basic open set $B$ on which it
+is the minimum of $f$; distinct values receive distinct $B$, since the value
+is $\inf_Bf$.
+
+(b) Here $\Dscr\prec_lC_p$, so $p$ lies outside the closed set
+$\{q:C_q\preceq_l\Dscr\}$. Near $p$, $C_q\not\preceq_l\Dscr$, which forces
+$\Phi(C_q)\ge\Phi(\Dscr)$.
+
+(c) Ties preserve $\Phi$: models with different $\Phi$-values are strictly
+ordered. By (KKMb), an undominated model is tied with a selected model,
+which then has the same $\Phi$-value and inherits the invisible improvement.
+Apply (a).
+\end{proof}
+
+Part (c) is the general form of BA's countability argument. A ranking with a
+real primary fails (S) as soon as uncountably many undominated coherent
+models, with distinct primary values, admit invisible improvements.
+
+\section{What remains}\label{sec:remaining}
+
+Combine Theorems~\ref{thm:regular} and~\ref{thm:continuous} with
+Section~\ref{sec:structure}. Suppose that, for some $n\ge3$, a ranking satisfies
+(G), (IB), (LA) and (S) and leaves the vacuous model undominated. Then at some
+world $i$ the following hold.
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item Its comparisons between regular models have no additive weak extension.
+In particular, on regular models it is not an intersection of complete,
+independent, weakly monotone, continuous preorders.
+\item If it is complete on regular models, it is discontinuous there. Every
+selected model has no immediate strict predecessor at some world, and any
+real primary obeys Lemma~\ref{lem:primary}.
+\item If it is incomplete, every selected $C_p$ must still be comparable with
+every model at some world of $\supp p$. BA's finite-sample theorem shows that
+rankings comparing advice almost everywhere over finite samples of problems
+are too sparse for this.
+\end{enumerate}
+Moreover, every vertex selects the ideal model, edge selections are supported
+on their edge and fall into uncountably many tie classes along every edge,
+and the vacuous model can be tied only with full-support selections.
+
+Every construction we know falls into an excluded case:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item additive rankings (v3);
+\item intersections of additive rankings, and complete continuous rankings of
+any form (Theorem~\ref{thm:continuous});
+\item lexicographic rankings with a real primary that is blind to some
+improvements (Lemma~\ref{lem:primary}, BA);
+\item sample-wise rankings (BA).
+\end{itemize}
+The benchmark rankings of v2 avoid all of these, but they compare models
+through benchmark sets that depend on the whole model. For the ordinal version
+this violates (IB) (v3, Proposition~1).
+
+\paragraph{Conjecture.} For $n\ge3$, no ranking satisfies (G), (IB), (LA) and
+(S) while leaving the vacuous model undominated.
+
+A proof would have to handle incomplete rankings whose regular comparisons
+are not intersections of complete continuous independent preorders.
+Remark~\ref{rem:closed-graph} shows that such rankings exist, even with closed
+graphs. A counterexample would have to be one of them, with comparisons dense
+enough for competitiveness yet without a weak additive certificate.
+
+\paragraph{Nearby reachable results.} Two complete results are already
+available, each giving up one requirement.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \emph{Without full coverage for $n\ge3$:} additive rankings satisfy every
+requirement, including (IB) and (S). They cover all targets when $n=2$, and
+the precise targets in every dimension (v3).
+\item \emph{Without (IB):} the ordinal and real-valued constructions of v2
+satisfy (E), (LA), (A), (S) and (C) with full coverage. They respect the
+error-inclusion background order modulo null sets.
+\end{itemize}
+We know of no weakening of (IB) under which full coverage with (S) has been
+proved.
+
+\begin{thebibliography}{9}
+\bibitem{Debreu} G.~Debreu, Topological methods in cardinal utility theory,
+in K.~J. Arrow, S.~Karlin and P.~Suppes (eds.), \emph{Mathematical Methods in
+the Social Sciences, 1959}, Stanford University Press, 1960, 16--26.
+\bibitem{Sierpinski} W.~Sierpi\'nski, Un th\'eor\`eme sur les continus,
+\emph{T\^ohoku Mathematical Journal} 13 (1918), 300--303.
+\bibitem{Wakker} P.~P. Wakker, \emph{Additive Representations of Preferences},
+Kluwer, Dordrecht, 1989.
+\end{thebibliography}
+\end{document}

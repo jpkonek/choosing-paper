@@ -1,0 +1,6 @@
+(a) Bayes error sets nested across distinct weights (all tie-breaks): True
+    tie set at t0 = [('+', 5), ('+', 6), ('+', 7), ('+', 8), ('-', 4), ('-', 5), ('-', 6), ('-', 7)]
+(b) coherent t0-Bayes models: 25 ; crossing pairs among them: 100
+(c) coherent C = (4, 6) profile (Fraction(46, 3), Fraction(63211781, 2586584))
+    incoherent tied splice found: True
+    splice error cells in the tie set: [('+', 6)] profile (Fraction(46, 3), Fraction(63211781, 2586584))

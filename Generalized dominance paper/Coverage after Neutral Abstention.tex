@@ -1,0 +1,367 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,enumitem,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\supp}{\operatorname{supp}}
+\title{Coverage after Neutral Abstention}
+\author{}\date{12 October 2026}
+\begin{document}\maketitle
+
+\noindent
+We adopt one exception: the system covering the vacuous model $V$ may
+tie good advice with silence on mixed problems. All other systems retain
+strict guidance improvement (G), independence (IB), and closed competitive
+selection (S). The exception is limited to $V$ because it is induced by
+a change to the background order. Extending the same omission-blind
+treatment to every target would give full coverage (see \emph{Omission
+Blindness and Four-Rank Guidance}), but that broader weakening is not
+adopted. This settles coverage of $V$, but does not settle coverage
+of every proper credal set. This note gives a continuous connection between
+the exception and ordinary strict rankings, and an exact consistency test
+for an ordinal construction. Neither is a full-coverage theorem.
+The original account missed two earlier sources. The neutral-abstention
+system is already in \texttt{truth\_directed\_losses.tex}, Section 4,
+and the constant odds-ratio limit is in \texttt{nonadditive\_losses.tex},
+Remark \texttt{twoshun}. The limit theorem below adapts that construction
+to the four-rank order and gives an explicit uniform bound; it is not a
+new coverage idea. The collaborator has since checked this adaptation and
+the consistency argument and reported no error. No human verification
+is asserted.
+
+\section{The revised question}
+
+There are finitely many worlds, indexed by $i\le n$, and $\Delta$ is their
+probability simplex. Models are measurable advice on binary problems,
+identified modulo Gaussian null sets. Count each pair $\{g,-g\}$ once on
+$H=\{g:g_1>0\}$, with normalized Gaussian measure $\mu$. Coordinate
+hyperplanes can be ignored. A problem is mixed when some coordinates of
+$g$ are positive and some negative; otherwise it is unanimous.
+At world $i$ the four advice ranks, in order of increasing penalty, are
+good, silence, bad, and contradictory.
+
+For a nonempty compact convex credal set $M\subseteq\Delta$, write
+\[
+ \underline{P_M}(g)=\min_{m\in M}m\cdot g,\qquad
+ \Dscr_M=\{g:\underline{P_M}(g)>0\}\cup\{g\ge0:g\ne0\}.
+\]
+Thus $V=\Dscr_\Delta$, and the ideal at world $i$ is $D_i=\{g:g_i>0\}$,
+up to null sets. Smaller $\preceq_i$ means better. Dominance means a weak
+improvement at every world and a strict improvement at some world.
+
+Condition (G) preserves pointwise advice improvement, strictly when the
+improvement occurs on a non-null set. Condition (IB) preserves comparisons
+when advice shared by the two models is replaced on any measurable set
+of binary problems. Condition (S) supplies coherent undominated $C_p$,
+$p\in\Delta$, such that, for every model $X$, some $i\in\supp p$ has
+$C_p\preceq_iX$, and each section $\{p:C_p\preceq_iX\}$ is closed.
+Condition (C), when imposed, excludes an incoherent model tied everywhere
+with a coherent undominated model.
+
+Coverage (A) concerns a \emph{class} of systems: each coherent target must
+be undominated for some system. Our revised question is therefore:
+\begin{quote}
+For every proper credal set $M\subsetneq\Delta$, does some system satisfying
+the standard axioms, including strict (G), (IB), and (S), leave $\Dscr_M$
+undominated? Can all these systems be complete, or are incomparabilities
+needed for some proper targets?
+\end{quote}
+The accepted exceptional system adds coverage of $V$ to any positive answer.
+The old impossibility result for complete strict rankings does not answer
+this revised question: its universally excluded target was $V$.
+
+\section{The exception is a limit of strict rankings}
+
+As the earlier \texttt{twoshun} remark already shows, the exception need
+not be viewed as an isolated penalty table. It is the
+endpoint of a simple family of strict, independent rankings, whose covered
+targets expand towards the whole simplex. This also supplies a useful
+positive class in every dimension.
+
+\begin{theorem}\label{thm:limit}
+For each $0<\varepsilon\le1$, there are finite real-valued losses on all
+models satisfying (G), (IB), (LA), (C), and (S), which cover
+\[
+ M_\varepsilon
+ =\{m\in\Delta:m_i\ge\varepsilon m_j\text{ for all }i,j\}.
+\]
+These proper credal sets increase to a dense subset of $\Delta$ as
+$\varepsilon\downarrow0$, and converge to $\Delta$ in Hausdorff distance.
+The losses converge uniformly over models to losses satisfying the agreed
+weakening, (IB), (LA), (C), and (S), whose only undominated model is $V$.
+\end{theorem}
+\begin{proof}
+At world $i$, integrate the following penalties:
+\[
+\begin{array}{c|cccc}
+ &\text{good}&\text{silence}&\text{bad}&\text{contradictory}\\\hline
+ \text{mixed}&0&\varepsilon|g_i|&(1+\varepsilon)|g_i|
+     &2(1+\varepsilon)|g_i|\\
+ \text{unanimous}&0&|g_i|&2|g_i|&4|g_i|.
+\end{array}
+\tag{1}
+\]
+The integrable bound $4|g_i|$ makes the losses finite. Their strictly
+ordered penalties give (G), and cancellation of the common contribution
+gives (IB).
+
+For $p\in\Delta$, put
+\[
+ A=\sum_{g_i>0}p_i g_i,\qquad B=\sum_{g_i<0}p_i(-g_i).
+\]
+On a mixed problem the expected penalties of $+$, silence, and $-$ are
+$(1+\varepsilon)B$, $\varepsilon(A+B)$, and $(1+\varepsilon)A$.
+Consequently $+$ uniquely wins when $\varepsilon A>B$, and $-$ when
+$\varepsilon B>A$; silence wins between these thresholds. Contradiction
+never wins. The tie sets are contained in finitely many proper
+hyperplanes and are null, including at boundary priors. On unanimous
+problems the good recommendation uniquely wins.
+
+Define
+\[
+ K_{p,\varepsilon}
+ =\left\{\frac{(p_i a_i)_i}{\sum_jp_j a_j}:
+                      \varepsilon\le a_i\le1\right\}.
+\tag{2}
+\]
+This set is compact and convex. For convexity, the nonnegative multiples
+of the box $\prod_i[\varepsilon p_i,p_i]$ form a convex cone: a sum of
+two scaled box points is their total scale times a convex combination
+of box points. Intersect that cone with $\Delta$.
+The denominator in (2) is positive, and
+\[
+ \min_{a\in[\varepsilon,1]^n}\sum_i p_i a_i g_i
+       =\varepsilon A-B.
+\]
+Thus the unique minimizing advice is that of the coherent
+$C_p=\Dscr_{K_{p,\varepsilon}}$. At the uniform prior, (2) is exactly
+$M_\varepsilon$: its points have all coordinate ratios at least
+$\varepsilon$, and conversely rescaling by the largest coordinate puts
+every such point in $[\varepsilon,1]^n$.
+
+For completeness, the standard Bayes argument verifies the remaining
+axioms. Uniqueness of the expected-loss minimizer makes each $C_p$
+undominated and makes every model tied with it at all worlds equal to
+it modulo null sets. Some supported world must rank $C_p$ no worse than
+any given model, by expected-loss optimality. If $p_k\to p$, the unique
+minimizing advice at $p$ remains minimizing for all sufficiently large
+$k$, at almost every problem. Dominated convergence gives continuity of
+each $L_i(C_p)$ and therefore the closed sections in (S). This proves
+(LA) and (C) as well.
+
+The sets $M_\varepsilon$ expand as $\varepsilon$ decreases. Every
+$q\in\Delta$ is approximated uniformly by the normalization of
+$(\max(q_i,\varepsilon))_i$; the $\ell^1$ error is at most $2n\varepsilon$.
+This proves the Hausdorff assertion.
+
+Finally put $\varepsilon=0$ in (1). The loss of $V$ is zero at every
+world. Every other model either changes unanimous advice, gives a
+contradiction, or recommends an option on mixed problems. On a non-null
+set such a change has positive penalty at some fixed world. Thus $V$
+dominates every other model. The constant selection $C_p=V$ verifies (S),
+and (C) and (LA) follow. Good advice and silence tie precisely on mixed
+problems; all other adjacent penalty gaps are positive. Moreover
+\[
+ \sup_X|L_i^\varepsilon(X)-L_i^0(X)|
+ \le 2\varepsilon\int_H|g_i|\,d\mu\longrightarrow0.
+\]
+This establishes uniform convergence and finishes the proof.
+\end{proof}
+
+More generally, replace the mixed penalties by
+\[
+ 0,\quad \lambda_i|g_i|,\quad(\lambda_i+\eta_i)|g_i|,
+ \quad2(\lambda_i+\eta_i)|g_i|,
+ \qquad 0<\lambda_i\le\eta_i<\infty.
+\tag{3}
+\]
+Keep the unanimous penalties in (1). Comparing acceptance with silence
+uses $\sum_{g_i>0}p_i\lambda_i g_i-
+\sum_{g_i<0}p_i\eta_i(-g_i)$. A positive value also makes acceptance
+better than rejection, because $\lambda_i\le\eta_i$.
+The same proof gives the normalized boxes
+\[
+ K_p=\left\{\frac{(p_i a_i)_i}{\sum_jp_j a_j}:
+                   \lambda_i\le a_i\le\eta_i\right\}.
+\tag{4}
+\]
+Every normalized box with strictly positive bounds on its supporting
+face is covered, including precise models on any face. This is the
+global-box construction familiar from concave CPMs, with contradiction
+assigned a larger penalty so as to respect the present guidance order.
+It is a positive subclass, not a characterization of independent rankings.
+
+\begin{remark}
+Uniform convergence of the losses does not preserve strict (G): the
+good--silence gap tends to zero. Nor is joint continuity of the selections
+in $(p,\varepsilon)$ asserted. In particular $C_{e_i}=D_i$ for
+$\varepsilon>0$, while the limiting system may use the constant selection
+$V$. These facts explain why the theorem does not contradict the strict
+complete-ranking impossibility result.
+\end{remark}
+
+\section{A precise ordinal construction problem}
+
+One can specify comparisons directly, without scores, bonuses, or numerical
+losses. The following formulation makes the consistency question exact.
+It separates choosing closed sections from drawing the consequences of
+those choices. It does not assume that suitable choices exist.
+
+Fix a family of coherent models $C_p$, $p\in\Delta$, containing the target.
+For every model $X$ choose closed sets $A_i(X)\subseteq\Delta$, subject to
+\[
+ \text{for every }p\in\Delta,\quad
+ p\in A_i(X)\text{ for some }i\in\supp p.
+\tag{5}
+\]
+These are intended to be the \emph{exact} sections
+$\{p:C_p\preceq_iX\}$, not merely closed subsets of them.
+
+Start by installing all weak background comparisons and all comparisons
+$C_p\preceq_iX$ for $p\in A_i(X)$. Repeatedly apply these four rules:
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item Install reflexive comparisons.
+\item If $X\preceq_iY$ and $Y\preceq_iZ$, install $X\preceq_iZ$.
+\item Transfer every comparison under every replacement of shared advice.
+\item For each selected $C_p$, if $X\preceq_iC_p$ at all worlds, install
+      $C_p\preceq_iX$ at all worlds.
+\end{enumerate}
+The last rule is precisely what undominatedness requires: a model weakly
+better than a protected model must tie with it everywhere.
+
+The following outcomes are forbidden:
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=3pt]
+\item a reverse of any strict guidance improvement;
+\item $C_p\preceq_iX$ with $p\notin A_i(X)$;
+\item an incoherent $X$ tied at every world with a selected $C_p$.
+\end{enumerate}
+For (c), coherence means coherence modulo null sets. Omit (c) if the desired
+version of the framework does not impose (C).
+
+\begin{theorem}[Exact consistency test]\label{thm:closure}
+For the fixed family and closed sets above, the following are equivalent:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item There are preorders satisfying (G), (IB), (S), and (C), with that
+      selected family and those exact sections.
+\item Applying the four rules never produces a forbidden outcome.
+\end{enumerate}
+When these conditions hold, the generated relations are the least such
+relations. They leave every selected model, including the target,
+undominated. They need not be complete.
+
+Every failure has a finite derivation from finitely many installed
+comparisons. Applying all rules in parallel at stages $0,1,2,\ldots$ and
+taking the union gives the full closure; no later ordinal stages add
+anything once the family and sections are fixed.
+\end{theorem}
+\begin{proof}
+Every proposed solution contains the initial comparisons and is closed
+under the four rules. For the fourth rule, otherwise $X$ would dominate
+the selected $C_p$. Such a solution cannot have any forbidden outcome.
+Thus (i) implies (ii), and every generated comparison is necessary.
+
+Conversely, take the generated relations. The first two rules give
+preorders. The third gives (IB) in both directions, since the inverse
+replacement is also allowed. The initial comparisons and prohibition (a)
+give weak and strict (G). The fourth rule makes each $C_p$ undominated.
+Initial installation and prohibition (b) make its sections exactly the
+closed sets $A_i(X)$; (5) gives competitiveness. This proves (S) and (LA).
+
+To verify (C) for any coherent undominated model, not just a selected
+one, use the simplex consequence of (S): every model has a selected weak
+dominator. Indeed the closed sections for that model cover each face by
+its own indices, so the simplex lemma gives a point in their intersection.
+An undominated model must tie everywhere with this selected dominator.
+A model tied everywhere with it then ties with the same selected model,
+and prohibition (c) makes it coherent. The tie also makes it undominated.
+
+Finally, each rule has finitely many premises, since $n$ is finite.
+Any premises present in the union of the finite stages already occur
+together at one finite stage, so their conclusion occurs at the next.
+The union is therefore closed under all four rules. Induction on the
+stage gives a finite proof tree for each comparison, and each forbidden
+outcome involves only finitely many comparisons. Leastness follows from
+the first paragraph.
+\end{proof}
+
+There is no loss in requiring the target to occur in the family.
+In any successful system, the simplex argument makes an undominated target
+tie everywhere with some $C_r$. Replace that $C_r$ by the target.
+Transitivity makes all comparisons with every $X$ unchanged, so none of
+the sections, competitiveness conditions, or undominatedness properties
+changes.
+
+\paragraph{What this says about transfinite induction.}
+The order-theoretic closure is not the unresolved part. Once closed
+sections are chosen consistently, the theorem constructs the required
+partial rankings by ordinary iteration. What remains is to choose the
+family and its closed sections so that no finite contradiction is forced.
+A transfinite construction could still make those choices one at a time,
+but it needs an extension lemma preserving their eventual closedness.
+An increasing union of closed sections need not be closed, and adding
+missing limit comparisons may trigger the forbidden outcomes above.
+The theorem neither supplies that extension lemma nor makes checking all
+finite derivations an effective finite algorithm.
+
+\section{What is resolved and what remains open}
+
+\begin{itemize}[leftmargin=*,itemsep=5pt]
+\item \textbf{Resolved: coverage of $V$ under the agreed exception.}
+The limiting system above is complete and independent. At world $i$,
+$D_i$ ties with $V$. Good--silence indifference on mixed problems holds
+in every common context, as intended.
+\item \textbf{Resolved: two worlds.} Version 3 already covers every
+credal interval under strict (G), (IB), and (S). The exception can be
+adjoined, or used for $V$, without losing any of that coverage.
+\item \textbf{Resolved: a positive class in every dimension.}
+Precise models and the normalized boxes in (4) have complete independent
+rankings satisfying all the standard requirements. Theorem~\ref{thm:limit}
+also covers a nested family approaching $V$.
+\item \textbf{Earlier pricing restrictions.} Section 2 of
+\texttt{truth\_directed\_losses.tex} excludes targets with incomparable
+boundary supports under its exchange-rate and domain assumptions,
+including suitable nonadditive losses, already in two worlds. The CPM
+boundary-support theorem in v19b excludes different boundary supports,
+including nested supports. These are additional restrictions on particular
+methods; the exchange-rate assumption is not implied by the present
+ordinal axioms.
+\item \textbf{Still impossible: full revised coverage by additive losses
+in $n\ge4$.} The v3 obstruction excludes every credal target containing
+three vertices. Some are proper, for example
+$\operatorname{conv}\{e_1,e_2,e_3\}$ in four worlds. The finitely additive
+one-sided-extension obstruction in \emph{Closed Choice Beyond Ordinary
+Integrals} gives the same restriction under its stated hypotheses.
+The $V$ exception does not apply to these proper targets.
+\item \textbf{Open: coverage of every proper target in $n\ge3$.}
+Neither the existing results nor this note establishes it for complete
+rankings or for incomplete ones. The complete-ranking clique theorem
+narrows targets containing three vertices, but does not exclude all
+proper such targets. For other targets, the failure of a particular
+CPM or box construction is not an impossibility theorem for ordinal
+rankings.
+\item \textbf{Open: the consistent choice required by
+Theorem~\ref{thm:closure}.} This is a precise remaining task for an
+ordinal construction. Complete rankings would require additional choices
+of orientations for every currently incomparable pair; the theorem does
+not justify making those choices.
+\end{itemize}
+
+In particular, incomparabilities are \emph{not currently known to be
+necessary} for the revised coverage demand. Their necessity for the old
+demand followed from excluding $V$ under strict (G), and that argument
+no longer applies. Nor have incomparabilities been proved sufficient.
+
+\medskip\noindent
+\textbf{Guide to the existing proofs.} The companion file
+\emph{START HERE -- Coverage Status.md} records the current questions,
+proof locations, dependencies, and historical notes that should no longer
+be read as statements of the current open problem. It leaves the original
+papers in place so existing references continue to work.
+\end{document}

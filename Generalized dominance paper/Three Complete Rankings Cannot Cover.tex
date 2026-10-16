@@ -1,0 +1,1007 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\cred}{\mathrm{credit}}
+\newcommand{\sil}{\mathrm{silence}}
+\newcommand{\Bfam}{\mathcal B}
+\newcommand{\Jid}{\mathcal J}
+\newcommand{\Iid}{\mathcal I}
+\newcommand{\Uf}{\mathcal U}
+\newcommand{\UU}{\mathfrak U}
+\newcommand{\Alg}{\mathfrak A}
+\newcommand{\Hi}[3]{\mathrm H^{#1}_{#2}(#3)}
+\newcommand{\pw}{\mathrm{pw}}
+\title{Three Complete Rankings Cannot Cover}
+\author{}\date{11 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues FSE (\emph{Fineness Spreads Along Edges}) and CCF
+(\emph{Closed Choice Forces Fineness}), and uses, through them, results of
+CBOI (\emph{Closed Choice Beyond Ordinary Integrals}). For one consequence it
+also uses TAW (\emph{Two Additive Worlds Without Completeness}). It solves
+problem~P1 of FSE, Section~1.7: with three worlds, rankings that are
+complete preorders satisfying (G) and (IB), and the selection axiom (S),
+the vacuous model $V$ is dominated.
+
+\section{Summary and consequences}\label{sec:summary}
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item \emph{Main theorem} (Theorem~\ref{thm:main}). Let $n=3$, let every
+ranking be a complete preorder satisfying (G) and (IB), and assume (S). Then
+$V$ is dominated, and hence dominated by a selected coherent model. This
+answers P1.
+\item \emph{Full coverage needs incomparabilities}
+(Corollary~\ref{cor:coverage}). Let $n=3$, and assume (G) and (IB) at every
+world and (S). If every coherent model is undominated, or merely $V$ is,
+then the ranking of at least one world is incomplete. By TAW, moreover, at
+most one world has a one-sided weak extension of CBOI's finitely additive
+form.
+\item \emph{No saturated cut} (Theorem~\ref{thm:cut}). Let world $v$ be
+complete, and assume (G) at worlds $v$ and $w$ and (S). For every family of
+measurable subsets of $D_{vw}$ that contains a non-null subset of every band
+of the edge $[e_v,e_w]$, $D_w$ is reached from $D_v$ by a finite chain of descents in
+$\preceq_v$ and of perturbations on members of the family. Neither (IB) nor
+any hypothesis on $V$ is used.
+\item \emph{Counting lemma} (Lemma~\ref{lem:count}). Let $\preceq_v$ be a
+preorder with weak (G) and (IB). If such a chain has length $\ell\ge2$ and
+all its perturbation sets lie in $F$, then there are no $\ell$ pairwise disjoint
+subsets of $D_{vw}\setminus F$ each of which carries a full change from
+credit to debt that outweighs the full change on every perturbation set.
+Neither completeness nor (S) is used.
+\item \emph{Rich far ends} (Proposition~\ref{prop:rich}). Under the
+hypotheses of P1, if $V$ is undominated, the point of $[e_1,e_2]$ nearest to
+$e_1$ at which $D_2$ is selected is a limit, from the side of $e_1$, of
+points whose selections give world~$2$ non-null debt.
+\item \emph{Sets light in both layers} (Lemmas~\ref{lem:near}
+to~\ref{lem:buys}). Near that point, (S) supplies sets in $P_2$, at
+every level of the edge $[e_2,e_3]$, on which world~$2$'s full change from
+credit to debt costs no more than the loss of a fixed credit.
+\end{enumerate}
+
+\emph{Outline of the proof.} Suppose $V$ is undominated. For $c>0$ let
+$\UU_c$ be the set of ultrafilters on $P_2$ all of whose members are, at
+world~$2$, strictly AC against credit on $Y_c\coloneqq P_3\cap
+\{t^2_3<1/c\}$; Section~\ref{sec:proof} gives the precise definition.
+FSE's Theorem~64 yields, for every non-null subset of a fixed non-null set,
+an ultrafilter in some $\UU_c$ that contains it; so $\bigcup_c\UU_c$ is
+uncountable. On the other hand, each $\UU_c$ is finite.
+Theorem~\ref{thm:cut} gives a chain from $D_2$ to $D_3$ whose perturbations
+are light in both layers (Section~\ref{sec:light}), and then the counting
+lemma bounds $|\UU_c|$ by the length of the chain. The light sets come from
+the selections near the vertex block of $e_2$ on the other edge
+$[e_1,e_2]$, and Proposition~\ref{prop:rich} is what makes them available.
+
+\emph{More worlds.} A separate note in preparation, \emph{Complete
+Rankings for Any Number of Worlds}, extends Theorem~\ref{thm:main} to every
+finite number $n\ge3$ of worlds. The present note proves only the case
+$n=3$, and nothing in it depends on that extension.
+Theorem~\ref{thm:cut} and Lemma~\ref{lem:count} hold here for every $n\ge3$;
+the rest of the argument uses $n=3$ through the regions $P_x$ and through
+FSE's Corollary~31 and Theorems~56 and~64, which are proved for three
+worlds.
+
+\emph{What remains open.} Incomplete rankings. TAW makes $V$ dominated,
+without any completeness, when two worlds carry one-sided weak extensions of
+CBOI's form and the third satisfies (IB). If some ranking is incomplete and
+at most one world carries such an extension, we know neither a proof that
+$V$ is dominated nor an example in which it is undominated. In particular we
+do not know whether completeness at one or two of the three worlds suffices
+for the conclusion of Theorem~\ref{thm:main}. Section~\ref{sec:remarks}
+lists where completeness is used.
+
+Two independent referees checked the argument of
+Sections~\ref{sec:chains}, \ref{sec:count} and~\ref{sec:light} and of
+Proposition~\ref{prop:finite} and Theorem~\ref{thm:main}; their corrections
+are incorporated. Proposition~\ref{prop:rich} is proved here by a shorter
+route than the one they checked. This proof, and the note as written, were
+checked by a further independent referee, whose corrections are also
+incorporated. Results that are not in the citable notes are proved in full.
+
+\section{Setting and inputs}\label{sec:setting}
+
+\subsection{Problems, models and axioms}\label{sec:axioms}
+
+We use the setting and notation of FSE, Section~1, and recall what is
+needed. There are $n\ge3$ worlds; from Section~\ref{sec:rich} on, $n=3$.
+$\Delta\coloneqq\{p\in\R^n:p\ge0,\ \sum_ip_i=1\}$ has vertices $e_i$.
+Binary problems $\{g,-g\}$ are represented by $g\in
+H\coloneqq\{g\in\R^n:g_1>0\}$, with normalized Gaussian measure~$\mu$;
+coordinate hyperplanes are null, and $H'$ is the set of mixed problems in
+$H$. Models are measurable and identified modulo null sets. A model is
+\emph{regular} if it is never contradictory and correct on unanimous
+problems. Coherent models are regular; $V$ is the coherent model with credal
+set $\Delta$, and $D_i$ is the ideal model of world~$i$, which recommends
+the option good at~$i$ on every problem. All models below are regular.
+
+On a mixed problem a regular model gives the option good at world~$v$
+(\emph{credit} at $v$, rank~$0$), silence (rank~$1$), or the option bad at
+$v$ (\emph{debt} at $v$, rank~$2$). Regular models agree on unanimous
+problems, so a regular model $M$ is determined by its world-$v$ rank
+function $r_v(\cdot,M)\colon H'\to\{0,1,2\}$, and every measurable function
+$H'\to\{0,1,2\}$ is the world-$v$ rank function of a regular model. For
+measurable $Q\subseteq H'$, the models $M+\debt_v(Q)$, $M+\cred_v(Q)$ and
+$M+\sil(Q)$ agree with $M$ off $Q$ and have world-$v$ rank $2$, $0$, $1$ on
+$Q$; silence does not depend on the world. $V$ is silent on $H'$, and $D_v$
+has world-$v$ rank $0$ on $H'$. We write $X\le^v_\pw Y$ if
+$r_v(\cdot,X)\le r_v(\cdot,Y)$ on $H'$.
+
+At each world, $\preceq_i$ is a preorder on models; smaller is better, and
+$X\prec_iY$ means that $X\preceq_iY$ and not $Y\preceq_iX$. The ranking of
+world~$i$ is \emph{complete} if any two models are comparable: $X\preceq_iY$
+or $Y\preceq_iX$. In a preorder,
+$X\preceq_iY\prec_iZ$ and $X\prec_iY\preceq_iZ$ both imply $X\prec_iZ$.
+(G) at world $i$ is guidance monotonicity: $X\le^i_\pw Y$ implies
+$X\preceq_iY$ (\emph{weak (G)}), and if moreover
+$r_i(\cdot,X)<r_i(\cdot,Y)$ on a non-null set, then $X\prec_iY$ (strict
+(G)). (IB) at world~$i$ is independence under replacement of shared advice:
+replacing advice that two models share on a measurable set of problems by
+other shared advice leaves their comparison at~$i$ unchanged. We use it in
+the following form.
+\begin{enumerate}[label=(IB$'$),leftmargin=*]
+\item If $X,Y,X',Y'$ are regular, $\Theta\coloneqq\{X\ne Y\}=\{X'\ne Y'\}$,
+and $X=X'$ and $Y=Y'$ on $\Theta$, then $X\preceq_iY\iff X'\preceq_iY'$ and
+$X\prec_iY\iff X'\prec_iY'$.
+\end{enumerate}
+Indeed, off $\Theta$ each pair shares its advice, and $(X',Y')$ arises from
+$(X,Y)$ by replacing it; the strict form follows by applying the weak form
+to $(X,Y)$ and to $(Y,X)$. So whether $X\preceq_vY$ depends only on the set
+$\{X\ne Y\}$ and on the world-$v$ ranks of $X$ and $Y$ there.
+
+(S) supplies coherent undominated models $C_p$, $p\in\Delta$, competitive on
+$\supp p$, with closed sections $A_i(X)\coloneqq\{p:C_p\preceq_iX\}$. A model
+$C$ is \emph{competitive} on a set $\mathcal W$ of worlds if for every model
+$X$ some $i\in\mathcal W$ has $C\preceq_iX$. A model $M$ is \emph{dominated} if some model $X$ has
+$X\preceq_iM$ at every world and $X\prec_iM$ at some world. By CBOI's
+Lemma~1, a dominated model is dominated by a selected coherent model (FSE,
+Section~1.1). By the face lemma (FSE, Section~1.1) the credal set of $C_p$
+lies in the face spanned by $\supp p$; in particular $C_{e_i}=D_i$. For $q$
+on an edge $[e_v,e_w]$, $C_q$ is a \emph{selection on the edge}; if $q$ lies
+in the open edge $(e_v,e_w)$, $C_q$ is competitive on $\{v,w\}$. We use two
+consequences of (S) (FSE, Section~1.1; CCF, Section~3).
+\begin{enumerate}[label=(T\arabic*),leftmargin=*,itemsep=2pt]
+\item If world $k$ is complete, $Y$ is regular and $Y\prec_kC_{p^*}$, then
+$Y\prec_kC_p$ for all $p$ near $p^*$.
+\item If $p^*\in[e_v,e_w]$, $X$ is regular and $X\prec_wC_{p^*}$, then
+$C_p\preceq_vX$ for all $p$ in the open edge $(e_v,e_w)$ near $p^*$.
+\end{enumerate}
+(T1) holds because $A_k(Y)$ is closed and does not contain $p^*$, and
+completeness turns $C_p\not\preceq_kY$ into $Y\prec_kC_p$. (T2) holds
+because $A_w(X)$ is closed and does not contain $p^*$, and $C_p$ is
+competitive on $\{v,w\}$. Only (T1) uses completeness.
+
+\subsection{Debt, credit and pairs}\label{sec:pairs}
+
+For measurable $B,C\subseteq H'$ (FSE, Section~1.2),
+\begin{gather*}
+ B\preceq^v_dC\ :\Longleftrightarrow\ V+\debt_v(B)\preceq_vV+\debt_v(C),\\
+ B\preceq^v_cC\ :\Longleftrightarrow\ V+\cred_v(C)\preceq_vV+\cred_v(B).
+\end{gather*}
+So $B\preceq^v_dC$ says that debt on $B$ is no worse than debt on $C$, and
+$B\preceq^v_cC$ says that credit on $B$ is worth no more than credit on $C$.
+Their strict parts are written $\prec^v_d$ and $\prec^v_c$. For world~$1$ we
+write $\preceq_d,\preceq_c,\prec_d,\prec_c$. Both relations are transitive.
+By (IB$'$), $V$ may be replaced by any regular model silent on $B\cup C$,
+and $B$ and $C$ may overlap. By weak (G), $B\subseteq C$ implies
+$B\preceq^v_dC$ and $B\preceq^v_cC$.
+
+A \emph{pair} $(A,T)$ at world $v$ consists of disjoint measurable sets
+$A,T\subseteq H'$ (debt part and credit part). It is \emph{SI} (a strict
+improvement) if $V+\debt_v(A)+\cred_v(T)\prec_vV$,
+\emph{weakly SI} if $V+\debt_v(A)+\cred_v(T)\preceq_vV$, and \emph{strictly
+AC} if $V\prec_vV+\debt_v(A)+\cred_v(T)$. If world $v$ is complete, a pair
+that is not weakly SI is strictly AC. By (IB$'$), $V$ may be replaced by any
+regular model silent on $A\cup T$. By strict (G), a pair $(A,T)$ with $A$
+null and $T$ non-null is SI.
+
+Let $\Alg$ be the measure algebra of $H'$. Ideals and ultrafilters are those
+of $\Alg$; so ``$B$ is contained in $C$'' is read modulo null sets when
+membership in an ideal is concerned. An ultrafilter \emph{avoids} an ideal if
+they are disjoint. For non-null $A\subseteq H'$, $\Jid_A$ is the family of
+measurable sets contained in a finite union of measurable sets each
+$\preceq_dA$; it is an ideal (FSE, Definition~1 and Lemma~2).
+
+\subsection{Edges, frames and three worlds}\label{sec:three}
+
+For distinct worlds $v,w$ put $D_{vw}\coloneqq\{g\in H':g_vg_w<0\}$ and
+$t^v_w\coloneqq|g_v|/|g_w|$ on $D_{vw}$, so $t^w_v=1/t^v_w$; the law of
+$t^v_w$ under $\mu|_{D_{vw}}$ has a positive density on $(0,\infty)$, and
+its level sets are null. A \emph{band} of the edge $[e_v,e_w]$ is a set
+$D_{vw}\cap\{s<t^v_w<s'\}$ with $0\le s<s'\le\infty$. On $D_{vw}$ the
+option good at $v$ is the option bad at $w$, so the world-$v$ and world-$w$
+ranks of every regular model add up to $2$ (FSE, equation~(1)):
+\begin{equation}
+ \cred_v=\debt_w\quad\text{and}\quad\debt_v=\cred_w\qquad\text{on }D_{vw};
+ \label{eq:swap}
+\end{equation}
+off $D_{vw}$ the two worlds agree, so their ranks are equal.
+
+\emph{Edge models} (FSE, Section~1.5). By the face lemma a selection on
+$[e_v,e_w]$ has a credal interval on that edge, and there are
+$0\le\beta\le\alpha\le\infty$ such that it gives credit at $v$ on
+$D_{vw}\cap\{t^v_w>\alpha\}$, silence on $D_{vw}\cap\{\beta<t^v_w<\alpha\}$,
+debt at $v$ on $D_{vw}\cap\{t^v_w<\beta\}$, and the option good at $v$ and
+$w$ off $D_{vw}$. It is written $(\alpha,\beta)$, or
+$(\alpha^{(v)},\beta^{(v)})$, \emph{in world $v$'s frame}; in world $w$'s
+frame it is $(\alpha^{(w)},\beta^{(w)})=(1/\beta^{(v)},1/\alpha^{(v)})$, by
+\eqref{eq:swap}. Regular models of this form are \emph{edge models}. The
+model $(0,0)$ is $D_v$ and $(\infty,\infty)$ is $D_w$; since $\beta\le\alpha$,
+an edge model with $\alpha=0$ is $D_v$, and one with $\beta=\infty$ is $D_w$.
+A selection on $[e_v,e_w]$ is \emph{two-sided} if $0<\beta\le\alpha<\infty$;
+its credal set then contains neither endpoint.
+
+\emph{Three worlds.} For $n=3$, as in FSE, Section~1.4, put
+\[
+ P_1\coloneqq\{g_2<0,\ g_3<0\},\qquad P_2\coloneqq\{g_2<0<g_3\},\qquad
+ P_3\coloneqq\{g_3<0<g_2\}
+\]
+inside $H$. $P_x$ is the set of mixed problems at which world $x$ is the
+odd one out, $H'=P_1\cup P_2\cup P_3$ up to null sets, and
+$D_{vw}=P_v\cup P_w$. On each $P_x$ the joint law of two ratios
+$|g_a|/|g_b|$ and $|g_c|/|g_d|$ with $\{a,b\}\ne\{c,d\}$ has a positive
+density on $(0,\infty)^2$; so every subset of $P_x$ defined by a nonempty
+open condition on one or two such ratios is non-null. For $0<b<\infty$,
+$\Hi vwb\coloneqq D_{vw}\cap\{t^v_w>b\}$. In world~$1$'s frame on
+$[e_1,e_2]$ we write $E_2(b)\coloneqq(\infty,b)$ for $0\le b\le\infty$: it
+gives debt at $1$ on $D_{12}\cap\{t^1_2<b\}$, silence on the rest of
+$D_{12}$, and the option good at $1$ and $2$ off $D_{12}$; $E_2(\infty)=D_2$.
+For a selection $E$ on $[e_1,e_2]$ put $T_0(E)\coloneqq P_2\cap
+\{t^1_2>\alpha^{(1)}_E\}$ (FSE, Section~4); there $E$ gives credit at $1$
+and $3$, and debt at $2$.
+
+\subsection{Results used}\label{sec:inputs}
+
+Statements made in FSE for world~$1$ and an edge $[e_1,e_j]$ hold for every
+world $v$ and edge $[e_v,e_w]$, with $D_{vw}$ and $t^v_w$ in place of
+$D_{1j}$ and $t_j$, since the axioms are symmetric in the labels and every
+object involved is a set of problems (FSE, Section~1.3). We use the
+following results of FSE, with FSE's numbering.
+\begin{enumerate}[label=(F\arabic*),leftmargin=*,itemsep=3pt]
+\item\label{in:uf} (Lemma~5(a)) Every ultrafilter contains sets of
+arbitrarily small measure. (Proof of Lemma~5(b)) If $\Iid$ is an ideal and
+$R\notin\Iid$, some ultrafilter contains $R$ and avoids $\Iid$. The proof in
+FSE is written for $\Jid_A$ but uses only that it is an ideal: the family
+$\{R\}\cup\{H'\setminus J:J\in\Iid\}$ has the finite intersection property,
+since $R\setminus(J_1\cup\dots\cup J_s)$ is non-null when $R\notin\Iid$, and
+any ultrafilter extending it avoids $\Iid$.
+\item\label{in:ends} (Lemma~6) Assume (G) at worlds $1$ and $j$ and (S),
+and write $C_q=(\alpha_q,\beta_q)$ in world~$1$'s frame for
+$q\in[e_1,e_j]$. (a) If $C_{q^*}=D_j$ and $q_m\to q^*$ along the edge, then
+$\beta_{q_m}\to\infty$. (b) $S_j\coloneqq\{q\in[e_1,e_j]:C_q=D_j\}$ is
+closed, contains $e_j$ and not $e_1$; if $q_e$ is its point nearest to
+$e_1$, every $q\in[e_1,q_e)$ has $C_q\ne D_j$.
+\item\label{in:yard} (Lemma~8) Let $n=3$, assume (G) at every world, (IB)
+at world~$1$ and (S), let $j\in\{2,3\}$ and let $k$ be the third world.
+(a) If world~$1$ is complete, then for every non-null $A\subseteq H'$ and
+every open interval $I\subseteq(0,\infty)$ there is a non-null
+$Z\subseteq P_1\cap\{t^1_j\in I\}$ with $Z\preceq_dA$ (namely
+$Z=D_{1j}\cap D_{1k}\cap\{t^1_k>b_A\}\cap\{t^1_j\in I\}$ for a suitable
+$b_A<\infty$; $D_{1j}\cap D_{1k}=P_1$). (b) For every non-null $T\subseteq H'$ there is
+$a>0$ with $D_{1j}\cap\{t^1_j<a\}\preceq_cT$.
+\item\label{in:edge} (Corollary~31) Let $n=3$, let all rankings be complete
+with (G) and (IB), and assume (S). If $V$ is undominated, every edge carries
+a two-sided selection.
+\item\label{in:LH} (Theorem~56(i)) Let $n=3$, let all rankings be complete
+with (G) and (IB), and assume (S). At every world $v$, for every non-null
+$R\subseteq H'$ there is an SI pair $(A,T)$ of world $v$ with $A$ non-null
+and $T\subseteq R$.
+\item\label{in:own} (Theorem~64) Let $n=3$, let all rankings be complete
+with (G) and (IB), assume (S), and suppose $V$ is undominated. Let $E$ be a
+two-sided selection on $(e_1,e_2)$ and $T\subseteq T_0(E)$ non-null. Then
+there is $c\in(0,\infty)$ such that $T$ is not a finite union of measurable
+sets $Q$ for which $(Q,P_3\cap\Hi32c)$ is a weakly SI pair of world~$2$.
+Here $P_3\cap\Hi32c=P_3\cap\{t^2_3<1/c\}$.
+\end{enumerate}
+We also use Theorem~64 in the relabelled form stated after its proof in
+FSE. The permutation of labels $2\mapsto1$, $1\mapsto3$, $3\mapsto2$ maps
+$P_2$ to $P_1$, the edge $[e_1,e_2]$ to $[e_3,e_1]$, the set $T_0(E)$, on
+which $E$ gives the option good at $1$ and $3$, to the set
+$P_1\cap\{t^1_3<\beta^{(1)}_E\}$, on which $E$ gives the option good at $3$
+and $2$, that is, debt at~$1$, and $P_3\cap\Hi32c$ to
+$P_2\cap\Hi21c=P_2\cap\{t^1_2<1/c\}$. So:
+\begin{enumerate}[label=(F\arabic*$'$),leftmargin=*,start=6]
+\item\label{in:ownrel} Under the hypotheses of \ref{in:own}, let $E$ be a
+two-sided selection on $(e_1,e_3)$, with debt threshold $\beta^{(1)}_E$ in
+world~$1$'s frame, and let $T\subseteq P_1\cap\{t^1_3<\beta^{(1)}_E\}$ be
+non-null. Then there is $c\in(0,\infty)$ such that $T$ is not a finite union
+of measurable sets $Q$ for which $(Q,P_2\cap\{t^1_2<1/c\})$ is a weakly SI
+pair of world~$1$.
+\end{enumerate}
+From TAW we use only its Corollary~72, for Corollary~\ref{cor:coverage}. A
+loss of \emph{CBOI's form} at world $k$ is
+$L_k(M)\coloneqq\sum_{l=1}^3\nu_{kl}\{g:r_k(g,M)\ge l\}$, where the
+$\nu_{kl}$ are finite nonnegative finitely additive charges on the
+measurable subsets of $H$ that vanish exactly on null sets; it is a
+\emph{one-sided weak extension} if
+\[
+ B\text{ coherent undominated},\ X\text{ regular},\ B\preceq_kX
+ \ \Longrightarrow\ L_k(B)\le L_k(X).
+ \tag{W$_k$}
+\]
+\begin{enumerate}[label=(TAW),leftmargin=*]
+\item (Corollary~72) Let $n=3$, assume (G) and (S), and let every world be a
+preorder satisfying (IB). If $V$ is undominated, then at most one world has
+a loss of CBOI's form satisfying (W$_k$).
+\end{enumerate}
+TAW's Corollary~72 is its main theorem, Theorem~71, after a relabelling of
+the worlds. Under (G) and (S), Theorem~71 makes $V$ dominated when worlds
+$2$ and $3$ have such losses and world~$1$ satisfies (IB); it uses completeness at no world and
+(IB) only at world~$1$.
+
+\emph{Standing hypotheses} (P1): $n=3$; every ranking is a complete preorder
+satisfying (G) and (IB); (S). Each result below states which of them it
+uses.
+
+\section{Connecting chains and the no-saturated-cut theorem}\label{sec:chains}
+
+In this section and the next, $v\ne w$ are two worlds, $D\coloneqq D_{vw}$
+and $t\coloneqq t^v_w$; the number $n\ge3$ of worlds is arbitrary.
+
+\begin{definition}\label{def:chain}
+Let $\Bfam$ be a family of measurable subsets of $D$. Two regular models are
+\emph{$\Bfam$-neighbours} if they agree off some member of $\Bfam$. A
+\emph{connecting chain} of length $\ell\ge1$ from $D_v$ to a regular model
+$X$ is a sequence of regular models
+\[
+ D_v=Y_0,\ X_1,\ Y_1,\ X_2,\ \dots,\ Y_{\ell-1},\ X_\ell=X
+\]
+such that $X_i\preceq_vY_{i-1}$ for $1\le i\le\ell$ and, for
+$1\le i\le\ell-1$, $Y_i$ agrees with $X_i$ off a set $B_i\in\Bfam$. The sets
+$B_i$ are the \emph{perturbation sets} of the chain. The family $\Bfam$ is
+\emph{band-dense} if every band of the edge $[e_v,e_w]$ contains a non-null
+member of $\Bfam$.
+\end{definition}
+
+A chain alternates descents $Y_{i-1}\to X_i$ in $\preceq_v$ with
+perturbations $X_i\to Y_i$ on members of $\Bfam$; a perturbation may make
+the model better or worse.
+
+\begin{lemma}\label{lem:reach}
+Let $\preceq_v$ be a preorder and $\Bfam$ a family of measurable subsets of
+$D$. The set $\mathcal R$ of regular models $X$ for which there is a
+connecting chain from $D_v$ to $X$ contains $D_v$. It is
+\emph{down-closed}: if $X\in\mathcal R$ and $Z\preceq_vX$, then
+$Z\in\mathcal R$. It is \emph{$\Bfam$-saturated}: if $X\in\mathcal R$ and
+$X'$ is a $\Bfam$-neighbour of $X$, then $X'\in\mathcal R$.
+\end{lemma}
+\begin{proof}
+$Y_0=X_1=D_v$ is a chain of length $1$. If a chain ends at $X_\ell=X$ and
+$Z\preceq_vX$, then $Z\preceq_vY_{\ell-1}$, and replacing $X_\ell$ by $Z$
+gives a chain to $Z$. If $X'$ agrees with $X_\ell=X$ off a member of
+$\Bfam$, appending $Y_\ell\coloneqq X'$ and $X_{\ell+1}\coloneqq X'$ gives a
+chain to $X'$.
+\end{proof}
+
+By induction along chains, $\mathcal R$ is contained in every down-closed
+$\Bfam$-saturated set of regular models that contains $D_v$. So
+$D_w\in\mathcal R$ if and only if there is no \emph{saturated cut}: no
+down-closed $\Bfam$-saturated set of regular models contains $D_v$ but not
+$D_w$.
+
+\begin{theorem}\label{thm:cut}
+Let world $v$ be complete, and assume (G) at worlds $v$ and $w$ and (S). For
+every band-dense family $\Bfam$ of measurable subsets of $D$ there is a
+connecting chain from $D_v$ to $D_w$. Every connecting chain from $D_v$ to
+$D_w$ has length at least $2$.
+\end{theorem}
+\begin{proof}
+A chain of length $1$ would give $D_w=X_1\preceq_vY_0=D_v$. But $D_v$ has
+world-$v$ rank $0$ on $H'$, and $D_w$ has world-$v$ rank $2$ on the non-null
+set $D$; so $D_v\prec_vD_w$ by strict (G).
+
+Suppose that there is no chain from $D_v$ to $D_w$, and let $\mathcal R$ be
+as in Lemma~\ref{lem:reach}; so $D_w\notin\mathcal R$. Put
+$\Sigma\coloneqq\{q\in[e_v,e_w]:C_q\in\mathcal R\}$. By the face lemma
+$C_{e_v}=D_v\in\mathcal R$ and $C_{e_w}=D_w\notin\mathcal R$, so
+$e_v\in\Sigma$ and $e_w\notin\Sigma$. Write $C_q=(\alpha_q,\beta_q)$ in
+world $v$'s frame.
+
+\emph{The complement of $\Sigma$ in the edge is open.} Let
+$C_q\notin\mathcal R$. Then $C_q\ne D_v$, so $\alpha_q>0$, since an edge
+model with $\alpha=0$ is $D_v$. The band $D\cap\{0<t<\alpha_q\}$ contains a
+non-null $B\in\Bfam$, and on $B$ the model $C_q$ gives silence or debt
+at~$v$. Put $M^-\coloneqq C_q+\cred_v(B)$. It is a $\Bfam$-neighbour of
+$C_q$; as the neighbour relation is symmetric and $\mathcal R$ is
+$\Bfam$-saturated, $M^-\notin\mathcal R$. By strict (G), $M^-\prec_vC_q$.
+By (T1), which uses the completeness of world $v$, $M^-\prec_vC_{q'}$ for
+all $q'$ near $q$. For such $q'$, $C_{q'}\in\mathcal R$ would give
+$M^-\in\mathcal R$, since $\mathcal R$ is down-closed. So no $q'$ near $q$
+lies in $\Sigma$.
+
+\emph{$\Sigma$ is open.} Let $C_q\in\mathcal R$. Then $C_q\ne D_w$, so
+$\beta_q<\infty$, since an edge model with $\beta=\infty$ is $D_w$; and
+$q\ne e_w$. The band $D\cap\{\beta_q<t<\infty\}$ contains a non-null
+$B\in\Bfam$, and on $B$ the model $C_q$ gives silence or credit at $v$, that
+is, by \eqref{eq:swap}, silence or debt at $w$. Put
+$M^+\coloneqq C_q+\debt_v(B)$, which gives credit at $w$ on $B$. Then
+$M^+\in\mathcal R$ by saturation, and $M^+\prec_wC_q$ by strict (G) at
+world $w$. By (T2), $C_{q'}\preceq_vM^+$ for all $q'$ in the open edge near
+$q$, and these $C_{q'}$ lie in $\mathcal R$ because $\mathcal R$ is
+down-closed. The only points of the edge outside the open edge are $e_v$,
+which lies in $\Sigma$, and $e_w\ne q$, which we exclude by taking the
+neighbourhood of $q$ small. So all points of the edge near $q$ lie in
+$\Sigma$.
+
+Thus $\Sigma$ is open and closed in the connected edge, contains $e_v$ and
+not $e_w$: a contradiction.
+\end{proof}
+
+The proof uses the completeness of world $v$ only in (T1), strict (G) at
+worlds $v$ and $w$, and (S) through (T1), (T2) and the face lemma. It uses
+no (IB), and nothing about $V$ or about the other worlds.
+
+\section{The counting lemma}\label{sec:count}
+
+For a measurable $B\subseteq D$, the model $D_v+\debt_v(B)$ differs from
+$D_v$ by a \emph{full change} from credit to debt at $v$ on $B$. For
+disjoint $B,K\subseteq D$, by (IB$'$), the comparison of
+$D_v+\debt_v(B)$ with $D_v+\debt_v(K)$ is a comparison of the full change
+on $B$ with the full change on $K$.
+
+\begin{lemma}\label{lem:count}
+Let $\preceq_v$ be a preorder that satisfies weak (G) and (IB) at
+world~$v$. Let
+\[
+ D_v=Y_0,\ X_1,\ Y_1,\ \dots,\ Y_{\ell-1},\ X_\ell=D_w
+\]
+be a connecting chain of length $\ell\ge2$ whose perturbation sets
+$B_1,\dots,B_{\ell-1}$ are contained in a measurable set $F$. Then there
+are no pairwise disjoint measurable sets $K_1,\dots,K_\ell\subseteq
+D\setminus F$ such that
+\begin{equation}
+ D_v+\debt_v(B_i)\prec_vD_v+\debt_v(K_l)\qquad
+ \text{for all }1\le i\le\ell-1\text{ and }1\le l\le\ell.
+ \label{eq:heavy}
+\end{equation}
+\end{lemma}
+\begin{proof}
+Suppose such sets $K_l$ exist, and put
+$\Pi_k\coloneqq D_v+\debt_v(K_1\cup\dots\cup K_k)$ for $0\le k\le\ell$. We
+show by induction that $Y_k\prec_v\Pi_{k+1}$ for $0\le k\le\ell-1$.
+
+For $k=0$, $D_v\preceq_vD_v+\debt_v(B_1)$ by weak (G), and
+$D_v+\debt_v(B_1)\prec_v\Pi_1$ by \eqref{eq:heavy} with $i=l=1$; here
+$\ell\ge2$ is used. So $Y_0\prec_v\Pi_1$.
+
+Let $0\le k\le\ell-2$ and $Y_k\prec_v\Pi_{k+1}$. Then
+$X_{k+1}\preceq_vY_k\prec_v\Pi_{k+1}$, so $X_{k+1}\prec_v\Pi_{k+1}$. Put
+$B\coloneqq B_{k+1}$, so that $Y_{k+1}$ agrees with $X_{k+1}$ off $B$, and
+\[
+ X^+\coloneqq X_{k+1}+\debt_v(B),\qquad
+ X^0\coloneqq X_{k+1}+\cred_v(B),\qquad
+ \Pi'\coloneqq\Pi_{k+1}+\debt_v(B).
+\]
+Since $B\subseteq F$ and every $K_l$ misses $F$, the set $B$ misses every
+$K_l$; so $\Pi_{k+1}$ has world-$v$ rank $0$ on $B$.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item $Y_{k+1}\preceq_vX^+$ by weak (G): the two models agree off $B$, and
+$X^+$ has rank $2$ on $B$.
+\item $X^0\preceq_vX_{k+1}$ by weak (G), and hence $X^0\prec_v\Pi_{k+1}$.
+\item $X^+\prec_v\Pi'$. Off $B$, $X^0=X^+=X_{k+1}$ and $\Pi_{k+1}=\Pi'$. On
+$B$, $X^0$ and $\Pi_{k+1}$ both have rank $0$, and $X^+$ and $\Pi'$ both
+have rank $2$. So the pairs $(X^0,\Pi_{k+1})$ and $(X^+,\Pi')$ have the same
+difference set, which misses $B$, and agree on it; (IB$'$) carries (b)
+over. The two pairs differ only in the advice they share on $B$.
+\item $\Pi'\prec_v\Pi_{k+2}$. Both models have rank $2$ on
+$K_1\cup\dots\cup K_{k+1}$ and rank $0$ off
+$K_1\cup\dots\cup K_{k+2}\cup B$. On $B$ their ranks are $2$ and $0$, and on
+$K_{k+2}$ they are $0$ and $2$. The pair
+$(D_v+\debt_v(B),D_v+\debt_v(K_{k+2}))$ has the same difference set
+$B\cup K_{k+2}$ and the same ranks on it. So (IB$'$) and \eqref{eq:heavy}
+with $i=k+1\le\ell-1$ and $l=k+2\le\ell$ give $\Pi'\prec_v\Pi_{k+2}$.
+\end{enumerate}
+Hence $Y_{k+1}\preceq_vX^+\prec_v\Pi'\prec_v\Pi_{k+2}$, and the induction is
+complete.
+
+For $k=\ell-1$ we obtain $D_w=X_\ell\preceq_vY_{\ell-1}\prec_v\Pi_\ell$.
+But $\Pi_\ell$ has world-$v$ rank $2$ on $K_1\cup\dots\cup K_\ell\subseteq D$
+and rank $0$ elsewhere on $H'$, while $D_w$ has world-$v$ rank $2$ on $D$
+and rank $0$ off $D$. So $\Pi_\ell\le^v_\pw D_w$, and $\Pi_\ell\preceq_vD_w$
+by weak (G). Thus $D_w\prec_vD_w$, which is impossible.
+\end{proof}
+
+The lemma uses only transitivity, weak (G) and (IB) at world $v$: neither
+completeness, nor strict (G), nor (S), nor anything about other worlds.
+Under strict (G) at $v$, every connecting chain from $D_v$ to $D_w$ has
+length $\ell\ge2$, by the first paragraph of the proof of
+Theorem~\ref{thm:cut}.
+
+\section{Rich far ends}\label{sec:rich}
+
+From now on $n=3$. In this section we work in world~$1$'s frame on the edge
+$[e_1,e_2]$: $t\coloneqq t^1_2$ on $D_{12}=P_1\cup P_2$, and
+$C_q=(\alpha_q,\beta_q)\coloneqq(\alpha^{(1)}_q,\beta^{(1)}_q)$ for
+$q\in[e_1,e_2]$. Let $q_e$ be the point of $S_2=\{q\in[e_1,e_2]:C_q=D_2\}$
+nearest to $e_1$ (\ref{in:ends}(b)); $q_e\ne e_1$. We call $q_e$ the
+\emph{far end of the frame $(1,2)$}: it is the end of the vertex block $S_2$
+of $e_2$ that faces $e_1$. (Seen from world~$2$, whose ideal model is
+selected on $S_2$, it is the near end of that block.) We parametrize the
+edge by $q(s)\coloneqq(1-s)e_1+se_2$, $s\in[0,1]$, and write
+$C(s)\coloneqq C_{q(s)}$, with thresholds $\alpha(s),\beta(s)$. Let
+$s_e\in(0,1]$ be the parameter of $q_e$. For $0<s<s_e$, $q(s)$ lies in the
+open edge and $C(s)\ne D_2$.
+
+\begin{definition}\label{def:rich}
+The far end of the frame $(1,2)$ is \emph{rich} if there are
+$s_m\in(0,s_e)$ with $s_m\to s_e$ and $\alpha(s_m)<\infty$ for every $m$.
+\end{definition}
+
+In world~$2$'s frame, $\alpha(s)<\infty$ means
+$\beta^{(2)}_{q(s)}=1/\alpha(s)>0$: the selection $C(s)$ gives debt at
+world~$2$ on the non-null set $D_{21}\cap\{t^2_1<1/\alpha(s)\}$. If the far
+end is not rich, all selections $C(s)$ with $s<s_e$ near $s_e$ have $e_2$ in
+their credal sets.
+
+\begin{proposition}\label{prop:rich}
+Assume (P1) and suppose that $V$ is undominated. Then the far end of the
+frame $(1,2)$ is rich.
+\end{proposition}
+\begin{proof}
+Suppose not. Then there is $s_0\in(0,s_e)$ with $\alpha(s)=\infty$ for all
+$s\in(s_0,s_e)$. For such $s$, $C(s)\ne D_2$, so $\beta(s)<\infty$, and
+$C(s)=E_2(\beta(s))$. For $0\le b<b'<\infty$, the models $E_2(b)$ and
+$E_2(b')$ differ exactly on the non-null band $D_{12}\cap\{b<t<b'\}$, where
+$E_2(b)$ is silent and $E_2(b')$ gives debt at $1$, that is, credit at $2$
+by \eqref{eq:swap}. By strict (G) at worlds $1$ and $2$,
+\begin{equation}
+ E_2(b)\prec_1E_2(b')\quad\text{and}\quad E_2(b')\prec_2E_2(b)
+ \qquad(0\le b<b'<\infty).
+ \label{eq:E2}
+\end{equation}
+
+\emph{Step 1: $\beta$ is continuous on $(s_0,s_e)$, and $\beta(s)\to\infty$
+as $s\uparrow s_e$.} Let $b\in[0,\infty)$ and $s\in(s_0,s_e)$. By
+\eqref{eq:E2} and reflexivity, $C(s)\preceq_1E_2(b)$ holds if and only if
+$\beta(s)\le b$, and $C(s)\preceq_2E_2(b)$ holds if and only if
+$\beta(s)\ge b$. The sections $A_1(E_2(b))$ and $A_2(E_2(b))$ are closed by
+(S). So $\{s\in(s_0,s_e):\beta(s)\le b\}$ and
+$\{s\in(s_0,s_e):\beta(s)\ge b\}$ are closed in $(s_0,s_e)$ for every
+$b\in[0,\infty)$, and $\beta$ is lower and upper semicontinuous on
+$(s_0,s_e)$, hence continuous. Since $C_{q_e}=D_2$, \ref{in:ends}(a) gives
+$\beta(s)\to\infty$ as $s\uparrow s_e$.
+
+\emph{Step 2: every level above some $z_0$ is crossed from both sides.}
+Fix $s_1\in(s_0,s_e)$ and put $z_0\coloneqq\beta(s_1)$. Let $z>z_0$. By Step~1 there
+is $s_2\in(s_1,s_e)$ with $\beta>z$ on $[s_2,s_e)$. The set
+$\{s\in[s_1,s_2]:\beta(s)=z\}$ is nonempty by the intermediate value theorem
+and compact by continuity; let $s^-$ and $s^+$ be its least and its greatest
+element. Then $s_1<s^-\le s^+<s_2$, and, again by the intermediate value
+theorem, $\beta<z$ on $[s_1,s^-)$ and $\beta>z$ on $(s^+,s_e)$. Moreover
+$C(s^-)=C(s^+)=E_2(z)$.
+
+\emph{Step 3: bands at levels above $z_0$.} Let $z>z_0$ and let $A\subseteq H'$
+be non-null. We show that there is $\varepsilon>0$ with
+\begin{equation}
+ D_{12}\cap\{z-\varepsilon<t<z\}\preceq_dA\quad\text{and}\quad
+ D_{12}\cap\{z<t<z+\varepsilon\}\preceq_dA.
+ \label{eq:bands}
+\end{equation}
+
+(i) By \ref{in:yard}(a) with $j=2$ there is a non-null
+$Z\subseteq D_{12}\cap\{z/4<t<z/2\}$ with $Z\preceq_dA$. Let
+$X\coloneqq E_2(z)+\sil(Z)$. As $E_2(z)$ gives debt at $1$ on $Z$,
+$X\prec_1E_2(z)=C(s^-)$ by strict (G), and (T1), at the complete
+world~$1$, gives $X\prec_1C_q$ for all $q$ near $q(s^-)$. By continuity $\beta(s)\to z$ as $s\uparrow s^-$, so
+there is $s'\in[s_1,s^-)$ with $X\prec_1C(s')$ and $b'\coloneqq\beta(s')$
+in $(z/2,z)$. Put $L\coloneqq D_{12}\cap\{b'<t<z\}$ and
+$X_0\coloneqq E_2(b')+\sil(Z)$. Since $Z\subseteq\{t<z/2\}\subseteq\{t<b'\}$,
+we have $C(s')=E_2(b')=X_0+\debt_1(Z)$, and, up to the null level set
+$\{t=b'\}$, $X=X_0+\debt_1(L)$: both give debt at $1$ exactly on
+$D_{12}\cap\{t<z\}\setminus Z$, silence on the rest of $D_{12}$, and the
+option good at $1$ and $2$ off $D_{12}$. So
+$X_0+\debt_1(L)\prec_1X_0+\debt_1(Z)$, where $X_0$ is silent on the disjoint
+sets $L$ and $Z$. By (IB$'$), $V+\debt_1(L)\prec_1V+\debt_1(Z)$, that is,
+$L\prec_dZ$; so $L\preceq_dZ\preceq_dA$.
+
+(ii) By \ref{in:yard}(a) there is a non-null
+$Z'\subseteq D_{12}\cap\{z+1<t<z+2\}$ with $Z'\preceq_dA$; $E_2(z)$ is silent
+on $Z'$. Let $X'\coloneqq E_2(z)+\debt_1(Z')$. By \eqref{eq:swap}, $X'$
+gives credit at $2$ on $Z'$, so $X'\prec_2E_2(z)=C(s^+)$ by strict (G) at
+world~$2$. By (T2) with $(v,w)=(1,2)$, $C_q\preceq_1X'$ for all $q$ in the
+open edge near $q(s^+)$. By continuity $\beta(s)\to z$ as $s\downarrow s^+$,
+so there is $s''\in(s^+,s_e)$ with $C(s'')\preceq_1X'$ and
+$b''\coloneqq\beta(s'')$ in $(z,z+1)$. Put
+$L'\coloneqq D_{12}\cap\{z<t<b''\}$. Up to a null level set,
+$C(s'')=E_2(b'')=E_2(z)+\debt_1(L')$, and $E_2(z)$ is silent on the
+disjoint sets $L'$ and $Z'$. So $E_2(z)+\debt_1(L')\preceq_1
+E_2(z)+\debt_1(Z')$, and (IB$'$) gives $L'\preceq_dZ'\preceq_dA$.
+
+With $\varepsilon\coloneqq\min(z-b',b''-z)$, \eqref{eq:bands} follows from
+(i), (ii) and weak (G).
+
+\emph{Step 4: a band region in every $\Jid_A$.} Put
+$R\coloneqq D_{12}\cap\{z_0+1<t<z_0+2\}$ and let $A\subseteq H'$ be
+non-null. For each $z\in[z_0+1,z_0+2]$, Step~3 gives $\varepsilon_z>0$ such that
+$D_{12}\cap\{|t-z|<\varepsilon_z\}$ is, up to the null set $\{t=z\}$, the
+union of two sets $\preceq_dA$; so it belongs to $\Jid_A$. Finitely many of
+the intervals $(z-\varepsilon_z,z+\varepsilon_z)$ cover the compact interval
+$[z_0+1,z_0+2]$, and $\Jid_A$ is an ideal; so $R\in\Jid_A$. This holds for every
+non-null $A\subseteq H'$; in particular world~$1$'s debt order is fine on
+$R$ in the sense of FSE, Definition~1.
+
+\emph{Step 5: a contradiction.} By \ref{in:edge} there is a two-sided
+selection $E$ on $(e_1,e_3)$; its debt threshold $\beta^{(1)}_E$ in
+world~$1$'s frame lies in $(0,\infty)$. The set
+\[
+ T\coloneqq P_1\cap\{t^1_3<\beta^{(1)}_E\}\cap\{z_0+1<t^1_2<z_0+2\}
+\]
+is non-null, and $T\subseteq R$. By \ref{in:ownrel} there is
+$c\in(0,\infty)$ such that $T$ is not a finite union of measurable sets $Q$
+for which $(Q,\Gamma)$ is a weakly SI pair of world~$1$, where
+$\Gamma\coloneqq P_2\cap\{t^1_2<1/c\}$. The set $\Gamma$ is non-null, so
+\ref{in:LH} gives an SI pair $(A,\Gamma')$ of world~$1$ with $A$ non-null and
+$\Gamma'\subseteq\Gamma$. By Step~4, $R\in\Jid_A$; so, up to a null set, $T$
+is contained in a finite union $Q_1\cup\dots\cup Q_r$ of measurable sets
+$Q_i\preceq_dA$. Put $Q'_i\coloneqq Q_i\cap T$, and add the null set
+$T\setminus(Q'_1\cup\dots\cup Q'_r)$ to $Q'_1$, which changes no model. Then
+$T=Q'_1\cup\dots\cup Q'_r$, and $Q'_i\preceq_dQ_i\preceq_dA$ by weak (G).
+Each $Q'_i\subseteq P_1$ misses $\Gamma\subseteq P_2$, and $A$ misses
+$\Gamma'$; so the model $V+\cred_1(\Gamma')$ is silent on $Q'_i\cup A$, and
+\[
+ V+\debt_1(Q'_i)+\cred_1(\Gamma)\preceq_1V+\debt_1(Q'_i)+\cred_1(\Gamma')
+ \preceq_1V+\debt_1(A)+\cred_1(\Gamma')\prec_1V.
+\]
+The first step is weak (G) (more credit at $1$ on $\Gamma\setminus\Gamma'$),
+the second is $Q'_i\preceq_dA$ in the context $V+\cred_1(\Gamma')$, by
+(IB$'$), and the third says that $(A,\Gamma')$ is SI. So every pair
+$(Q'_i,\Gamma)$ is SI, in particular weakly SI, and $T$ is their union. This
+contradicts the choice of $c$.
+\end{proof}
+
+Steps~1--4 use (G) at every world, completeness and (IB) at world~$1$, and
+(S), but nothing about $V$. They show: if every selection $C(s)$ with
+$s<s_e$ near $s_e$ has $e_2$ in its credal set, then world~$1$'s debt order
+is fine on a band region of $D_{12}$. Step~5 excludes this when $V$ is
+undominated; it is the only step of this proof that uses \ref{in:edge},
+\ref{in:LH} and \ref{in:ownrel}. Only the conclusion
+$\alpha(s_m)<\infty$ is used below; whether the selections $C(s_m)$ are
+two-sided plays no role.
+
+\section{Sets light in both layers}\label{sec:light}
+
+In this section we work at world~$2$ and on its two edges: on
+$D_{21}=P_1\cup P_2$ with the ratio $t^2_1=1/t^1_2$, and on
+$D_{23}=P_2\cup P_3$ with the ratio $t^2_3$. On $P_2=D_{21}\cap D_{23}$
+both are defined, and their joint law has a positive density on
+$(0,\infty)^2$.
+
+\begin{definition}\label{def:light}
+For measurable $W,T\subseteq H'$, the set $W$ is \emph{$T$-light} if
+$W\cap T=\varnothing$ and $D_2+\debt_2(W)\preceq_2D_2+\sil(T)$.
+\end{definition}
+
+So the full change from credit to debt at world~$2$ on $W$ costs world~$2$
+no more than the loss of its credit on $T$: relative to $T$, the set $W$ is
+light in the credit layer and in the debt layer at once. By weak (G),
+every measurable subset of a $T$-light set is $T$-light.
+
+\begin{lemma}\label{lem:near}
+Assume (P1) and suppose that $V$ is undominated. Let $c>0$ and let
+$T\subseteq D_{21}\cap\{t^2_1>c\}$ be non-null. Then there is $b>0$ such
+that every measurable $W\subseteq D_{21}\cap\{t^2_1<b\}$ is $T$-light.
+\end{lemma}
+\begin{proof}
+Let $q_e$ be the far end of the frame $(1,2)$ (Section~\ref{sec:rich}). By
+Proposition~\ref{prop:rich} there are $q_m$ in the open edge $(e_1,e_2)$
+with $q_m\to q_e$ and $\alpha^{(1)}_{q_m}<\infty$; nothing else about these
+selections is used. In world~$2$'s frame on $[e_2,e_1]$, $C_{q_m}$ has
+thresholds $\alpha_m\coloneqq\alpha^{(2)}_{q_m}=1/\beta^{(1)}_{q_m}$ and
+$\beta_m\coloneqq\beta^{(2)}_{q_m}=1/\alpha^{(1)}_{q_m}>0$. Since
+$C_{q_e}=D_2$, \ref{in:ends}(a) gives $\beta^{(1)}_{q_m}\to\infty$, so
+$\alpha_m\to0$.
+
+Let $M_T\coloneqq D_2+\sil(T)$. On $T\subseteq D_{21}$, $D_2$ gives credit
+at $2$, which by \eqref{eq:swap} is debt at $1$, while $M_T$ is silent;
+elsewhere the two models agree. So $M_T\prec_1D_2=C_{q_e}$ by strict (G) at
+world~$1$, and (T2) with $(v,w)=(2,1)$ gives $C_q\preceq_2M_T$ for all $q$ in
+the open edge near $q_e$. Fix $m$ with $C_{q_m}\preceq_2M_T$ and
+$\alpha_m<c$, and put $b\coloneqq\beta_m$; then $0<b\le\alpha_m<c$.
+
+Let $W\subseteq D_{21}\cap\{t^2_1<b\}$ be measurable. The selection
+$C_{q_m}$ gives debt at $2$ on $D_{21}\cap\{t^2_1<b\}\supseteq W$, and
+$D_2+\debt_2(W)$ has world-$2$ rank $2$ on $W$ and $0$ elsewhere on $H'$.
+So $D_2+\debt_2(W)\le^2_\pw C_{q_m}$, and weak (G) gives
+$D_2+\debt_2(W)\preceq_2C_{q_m}\preceq_2M_T$. Finally $W\cap T=\varnothing$,
+since $W\subseteq\{t^2_1<b\}$, $T\subseteq\{t^2_1>c\}$ and $b<c$.
+\end{proof}
+
+\begin{lemma}\label{lem:compose}
+Assume (IB) at world~$2$. Let $W_1,\dots,W_N$ be pairwise disjoint
+measurable sets, and $T_1,\dots,T_N$ pairwise disjoint measurable sets with
+$T_i\cap W_k=\varnothing$ for all $i,k$. If each $W_i$ is $T_i$-light, then
+$W_1\cup\dots\cup W_N$ is $(T_1\cup\dots\cup T_N)$-light.
+\end{lemma}
+\begin{proof}
+For $0\le i\le N$ put
+$M_i\coloneqq D_2+\sil(T_1\cup\dots\cup T_i)+\debt_2(W_{i+1}\cup\dots\cup
+W_N)$; all the sets involved are pairwise disjoint, so $M_i$ is well
+defined, $M_0=D_2+\debt_2(W_1\cup\dots\cup W_N)$ and
+$M_N=D_2+\sil(T_1\cup\dots\cup T_N)$. For $0\le i<N$, the models $M_i$ and
+$M_{i+1}$ differ exactly on $W_{i+1}\cup T_{i+1}$, with world-$2$ ranks $2$
+and $0$ on $W_{i+1}$, and $0$ and $1$ on $T_{i+1}$. So do
+$D_2+\debt_2(W_{i+1})$ and $D_2+\sil(T_{i+1})$, and the first is
+$\preceq_2$ the second because $W_{i+1}$ is $T_{i+1}$-light. By (IB$'$),
+$M_i\preceq_2M_{i+1}$. By transitivity $M_0\preceq_2M_N$, and
+$\bigcup_iW_i$ misses $\bigcup_iT_i$.
+\end{proof}
+
+\begin{lemma}\label{lem:buys}
+Assume (G) and (IB) at world~$2$. Let $W,T,Y\subseteq H'$ be pairwise
+disjoint measurable sets such that $W$ is $T$-light and $T\preceq^2_cY$.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item $(W,Y)$ is a weakly SI pair of world~$2$.
+\item If moreover $K\subseteq H'$ is measurable and disjoint from
+$W\cup T\cup Y$, and $(K,Y)$ is a strictly AC pair of world~$2$, then
+$D_2+\debt_2(W)\prec_2D_2+\debt_2(K)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) By lightness and weak (G),
+$D_2+\debt_2(W)\preceq_2D_2+\sil(T)\preceq_2D_2+\sil(T\cup W)$. The outer
+two models differ exactly on $W\cup T$, with world-$2$ ranks $2$ and $1$ on
+$W$, and $0$ and $1$ on $T$; so do $V+\debt_2(W)+\cred_2(T)$ and $V$. By
+(IB$'$), $V+\debt_2(W)+\cred_2(T)\preceq_2V$. By definition, $T\preceq^2_cY$
+means $V+\cred_2(Y)\preceq_2V+\cred_2(T)$. The model $V+\debt_2(W)$ is silent
+on $T\cup Y$, so (IB$'$) gives
+$V+\debt_2(W)+\cred_2(Y)\preceq_2V+\debt_2(W)+\cred_2(T)\preceq_2V$.
+
+(b) We show
+\begin{multline*}
+ D_2+\debt_2(W)\preceq_2D_2+\sil(T)\preceq_2D_2+\sil(Y)\\
+ \preceq_2D_2+\sil(Y\cup K)\prec_2D_2+\debt_2(K).
+\end{multline*}
+The first step is lightness. In the second, the two models differ exactly on
+$T\cup Y$, with ranks $1$ and $0$ on $T$, and $0$ and $1$ on $Y$; so do
+$V+\cred_2(Y)$ and $V+\cred_2(T)$, and (IB$'$) turns $T\preceq^2_cY$ into
+the second step. The third step is weak (G). In the fourth, the two models
+differ exactly on $Y\cup K$, with ranks $1$ and $0$ on $Y$, and $1$ and $2$
+on $K$; so do $V$ and $V+\debt_2(K)+\cred_2(Y)$, and (IB$'$) turns the strict
+AC of $(K,Y)$ into the fourth step.
+\end{proof}
+
+Part (a) does not use $K$; it is used in Section~\ref{sec:proof} before any
+such $K$ is available.
+
+\section{Proof of the theorem}\label{sec:proof}
+
+For $c>0$ put $Y_c\coloneqq P_3\cap\{t^2_3<1/c\}=P_3\cap\Hi32c$, a non-null
+set. Let $\Iid_c$ be the family of measurable sets that are contained, up to
+a null set, in a finite union of measurable sets $Q\subseteq P_2$ for which
+$(Q,Y_c)$ is a weakly SI pair of world~$2$; such $Q$ miss $Y_c\subseteq
+P_3$. $\Iid_c$ is an ideal: it contains the null sets and is closed under
+measurable subsets and finite unions. If $c\le c'$, then $Y_{c'}\subseteq
+Y_c$, and a weakly SI pair $(Q,Y_{c'})$ gives a weakly SI pair $(Q,Y_c)$ by
+weak (G) at world~$2$ (more credit); so $\Iid_{c'}\subseteq\Iid_c$. Let
+$\UU_c$ be the set of ultrafilters that contain $P_2$ and avoid $\Iid_c$.
+
+If world~$2$ is complete, $\Uf\in\UU_c$, $K\in\Uf$ and $K\subseteq P_2$,
+then $(K,Y_c)$ is a strictly AC pair of world~$2$. Indeed $K\notin\Iid_c$,
+so $(K,Y_c)$ is not weakly SI, since otherwise $K$ would cover itself; and
+by completeness a pair that is not weakly SI is strictly AC.
+
+\begin{proposition}\label{prop:finite}
+Assume (P1) and suppose that $V$ is undominated. Then $\UU_c$ is finite for
+every $c>0$.
+\end{proposition}
+\begin{proof}
+Fix $c>0$.
+
+\emph{Credit witnesses.} By \ref{in:yard}(b), applied at world~$2$ with
+$j=1$ to the non-null set $Y_c$, there is $a>0$ with
+$D_{21}\cap\{t^2_1<a\}\preceq^2_cY_c$. Put
+$T\coloneqq P_1\cap\{a/2<t^2_1<a\}$, a non-null set. By weak (G) and
+transitivity, $T'\preceq^2_cY_c$ for every measurable $T'\subseteq T$.
+Split $T$ into pairwise disjoint non-null measurable sets $T_k$, $k\ge1$;
+this is possible since $\mu$ is atomless. Each $T_k$ lies in
+$D_{21}\cap\{t^2_1>a/2\}$, so Lemma~\ref{lem:near} gives $b_k>0$ such that
+every measurable subset of $D_{21}\cap\{t^2_1<b_k\}$ is $T_k$-light.
+
+\emph{A band-dense family of light sets.} Choose reals $\varepsilon_k$ with
+$0<\varepsilon_1<b_1$ and $0<\varepsilon_k<\min(b_k,\varepsilon_{k-1}/2)$
+for $k\ge2$. Let $(r_k,r'_k)_{k\ge1}$ enumerate the pairs of rationals with
+$0<r_k<r'_k$, and put
+\[
+ W_k\coloneqq P_2\cap\{r_k<t^2_3<r'_k\}\cap
+ \{\varepsilon_k/2<t^2_1<\varepsilon_k\}.
+\]
+Each $W_k$ is non-null, being defined by a nonempty open condition on
+$(t^2_1,t^2_3)$ in $P_2$. The $W_k$ are pairwise disjoint, since their
+ranges of $t^2_1$ are. Each $W_k\subseteq P_2$ misses $T\subseteq P_1$ and
+$Y_c\subseteq P_3$, and $W_k$ is $T_k$-light, since
+$W_k\subseteq D_{21}\cap\{t^2_1<b_k\}$. Let $\Bfam$ be the family of
+measurable subsets of the sets $W_k$. It is band-dense for the edge
+$[e_2,e_3]$ in world~$2$'s frame: a band $D_{23}\cap\{s<t^2_3<s'\}$, with
+$0\le s<s'\le\infty$, contains every $W_k$ with $s\le r_k<r'_k\le s'$, and
+there are such $k$.
+
+\emph{The chain.} By Theorem~\ref{thm:cut} with $(v,w)=(2,3)$ (world~$2$ is
+complete, (G) holds at worlds $2$ and $3$, and (S) holds), there is a
+connecting chain from $D_2$ to $D_3$ with perturbation sets in $\Bfam$. Let
+$\ell\ge2$ be its length and $B_1,\dots,B_{\ell-1}$ its perturbation sets.
+Each $B_i$ lies in some $W_{k_i}$; let $N\coloneqq\max_ik_i$ and
+\[
+ F\coloneqq W_1\cup\dots\cup W_N,\qquad T^N\coloneqq T_1\cup\dots\cup T_N.
+\]
+By Lemma~\ref{lem:compose}, $F$ is $T^N$-light, and so is every
+$B_i\subseteq F$. Moreover $T^N\preceq^2_cY_c$, and $F\subseteq P_2$,
+$T^N\subseteq P_1$ and $Y_c\subseteq P_3$ are pairwise disjoint. By
+Lemma~\ref{lem:buys}(a), $(F,Y_c)$ is a weakly SI pair of world~$2$; as
+$F\subseteq P_2$, $F\in\Iid_c$.
+
+\emph{Counting.} Suppose that $\UU_c$ has $\ell$ distinct members
+$\Uf^1,\dots,\Uf^\ell$. Each contains $P_2$ and not $F$, hence contains
+$P_2\setminus F$. For $l<l'$ choose $G_{ll'}\in\Uf^l$ with
+$H'\setminus G_{ll'}\in\Uf^{l'}$, and put $G_{l'l}\coloneqq H'\setminus
+G_{ll'}$; then $G_{ll'}\in\Uf^l$ for all $l\ne l'$. The sets
+\[
+ K_l\coloneqq(P_2\setminus F)\cap\bigcap_{l'\ne l}G_{ll'}\in\Uf^l
+\]
+are pairwise disjoint: for $l\ne l'$, $K_l\subseteq G_{ll'}$ and
+$K_{l'}\subseteq G_{l'l}=H'\setminus G_{ll'}$. Each $K_l$ is a subset of
+$P_2$ in $\Uf^l\in\UU_c$, so $(K_l,Y_c)$ is a strictly AC pair of world~$2$.
+For all $i$ and $l$, the sets $B_i\subseteq F$, $T^N\subseteq P_1$,
+$Y_c\subseteq P_3$ and $K_l\subseteq P_2\setminus F$ are pairwise disjoint,
+$B_i$ is $T^N$-light, and $T^N\preceq^2_cY_c$. So Lemma~\ref{lem:buys}(b)
+gives
+\[
+ D_2+\debt_2(B_i)\prec_2D_2+\debt_2(K_l)\qquad
+ \text{for all }1\le i\le\ell-1\text{ and }1\le l\le\ell.
+\]
+Since $K_l\subseteq P_2\setminus F\subseteq D_{23}\setminus F$, this
+contradicts Lemma~\ref{lem:count} with $(v,w)=(2,3)$. Hence
+$|\UU_c|\le\ell-1$.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Let $n=3$, let every ranking be a complete preorder satisfying (G) and
+(IB), and assume (S). Then $V$ is dominated, and hence dominated by a
+selected coherent model.
+\end{theorem}
+\begin{proof}
+Suppose that $V$ is undominated. By Proposition~\ref{prop:finite}, the set
+$\UU\coloneqq\bigcup_{c\in\mathbb N,\,c\ge1}\UU_c$ is countable; list its
+members as $\Uf^1,\Uf^2,\dots$ (the list may be finite or empty). By
+\ref{in:edge} there is a two-sided selection $E$ on $(e_1,e_2)$. As
+$\alpha^{(1)}_E<\infty$, the set $T_0(E)=P_2\cap\{t^1_2>\alpha^{(1)}_E\}$ is
+non-null. By \ref{in:uf} choose $B^i\in\Uf^i$ with
+$\mu(B^i)<2^{-i-1}\mu(T_0(E))$, and put
+$T^*\coloneqq T_0(E)\setminus\bigcup_iB^i$. Then
+$\mu(T^*)\ge\mu(T_0(E))/2>0$, and $T^*\cap B^i=\varnothing$ for every $i$.
+
+By \ref{in:own} there is $c_0\in(0,\infty)$ such that $T^*$ is not a finite
+union of measurable sets $Q$ for which $(Q,Y_{c_0})$ is weakly SI at
+world~$2$. Let $c\ge c_0$ be an integer. Then $T^*$ is not a finite union of
+measurable sets $Q$ for which $(Q,Y_c)$ is weakly SI. Indeed, such $Q$
+satisfy $Q\subseteq T^*\subseteq P_2$, and since $Y_c\subseteq Y_{c_0}$,
+weak (G) at world~$2$ (more credit) would give
+$V+\debt_2(Q)+\cred_2(Y_{c_0})\preceq_2V+\debt_2(Q)+\cred_2(Y_c)\preceq_2V$:
+each $(Q,Y_{c_0})$ would be weakly SI.
+
+Next, $T^*\notin\Iid_c$. Otherwise, up to a null set,
+$T^*\subseteq Q_1\cup\dots\cup Q_r$ with $Q_i\subseteq P_2$ and $(Q_i,Y_c)$
+weakly SI; here $r\ge1$, since $T^*$ is non-null. Then $T^*$ is the union of
+the sets $Q_i\cap T^*$ together with a null set, which we add to
+$Q_1\cap T^*$; this changes no model. Each $(Q_i\cap T^*,Y_c)$ is weakly SI
+by weak (G) at world~$2$ (less debt). This contradicts the previous
+paragraph.
+
+By \ref{in:uf} there is an ultrafilter $\Uf$ that contains $T^*$ and avoids
+$\Iid_c$. It contains $P_2\supseteq T^*$, so $\Uf\in\UU_c\subseteq\UU$, and
+$\Uf=\Uf^i$ for some $i$. Then $\Uf$ contains the disjoint sets $T^*$ and
+$B^i$, which is impossible. So $V$ is dominated, and by CBOI's Lemma~1
+(FSE, Section~1.1) it is dominated by a selected coherent model.
+\end{proof}
+
+\begin{corollary}\label{cor:coverage}
+Let $n=3$, assume (G) and (IB) at every world, and assume (S). Suppose that
+$V$ is undominated; this holds in particular if every coherent model is
+undominated. Then:
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item the ranking of some world is incomplete: that world has two models
+neither of which it ranks at least as good as the other;
+\item at most one world has a loss of CBOI's form satisfying the one-sided
+bound (W$_k$).
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) is Theorem~\ref{thm:main}: if all three rankings were complete, $V$
+would be dominated. (b) is TAW's Corollary~72.
+\end{proof}
+
+So with three worlds, rankings that satisfy (G), (IB) and (S) and leave
+every coherent model undominated must contain incomparabilities, and at
+least two of the three worlds lack one-sided weak extensions of CBOI's
+form.
+
+\section{Remarks}\label{sec:remarks}
+
+\begin{remark}\label{rem:hyp}
+\emph{Where the hypotheses are used.}
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item \emph{Completeness.} At world~$2$: in Theorem~\ref{thm:cut} with
+$(v,w)=(2,3)$, through (T1), and in reading the members of the
+ultrafilters in $\UU_c$ as strictly AC against $Y_c$. At world~$1$: in
+Proposition~\ref{prop:rich}, through (T1) and \ref{in:yard}(a). At every
+world: through \ref{in:edge}, \ref{in:LH} and \ref{in:own}, which FSE proves
+for complete rankings. The completeness of world~$3$ enters only through
+these results of FSE. Lemmas~\ref{lem:count}, \ref{lem:compose}
+and~\ref{lem:buys}, \ref{in:yard}(b) and (T2) do not use completeness, and
+neither does the proof of Lemma~\ref{lem:near} once
+Proposition~\ref{prop:rich} is given.
+\item \emph{(IB).} At world~$2$: in Lemma~\ref{lem:count} (with $v=2$),
+Lemmas~\ref{lem:compose} and~\ref{lem:buys}, and \ref{in:yard}(b). At
+world~$1$: in Steps~3 and~5 of the proof of Proposition~\ref{prop:rich} and
+in \ref{in:yard}(a). At every world: through \ref{in:edge}, \ref{in:LH} and
+\ref{in:own}. Theorem~\ref{thm:cut} and the proof of Lemma~\ref{lem:near}
+use no (IB).
+\item \emph{(G).} Strict (G) is used at worlds $2$ and $3$ in
+Theorem~\ref{thm:cut}, at worlds $1$ and $2$ in
+Proposition~\ref{prop:rich}, at world~$1$ in Lemma~\ref{lem:near}, and
+inside the results of FSE. Lemmas~\ref{lem:count}, \ref{lem:compose}
+and~\ref{lem:buys} need only weak (G).
+\item \emph{$V$ undominated.} This is the reductio hypothesis of
+Theorem~\ref{thm:main}. It enters only through \ref{in:edge}, \ref{in:own}
+and \ref{in:ownrel}: in Step~5 of the proof of Proposition~\ref{prop:rich},
+hence in Lemma~\ref{lem:near} and Proposition~\ref{prop:finite}, and in the
+proof of Theorem~\ref{thm:main}. Theorem~\ref{thm:cut},
+Lemmas~\ref{lem:count}, \ref{lem:compose} and~\ref{lem:buys}, and Steps~1--4
+of the proof of Proposition~\ref{prop:rich} assume nothing about $V$.
+\item \emph{Three worlds.} The proof uses $n=3$ through the regions $P_x$
+and through \ref{in:yard}--\ref{in:own}. In Section~\ref{sec:proof} the
+regions keep the perturbation sets and heavy sets ($P_2$), the credit
+witnesses $T_k$ ($P_1$) and the credit set $Y_c$ ($P_3$) disjoint; in Step~5
+of the proof of Proposition~\ref{prop:rich} they keep the set $T$ and the
+pieces $Q'_i$ ($P_1$) disjoint from the credit sets $\Gamma'\subseteq\Gamma$
+($P_2$).
+\end{enumerate}
+\end{remark}
+
+\begin{remark}\label{rem:count}
+\emph{The counting lemma.} Lemma~\ref{lem:count} concerns a single preorder
+and a single chain, and needs only transitivity, weak (G) and (IB). It does
+not bound the change from $D_v$ to $D_w$ by the sum of the perturbations;
+perturbations are not shared advice, so (IB) cannot add them up. Instead, at
+each step it lifts both sides of the current strict comparison to common
+debt on the current perturbation set, which is a change of shared advice
+(step~(c)), and then trades this debt for one fresh heavy set (step~(d)).
+Each perturbation costs exactly one heavy set. The price is that
+\eqref{eq:heavy} compares \emph{full} changes from credit to debt; this is
+why the perturbations of Section~\ref{sec:proof} must be light in both
+layers at once, which Lemma~\ref{lem:near} provides. For a world ranked
+exactly by a loss $\Lambda(M)=\nu_1\{r_v(\cdot,M)\ge1\}+
+\nu_2\{r_v(\cdot,M)\ge2\}$, with finite finitely additive charges on $H'$
+that vanish exactly on null sets (so that $\Lambda$ is defined on models
+modulo null sets), the lemma reduces to a comparison of masses. With
+$\varphi\coloneqq\nu_1+\nu_2$, a descent does not raise $\Lambda$ and the
+$i$-th perturbation raises it by at most $\varphi(B_i)$; so
+$\varphi(D)=\Lambda(D_w)-\Lambda(D_v)\le(\ell-1)\max_i\varphi(B_i)$, whereas
+$\ell$ pairwise disjoint sets $K_l\subseteq D$ as in \eqref{eq:heavy} would
+give $\varphi(D)>\ell\max_i\varphi(B_i)$.
+\end{remark}
+
+\begin{remark}\label{rem:S}
+\emph{What (S) contributes.} The finiteness of $\UU_c$ rests on (S) in
+three ways: through the chain of Theorem~\ref{thm:cut} on the edge
+$[e_2,e_3]$; through the light sets of Lemma~\ref{lem:near}, which come from
+the selections near the vertex block of $e_2$ on the other edge $[e_1,e_2]$
+and are available because that block's far end is rich
+(Proposition~\ref{prop:rich}); and through the results of FSE. World~$2$'s
+credit order is light at low levels of $t^2_1$ already by \ref{in:yard}(b),
+which is how the witnesses $T_k$ are found. What the selections near the
+vertex block add is lightness in the debt layer at the same time, at every
+level of $t^2_3$.
+\end{remark}
+
+\end{document}

@@ -1,0 +1,486 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,enumitem}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\cred}{\mathrm{credit}}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\J}{\mathcal J}
+\newcommand{\K}{\mathcal K}
+\newcommand{\U}{\mathcal U}
+\title{Fineness for Any Finite Number of Worlds}
+\author{}\date{11 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note answers the higher-dimensional propagation questions in
+\emph{Fineness Spreads Along Edges} (FSE). Under its complete-ranking
+hypotheses, one fine world makes every world fine for every finite
+$n\ge3$. A fine edge, or a world with a one-sided finitely additive
+extension, also forces the vacuous model to be dominated in every such
+dimension. Its conclusions that no non-null region is credit-null or
+debt-infinitesimal also hold for every finite $n\ge3$.
+The proofs use three coordinates at a time, without restricting the
+rankings or the selection to a three-world problem. The remaining
+coordinates are left unrestricted. These arguments are author-checked,
+not independently refereed.
+
+\section{Setting and the inputs from FSE}
+
+There are finitely many worlds, $n\ge3$. We use FSE's measurable models
+modulo Gaussian null sets, guidance ranks $0,1,2,3$ (good, silent, bad,
+contradictory), and regular models (correct on unanimous problems and
+never contradictory). Each world's ranking is a complete preorder,
+with smaller better, satisfying strict guidance improvement (G) and
+independence under replacement of common advice (IB).
+The selection axiom (S) supplies coherent undominated $C_p$, competitive
+on $\operatorname{supp}p$, with every section
+$\{p:C_p\preceq_iX\}$ closed. Write $V=\Dscr_\Delta$.
+
+Let $H'$ be the mixed binary problems. For distinct $i,j$ put
+\[
+ D_{ij}=\{g:g_ig_j<0\},\qquad t^i_j=|g_i|/|g_j|\quad\hbox{on }D_{ij}.
+\]
+Problems may be represented in the half-space $g_i>0$ when working at
+world $i$; changing representative by $g\mapsto-g$ preserves all advice
+and null sets. Credit and debt mean good and bad advice at the world in
+question. For measurable sets define
+\begin{align*}
+ A\preceq^i_dB&\iff V+\debt_i(A)\preceq_iV+\debt_i(B),\\
+ A\preceq^i_cB&\iff V+\cred_i(B)\preceq_iV+\cred_i(A).
+\end{align*}
+These comparisons transfer to every common context by (IB), including
+when $A,B$ overlap. Strict inclusion is strict in both orders by (G).
+For non-null $A,T$, let $\J^i_A$ consist of the subsets of finite unions
+of sets $\preceq^i_d A$, and define $\K^i_T$ similarly for credit.
+They are ideals. World $i$ is \emph{fine} if $H'\in\J^i_A\cap\K^i_T$
+for every non-null $A,T$.
+
+A disjoint debt/credit pair $(A,T)$ is SI at $i$ if
+$V+\debt_i(A)+\cred_i(T)\prec_iV$, and strictly AC if the reverse
+strict comparison holds. We use the following results of FSE, each of
+which is already proved there for arbitrary finite $n\ge3$:
+\begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=3pt]
+\item On an edge $[e_i,e_j]$, a selection has thresholds
+$0\le\beta\le\alpha\le\infty$: debt at $i$ where $t^i_j<\beta$,
+silence between the thresholds, and credit where $t^i_j>\alpha$.
+There are edge indices $q_m\to q_e$ with $C_{q_e}=D_j$,
+$C_{q_m}\ne D_j$, and $\beta_m\to\infty$ (FSE, vertex-block lemma).
+\item For any non-null $A$, on every edge at $i$ a sufficiently high
+tail is strictly smaller than $A$ in the debt order. For any non-null
+$T$, a sufficiently low cone is no larger than $T$ in the credit order.
+There are non-null debt and credit yardsticks at any prescribed bounded
+interval of edge levels (FSE, yardstick lemma).
+\item Along the sequence in (1), if $\alpha_m<\infty$, then for every
+non-null $A'$ at bounded $t^i_j$-levels, $(A',W)$ is strictly AC for all
+large $m$ and every non-null $W\subseteq\{t^i_j>\alpha_m\}\cap D_{ij}$
+(FSE, small-AC-pair lemma).
+\item Fineness on $D_{ij}$ transfers between its two worlds. If it holds,
+then $D_{ij}\in\J^i_A\cap\K^i_T$ for all non-null $A,T\subseteq H'$.
+\item A fine world on $D_{jk}$ has a two-sided local extension there:
+\[
+ \Lambda_j(M)=P_d(\debt_j(M)\cap D_{jk})-
+ \kappa P_c(\cred_j(M)\cap D_{jk}),\qquad 0<\kappa<\infty.
+\]
+The charges vanish exactly on null sets. Strict inequalities of
+$\Lambda_j$ give strict comparisons for regular pairs agreeing off
+$D_{jk}$. For each $\epsilon>0$, $D_{jk}$ has a finite partition into
+pieces of both $P_d$- and $P_c$-mass less than $\epsilon$.
+\item If the partner on an edge is fine, every non-null credit yardstick
+has an SI partner: for every non-null $T$ there are non-null $T_y$
+inside that edge's disagreement region, $T_y\preceq^i_cT$, and $D'$ such
+that $(D',T_y)$ is SI at $i$ (FSE, SI-partner lemma).
+\end{enumerate}
+Inputs (4)--(6) are used only where their hypotheses are explicitly
+available. We do not assume fineness elsewhere.
+
+An ultrafilter of the measure algebra contains no null set, chooses one
+member of each finite partition, and is closed under intersections and
+supersets. If $R\notin\J^i_A$, some ultrafilter contains $R$ and avoids
+$\J^i_A$; the credit version is the same (FSE, ultrafilter lemma).
+Completeness then gives $A\prec^i_dB$ for every $B$ in that ultrafilter.
+If it contains $D_{ij}$, it contains all one-sided bands of a unique
+level $z\in[0,\infty]$. Such a level cannot be $\infty$ for a debt-heavy
+ultrafilter, or $0$ for a credit-heavy one, by (2).
+
+\section{The part not covered by the fine world}
+
+Fix three distinct worlds $i,j,k$. The region
+\[
+ R= D_{ij}\setminus D_{ik}
+   =\{g:g_ig_k>0,\ g_ig_j<0\}
+\]
+lies in both $D_{ij}$ and $D_{jk}$. At these problems $i,k$ agree and
+$j$ disagrees. Every nonempty interval of $t^i_j$ has a non-null part
+in $R$. This remains true in higher dimensions, because no other
+coordinate is constrained.
+
+\begin{lemma}\label{lem:remaining}
+Suppose world $j$ is fine on $D_{jk}$.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item No ultrafilter containing $R$ avoids $\J^i_A$ for a non-null $A$.
+\item Suppose world $i$'s debt order is fine. If, for every non-null $T$,
+there are $T_y\preceq^i_cT$ disjoint from $R$ and an SI pair $(D',T_y)$
+with both parts non-null, no ultrafilter containing $R$ avoids $\K^i_T$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Suppress $i$ from the debt and credit orders and put $t=t^i_j$.
+Take the sequence $C_m=(\alpha_m,\beta_m)$ in input (1).
+On $R$, credit at $i$ is debt at $j$, and debt at $i$ is credit at $j$.
+Thus world $j$'s local extension gives the following increments, for
+changes supported in $R$:
+\[
+ \debt_i\to\text{silence}:a(B),\qquad
+ \text{silence}\to\cred_i:b(B),\qquad a=\kappa P_c,\quad b=P_d.
+\]
+If $\U$ contains $R$, it contains subsets of any prescribed member of
+arbitrarily small $a+b$ mass, by the finite partitions in input (5).
+All applications of $\Lambda_j$ below change advice only inside $R$.
+
+(a) Let $\U$ avoid $\J_A$ and contain $R$. Its level $z$ is finite.
+For large $m$, $R\cap\debt_i(C_m)\in\U$. Pass to a subsequence with
+either $\alpha_m=\infty$ throughout or $\alpha_m<\infty$ throughout.
+
+In the first case fix a large $m$. By (2) a non-null sufficiently high
+tail $B'\subseteq R\cap\text{silence}(C_m)$ has $B'\preceq_d A$.
+Choose $B\in\U$ inside $R\cap\debt_i(C_m)$ with $a(B)<a(B')$.
+Heaviness gives $B'\prec_d B$. Moving debt from $B$ to $B'$ therefore
+strictly improves $C_m$ at $i$, by (IB), and changes $\Lambda_j$ by
+$a(B)-a(B')<0$. This improves it at both worlds of its competitive
+support, a contradiction.
+
+In the second case choose a non-null yardstick $A'\preceq_d A$ at
+bounded $t$-levels, and fix large $m$. Take $m'$ still larger with
+$\alpha_{m'}>\alpha_m$, and put $W=R\cap\{t>\alpha_{m'}\}$.
+Then $(A',W)$ is strictly AC by (3), and $W\subseteq\cred_i(C_m)$.
+Since $A'\in\J_A$, choose $B\in\U$ inside
+$R\cap\debt_i(C_m)\setminus A'$ with $a(B)<b(W)$.
+Now $A'\prec_d B$, so $(B,W)$ is strictly AC by (IB).
+Silencing $B\cup W$ in $C_m$ strictly improves it at $i$, and changes
+$\Lambda_j$ by $a(B)-b(W)<0$, again a contradiction.
+
+(b) Let $\U$ contain $R$ and avoid $\K_T$. Choose $T_y,D'$ as in the
+hypothesis. Then $\U$ avoids $\K_{T_y}$, so $T_y\prec_c B$ for every
+$B\in\U$. Choose a proper non-null part $D'_0$ of $D'$.
+By debt fineness, $R\cap\{t<1\}$ has a non-null subset $A'$ with
+$A'\preceq_dD'_0\prec_dD'$. Also, by (2), some sufficiently high tail
+of $R$ is strictly smaller in the debt order than $D'$.
+The level $w$ of $\U$ is positive, possibly infinite.
+
+First suppose $\alpha_m<\infty$ along a subsequence. By (3), for large
+$m$ a non-null tail $W=R\cap\{t>\alpha_{m'}\}$, $m'$ sufficiently large,
+lies in $\cred_i(C_m)$ and makes $(A',W)$ strictly AC. Since $T_y$
+misses $R$, whereas $A'\prec_dD'$ and $(D',T_y)$ is SI, (IB) gives
+\[
+ V+\debt_i(A')+\cred_i(T_y)\prec_i V
+ \prec_i V+\debt_i(A')+\cred_i(W),\qquad W\prec_cT_y.
+\]
+If $w=\infty$, the tail $W$ belongs to $\U$, a contradiction.
+If $w<\infty$, take the initial $m$ large enough that $\beta_m>w+1$,
+then choose $m'$ and $W$ as above, and choose
+$B\in\U$, $B\subseteq R\cap\debt_i(C_m)$, with
+$a(B)+b(B)<b(W)$. Then $W\prec_cT_y\prec_c B$.
+Replace the debt on $B$ by credit and silence $W$.
+At $i$ this is a strict improvement: credit on $B$ is better than credit
+on $W$, even before the old debt on $B$ is counted. The change of
+$\Lambda_j$ is $a(B)+b(B)-b(W)<0$. Contradiction.
+
+Otherwise $C_m=E_j(\beta_m)$ along a subsequence. Fix such a model $E$
+with $\beta_m>w+1$ if $w<\infty$. Choose a non-null
+$Z\subseteq R\cap\text{silence}(E)$ in a bounded interval of a high tail, so that
+$Z\prec_dD'$. If $w<\infty$, choose
+$B\in\U$, $B\subseteq R\cap\debt_i(E)$, with $a(B)+b(B)<a(Z)$.
+Changing debt to credit on $B$ and adding debt on $Z$ lowers
+$\Lambda_j$. Competitiveness and (IB), followed by (G) to remove the
+initial debt from the left side, give
+$V\preceq_iV+\debt_i(Z)+\cred_i(B)$.
+If $w=\infty$, instead choose $B\in\U$ in a tail beyond $Z$, with
+$b(B)<a(Z)$; adding credit on $B$ and debt on $Z$ gives the same
+comparison. In either case, $T_y\prec_c B$ and $Z\prec_dD'$ imply
+\[
+ V\prec_i V+\debt_i(Z)+\cred_i(T_y)
+ \prec_i V+\debt_i(D')+\cred_i(T_y)\prec_i V,
+\]
+the final contradiction. Every common context used here is silent on
+the sets being compared: $T_y$ is disjoint from $R$ and from $D'$.
+\end{proof}
+
+\begin{theorem}\label{thm:allfine}
+For every finite $n\ge3$, under complete (G)+(IB) rankings and (S),
+if one world is fine, all worlds are fine. Consequently every coherent
+model whose credal set contains three vertices is dominated by a selected
+coherent model. In particular the vacuous model is dominated.
+\end{theorem}
+\begin{proof}
+Let $k$ be fine and fix $i\ne k$. Edge transfer gives
+$D_{ik}\in\J^i_A\cap\K^i_T$ for all non-null $A,T$.
+It also makes every world $j\ne k$ fine on $D_{jk}$.
+
+If $i$'s debt order were not fine, choose an ultrafilter $\U$ avoiding
+some $\J^i_A$. It cannot contain $D_{ik}$. Since the finitely many
+$D_{ij}$ cover $H'$, it contains some $D_{ij}$ with $j\notin\{i,k\}$,
+hence $R=D_{ij}\setminus D_{ik}$. Lemma~\ref{lem:remaining}(a)
+excludes this. Thus $i$'s debt order is fine.
+
+For credit the same argument supplies $\U$ containing such an $R$.
+Input (6), on $[e_i,e_k]$ with fine partner $k$, gives the SI pair
+$(D',T_y)$ with $T_y\preceq^i_cT$ and $T_y\subseteq D_{ik}$, so
+$T_y$ misses $R$. Lemma~\ref{lem:remaining}(b) excludes $\U$.
+Thus $i$ is fine. No undominatedness assumption on $V$ has been used.
+
+FSE's local-extension proposition on $H'$ now gives a strictly positive
+finitely additive weak extension at every world. The CBOI obstruction,
+in its one-sided form recorded in CCF, applies for every $n\ge3$ and
+dominates each coherent model containing three vertices. The KKM
+consequence of (S) makes a selected coherent dominator available.
+\end{proof}
+
+\section{A fine edge, and a world with an additive extension}
+
+Dominating $V$ at three worlds need not dominate it at the other worlds.
+For the next two arguments we therefore use narrower regions than the
+triple-sign regions above. Define
+\[
+ O_v=\{g:g_vg_j<0\text{ for every }j\ne v\}.
+\]
+Only $v$ disagrees with all the other worlds on $O_v$. Write $a_v$ for
+the advice there that is bad at $v$ and good at every other world.
+The regions $O_v$ are disjoint and non-null. They need not cover $H'$.
+For distinct $u,v,w$, all nonempty open conditions on the two ratios
+used below have non-null intersections with the appropriate $O_v$.
+Any nonempty modification of $V$ using only $a_u,a_v,a_w$ on these
+three regions strictly improves $V$ at every world outside
+$\{u,v,w\}$. This observation makes the three-world dominance
+arguments apply without discarding the remaining worlds.
+
+\begin{theorem}\label{thm:fineedge}
+For every finite $n\ge3$, under complete (G)+(IB) rankings and (S),
+one fine edge forces $V$ to be dominated.
+\end{theorem}
+\begin{proof}
+Suppose the edge $[e_v,e_w]$ is fine and $V$ is undominated.
+Fix $u\notin\{v,w\}$. We check FSE's fine-edge argument with
+$O_u,O_v,O_w$ in place of its three sign regions.
+For a two-sided selection $E$ on $[e_u,e_v]$, put
+\[
+ T_0=O_v\cap\{t^u_v>\alpha_E\},\qquad
+ B_0=O_u\cap\{t^u_v<\beta_E\}.
+\]
+Both are non-null. On them $E$ gives respectively $a_v$ and $a_u$.
+
+First, for every non-null $B\subseteq B_0$ there is a non-null high
+tail $Z_B\subseteq O_w$ such that
+$V+a_u(B)+a_w(Z)\prec_wV$ for every non-null $Z\subseteq Z_B$.
+This is FSE's Lemma B1: obtain an SI pair inside $D_{vw}$ from its
+local extension; replace its credit by $B$ using a low-cone yardstick,
+and its debt by a sufficiently high tail inside $O_w$ using a debt
+yardstick. The tail in $O_w$ is non-null, and $B\subseteq O_u$ misses
+$D_{vw}$, just as required in that proof.
+
+Second, suppose $V+a_v(T)+a_u(B)\preceq_uV$ for some $T\subseteq T_0$.
+Partition $T$ into finitely many pieces, each of whose debt at $v$ is
+strictly outweighed by credit on $Z_B$, using $v$'s fine local
+extension on $D_{vw}$. Add the pieces in order. There is a first step
+at which the displayed comparison holds at $u$. At the preceding
+step it holds at $v$: competitiveness of $E$, with its advice silenced
+on the changed sets, and (IB) give this alternative.
+Adding $a_w(Z_B)$ at the first step now strictly improves $V$ at $u$,
+at $v$, and at $w$, exactly as in FSE's Lemma B2. It strictly improves
+at every remaining world too, since each of $a_u,a_v,a_w$ is good
+there. This contradicts undominatedness. Consequently
+\[
+ V\prec_uV+a_v(T)+a_u(B)
+ \quad(T\subseteq T_0,\; B\subseteq B_0\text{ non-null}).
+\]
+
+Third, $T_0$ is credit-null at $u$. Otherwise an SI pair with credit
+inside $T_0$ has its debt replaceable by a non-null set
+$B_0\cap\{t^u_w>b\}$ for sufficiently large $b$, by the debt yardstick.
+This would contradict the last display (FSE's Lemma B3). But
+Theorem~\ref{thm:LH}, proved independently below, excludes a non-null
+credit-null region. Hence no two-sided selection exists on
+$[e_u,e_v]$: that edge has the endpoint property and is fine, by
+FSE's endpoint-to-fineness lemma.
+
+This holds for every $u\ne v,w$. Together with the original fine
+edge, all edges at $v$ are fine. Input (4) and the finite cover
+$H'=\bigcup_{u\ne v}D_{vu}$ make $v$ a fine world.
+Theorem~\ref{thm:allfine} contradicts the assumed undominatedness of $V$.
+\end{proof}
+
+\begin{theorem}\label{thm:oneextension}
+For every finite $n\ge3$, under complete (G)+(IB) rankings and (S),
+if one world has a strictly positive finitely additive extension of
+CBOI's form for comparisons from coherent undominated models to
+regular models, then $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Suppose $V$ is undominated and world $v$ has the stated extension,
+with charges $\nu_1,\nu_2$ on $H'$. Fix distinct $u,w\ne v$ and
+suppose a selection $C$ on $[e_u,e_v]$ is two-sided. Define $T_0,B_0$
+as above. Let $Z_m\downarrow$ be common pure sets for the charges,
+with $\mu(Z_m)\to0$; outside $Z_m$ they have positive densities.
+
+The preliminary edge results in FSE's tame-world argument already
+hold for every finite $n\ge3$. They say that a one-sided extension at
+$v$ supplies the partner bound on $D_{vw}$, makes $w$ fine on
+$D_{vw}\setminus Z_m$ relative to every non-null yardstick, and, for
+large $m$, supplies an SI pair there with both parts non-null.
+The almost agreeing debt and credit probabilities on this region
+admit arbitrarily fine finite partitions.
+
+Choose $m_1$ so that $T_0\setminus Z_{m_1}$ and
+$B_0\setminus Z_{m_1}$ are non-null. By the density of $\nu_2$ there,
+choose a non-null $T\subseteq T_0\setminus Z_{m_1}$ with
+\[
+ \nu_2(T)<\nu_1(B_0\setminus Z_{m_1}).
+\]
+FSE's third-world exchange (Step 2 of its chain-extension theorem)
+then gives a non-null $S\subseteq O_w$ such that
+\[
+ V+a_v(T)+a_w(S)\prec_w V.                          \tag{*}
+\]
+Here are the placement details in the present dimension. Take
+$m\ge m_1$ with $O_w\setminus Z_m$ non-null, and an SI pair
+$(A_0,T'')$ inside $D_{vw}\setminus Z_m$. If needed shrink $A_0$ and
+$T$ so that they are disjoint, preserving their non-nullity and the
+last inequality. Divide the SI pair into equally many pieces so that
+every credit piece is smaller in its almost agreeing probability than
+$T$. At least one piece is SI, since otherwise composing the AC
+pieces would make the original pair AC. Replace that piece's credit
+by $T$, and its debt by a sufficiently small non-null part
+$S\subseteq O_w\setminus Z_m$ in the debt probability. This proves
+(*). All replacements have disjoint debt and credit parts. These are
+exactly the operations in FSE's Step 2; no partition of $H'$ into
+three regions is used.
+
+Fill $B_0\setminus Z_{m_1}$ continuously in measure by an increasing
+family $\Sigma_s$, $0\le s\le1$. The function
+$\lambda(s)=\nu_2(T)-\nu_1(\Sigma_s)$ is continuous, positive at $0$
+and negative at $1$. Choose $s$ with $0<\lambda(s)<\nu_1(S)$, and set
+\[
+ X'=V+a_w(S),\qquad X=X'+a_v(T)+a_u(\Sigma_s),
+\]
+and let $Y$ be $C$ silenced on $T\cup\Sigma_s$.
+At world $v$ the loss differences are
+\[
+ L_v(X)-L_v(V)=\lambda(s)-\nu_1(S)<0,\qquad
+ L_v(Y)-L_v(C)=-\lambda(s)<0.
+\]
+The one-sided extension, applied at the coherent undominated $V,C$,
+gives $V\not\preceq_vX$ and $C\not\preceq_vY$.
+Also $X\prec_wV$ by (*) and (G), and $X\prec_jV$ at every world
+$j\notin\{u,v,w\}$, because its advice is good there.
+
+Undominatedness and completeness therefore force $V\preceq_uX$.
+Competitiveness of $C$ on $\{u,v\}$ forces $C\preceq_uY$; (IB)
+turns this into $X\preceq_uX'$. But $X'\prec_uV$ by (G), a
+contradiction. Thus every edge $[e_u,e_v]$ has the endpoint property
+and is fine. Their finite union makes $v$ fine, and
+Theorem~\ref{thm:allfine} gives the final contradiction.
+\end{proof}
+
+\section{Neither kind of advice is negligible}
+
+A region $R$ is \emph{credit-null} at $v$ if every disjoint pair $(A,T)$
+with $A$ non-null and $T\subseteq R$ is AC. It is
+\emph{debt-infinitesimal} if every disjoint pair $(A,T)$ with
+$A\subseteq R$ non-null and $T$ non-null is SI. Let $\mathrm{CN}_v$
+and $\mathrm{DI}_v$ be these hereditary families, as in FSE.
+
+\begin{theorem}\label{thm:LH}
+For every finite $n\ge3$, under complete (G)+(IB) rankings and (S),
+no world has a
+non-null credit-null region or a non-null debt-infinitesimal region.
+No assumption about $V$ being undominated is needed.
+\end{theorem}
+\begin{proof}
+Here are the dimension checks for FSE's low-cone-heaviness proof.
+For any three distinct $v,w,u$, replace its three regions by
+\[
+ P_v^{vwu}=D_{vw}\cap D_{vu},\quad
+ P_w^{vwu}=D_{wv}\cap D_{wu},\quad
+ P_u^{vwu}=D_{uv}\cap D_{uw}.
+\]
+They are disjoint regions where the named world disagrees with the
+other two. They need not cover $H'$; no step below requires that.
+Every prescribed nonempty open condition on the two ratios in one of
+these regions has positive measure.
+
+First, a world cannot have both kinds of non-null region: disjoint
+non-null parts give a pair required to be both SI and AC (FSE's exclusion
+lemma). Second, FSE's cones-and-tails lemma holds on \emph{each}
+specified edge. Its proof uses only the head and tail bounds in input
+(2), splitting the original region in two to make the context disjoint.
+Thus a credit-null region produces a credit-null low cone on each edge,
+and a debt-infinitesimal region produces a debt-infinitesimal high tail
+on each edge. When two edges are needed, take the smaller of the two
+head levels, or the larger of the two tail levels.
+
+Third, the endpoint-property argument excluding credit-null low cones
+uses a single edge and is unchanged. Fourth, FSE's transfer from
+credit-nullity at $v$ to debt-infinitesimality at $w$ is valid with
+$P_w^{vwu}$ in place of $P_w$. Its auxiliary set is
+\[
+ Q\subseteq P_w^{vwu}\cap\{t^v_w<\beta_E\}
+                   \cap\{t^w_u<a'\},
+\]
+which is non-null, in the debt of $E$ at $v$, and no larger in $w$'s
+credit order than the desired credit yardstick, by (2). Silencing
+$Q$ and the credit-null part in $E$, and applying competitiveness on
+$\{v,w\}$, gives precisely the same SI comparison at $w$.
+
+Finally, FSE's transfer from $\mathrm{DI}_w\ne0$ to
+$\mathrm{CN}_v\ne0$ also holds. Its first case uses only input (3).
+In its second case, a selection near $D_v$ has thresholds
+$(\alpha,0)$ at $v$. Take the candidate credit-null region
+$T'=P_w^{vwu}\cap\{t^v_w<\alpha\}$.
+For any non-null debt yardstick $A$, (2) supplies a high $t^v_u$-tail
+no larger than $A$; its intersection with
+\[
+ P_v^{vwu}\cap\{\alpha/4<t^v_w<\alpha/2\}
+\]
+is a non-null set $S\preceq^v_d A$, silent in the selection and
+disjoint from $T'$. Adding debt at $w$ on a part of $T'$ and credit at
+$w$ on $S$ strictly improves the selection at $w$. Competitiveness
+and (IB) give the AC comparison at $v$, and replacement of $S$ by $A$
+finishes. This verifies the only place where FSE's yardstick must be
+placed in a specified triple-sign region.
+
+Now suppose $\mathrm{CN}_v\ne0$ and choose distinct $w,u\ne v$.
+Both edges at $v$ fail the endpoint property; take two-sided selections
+$E$ on $[e_v,e_w]$ and $E'$ on $[e_v,e_u]$. A high $t^v_w$-tail
+intersected with a credit-null low $t^v_u$-cone inside $P_v^{vwu}$
+is non-null and lies in the credit of $E$; the analogous intersection
+lies in the credit of $E'$. The transfers just checked give
+$\mathrm{DI}_w\ne0$ and $\mathrm{DI}_u\ne0$, and then
+$\mathrm{CN}_u\ne0$, contradicting exclusion at $u$.
+Thus every $\mathrm{CN}_v$ is null. A non-null $\mathrm{DI}_w$ would
+produce a non-null $\mathrm{CN}_v$ at any other world, so those too
+are excluded.
+\end{proof}
+
+\begin{corollary}
+In Theorem~\ref{thm:allfine}, it suffices that one world satisfy any of
+FSE's sufficient conditions for fineness: germ continuity, either stated
+form of conic continuity, or the endpoint property on all its incident
+edges. The other worlds need no additional continuity assumption.
+\end{corollary}
+
+\section{What this does not settle}
+
+None of these theorems forces a world or an edge to be fine. The general complete-ranking
+problem is still open, already for three worlds. The first theorem
+settles FSE's higher-dimensional propagation question;
+Theorems~\ref{thm:fineedge}--\ref{thm:oneextension} extend its fine-edge
+and one-sided-extension obstructions, and Theorem~\ref{thm:LH}
+settles its corresponding higher-dimensional low-cone question.
+They do not extend the two-additive-world theorem without completeness
+to arbitrary $n$.
+\end{document}

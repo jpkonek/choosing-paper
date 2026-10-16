@@ -1,0 +1,13 @@
+generator comparisons C_a <=_1 X_g accepted                                tests      40  failures 0
+targets meet in W of last block (D2')                                      tests     820  failures 0
+(G): delta>=0 accepted                                                     tests     500  failures 0
+(G): -delta rejected                                                       tests     500  failures 0
+(G): -1_Q rejected                                                         tests      40  failures 0
+transitivity triples (pool of 85)                                          tests   10835  failures 0
+world-1 section is an initial segment                                      tests      85  failures 0
+D2.4(ii) union formula (cuts up to the proxy block)                        tests      75  failures 0
+D2.4(i) formula (non-regular)                                              tests      10  failures 0
+(K) at interior cuts up to the proxy block                                 tests   35190  failures 0
+no weak domination of C_b                                                  tests   35181  failures 0
+relevant comparisons endorsed by nondecreasing rho (792 tested)            tests     792  failures 0
+W-only-heavy rho: relevant comparisons it FAILS to endorse (expected > 0)  tests     792  failures 3

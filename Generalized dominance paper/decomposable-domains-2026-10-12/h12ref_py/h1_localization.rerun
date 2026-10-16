@@ -1,0 +1,19 @@
+samples in U: 524976;  B_u == T1 on all samples: True
+
+ t = [0.45 0.45 0.1 ]:  mu(B_t xor T1) = 0.0132
+   midpoints of accepted pairs that B_t rejects: 62 of 40000 (>0 => B_t not convex, incoherent)
+   m= 2: mu(D_m)=7.14e-02  Phi(X_m)=1.22e-01
+   m= 4: mu(D_m)=2.06e-02  Phi(X_m)=2.33e-02
+   m= 6: mu(D_m)=5.38e-03  Phi(X_m)=1.53e-04
+   m= 8: mu(D_m)=1.37e-03  Phi(X_m)=0.00e+00
+   m=10: mu(D_m)=3.28e-04  Phi(X_m)=0.00e+00
+   min Phi over 1505 coherent D_K (upper estimate of d_t): 5.319e-03
+
+ t = [0.15 0.15 0.7 ]:  mu(B_t xor T1) = 0.0262
+   midpoints of accepted pairs that B_t rejects: 135 of 40000 (>0 => B_t not convex, incoherent)
+   m= 2: mu(D_m)=7.14e-02  Phi(X_m)=2.21e-01
+   m= 4: mu(D_m)=2.06e-02  Phi(X_m)=4.28e-02
+   m= 6: mu(D_m)=5.38e-03  Phi(X_m)=5.97e-04
+   m= 8: mu(D_m)=1.37e-03  Phi(X_m)=7.25e-05
+   m=10: mu(D_m)=3.28e-04  Phi(X_m)=1.69e-05
+   min Phi over 1505 coherent D_K (upper estimate of d_t): 2.612e-03

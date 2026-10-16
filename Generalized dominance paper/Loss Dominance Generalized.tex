@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
 \usepackage{xcolor}
+\usepackage{tikz}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \hypersetup{pdftitle={Coherent Models and Undominated Losses},hypertexnames=false}
 \newtheorem{theorem}{Theorem}[section]
@@ -101,17 +102,18 @@ On top of this, many different models could in principle get mapped to the same 
 For some natural types of loss functions, this will fail, and we will have to qualify our dominance argument appropriately (hence the minor subtlety mentioned above). See \S X for an example.
 
 
-Finally, we will assume a few technical conditions. If $\Omega$ finite, we need only one. This condition says that for each probability $p\in\Delta$, we can choose a coherent model $u_p\in\C_L$; we can do so in a way that makes $u_p$ not strictly dominated on $\supp p$ (the set of worlds with positive probability); and we can do so in a way that makes limits preserve upper bounds on losses.
+Finally, we will assume a few technical conditions. If $\Omega$ finite, we need only one. This condition says that for each probability $p\in\Delta$, we can choose a coherent model $u_p\in\C_L$; we can do so in a way that makes $u_p$ not strictly dominated on $\supp p$ (the set of worlds with positive probability); and we can do so in a way that makes limits preserve upper bounds on losses\textcolor{red}{ set by the losses of evaluable models}.
 \begin{enumerate}[label=\textbf{(S)},leftmargin=*]
-\item \textbf{Lower semicontinuous choice} ($\Omega$ finite). There is a map $u:\Delta\to\C_L$ which makes $u_p$ not strictly dominated by any $m\in\M_L$ on $\supp p$, for every $p\in\Delta$, and which makes $L(u_p,\omega)$ lower semicontinuous for all $\omega\in\Omega$ (as a function of $p$).
+\item \textbf{\textcolor{red}{Closed} choice} ($\Omega$ finite). There is a map $u:\Delta\to\C_L$ which makes $u_p$ not strictly dominated by any $m\in\M_L$ on $\supp p$, for every $p\in\Delta$, and which makes \textcolor{red}{the set $\{p\in\Delta:L(u_p,\omega)\le L(m,\omega)\}$ closed for all $\omega\in\Omega$ and $m\in\M_L$}.
 \end{enumerate}
-This puts joint constraints on both the set of coherent models $\C_L$ and the loss function $L$. It ensures that $\C_L$ is sufficiently rich that we can choose not-strictly-dominated $u_p$, and that we can do so in a way that makes $L$ well-behaved (lower semicontinuous).
+This puts joint constraints on both the set of coherent models $\C_L$ and the loss function $L$. It ensures that $\C_L$ is sufficiently rich that we can choose not-strictly-dominated $u_p$, and that we can do so in a way that makes $L$ well-behaved \textcolor{red}{(the indices whose chosen models do at least as well as a given model at a given world form a closed set)}.
 
 
-Condition (S) implies condition (I), which says that we can parametrise the coherent models in $\C_L$ using a compact set of indices, and we can do so in a way that makes limits preserve upper bounds on losses. This is straightforward, since $\Delta$ itself is a compact set of indices.
+Condition (S) implies condition (I), which says that we can parametrise the coherent models in $\C_L$ using a compact set of indices, and we can do so in a way that makes limits preserve upper bounds on losses\textcolor{red}{ set by the losses of evaluable models}. This is straightforward, since $\Delta$ itself is a compact set of indices.
 \begin{enumerate}[label=\textbf{(I)},leftmargin=*]
-\item \textbf{Compact indexing.} There is a compact topological space of indices $\Theta$ and a map $c:\Theta\to\C_L$ which make $L(c_\theta,\omega)$ lower semicontinuous for all $\omega\in\Omega$ (as a function of $\theta$).
+\item \textbf{Compact indexing.} There is a compact topological space of indices $\Theta$ and a map $c:\Theta\to\C_L$ which make \textcolor{red}{the set $\{\theta\in\Theta:L(c_\theta,\omega)\le L(m,\omega)\}$ closed for all $\omega\in\Omega$ and $m\in\M_L$}.
 \end{enumerate}
+\textcolor{red}{This holds if each $\theta\mapsto L(c_\theta,\omega)$ is lower semicontinuous, but it is weaker: only the bounds given by the losses of evaluable models matter. When each $\theta\mapsto L(c_\theta,\omega)$ is lower semicontinuous, we say that (I) holds \emph{with lower semicontinuous losses}, and similarly for (S). The dominance results of Section~\ref{sec:results} need only the weaker conditions. Parts of Section~\ref{sec:strict}, which compare losses with bounds other than losses of models, need lower semicontinuous losses. Unlike lower semicontinuity, the weaker conditions survive any strictly increasing change of scale at each world (Proposition~\ref{prop:ordinal}).}
 If $\Omega$ infinite, we will need to assume condition (I) independently, together with a generalisation of condition (S). Note that condition (I) does not require a topology on all models. It also does not require the set of coherent loss profiles ($K_L$) to be closed. (Appendix~\ref{sec:countable} gives an example where $K_L$ is not closed.) 
 
 
@@ -120,7 +122,7 @@ The relevant generalisation of condition (S) is the following:
 \item \textbf{Continuous choices.} There is a family $\F$ of finite nonempty subsets of $\Omega$ such that every finite subset of $\Omega$ is contained in some member of $\F$ (for instance, all finite nonempty subsets). And for each $F\in\F$, there is a continuous map $\sigma_F:\Delta_F\to\Theta$ such that no model in $\M_L$ strictly dominates $c_{\sigma_F(p)}$ on $\supp p$, for every $p\in\Delta_F$.
 \end{enumerate}
 
-This ensures that condition (S) holds separately on each $F\in\F$, and also requires that we choose the not-strictly-dominated $u_p$ via a continuous map $\sigma_F$ which assigns one of the indices from (I) to each probability mass function in $\Delta_F$. Continuity of $\sigma_F$, combined with (I), makes $L(c_{\sigma_F(p)},\omega)$ lower semicontinuous as a function of $p$. We call the maps $u:\Delta\to\C_L$ and $\sigma_F:\Delta_F\to\Theta$ \emph{selection maps}, and call $u_p$ or $c_{\sigma_F(p)}$ the \emph{chosen model} for $p$. Conditions (S) and (S$_\infty$) require there to be selection maps with various properties.
+This ensures that condition (S) holds separately on each $F\in\F$, and also requires that we choose the not-strictly-dominated $u_p$ via a continuous map $\sigma_F$ which assigns one of the indices from (I) to each probability mass function in $\Delta_F$. Continuity of $\sigma_F$, combined with (I), makes \textcolor{red}{each set $\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le L(m,\omega)\}$ closed}. We call the maps $u:\Delta\to\C_L$ and $\sigma_F:\Delta_F\to\Theta$ \emph{selection maps}, and call $u_p$ or $c_{\sigma_F(p)}$ the \emph{chosen model} for $p$. Conditions (S) and (S$_\infty$) require there to be selection maps with various properties.
 
 Together, (S$_\infty$) and (I) are fairly powerful technical assumptions. Choose a model $m\in\M_L$. As we will see shortly, for any of the finite sets of worlds $F\in\F$, the argument of Theorem~\ref{thm:kkm} gives us an index $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in F$ (apply that argument using $\Delta_F$ with the models $c_{\sigma_F(p)}$). By (I), the set $T_F$ of such indices is closed. Any finite collection of such index sets, $T_{F_1},\dots, T_{F_k}$, will have a non-empty intersection. Compactness of $\Theta$ then ensures that there is some $\theta\in\Theta$ with $L(c_\theta,\omega)\le L(m,\omega)$ for all $\omega\in \bigcup_{F\in\F}F$. Since every world lies in some $F\in\F$, $L(c_\theta,\omega)\le L(m,\omega)$ at every world $\omega\in\Omega$.
 
@@ -146,7 +148,7 @@ The results of both sections apply to any $L\in\mathfrak L$. Write $R,K,U_R$ and
 
 
 
-The finite dominance result utilises a well-known lemma from Knaster, Kuratowski and Mazurkiewicz~\cite{KKM}.
+The finite dominance result utilises a well-known lemma from Knaster, Kuratowski and Mazurkiewicz~\cite{KKM}. \textcolor{red}{Figure~\ref{fig:kkm} illustrates it.}
 
 
 \begin{lemma}\label{lem:kkm}
@@ -163,10 +165,94 @@ Let $d_\omega(p):=\min_{q\in A_\omega}\lVert p-q \rVert$ and $s(p):=\sum_{\omega
 Let $\Omega$ be finite and assume that $L$ satisfies (LA) and (S). Then every $m\in\M_L$ is weakly dominated by some undominated $c_p\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
 \end{theorem}
 \begin{proof}
-Choose $m\in\M_L$. Let $A_\omega=\{p\in\Delta:L(c_p,\omega)\le L(m,\omega)\}$. These sets are closed because $L(c_p,\omega)$ is lower semicontinuous as a function of $p$. (Each $A_\omega$ is a sublevel set $\{h\le a\}$ with $h(p)=L(c_p,\omega)$ and $a=L(m,\omega)$, which are closed for every real $a$ by the definition of lower semicontinuity; if $a=\infty$, then $A_\omega=\Delta$.) By (S), $m$ does not strictly dominate $c_p$ on $\supp p$. So every $p$ lies in $A_\omega$ for some $\omega\in\supp p$. Lemma~\ref{lem:kkm} ensures that there is some $p_m\in\bigcap_\omega A_\omega$. Hence $L(c_{p_m})\le L(m)$. By (LA), $c_{p_m}$ is undominated.
+Choose $m\in\M_L$. Let $A_\omega=\{p\in\Delta:L(c_p,\omega)\le L(m,\omega)\}$. \textcolor{red}{These sets are closed by (S).} By (S), $m$ does not strictly dominate $c_p$ on $\supp p$. So every $p$ lies in $A_\omega$ for some $\omega\in\supp p$. Lemma~\ref{lem:kkm} ensures that there is some $p_m\in\bigcap_\omega A_\omega$. Hence $L(c_{p_m})\le L(m)$. By (LA), $c_{p_m}$ is undominated.
 
 If $m$ is undominated, then $L(c_{p_m})=L(m)$, since otherwise $c_{p_m}$ would dominate $m$. Hence $U_R\subseteq K$. The definition of $\C_L$ in (LA) ensures $\C_L\subseteq\U_L$ and hence $K\subseteq U_R$. So $U_R = K$. If $\C_L$ is closed under equal profiles, then any $m\in\M_L\setminus\C_L$ has $L(m)\ne L(c_{p_m})$. So $c_{p_m}$ dominates it. Therefore no model outside $\C_L$ is undominated. So $\U_L\subseteq\C_L$, and $\U_L=\C_L$.
 \end{proof}
+\textcolor{red}{Figure~\ref{fig:profiles}(a) illustrates the proof for two worlds, and Figure~\ref{fig:profiles}(b) shows how it fails without the closedness required by (S).}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{scope}[yshift=1.2cm]
+ \fill[blue!25] (0,0.08) rectangle (2.4,0.32);
+ \fill[orange!35] (1.6,-0.32) rectangle (4,-0.08);
+ \draw[thick] (0,0) -- (4,0);
+ \fill (0,0) circle (1.6pt); \fill (4,0) circle (1.6pt);
+ \node[below left] at (0,0) {$\delta_1$};
+ \node[below right] at (4,0) {$\delta_2$};
+ \node[above] at (1.0,0.32) {$A_1$};
+ \node[below] at (3.0,-0.32) {$A_2$};
+ \draw[dashed] (1.6,0.6) -- (1.6,-0.6);
+ \draw[dashed] (2.4,0.6) -- (2.4,-0.6);
+ \node[above] at (2,0.6) {\small $A_1\cap A_2$};
+ \node at (2,-1.9) {(a)};
+\end{scope}
+\begin{scope}[xshift=5.6cm]
+ \coordinate (d1) at (0,0); \coordinate (d2) at (4,0); \coordinate (d3) at (2,3.46);
+ \coordinate (e12) at (1.7,0); \coordinate (e23) at (3.1,1.557); \coordinate (e13) at (1,1.73);
+ \coordinate (c) at (2.1,1.2);
+ \fill[blue!25] (d1)--(e12)--(c)--(e13)--cycle;
+ \fill[orange!35] (d2)--(e23)--(c)--(e12)--cycle;
+ \fill[green!25] (d3)--(e13)--(c)--(e23)--cycle;
+ \draw[thick] (d1)--(d2)--(d3)--cycle;
+ \draw (e12)--(c) (e23)--(c) (e13)--(c);
+ \foreach \p in {d1,d2,d3} \fill (\p) circle (1.6pt);
+ \node[below left] at (d1) {$\delta_1$};
+ \node[below right] at (d2) {$\delta_2$};
+ \node[above] at (d3) {$\delta_3$};
+ \node at (1.15,0.65) {$A_1$};
+ \node at (2.8,0.65) {$A_2$};
+ \node at (2.05,2.15) {$A_3$};
+ \fill (c) circle (1.8pt) node[right=2pt] {$p^*$};
+ \node at (2,-0.7) {(b)};
+\end{scope}
+\end{tikzpicture}
+\caption{\textcolor{red}{Lemma~\ref{lem:kkm} for $|F|=2$ and $|F|=3$. Each vertex $\delta_\omega$ lies in $A_\omega$, and each face of the simplex is covered by the sets indexed by its vertices. (a)~Closed sets $A_1\ni\delta_1$ and $A_2\ni\delta_2$ that cover the segment must meet. (b)~Each edge is covered by the two sets of its endpoints; the three closed sets have a common point $p^*$.}}
+\label{fig:kkm}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.25,>=stealth]
+\begin{scope}
+ \fill[gray!25] (1.9,1.5) rectangle (3.3,3.3);
+ \fill[green!20] (0,0) rectangle (1.9,1.5);
+ \draw[->] (0,0) -- (3.5,0) node[right] {\small $L(\cdot,1)$};
+ \draw[->] (0,0) -- (0,3.5) node[above] {\small $L(\cdot,2)$};
+ \draw[dashed] (1.9,0) -- (1.9,3.3);
+ \draw[dashed] (0,1.5) -- (3.3,1.5);
+ \draw[thick,blue!70!black,domain=0:1,samples=60] plot ({3*(1-\x)^2},{3*\x^2});
+ \fill[blue!70!black] (0,3) circle (1.3pt) node[right] {\small $L(c_{\delta_1})$};
+ \fill[blue!70!black] (3,0) circle (1.3pt) node[above left] {\small $L(c_{\delta_2})$};
+ \fill (1.9,1.5) circle (1.5pt) node[above right] {\small $L(m)$};
+ \node[align=center,font=\footnotesize] at (2.6,2.4) {strictly worse\\than $m$};
+ \node[align=center,font=\scriptsize] at (1.2,1.17) {weakly\\dominates $m$};
+ \node at (1.65,-0.6) {(a)};
+\end{scope}
+\begin{scope}[xshift=4.4cm]
+ \fill[gray!25] (1.15,0.95) rectangle (3.3,3.3);
+ \fill[green!20] (0,0) rectangle (1.15,0.95);
+ \draw[->] (0,0) -- (3.5,0) node[right] {\small $L(\cdot,1)$};
+ \draw[->] (0,0) -- (0,3.5) node[above] {\small $L(\cdot,2)$};
+ \draw[dashed] (1.15,0) -- (1.15,3.3);
+ \draw[dashed] (0,0.95) -- (3.3,0.95);
+ \draw[thick,blue!70!black,domain=0.5:1,samples=40] plot ({2*(1-\x)^2},{1+2*\x^2});
+ \draw[thick,blue!70!black,domain=0:0.5,samples=40] plot ({1+2*(1-\x)^2},{2*\x^2});
+ \draw[blue!70!black,fill=white] (0.5,1.5) circle (1.5pt);
+ \draw[blue!70!black,fill=white] (1.5,0.5) circle (1.5pt);
+ \fill[blue!70!black] (1,1) circle (1.5pt) node[above left,inner sep=1pt] {\small $(1,1)$};
+ \fill (1.15,0.95) circle (1.5pt) node[above right] {\small $L(m)$};
+ \draw[densely dotted] (0.5,1.5) -- (0.5,0.5) -- (1.5,0.5);
+ \draw (0.5,0.5) node[draw,rectangle,inner sep=1.2pt] {};
+ \node[align=center,font=\footnotesize] at (2.45,2.4) {strictly worse\\than $m$};
+ \node at (1.65,-0.6) {(b)};
+\end{scope}
+\end{tikzpicture}
+\caption{\textcolor{red}{(a)~Theorem~\ref{thm:kkm} for two worlds. The chosen profiles $p\mapsto L(c_p)$ run from $L(c_{\delta_1})$, left of the vertical dashed line, to $L(c_{\delta_2})$, below the horizontal one. The sets $A_1$ and $A_2$ in the proof consist of the $p$ whose profiles lie left of, respectively below, these lines. Since no $c_p$ is strictly worse than $m$ on $\supp p$, the curve avoids the grey quadrant, so it must meet the lower-left quadrant, where profiles weakly dominate $m$. (b)~Example~4 of Schervish, Seidenfeld and Kadane~\cite{SSK09}, with $c_p=p$ and $m=(0.6,0.7)$, so $L(m)=(1.15,0.95)$. As $p$ passes through $(\tfrac12,\tfrac12)$, the chosen profiles jump from near $(0.5,1.5)$ to $(1,1)$ to near $(1.5,0.5)$. The curve avoids the grey quadrant but skips the lower-left one. Lower semicontinuity would force the profile at $(\tfrac12,\tfrac12)$ to lie at or below $(0.5,0.5)$, the boxed corner, which is inside that quadrant. Condition (S) fails too: the set of $p$ whose chosen model does at least as well as $m$ at world~$2$ contains every $p$ with $p_1<\tfrac12$ but not $(\tfrac12,\tfrac12)$, so it is not closed.}}
+\label{fig:profiles}
+\end{figure}
+
 
 
 
@@ -181,7 +267,7 @@ To obtain an analogue of theorem~\ref{thm:kkm} for arbitrary sample spaces, $\Om
 Let $\Omega$ be any arbitrary sample space and assume that $L$ satisfies (LA), (I) and (S$_\infty$). Then every $m\in\M_L$ is weakly dominated by some undominated $c_\theta\in\C_L$. Consequently $U_R=K$. If (C) holds, then $\U_L=\C_L$ and every model in $\M_L\setminus\C_L$ is dominated by an undominated member of $\C_L$. 
 \end{corollary}
 \begin{proof}
-Choose $m\in\M_L$. For any $\omega\in\Omega$, let $\Theta_\omega=\{\theta\in\Theta:L(c_\theta,\omega)\le L(m,\omega)\}$. By (I), each $\Theta_\omega$ is closed (as a sublevel set of a lower semicontinuous function, or all of $\Theta$ if $L(m,\omega)=\infty$). For any $F\in\F$, let
+Choose $m\in\M_L$. For any $\omega\in\Omega$, let $\Theta_\omega=\{\theta\in\Theta:L(c_\theta,\omega)\le L(m,\omega)\}$. By (I), each $\Theta_\omega$ is closed\textcolor{red}{}. For any $F\in\F$, let
 \[
  T_F=\{\theta:L(c_\theta,\omega)\le L(m,\omega)\text{ for all }\omega\in F\} = \bigcap_{\omega\in F}\Theta_\omega,
 \]
@@ -221,14 +307,14 @@ To reiterate, it is possible to satisfy (S) without a selection map that makes B
 
 
 
-In the other direction, conditions (I) and (S$_\infty$) imply that every finitely supported prior has a coherent Bayes model. 
+In the other direction, conditions (I) \textcolor{red}{with lower semicontinuous losses} and (S$_\infty$) imply that every finitely supported prior has a coherent Bayes model. 
 \begin{corollary}\label{cor:bayes}
-Under (I) and (S$_\infty$), every finitely supported probability $p$ has a Bayes model in $\C_L$.
+Under (I) \textcolor{red}{with lower semicontinuous losses} and (S$_\infty$), every finitely supported probability $p$ has a Bayes model in $\C_L$.
 \end{corollary}
 \begin{proof}
 For any finitely supported $p$, the function $\theta\mapsto\sum_{\omega\in\supp p}p_\omega L(c_\theta,\omega)$ is lower semicontinuous on the compact parameter space $\Theta$ and has a minimiser $\theta^*$. For each $m\in\M_L$, the proof of Corollary~\ref{cor:infinite} gives us some $\theta_m$ with $L(c_{\theta_m})\le L(m)$. So $c_{\theta^*}$ has $p$-expected loss at most that of $c_{\theta_m}$, and hence at most that of $m$.
 \end{proof}
-Corollary~\ref{cor:bayes} does \textit{not} show that (I) and (S$_\infty$) are sufficient to admit a selection map that makes Bayes choices. They are not. What it does show is that these conditions are sufficient to ensure that the selected \textit{class} of coherent models, $\C_L$, is rich enough to contain Bayes models for every finitely supported probability $p$.
+Corollary~\ref{cor:bayes} does \textit{not} show that (I) and (S$_\infty$) are sufficient to admit a selection map that makes Bayes choices. They are not. What it does show is that these conditions\textcolor{red}{, with lower semicontinuous losses,} are sufficient to ensure that the selected \textit{class} of coherent models, $\C_L$, is rich enough to contain Bayes models for every finitely supported probability $p$. \textcolor{red}{Lower semicontinuity cannot be dropped here: in Example~\ref{ex:discontinuous}, (S) holds, and hence so do (I) and (S$_\infty$), but some prior has no Bayes model.}
 
 
 
@@ -240,7 +326,7 @@ Corollary~\ref{cor:bayes} does \textit{not} show that (I) and (S$_\infty$) are s
 If the selection maps in (S$_\infty$) make Bayes choices, then the proof of theorem~\ref{thm:kkm} delivers a stronger result.
 
 \begin{theorem}\label{thm:margin}
-Assume (I) and (S$_\infty$) with selection maps that make Bayes choices. Let $x:\Omega\to(-\infty,\infty]$. The following are equivalent:
+Assume (I) \textcolor{red}{with lower semicontinuous losses} and (S$_\infty$) with selection maps that make Bayes choices. Let $x:\Omega\to(-\infty,\infty]$. The following are equivalent:
 \begin{enumerate}[label=(\alph*)]
 \item some model $c$ has $L(c)\le x$;
 \item some $c_\theta$ has $L(c_\theta)\le x$ (for finite $\Omega$, some chosen model $c_p$);
@@ -255,7 +341,7 @@ V(\pi):=\inf_{m\in\M}\sum_{\omega\in\supp\pi}\pi_\omega L(m,\omega)\le\sum_{\ome
 \]
 which is (c).
 
-Assume (c). Fix $F\in\F$ and let $A_\omega=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le x(\omega)\}$ for all $\omega\in F$. Each $A_\omega$ is closed, by (I) and continuity of $\sigma_F$. Choose any $p\in\Delta_F$ and let $c=c_{\sigma_F(p)}$ be a Bayes model for $\pi$ with $\supp\pi\subseteq\supp p$. Suppose for contradiction that $p\not\in A_\omega$ for any $\omega\in\supp p$. Then $x(\omega)<L(c,\omega)$ for every $\omega\in\supp\pi$. So $x$ is finite on $\supp\pi$, and $\sum_\omega\pi_\omega x(\omega)<\sum_\omega\pi_\omega L(c,\omega)=V(\pi)$, which contradicts (c). So for every $p\in\Delta_F$, $p\in A_\omega$ for some $\omega\in\supp p$. Hence Lemma~\ref{lem:kkm} applies and gives us some $p$ with $L(c_{\sigma_F(p)})\le x$ on $F$. This means that the closed sets $T_F=\{\theta:L(c_\theta,\omega)\le x(\omega)\text{ for all }\omega\in F\}$ are all nonempty. Finally, the compactness argument in the proof of Corollary~\ref{cor:infinite} ensures $\bigcap_{F\in\F}T_F\neq \varnothing$, which is (b). So $(b)\Rightarrow (a)$, $(a)\Rightarrow (c)$ and $(c)\Rightarrow (b)$, \textit{i.e.}, the three conditions are equivalent.
+Assume (c). Fix $F\in\F$ and let $A_\omega=\{p\in\Delta_F:L(c_{\sigma_F(p)},\omega)\le x(\omega)\}$ for all $\omega\in F$. Each $A_\omega$ is closed, by \textcolor{red}{lower semicontinuity of the losses} and continuity of $\sigma_F$. Choose any $p\in\Delta_F$ and let $c=c_{\sigma_F(p)}$ be a Bayes model for $\pi$ with $\supp\pi\subseteq\supp p$. Suppose for contradiction that $p\not\in A_\omega$ for any $\omega\in\supp p$. Then $x(\omega)<L(c,\omega)$ for every $\omega\in\supp\pi$. So $x$ is finite on $\supp\pi$, and $\sum_\omega\pi_\omega x(\omega)<\sum_\omega\pi_\omega L(c,\omega)=V(\pi)$, which contradicts (c). So for every $p\in\Delta_F$, $p\in A_\omega$ for some $\omega\in\supp p$. Hence Lemma~\ref{lem:kkm} applies and gives us some $p$ with $L(c_{\sigma_F(p)})\le x$ on $F$. This means that the closed sets $T_F=\{\theta:L(c_\theta,\omega)\le x(\omega)\text{ for all }\omega\in F\}$ are all nonempty. Finally, the compactness argument in the proof of Corollary~\ref{cor:infinite} ensures $\bigcap_{F\in\F}T_F\neq \varnothing$, which is (b). So $(b)\Rightarrow (a)$, $(a)\Rightarrow (c)$ and $(c)\Rightarrow (b)$, \textit{i.e.}, the three conditions are equivalent.
 \end{proof}
 
 
@@ -267,12 +353,12 @@ Let $x=L(m)-\varepsilon$ for some positive constant $\varepsilon>0$ (with $\inft
 
 
 \begin{corollary}\label{cor:strict}
-Let $\Omega$ be finite and assume (LA), (I) and (S$_\infty$) with selection maps that make Bayes choices.  Suppose further that the models in $\C_L$ have finite loss profiles. Then a model $m\in\M_L$ is strictly (and hence uniformly) dominated if and only if it is a Bayes model for no $p\in\Delta$, in which case some coherent $c_p\in\C_L$ uniformly dominates it. In particular, if every Bayes model belongs to $\C_L$, then every model in $\M_L\setminus\C_L$ is uniformly dominated by a coherent model in $\C_L$, which is undominated by (LA).
+Let $\Omega$ be finite and assume (LA), (I) \textcolor{red}{with lower semicontinuous losses} and (S$_\infty$) with selection maps that make Bayes choices.  Suppose further that the models in $\C_L$ have finite loss profiles. Then a model $m\in\M_L$ is strictly (and hence uniformly) dominated if and only if it is a Bayes model for no $p\in\Delta$, in which case some coherent $c_p\in\C_L$ uniformly dominates it. In particular, if every Bayes model belongs to $\C_L$, then every model in $\M_L\setminus\C_L$ is uniformly dominated by a coherent model in $\C_L$, which is undominated by (LA).
 \end{corollary}
 \begin{proof}
 If a model $m\in\M_L$ is strictly dominated, so that $L(m^\prime)<L(m)$ for some $m^\prime\in\M_L$, then $L(m^\prime)$ is finite and hence $p\cdot L(m^\prime)<p\cdot L(m)$ for every $p\in\Delta$. So $m$ is Bayes for no $p\in\Delta$. Conversely, suppose $m$ is not Bayes for any $p\in\Delta$. By Corollary~\ref{cor:infinite}, every model is weakly dominated by a member of $\C_L$. So $V(p)=\inf_{c\in\C_L}p\cdot L(c)$. By assumption, $L(c)$ is finite for all $c\in\C_L$. So $p\cdot L(c)$ is a finite and continuous function of $p$. Therefore $V$ is finite. Moreover, $V$ is an infimum of continuous functions and hence upper semicontinuous. In addition $p\cdot L(m)$ is a lower semicontinuous function of $p$, since each term $p(\omega) L(m,\omega)$ is lower semicontinuous (with $0\cdot\infty=0$). So $p\cdot L(m)-V(p)$ is a lower semicontinuous function of $p$ on the compact set $\Delta$. It is positive because $m$ is Bayes for no $p\in\Delta$. It therefore has a positive minimum on $\Delta$ (possibly $\infty$). Let $\varepsilon>0$ be a positive real number no larger than it. Then $V(p)\le p\cdot L(m)-\varepsilon$ for every $p\in\Delta$. So Theorem~\ref{thm:margin} with $x=L(m)-\varepsilon$ (where $\infty-\varepsilon=\infty$) gives a chosen model $c_p$ with $L(c_p,\omega)+\varepsilon\le L(m,\omega)$ for every $\omega$. Since $L(c_p)$ is finite, $c_p$ uniformly dominates $m$.
 \end{proof}
-Proposition~\ref{prop:strict-general} in Appendix~\ref{sec:strictproof} gives the same conclusions assuming only that $V$ is upper semicontinuous on $\Delta$. This also holds if $V$ is finite, each $c_p$ is Bayes for $p$, and for each $\omega\in\Omega$, $L(c_p,\omega)$ is a continuous function of $p$.
+Proposition~\ref{prop:strict-general} in Appendix~\ref{sec:strictproof} gives the same conclusions assuming only that $V$ is upper semicontinuous on $\Delta$. This also holds if $V$ is finite, each $c_p$ is Bayes for $p$, and for each $\omega\in\Omega$, $L(c_p,\omega)$ is a continuous function of $p$. \textcolor{red}{Example~\ref{ex:ssk-sharp} in Appendix~\ref{sec:ssk} shows that neither hypothesis can simply be dropped: all the hypotheses of Corollary~\ref{cor:infinite} hold there, with selection maps that make Bayes choices, yet a model that is a Bayes model for no prior is not strictly dominated.}
 For finite $\Omega$, Schervish, Seidenfeld and Kadane also prove strict dominance of finite-loss non-Bayes models by randomised models~\cite[Theorem~7]{SSK09}. The conditions of Corollary~\ref{cor:strict} give us dominance by a non-randomised coherent model. 
 
 
@@ -282,7 +368,7 @@ The assumptions of Theorem~\ref{thm:margin}, given finite losses, are fairly str
 
 
 \begin{corollary}\label{cor:upperconvex}
-Assume (I) and (S$_\infty$) with selection maps that make Bayes choices. Assume further that $L(m,\omega)$ is finite for every $m\in\M_L$ and $\omega\in\Omega$. Then
+Assume (I) \textcolor{red}{with lower semicontinuous losses} and (S$_\infty$) with selection maps that make Bayes choices. Assume further that $L(m,\omega)$ is finite for every $m\in\M_L$ and $\omega\in\Omega$. Then
 \[
  R^\uparrow:=\{x\in\R^\Omega:L(m)\le x\text{ for some }m\in\M_L\}
  =\bigcap_{\pi\text{ finitely supported}}
@@ -371,7 +457,7 @@ Let $\Omega$ be finite, $\C=\Delta\subseteq\M_L$, and let each $p\mapsto L(p,\om
 
 This contains Pettigrew's Theorem~1~\cite{Pettigrew}. There $\Omega$ is finite, the models are the credence functions on all subsets of $\Omega$, and the coherent ones are the probabilities, which correspond to the points of $\Delta$. His strict propriety says that $p$ is the only Bayes model for $p$ (reading expected inaccuracies with $0\cdot\infty=0$), and his continuity of each $L(\cdot,\omega)$ on all credence functions implies continuity on the probabilities. His conclusion is that every incoherent credence is strictly dominated by a probability. Continuity cannot simply be dropped~\cite{SSK09}; the discontinuous strictly proper score of~\cite[Example~4]{SSK09} is not lower semicontinuous on the probabilities.
 
-The finite-forecast theorem of Predd et al.~\cite[Theorem~1]{Predd} is also recovered. Summing a continuous strictly proper binary score over finitely many events gives a loss on a finite set of truth-value patterns. Each probability on those patterns has its vector of event probabilities as its unique Bayes report, and the reports have continuous losses. \textcolor{red}{Proposition~\ref{prop:strict-general}} therefore gives strict dominance of every incoherent forecast by a coherent forecast. Appendix~\ref{sec:forecasts} gives the reduction, including scores that can take infinite values. These finite-score applications recover known results; the next application gives the infinite-domain improvement.
+The finite-forecast theorem of Predd et al.~\cite[Theorem~1]{Predd} is also recovered. Summing a continuous strictly proper binary score over finitely many events gives a loss on a finite set of truth-value patterns. Each probability on those patterns has its vector of event probabilities as its unique Bayes report, and the reports have continuous losses. \textcolor{red}{Proposition~\ref{prop:strict-general}} therefore gives strict dominance of every incoherent forecast by a coherent forecast. Appendix~\ref{sec:forecasts} gives the reduction, including scores that can take infinite values. \textcolor{red}{It also allows a different, possibly merely proper, continuous score for each event, which recovers \cite[Theorem~2, Conclusion~3]{SSK09} for unconditional forecasts.} These finite-score applications recover known results; the next application gives the infinite-domain improvement.
 
 \subsection{Probabilism on arbitrary domains}\label{sec:nielsen} Let $\Omega$ be any nonempty set, $\M_L=[0,1]^{2^\Omega}$ the credence functions on its subsets, and $\C$ the finitely additive probabilities, which form a compact set in the topology of pointwise convergence on subsets. On $\C$ this is the weak-star topology of Section~\ref{sec:conditional}, since bounded functions are uniform limits of simple functions. Let $L:\M_L\times\Omega\to[0,\infty]$, and for $q\in\C$ let $E_q$ be the expectation of $[0,\infty]$-valued functions used by Nielsen~\cite[Appendix A]{Nielsen}: $E_qf$ is the supremum of $q(h)$ over bounded $h\le f$. 
 \begin{theorem}\label{thm:nielsen}
@@ -442,7 +528,7 @@ Condition (P) is a block-by-block optimality and identification requirement. Eac
 \begin{proof}
 \emph{Admissibility of $\C$.} Let $\gamma\in\Gamma$ and suppose $L(x,\cdot)\le L(\rho(\gamma),\cdot)$. Apply $q_0$ and use \eqref{eq:blocks} for $x$ and for $\rho(\gamma)$. By (P) each term for $x$ is at least the corresponding term for $\rho(\gamma)$, while the totals satisfy the reverse inequality. So all terms are equal. In particular $x_0$ is a minimiser for $q_0$, and (P) gives $S_0(x_0,\cdot)=S_0(\rho_0(q_0),\cdot)$. Cancelling this common block, $S_j(x_j,\omega)\le S_j(\rho_j(q_j),\omega)$ for every $\omega\in E_j$. Apply $q_j$: then $x_j$ is a minimiser for $q_j$, and (P) gives equality on $E_j$. Hence $L(x)=L(\rho(\gamma))$, so no model dominates $\rho(\gamma)$. With unique minimisers the same argument gives $x=\rho(\gamma)$, so $\C$ is closed under equal profiles.
 
-\emph{\textcolor{red}{(I)}.} $\Gamma$ is compact, and \textcolor{red}{(LSC)} is the lower semicontinuity required.
+\emph{\textcolor{red}{(I)}.} $\Gamma$ is compact, and \textcolor{red}{(LSC)} \textcolor{red}{gives (I) with lower semicontinuous losses}.
 
 \emph{(S$_\infty$).} Let $\F$ be all finite nonempty subsets of $\Omega$ and $\sigma_F$ the map of Lemma~\ref{lem:section}. Write $\sigma_F(p)=(q_0,\dots,q_k)$. By (P), each term on the right of \eqref{eq:blocks} is minimised at $x=\rho(\sigma_F(p))$; terms with $q_0(E_j)=0$ vanish. So $\rho(\sigma_F(p))$ is a Bayes model for $q_0$. Since $q_0$ is finitely supported and $\supp q_0\subseteq\supp p$, \textcolor{red}{Lemma~\ref{lem:bayes-choice}} gives (S$_\infty$). Corollary~\ref{cor:infinite} gives the conclusions.
 \end{proof}
@@ -468,16 +554,18 @@ With $k=2$ and $\eta=\tfrac14$, Lemma~\ref{lem:section} (with $F=\Omega$) choose
 Some Bayes models are dominated. The model $(0,0,1,0,0,1)$ is a Bayes model for $\delta_3$ and has profile $(3,3,0)$. The coherent model $(0,0,1,\tfrac12,\tfrac12,1)$ has profile $(\tfrac52,\tfrac52,0)$ and dominates it. Being a Bayes model for $\delta_3$, the incoherent model has the least possible loss at world~$3$, so no model strictly dominates it.
 \end{example}
 
+\textcolor{red}{The coherent class here is narrower than the one Schervish, Seidenfeld and Kadane use for conditional forecasts~\cite{SSK09}. Following de Finetti, they allow any forecasts given an event that may have probability zero. For instance, if $B$ is the disjoint union of nonempty events $A_1$ and $A_2$, the forecasts $P(A_1|B)=0.9$ and $P(A_2|B)=0.7$ are coherent in their sense. Under Brier score, with each conditional forecast scored only when $B$ occurs, these forecasts have scores $0.5$ on $A_1$, $0.9$ on $A_2$ and $0$ on $B^c$, while $(0.6,0.4)$ has scores $0.32$, $0.72$ and $0$. So they are dominated, though not strictly dominated. This is why their characterisation of coherence uses strict dominance~\cite[Theorem~1]{SSK09}. With ordinary dominance, Proposition~\ref{prop:blocks} instead singles out conditional reports that are probabilities on each cell. This bears on their closing conjecture that restricting coherence to full conditional probabilities would call for a modified dominance criterion~\cite[Section~6]{SSK09}; Proposition~\ref{prop:blocks} gives such a result for a single finite partition.}
+
 
 \section{Scope and limits}\label{sec:scope}
 The main theorem is a sufficient condition for identifying the original undominated models. It is not an equivalence, and its hypotheses are not intrinsic properties of the loss alone. Appendix~\ref{sec:finite} gives coherent classes for which the desired conclusion holds but (S) fails. The bounds condition in Appendix~\ref{sec:bounds} is more general, but its necessity for compact finite-dimensional coherent profiles supplies no independent reason to assume it.
 
 \subsection{Changes of scale and randomisation}\label{sec:ordinal}
 \begin{proposition}\label{prop:ordinal}
-Let each $f_\omega$ be a strictly increasing function from a set containing the values of $L(\cdot,\omega)$ into $[0,\infty]$, and $L'(m,\omega)=f_\omega(L(m,\omega))$. Then $L$ and $L'$ have the same domination relation, the same undominated models, and the same strict dominance relation on any set of worlds. With the same evaluation domain and coherent class, $\C_{L\prime}=\C_L$. Thus (LA) and the existence of coherent ideal models hold for $L'$ iff they hold for $L$, and so do the requirements in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index. If every $f_\omega$ is continuous, lower semicontinuity of losses along a \textcolor{red}{selection map} or a family transfers from $L$ to $L'$, and with it (S), \textcolor{red}{(I)} and (S$_\infty$). The conclusions of Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite}, and strict dominance, being statements about comparisons of losses at single worlds, transfer from $L$ to $L'$ for any strictly increasing $f_\omega$.
+Let each $f_\omega$ be a strictly increasing function from a set containing the values of $L(\cdot,\omega)$ into $[0,\infty]$, and $L'(m,\omega)=f_\omega(L(m,\omega))$. Then $L$ and $L'$ have the same domination relation, the same undominated models, and the same strict dominance relation on any set of worlds. With the same evaluation domain and coherent class, $\C_{L\prime}=\C_L$. Thus (LA) and the existence of coherent ideal models hold for $L'$ iff they hold for $L$, and so do the requirements in (S) and (S$_\infty$) that no model strictly dominate the chosen models on the support of the index. \textcolor{red}{Conditions (S), (I) and (S$_\infty$) transfer from $L$ to $L'$ for any strictly increasing $f_\omega$, since the sets they require to be closed are the same for $L$ and $L'$. If every $f_\omega$ is continuous, lower semicontinuity of losses along a selection map or a family also transfers.} The conclusions of Theorem~\ref{thm:kkm} and Corollary~\ref{cor:infinite}, and strict dominance, being statements about comparisons of losses at single worlds, transfer from $L$ to $L'$ for any strictly increasing $f_\omega$.
 \end{proposition}
 \begin{proof}
-Each $f_\omega$ preserves and reflects $\le$ and $<$. A continuous increasing function of a lower semicontinuous function is lower semicontinuous.
+Each $f_\omega$ preserves and reflects $\le$ and $<$\textcolor{red}{, so $\{\theta:L'(c_\theta,\omega)\le L'(m,\omega)\}=\{\theta:L(c_\theta,\omega)\le L(m,\omega)\}$}. A continuous increasing function of a lower semicontinuous function is lower semicontinuous.
 \end{proof}
 
 The following example separates ordinary coherent dominance from the stronger Bayes-choice result. It also explains why applying a complete-class theorem to randomised models does not, by itself, solve our problem.
@@ -492,7 +580,7 @@ Write $c=(s+k,1-s+k)$, where $s=(1+c_1-c_2)/2\in[0,1]$. Its profile is $\bigl(2(
 
 \end{example}
 
-In this example, the identity \textcolor{red}{selection map} satisfies (S), because the original quadratic loss does and the change of scale is continuous and strictly increasing. But every prior has only endpoint Bayes models: the expected loss is a positive weighted sum of square roots, strictly concave when both weights are positive, with its minimum at an endpoint. \textcolor{red}{A selection map that makes Bayes choices} would therefore have to switch between the two endpoints. Lower semicontinuity would make each of their inverse images closed; both are nonempty because of the vertex requirements. This would disconnect the indexing interval. Hence no \textcolor{red}{selection map makes Bayes choices}.\label{rem:bayeschoice}
+In this example, the identity \textcolor{red}{selection map} satisfies (S), because the original quadratic loss does and the change of scale is continuous and strictly increasing. But every prior has only endpoint Bayes models: the expected loss is a positive weighted sum of square roots, strictly concave when both weights are positive, with its minimum at an endpoint. \textcolor{red}{A selection map that makes Bayes choices} would therefore have to switch between the two endpoints. \textcolor{red}{Condition (S), applied with $m$ equal to each endpoint,} would make each of their inverse images closed; both are nonempty because of the vertex requirements. This would disconnect the indexing interval. Hence no \textcolor{red}{selection map makes Bayes choices}.\label{rem:bayeschoice}
 
 \label{sec:random}
 \begin{proposition}\label{prop:random}
@@ -522,21 +610,21 @@ Appendix~\ref{sec:joyce} gives a continuous truth-directed loss on three partiti
 \section{Bounds instead of choices}\label{sec:bounds}
 The proofs above use less than \textcolor{red}{(S$_\infty$)}. For each $p$ they need bounds on the losses that some coherent model meets, and only these bounds have to vary regularly with $p$; the models meeting them may jump.
 \begin{enumerate}[label=\textbf{(B)},leftmargin=*]
-\item \textbf{Bounds.} There is a family $\F$ as in (S$_\infty$), and for each $F\in\F$ a map $Q_F:\Delta_F\to[0,\infty]^F$ such that each $p\mapsto Q_F(p)(\omega)$ is lower semicontinuous and, for every $p\in\Delta_F$,
+\item \textbf{Bounds.} There is a family $\F$ as in (S$_\infty$), and for each $F\in\F$ a map $Q_F:\Delta_F\to[0,\infty]^F$ such that \textcolor{red}{each set $\{p\in\Delta_F:Q_F(p)(\omega)\le L(m,\omega)\}$ with $\omega\in F$ and $m\in\M_L$ is closed} and, for every $p\in\Delta_F$,
 \begin{enumerate}[label=(\roman*)]
 \item some $\theta\in\Theta$ has $L(c_\theta,\omega)\le Q_F(p)(\omega)$ for every $\omega\in F$, and
 \item $Q_F(p)$ is not strictly dominated on $\supp p$: every $m\in\M_L$ has some $\omega\in\supp p$ with $Q_F(p)(\omega)\le L(m,\omega)$.
 \end{enumerate}
 \end{enumerate}
-For finite $\Omega$ one may take $\F=\{\Omega\}$. In words: some coherent model of the family meets all the bounds chosen for $p$, though which one may change discontinuously with $p$, and no profile strictly dominates the bounds on the worlds charged by $p$. Under \textcolor{red}{(I)}, condition (S$_\infty$) is the case $Q_F(p)=L(c_{\sigma_F(p)})|_F$, with $\theta=\sigma_F(p)$ in (i); \textcolor{red}{(I)} makes these bounds lower semicontinuous. For finite $\Omega$, (S) is the case $Q_\Omega(p)=L(c_p)$.
+For finite $\Omega$ one may take $\F=\{\Omega\}$. In words: some coherent model of the family meets all the bounds chosen for $p$, though which one may change discontinuously with $p$, and no profile strictly dominates the bounds on the worlds charged by $p$. Under \textcolor{red}{(I)}, condition (S$_\infty$) is the case $Q_F(p)=L(c_{\sigma_F(p)})|_F$, with $\theta=\sigma_F(p)$ in (i); \textcolor{red}{(I)} makes \textcolor{red}{the required sets closed}. For finite $\Omega$, (S) is the case $Q_\Omega(p)=L(c_p)$.
 
 \begin{theorem}\label{thm:bounds}
 For arbitrary $\Omega$, the conclusions of Theorem~\ref{thm:kkm} hold under (LA), \textcolor{red}{(I)} and (B), with $c_\theta$ in place of $c_p$.
 \end{theorem}
 \begin{proof}
-Fix $m$ and $F\in\F$, and put $A_\omega=\{p\in\Delta_F:Q_F(p)(\omega)\le L(m,\omega)\}$ for $\omega\in F$. These sets are closed by lower semicontinuity, and by (ii) every $p$ lies in $A_\omega$ for some $\omega\in\supp p$. Lemma~\ref{lem:kkm} gives $p$ with $Q_F(p)\le L(m)$ on $F$, and (i) gives $\theta$ with $L(c_\theta)\le L(m)$ on $F$. So the closed set $T_F$ in the proof of Corollary~\ref{cor:infinite} is nonempty, and the rest of that proof applies.
+Fix $m$ and $F\in\F$, and put $A_\omega=\{p\in\Delta_F:Q_F(p)(\omega)\le L(m,\omega)\}$ for $\omega\in F$. These sets are closed by \textcolor{red}{(B)}, and by (ii) every $p$ lies in $A_\omega$ for some $\omega\in\supp p$. Lemma~\ref{lem:kkm} gives $p$ with $Q_F(p)\le L(m)$ on $F$, and (i) gives $\theta$ with $L(c_\theta)\le L(m)$ on $F$. So the closed set $T_F$ in the proof of Corollary~\ref{cor:infinite} is nonempty, and the rest of that proof applies.
 \end{proof}
-The argument for weak dominance again does not use admissibility of the family; (LA) makes the resulting dominator undominated. Corollary~\ref{cor:bayes} holds under \textcolor{red}{(I)} and (B), with the same proof. Coherent models ideal at every world also exist: at $p=\delta_\omega$, (ii) and (i) give a coherent model ideal at $\omega$. For finite $\Omega$ and $\F=\{\Omega\}$, the proof of Theorem~\ref{thm:bounds} uses \textcolor{red}{(I)} only through (i), which may then simply ask for some coherent model with losses at most $Q_\Omega(p)$.
+The argument for weak dominance again does not use admissibility of the family; (LA) makes the resulting dominator undominated. Corollary~\ref{cor:bayes} holds under \textcolor{red}{(I)} \textcolor{red}{with lower semicontinuous losses} and (B), with the same proof. Coherent models ideal at every world also exist: at $p=\delta_\omega$, (ii) and (i) give a coherent model ideal at $\omega$. For finite $\Omega$ and $\F=\{\Omega\}$, the proof of Theorem~\ref{thm:bounds} uses \textcolor{red}{(I)} only through (i), which may then simply ask for some coherent model with losses at most $Q_\Omega(p)$.
 
 Unlike the requirement in (S), condition (ii) is not automatic when $p$ charges every world \textcolor{red}{(the requirement in (S) then holds automatically, since by (LA) no member of $\C_L$ is strictly dominated)}: bounds that exceed a coherent profile at every world charged by $p$ are strictly dominated there by that profile. As for (S), the natural way to check (B) is through Bayes models.
 
@@ -549,13 +637,13 @@ Let $F\in\F$ and $p\in\Delta_F$, and let $c_\theta$ be a Bayes model for a proba
 In the lemma, the bounds equal the losses of the certifying model at the worlds charged by the certifying prior. At the other worlds of $F$ they may exceed those losses. Appendix~\ref{sec:finite} gives a problem in which (S) cannot be met but \textcolor{red}{(I)} and (B) can (Proposition~\ref{prop:threeworld} and Remark~\ref{rem:threeworld-bounds}); there the bounds are not of the form in Lemma~\ref{lem:bayesbounds}. It also shows that for finitely many worlds and compact $K$, \textcolor{red}{(I)} and (B) can be met whenever every model is weakly dominated by a coherent one (Proposition~\ref{prop:necessary}).
 
 
-The margin theorem also holds under \textcolor{red}{(I)} and (B) if every bound has the form in Lemma~\ref{lem:bayesbounds}. Its proof uses the same KKM sets, with $Q_F(p)$ replacing the chosen profile, and then applies (B)(i).
+The margin theorem also holds under \textcolor{red}{(I)} \textcolor{red}{with lower semicontinuous losses} and (B) if every bound has the form in Lemma~\ref{lem:bayesbounds} \textcolor{red}{and each $p\mapsto Q_F(p)(\omega)$ is lower semicontinuous}. Its proof uses the same KKM sets, with $Q_F(p)$ replacing the chosen profile, and then applies (B)(i).
 \section{Why the choice condition has content}\label{sec:finite}
 In this section $\Omega$ is finite and losses are finite. We work with $\C_L$ as defined by (LA) throughout. We ask what (S) amounts to, and whether it is necessary for coherent weak dominance.
 
-\subsection{Lower semicontinuity is needed}
+\subsection{\textcolor{red}{Closedness is needed}}
 \begin{example}\label{ex:continuity-needed}
-There are three worlds and three coherent models, with profiles $(0,1,1)$, $(1,0,1)$ and $(1,1,0)$, and a fourth model with profile $(\tfrac12,\tfrac12,\tfrac12)$. All four are undominated, so (LA) holds, and each coherent model is ideal at one world, so coherent ideal models exist. For each $p$ choose the coherent model whose zero coordinate is at the least member of $\supp p$. Its loss there is $0$, so no model strictly dominates it on $\supp p$. But no coherent model weakly dominates the fourth model. The \textcolor{red}{selection map} is not lower semicontinuous: at $p=\delta_2$ the chosen model has loss $1$ at world~$1$, while at nearby $p$ with support $\{1,2\}$ it has loss $0$ there. Choices of models that are not strictly dominated on the support of the index are not enough without lower semicontinuity.
+There are three worlds and three coherent models, with profiles $(0,1,1)$, $(1,0,1)$ and $(1,1,0)$, and a fourth model with profile $(\tfrac12,\tfrac12,\tfrac12)$. All four are undominated, so (LA) holds, and each coherent model is ideal at one world, so coherent ideal models exist. For each $p$ choose the coherent model whose zero coordinate is at the least member of $\supp p$. Its loss there is $0$, so no model strictly dominates it on $\supp p$. But no coherent model weakly dominates the fourth model. The \textcolor{red}{selection map} is not lower semicontinuous: at $p=\delta_2$ the chosen model has loss $1$ at world~$1$, while at nearby $p$ with support $\{1,2\}$ it has loss $0$ there. \textcolor{red}{So the set of $p$ whose chosen model does at least as well as the fourth model at world~$1$ is $\{p:p_1>0\}$, which is not closed.} Choices of models that are not strictly dominated on the support of the index are not enough without \textcolor{red}{the closedness required by (S)}.
 \end{example}
 
 \subsection{Continuous choices of coherent profiles}\label{sec:connect}
@@ -573,10 +661,10 @@ Let $p_n\to p$. Every subsequence of $(P(p_n))$ has a further subsequence conver
 \end{proof}
 
 \begin{theorem}\label{thm:selection}
-Let $K$ be compact. Condition (S) can be met if and only if there is a continuous $P:\Delta\to K$ with $P(p)\in K^{\supp p}$ for every $p$.
+Let $K$ be compact. Condition (S) can be met \textcolor{red}{by a selection map with lower semicontinuous losses} if and only if there is a continuous $P:\Delta\to K$ with $P(p)\in K^{\supp p}$ for every $p$.
 \end{theorem}
 \begin{proof}
-If (S) holds, Lemma~\ref{lem:profcont} and the reformulation of (S) above give $P$. Conversely, given $P$, let $c_p$ be any coherent model with profile $P(p)$. Continuity of $P$ gives lower semicontinuity, and $P(p)\in K^{\supp p}$ says that no model strictly dominates $c_p$ on $\supp p$.
+If (S) holds \textcolor{red}{with lower semicontinuous losses}, Lemma~\ref{lem:profcont} and the reformulation of (S) above give $P$. Conversely, given $P$, let $c_p$ be any coherent model with profile $P(p)$. Continuity of $P$ gives lower semicontinuity, and $P(p)\in K^{\supp p}$ says that no model strictly dominates $c_p$ on $\supp p$.
 \end{proof}
 So the question is whether one can choose, continuously over the simplex, a coherent profile in $K^{\supp p}$. Only the boundary of $\Delta$ constrains the choice, because interior points may use any point of $K^\Omega=K$. The ``if'' direction of Theorem~\ref{thm:selection} does not need $K$ to be compact.
 
@@ -593,13 +681,13 @@ and let $\M_L=\C_L$ have these profiles. Then (LA) holds and coherent ideal mode
 
 \emph{The sets $K^S$.} The first coordinate $t+b(t)$ is least, with value $0$, only at $t=0$, so $K^{\{1\}}=\{k(0)\}$; similarly $K^{\{2\}}=\{k(1)\}$. The third coordinate $1-5b(t)$ is least only at $t=\tfrac12$, so $K^{\{3\}}=\{k(\tfrac12)\}$, and coherent ideal models exist. Next, $k(t')$ strictly dominates $k(t)$ on $\{1,2\}$ iff $|t'-t|<b(t)-b(t')$. For $t\in(0.48,0.5]$, $t'=0.48$ gives $t-0.48<5(t-0.48)=b(t)$; symmetrically for $t\in[0.5,0.52)$. No $k(t)$ with $b(t)=0$ is strictly dominated on $\{1,2\}$. So $K^{\{1,2\}}$ is the union of the disjoint closed sets $\{k(t):t\le0.48\}\ni k(0)$ and $\{k(t):t\ge0.52\}\ni k(1)$.
 
-If (S) could be met, Theorem~\ref{thm:selection} would give a continuous $P$ with $P(p)\in K^{\supp p}$. Its restriction to the edge from $\delta_1$ to $\delta_2$ would be a path in $K^{\{1,2\}}$ from $K^{\{1\}}=\{k(0)\}$ to $K^{\{2\}}=\{k(1)\}$, since interior points of the edge have support $\{1,2\}$ and $K^{\{1\}},K^{\{2\}}\subseteq K^{\{1,2\}}$. No path in $K^{\{1,2\}}$ joins $k(0)$ to $k(1)$.
+\textcolor{red}{Suppose (S) held, with selection map $u$. On the edge from $\delta_1$ to $\delta_2$ we have $L(u_p)\in K^{\supp p}\subseteq K^{\{1,2\}}$, with $L(u_{\delta_1})=k(0)$ and $L(u_{\delta_2})=k(1)$. A point $k(t)$ of $K^{\{1,2\}}$ has first coordinate at most $0.48$ iff $t\le0.48$, and second coordinate at most $0.48$ iff $t\ge0.52$. Let $m_1$ and $m_2$ be the models with profiles $k(0.48)$ and $k(0.52)$. Then the sets $\{p:L(u_p,1)\le L(m_1,1)\}$ and $\{p:L(u_p,2)\le L(m_2,2)\}$, intersected with the edge, are closed by (S), disjoint, cover the edge, and contain $\delta_1$ and $\delta_2$ respectively. This contradicts connectedness of the edge.}
 \end{proof}
 So (S) is not necessary for the conclusion of Theorem~\ref{thm:kkm}, even when the coherent profiles form a compact connected set and coherent ideal models exist. The weaker conditions \textcolor{red}{(I)} and (B) can be met here (Remark~\ref{rem:threeworld-bounds}).
 
-\subsection{Dominance without regular choices}
+\subsection{\textcolor{red}{Closed choices without Bayes models}}
 \begin{example}[Dominance without Bayes existence]\label{ex:discontinuous}
-Start with the untransformed quadratic loss in Example~\ref{ex:rescale}.  At world 1 only, apply $f(t)=t$ for $t<\tfrac14$ and $f(t)=t+1$ for $t\ge\tfrac14$. The conclusions still hold for the new loss (Proposition~\ref{prop:ordinal}). Put $s_0=1-1/(2\sqrt2)$. For the prior $(\tfrac12,\tfrac12)$, the coherent expected loss is $(1-s)^2+s^2+\tfrac12$ for $s\le s_0$ and $(1-s)^2+s^2$ for $s>s_0$. The first branch has minimum $1$. The second is strictly increasing on $(s_0,1]$ and has unattained infimum $\tfrac54-1/\sqrt2<1$. A Bayes model would be weakly dominated by a coherent one, which would then also be a Bayes model; so no Bayes model exists. By Corollary~\ref{cor:bayes}, (S) cannot be met for the new loss. So the conclusions of Theorem~\ref{thm:kkm} can hold although (S) cannot be met and some prior has no Bayes model. The obstruction is that $f$ jumps up at $\tfrac14$ and takes the upper value there, so it does not preserve lower semicontinuity.
+Start with the untransformed quadratic loss in Example~\ref{ex:rescale}.  At world 1 only, apply $f(t)=t$ for $t<\tfrac14$ and $f(t)=t+1$ for $t\ge\tfrac14$. The conclusions still hold for the new loss (Proposition~\ref{prop:ordinal}). Put $s_0=1-1/(2\sqrt2)$. For the prior $(\tfrac12,\tfrac12)$, the coherent expected loss is $(1-s)^2+s^2+\tfrac12$ for $s\le s_0$ and $(1-s)^2+s^2$ for $s>s_0$. The first branch has minimum $1$. The second is strictly increasing on $(s_0,1]$ and has unattained infimum $\tfrac54-1/\sqrt2<1$. A Bayes model would be weakly dominated by a coherent one, which would then also be a Bayes model; so no Bayes model exists. \textcolor{red}{Condition (S) still holds for the new loss, with the identity selection map, since the sets it requires to be closed are unchanged (Proposition~\ref{prop:ordinal}). But the losses along it are no longer lower semicontinuous: $f$ jumps up at $\tfrac14$ and takes the upper value there. So (S) can hold although some prior has no Bayes model, and Corollary~\ref{cor:bayes} needs lower semicontinuous losses.}
 \end{example}
 
 \subsection{Bounds are always available}\label{sec:necessary}
@@ -624,19 +712,22 @@ $K^\uparrow$ is closed: if $y_n\ge k_n\in K$ and $y_n\to y$, a subsequence of $(
 Let $K$ be compact, and suppose that every model is weakly dominated by a coherent model. Then \textcolor{red}{(I)} and (B) hold with $\Theta=K$, $c_k$ any coherent model with profile $k$, $\F=\{\Omega\}$ and $Q_\Omega=Q^{\mathrm{ray}}$. Hence, for compact $K$, \textcolor{red}{(I)} and (B) can be met if and only if every model is weakly dominated by a coherent model.
 \end{proposition}
 \begin{proof}
-\textcolor{red}{(I)} holds because $\theta\mapsto L(c_\theta,\omega)=\theta(\omega)$ is continuous on the compact set $K$. $Q^{\mathrm{ray}}$ is continuous by Lemma~\ref{lem:ray}, and (i) holds because $Q^{\mathrm{ray}}(p)\in K^\uparrow$. For (ii), let $S=\supp p$ and suppose that $L(m,\omega)<Q^{\mathrm{ray}}(p)(\omega)$ for all $\omega\in S$. By hypothesis $L(m)\ge k$ for some $k\in K$. Let $y=L(m)$ on $S$ and $y=\beta$ off $S$. Then $y\ge k$, so $y\in K^\uparrow$. For small $\delta>0$ we have $y\le \beta\one-(t(p)+\delta)p$: on $S$ because $y(\omega)<\beta-t(p)p_\omega$, and off $S$ both sides equal $\beta$. So $\beta\one-(t(p)+\delta)p\in K^\uparrow$, contradicting the maximality of $t(p)$. The converse is Theorem~\ref{thm:bounds}.
+\textcolor{red}{(I)} holds because $\theta\mapsto L(c_\theta,\omega)=\theta(\omega)$ is continuous on the compact set $K$. $Q^{\mathrm{ray}}$ is continuous by Lemma~\ref{lem:ray}\textcolor{red}{, so the sets required by (B) are closed}, and (i) holds because $Q^{\mathrm{ray}}(p)\in K^\uparrow$. For (ii), let $S=\supp p$ and suppose that $L(m,\omega)<Q^{\mathrm{ray}}(p)(\omega)$ for all $\omega\in S$. By hypothesis $L(m)\ge k$ for some $k\in K$. Let $y=L(m)$ on $S$ and $y=\beta$ off $S$. Then $y\ge k$, so $y\in K^\uparrow$. For small $\delta>0$ we have $y\le \beta\one-(t(p)+\delta)p$: on $S$ because $y(\omega)<\beta-t(p)p_\omega$, and off $S$ both sides equal $\beta$. So $\beta\one-(t(p)+\delta)p\in K^\uparrow$, contradicting the maximality of $t(p)$. The converse is Theorem~\ref{thm:bounds}.
 \end{proof}
 
-Compactness of $K$ cannot be dropped. In Example~\ref{ex:discontinuous} every model is weakly dominated by a coherent one, but the prior $(\tfrac12,\tfrac12)$ has no Bayes model; since Corollary~\ref{cor:bayes} holds under \textcolor{red}{(I)} and (B), these conditions cannot be met there.
+\textcolor{red}{Compactness of $K$ cannot be dropped. (Example~\ref{ex:discontinuous} does not show this: there $K$ is not compact, but (S) holds, and hence so do (I) and (B).)}
+\begin{example}\label{ex:hole}
+\textcolor{red}{Let $\Omega=\{1,2\}$, $T=[0,1]\setminus\{\tfrac12\}$, and let $\M_L=\C$ consist of models with profiles $k(t)=(t,1-t)$, $t\in T$. These profiles are pairwise incomparable, so (LA) holds with $\C_L=\M_L$, and every model is weakly dominated by a coherent one (trivially). But (I) and (B) cannot be met. Suppose they were, with $Q=Q_\Omega$. Fix $p\in\Delta$. By (B)(ii), for every $t'\in T$, $Q(p)(1)\le t'$ or $Q(p)(2)\le 1-t'$. By (B)(i), $Q(p)\ge k(t)$ for some $t\in T$. If $t<\tfrac12$, then $Q(p)(2)>\tfrac12$, so every $t'\in T$ with $1-Q(p)(2)<t'<\tfrac12$ has $Q(p)(1)\le t'$, and hence $Q(p)(1)<\tfrac12<Q(p)(2)$. If $t>\tfrac12$, then symmetrically $Q(p)(2)<\tfrac12<Q(p)(1)$. Let $E_1=\{p:Q(p)(1)<\tfrac12\}$ and $E_2=\{p:Q(p)(2)<\tfrac12\}$. These sets are disjoint and cover $\Delta$, and $\delta_1\in E_1$, $\delta_2\in E_2$, since (ii) at $\delta_\omega$ gives $Q(\delta_\omega)(\omega)\le0$. Since $Q(p)(1)\ne\tfrac12$, $E_1$ is the intersection of the sets $\{p:Q(p)(1)\le b\}$ with $b\in(\tfrac12,1]$. Each of these is closed by (B), since $b$ is the loss at world~$1$ of the model with profile $k(b)$. Similarly $E_2$ is closed. This contradicts connectedness of $\Delta$.}
+\end{example}
 
 \begin{remark}[The equivalence is elementary]\label{rem:elementary}
-For the bounds $Q^{\mathrm{ray}}$, the implication from (ii) to coherent weak dominance does not need the KKM lemma. Let $x=L(m)$ and $x'=\min\{x,\beta\one\}$ coordinatewise. If $x'=\beta\one$, then $x\ge \beta\one\in K^\uparrow$. Otherwise write $\beta\one-x'=s\,p$ with $s>0$ and $p\in\Delta$; then $\supp p=\{\omega:x(\omega)<\beta\}$ and $x=x'$ on $\supp p$. If $s\le t(p)$, then $x\ge x'\in K^\uparrow$ by Lemma~\ref{lem:ray}. If $s>t(p)$, then $x(\omega)=\beta-sp_\omega<Q^{\mathrm{ray}}(p)(\omega)$ for every $\omega\in\supp p$, which (ii) excludes. So as a criterion, (B) with these particular bounds is close to a restatement of the conclusion, and Proposition~\ref{prop:necessary} gives no independent reason to expect (B). The content of Theorem~\ref{thm:bounds} is that \emph{any} lower semicontinuous bounds meeting (i) and (ii) will do. The natural source is Bayes models (Lemma~\ref{lem:bayesbounds}), whose position on the rays is not known in advance; Remark~\ref{rem:threeworld-bounds} shows that they do not always suffice.
+For the bounds $Q^{\mathrm{ray}}$, the implication from (ii) to coherent weak dominance does not need the KKM lemma. Let $x=L(m)$ and $x'=\min\{x,\beta\one\}$ coordinatewise. If $x'=\beta\one$, then $x\ge \beta\one\in K^\uparrow$. Otherwise write $\beta\one-x'=s\,p$ with $s>0$ and $p\in\Delta$; then $\supp p=\{\omega:x(\omega)<\beta\}$ and $x=x'$ on $\supp p$. If $s\le t(p)$, then $x\ge x'\in K^\uparrow$ by Lemma~\ref{lem:ray}. If $s>t(p)$, then $x(\omega)=\beta-sp_\omega<Q^{\mathrm{ray}}(p)(\omega)$ for every $\omega\in\supp p$, which (ii) excludes. So as a criterion, (B) with these particular bounds is close to a restatement of the conclusion, and Proposition~\ref{prop:necessary} gives no independent reason to expect (B). The content of Theorem~\ref{thm:bounds} is that \emph{any} bounds meeting \textcolor{red}{(B)} will do. The natural source is Bayes models (Lemma~\ref{lem:bayesbounds}), whose position on the rays is not known in advance; Remark~\ref{rem:threeworld-bounds} shows that they do not always suffice.
 \end{remark}
 
 \begin{remark}[Bounds in Proposition~\ref{prop:threeworld}]\label{rem:threeworld-bounds}
 In Proposition~\ref{prop:threeworld}, $K$ is compact and every model is coherent, so \textcolor{red}{(I)} and (B) can be met by Proposition~\ref{prop:necessary}. On the edge from $\delta_1$ to $\delta_2$ suitable bounds can be written down; they differ from $Q^{\mathrm{ray}}$, and we check them only on that edge. The obstruction to (S) was the gap in $K^{\{1,2\}}$ between $k(0.48)=(0.48,0.52,1)$ and $k(0.52)=(0.52,0.48,1)$. Bounds can cross it through the corner $(0.52,0.52,1)$. Let the bounds follow $k(t)$ for $t\le0.48$, then the segment from $k(0.48)$ to $(0.52,0.52,1)$, then the segment from there to $k(0.52)$, and then $k(t)$ for $t\ge0.52$. This is a continuous path from $k(0)$ to $k(1)$. Each point of the two segments lies above $k(0.48)$ or $k(0.52)$, which gives (i). No profile strictly dominates such a point on $\{1,2\}$: that would need $t+b(t)<0.52$ and $1-t+b(t)<0.52$, that is, $|t-\tfrac12|<0.02-b(t)$. This is impossible both where $b(t)=0$ and where $b(t)=0.1-5|t-\tfrac12|>0$. The proof of Proposition~\ref{prop:threeworld} shows that $k(t)\in K^{\{1,2\}}$ for $t\le0.48$ and $t\ge0.52$, and that $k(0)\in K^{\{1\}}$ and $k(1)\in K^{\{2\}}$; so (ii) holds at every point of the edge. The coherent model meeting the bounds can be taken to be $k(0.48)$ on the first segment and $k(0.52)$ on the second, so it jumps at the corner.
 
-These bounds are not of the form in Lemma~\ref{lem:bayesbounds}, and no lower semicontinuous bounds of that form exist on this edge. The coherent Bayes models for probabilities on $\{1,2\}$ are $k(0)$, $k(1)$, and, for $(\tfrac12,\tfrac12)$, the $k(t)$ with $b(t)=0$. So bounds of that form have $(Q(p)(1),Q(p)(2))$ in $\{Q(p)(1)\le0.48,\ Q(p)(2)\ge0.52\}$ or in $\{Q(p)(2)\le0.48,\ Q(p)(1)\ge0.52\}$. By lower semicontinuity the sets of $p$ with $Q(p)(1)\le0.48$ and with $Q(p)(2)\le0.48$ are closed. They are disjoint, cover the edge, and contain $\delta_1$ and $\delta_2$ respectively, which is impossible because the edge is connected. So Lemma~\ref{lem:bayesbounds} is a convenient sufficient check, not a characterisation.
+These bounds are not of the form in Lemma~\ref{lem:bayesbounds}, and no bounds of that form \textcolor{red}{satisfying (B)} exist on this edge. The coherent Bayes models for probabilities on $\{1,2\}$ are $k(0)$, $k(1)$, and, for $(\tfrac12,\tfrac12)$, the $k(t)$ with $b(t)=0$. So bounds of that form have $(Q(p)(1),Q(p)(2))$ in $\{Q(p)(1)\le0.48,\ Q(p)(2)\ge0.52\}$ or in $\{Q(p)(2)\le0.48,\ Q(p)(1)\ge0.52\}$. By \textcolor{red}{(B), applied with the models of profiles $k(0.48)$ and $k(0.52)$,} the sets of $p$ with $Q(p)(1)\le0.48$ and with $Q(p)(2)\le0.48$ are closed. They are disjoint, cover the edge, and contain $\delta_1$ and $\delta_2$ respectively, which is impossible because the edge is connected. So Lemma~\ref{lem:bayesbounds} is a convenient sufficient check, not a characterisation.
 \end{remark}
 
 \section{A countable example with nonclosed profiles}\label{sec:countable}
@@ -736,7 +827,7 @@ The counterexample satisfies even the stronger requirement that excludes all tie
 \section{Further details on strict dominance}\label{sec:strictproof}
 \subsection{\textcolor{red}{Strict dominance when $V$ is upper semicontinuous}}
 \begin{proposition}\label{prop:strict-general}
-\textcolor{red}{Let $\Omega$ be finite and assume (LA), (I) and (S$_\infty$) with selection maps that make Bayes choices. Suppose that $V$ is upper semicontinuous on $\Delta$. This holds if the models in $\C_L$ have finite loss profiles, and also if $V$ is finite, each $c_p$ is Bayes for $p$, and each $p\mapsto L(c_p,\omega)$ is continuous. Then the conclusions of Corollary~\ref{cor:strict} hold.}
+\textcolor{red}{Let $\Omega$ be finite and assume (LA), (I) with lower semicontinuous losses and (S$_\infty$) with selection maps that make Bayes choices. Suppose that $V$ is upper semicontinuous on $\Delta$. This holds if the models in $\C_L$ have finite loss profiles, and also if $V$ is finite, each $c_p$ is Bayes for $p$, and each $p\mapsto L(c_p,\omega)$ is continuous. Then the conclusions of Corollary~\ref{cor:strict} hold.}
 \end{proposition}
 \begin{proof}
 If $c$ strictly dominates $m$, then $L(c)$ is finite, and $c$ has smaller $\pi$-expected loss than $m$ for every prior $\pi$; so $m$ is a Bayes model for no prior. By the first paragraph of the proof of Theorem~\ref{thm:kkm}, every model is weakly dominated by a chosen model, so $V(\pi)=\inf_p\sum_\omega\pi_\omega L(c_p,\omega)$. When the chosen models have finite losses, this is an infimum of continuous functions of $\pi$, and so $V$ is upper semicontinuous. In the second case, let $p\in\Delta$ and $\varepsilon>0$. For interior $q$, $V(q)$ is finite, so $L(c_q)$ is finite and $\pi\mapsto\sum_\omega\pi_\omega L(c_q,\omega)$ is continuous. As interior $q$ tend to $p$, $\sum_\omega p_\omega L(c_q,\omega)\to\sum_\omega p_\omega L(c_p,\omega)=V(p)$, since the losses of $c_p$ on $\supp p$ are finite. So some interior $q$ has $\sum_\omega\pi_\omega L(c_q,\omega)<V(p)+\varepsilon$ for all $\pi$ near $p$, and then $V(\pi)<V(p)+\varepsilon$ there.
@@ -746,15 +837,38 @@ Conversely, let $m$ be a Bayes model for no prior. Then $V$ is finite, since $V(
 \subsection{Finite event forecasts}\label{sec:forecasts}
 \emph{Forecasts of finitely many events.} Predd et al.~\cite[Theorem~1]{Predd} fix a nonempty set $\Omega$, events $E_1,\dots,E_n$, and a continuous map $s:\{0,1\}\times[0,1]\to[0,\infty]$ that is strictly proper: for every $t\in[0,1]$, the function $G_t(y)=ts(1,y)+(1-t)s(0,y)$ has the unique minimiser $y=t$. The models are the forecasts $f\in[0,1]^n$, with loss $L(f,\omega)=\sum_is(\one_{E_i}(\omega),f_i)$, and a forecast is coherent if it is $(\pi(E_1),\dots,\pi(E_n))$ for some probability $\pi$. Their theorem says that no forecast other than a coherent $f$ weakly dominates $f$, and that every incoherent forecast is strictly dominated by a coherent one. This is a special case of the results above. The loss depends on $\omega$ only through $\tau(\omega)=(\one_{E_i}(\omega))_i$, so profiles on $\Omega$ and on the finite set $\tau(\Omega)$ determine each other, and we may replace $\Omega$ by $\tau(\Omega)$. (Alternatively, \textcolor{red}{(I)} and (S$_\infty$) hold on $\Omega$ itself, with $\Theta=\Delta_{\tau(\Omega)}$ and $\sigma_F(p)$ the image of $p$ under $\tau$.) For $p\in\Delta_{\tau(\Omega)}$ put $p(E_i)=\sum_{v:v_i=1}p_v$; the coherent forecasts are the $c_p=(p(E_1),\dots,p(E_n))$. With $0\cdot\infty=0$, the $p$-expected loss of $f$ is $\sum_iG_{p(E_i)}(f_i)$. Each $G_t$ has a finite minimum, since otherwise $G_t\equiv\infty$ would have many minimisers. So $V$ is finite, and $c_p$ is the only Bayes model for $p$. Hence a forecast weakly dominating $c_p$ is a Bayes model for $p$, and so equals $c_p$; in particular $\C_L=\C$ and (LA) holds. Continuity of $s$ makes $p\mapsto L(c_p,\omega)$ continuous, so $p\mapsto c_p$ is a \textcolor{red}{selection map that makes Bayes choices and satisfies} (S), and no incoherent forecast is a Bayes model for any prior. So \textcolor{red}{Proposition~\ref{prop:strict-general}}, in its second case, applies: every incoherent forecast is uniformly dominated by a coherent one.
 
+\textcolor{red}{The same argument covers a different scoring rule $s_i$ for each event, provided each is continuous and proper with $s_i(0,y)<\infty$ for $y<1$ and $s_i(1,y)<\infty$ for $y>0$. Subtracting $s_i(0,0)$ or $s_i(1,1)$, according to whether $E_i$ fails or holds, changes each $L(\cdot,\omega)$ by a constant, so we may assume $s_i(0,0)=s_i(1,1)=0$. Then each $G^i_t(y):=ts_i(1,y)+(1-t)s_i(0,y)$ has a finite minimum at $y=t$, so $V$ is finite and $c_p$ is a Bayes model for $p$. If $s_i$ is merely proper, $c_p$ need not be the only one. But if $y\ne t$ also minimises $G^i_t$, then $s_i(0,\cdot)$ and $s_i(1,\cdot)$ are constant on the closed interval between $t$ and $y$~\cite[Lemma~5]{SSK09}. So a forecast $f$ with $L(f)\le L(c_p)$, being a Bayes model for $p$, has $L(f)=L(c_p)$. Hence $\C_L=\C$ and (LA) holds, although (C) may fail. Corollary~\ref{cor:infinite} then gives $U_R=K$, and Proposition~\ref{prop:strict-general} shows that every forecast that is a Bayes model for no prior is uniformly dominated by a coherent forecast. This is \cite[Theorem~2, Conclusion~3]{SSK09} for unconditional forecasts.}
+
 
 \subsection{A direct proof when the index is the Bayes prior}\label{sec:direct}
 \begin{remark}[A direct argument]\label{rem:direct}
-Let $\Omega$ be finite and the losses finite, and suppose each chosen model $c_p$ is a Bayes model for $p$ itself. Then the uniform dominance in Corollary~\ref{cor:strict}, with margin $\min_\Delta D$, and the first claim of Theorem~\ref{thm:kkm}, also follow without Lemma~\ref{lem:kkm}. Let $D(\pi)\textcolor{red}{:=}\sum_\omega\pi_\omega L(m,\omega)-V(\pi)$, which is finite, and lower semicontinuous on $\Delta$ because $V$ is upper semicontinuous (proof of Corollary~\ref{cor:strict}), and let $p^*$ minimise it. For a world $w$ and $0<\lambda\le1$ put $p_\lambda=(1-\lambda)p^*+\lambda\delta_w$. Since $V(p_\lambda)=\sum_\omega(p_\lambda)_\omega L(c_{p_\lambda},\omega)\ge(1-\lambda)V(p^*)+\lambda L(c_{p_\lambda},w)$,
+Let $\Omega$ be finite and the losses finite, and suppose each chosen model $c_p$ is a Bayes model for $p$ itself\textcolor{red}{, with each $p\mapsto L(c_p,\omega)$ lower semicontinuous}. Then the uniform dominance in Corollary~\ref{cor:strict}, with margin $\min_\Delta D$, and the first claim of Theorem~\ref{thm:kkm}, also follow without Lemma~\ref{lem:kkm}. Let $D(\pi)\textcolor{red}{:=}\sum_\omega\pi_\omega L(m,\omega)-V(\pi)$, which is finite, and lower semicontinuous on $\Delta$ because $V$ is upper semicontinuous (proof of Corollary~\ref{cor:strict}), and let $p^*$ minimise it. For a world $w$ and $0<\lambda\le1$ put $p_\lambda=(1-\lambda)p^*+\lambda\delta_w$. Since $V(p_\lambda)=\sum_\omega(p_\lambda)_\omega L(c_{p_\lambda},\omega)\ge(1-\lambda)V(p^*)+\lambda L(c_{p_\lambda},w)$,
 \[
  D(p^*)\le D(p_\lambda)\le(1-\lambda)D(p^*)+\lambda\bigl(L(m,w)-L(c_{p_\lambda},w)\bigr).
 \]
 So $L(c_{p_\lambda},w)\le L(m,w)-D(p^*)$, and letting $\lambda\downarrow0$, lower semicontinuity gives $L(c_{p^*},w)\le L(m,w)-D(p^*)$ at every world $w$. This is, in essence, the argument of Nielsen's proof of his Theorem~1~\cite[Appendix~C]{Nielsen}. This direct argument does not cover cases where the chosen models are Bayes models for other priors, as in Section~\ref{sec:conditional}, or are only required not to be strictly dominated on the support of the index, as in Section~\ref{sec:scope} and Proposition~\ref{prop:joyce-sub}; and, for infinitely many worlds, when $D$ is not known to be lower semicontinuous on a compact space of priors (Section~\ref{sec:nielsen}).
 \end{remark}
+
+\subsection{\textcolor{red}{Comparison with Schervish, Seidenfeld and Kadane}}\label{sec:ssk}
+\textcolor{red}{Schervish, Seidenfeld and Kadane~\cite{SSK09} give examples showing that each of their assumptions on scoring rules is needed. Their weak dominance is our dominance, and with finitely many constituents their strict dominance is our uniform dominance. Three of their examples bear directly on the results here.}
+\begin{example}\label{ex:ssk-sharp}
+\textcolor{red}{This is \cite[Example~2]{SSK09}. Let $\Omega=\{1,2\}$ and $\M_L=[0,1]^2$, and for $f=(f_1,f_2)$ put}
+\[
+ L(f,1):=(1-f_1)^2+g_0(f_2),\qquad L(f,2):=f_1^2+g_1(f_2),
+\]
+\textcolor{red}{where $g_0(0):=0$, $g_0(y):=1+y$ for $y>0$, $g_1(y):=y-\log y$ for $y>0$, and $g_1(0):=\infty$. So $f_1$ forecasts the event $\{1\}$ under Brier score, and $f_2$ forecasts $\{2\}$ under a strictly proper score whose $g_0$ jumps at its minimum. Let $\C:=\{(t,1-t):0\le t\le1\}$ and $c_p:=(p_1,p_2)$ for $p\in\Delta$. Then (LA), (C) and (S) hold, with a selection map that makes Bayes choices, so Corollary~\ref{cor:infinite} applies. The model $m:=(\tfrac12,0)$ is a Bayes model for no $p\in\Delta$. It is dominated by the coherent model $(1,0)$, but no model strictly dominates it.}
+\end{example}
+\textcolor{red}{For $p\in\Delta$, the $p$-expected loss of $f$ is $p_1(1-f_1)^2+p_2f_1^2$ plus $p_1g_0(f_2)+p_2g_1(f_2)$. The first term has the unique minimiser $f_1=p_1$. If $p_2=0$, the second is $g_0(f_2)$, with unique minimiser $f_2=0$. If $p_2>0$, it is $\infty$ at $f_2=0$ and equals $p_1(1+f_2)+p_2(f_2-\log f_2)$ for $f_2>0$, whose derivative is $1-p_2/f_2$; so its unique minimiser is $f_2=p_2$. Hence $c_p$ is the unique Bayes model for $p$, and}
+\[
+ V(p)=p_1p_2+1-p_2\log p_2\quad(p_2>0),\qquad V(\delta_1)=0.
+\]
+\textcolor{red}{Since $V$ is finite, any model $f$ with $L(f)\le L(c_p)$ is a Bayes model for $p$, so $f=c_p$. This gives $\C_L=\C$ and (C). The maps $p\mapsto L(c_p,1)=p_2^2+g_0(p_2)$ and $p\mapsto L(c_p,2)=p_1^2+g_1(p_2)$ are lower semicontinuous, because $g_0$ only jumps up away from $0$ and $g_1$ is continuous as a map into $[0,\infty]$. So (S) holds by Lemma~\ref{lem:bayes-choice}. Next, $L(m)=(\tfrac14,\infty)$. So $p\cdot L(m)=\infty>V(p)$ if $p_2>0$, and $\delta_1\cdot L(m)=\tfrac14>0=V(\delta_1)$; thus $m$ is a Bayes model for no $p$. The coherent model $(1,0)$ has profile $(0,\infty)$ and dominates $m$. If $L(f,1)<\tfrac14$, then $g_0(f_2)<\tfrac14$, so $f_2=0$ and $L(f,2)=\infty=L(m,2)$. Hence no model strictly dominates $m$.}
+
+\textcolor{red}{So the equivalence in Corollary~\ref{cor:strict} fails here, although every hypothesis of Corollary~\ref{cor:infinite} holds with selection maps that make Bayes choices. The coherent model $(1,0)$ has infinite loss at world~$2$, so Corollary~\ref{cor:strict} does not apply. And $V$ is not upper semicontinuous at $\delta_1$, since $V(p)\to1>0=V(\delta_1)$ as $p\to\delta_1$ with $p_2>0$, so Proposition~\ref{prop:strict-general} does not apply either.}
+
+\textcolor{red}{Their Example~1 scores forecasts of events $A_1\subset A_2$ by Brier score and by $(g_0(y),g_1(y))=(\log y,\log y+1/y)$, which is unbounded below~\cite[Example~1]{SSK09}. The incoherent forecast $(1,0)$ is not dominated. On the constituents $A_1$, $A_2\setminus A_1$ and $A_2^c$ its total scores are $(\infty,\infty,-\infty)$, which are also the total scores of the coherent forecast $(0,0)$. Applying $t\mapsto e^t$ at each world gives a loss with values in $[0,\infty]$ and the same dominance relation, as in Proposition~\ref{prop:ordinal}. For that loss, (LA) and (S) hold with $c_p:=(p(A_1),p(A_2))$, so Corollary~\ref{cor:infinite} applies. The example is a failure of (C), not of the dominance theorem.}
+
+\textcolor{red}{Their Example~7 uses Brier score on five events and exhibits two incoherent finite subcollections that no single coherent forecast dominates at once~\cite[Example~7]{SSK09}. In our terms each subcollection's total score is a separate loss, and the dominating coherent model depends on the loss, as the dominance principle (D) in Section~\ref{sec:argument} allows. Section~\ref{sec:conditional} discusses their treatment of conditional forecasts, and Appendix~\ref{sec:forecasts} recovers their main non-randomised theorem for unconditional forecasts.}
 \begin{thebibliography}{99}
 \bibitem{Joyce} J.~M. Joyce. Accuracy and coherence: prospects for an alethic epistemology of partial belief. In F. Huber and C. Schmidt-Petri (eds.), \emph{Degrees of Belief}, Synthese Library 342, Springer, 2009, 263--297.
 \bibitem{Kelley} M. Kelley. On accuracy and coherence with infinite opinion sets. \emph{Philos. Sci.} 90 (2023) 92--128.

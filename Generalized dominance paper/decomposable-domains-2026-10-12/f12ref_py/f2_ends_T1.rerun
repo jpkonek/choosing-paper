@@ -1,0 +1,13 @@
+(1) unit gambles of U within margin 2e-3 of dU, by sign class: count, T1 accepts, T1 world-1-correct
+    (-1, -1, 1): n=   667  accept=0.000  world-1-correct=1.000
+    (-1, 1, -1): n=   683  accept=0.000  world-1-correct=1.000
+    (-1, 1, 1): n=  1429  accept=0.000  world-1-correct=1.000
+    (1, -1, -1): n=   674  accept=0.000  world-1-correct=0.000
+    (1, -1, 1): n=  1523  accept=0.000  world-1-correct=0.000
+    (1, 1, -1): n=  1442  accept=0.000  world-1-correct=0.000
+(2) R12 unit gambles with P_2-margin < 1e-3: 1790; near dU: 0.577, near h2=0: 0.425, either: 1.000
+    (-1,0,b) in U for b in [2.15,30.00] (kappa=2.286); T1 accepts iff b > kappa
+    (1,0,-b) in U for b in [0.05,0.45]
+    T1 world-1-correct on S_m (m=4..8): [False, False, True, True, True]
+(3) heavy reweighting at the dU end keeps B_u = T1: True  ties: 0
+    heavy-shadow Bayes models accept (world-1 error) 0 of 462558 end samples at depth beyond 1/t1 (must be 0)

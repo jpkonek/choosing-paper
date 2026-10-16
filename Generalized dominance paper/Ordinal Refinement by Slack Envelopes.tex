@@ -1,0 +1,392 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\F}{\mathcal F}
+\title{An Ordinal Refinement by a Slack Envelope}
+\author{}
+\date{7 October 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note proves a simultaneous refinement of the basic level extension in
+\emph{Loss Relations from Credal Families}. The refinement respects strict
+background inclusion and has closed competitive choice. It uses incomparability,
+not a real-valued loss. Only continuity of the family is needed; neither a
+Lipschitz bound, a domination bound on upper probabilities, nor a quantitative
+estimate on error measures is required. The structural compatibility of covers
+is still an assumption. The refinement theorem by itself therefore leaves open
+the existence of suitable families through every credal set in every dimension.
+
+The unrestricted refinement lemma based only on background inclusion,
+admissibility, competitiveness and closed sections is false; a counterexample
+appears at the end. The positive result below exploits the additional slack
+structure of the basic level extension. The companion note
+\emph{Full Coverage by Homothetic Credal Families} (8 October 2026) now
+constructs families satisfying the assumptions below through every credal set,
+including all vertex-containing targets, and thereby supplies full (A).
+
+\section{Assumptions and the basic extension}
+
+Fix $n\ge2$, the simplex $\Delta\subset\R^n$, and a finite probability measure
+$\mu$ with the same null sets as Lebesgue measure (for example the standard
+Gaussian). Models are all Lebesgue-measurable subsets of $\R^n$. Put
+$G_i=\{g:g_i>0\}$ and $E_i(X)=X\sd G_i$. Write
+\[
+ X\le_iY\quad\Longleftrightarrow\quad
+ E_i(X)\subseteq E_i(Y)\text{ a.e.},
+ \qquad X\approx Y\quad\Longleftrightarrow\quad\mu(X\sd Y)=0.
+\]
+The strict part of $\le_i$ is $<_i$. Thus $X<_iY$ means a positive-measure
+reduction of errors.
+
+Let $p\mapsto K_p$ be a family of nonempty closed convex subsets of $\Delta$,
+and let
+\[
+ D_p=\{g:\min_{m\in K_p}m\cdot g>0\}\cup\{g:g\ge0,\ g\ne0\}.
+\]
+Assume:
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=*]
+\item \emph{Face support:} $K_p\subseteq\Delta_{\supp p}$.
+\item \emph{Continuity:} $\mu(D_p\sd D_q)\to0$ as $q\to p$.
+\item \emph{Compatibility of covers:} for every model $X$, $i\ne j$, and
+indices $p,q$,
+\[
+ X\le_iD_p,\quad X\le_jD_q\quad\Longrightarrow\quad p_i\le q_i.
+ \tag{CC}\label{eq:cc}
+\]
+\end{enumerate}
+Condition (CC) follows from (U) in the credal-family note. It also follows from
+the proposed two-sided (U$^*$): the common-cover gluing argument supplies
+$\overline U_p(i)\le\overline U_q(i)$ and
+$\overline U_q(j)\le\overline U_p(j)$, and (U$^*$) yields $p_i\le q_i$.
+Hausdorff continuity of $K_p$ implies condition (2): the lower expectations
+converge pointwise, their zero sets are null, and dominated convergence applies
+to acceptance indicators.
+
+Define
+\[
+ \Pc_i(X)=\{p:X\le_iD_p\},\qquad
+ T(X)=\{i:\Pc_i(X)\ne\varnothing\}.
+\]
+The sets $\Pc_i(X)$ are closed: the function
+$p\mapsto\mu(E_i(X)\setminus E_i(D_p))$ is continuous by (2).
+For $i\in T(X)$ put
+\[
+ a_i(X)=\max_{p\in\Pc_i(X)}p_i.
+\]
+Two extensions of this notation will be useful. Set
+\[
+ \bar a_i(X)=\begin{cases}a_i(X)&i\in T(X),\\0&i\notin T(X),\end{cases}
+ \qquad
+ \alpha_i(X)=\begin{cases}a_i(X)&i\in T(X),\\-1&i\notin T(X).\end{cases}
+\]
+The first is used for budgets, the second for comparisons. Let
+\[
+ s(X)=1-\sum_i\bar a_i(X),\qquad
+ \F=\{X:X\approx D_p\text{ for some }p\in\Delta\}.
+\]
+Under these assumptions the basic extension with level orders is precisely
+\[
+ X\preceq_i^*Y\quad\Longleftrightarrow\quad
+ \alpha_i(X)\ge\alpha_i(Y).
+ \tag{*}\label{eq:basicorder}
+\]
+Indeed, a nonempty cover set has an attained maximum $i$th coordinate, so its
+upward closure in the level order is determined by that maximum. Empty cover
+sets give the common bottom level $-1$.
+
+\section{Compactness at zero slack}
+
+\begin{lemma}\label{lem:elementary}
+The following hold.
+\begin{enumerate}[label=(\alph*)]
+\item $X\le_iY$ and $i\in T(Y)$ imply $i\in T(X)$ and
+$a_i(X)\ge a_i(Y)$.
+\item $a_i(D_p)=p_i$ for every $p,i$.
+\item If $D_p\le_iD_q$ and $p_i=q_i$, then $p=q$.
+\item $s(X)\ge0$, and $s(X)=0$ if and only if $X\in\F$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Cover sets are nested. For (b), $p$ is itself a cover, while any
+$q\in\Pc_i(D_p)$ can be paired with $p\in\Pc_j(D_p)$ for $j\ne i$ in (CC),
+giving $q_i\le p_i$. For (c), for each $j\ne i$ apply (CC) to
+$p\in\Pc_j(D_p)$ and $q\in\Pc_i(D_p)$ to obtain $p_j\le q_j$.
+Equality at $i$ and equal coordinate sums force $p=q$.
+
+For (d), suppose $T=T(X)\ne\varnothing$, and choose maximizing covers
+$p^j\in\Pc_j(X)$, $j\in T$. For $k\in T$, (CC) gives
+$p^j_k\ge p^k_k=\bar a_k(X)$, with equality when $k=j$; for $k\notin T$ the
+same inequality follows from nonnegativity. Hence
+\[
+ p^j\ge\bar a(X),\qquad
+ \|p^j-\bar a(X)\|_1=1-\sum_k\bar a_k(X)=s(X)\ge0.
+ \tag{1}\label{eq:distance}
+\]
+If $s(X)=0$, every maximizing cover equals $p=\bar a(X)\in\Delta$, and
+$\supp p\subseteq T$. Thus $X\le_iD_p$ for every $i\in\supp p$.
+Face support implies $X\approx D_p$: an added gamble would have to be positive
+at every world in $\supp p$, and hence already accepted by $D_p$; a removed
+gamble would have to be nonpositive at every such world, and hence not accepted
+by $D_p$, apart from a null set on coordinate hyperplanes.
+Conversely $X\approx D_p$ gives $s(X)=0$ by (b). If $T$ is empty, $s(X)=1$.
+\end{proof}
+
+\begin{lemma}[Stability at zero slack]\label{lem:stability}
+If $s(X_k)\to0$, then some subsequence admits $p\in\Delta$ such that
+\[
+ \bar a(X_k)\longrightarrow p,
+ \qquad \mu(X_k\sd D_p)\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+Pass to a subsequence with the nonempty set $T(X_k)=T$ fixed and
+$\bar a(X_k)\to p$. The coordinate sums tend to one, so $p\in\Delta_T$.
+For $j\in T$ choose maximizing covers $p^{j,k}$. Equation
+\eqref{eq:distance} gives $p^{j,k}\to p$, and (2) gives
+$\mu(D_{p^{j,k}}\sd D_p)\to0$.
+
+Up to a null set, if $X_k$ differs from $D_p$ at a gamble $g$, some
+$j\in T$ regards that difference as an extra error relative to $D_p$.
+Indeed, if $g\in X_k\setminus D_p$, then $g_j\le0$ for some $j\in T$,
+since all-positive payoffs on $T$ force acceptance by $D_p$. If
+$g\in D_p\setminus X_k$, then $g_j>0$ for some $j\in T$, since otherwise
+face support forces rejection by $D_p$, except on coordinate hyperplanes.
+As $X_k\le_jD_{p^{j,k}}$, the corresponding covering model must differ from
+$D_p$ at $g$. Therefore
+\[
+ \mu(X_k\sd D_p)
+ \le\sum_{j\in T}\mu(D_{p^{j,k}}\sd D_p)\longrightarrow0.
+\]
+\end{proof}
+
+\section{The envelope}
+
+For $i\in T(X)$ define
+\[
+ b_i(X)=\inf_{Y\le_iX}
+       \left(a_i(Y)+\frac{s(Y)}{2n}\right).
+ \tag{2}\label{eq:envelope}
+\]
+Every $Y$ in this infimum is covered at $i$ by Lemma~\ref{lem:elementary}(a).
+The infimum is over a nonempty set, since it includes $Y=X$.
+
+\begin{lemma}[Positive monotone reserve]\label{lem:envelope}
+For covered models:
+\begin{enumerate}[label=(\alph*)]
+\item $a_i(X)\le b_i(X)\le a_i(X)+s(X)/(2n)$;
+\item $X\le_iY$ implies $b_i(X)\ge b_i(Y)$ whenever $Y$ is covered at $i$;
+\item $b_i(X)=a_i(X)$ if and only if $X\in\F$.
+\end{enumerate}
+In particular,
+\[
+ \sum_{i\in T(X)}b_i(X)\le1-\frac{s(X)}2.
+ \tag{3}\label{eq:newbudget}
+\]
+\end{lemma}
+\begin{proof}
+(a) Every term in the infimum is at least $a_i(X)$ by monotonicity of $a_i$;
+the term $Y=X$ gives the upper bound. For (b), the background lower set of
+$X$ is contained in that of $Y$, so its infimum is no smaller.
+
+If $X\in\F$, (a) and $s(X)=0$ give equality. Conversely suppose
+$b_i(X)=a_i(X)$, and choose $Y_k\le_iX$ with
+\[
+ a_i(Y_k)+\frac{s(Y_k)}{2n}\longrightarrow a_i(X).
+\]
+Since $a_i(Y_k)\ge a_i(X)$ and $s(Y_k)\ge0$, we have
+$a_i(Y_k)\to a_i(X)$ and $s(Y_k)\to0$. Lemma~\ref{lem:stability} gives,
+along a subsequence, $Y_k\to D_p$ in symmetric-difference measure, with
+$p_i=a_i(X)$. Passing to the limit in $Y_k\le_iX$ gives $D_p\le_iX$.
+Choose a maximizing cover $q\in\Pc_i(X)$, so $q_i=a_i(X)=p_i$. Then
+\[
+ D_p\le_iX\le_iD_q.
+\]
+Lemma~\ref{lem:elementary}(c) gives $p=q$, and the displayed sandwich gives
+$X\approx D_p$. This proves (c).
+
+Finally sum (a):
+$\sum_{i\in T(X)}b_i(X)\le1-s(X)+|T(X)|s(X)/(2n)\le1-s(X)/2$.
+\end{proof}
+
+\paragraph{Why this addresses the induction problem.}
+The lift at $X$ is
+\[
+ b_i(X)-a_i(X)
+ =\inf_{Y\le_iX}\left(a_i(Y)-a_i(X)+\frac{s(Y)}{2n}\right).
+\]
+Thus it accounts simultaneously for the gap to every background improvement
+$Y$ and for that model's reserve. The infimum could a priori be zero.
+Lemma~\ref{lem:envelope} proves it is positive for every covered nonfamily
+model. The proof is qualitative compactness, not a uniform numerical lower
+bound on all lifts. There is no accumulation of successive expenditures:
+all reserves are defined at once, with the common bound \eqref{eq:newbudget}.
+
+\section{The partial ranking}
+
+Put
+\[
+ v_i(X)=
+ \begin{cases}(a_i(X),b_i(X))&i\in T(X),\\(-1,-1)&i\notin T(X).
+ \end{cases}
+\]
+Larger endpoints mean better performance. Define $X\preceq_iY$ when
+$v_i(X)\ge v_i(Y)$ coordinatewise and at least one of the following holds:
+\begin{enumerate}[label=(\roman*)]
+\item $v_i(X)\ne v_i(Y)$;
+\item the common value is $(t,t)$ for some $t\ge0$;
+\item $X\le_iY$.
+\end{enumerate}
+Thus different endpoint pairs are compared by the product order. Within an
+equal-pair class, retain background inclusion, except that all models at a
+nonnegative degenerate pair tie. By Lemma~\ref{lem:envelope}, those exceptional
+classes consist entirely of family models modulo null sets.
+
+\begin{theorem}\label{thm:refinement}
+Under assumptions (1)--(3), these relations are preorders and form a
+subrelation of the basic extension \eqref{eq:basicorder}. They satisfy:
+\begin{enumerate}[label=(\alph*)]
+\item $X\le_iY\Rightarrow X\preceq_iY$, and
+$X<_iY\Rightarrow X\prec_iY$;
+\item for every $q$, $D_q$ is competitive on $\supp q$;
+\item every set $\{q:D_q\preceq_iX\}$ is closed;
+\item if $X\preceq_iD_q$ for every $i$, then $X\approx D_q$;
+\item every $X\notin\F$ is strictly dominated at every world by some $D_q$.
+\end{enumerate}
+Consequently (E), (LA), (S), and (C) hold, with all measurable models
+evaluable and coherence understood modulo null sets. The undominated models
+are exactly $\F$. The construction does not assert family-wide (A) unless
+the families under consideration collectively contain every intended coherent
+model modulo null sets.
+\end{theorem}
+\begin{proof}
+Reflexivity is immediate. For transitivity, endpoint pairs decrease
+coordinatewise along a chain. If the first and last pairs differ, clause (i)
+applies. If they agree, all pairs agree; the comparison inside that class is
+either universal or background inclusion, both transitive. The first endpoint
+is $\alpha_i$, so the new relation is a subrelation of \eqref{eq:basicorder}.
+
+(a) Both endpoints are background-monotone, including transitions from a
+covered model to an uncovered one. A background comparison with equal endpoint
+pairs is retained by (iii). If the background comparison is strict, unequal
+pairs exclude its reverse. With equal pairs, the only possible exception would
+be clause (ii). But then $X\approx D_p$, $Y\approx D_q$, and $p_i=q_i$.
+Background inclusion gives $D_p\le_iD_q$, whence $p=q$ by
+Lemma~\ref{lem:elementary}(c). Thus $X\approx Y$, contradicting strictness.
+In all other equal-pair classes the strict background comparison remains strict.
+
+For (b) and (c), the exact selected-model comparisons are
+\[
+ D_q\preceq_iX\quad\Longleftrightarrow\quad
+ \begin{cases}q_i\ge b_i(X)&i\in T(X),\\\text{always}&i\notin T(X),\end{cases}
+ \tag{4}\label{eq:outgoing}
+\]
+and
+\[
+ X\preceq_iD_q\quad\Longleftrightarrow\quad
+ i\in T(X)\ \text{and}\ a_i(X)\ge q_i.
+ \tag{5}\label{eq:incoming}
+\]
+Indeed $v_i(D_q)=(q_i,q_i)$. If $X\notin\F$ is covered, its endpoints are
+strictly separated, so at either threshold the product comparison is strict
+in one endpoint. If $X\in\F$, equal endpoints tie by (ii).
+
+If some $i\in\supp q$ is uncovered, competitiveness is immediate. Otherwise,
+if $q_i<b_i(X)$ held for every $i\in\supp q$, then
+$1=\sum_{i\in\supp q}q_i<\sum_{i\in\supp q}b_i(X)\le1$, a contradiction
+to \eqref{eq:newbudget}. Equation~\eqref{eq:outgoing} also proves closedness.
+
+(d) Equation~\eqref{eq:incoming} gives $T(X)=[n]$ and $a_i(X)\ge q_i$
+for all $i$. The budget forces equality at every coordinate and $s(X)=0$.
+The proof of Lemma~\ref{lem:elementary}(d) then yields $X\approx D_q$.
+
+(e) Put $\beta_i=b_i(X)$ for $i\in T(X)$ and $\beta_i=0$ otherwise.
+Since $X\notin\F$, $s(X)>0$, and \eqref{eq:newbudget} gives
+$\sum_i\beta_i<1$. Let
+\[
+ q=\beta+\frac{1-\sum_i\beta_i}{n}\one.
+\]
+For a covered world $q_i>b_i(X)\ge a_i(X)$, and for an uncovered world the
+family endpoint pair is strictly above $(-1,-1)$. In either case
+$D_q\prec_iX$.
+
+Finally, all null modifications of a family model have its profile. Part (d)
+rules out domination of family models, while (e) rules out every other
+undominated model. All family models are coherent. These observations establish
+the stated axioms and characterize the undominated models.
+\end{proof}
+
+\begin{remark}[Where incomparability does the work]
+Let $X\notin\F$ be covered at $i$, with endpoints $a_i(X)<b_i(X)$.
+For every family index $r$ with
+\[
+ a_i(X)<r_i<b_i(X),
+\]
+$D_r$ and $X$ are incomparable at $i$. At $r_i=a_i(X)$, $X$ is strictly
+better; at $r_i=b_i(X)$, $D_r$ is strictly better. Thus the comparison section
+is the closed set $\{r:r_i\ge b_i(X)\}$.
+The refinement deletes some strict comparisons of $\preceq^*$ without reversing
+them. It therefore lies outside the hypothesis of the note's no-selection
+proposition, which requires preservation of every strict comparison of
+$\preceq^*$. Endpoint pairs are not real-valued losses: the resulting preorder
+has genuine incomparabilities.
+\end{remark}
+
+\section{Why the unrestricted refinement lemma is false}
+
+\begin{proposition}\label{prop:counterexample}
+Background inclusion, undominated selected coherent models, competitiveness,
+and closed comparison sections do not alone guarantee that a strict background
+improvement can be made strict by passing to a subrelation while preserving
+the same closed competitive choice.
+\end{proposition}
+\begin{proof}
+Take two worlds, all measurable models, the unit ball $B\subset\R^2$, and
+the precise family
+\[
+ D_p=\{g:p\cdot g>0\}\cup\{g:g\ge0,\ g\ne0\}.
+\]
+For this counterexample only, let the initial rankings be generated by
+\[
+ L_i(X)=\int_B |g_i|\,1_{X\sd G_i}(g)\,dg.
+\]
+They respect weak background inclusion. For each prior $p$, the unique Bayes
+acceptance region inside $B$, modulo null sets, is $D_p\cap B$, since the
+expected advantage of acceptance is $p\cdot g$ and its zero set is null.
+Therefore $D_p$ is undominated, is competitive on $\supp p$, and has losses
+continuous in $p$. Distinct indices give distinct acceptance regions inside
+$B$, and no family member weakly dominates a different family member.
+
+Fix $q=(1/2,1/2)$ and a nonempty open set
+$A\subset B^c\cap G_1\cap\{g:q\cdot g<0\}$. Let $X=D_q\cup A$.
+Then $X<_1D_q$, but $L(X)=L(D_q)$.
+
+Suppose a subrelation retained preorders and closed competitiveness for the
+same family while removing $D_q\preceq_1X$. The KKM argument applied to $X$
+would give some $p$ with $D_p\preceq_iX$ at both worlds. Since these are
+subrelations of the original rankings, $L(D_p)\le L(X)=L(D_q)$, forcing
+$p=q$. But this requires the removed comparison $D_q\preceq_1X$, a
+contradiction.
+\end{proof}
+
+This obstruction is absent from the positive theorem: zero slack identifies
+the family itself modulo null sets, and Lemma~\ref{lem:stability} controls
+sequences approaching zero slack. The positive theorem proves a successful
+simultaneous refinement of the canonical basic extension; it does not claim
+that every intermediate subrelation satisfying the weaker conditions admits
+every further refinement.
+
+\end{document}

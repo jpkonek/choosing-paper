@@ -1,0 +1,4 @@
+samples on U n {sigma1 = sigma2} (mixed): 95397
+{'pred_true': 114, 'pred_false': 286, 'agree_when_pred_true': 114, 'disagree_when_pred_false': 285}
+exact agreement with the lemma on the sample (a False here is explained by the diagnosis below): False
+undetected case: meets_edge False inside True min third coordinate of extra points 1.1090356091077403e-05

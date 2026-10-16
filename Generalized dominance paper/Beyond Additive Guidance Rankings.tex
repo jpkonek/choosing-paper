@@ -1,0 +1,520 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,booktabs}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{Beyond Additive Guidance Rankings\\[3pt]\large What incomparabilities and non-additive comparisons can achieve}
+\author{}\date{9 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This investigation gives three results. First, the obstruction in v3 extends
+to any ranking whose comparisons can be respected by an additive guidance
+loss. This rules out introducing incomparabilities by intersecting additive
+rankings, even infinitely many. Second, genuinely non-additive independent
+rankings do exist: an explicit construction satisfies every requirement
+except (S), including full coverage and the condition on ties. Third, two
+natural ways of going further---comparisons required to hold on every finite
+sample of problems, and absolute priority for avoiding bad advice---cannot
+satisfy (S).
+
+\emph{Full coverage with all the requirements, including (S), remains open.}
+The positive constructions below are partial results, not solutions to that
+remaining problem. The only theorem imported from v3 is stated explicitly
+in Section~\ref{sec:setup}; all new arguments are supplied here.
+
+\section{Setting and the result from v3}\label{sec:setup}
+
+There are $n\ge2$ worlds and $\Delta=\{p\ge0:\sum_i p_i=1\}$.
+Models are measurable acceptance sets $\Dscr\subseteq\R^n$, identified modulo
+Lebesgue-null sets. We integrate using Gaussian measure $\mu$ and count each
+binary problem once, on $H=\{g:g_1>0\}$.
+A model gives one of four recommendations at $\{g,-g\}$: accept $g$ only,
+accept neither, accept $-g$ only, or accept both. At world $i$, the correct
+recommendation is the one with positive payoff there. Coordinate hyperplanes
+are null and can be ignored. The guidance ranks are
+\[
+ r_i(g,\Dscr)=0,1,2,3
+ \quad\text{for good, silent, bad, contradictory advice, respectively.}
+\]
+The background comparison is pointwise improvement of these ranks, a.e.;
+it is strict if some improvement occurs on a positive-measure set.
+The ideal model is $D_i=\{g:g_i>0\}$.
+
+A coherent model excludes zero, contains every nonzero nonnegative gamble,
+and is closed under addition and positive scaling. Modulo null sets it is
+\[
+ \Dscr_M=\{g:\min_{m\in M}m\cdot g>0\}
+       \cup\{g\ge0:g\ne0\}
+\]
+for a nonempty compact convex $M\subseteq\Delta$.
+The vacuous model is $\Dscr_\Delta$.
+
+At world $i$, $\Dscr\preceq_i\Escr$ means that $\Dscr$ is at least as good.
+Dominance requires weak improvement everywhere and strict improvement
+somewhere. Strict dominance requires strict improvement everywhere.
+A model is competitive on $S\ne\varnothing$ if, against every model, it is
+at least as good at some world in $S$.
+
+All rankings here evaluate every measurable model, giving (E). We require:
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+\item \textbf{(G):} preserve weak and strict guidance improvements.
+\item \textbf{(IB):} changing shared advice outside any measurable collection
+of binary problems cannot change a comparison. Equivalently, for $A=-A$,
+replacing the common part on $A^c$ by any other common part preserves both
+directions of every comparison.
+\item \textbf{(LA):} at least one coherent model is undominated.
+\item \textbf{(A):} each coherent model is undominated under some ranking
+in the class under consideration.
+\item \textbf{(C):} a model tied at every world with a coherent undominated
+model is itself coherent and undominated, modulo null sets.
+\item \textbf{(S):} there is a selection $p\mapsto C_p$ of coherent
+undominated models, competitive on $\supp p$, such that
+$\{p:C_p\preceq_i\Dscr\}$ is closed for every $i,\Dscr$.
+\end{itemize}
+
+An \emph{additive guidance loss} means a finite integral
+\begin{equation}
+ L_i(\Dscr)=\int_H\ell_i(g,a_\Dscr(g))\,d\mu,
+ \qquad 0=\ell_i(\mathrm{good})<\ell_i(0)
+ <\ell_i(\mathrm{bad})<\ell_i(\times),
+ \label{eq:additive}
+\end{equation}
+with an integrable envelope. The penalties may depend on the problem and
+the world. A $p$-Bayes model minimizes $\sum_i p_iL_i$.
+We use the following result, proved in Appendix C of
+\emph{Full Coverage by Homothetic Credal Families v3}:
+\begin{quote}
+If $n\ge3$ and an additive guidance loss has a coherent $p$-Bayes model
+at every prior, no $\Dscr_M$ with three simplex vertices in $M$ is Bayes
+at any prior. Moreover, every model not strictly dominated everywhere
+by an additive loss is Bayes at some prior.
+\end{quote}
+The second assertion uses convexity of the closure of attainable loss
+vectors, obtained by splitting sets of binary problems, and a separating
+hyperplane. Neither assertion assumes uniqueness of Bayes models.
+
+\section{Why removing additive comparisons cannot suffice}
+
+The next lemma explains why (S) makes incomparabilities difficult to use.
+It requires enough comparisons to put a coherent model below every model.
+An undominated model must consequently share the comparisons of a selected
+coherent model.
+
+\begin{lemma}\label{lem:complete-class}
+For any preorders satisfying (LA) and (S):
+\begin{enumerate}[label=(\alph*)]
+\item Every model is weakly dominated at all worlds by some selected $C_p$.
+\item Every undominated model is tied at every world with some $C_p$,
+and is therefore competitive on $\supp p$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For a fixed $\Dscr$, put $A_i=\{p:C_p\preceq_i\Dscr\}$.
+These sets are closed, and each $p$ lies in an $A_i$ with $p_i>0$.
+Their intersection is nonempty. For completeness, let $d_i(p)$ be the
+distance from $p$ to $A_i$ and apply Brouwer's theorem to
+\[
+ F_i(p)=\frac{p_i+d_i(p)}{1+\sum_jd_j(p)}.
+\]
+At a fixed point, $p_i\sum_jd_j(p)=d_i(p)$. One index has both $p_i>0$
+and $d_i(p)=0$, so every distance is zero. A point of the intersection
+gives (a). If $\Dscr$ is undominated, every comparison in (a) must be a tie.
+Transitivity then transfers competitiveness from $C_p$ to $\Dscr$.
+\end{proof}
+
+Say that $L_i$ \emph{weakly respects} a ranking if
+\begin{equation}
+ \Dscr\preceq_i\Escr\quad\Longrightarrow\quad L_i(\Dscr)\le L_i(\Escr).
+ \label{eq:extension}
+\end{equation}
+Strict ordinal comparisons are allowed to become numerical ties. No
+converse implication is assumed.
+
+\begin{theorem}[Obstruction to additive weak extensions]\label{thm:extension}
+Let $n\ge3$. Suppose a ranking on all models satisfies (LA) and (S), and
+its comparisons are weakly respected by additive guidance losses at every
+world. Then every coherent target whose credal set contains three simplex
+vertices is dominated by a coherent model under the original ranking.
+In particular, the vacuous model is not undominated.
+\end{theorem}
+\begin{proof}
+Every $p$-Bayes model for $L$ has a coherent weak dominator under the original
+ranking, by Lemma~\ref{lem:complete-class}(a). By \eqref{eq:extension}, this
+dominator is also $p$-Bayes for $L$. Thus $L$ has coherent Bayes models at
+every prior.
+
+If a stated target were undominated under the original ranking,
+Lemma~\ref{lem:complete-class}(b) would make it competitive there, and hence
+competitive for $L$. It could not be strictly dominated everywhere for $L$,
+so would be $p$-Bayes for some prior. This contradicts the result from v3.
+The target is therefore dominated. Applying
+Lemma~\ref{lem:complete-class}(a) to a dominator gives a coherent dominator.
+\end{proof}
+
+The conclusion is ordinary dominance in the original ranking; we do not
+claim strict improvement at every world there. The theorem does not need
+(IB), or completeness. In particular, deleting any number of comparisons
+from an additive guidance ranking cannot solve the coverage problem while
+retaining (S). Neither can a lexicographic refinement whose first criterion
+is already an additive \emph{strict} guidance loss.
+
+\begin{corollary}[Even arbitrarily many additive criteria do not help]
+Suppose
+\[
+ \Dscr\preceq_i\Escr\quad\Longleftrightarrow\quad
+ L_i^\alpha(\Dscr)\le L_i^\alpha(\Escr)\quad\text{for every }\alpha,
+\]
+where the $L_i^\alpha$ are finite integrals with locally weakly ordered
+penalties: good $\le$ silence $\le$ bad $\le$ contradiction.
+If the combined ranking satisfies strict (G), it has an additive guidance
+weak extension. Thus it cannot satisfy (LA), (S), and leave the vacuous
+model undominated when $n\ge3$.
+\end{corollary}
+\begin{proof}
+Fix a world and one adjacent pair of guidance ranks. The nonnegative local
+penalty differences, as $\alpha$ varies, must collectively be positive on
+almost every problem. Otherwise improving that adjacent pair on a common
+positive-measure set would tie under every criterion, violating strict (G).
+
+A family of measurable sets in a finite measure space has a countable
+subfamily with the same essential union. To see this, take finite unions
+whose measures tend to the supremum of the measures of all finite unions,
+and unite the selected sets. Any further set can add only a null set.
+Apply this to the sets on which the local differences are positive, for
+each of the three adjacent rank pairs and each world.
+
+We obtain countably many criteria whose positive weighted sum has strictly
+ordered local penalties a.e. Subtract each criterion's good-advice penalty
+and choose positive coefficients small enough that the sum of their
+integrable envelopes is integrable, for example $2^{-k}/(1+\int h_kd\mu)$.
+The resulting loss has form \eqref{eq:additive}. Every comparison of the
+intersection is respected term by term, hence by this sum.
+\end{proof}
+
+\section{A genuinely non-additive partial ranking}
+
+The preceding theorem does not settle the ordinal problem. Here is an
+explicit ranking with (G), (IB), and no additive guidance weak extension.
+It even satisfies (E), (LA), full (A), and (C). Its failure is (S).
+
+Start with the finite order $Q$ on subsets of $\{1,\ldots,6\}$ in
+Appendix~\ref{app:finite}. It strictly respects inclusion and satisfies
+\begin{equation}
+ A\le_Q B\quad\Longleftrightarrow\quad A\setminus B\le_Q B\setminus A.
+ \label{eq:finite-cancellation}
+\end{equation}
+Yet it admits no strictly positive additive weak extension. Four of its
+comparisons suffice to prove this:
+\begin{equation}
+ 136<_Q2,\qquad26<_Q134,\qquad23<_Q56,\qquad145<_Q236.
+ \label{eq:four-witness}
+\end{equation}
+Here $136$ abbreviates $\{1,3,6\}$. Summing the four differences
+``right indicator minus left indicator'' gives $-e_1$.
+Additive weights respecting these comparisons would therefore satisfy
+$0\le-w_1$, contradicting $w_1>0$.
+
+For a vector $x\in\{0,1,2,3\}^6$, form the three sets
+$T_s(x)=\{j:x_j\ge s\}$, $s=3,2,1$.
+Order vectors by comparing $T_3$, then $T_2$, then $T_1$, using $Q$ at each
+stage. Write $\rho(x)$ for an integer rank representing this finite order.
+It is strictly increasing in the penalty
+ranks, and changing coordinates shared by two vectors leaves their
+comparison unchanged, by \eqref{eq:finite-cancellation}.
+
+Partition $H$ into six radial regions $B_1,\ldots,B_6$ of positive measure,
+for example $j-1<\|g\|<j$ for $j\le5$ and $\|g\|>5$ for $j=6$.
+Each region contains a positive-measure set of unanimously positive gambles.
+Draw one problem from each region, independently, using normalized Gaussian
+measure. For a tuple $\boldsymbol g=(g^1,\ldots,g^6)$ put
+\[
+ \mathcal L_i(\Dscr)(\boldsymbol g)
+ =\rho\bigl(r_i(g^1,\Dscr),\ldots,r_i(g^6,\Dscr)\bigr).
+\]
+The penalty is a function of six problems, and rankings compare these
+functions almost everywhere:
+\begin{equation}
+ \Dscr\preceq_i\Escr\quad\Longleftrightarrow\quad
+ \mathcal L_i(\Dscr)(\boldsymbol g)
+ \le\mathcal L_i(\Escr)(\boldsymbol g)
+ \quad\text{for almost every tuple}.
+ \label{eq:tuple-ranking}
+\end{equation}
+
+\begin{proposition}\label{prop:genuine}
+The ranking \eqref{eq:tuple-ranking} satisfies (E), (LA), (A), (C), (G),
+and (IB). Every coherent model is undominated under this single ranking.
+At no world does it have an additive guidance weak extension.
+\end{proposition}
+\begin{proof}
+Reflexivity and transitivity hold pointwise. Coordinatewise monotonicity of
+$\rho$ gives (G), including strictness: an improvement on a positive-measure
+part of any region affects a positive-measure set of tuples.
+At each tuple, changing shared advice changes only coordinates shared by
+the two rank vectors. The finite independence property of $\rho$ gives (IB).
+
+Let $C$ be coherent. If $\Dscr\preceq_i C$, then $\Dscr$ must guidance-improve
+$C$ pointwise at world $i$. Indeed, any positive-measure region where
+$\Dscr$ gives worse advice can be paired with unanimously positive problems
+in the other five regions. There $C$ is already giving good advice, so
+$\Dscr$ is weakly worse in every coordinate of these tuples and strictly
+worse in one. This contradicts \eqref{eq:tuple-ranking}.
+On a mixed-sign problem, each noncontradictory recommendation is locally
+undominated across worlds. Coherent advice is also unanimously correct.
+Consequently no model can guidance-improve $C$ at every world unless it
+agrees with $C$ a.e. This proves that every coherent $C$ is undominated.
+
+The finite map $\rho$ is one-to-one. Ties in both directions in
+\eqref{eq:tuple-ranking} therefore force the same advice at almost every
+tuple, hence almost every problem. This proves (C).
+
+Finally, fix world $i$ and consider the models that give silence on regions
+in $A\subseteq\{1,\ldots,6\}$ and good advice at $i$ on all other regions.
+Their comparisons are exactly $Q$. An additive guidance weak extension
+would assign strictly positive weights
+$w_j=\int_{B_j}(\ell_i(0)-\ell_i(\mathrm{good}))\,d\mu$ to these regions.
+Equation~\eqref{eq:four-witness} makes that impossible.
+\end{proof}
+
+The incomparabilities preserve independence when different tuples favour
+different models. Averaging the integer ranks would need a separate argument:
+changing common advice preserves each tuple comparison, but need not preserve
+the size of its numerical difference.
+
+Thus (G) and (IB) really do permit ordinal structures beyond the reach of
+Theorem~\ref{thm:extension}, even on the full measurable model domain and
+modulo null sets. One therefore cannot infer additivity from (G) and (IB) alone.
+
+\section{Why agreement on every finite sample fails}
+
+The failure of (S) in the preceding construction is general. It cannot be
+fixed just by changing the finite order, the number of sampled problems,
+or the dependence between those problems.
+
+\begin{theorem}\label{thm:finite-sample}
+Let $\pi$ be a probability measure on $H^k$, with $k<\infty$, whose
+marginals are absolutely continuous with respect to $\mu$ and whose sum
+has the same null sets as $\mu$.
+Suppose models are ranked by almost-everywhere comparison of penalties
+depending on their advice at the sampled tuple, and these penalties strictly
+respect coordinatewise guidance improvement within each tuple.
+Then a model is competitive on $S$ if and only if it equals some $D_i$,
+$i\in S$, a.e. Such rankings cannot satisfy (S).
+\end{theorem}
+\begin{proof}
+Suppose $C\not\approx D_i$ for every $i\in S$. Let $E_i$ be the
+positive-measure set where $C$ does not give good advice at $i$.
+Tuples meeting $E_i$ have positive $\pi$-measure.
+We can choose disjoint measurable regions $A_i\subseteq H$, $i\in S$,
+such that
+\begin{equation}
+ \pi\{\boldsymbol g\in A_i^k:
+       \text{some }g^r\in E_i\}>0\qquad(i\in S).
+ \label{eq:disjoint-tests}
+\end{equation}
+Here is a short justification. Restrict $\pi$ to tuples meeting $E_i$.
+Choose a point in the support of each restricted measure so that no
+coordinate of one chosen tuple equals a coordinate of another.
+Such a choice exists: independent draws from these restricted measures
+have no cross-coordinate coincidences, since their marginals have no atoms.
+Disjoint small open neighbourhoods of the finite groups of coordinates give
+the $A_i$. Support membership gives \eqref{eq:disjoint-tests}.
+
+Now let $\Escr$ give the ideal advice for world $i$ on $A_i$, with arbitrary
+advice elsewhere. On the positive-measure tuple set in
+\eqref{eq:disjoint-tests}, it weakly improves $C$ in every coordinate at $i$
+and strictly improves it in at least one. Hence $C\not\preceq_i\Escr$ for
+each $i\in S$. This contradicts competitiveness. Conversely $D_i$ is
+universally best at $i$, so is competitive whenever $i\in S$.
+
+An (S) selection must therefore choose only ideal models. The sets
+$\{p:C_p\preceq_i D_i\}=\{p:C_p\approx D_i\}$ would be disjoint closed
+sets covering $\Delta$, each nonempty because it contains $e_i$.
+This would disconnect the simplex, which is impossible for $n\ge2$.
+\end{proof}
+
+\section{Absolute priority for avoiding bad advice}
+
+Another natural attempt ranks models first by how often they give bad
+advice and only then by their other guidance. This does escape the strict
+additive weak-extension argument, but its closed comparison sets fail for
+a different reason.
+
+Put
+\[
+ B_i(\Dscr)=\int_H\one_{\{r_i(g,\Dscr)\ge2\}}\,d\mu,
+ \qquad T_i(\Dscr)=\int_H r_i(g,\Dscr)\,d\mu,
+\]
+and compare $(B_i,T_i)$ lexicographically, with smaller values better.
+Both (G) and (IB) hold. The vacuous model is undominated. Moreover,
+minimizing the weighted pair
+$(\sum_i p_iB_i,\sum_i p_iT_i)$ gives, uniquely a.e., the coherent model
+$\Dscr_{\Delta_{\supp p}}$: remain silent on mixed supported payoffs and
+choose correctly on unanimous supported payoffs.
+This shows why coherent Bayes models at every prior are not, by themselves,
+enough to establish (S) for an ordinal construction.
+
+\begin{proposition}\label{prop:lex}
+The lexicographic ranking $(B_i,T_i)$ admits no selection satisfying (S),
+for any $n\ge2$.
+\end{proposition}
+\begin{proof}
+Suppose such a selection existed. A coherent undominated model with no
+silence must be an ideal $D_j$. Indeed, a coherent model giving a definite
+recommendation a.e. is precise; if it is not an ideal, its bad-advice
+measure is positive at every world, so the vacuous model strictly dominates
+it in the primary criterion.
+
+At any selected nonideal model $C_p$, silence occurs on a positive-measure
+set. Fix $i$ and change some of that silence to good advice at $i$.
+The resulting model $E$ has
+$B_i(E)=B_i(C_p)$ and $T_i(E)<T_i(C_p)$.
+The closed set $\{q:C_q\preceq_i E\}$ excludes $p$.
+Its complement is a neighbourhood $U$ of $p$, throughout which
+$B_i(C_q)\ge B_i(C_p)$: a smaller primary value would put $q$ in that set.
+Thus $p$ is a local minimum of the real function $q\mapsto B_i(C_q)$.
+
+These local-minimum values form a countable set. For each such $p$, take
+a member $V$ of a countable base for $\Delta$ with $p\in V\subseteq U$.
+Then $B_i(C_p)=\inf_{q\in V}B_i(C_q)$. There are only countably many base
+members, and the finitely many ideal models add only finitely many values.
+So the selected primary values at each world form a countable set.
+
+But there are uncountably many undominated coherent primary values. To see
+this, put $I=\{1,\ldots,n-1\}$ and $u_I=\sum_{i\in I}e_i/(n-1)$, and take
+\[
+ M_t=\operatorname{conv}\bigl(\{e_i:i\in I\}
+             \cup\{(1-t)e_n+t u_I\}\bigr),\qquad0<t<1.
+\]
+Its model $C^t$ accepts only gambles positive at every world in $I$.
+Besides the unanimously positive gambles, it accepts a set of measure
+$x(t)$ on which $g_n<0$. This measure is continuous and strictly increasing
+in $t$, since the extra condition is
+$g_n>-t\sum_{i\in I}g_i/((1-t)(n-1))$.
+
+Write $h=\mu(H)$ and $a=\mu(\R^n_{>0})$. Its profiles are
+\[
+ (B_i,T_i)=(0,h-a-x(t))\quad(i\in I),\qquad
+ (B_n,T_n)=(x(t),h-a+x(t)).
+\]
+These models are undominated. A putative dominator must have no bad advice
+at any world of $I$, so on $H$ it can only accept a subset of
+$\{g_i>0\ (i\in I)\}$ or remain silent. If it accepts unanimously positive
+gambles of measure $y\le a$ and gambles bad at $n$ of measure $z$, dominance
+requires $y+z\ge a+x(t)$ and $z\le x(t)$. Hence $y=a$ and $z=x(t)$;
+all displayed losses tie and no dominance occurs.
+
+By Lemma~\ref{lem:complete-class}(b), every $C^t$ must tie with some selected
+model. Thus the selected values of $B_n$ include every $x(t)$, contradicting
+their countability.
+\end{proof}
+
+The two-criterion ranking can tie incoherent models with coherent ones.
+That is not the source of the obstruction. Append further lexicographic
+criteria $\int_{Q_k}r_i(g,\Dscr)\,d\mu$, where the $Q_k$ enumerate a
+countable algebra generating the measurable sets of $H$. This makes ties
+possible only between a.e.-identical models, and preserves (G) and (IB).
+The models $C^t$ remain undominated: after the first two criteria tie,
+any difference is confined to which gambles bad at $n$ are accepted.
+At the first further criterion detecting a difference, its effect at every
+world in $I$ is the negative of its effect at $n$. Thus it cannot improve
+every world. The countability proof still applies unchanged. This refinement
+satisfies (C) and still fails (S).
+
+\section{Completeness is compatible with full coverage if (S) is omitted}
+
+For perspective, neither incomparabilities nor sacrificing full coverage
+is necessary to meet all the \emph{other} requirements. There is a simple
+complete ordinal example.
+
+On a mixed-sign problem with $k$ positive and $n-k$ negative worlds, assign
+good advice penalty zero, silence $1/n$, bad advice $1/k$ at a positive
+world and $1/(n-k)$ at a negative world, and contradiction penalty $2$.
+On a unanimous problem use penalties $0,1,2,3$ in guidance order.
+These local penalties are strictly ordered and bounded.
+For any noncontradictory advice on a mixed problem, their sum over worlds
+is exactly one; unanimously correct advice has total zero.
+
+Rank models lexicographically by their integrals, first over all of $H$,
+then over a countable generating algebra as above, using the same order
+of sets at every world. This gives complete preorders satisfying (G) and
+(IB); equality of all criteria forces a.e. agreement, giving (C).
+Every coherent model is undominated. A dominator's first total across
+worlds cannot exceed the coherent minimum, so it too must be noncontradictory
+and unanimously correct. At the first later criterion at which its profile
+differs, both profiles have the same total across worlds. Some world must
+therefore worsen. This rules out dominance and proves (A) and (LA).
+
+For $n\ge3$, (S) is excluded by Theorem~\ref{thm:extension}: the first
+criterion is an additive strict guidance loss weakly respecting the entire
+lexicographic order. The example isolates the burden of (S); it does not
+settle whether completeness is compatible with all the requirements.
+These are complete ordinal rankings; no representation by a single
+extended-real-valued loss is claimed.
+
+\section{The remaining problem}
+
+The results narrow the search substantially. A successful construction must
+supply trade-offs that no additive guidance loss can weakly respect. Taking
+an intersection of additive criteria cannot do this. Requiring agreement
+on every finite sample leaves too few competitive models, while absolute
+priority for bad-advice avoidance clashes with the closedness requirement.
+
+The genuinely non-additive example shows that (G) and (IB) alone do not
+force an additive weak extension. What is not established is whether
+\emph{(S), together with coherence of the selected models}, rules out all
+such examples. One possible impossibility route would be to prove an
+additive weak-extension result just for comparisons involving the selected
+coherent models. That restricted result would already suffice for the proof
+of Theorem~\ref{thm:extension}; a representation of every comparison is
+unnecessary.
+
+The constructive alternative is to extend a genuinely non-additive
+independent order with enough comparisons to make a coherent family
+competitive, preserving its closed comparison sets. No such extension is
+proved here. Incomparabilities remain an available feature, not an
+established solution or a proved necessity.
+
+\appendix
+\section{The finite order and its exact verification}\label{app:finite}
+
+The order $Q$, from least to greatest, is the following. Digits denote subsets
+of $\{1,\ldots,6\}$; $\varnothing$ is the empty subset.
+\begin{center}\small
+\begin{tabular}{rrrrrrrr}
+$\varnothing$&1&6&3&16&13&4&14\\
+36&136&2&46&5&12&34&146\\
+15&26&134&23&56&126&346&35\\
+123&156&1346&135&24&45&124&145\\
+236&356&1236&1356&246&25&234&456\\
+1246&125&345&1234&1456&256&1345&2346\\
+235&1256&3456&12346&1235&13456&245&1245\\
+2356&12356&2456&2345&12456&12345&23456&123456
+\end{tabular}
+\end{center}
+Read across rows, then down. Transitivity and completeness follow from the
+listing. An exhaustive integer check verifies strict inclusion monotonicity
+and \eqref{eq:finite-cancellation} for all $64^2=4096$ ordered pairs.
+The short obstruction certificate \eqref{eq:four-witness} sums exactly to
+$-e_1$; it uses no numerical tolerance or optimization assumption.
+
+Run \path{verify_finite_order.py} in the accompanying checks folder to
+reproduce the finite calculation. It reads \path{finite_order.json} and
+writes \path{finite_order_certificate.json}.
+The order was found by a random walk that flips common-context copies of
+adjacent subset comparisons. The final verification is independent of that
+search history. The search used linear programming to find a candidate;
+the stated certificate is an exact integer identity.
+
+\end{document}

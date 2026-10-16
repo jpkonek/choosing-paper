@@ -1,0 +1,691 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\Kscr}{\mathcal K}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{Edge Dichotomy and Leverage}
+\author{}\date{9 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues \emph{Closed Choice for Independent Rankings} (CC) and
+\emph{Closed Choice Beyond Ordinary Integrals} (CBOI). The open question there
+is whether (G), (IB) and (S) force a strictly positive finitely additive weak
+extension of the comparisons that the obstruction uses. That question is still
+open, but the space for a counterexample is now much smaller.
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item The obstruction needs an extension only for comparisons from coherent
+undominated models to regular models (Proposition~\ref{prop:one-sided}).
+\item Such an extension exists exactly when no \emph{leverage sequence} exists:
+combinations of accepted comparisons whose net effect is a huge improvement on
+a set of fixed measure at the cost of a bounded worsening
+(Theorem~\ref{thm:leverage}).
+\item Under (G) and (S), an additive primary criterion must be either strict
+or completely blind on mixed problems (Theorem~\ref{thm:dichotomy}).
+Consequently no lexicographic hierarchy of ordinary additive criteria
+escapes the obstruction, unless every level ignores mixed problems
+(Theorem~\ref{thm:lex}).
+\item If two of three worlds are additive, the third cannot loosen the face
+where the additive worlds meet: that face is forced to the vacuous trade-off
+(Theorem~\ref{thm:one-world}).
+\end{enumerate}
+An independent line-by-line check found no errors in
+Theorems~\ref{thm:dichotomy}, \ref{thm:lex} and~\ref{thm:one-world}; its
+minor corrections are incorporated. Theorem~\ref{thm:leverage},
+Remark~\ref{rem:weak-star} and Corollary~\ref{cor:reduction} have not had an
+independent check.
+
+\section{Setting}
+
+We use the setting of v3, CC and CBOI without change. Worlds are
+$1,\ldots,n$. Binary problems are represented by $g\in H=\{g_1>0\}$, and
+$\mu$ is Gaussian measure normalized on $H$. Write $H'$ for the mixed problems
+and $U$ for the unanimous ones. Guidance ranks at world $i$ are $0,1,2,3$
+(good, silent, bad, contradictory). A model is \emph{regular} if it never
+contradicts itself and is correct on unanimous problems. Coherent models are
+regular. For distinct worlds $i,j$, put
+\[
+ D_{ij}\coloneqq\{g\in H':g_ig_j<0\},\qquad
+ t\coloneqq|g_i|/|g_j|\ \text{on }D_{ij}.
+\]
+The image of $\mu|_{D_{ij}}$ under $t$ has a positive density on $(0,\infty)$.
+For $n\ge3$, $H'=\bigcup_{j\ne i}D_{ij}$, and $D_{ij}\cap D_{ik}$ is non-null
+for distinct $j,k\ne i$.
+
+The \emph{one-sided comparisons} at world $i$ are
+\[
+ \Kscr_i\coloneqq\{(C,X):C\text{ coherent and undominated},\ X\text{ regular},\
+ C\preceq_iX\}.
+\]
+We use the following consequences of (LA) and (S):
+\begin{enumerate}[label=(KKM\alph*),leftmargin=*]
+\item every model is weakly dominated at all worlds by a selected $C_q$;
+\item every undominated model is tied at every world with a selected $C_p$
+and is competitive on $\supp p$.
+\end{enumerate}
+By CC's Lemma~7 (face support), a selected model on an edge $[e_i,e_j]$ has
+credal set $\{se_i+(1-s)e_j:s\in[a,b]\}$. Put
+$\alpha\coloneqq(1-a)/a\ge\beta\coloneqq(1-b)/b$. Orient each problem of
+$D_{ij}$ so that $g_i>0>g_j$. Then the selected model:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item accepts $g$ (good at $i$, bad at $j$) where $t>\alpha$;
+\item is silent where $\beta<t<\alpha$;
+\item accepts $-g$ (bad at $i$, good at $j$) where $t<\beta$.
+\end{itemize}
+Off $D_{ij}$ it is correct at both $i$ and $j$. The sets $\{t=\alpha\}$ and
+$\{t=\beta\}$ are null.
+
+\section{One-sided extensions and leverage}
+
+\begin{proposition}\label{prop:one-sided}
+In CC's Theorem~1 and CBOI's Theorem~2 it suffices that the weak extension
+inequality $L_i(C)\le L_i(X)$ hold for $(C,X)\in\Kscr_i$.
+\end{proposition}
+\begin{proof}
+Both proofs compare only two kinds of pair. The first is a selected coherent
+model with a regular model: $C_q\preceq_iB$ with $B$ the pointwise Bayes
+model, or $C_m\preceq_iX_m$. The second is the target, assumed undominated and
+coherent, with a regular model: $\Dscr_M\preceq_j\Escr^\circ$, or
+$T\preceq_iX_m$. Selected models are coherent and undominated.
+\end{proof}
+
+Fix a world $i$. Let $\Omega'=H'\times\{1,2\}$ carry the probability
+$P\coloneqq\frac12(\mu|_{H'}/\mu(H'))\otimes(\text{counting})$. Encode a
+regular model $\Dscr$ by
+\[
+ u^\Dscr\coloneqq\bigl(\one\{r_i(\cdot,\Dscr)\ge1\},\ \one\{r_i(\cdot,\Dscr)\ge2\}\bigr)
+ \in L^\infty(\Omega'),
+\]
+and let $K_i$ be the convex cone generated by $u^X-u^C$, $(C,X)\in\Kscr_i$.
+
+\begin{theorem}\label{thm:leverage}
+The following are equivalent.
+\begin{enumerate}[label=(\alph*)]
+\item There are finite nonnegative finitely additive $\nu_1,\nu_2$ on $H'$, with
+$\nu_k(A)=0$ if and only if $\mu(A)=0$, such that
+\[
+ \nu_1\{r_i(\cdot,X)\ge1\}-\nu_1\{r_i(\cdot,C)\ge1\}
+ +\nu_2\{r_i(\cdot,X)\ge2\}-\nu_2\{r_i(\cdot,C)\ge2\}\ \ge\ 0
+\]
+for every $(C,X)\in\Kscr_i$.
+\item There is no \emph{leverage sequence}: no $\alpha>0$ such that for every
+$n$ some $\kappa\in K_i$ satisfies $\kappa\le1$ a.e.\ and
+$P\{\kappa\le-n\}\ge\alpha$.
+\end{enumerate}
+In case (a), $\nu_{i1}\coloneqq\nu_1+\mu|_U$, $\nu_{i2}\coloneqq\nu_2+\mu|_U$
+and $\nu_{i3}\coloneqq\mu$ define a loss of CBOI's form that satisfies the
+inequality of Proposition~\ref{prop:one-sided} at world $i$.
+\end{theorem}
+\begin{proof}
+\emph{(a) implies (b).} Combine $\nu_1,\nu_2$ into one charge $\hat\nu$ on
+$\Omega'$. The pairing in (a) says $\hat\nu(\kappa)\ge0$ for every
+$\kappa\in K_i$.
+
+By the Yosida--Hewitt decomposition, $\hat\nu=\hat\nu_c+\pi$ with
+$\hat\nu_c=f\,P$ countably additive and $\pi$ purely finitely additive.
+As in CBOI's Lemma~3, the concentration of $\pi$ on sets of arbitrarily small
+measure and the hypothesis $\hat\nu(A)>0$ for non-null $A$ force $f>0$ a.e.
+Choose $\delta>0$ with $P\{f<\delta\}<\alpha/2$. Then $\hat\nu(S)\ge\delta\alpha/2$
+whenever $P(S)\ge\alpha$.
+
+Given a leverage sequence, let $S_n=\{\kappa_n\le-n\}$. Then
+\[
+ \hat\nu(\kappa_n)\le\hat\nu(\Omega')-n\,\hat\nu(S_n)
+ \le\hat\nu(\Omega')-n\delta\alpha/2,
+\]
+which is negative for large $n$. This is a contradiction.
+
+\emph{(b) implies (a).} Let $\mathcal C\coloneqq-\overline{K_i+L^\infty_+}$,
+with closure in the norm of $L^\infty(\Omega')$. It is a norm-closed convex
+cone containing $-L^\infty_+$.
+
+We claim $\mathcal C\cap L^\infty_+=\{0\}$. Suppose $0\ne y\in\mathcal C$ with
+$y\ge0$. Then $y\ge\delta\one_S$ for some $\delta>0$ and non-null $S$. For each
+$n$, choose $\kappa\in K_i$ and $w\ge0$ with
+$\|\kappa+w+y\|_\infty<\delta/(n+1)$. Then
+\[
+ \kappa\le-\delta\one_S+\frac{\delta}{n+1}\quad\text{a.e.},
+ \qquad\text{so}\qquad
+ \lambda\kappa\le-(n+1)\one_S+1\quad\text{with }\lambda=\frac{n+1}{\delta}.
+\]
+Thus $\lambda\kappa\in K_i$ satisfies $\lambda\kappa\le1$ and
+$\lambda\kappa\le-n$ on $S$. This is a leverage sequence with $\alpha=P(S)$,
+contrary to (b).
+
+Rokhlin's Kreps--Yan theorem for $L^\infty$ \cite{Rokhlin} now gives a strictly
+positive $\hat\nu\in(L^\infty)^*$, meaning $\hat\nu(A)>0$ whenever $P(A)>0$,
+with $\hat\nu\le0$ on $\mathcal C$. Hence $\hat\nu\ge0$ on $K_i$. Its
+restrictions to the two copies of $H'$ give $\nu_1,\nu_2$. Elements of
+$(L^\infty)^*$ vanish on null sets, so (a) holds.
+
+\emph{The completed loss.} For regular $C,X$, the unanimous terms and the
+rank-$3$ term agree. So $L_i(X)-L_i(C)$ equals the expression in (a).
+Strict positivity of $\nu_{ik}$ on all of $H$ holds by construction.
+\end{proof}
+
+Proposition~\ref{prop:one-sided}, Theorem~\ref{thm:leverage} and CBOI's
+Theorem~2 together give: \emph{if $n\ge3$, (G), (LA) and (S) hold and the
+vacuous model is undominated, then some $\Kscr_i$ has a leverage sequence.}
+
+The simplest leverage sequence looks like this. Let $C$ be coherent and
+undominated, and let $A\subseteq H'$ be non-null. Suppose that for pairwise
+disjoint sets $B_1,B_2,\ldots\subseteq H'\setminus A$ there are regular $X_m$
+with $C\preceq_iX_m$, where $X_m$ lowers the rank of $C$ at $i$ by one on $A$,
+agrees with $C$ off $A\cup B_m$, and raises it on $B_m$. Fix the rank level
+$k\in\{1,2\}$ that the improvement crosses on a non-null part $A'$ of $A$.
+Then $\kappa_N\coloneqq\sum_{m\le N}(u^{X_m}-u^C)$ satisfies $\kappa_N\le1$
+and $\kappa_N=-N$ on $A'\times\{k\}$. Many small worsenings each outweigh the
+same fixed improvement.
+
+\begin{remark}\label{rem:weak-star}
+The weak$^*$ closure, for $\sigma(L^\infty,L^1)$, plays the same role for
+\emph{ordinary} extensions, meaning (a) with $\nu_k=f_k\mu$ and $f_k>0$ a.e.
+Such an extension exists if and only if
+$-\one_S\notin\overline{K_i+L^\infty_+}^{\,w^*}$ for every non-null
+$S\subseteq\Omega'$.
+
+\emph{Proof.} Necessity: $\kappa\mapsto\int\kappa f\,dP$ is
+weak$^*$-continuous and nonnegative on $K_i+L^\infty_+$, so also on its
+weak$^*$ closure, and it is negative at $-\one_S$.
+
+Sufficiency: for each non-null $S$, separate $-\one_S$ from the weak$^*$-closed
+cone. The dual of $(L^\infty,\sigma(L^\infty,L^1))$ is $L^1$, so this gives
+$h_S\in L^1$ that is nonnegative on the cone, hence $h_S\ge0$, with
+$\int h_S\one_S\,dP>0$. The set of $h\in L^1_+$ nonnegative on $K_i$ is
+closed under countable sums $\sum_m2^{-m}h_m/(1+\|h_m\|_1)$, by dominated
+convergence. Take such a sum $h^*$ with $P\{h^*>0\}$ maximal. If
+$S=\{h^*=0\}$ were non-null, then $h^*+h_S$ would have larger support. So
+$h^*>0$ a.e.
+\end{remark}
+
+CBOI's Proposition~5 lies between the two closures. Its own loss has the
+form of (a), so it has no leverage sequence. It also has no ordinary
+extension, even on $\Kscr_i$. To see this, choose $p\ne e_i$ on an edge
+$[e_i,e_j]$ so near $e_i$ that $0<L_i(C_p)<a$, in CBOI's notation. Then
+$C_p\prec_iB_m$ for every $m$. An ordinary strictly guidance-ordered
+$\Lambda_i$ would give
+$\Lambda_i(C_p)\le\Lambda_i(B_m)\to\Lambda_i(D_i)<\Lambda_i(C_p)$.
+So in CBOI's example some $-\one_S$ lies in the weak$^*$ closure of
+$K_i+L^\infty_+$, but no $-\one_S$ lies in its norm closure.
+
+\section{Regular primaries and the edge dichotomy}
+
+A \emph{regular primary} at world $i$ is a real function $\Phi$ on regular
+models such that, for regular $\Dscr,\Escr$,
+\[
+ \Phi(\Dscr)<\Phi(\Escr)\ \Longrightarrow\ \Dscr\prec_i\Escr.
+\]
+It weakly respects $\preceq_i$ on regular models. Restricting a primary in
+the sense of CC or CBOI to regular models gives a regular primary.
+
+A regular primary is \emph{additive} if, for regular $X$,
+\[
+ \Phi(X)=\int_H\varphi\bigl(g,r_i(g,X)\bigr)\,d\mu(g),
+\]
+where $\varphi(\cdot,0)\le\varphi(\cdot,1)\le\varphi(\cdot,2)$ are measurable
+and bounded in absolute value by an integrable $h$. On $H'$ put
+\[
+ c\coloneqq\varphi(\cdot,1)-\varphi(\cdot,0)\ge0,\qquad
+ d\coloneqq\varphi(\cdot,2)-\varphi(\cdot,1)\ge0.
+\]
+Then $|\Phi(X)-\Phi(Y)|\le2\int_{\{a_X\ne a_Y\}}h\,d\mu$, so $\Phi$ is
+continuous in measure on regular models.
+
+The next lemma restates CC's Lemma~10(a) and CBOI's Lemma~6 for regular
+primaries. The proofs are the same, because they compare selected models
+only with regular models. We give them in full.
+
+\begin{lemma}\label{lem:regular-primary}
+Assume (G) and (S). Let $\Phi$ be a regular primary at $i$, and put
+$f(p)\coloneqq\Phi(C_p)$.
+\begin{enumerate}[label=(\alph*)]
+\item If a regular $\Escr$ satisfies $\Escr\prec_iC_p$ and $\Phi(\Escr)=f(p)$,
+then $p$ is a local minimum of $f$ on $\Delta$.
+\item Let $p\in[e_i,e_j]$. If a regular $F$ satisfies $F\prec_jC_p$ and
+$\Phi(F)=f(p)$, then $p$ is a local maximum of $f$ on $[e_i,e_j]$.
+\item If $\Phi$ is continuous in measure on regular models, then $f$ is
+continuous on every edge $[e_i,e_j]$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Since $C_p\not\preceq_i\Escr$, the point $p$ lies outside the closed set
+$A_i(\Escr)$. So some neighbourhood $N$ of $p$ misses it. For $q\in N$, if
+$f(q)<\Phi(\Escr)$ then $C_q\prec_i\Escr$, which is false. So
+$f(q)\ge\Phi(\Escr)=f(p)$.
+
+(b) Similarly, a neighbourhood $N$ of $p$ in the edge misses $A_j(F)$. Let
+$q\in N$. Then $C_q\not\preceq_jF$. Since $C_q$ is competitive on
+$\supp q\subseteq\{i,j\}$, we get $C_q\preceq_iF$. So $f(q)\le\Phi(F)=f(p)$.
+
+(c) By CC's Lemma~7 the selections on the edge are the models described in
+Section~1. In particular $C_{e_i}=D_i$ and $C_{e_j}=D_j$. By (G),
+$D_i\preceq_iX$ for every $X$, so $\Phi(D_i)\le\Phi(X)$ for regular $X$.
+
+\emph{Lower semicontinuity.} Suppose $p_m\to p$ on the edge and
+$f(p_m)\le f(p)-\epsilon$ with $\epsilon>0$. Put
+$G_s\coloneqq\{g\in H:N(g_2)<s\}$, where $N$ is the standard normal
+distribution function. Then $\mu(G_s)=s$. Let $X_s$ follow $C_p$ on $G_s$
+and $D_i$ elsewhere. Each $X_s$ is regular, and $s\mapsto\Phi(X_s)$ is
+continuous, from $\Phi(D_i)\le f(p)-\epsilon$ to $f(p)$. Choose $s$ with
+$\Phi(X_s)=f(p)-\epsilon/2$ and put $\Escr\coloneqq X_s$. Then
+$C_{p_m}\prec_i\Escr$ for every $m$, so $p_m\in A_i(\Escr)$, and by
+closedness $p\in A_i(\Escr)$. But $\Escr\prec_iC_p$. This is a contradiction.
+
+\emph{Upper semicontinuity.} Suppose $p_m\to p$ and
+$f(p_m)\ge f(p)+\epsilon$. Every edge model has rank at most $2$ at $i$ on
+$D_{ij}$ and rank $0$ elsewhere, while $D_j$ has rank $2$ on $D_{ij}$. So by
+(G), $C_q\preceq_iD_j$ and $f(q)\le\Phi(D_j)$ for every $q$ on the edge.
+Hence $C_p\ne D_j$; otherwise $f(p)$ would be the maximum.
+
+So $C_p$ is not good at $j$ on a non-null $W\subseteq D_{ij}$. Choose a
+non-null $Z\subseteq W$ so small that the model $\Escr$, which agrees with $C_p$
+except that it gives the $j$-good advice on $Z$, has
+$\Phi(\Escr)<f(p)+\epsilon$. Then $\Escr$ is regular and $\Escr\prec_jC_p$ by
+strict (G). Thus $p\notin A_j(\Escr)$, and for large $m$,
+$C_{p_m}\not\preceq_j\Escr$. Competitiveness gives $C_{p_m}\preceq_i\Escr$, so
+$f(p_m)\le\Phi(\Escr)<f(p)+\epsilon$. This is a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:dichotomy}
+Assume (G) and (S). Let $\Phi$ be an additive regular primary at world $i$,
+and let $j\ne i$. Then exactly one of the following holds:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item \emph{strict:} $c>0$ and $d>0$ a.e.\ on $D_{ij}$;
+\item \emph{blind:} $c=d=0$ a.e.\ on $D_{ij}$.
+\end{itemize}
+If $n\ge3$, the same alternative holds for every $j\ne i$, and hence a.e.\ on
+$H'$.
+\end{theorem}
+\begin{proof}
+\emph{Step 1: the values on the edge.} Let $p\in[e_i,e_j]$ have thresholds
+$\alpha\ge\beta$. By Section~1, $C_p$ has rank $0$ at $i$ off $D_{ij}$. On
+$D_{ij}$ its rank is $0$ where $t>\alpha$, $1$ where $\beta<t<\alpha$, and $2$
+where $t<\beta$. With $m_0\coloneqq\Phi(D_i)$,
+\[
+ f(p)=m_0+\int_{D_{ij}\cap\{t<\alpha\}}c\,d\mu
+ +\int_{D_{ij}\cap\{t<\beta\}}d\,d\mu.
+\]
+For $x\in[0,\infty]$ put $G(x)\coloneqq\int_{D_{ij}\cap\{t<x\}}(c+d)\,d\mu$.
+Since $c,d\ge0$,
+\begin{equation}
+ m_0+G(\beta)\le f(p)\le m_0+G(\alpha).
+ \label{eq:sandwich}
+\end{equation}
+Also $f(e_i)=m_0$ and $f(e_j)=m_0+G(\infty)$. By
+Lemma~\ref{lem:regular-primary}(c) and the intermediate value theorem, $f$
+maps the edge onto $[m_0,m_0+G(\infty)]$.
+
+\emph{Step 2: two mechanisms.} For an interval $I\subseteq(0,\infty)$ put
+\[
+ \kappa^c(I)\coloneqq\mu\bigl(D_{ij}\cap\{c=0\}\cap\{t\in I\}\bigr),\qquad
+ \kappa^d(I)\coloneqq\mu\bigl(D_{ij}\cap\{d=0\}\cap\{t\in I\}\bigr).
+\]
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \emph{Minimum.} Suppose $\kappa^c(\beta,\alpha)>0$. Let $Z$ be the set
+it measures. There $C_p$ is silent. Let $\Escr$ give the $i$-good advice on
+$Z$ and agree with $C_p$ elsewhere. Then $\Escr$ is regular,
+$\Escr\prec_iC_p$ by strict (G), and $\Phi(\Escr)=f(p)-\int_Zc=f(p)$.
+
+Suppose instead $\kappa^d(0,\beta)>0$, with $Z$ the set it measures. There
+$C_p$ is bad at $i$. Let $\Escr$ be silent on $Z$. The same conclusions hold,
+using $d=0$.
+
+In both cases $p$ is a local minimum of $f$, by
+Lemma~\ref{lem:regular-primary}(a).
+\item \emph{Maximum.} Suppose $\kappa^c(\alpha,\infty)>0$, with $Z$ the set
+it measures. There $C_p$ is good at $i$, hence bad at $j$. Let $F$ be silent
+on $Z$. Then $F\prec_jC_p$ and $\Phi(F)=f(p)$.
+
+Suppose instead $\kappa^d(\beta,\alpha)>0$, with $Z$ the set it measures.
+There $C_p$ is silent. Let $F$ give the $j$-good advice on $Z$, which is bad
+at $i$. Again $F\prec_jC_p$ and $\Phi(F)=f(p)$.
+
+In both cases $p$ is a local maximum of $f$ on the edge, by
+Lemma~\ref{lem:regular-primary}(b).
+\end{itemize}
+The local-minimum values of a real function on a second-countable space are
+countable (CC, proof of Lemma~10), and so are its local-maximum values.
+
+\emph{Step 3: free points.} Call $p$ \emph{free} if neither mechanism applies
+at $p$. The sets $\{t=\alpha\}$ and $\{t=\beta\}$ are null. So at a free
+point
+\begin{equation}
+ \kappa^c(\beta,\infty)=0,\qquad \kappa^d(0,\alpha)=0.
+ \label{eq:free}
+\end{equation}
+Put
+\[
+ U\coloneqq\inf\{\tau\in[0,\infty]:\kappa^c(\tau,\infty)=0\},\qquad
+ L\coloneqq\sup\{\tau\in[0,\infty]:\kappa^d(0,\tau)=0\},
+\]
+with $\kappa^c(\infty,\infty)=\kappa^d(0,0)=0$, so $U,L\in[0,\infty]$.
+By continuity of $\mu$ along monotone unions,
+\begin{equation}
+ \kappa^c(U,\infty)=0,\qquad \kappa^d(0,L)=0.
+ \label{eq:UL}
+\end{equation}
+These numbers do not depend on $p$. At a free point, \eqref{eq:free} gives
+$U\le\beta\le\alpha\le L$. By \eqref{eq:sandwich}, every free value of $f$
+lies in $[m_0+G(U),m_0+G(L)]$.
+
+If there is no free point, every value in $[m_0,m_0+G(\infty)]$ is a local
+extremum value, so this interval is countable. Hence $G(\infty)=0$, and $\Phi$
+is blind on $D_{ij}$.
+
+Otherwise, every value in
+\[
+ [m_0,m_0+G(U))\ \cup\ (m_0+G(L),m_0+G(\infty)]
+\]
+is taken only at points that are not free, so these intervals are countable.
+Hence $G(U)=0$ and $G(L)=G(\infty)$, so
+\begin{equation}
+ c=d=0\ \text{a.e.\ on }D_{ij}\cap\{t<U\}\ \text{and on }D_{ij}\cap\{t>L\}.
+ \label{eq:zero}
+\end{equation}
+
+\emph{Step 4: cases.} Recall that $t$ has a positive density on $(0,\infty)$
+under $\mu|_{D_{ij}}$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item If $U>0$ and $L>0$, then $D_{ij}\cap\{t<\min(U,L)\}$ is non-null. There
+$d=0$ a.e.\ by \eqref{eq:zero}, and $d>0$ a.e.\ by \eqref{eq:UL}. This is
+impossible.
+\item If $L=0$, then \eqref{eq:zero} gives $c=d=0$ a.e.\ on $D_{ij}$: blind.
+\item If $U=0$, then \eqref{eq:UL} gives $c>0$ a.e.\ on $D_{ij}$. By
+\eqref{eq:zero}, $D_{ij}\cap\{t>L\}$ is null, so $L=\infty$. Then
+\eqref{eq:UL} gives $d>0$ a.e.\ on $D_{ij}$: strict.
+\end{itemize}
+The two alternatives exclude each other because $D_{ij}$ is non-null.
+
+\emph{Step 5: $n\ge3$.} Every mixed problem lies in some $D_{ij}$. For
+distinct $j,k\ne i$, $D_{ij}\cap D_{ik}$ is non-null, and $c>0$ a.e.\ and
+$c=0$ a.e.\ cannot both hold on it. So the alternatives on $D_{ij}$ and $D_{ik}$
+agree.
+\end{proof}
+
+\begin{remark}
+The theorem matches the known examples.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Strictly ordered additive losses are strict.
+\item CC's Proposition~3 ranks first by errors on unanimous problems. That
+primary is blind on $H'$, and (S) holds.
+\item BA's lexicographic primary has $c=0<d$ on $H'$. That is neither
+alternative, and BA's Proposition~6 shows that (S) fails.
+\end{itemize}
+\end{remark}
+
+At world $i$, call a ranking \emph{lexicographic over additive criteria} on
+regular models if there are finitely or countably many functionals
+$\Phi^1,\Phi^2,\ldots$ of the additive form above, each with weakly ordered
+penalties and an integrable envelope, such that for regular $\Dscr,\Escr$:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item if $(\Phi^k(\Dscr))_k$ is lexicographically smaller than
+$(\Phi^k(\Escr))_k$, then $\Dscr\prec_i\Escr$;
+\item if $\Dscr\preceq_i\Escr$, then $(\Phi^k(\Dscr))_k$ is lexicographically
+at most $(\Phi^k(\Escr))_k$.
+\end{itemize}
+Ties in the whole sequence may be broken, or left incomparable, in any way.
+Call a level \emph{blind on $H'$} if its $c$ and $d$ vanish a.e.\ on $H'$.
+
+\begin{theorem}\label{thm:lex}
+Let $n\ge3$, and assume (G), (LA) and (S). Suppose that at every world the
+ranking is lexicographic over additive criteria on regular models, with at
+least one level not blind on $H'$. Then every $\Dscr_M$ whose credal set
+contains three simplex vertices is dominated by a coherent model. In
+particular the vacuous model is dominated.
+\end{theorem}
+\begin{proof}
+Fix a world $i$, and let $\Phi^k$ be the first level not blind on $H'$.
+Earlier levels are constant on regular models, since regular models are
+correct on unanimous problems. So $\Phi^k$ is a regular primary: if
+$\Phi^k(\Dscr)<\Phi^k(\Escr)$, the sequences are lexicographically ordered.
+By Theorem~\ref{thm:dichotomy}, $\Phi^k$ is strict on $H'$.
+
+Define $\ell_i$ on $H'$ by $\varphi^k(\cdot,r)-\varphi^k(\cdot,0)$ for
+$r=0,1,2$ and by $\varphi^k(\cdot,2)-\varphi^k(\cdot,0)+1$ for contradiction.
+On unanimous problems use $0,1,2,3$. This is an additive guidance loss, with
+envelope $2h+3$. For regular $\Dscr$,
+$L_i(\Dscr)=\Phi^k(\Dscr)-\int_H\varphi^k(\cdot,0)\,d\mu$.
+
+If $\Dscr\preceq_i\Escr$ with both regular, the earlier levels tie, so
+$\Phi^k(\Dscr)\le\Phi^k(\Escr)$ and $L_i(\Dscr)\le L_i(\Escr)$. This holds at
+every world, so CC's Theorem~1 applies.
+\end{proof}
+
+So a lexicographic counterexample must be blind on mixed problems at every
+level, at some world. All of its sensitivity to mixed problems then lies in
+the final tie-breaking, which must still carry strict (G).
+
+\section{One non-additive world}
+
+The next theorem lets one world be arbitrary. It shows that the other two
+worlds alone already force the vacuous trade-off on their common face.
+
+Let $n=3$. A problem is \emph{$(2,3)$-mixed} if $g_2g_3<0$. Orient it so that
+$g_2>0>g_3$; then $g_1$ may have either sign. Put
+\[
+ R_1\coloneqq\{g_1>0,\ g_2>0>g_3\},\qquad R_2\coloneqq\{g_1<0,\ g_2>0>g_3\}.
+\]
+For an additive guidance loss $L_k$, write $c_k$ and $b_k$ for its silence
+and bad penalties on these problems. Accepting $g$ costs $(0,b_3)$ at worlds
+$(2,3)$, silence costs $(c_2,c_3)$, and accepting $-g$ costs $(b_2,0)$. Put
+\[
+ \alpha\coloneqq\frac{c_2}{b_3-c_3},\qquad
+ \beta\coloneqq\frac{b_2-c_2}{c_3},\qquad
+ \gamma\coloneqq\frac{b_2}{b_3},\qquad
+ t\coloneqq\frac{g_2}{-g_3}.
+\]
+
+\begin{theorem}\label{thm:one-world}
+Let $n=3$, assume (G) and (S), and suppose the vacuous model is undominated.
+Suppose worlds $2$ and $3$ have additive guidance losses $L_2,L_3$ with
+\[
+ L_k(C)\le L_k(X)\qquad\text{for all }(C,X)\in\Kscr_k,\ k=2,3.
+\]
+World $1$ is unrestricted apart from (G). Then some $\kappa^*\in(0,\infty)$
+satisfies, a.e.\ on $(2,3)$-mixed problems,
+\begin{equation}
+ \frac{c_2}{b_2}+\frac{c_3}{b_3}\le1,\qquad
+ c_2\le\kappa^*(b_3-c_3),\qquad
+ \kappa^*c_3\le b_2-c_2.
+ \label{eq:forced-23}
+\end{equation}
+Equivalently, silence is optimal on every $(2,3)$-mixed problem for the
+weights $(1,\kappa^*)$ on worlds $(2,3)$.
+\end{theorem}
+\begin{proof}
+\emph{Step 1: coherent Bayes models on the face.} Fix $\kappa\in(0,\infty)$.
+Let $B$ choose, at each problem, an advice minimizing $\ell_2+\kappa\ell_3$,
+with a fixed tie-break. Correct advice on unanimous problems costs $0$ and
+every other advice costs more, and contradiction costs more than silence. So
+$B$ is regular.
+
+On the edge $[e_2,e_3]$, the closed sets $A_2(B)$ and $A_3(B)$ cover the
+edge, by competitiveness of $C_r$ on $\supp r\subseteq\{2,3\}$. They contain
+$e_2$ and $e_3$ respectively. The edge is connected, so some $r$ lies in both.
+Then $(C_r,B)\in\Kscr_2\cap\Kscr_3$, so $L_k(C_r)\le L_k(B)$ for $k=2,3$, and
+$E_\kappa\coloneqq C_r$ is a coherent Bayes model for the weights
+$(1,\kappa)$.
+
+Where $g_2,g_3>0$, accepting $g$ is the unique optimum for these weights. So,
+by the argument of v3's Lemma~11(c), the credal set of $E_\kappa$ lies on the
+edge $[e_2,e_3]$. Its advice depends only on $(g_2,g_3)$.
+
+\emph{Step 2: the Bayes thresholds are functions of $t$.} Put
+$A\coloneqq\min(\alpha,\gamma)$ and $B'\coloneqq\max(\beta,\gamma)$. At the
+weights $(1,\kappa)$, accepting $g$ is strictly optimal if and only if
+$\kappa<A$, and accepting $-g$ is strictly optimal if and only if
+$\kappa>B'$. So, up to null sets on $R_1\cup R_2$,
+\[
+ \{A>\kappa\}\subseteq E_\kappa\subseteq\{A\ge\kappa\}.
+\]
+Since $E_\kappa$ depends only on $(g_2,g_3)$, its acceptance set on
+$R_1\cup R_2$ is an upper interval in $t$, the same on $R_1$ and $R_2$. For
+rational $\kappa$,
+$\{A>\kappa\}=\bigcup_{\kappa'\in\mathbb Q,\,\kappa'>\kappa}E_{\kappa'}$ a.e.
+The argument in the first part of v3's Lemma~12 then gives a nondecreasing
+$F:(0,\infty)\to[0,\infty]$ with $A=F(t)$ a.e.\ on $R_1\cup R_2$. Rejection sets
+are lower intervals in $t$, and in the same way $B'=G(t)$ a.e.\ for a
+nondecreasing $G$.
+
+\emph{Step 3: a consequence of competitiveness.} By (KKMb), the vacuous model
+$V$ is competitive on some nonempty support, and therefore on $\{1,2,3\}$.
+Take measurable $Q_1\subseteq R_1$ and $Q_2\subseteq-R_2$; both lie in $H$.
+Let $X$ agree with $V$ except that it accepts $g$ on $Q_1\cup Q_2$. Then $X$ is
+regular. At world $1$ it replaces silence by good advice on $Q_1\cup Q_2$, so
+$X\prec_1V$ by strict (G) when $Q_1\cup Q_2$ is non-null. Competitiveness gives
+$V\preceq_2X$ or $V\preceq_3X$. Since $V$ is coherent and undominated,
+\[
+ \max\bigl(L_2(X)-L_2(V),\ L_3(X)-L_3(V)\bigr)\ge0.
+\]
+On $Q_2$, accepting $g$ means accepting $-g'$ for the oriented $g'=-g\in R_2$.
+Hence
+\[
+ L_2(X)-L_2(V)=-\int_{Q_1}c_2+\int_{Q_2}(b_2-c_2),\qquad
+ L_3(X)-L_3(V)=\int_{Q_1}(b_3-c_3)-\int_{Q_2}c_3,
+\]
+where the integrands on $Q_2$ are evaluated at $-g$.
+
+\emph{Step 4: separation of $\alpha$ and $\beta$.} We claim
+\[
+ \operatorname*{ess\,sup}_{R_1}\alpha\ \le\ \operatorname*{ess\,inf}_{R_2}\beta.
+\]
+If not, choose $0<\kappa_2<\kappa_1$ strictly between the two sides, with
+$\kappa_2$ above the infimum and $\kappa_1$ below the supremum. Take non-null
+$P_1\subseteq R_1\cap\{\alpha>\kappa_1\}$ and
+$P_2\subseteq-(R_2\cap\{\beta<\kappa_2\})$. The measures $(b_3-c_3)\,d\mu$ and
+$c_3\,d\mu$ are atomless with positive densities. So we can choose a non-null
+$Q_1\subseteq P_1$ with
+\[
+ x\coloneqq\int_{Q_1}(b_3-c_3)\le\frac{\kappa_2}{\kappa_1}\int_{P_2}c_3,
+\]
+then $y\in(x,\kappa_1x/\kappa_2]$, and then $Q_2\subseteq P_2$ with
+$\int_{Q_2}c_3=y$. Now $L_3(X)-L_3(V)=x-y<0$. Also
+$\int_{Q_1}c_2>\kappa_1x$ because $c_2=\alpha(b_3-c_3)$, and
+$\int_{Q_2}(b_2-c_2)<\kappa_2y\le\kappa_1x$ because $b_2-c_2=\beta c_3$. So
+$L_2(X)-L_2(V)<0$. This contradicts Step 3.
+
+Since $\alpha>0$ and $\beta<\infty$ a.e., we can choose $\kappa^*\in(0,\infty)$
+between the two sides of the claim.
+
+\emph{Step 5: $F\le\kappa^*\le G$ everywhere.} On $R_1$, $A\le\alpha\le\kappa^*$
+a.e., so $F(t)\le\kappa^*$ for a.e.\ $t$, because $t$ has a positive density
+on $R_1$. The set $\{F>\kappa^*\}$ is an upper interval of measure zero, so it
+is empty. In the same way, $B'\ge\beta\ge\kappa^*$ a.e.\ on $R_2$ gives
+$G\ge\kappa^*$ everywhere. This step uses only the definitions of $A$ and $B'$.
+
+\emph{Step 6: conclusion.} The following are equivalent, since each reduces to
+$b_2c_3+c_2b_3\le b_2b_3$:
+\[
+ \frac{c_2}{b_2}+\frac{c_3}{b_3}\le1,\qquad \alpha\le\gamma,\qquad
+ \gamma\le\beta,\qquad \alpha\le\beta.
+\]
+Where they fail, $\alpha>\gamma>\beta$, so $A=B'=\gamma$.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item If they fail on a non-null $P\subseteq R_1$, then on $P$,
+$B'=\gamma<\alpha\le\kappa^*$, contradicting $G\ge\kappa^*$.
+\item If they fail on a non-null $P\subseteq R_2$, then on $P$,
+$A=\gamma>\beta\ge\kappa^*$, contradicting $F\le\kappa^*$.
+\end{itemize}
+So the first inequality in \eqref{eq:forced-23} holds a.e., and $A=\alpha$,
+$B'=\beta$ a.e. Hence $\alpha=F(t)\le\kappa^*\le G(t)=\beta$ a.e.\ on
+$R_1\cup R_2$. These are the other two inequalities.
+\end{proof}
+
+Theorem~\ref{thm:one-world} recovers v3's forced edge bounds
+(\emph{forced-edge-bounds} in v3, for the pair $\{2,3\}$ with
+$p^0_3/p^0_2=\kappa^*$), without any numerical structure at world $1$. Strict
+(G) is used only at world~$1$.
+
+\begin{corollary}\label{cor:reduction}
+Under the hypotheses of Theorem~\ref{thm:one-world}, let $c_k,b_k$ now denote
+the silence and bad penalties of $L_k$ on all problems, and define, for
+$k=2,3$,
+\[
+ \psi_k\coloneqq c_k\ \text{where }g_k>0,\qquad
+ \psi_k\coloneqq-(b_k-c_k)\ \text{where }g_k<0.
+\]
+Let $\psi_1$ be any finite measurable function with
+$\operatorname{sgn}\psi_1=\operatorname{sgn}g_1$ a.e. Then for some $p\in\Delta$
+with $p_1>0$, no coherent $\Dscr_K$ with $K\subseteq\Delta_{\supp p}$ satisfies
+\[
+ \{p\cdot\psi>0\}\subseteq\Dscr_K\subseteq\{p\cdot\psi\ge0\}
+ \quad\text{a.e.}
+\]
+\end{corollary}
+\begin{proof}
+Suppose such a $\Dscr_K$ exists for every $p$ with $p_1>0$. We show that one
+also exists on the edge $[e_2,e_3]$. At $e_2$ and $e_3$ take $D_2$ and $D_3$.
+For $p$ inside the edge, with $\kappa=p_3/p_2$, take $E_\kappa$ from Step~1 of
+the proof above. It accepts only where acceptance is optimal, so
+$E_\kappa\subseteq\{p\cdot\psi\ge0\}$. Conversely, where $p\cdot\psi>0$,
+acceptance strictly beats silence. On $(2,3)$-mixed problems the first
+inequality of \eqref{eq:forced-23} gives $\alpha\le\gamma\le\beta$. So
+acceptance of the oriented $g$ beats silence only if $\kappa<\alpha\le\gamma$,
+and rejection beats silence only if $\kappa>\beta\ge\gamma$. In both cases it
+also strictly beats the third option. On $(2,3)$-unanimous problems this is
+immediate. So $E_\kappa$ accepts there.
+
+Now v3's Lemma~12 applies with $I=\{1,2,3\}$. It makes
+$\psi_2/(-\psi_3)=\alpha$ unbounded on $\{g_2>0>g_3\}$. This contradicts
+$\alpha\le\kappa^*$.
+\end{proof}
+
+When world $1$ also has an additive loss, v3 shows that the coherent Bayes
+models at priors charging world $1$ are such completions, with $\psi_1$ the
+acceptance-versus-silence contrast of that loss (v3, proof of
+Proposition~13). Corollary~\ref{cor:reduction} says that, with world $1$
+arbitrary, this fails at some such prior for every choice of $\psi_1$, and for
+every coherent model there, selected or not.
+
+\section{What remains}
+
+None of the results above uses (IB). Combining them, suppose that for some
+$n\ge3$ a ranking satisfies (G), (LA) and (S), and leaves the vacuous model
+undominated. Then:
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=2pt]
+\item at some world $i$, the one-sided comparisons $\Kscr_i$ contain a
+leverage sequence (Proposition~\ref{prop:one-sided},
+Theorem~\ref{thm:leverage} and CBOI's Theorem~2);
+\item at that world, the ranking on regular models is not lexicographic over
+additive criteria with a level that is not blind on $H'$. Such a ranking has
+an ordinary additive weak extension (proof of Theorem~\ref{thm:lex}), and so
+no leverage sequence;
+\item if $n=3$ and worlds $2,3$ have ordinary one-sided additive extensions,
+then world $1$ is the leverage world, and for every world-$1$ contrast
+$\psi_1$ some selection $C_p$ with $p_1>0$ is not a contrast completion
+(Corollary~\ref{cor:reduction}).
+\end{enumerate}
+Item (iii) is proved only for ordinary additive extensions at the two other
+worlds. We have not checked whether it extends to finitely additive ones.
+
+The conjecture of CC therefore reduces to the following question. Since
+nothing above uses (IB), an answer must use it.
+
+\paragraph{Question.} Do (G), (IB) and (S) exclude leverage sequences in
+$\Kscr_i$ at every world?
+
+A yes proves the conjecture. A counterexample to the conjecture must give a
+no at some world. The difficulty is this. (IB) transfers a comparison to
+models that differ from the original pair only where the pair agree. The new
+models are usually no longer coherent. So (IB) acts on comparisons between
+regular models, while the extension is needed only for comparisons from
+coherent undominated models. A proof would need (S) to bring the transferred
+comparisons back to selected models.
+
+\begin{thebibliography}{9}
+\bibitem{Rokhlin} D.~B. Rokhlin, The Kreps--Yan theorem for $L^\infty$,
+\emph{International Journal of Mathematics and Mathematical Sciences}
+2005(17), 2749--2756. doi:10.1155/IJMMS.2005.2749.
+\end{thebibliography}
+\end{document}

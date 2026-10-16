@@ -1,0 +1,831 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{Edge Cycles and Separability}
+\author{}\date{10 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note writes out in full the separability theorem for the sub-case of
+IC (\emph{Independence Chains and Two Additive Worlds}): worlds $2,3$ ranked
+by ordinary additive losses, world~$1$ any preorder with (G) and (IB), and
+(S). If $V$ is undominated, then $\rho=c_3/c_2$ and
+$\sigma=(b_3-c_3)/(b_2-c_2)$ are separable on $P_1$
+(Theorem~\ref{thm:sep}). The proof uses only edge models, (IB), transitivity
+and strict (G) at world~$1$. It does not use completeness of world~$1$.
+For a complete world~$1$ the whole sub-case is settled by \emph{Closed Choice
+Forces Fineness}, Corollary~19, so this note matters mainly for an
+incomplete world~$1$. Notation and the standing hypotheses (SH) are those of
+IC, Sections~1 and~3. This write-up has not been independently refereed.
+
+\section{Separability of the ratios on $P_1$}\label{sec:sep}
+
+Throughout this section we assume the standing hypotheses (SH) of
+Section~3 of IC. In particular $V$ is undominated; the results below
+are steps towards a contradiction. On $P_1$ put
+\[
+ v\coloneqq b_2-c_2,\qquad u\coloneqq b_3-c_3,\qquad
+ \rho\coloneqq\frac{c_3}{c_2},\qquad \sigma\coloneqq\frac{u}{v}.
+\]
+The main result (Theorem~\ref{thm:sep}) says that $\rho$ and $\sigma$ are
+products of a nondecreasing function of $t_{12}$ and a nonincreasing function
+of $t_{13}$. Its proof uses only the edge models of Lemma~7 of IC,
+(IB), transitivity and strict (G) at world~$1$. It uses no full-support
+selection and no comparison with $V$ beyond those already used in
+Lemma~7 of IC. Conversely, every separable ratio passes all the
+tests used here (Remark~\ref{rem:sep-converse}).
+
+\subsection{Conventions}
+
+\paragraph{Penalties.} Under (SH), $c_k$ and $b_k$ are measurable functions on
+$H$ with $0<c_k<b_k$ a.e., dominated by an integrable function. Hence
+$c_2,c_3,v,u$ are a.e.\ strictly positive and integrable, and $\rho,\sigma$
+take values in $(0,\infty)$ a.e. We fix real-valued measurable versions of
+\[
+ \zeta_\rho\coloneqq\log\rho,\qquad \zeta_\sigma\coloneqq\log\sigma
+\]
+on $P_1$. Nothing below depends on the choice of versions. For a
+nonnegative integrable density $\varphi$ and measurable $A$ write
+$\varphi(A)\coloneqq\int_A\varphi\,d\mu$. Each such $\varphi\,d\mu$ is a finite atomless
+measure, because $\mu$ is atomless. So for measurable $A_0\subseteq A$ and
+every $s\in[\varphi(A_0),\varphi(A)]$ there is a measurable $A'$ with
+$A_0\subseteq A'\subseteq A$ and $\varphi(A')=s$. If moreover $\varphi>0$ a.e., then
+$\varphi(A)>0$ if and only if $A$ is non-null.
+
+\paragraph{Coordinates on $P_1$.} Write $x\coloneqq t_{12}=g_1/|g_2|$ and
+$y\coloneqq t_{13}=g_1/|g_3|$ on $P_1$, and
+\[
+ \mathbf t\colon P_1\to\Omega\coloneqq(0,\infty)^2,\qquad
+ \mathbf t(g)\coloneqq\bigl(x(g),y(g)\bigr).
+\]
+For $A\subseteq\Omega$ put $\widehat A\coloneqq\mathbf t^{-1}(A)$. Points of
+$\Omega$ are written $a=(a_1,a_2)$; the first coordinate is a value of $x$,
+the second a value of $y$. Write $a\lhd b$, and say that $a$ is
+\emph{strictly north-west} of $b$, if $a_1<b_1$ and $a_2>b_2$. A \emph{box}
+is a set $I\times J$ with $I,J\subseteq(0,\infty)$ nonempty open intervals.
+A box $I\times J$ is \emph{strictly north-west} of a box $I'\times J'$ if
+$\sup I<\inf I'$ and $\inf J>\sup J'$. Every nonempty open subset of
+$\Omega$, and in particular every box, contains a box with rational endpoints
+whose closure is a compact subset of $\Omega$. More precisely, if a box $Q$
+contains a point $a$, then some box with rational endpoints contains $a$, is
+contained in $Q$, and has compact closure in $\Omega$.
+
+\paragraph{Essential bounds.} For a non-null measurable $A\subseteq P_1$ and
+a measurable $f\colon P_1\to\mathbb R$ write
+\[
+ f^{\uparrow}(A)\coloneqq\operatorname*{ess\,sup}_Af,\qquad
+ f^{\downarrow}(A)\coloneqq\operatorname*{ess\,inf}_Af,
+\]
+with respect to $\mu$, with values in $[-\infty,\infty]$. Since $f$ is
+real-valued and $A$ is non-null, $f^{\uparrow}(A)>-\infty$ and
+$f^{\downarrow}(A)<\infty$. If $A'\subseteq A$ is non-null then
+$f^{\uparrow}(A')\le f^{\uparrow}(A)$ and $f^{\downarrow}(A')\ge
+f^{\downarrow}(A)$.
+
+\paragraph{Lebesgue measure.} $\mathcal L^m$ denotes Lebesgue measure on
+$\mathbb R^m$. The measure $\mu$ is the normalized Gaussian on $H$. We use
+only that it has a density with respect to $\mathcal L^3$ that is strictly
+positive a.e.\ on $H$.
+
+\begin{lemma}\label{lem:sep-push}
+The image measure $\nu\coloneqq\mathbf t_*(\mu|_{P_1})$ on $\Omega$ and
+$\mathcal L^2|_\Omega$ have the same null sets. Consequently, $\widehat A$ is
+non-null for every nonempty open $A\subseteq\Omega$, and $\widehat N$ is
+$\mu$-null for every $\mathcal L^2$-null Borel set $N\subseteq\Omega$.
+\end{lemma}
+
+\begin{proof}
+Define $\Theta\colon P_1\to(0,\infty)^3$ by
+$\Theta(g)\coloneqq(x(g),y(g),|g|)$, and
+$\Gamma\colon(0,\infty)^3\to P_1$ by
+\[
+ \Gamma(s,r,\ell)\coloneqq\ell\,\frac{\mathbf w(s,r)}{|\mathbf w(s,r)|},\qquad
+ \mathbf w(s,r)\coloneqq\Bigl(1,-\frac1s,-\frac1r\Bigr).
+\]
+Both maps are $C^\infty$. For $g=\Gamma(s,r,\ell)$ we have $g_1>0>g_2,g_3$,
+$g_1/|g_2|=s$, $g_1/|g_3|=r$ and $|g|=\ell$, so $\Theta\circ\Gamma$ is the
+identity. Conversely, for $g\in P_1$ the unit vector $g/|g|$ is proportional
+to $(1,g_2/g_1,g_3/g_1)=\mathbf w(x(g),y(g))$ with a positive factor, so
+$\Gamma\circ\Theta$ is the identity. Thus $\Theta$ is a $C^\infty$
+diffeomorphism, and $\det D\Gamma$ vanishes nowhere.
+
+Let $p$ be the density of $\mu$. By the change of variables formula,
+$\Theta_*(\mu|_{P_1})$ has the density
+$q\coloneqq(p\circ\Gamma)\,|\det D\Gamma|$ on $(0,\infty)^3$. The set
+$\{q=0\}=\Theta(\{p=0\}\cap P_1)$ is $\mathcal L^3$-null, because $\Theta$ is
+locally Lipschitz and $\{p=0\}$ is $\mathcal L^3$-null. Since $\nu$ is the
+image of $\Theta_*(\mu|_{P_1})$ under $(s,r,\ell)\mapsto(s,r)$, Tonelli's
+theorem shows that $\nu$ has the density
+$n(s,r)\coloneqq\int_0^\infty q(s,r,\ell)\,d\ell$. Here $n$ is measurable,
+$\int_\Omega n\,d\mathcal L^2=\mu(P_1)<\infty$, so $n<\infty$ a.e. For
+$\mathcal L^2$-a.e.\ $(s,r)$ the section $q(s,r,\cdot)$ is positive
+$\mathcal L^1$-a.e., again by Tonelli, so $n>0$ a.e. A measure with an
+a.e.\ positive and a.e.\ finite density has the same null sets as
+$\mathcal L^2$.
+
+For a nonempty open $A$, $\mathcal L^2(A)>0$, so
+$\mu(\widehat A)=\nu(A)>0$. For an $\mathcal L^2$-null Borel $N$,
+$\mu(\widehat N)=\nu(N)=0$.
+\end{proof}
+
+\subsection{Moves along the edges}
+
+Recall the edge models of Section~1 of IC. For $\beta\in(0,\infty)$,
+on $P_1$: $E_2(\beta)$ gives debt ($o_{23}$) on $\{x<\beta\}$ and is silent on
+$\{x\ge\beta\}$; $E_3(\beta)$ gives debt on $\{y<\beta\}$ and is silent on
+$\{y\ge\beta\}$; $E_1(\beta)$ gives credit ($o_1$) on $\{x>\beta\}$ and is
+silent on $\{x\le\beta\}$; $E_1'(\beta)$ gives credit on $\{y>\beta\}$ and is
+silent on $\{y\le\beta\}$. By Lemma~7 of IC, each of these four
+models is a selection $C_q$ at a point $q$ of the open edge $(e_1,e_2)$ (for
+$E_2,E_1$) or $(e_1,e_3)$ (for $E_3,E_1'$). Hence $E_2(\beta)$ and
+$E_1(\beta)$ are competitive on $\{1,2\}$, and $E_3(\beta)$ and $E_1'(\beta)$
+are competitive on $\{1,3\}$. On $P_1$, IC's cost table reads: silence to
+credit changes $(\ell_2,\ell_3)$ by $(v,u)$, and silence to debt changes it
+by $(-c_2,-c_3)$; the reverse changes have the opposite signs.
+
+\begin{lemma}\label{lem:sep-moves}
+Let $\beta\in(0,\infty)$, let $A,A'\subseteq P_1$ be measurable, and let $M$
+be a model.
+\begin{enumerate}[label=(\roman*)]
+\item Suppose $x<\beta$ on $A$, $x\ge\beta$ on $A'$, $c_2(A')>c_2(A)$, and $M$
+gives debt on $A$ and is silent on $A'$. Let $M'$ be $M$ with silence on $A$
+and debt on $A'$. Then $M\preceq_1M'$.
+\item The same holds with $y$ and $c_3$ in place of $x$ and $c_2$.
+\item Suppose $x>\beta$ on $A$, $x\le\beta$ on $A'$, $v(A')<v(A)$, and $M$
+gives credit on $A$ and is silent on $A'$. Let $M'$ be $M$ with silence on
+$A$ and credit on $A'$. Then $M\preceq_1M'$.
+\item The same holds with $y$ and $u$ in place of $x$ and $v$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Put $E\coloneqq E_2(\beta)$. The hypotheses on $x$ make $A$ and $A'$
+disjoint, and $E$ gives debt on $A$ and is silent on $A'$. Let $E'$ be $E$
+with silence on $A$ and debt on $A'$. By the cost table,
+\[
+ L_2(E')-L_2(E)=c_2(A)-c_2(A')<0 .
+\]
+So $E\not\preceq_2E'$, and since $E$ is competitive on $\{1,2\}$,
+$E\preceq_1E'$. The pairs $(E,E')$ and $(M,M')$ agree with each other on
+$\pm(A\cup A')$: the first members give debt on $A$ and silence on $A'$, the
+second members give silence on $A$ and debt on $A'$. Off $\pm(A\cup A')$ the
+members of each pair agree. Replacing the shared advice of $(E,E')$ off
+$\pm(A\cup A')$ by the shared advice of $(M,M')$ there turns $(E,E')$ into
+$(M,M')$. By (IB), $M\preceq_1M'$.
+
+(ii) The same, with base $E_3(\beta)$, competitive on $\{1,3\}$, and
+$L_3(E')-L_3(E)=c_3(A)-c_3(A')<0$.
+
+(iii) The same, with base $E_1(\beta)$, which gives credit on $A$ and is
+silent on $A'$, and $L_2(E')-L_2(E)=v(A')-v(A)<0$.
+
+(iv) The same, with base $E_1'(\beta)$ and $L_3(E')-L_3(E)=u(A')-u(A)<0$.
+\end{proof}
+
+We use the lemma through the chain principle of Section~1 of IC:
+if $M_0\preceq_1M_1\preceq_1\dots\preceq_1M_n$ and $M_n$ is a pointwise weak
+world-1 improvement of $M_0$, strictly on a non-null set, then
+$M_n\prec_1M_0$ by strict (G), while $M_0\preceq_1M_n$ by transitivity. This
+is impossible.
+
+\subsection{Debt cycles and credit cycles}
+
+\begin{definition}\label{def:sep-cycle}
+Let $k\ge1$. A \emph{cycle} of length $k$ is a family of non-null measurable
+sets $X_1,Y_1,\dots,X_k,Y_k\subseteq P_1$ such that, with
+$X_{k+1}\coloneqq X_1$,
+\[
+ y^{\uparrow}(X_i)<y^{\downarrow}(Y_i)\quad\text{and}\quad
+ x^{\uparrow}(Y_i)<x^{\downarrow}(X_{i+1})\qquad(i=1,\dots,k).
+\]
+Thus $Y_i$ lies above $X_i$ in $y$, and $X_{i+1}$ lies to the right of $Y_i$
+in $x$. Let $\zeta\colon P_1\to\mathbb R$ be measurable. If
+$\zeta^{\uparrow}(X_i)<\infty$ and $\zeta^{\downarrow}(Y_i)>-\infty$ for all
+$i$, the \emph{$\zeta$-weight} of the cycle is the real number
+\[
+ W_\zeta\coloneqq\sum_{i=1}^k\bigl(\zeta^{\uparrow}(X_i)-\zeta^{\downarrow}(Y_i)\bigr).
+\]
+\end{definition}
+
+If each set of a cycle is replaced by a non-null measurable subset, the
+result is again a cycle, and its $\zeta$-weight, when defined, is no larger:
+$\zeta^{\uparrow}$ can only decrease and $\zeta^{\downarrow}$ can only
+increase. In particular, for a cycle whose $\zeta$-weight is defined, the
+sets $X_i\cap\{\zeta\ge-K\}$ and $Y_i\cap\{\zeta\le K\}$ form, for $K$ large
+enough, a cycle with no larger $\zeta$-weight on each of whose sets $\zeta$
+is essentially bounded. These sets are non-null for large $K$, since $\zeta$
+is real-valued.
+
+\begin{lemma}\label{lem:sep-debt}
+Assume (SH). Every cycle whose $\zeta_\rho$-weight is defined has
+$W_{\zeta_\rho}\ge0$.
+\end{lemma}
+
+\begin{proof}
+Suppose a cycle $(X_i,Y_i)_{i\le k}$ has $W\coloneqq W_{\zeta_\rho}<0$. By the
+remark above we may assume $\zeta_\rho$ essentially bounded on each $X_i$
+and each $Y_i$. Discarding null subsets, we may also assume that the
+essential bounds hold pointwise on each set: for instance
+$y\le y^{\uparrow}(X_i)$ and $\rho\le\rho^{\uparrow}(X_i)$ everywhere on
+$X_i$. Put
+\[
+ r_i\coloneqq\rho^{\uparrow}(X_i),\qquad s_i\coloneqq\rho^{\downarrow}(Y_i).
+\]
+Then $0<r_i,s_i<\infty$ and $\prod_{i=1}^kr_i/s_i=e^{W}<1$. Choose
+$\epsilon>0$ with $\kappa\coloneqq(1+\epsilon)^{2k}e^{W}<1$. Choose
+\[
+ \beta_i\in\bigl(y^{\uparrow}(X_i),\,y^{\downarrow}(Y_i)\bigr),\qquad
+ \alpha_i\in\bigl(x^{\uparrow}(Y_i),\,x^{\downarrow}(X_{i+1})\bigr),
+\]
+both finite. They are positive, since $x,y>0$. So $y<\beta_i$ on $X_i$,
+$y>\beta_i$ on $Y_i$, $x<\alpha_i$ on $Y_i$ and $x>\alpha_i$ on $X_{i+1}$.
+
+\emph{The sets.} Fix $m_0>0$, to be made small below, and a measurable
+$D_0\subseteq X_1$ with $c_2(D_0)=m_0$. Put $A_0\coloneqq D_0$ and choose
+recursively, for $i=1,\dots,k$, measurable sets
+\[
+ A_{2i-1}\subseteq Y_i\ \text{with}\ c_3(A_{2i-1})=(1+\epsilon)\,c_3(A_{2i-2}),
+ \qquad
+ A_{2i}\subseteq X_{i+1}\ \text{with}\ c_2(A_{2i})=(1+\epsilon)\,c_2(A_{2i-1}),
+\]
+where for $i=k$ we require in addition $A_{2k}\subseteq D_0$. Since
+$A_{2i-2}\subseteq X_i$ and $A_{2i-1}\subseteq Y_i$, we have
+$c_3\le r_ic_2$ on $A_{2i-2}$ and $c_3\ge s_ic_2$ on $A_{2i-1}$. Hence
+\[
+ c_3(A_{2i-1})\le(1+\epsilon)\,r_i\,c_2(A_{2i-2}),\qquad
+ c_2(A_{2i})\le\frac{(1+\epsilon)\,c_3(A_{2i-1})}{s_i}
+ \le(1+\epsilon)^2\frac{r_i}{s_i}\,c_2(A_{2i-2}).
+\]
+By induction, every prescribed mass, $m_0$ included, is at most
+$\Lambda m_0$, where $\Lambda\in[1,\infty)$ depends only on $\epsilon$ and
+the $r_i,s_i$, and moreover
+\[
+ c_2(A_{2k})\le(1+\epsilon)^{2k}\prod_{i=1}^k\frac{r_i}{s_i}\;m_0=\kappa m_0<m_0 .
+\]
+Put $m_*\coloneqq\min_i\min\{c_2(X_i),c_3(Y_i)\}>0$ and take
+$m_0\le m_*/\Lambda$. Then each prescribed mass is at most the corresponding
+mass of the ambient set $X_1$, $Y_i$ or $X_{i+1}$, and the last one is less
+than $c_2(D_0)$. By atomlessness all the sets exist. Every $A_j$ is non-null,
+since its prescribed mass is positive. Finally $D_0\setminus A_{2k}$ has
+$c_2$-mass at least $(1-\kappa)m_0>0$, so it is non-null.
+
+\emph{The chain.} Put $M_j\coloneqq V+o_{23}(A_j)$ for $j=0,\dots,2k$. For
+$i=1,\dots,k$:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item $M_{2i-2}\preceq_1M_{2i-1}$ by Lemma~\ref{lem:sep-moves}(ii) with
+$\beta=\beta_i$, $A=A_{2i-2}$ and $A'=A_{2i-1}$. Indeed $y<\beta_i$ on
+$A\subseteq X_i$ and $y>\beta_i$ on $A'\subseteq Y_i$, so $A\cap A'=\varnothing$;
+$M_{2i-2}$ gives debt on $A$ and is silent on $A'$; $c_3(A')=(1+\epsilon)c_3(A)>c_3(A)$
+because $A$ is non-null; and $M_{2i-2}$ with silence on $A$ and debt on $A'$
+is $M_{2i-1}$.
+\item $M_{2i-1}\preceq_1M_{2i}$ by Lemma~\ref{lem:sep-moves}(i) with
+$\beta=\alpha_i$, $A=A_{2i-1}$ and $A'=A_{2i}$. Indeed $x<\alpha_i$ on
+$A\subseteq Y_i$ and $x>\alpha_i$ on $A'\subseteq X_{i+1}$; $M_{2i-1}$ gives
+debt on $A$ and is silent on $A'$; $c_2(A')=(1+\epsilon)c_2(A)>c_2(A)$; and
+the moved model is $M_{2i}$.
+\end{itemize}
+By transitivity $M_0\preceq_1M_{2k}$. But $M_{2k}=V+o_{23}(A_{2k})$ with
+$A_{2k}\subseteq D_0$, so $M_{2k}$ is $M_0$ with debt replaced by silence on
+the non-null set $D_0\setminus A_{2k}$. This contradicts the chain principle.
+\end{proof}
+
+For $k=1$ the lemma says: there are no non-null $B,B'\subseteq P_1$ with $B$
+strictly north-west of $B'$ in the sense $x^{\uparrow}(B)<x^{\downarrow}(B')$,
+$y^{\downarrow}(B)>y^{\uparrow}(B')$, and $\rho^{\downarrow}(B)>\rho^{\uparrow}(B')$.
+
+The credit version runs through the same configuration in the opposite
+direction. Credit moves to the left in $x$ (base $E_1$) and downwards in $y$
+(base $E_1'$), and each move must decrease the relevant mass, $v$ or $u$.
+
+\begin{lemma}\label{lem:sep-credit}
+Assume (SH). Every cycle whose $\zeta_\sigma$-weight is defined has
+$W_{\zeta_\sigma}\ge0$.
+\end{lemma}
+
+\begin{proof}
+Suppose a cycle $(X_i,Y_i)_{i\le k}$ has $W\coloneqq W_{\zeta_\sigma}<0$. As
+before we may assume that $\zeta_\sigma$ is essentially bounded on every set
+of the cycle, and that all essential bounds hold pointwise. Put
+\[
+ s_i^+\coloneqq\sigma^{\uparrow}(X_i),\qquad s_i^-\coloneqq\sigma^{\downarrow}(Y_i),
+\]
+so that $\prod_is_i^+/s_i^-=e^{W}<1$, and all of $\sigma^{\uparrow}$,
+$\sigma^{\downarrow}$ on all sets of the cycle lie in $(0,\infty)$. Choose
+$\epsilon\in(0,1)$ with $(1-\epsilon)^{2k}e^{-W}>1$. Choose $\alpha_i,\beta_i$
+as in the proof of Lemma~\ref{lem:sep-debt}. So $x>\alpha_i$ on $X_{i+1}$,
+$x<\alpha_i$ on $Y_i$, $y>\beta_i$ on $Y_i$ and $y<\beta_i$ on $X_i$.
+
+\emph{The sets.} Fix $m_0>0$, to be made small below, and a measurable
+$D_0\subseteq X_1$ with $v(D_0)=m_0$. Write $X_{k+1}=X_1$ and put
+$Z_{k+1}\coloneqq D_0$. For $i=k,k-1,\dots,2$ choose recursively measurable
+\[
+ Z_i'\subseteq Y_i\ \text{with}\ v(Z_i')=(1-\epsilon)\,v(Z_{i+1}),\qquad
+ Z_i\subseteq X_i\ \text{with}\ u(Z_i)=(1-\epsilon)\,u(Z_i'),
+\]
+and then $Z_1'\subseteq Y_1$ with $v(Z_1')=(1-\epsilon)\,v(Z_2)$. Every
+prescribed mass, and also $u(D_0)$, is at most $\Lambda m_0$, for a constant
+$\Lambda\in[1,\infty)$ depending only on $\epsilon$ and the essential bounds
+of $\sigma$ on the sets of the cycle: $v$ decreases at each $Z'$-step, $u$
+decreases at each $Z$-step, and on each set of the cycle $u$ and $v$ are
+comparable up to the factors $\sigma^{\uparrow},\sigma^{\downarrow}$ of that
+set. Put $m_*\coloneqq\min_i\min\{v(X_i),v(Y_i),u(X_i)\}>0$. For
+$m_0\le m_*/(2\Lambda)$ all these sets exist, by atomlessness, and also
+$u(D_0)<u(X_1)$.
+
+\emph{Mass bookkeeping.} On $Y_i$ we have $u\ge s_i^-v$, and on $X_i$ we
+have $v\ge u/s_i^+$. Hence, for $i=k,\dots,2$,
+\[
+ v(Z_i)\ge\frac{u(Z_i)}{s_i^+}=\frac{(1-\epsilon)\,u(Z_i')}{s_i^+}
+ \ge(1-\epsilon)\frac{s_i^-}{s_i^+}\,v(Z_i')
+ =(1-\epsilon)^2\frac{s_i^-}{s_i^+}\,v(Z_{i+1}),
+\]
+and therefore, using $u(D_0)\le s_1^+v(D_0)$,
+\begin{align*}
+ u(Z_1')&\ge s_1^-v(Z_1')=(1-\epsilon)s_1^-v(Z_2)
+ \ge(1-\epsilon)^{2k-1}s_1^-\prod_{i=2}^k\frac{s_i^-}{s_i^+}\;m_0\\
+ &=(1-\epsilon)^{2k-1}e^{-W}s_1^+m_0
+ \ge(1-\epsilon)^{2k-1}e^{-W}u(D_0).
+\end{align*}
+The right-hand side exceeds $u(D_0)$. Choose a measurable $Z_1$ with
+$D_0\subseteq Z_1\subseteq X_1$ and
+$u(D_0)<u(Z_1)<\min\{u(Z_1'),u(X_1)\}$. Then $Z_1\setminus D_0$ is non-null.
+All the sets $Z_i,Z_i'$ have positive prescribed mass and are non-null.
+
+\emph{The chain.} Put $N_{k+1}\coloneqq V+o_1(D_0)$, and for $i=k,\dots,1$
+put $N_i'\coloneqq V+o_1(Z_i')$ and $N_i\coloneqq V+o_1(Z_i)$. For
+$i=k,\dots,1$:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item $N_{i+1}\preceq_1N_i'$ by Lemma~\ref{lem:sep-moves}(iii) with
+$\beta=\alpha_i$, $A=Z_{i+1}$ and $A'=Z_i'$. Indeed $x>\alpha_i$ on
+$A\subseteq X_{i+1}$ and $x<\alpha_i$ on $A'\subseteq Y_i$, so the sets are
+disjoint; $N_{i+1}$ gives credit on $A$ and is silent on $A'$;
+$v(A')=(1-\epsilon)v(A)<v(A)$; and the moved model is $N_i'$.
+\item $N_i'\preceq_1N_i$ by Lemma~\ref{lem:sep-moves}(iv) with
+$\beta=\beta_i$, $A=Z_i'$ and $A'=Z_i$. Indeed $y>\beta_i$ on $A\subseteq Y_i$
+and $y<\beta_i$ on $A'\subseteq X_i$; $N_i'$ gives credit on $A$ and is silent
+on $A'$; $u(A')<u(A)$ (for $i\ge2$ by the factor $1-\epsilon$, for $i=1$ by
+the choice of $Z_1$); and the moved model is $N_i$.
+\end{itemize}
+By transitivity $N_{k+1}\preceq_1N_1$. But $N_1=V+o_1(Z_1)$ with
+$Z_1\supseteq D_0$, so $N_1$ is $N_{k+1}$ with silence replaced by credit on
+the non-null set $Z_1\setminus D_0$. This contradicts the chain principle.
+\end{proof}
+
+For $k=1$ the lemma says: there are no non-null $T,T'\subseteq P_1$ with
+$x^{\uparrow}(T)<x^{\downarrow}(T')$, $y^{\downarrow}(T)>y^{\uparrow}(T')$ and
+$\sigma^{\downarrow}(T)>\sigma^{\uparrow}(T')$.
+
+Lemmas~\ref{lem:sep-debt} and~\ref{lem:sep-credit} give the same condition on
+the two functions $\zeta_\rho$ and $\zeta_\sigma$. The rest of the section
+shows that this condition alone forces separability.
+
+\subsection{From the cycle condition to separability}
+
+In this subsection $\zeta\colon P_1\to\mathbb R$ is a measurable function with
+the following property.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item[(C)] Every cycle whose $\zeta$-weight is defined has $W_\zeta\ge0$.
+\end{itemize}
+By Lemmas~\ref{lem:sep-debt} and~\ref{lem:sep-credit}, under (SH) both
+$\zeta_\rho$ and $\zeta_\sigma$ satisfy (C).
+
+\begin{lemma}\label{lem:sep-box}
+Let $\zeta$ satisfy (C).
+\begin{enumerate}[label=(\alph*)]
+\item If $Q,Q'$ are boxes and $Q$ is strictly north-west of $Q'$, then
+$\zeta^{\uparrow}(\widehat Q)\le\zeta^{\downarrow}(\widehat{Q'})$.
+\item If $Q$ is a box with compact closure in $\Omega$, then $\zeta$ is
+essentially bounded on $\widehat Q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Write $Q=I\times J$ and $Q'=I'\times J'$. By Lemma~\ref{lem:sep-push},
+$\widehat Q$ and $\widehat{Q'}$ are non-null, so both essential bounds are
+defined. Suppose
+$\zeta^{\uparrow}(\widehat Q)>\zeta^{\downarrow}(\widehat{Q'})$, and choose
+reals $r'<r$ with $\zeta^{\downarrow}(\widehat{Q'})<r'<r<\zeta^{\uparrow}(\widehat Q)$.
+The sets
+\[
+ X\coloneqq\widehat{Q'}\cap\{\zeta<r'\},\qquad Y\coloneqq\widehat Q\cap\{\zeta>r\}
+\]
+are non-null, by the definition of essential bounds. Since $\sup J'<\inf J$
+and $\sup I<\inf I'$ (both finite),
+\[
+ y^{\uparrow}(X)\le\sup J'<\inf J\le y^{\downarrow}(Y),\qquad
+ x^{\uparrow}(Y)\le\sup I<\inf I'\le x^{\downarrow}(X).
+\]
+So $(X_1,Y_1)\coloneqq(X,Y)$ is a cycle of length $1$. Its $\zeta$-weight is
+defined and is at most $r'-r<0$, contrary to (C).
+
+(b) Let $Q=(a_1,b_1)\times(a_2,b_2)$ with $0<a_1<b_1<\infty$ and
+$0<a_2<b_2<\infty$. The box $Q''\coloneqq(a_1/3,a_1/2)\times(b_2+1,b_2+2)$
+is strictly north-west of $Q$, and $Q$ is strictly north-west of
+$Q'\coloneqq(b_1+1,b_1+2)\times(a_2/3,a_2/2)$. By (a), and since
+$\widehat{Q''}$ and $\widehat{Q'}$ are non-null,
+\[
+ -\infty<\zeta^{\uparrow}(\widehat{Q''})\le\zeta^{\downarrow}(\widehat Q)
+ \le\zeta^{\uparrow}(\widehat Q)\le\zeta^{\downarrow}(\widehat{Q'})<\infty .
+\qedhere
+\]
+\end{proof}
+
+\begin{definition}\label{def:sep-env}
+For $a\in\Omega$ define the \emph{essential envelopes}
+\[
+ \zeta^+(a)\coloneqq\inf\bigl\{\zeta^{\uparrow}(\widehat Q):Q\text{ a box},\ a\in Q\bigr\},
+ \qquad
+ \zeta^-(a)\coloneqq\sup\bigl\{\zeta^{\downarrow}(\widehat Q):Q\text{ a box},\ a\in Q\bigr\}.
+\]
+\end{definition}
+
+The sets $\widehat Q$ are cones in $g$-space: they contain all radii. So the
+envelopes see only the coordinates $(x,y)$.
+
+\begin{lemma}\label{lem:sep-env}
+Let $\zeta$ satisfy (C).
+\begin{enumerate}[label=(\alph*)]
+\item $-\infty<\zeta^-(a)\le\zeta^+(a)<\infty$ for every $a\in\Omega$.
+\item $\zeta^+$ is upper semicontinuous and $\zeta^-$ is lower
+semicontinuous on $\Omega$. In particular both are Borel.
+\item $\zeta^+(a)\le\zeta^-(b)$ whenever $a\lhd b$.
+\item $\zeta^-(\mathbf t(g))\le\zeta(g)\le\zeta^+(\mathbf t(g))$ for
+$\mu$-a.e.\ $g\in P_1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $Q,Q'$ be boxes containing $a$. Then $Q\cap Q'$ is a box containing
+$a$, and $\widehat Q\cap\widehat{Q'}=\widehat{Q\cap Q'}$ is non-null by
+Lemma~\ref{lem:sep-push}. Hence
+\[
+ \zeta^{\downarrow}(\widehat Q)\le\zeta^{\downarrow}(\widehat{Q\cap Q'})
+ \le\zeta^{\uparrow}(\widehat{Q\cap Q'})\le\zeta^{\uparrow}(\widehat{Q'}).
+\]
+Taking the supremum over $Q$ and the infimum over $Q'$ gives
+$\zeta^-(a)\le\zeta^+(a)$. Now take a box $Q\ni a$ with compact closure in
+$\Omega$. By Lemma~\ref{lem:sep-box}(b),
+$\zeta^+(a)\le\zeta^{\uparrow}(\widehat Q)<\infty$ and
+$\zeta^-(a)\ge\zeta^{\downarrow}(\widehat Q)>-\infty$.
+
+(b) Let $c\in\mathbb R$ and $\zeta^+(a)<c$. Some box $Q\ni a$ has
+$\zeta^{\uparrow}(\widehat Q)<c$. Since $Q$ is also a box containing each
+$a'\in Q$, we get $\zeta^+<c$ on the open set $Q$. So $\{\zeta^+<c\}$ is
+open. The argument for $\zeta^-$ is symmetric.
+
+(c) Let $a\lhd b$ and
+$\delta\coloneqq\frac13\min\{b_1-a_1,\ a_2-b_2,\ a_1,\ a_2,\ b_1,\ b_2\}>0$.
+The squares
+$Q_a\coloneqq(a_1-\delta,a_1+\delta)\times(a_2-\delta,a_2+\delta)$ and
+$Q_b\coloneqq(b_1-\delta,b_1+\delta)\times(b_2-\delta,b_2+\delta)$ are boxes,
+and $Q_a$ is strictly north-west of $Q_b$, since $a_1+\delta<b_1-\delta$ and
+$a_2-\delta>b_2+\delta$. By Lemma~\ref{lem:sep-box}(a),
+\[
+ \zeta^+(a)\le\zeta^{\uparrow}(\widehat{Q_a})\le\zeta^{\downarrow}(\widehat{Q_b})\le\zeta^-(b).
+\]
+
+(d) Let $\mathcal Q$ be the countable family of boxes with rational
+endpoints. For $Q\in\mathcal Q$ the sets
+$\{g\in\widehat Q:\zeta(g)>\zeta^{\uparrow}(\widehat Q)\}$ and
+$\{g\in\widehat Q:\zeta(g)<\zeta^{\downarrow}(\widehat Q)\}$ are $\mu$-null,
+by the definition of essential bounds. Let $N$ be the union of all these
+sets over $Q\in\mathcal Q$; it is $\mu$-null. Let $g\in P_1\setminus N$ and
+$a\coloneqq\mathbf t(g)$. Every box $Q\ni a$ contains some $Q'\in\mathcal Q$
+with $a\in Q'$. Then $g\in\widehat{Q'}$, so
+$\zeta(g)\le\zeta^{\uparrow}(\widehat{Q'})\le\zeta^{\uparrow}(\widehat Q)$.
+Taking the infimum over $Q$ gives $\zeta(g)\le\zeta^+(a)$. Likewise
+$\zeta(g)\ge\zeta^-(a)$.
+\end{proof}
+
+The next elementary lemma is used three times.
+
+\begin{lemma}\label{lem:sep-interleave}
+Let $T\subseteq\mathbb R$, and let $l,h\colon T\to\mathbb R$ satisfy $l\le h$
+on $T$ and $h(s)\le l(s')$ whenever $s,s'\in T$ and $s<s'$. Then $l$ and $h$
+are nondecreasing on $T$, and the set $\{s\in T:l(s)<h(s)\}$ is countable.
+\end{lemma}
+
+\begin{proof}
+For $s<s'$ in $T$, $l(s)\le h(s)\le l(s')\le h(s')$. For each $s$ in
+$D\coloneqq\{l<h\}$ choose a rational $q(s)\in(l(s),h(s))$. If $s<s'$ are in
+$D$, then $q(s)<h(s)\le l(s')<q(s')$. So $q$ is injective on $D$, and $D$
+is countable.
+\end{proof}
+
+\begin{lemma}\label{lem:sep-diag}
+Let $\zeta$ satisfy (C). Then the Borel set
+$E\coloneqq\{a\in\Omega:\zeta^-(a)<\zeta^+(a)\}$ is $\mathcal L^2$-null.
+\end{lemma}
+
+\begin{proof}
+$E$ is Borel by Lemma~\ref{lem:sep-env}(b). Fix $c>0$ and put
+$a^c(\tau)\coloneqq(\tau,c-\tau)\in\Omega$ for $\tau\in(0,c)$. If
+$\tau<\tau'$, then $a^c(\tau)\lhd a^c(\tau')$, so
+$\zeta^+(a^c(\tau))\le\zeta^-(a^c(\tau'))$ by Lemma~\ref{lem:sep-env}(c).
+Together with Lemma~\ref{lem:sep-env}(a), the functions
+$l\coloneqq\zeta^-\circ a^c$ and $h\coloneqq\zeta^+\circ a^c$ on $(0,c)$
+satisfy the hypotheses of Lemma~\ref{lem:sep-interleave}. So
+$E_c\coloneqq\{\tau\in(0,c):a^c(\tau)\in E\}$ is countable.
+
+The linear map $\Lambda(c,\tau)\coloneqq(\tau,c-\tau)$ has $|\det\Lambda|=1$
+and maps $\{(c,\tau):c>0,\ 0<\tau<c\}$ bijectively onto $\Omega$. By the
+change of variables formula and Tonelli's theorem,
+\[
+ \mathcal L^2(E)=\mathcal L^2\bigl(\Lambda^{-1}(E)\bigr)
+ =\int_0^\infty\mathcal L^1(E_c)\,dc=0 .
+\qedhere
+\]
+\end{proof}
+
+By Lemmas~\ref{lem:sep-env}(d), \ref{lem:sep-diag} and~\ref{lem:sep-push},
+$\zeta=\zeta^+\circ\mathbf t=\zeta^-\circ\mathbf t$ $\mu$-a.e.\ on $P_1$. In
+particular $\zeta$ agrees a.e.\ with a function of $(x,y)$ alone.
+
+\begin{lemma}\label{lem:sep-points}
+Let $\zeta$ satisfy (C). Let $k\ge1$ and
+$a^1,b^1,\dots,a^k,b^k\in\Omega$ with, for $i=1,\dots,k$ and
+$a^{k+1}\coloneqq a^1$,
+\[
+ a^i_2<b^i_2\qquad\text{and}\qquad b^i_1<a^{i+1}_1 .
+\]
+Then $\sum_{i=1}^k\bigl(\zeta^+(a^i)-\zeta^-(b^i)\bigr)\ge0$.
+\end{lemma}
+
+\begin{proof}
+Let $\Sigma$ be the sum, which is real by Lemma~\ref{lem:sep-env}(a), and
+suppose $\Sigma<0$. Put $\eta\coloneqq-\Sigma/(4k)>0$. Let $\delta>0$ be less
+than half of every difference $b^i_2-a^i_2$ and $a^{i+1}_1-b^i_1$, and less
+than every coordinate of every point $a^i,b^i$. For $p\in\Omega$ let
+$S(p)\coloneqq(p_1-\delta,p_1+\delta)\times(p_2-\delta,p_2+\delta)$, a box.
+
+By the definition of the envelopes there are boxes $Q_i\ni a^i$ and
+$R_i\ni b^i$ with $\zeta^{\uparrow}(\widehat{Q_i})<\zeta^+(a^i)+\eta$ and
+$\zeta^{\downarrow}(\widehat{R_i})>\zeta^-(b^i)-\eta$. Replacing $Q_i$ by
+$Q_i\cap S(a^i)$ and $R_i$ by $R_i\cap S(b^i)$ keeps these inequalities,
+since the essential bounds over subsets are tighter. Put
+$X_i\coloneqq\widehat{Q_i}$ and $Y_i\coloneqq\widehat{R_i}$; they are
+non-null by Lemma~\ref{lem:sep-push}. Then
+\[
+ y^{\uparrow}(X_i)\le a^i_2+\delta<b^i_2-\delta\le y^{\downarrow}(Y_i),\qquad
+ x^{\uparrow}(Y_i)\le b^i_1+\delta<a^{i+1}_1-\delta\le x^{\downarrow}(X_{i+1}),
+\]
+with $X_{k+1}=X_1$. So $(X_i,Y_i)_{i\le k}$ is a cycle. Its $\zeta$-weight is
+defined, and
+\[
+ W_\zeta\le\sum_{i=1}^k\bigl(\zeta^+(a^i)+\eta-\zeta^-(b^i)+\eta\bigr)
+ =\Sigma+2k\eta=\Sigma/2<0,
+\]
+contrary to (C).
+\end{proof}
+
+\begin{lemma}\label{lem:sep-potential}
+Let $\zeta$ satisfy (C). There is a function $\pi\colon\Omega\to\mathbb R$
+such that, for all $p,q\in\Omega$,
+\begin{enumerate}[label=(P\arabic*)]
+\item if $p_1<q_1$, then $\pi(q)\le\pi(p)$;
+\item if $p_2<q_2$, then $\pi(q)+\zeta^-(q)\le\pi(p)+\zeta^+(p)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Call an ordered pair $(p,q)$ of points of $\Omega$ a \emph{horizontal step}
+if $p_1<q_1$, with weight $0$, and a \emph{vertical step} if $p_2<q_2$, with
+weight $\zeta^+(p)-\zeta^-(q)$. This weight is real by
+Lemma~\ref{lem:sep-env}(a). A pair may be a step of both kinds; a
+\emph{path} from $p$ to $q$ is a finite sequence
+$p=p^0,p^1,\dots,p^n=q$ with $n\ge1$, together with a choice, for each $j$,
+of a kind for which $(p^{j-1},p^j)$ is a step. Its weight is the sum of the
+weights of its steps. The path is \emph{closed} if $p^n=p^0$.
+
+\emph{Claim 1: every closed path has weight $\ge0$.} Index the steps of a
+closed path cyclically. Not all steps are horizontal: otherwise
+$p^0_1<p^1_1<\dots<p^n_1=p^0_1$. Likewise not all are vertical. Suppose two
+cyclically consecutive steps $(p,q)$ and $(q,r)$ are of the same kind. Then
+$(p,r)$ is a step of that kind, because the defining inequality is
+transitive. Replace the two steps by the single step $(p,r)$. For horizontal
+steps the weight does not change. For vertical steps it changes from
+$\zeta^+(p)-\zeta^-(q)+\zeta^+(q)-\zeta^-(r)$ to $\zeta^+(p)-\zeta^-(r)$, a
+decrease by $\zeta^+(q)-\zeta^-(q)\ge0$. The result is a closed path with one
+step fewer that still has steps of both kinds. After finitely many such
+replacements the kinds alternate cyclically. Then the number of steps is
+$2k$ for some $k\ge1$, and starting at a vertical step we can write the path
+as
+\[
+ a^1\to b^1\to a^2\to b^2\to\dots\to a^k\to b^k\to a^{k+1}=a^1,
+\]
+where each $(a^i,b^i)$ is vertical and each $(b^i,a^{i+1})$ is horizontal.
+That is, $a^i_2<b^i_2$ and $b^i_1<a^{i+1}_1$. Its weight is
+$\sum_i(\zeta^+(a^i)-\zeta^-(b^i))\ge0$ by Lemma~\ref{lem:sep-points}. The
+weight of the original path is at least this.
+
+\emph{Claim 2: any two points are joined by a path of two steps.} Given
+$p,q\in\Omega$, put
+\[
+ z\coloneqq\Bigl(\tfrac12\min\{p_1,q_1\},\ \max\{p_2,q_2\}+1\Bigr).
+\]
+Then $(p,z)$ is a vertical step and $(z,q)$ is a horizontal step.
+
+Fix $z_0\in\Omega$ and let $\pi(q)$ be the infimum of the weights of all
+paths from $z_0$ to $q$. By Claim~2, $\pi(q)<\infty$. Fix a path $\gamma_q$
+from $q$ to $z_0$. Following any path from $z_0$ to $q$ by $\gamma_q$ gives a
+closed path, so by Claim~1 every path from $z_0$ to $q$ has weight at least
+$-\operatorname{wt}(\gamma_q)$, where $\operatorname{wt}(\gamma_q)$ is the weight of $\gamma_q$. Hence
+$\pi(q)>-\infty$.
+
+If $(p,q)$ is a step of some kind, appending it to a path from $z_0$ to $p$
+gives a path from $z_0$ to $q$. Hence $\pi(q)\le\pi(p)+(\text{weight of the
+step})$. For a horizontal step this is (P1). For a vertical step it is
+$\pi(q)\le\pi(p)+\zeta^+(p)-\zeta^-(q)$, which is (P2).
+\end{proof}
+
+\begin{proposition}\label{prop:sep-abstract}
+Let $\zeta\colon P_1\to\mathbb R$ be measurable and satisfy (C). Then there
+are nondecreasing functions $\Phi,\Psi\colon(0,\infty)\to\mathbb R$ with
+\[
+ \zeta=\Phi(x)-\Psi(y)\qquad\mu\text{-a.e.\ on }P_1 .
+\]
+\end{proposition}
+
+\begin{proof}
+Let $\pi$ be as in Lemma~\ref{lem:sep-potential}, and let $E$ be the null
+Borel set of Lemma~\ref{lem:sep-diag}.
+
+\emph{Step 1: the $x$-part.} For $s>0$ put
+$\overline\pi(s)\coloneqq\sup_{r>0}\pi(s,r)$ and
+$\underline\pi(s)\coloneqq\inf_{r>0}\pi(s,r)$. If $s<s'$, (P1) gives
+$\pi(s',r')\le\pi(s,r)$ for all $r,r'>0$, hence
+$\overline\pi(s')\le\underline\pi(s)$. In particular
+$\overline\pi(s)\le\underline\pi(s/2)\le\pi(s/2,1)<\infty$ and
+$\underline\pi(s)\ge\overline\pi(2s)\ge\pi(2s,1)>-\infty$, so both functions
+are real-valued. Apply Lemma~\ref{lem:sep-interleave} on $T=(0,\infty)$ to
+$l\coloneqq-\overline\pi$ and $h\coloneqq-\underline\pi$. Then
+$\Phi\coloneqq-\overline\pi$ is nondecreasing, and
+$N_1\coloneqq\{s:\underline\pi(s)<\overline\pi(s)\}$ is countable. For
+$s\notin N_1$ and every $r>0$,
+\[
+ \pi(s,r)=-\Phi(s).
+\]
+
+\emph{Step 2: the $y$-part.} Put $\omega^\pm\coloneqq\pi+\zeta^\pm$, real
+functions on $\Omega$. By (P2), $\omega^-(q)\le\omega^+(p)$ whenever
+$p_2<q_2$. For $r>0$ put
+\[
+ \overline\omega(r)\coloneqq\sup_{s>0}\omega^-(s,r),\qquad
+ \underline\omega(r)\coloneqq\inf_{s>0}\omega^+(s,r).
+\]
+If $r<r'$, then $\overline\omega(r')\le\underline\omega(r)$. As in Step~1,
+both functions are real-valued:
+$\overline\omega(r)\le\underline\omega(r/2)\le\omega^+(1,r/2)<\infty$ and
+$\underline\omega(r)\ge\overline\omega(r+1)\ge\omega^-(1,r+1)>-\infty$.
+
+For $r>0$ let $E^r\coloneqq\{s>0:(s,r)\in E\}$. By Tonelli's theorem,
+$r\mapsto\mathcal L^1(E^r)$ is Borel and
+$\int_0^\infty\mathcal L^1(E^r)\,dr=\mathcal L^2(E)=0$. So
+$R_0\coloneqq\{r>0:\mathcal L^1(E^r)=0\}$ is a Borel set whose complement in
+$(0,\infty)$ is $\mathcal L^1$-null. For $r\in R_0$ pick $s$ with
+$(s,r)\notin E$. Then
+$\overline\omega(r)\ge\omega^-(s,r)=\omega^+(s,r)\ge\underline\omega(r)$.
+Apply Lemma~\ref{lem:sep-interleave} on $T=R_0$ to
+$l\coloneqq-\overline\omega$ and $h\coloneqq-\underline\omega$. The set
+$N_2\coloneqq\{r\in R_0:\underline\omega(r)<\overline\omega(r)\}$ is
+countable, and $-\overline\omega$ is nondecreasing on $R_0$. Put
+$R_1\coloneqq R_0\setminus N_2$, a Borel set with $\mathcal L^1$-null
+complement, hence dense in $(0,\infty)$. Define
+\[
+ \Psi(r)\coloneqq\sup\{-\overline\omega(r'):r'\in R_1,\ r'\le r\}\qquad(r>0).
+\]
+The set is nonempty because $R_1$ is dense, and bounded above by
+$-\overline\omega(r'')$ for any $r''\in R_1$ with $r''>r$. So $\Psi$ is
+real-valued and nondecreasing, and $\Psi=-\overline\omega=-\underline\omega$
+on $R_1$. Hence for $r\in R_1$ and every $s$ with $(s,r)\notin E$,
+\[
+ \omega^-(s,r)\le\overline\omega(r)=-\Psi(r)=\underline\omega(r)\le\omega^+(s,r)=\omega^-(s,r),
+\]
+that is, $\pi(s,r)+\zeta^\pm(s,r)=-\Psi(r)$.
+
+\emph{Step 3: conclusion.} Let
+$G\coloneqq\{(s,r)\in\Omega:s\notin N_1,\ r\in R_1,\ (s,r)\notin E\}$. By
+Steps~1 and~2, $\zeta^\pm(s,r)=\Phi(s)-\Psi(r)$ on $G$. The complement of
+$G$ lies in the Borel set
+\[
+ N^*\coloneqq\bigl(N_1\times(0,\infty)\bigr)\cup
+ \bigl((0,\infty)\times((0,\infty)\setminus R_1)\bigr)\cup E,
+\]
+which is $\mathcal L^2$-null. By Lemma~\ref{lem:sep-push}, $\widehat{N^*}$ is
+$\mu$-null. By Lemma~\ref{lem:sep-env}(d), for $\mu$-a.e.\ $g\in P_1$ we have
+both $\mathbf t(g)\in G$ and
+$\zeta^-(\mathbf t(g))\le\zeta(g)\le\zeta^+(\mathbf t(g))$, hence
+$\zeta(g)=\Phi(x(g))-\Psi(y(g))$. Monotone functions are Borel, so the
+right-hand side is measurable.
+\end{proof}
+
+No measurability of $\pi$, $\overline\pi$, $\underline\pi$, $\overline\omega$
+or $\underline\omega$ is needed. Step~1 holds at every point. Step~2 uses
+only the Borel sets $E$ and $R_0$ and countable exceptional sets, and all
+null sets that appear are Borel.
+
+\subsection{Separability of $\rho$ and $\sigma$}
+
+\begin{theorem}\label{thm:sep}
+Assume (SH). There are nondecreasing functions
+$\Phi_\rho,\Psi_\rho,\Phi_\sigma,\Psi_\sigma\colon(0,\infty)\to\mathbb R$ such
+that, $\mu$-a.e.\ on $P_1$,
+\[
+ \log\frac{c_3}{c_2}=\Phi_\rho(t_{12})-\Psi_\rho(t_{13}),\qquad
+ \log\frac{b_3-c_3}{b_2-c_2}=\Phi_\sigma(t_{12})-\Psi_\sigma(t_{13}).
+\]
+Equivalently, $\rho=f(t_{12})/h(t_{13})$ and
+$\sigma=\tilde f(t_{12})/\tilde h(t_{13})$ a.e.\ on $P_1$, where
+$f\coloneqq e^{\Phi_\rho}$, $h\coloneqq e^{\Psi_\rho}$,
+$\tilde f\coloneqq e^{\Phi_\sigma}$ and $\tilde h\coloneqq e^{\Psi_\sigma}$ are
+positive, finite and nondecreasing.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:sep-debt}, $\zeta_\rho=\log\rho$ satisfies (C). By
+Proposition~\ref{prop:sep-abstract} there are nondecreasing
+$\Phi_\rho,\Psi_\rho$ with $\zeta_\rho=\Phi_\rho(x)-\Psi_\rho(y)$ a.e.\ on
+$P_1$. By Lemma~\ref{lem:sep-credit}, $\zeta_\sigma=\log\sigma$ satisfies (C),
+and Proposition~\ref{prop:sep-abstract} applies again.
+\end{proof}
+
+Since (SH) contains the assumption that $V$ is undominated, the theorem can
+be stated as an impossibility result.
+
+\begin{corollary}\label{cor:sep}
+Let $n=3$. Suppose worlds $2,3$ are ranked by ordinary additive losses $L_2,L_3$
+with strictly ordered local penalties and an integrable envelope, world~$1$
+by a preorder with (G) and (IB), and (S) holds. If $c_3/c_2$ or
+$(b_3-c_3)/(b_2-c_2)$ is not $\mu$-a.e.\ on $P_1$ of the form
+$f(t_{12})/h(t_{13})$ with $f,h\colon(0,\infty)\to(0,\infty)$
+nondecreasing, then $V$ is dominated.
+\end{corollary}
+
+\begin{remark}\label{rem:sep-converse}
+Condition (C) is equivalent to separability. Suppose $\zeta=\Phi(x)-\Psi(y)$
+a.e.\ with $\Phi,\Psi$ nondecreasing, and let $(X_i,Y_i)_{i\le k}$ be a cycle.
+Put $\xi_i\coloneqq x^{\downarrow}(X_i)$, $\eta_i\coloneqq y^{\uparrow}(X_i)$,
+$\xi_i'\coloneqq x^{\uparrow}(Y_i)$ and $\eta_i'\coloneqq y^{\downarrow}(Y_i)$.
+The cycle inequalities give $0<\xi_i'<\xi_{i+1}<\infty$ and
+$0<\eta_i<\eta_i'<\infty$, with $\xi_{k+1}=\xi_1$, so all four numbers lie in
+$(0,\infty)$. A.e.\ on $X_i$ we have $\zeta\ge\Phi(\xi_i)-\Psi(\eta_i)$, and
+a.e.\ on $Y_i$ we have $\zeta\le\Phi(\xi_i')-\Psi(\eta_i')$. Hence
+$\zeta^{\uparrow}(X_i)\ge\Phi(\xi_i)-\Psi(\eta_i)$ and
+$\zeta^{\downarrow}(Y_i)\le\Phi(\xi_i')-\Psi(\eta_i')$, and if the
+$\zeta$-weight is defined then
+\[
+ W_\zeta\ge\sum_{i=1}^k\bigl(\Phi(\xi_i)-\Phi(\xi_i')\bigr)
+ +\sum_{i=1}^k\bigl(\Psi(\eta_i')-\Psi(\eta_i)\bigr)
+ \ge\sum_{i=1}^k\bigl(\Phi(\xi_i)-\Phi(\xi_{i+1})\bigr)=0 .
+\]
+So, once $\rho$ and $\sigma$ are separable, no debt or credit cycle along
+the edge bases closes. Theorem~\ref{thm:sep} is therefore all that such
+cycles can give.
+\end{remark}
+
+\begin{remark}\label{rem:sep-unique}
+The factors are essentially unique. Suppose
+$\Phi(x)-\Psi(y)=\Phi'(x)-\Psi'(y)$ $\mu$-a.e.\ on $P_1$, with all four
+functions nondecreasing. By Lemma~\ref{lem:sep-push} the identity holds
+$\mathcal L^2$-a.e.\ on $\Omega$. By Fubini's theorem there is a constant
+$c$ with $\Phi-\Phi'=c$ and $\Psi-\Psi'=c$ $\mathcal L^1$-a.e. Two
+nondecreasing functions that agree a.e.\ have the same one-sided limits at
+every point. So they agree off the countable set where one of them is
+discontinuous. In particular the one-sided limits $f(s\pm)$ and $h(s\pm)$,
+and hence the jump ratios $f(s+)/f(s-)$ and $h(s+)/h(s-)$, are determined by
+$\rho$ alone, up to one common positive factor of $f$ and $h$ that cancels in
+the ratios. The same holds for $\tilde f,\tilde h$ and $\sigma$.
+\end{remark}
+
+\begin{remark}\label{rem:sep-example}
+For payoff-proportional penalties $c_k=\lambda_k|g_k|$ on $P_1$ one has
+$\rho=(\lambda_3/\lambda_2)\,t_{12}/t_{13}$. This is separable, with
+$f(s)=(\lambda_3/\lambda_2)s$ and $h(r)=r$. So Theorem~\ref{thm:sep} does
+not exclude natural losses by itself. The cycles of length~$1$ already give
+$\zeta_\rho^+(a)\le\zeta_\rho^-(b)$ whenever $a\lhd b$
+(Lemma~\ref{lem:sep-env}(c)). When $\rho$ is a continuous function of
+$(t_{12},t_{13})$, this says that $\rho$ is nondecreasing in $t_{12}$ and
+nonincreasing in $t_{13}$. Longer cycles exclude more. For example
+$\rho=t_{12}/(t_{12}+t_{13})$ has the right monotonicity, but it is not
+separable. For a separable $\rho$ and $s<s'$, $r<r'$, the quantity
+\[
+ \log\rho(s,r)+\log\rho(s',r')-\log\rho(s,r')-\log\rho(s',r)
+\]
+vanishes for a.e.\ such quadruple. Here it equals
+$\log\bigl((s+r')(s'+r)\bigr)-\log\bigl((s+r)(s'+r')\bigr)$, which is
+positive, because $(s+r')(s'+r)-(s+r)(s'+r')=(s'-s)(r'-r)>0$.
+\end{remark}
+
+\end{document}

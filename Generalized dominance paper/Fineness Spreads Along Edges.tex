@@ -1,0 +1,2732 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\cred}{\mathrm{credit}}
+\newcommand{\sil}{\mathrm{silence}}
+\newcommand{\Band}{\mathrm{B}}
+\newcommand{\Jid}{\mathcal J}
+\newcommand{\Kid}{\mathcal K}
+\newcommand{\Uf}{\mathcal U}
+\newcommand{\Lo}[3]{\mathrm L^{#1}_{#2}(#3)}
+\newcommand{\Hi}[3]{\mathrm H^{#1}_{#2}(#3)}
+\newcommand{\CN}{\mathrm{CN}}
+\newcommand{\DI}{\mathrm{DI}}
+\title{Fineness Spreads Along Edges}
+\author{}\date{11 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues CCF (\emph{Closed Choice Forces Fineness}).
+It also cites CBOI (\emph{Closed Choice Beyond Ordinary Integrals}), EDL
+(\emph{Edge Dichotomy and Leverage}), FAED (\emph{Finitely Additive Edge
+Dichotomy}) and IC (\emph{Independence Chains and Two Additive Worlds}). It
+concerns
+the conjecture for complete rankings, problem~P1 of
+Section~\ref{sec:problem}: three worlds, every ranking a complete preorder
+satisfying (G) and (IB), and (S). By CCF, a world whose debt and credit
+orders are \emph{fine} has a finitely additive weak extension of CBOI's
+form. We show that fineness at one world spreads to all worlds, that
+fineness on one edge already makes the vacuous model $V$ dominated, and we
+collect what a counterexample must look like.
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item \emph{Edge transfer} (Theorem~\ref{thm:transfer},
+Corollary~\ref{cor:edgefine}). Let $n\ge3$, assume (G) at every world and
+(S), and let worlds $1$ and $j$ be complete with (IB). If world $j$ is fine
+on the region $D_{1j}$ where worlds $1$ and $j$ disagree, then so is
+world~$1$. More generally, if world~$j$ has a finitely additive bound of
+CBOI's form on $D_{1j}$, then every non-fine part of world~$1$ on $D_{1j}$
+sits at an atom of world~$j$'s charges. Nothing is assumed about~$V$.
+\item \emph{One fine world} (Theorem~\ref{thm:onefine}). Let $n=3$, let all
+rankings be complete with (G) and (IB), and assume (S). If one world is fine,
+all three are, and $V$ is dominated.
+\item \emph{One fine edge} (Theorem~\ref{thm:fineedge},
+Corollary~\ref{cor:fineedge}). In the same setting, if two worlds are fine
+on the region where they disagree, then $V$ is dominated.
+\item \emph{One tame world} (Theorem~\ref{thm:tame},
+Theorem~\ref{thm:aext}). In the same setting, $V$ is dominated as soon as
+one world is fine, or has a strictly positive one-sided loss of CBOI's form,
+or a nonconstant additive primary with values in an ordered group, or
+satisfies all finite cancellation conditions. The same holds if one
+world has strictly positive two-sided finitely additive extensions on both of
+its edge regions after removing sets of arbitrarily small measure.
+\item \emph{Low-cone heaviness} (Theorem~\ref{thm:LH}). In the same
+setting, with no assumption on $V$: at every world, credit on any non-null
+set compensates some non-null debt, and debt on some part of any non-null set
+is not compensated by some non-null credit.
+\item \emph{Archimedean axioms} (Section~\ref{sec:arch}). Germ continuity at
+one world, which conic continuity implies, gives fineness, and so $V$ is
+dominated. An example shows that fineness does not follow from completeness,
+(G) and (IB), even for a world ranked exactly by a finitely additive loss.
+\item \emph{Shape of a counterexample} (Theorem~\ref{thm:shape}). No world
+is fine. No world carries a strictly positive one-sided finitely additive
+loss, so every world carries a leverage sequence and violates a finite
+cancellation condition. No edge is fine, and every edge carries a selection
+that omits both endpoints. (LH) and its dual hold at every world. At every
+such selection both edge worlds are densely credit-heavy on the selection's
+high cones, and their debt orders are non-fine on their own odd regions
+relative to credit on deep tails of the third region.
+\end{enumerate}
+
+\emph{What remains open.} Problem~P1 itself remains open: we do not know
+whether a counterexample exists. Section~\ref{sec:shape} states the residual
+precisely. P1 would be settled, with $V$ dominated, by a positive answer
+to the first of the following questions or by a negative answer to the
+second: whether (S) forces, at one world,
+the relative fineness (M2$^*$) of Theorem~\ref{thm:ownregion}; and whether a
+complete (G)+(IB) order can fail to have finitely additive extensions off
+small sets without having a nonconstant group-valued primary
+(Remark~\ref{rem:Q}). The case $n\ge4$ of Theorem~\ref{thm:onefine} and the
+case of incomplete rankings are also open.
+
+The results are taken from working notes that were checked by independent
+referees in four parts: the edge transfer, one fine world and the
+Archimedean axioms (Sections~\ref{sec:transfer} and~\ref{sec:arch}), the
+fine edge (Section~\ref{sec:edge}), the tame world
+(Section~\ref{sec:tame}), and low-cone heaviness (Section~\ref{sec:LH}).
+Their corrections are incorporated. Results that the
+working notes took from earlier, unpublished working notes are stated and
+proved in full here.
+
+\tableofcontents
+
+\section{Setting}\label{sec:setting}
+
+\subsection{Problems, models and axioms}
+
+We use the setting of CCF, which is that of CBOI, EDL, FAED and IC.
+There are $n\ge3$ worlds, $\Delta\coloneqq\{p\in\R^n:p\ge0,\ \sum_ip_i=1\}$,
+and $e_i$ is the $i$-th vertex. Binary problems $\{g,-g\}$ are represented
+by $g\in H\coloneqq\{g\in\R^n:g_1>0\}$, with normalized Gaussian
+measure~$\mu$; coordinate hyperplanes are null. Models are measurable and
+identified modulo null sets. At world~$i$ a model's advice at $g$ has a
+guidance rank $r_i(g,M)\in\{0,1,2,3\}$ (good, silent, bad, contradictory).
+A model is \emph{regular} if it is never contradictory and correct on
+unanimous problems. Coherent models $\Dscr_K$ ($K\subseteq\Delta$ nonempty,
+compact, convex) are regular, $V\coloneqq\Dscr_\Delta$, and $D_i$ denotes
+the ideal model of world~$i$, which recommends the option good at~$i$ on
+every problem. $H'$ is the set of mixed problems in $H$.
+
+At each world $\preceq_i$ is a preorder on models; smaller is better.
+$X\prec_iY$ means $X\preceq_iY$ and not $Y\preceq_iX$; so $X\prec_iY$
+excludes $Y\preceq_iX$ without any completeness. (G) is strict guidance
+monotonicity and (IB) is independence under replacement of shared advice.
+(S) supplies coherent undominated models $C_p$, $p\in\Delta$, competitive on
+$\supp p$, with closed sections $A_i(X)\coloneqq\{p:C_p\preceq_iX\}$. A model
+$C$ is \emph{competitive} on $S$ if for every model $X$ some $i\in S$ has
+$C\preceq_iX$. A model $M$ is \emph{dominated} if some model $X$ has
+$X\preceq_kM$ at every world and $X\prec_kM$ at some world. By CBOI's
+Lemma~1 every model has a selected coherent weak dominator at all worlds, so
+a dominated model is dominated by a selected coherent model. If $V$ is
+undominated, it is competitive on all worlds (CCF, Section~1).
+
+By the face lemma (recalled in CCF, Section~1; for edges see
+FAED, Section~1), the credal set of $C_p$ lies in the face spanned by
+$\supp p$; in particular $C_{e_i}=D_i$. We call $C_p$ a \emph{selection}, and
+a selection \emph{on the edge} $[e_v,e_w]$ if $p\in[e_v,e_w]$; if $p$ lies in
+the open edge $(e_v,e_w)$, $C_p$ is competitive on $\{v,w\}$.
+
+We use two consequences of (S) (CCF, Section~3).
+\begin{enumerate}[label=(T\arabic*),leftmargin=*,itemsep=2pt]
+\item If world $k$ is complete, $Y$ is regular and $Y\prec_kC_{p^*}$, then
+$Y\prec_kC_p$ for all $p$ near $p^*$. [$p^*\notin A_k(Y)$, which is closed;
+near $p^*$, $C_p\not\preceq_kY$, and completeness gives $Y\prec_kC_p$.]
+\item If $p^*\in[e_v,e_w]$, $F$ is regular and $F\prec_wC_{p^*}$, then
+$C_p\preceq_vF$ for all $p$ in the open edge $(e_v,e_w)$ near $p^*$.
+[$C_p\not\preceq_wF$ near $p^*$, and $C_p$ is competitive on $\{v,w\}$.]
+\end{enumerate}
+
+\subsection{Debt, credit and pairs}\label{sec:pairs}
+
+On a mixed problem a regular model gives the option good at world $v$
+(\emph{credit} at $v$, rank $0$), silence (rank $1$), or the option bad
+at~$v$ (\emph{debt} at $v$, rank $2$). For a regular $M$ write
+$\cred_v(M)$, $\debt_v(M)$ and $\sil(M)$ for the corresponding subsets of
+$H'$; for $v=1$ the subscript is dropped, as in CCF. For measurable
+$Q\subseteq H'$, $M+\debt_v(Q)$ and $M+\cred_v(Q)$ agree with $M$ except that
+they give debt, resp.\ credit, at $v$ on $Q$, and ``$M$ silenced on $Q$''
+gives silence there. All these models are regular.
+
+For measurable $B,C\subseteq H'$, following CCF, Section~3,
+\begin{gather*}
+ B\preceq^v_dC\ :\Longleftrightarrow\ V+\debt_v(B)\preceq_vV+\debt_v(C),\\
+ B\preceq^v_cC\ :\Longleftrightarrow\ V+\cred_v(C)\preceq_vV+\cred_v(B).
+\end{gather*}
+So $B\preceq^v_dC$ says that debt on $B$ is no worse than debt on $C$, and
+$B\preceq^v_cC$ says that credit on $B$ is worth no more than credit on
+$C$. Both are transitive, and complete if $\preceq_v$ is. By (IB), $V$ may
+be replaced by any regular model silent on $B\cup C$, and the comparison
+depends only on $B\setminus C$ and $C\setminus B$; overlapping sets may be
+compared. By (G), $B\subseteq C$ implies $B\preceq^v_dC$ and
+$B\preceq^v_cC$; if moreover $C\setminus B$ is non-null, both are strict.
+For world~$1$ we write $\preceq_d,\preceq_c$.
+
+A \emph{pair} $(A,T)$ at world $v$ consists of disjoint measurable
+$A,T\subseteq H'$ (debt part and credit part). It is \emph{SI} if
+$V+\debt_v(A)+\cred_v(T)\prec_vV$, \emph{weakly SI} if
+$V+\debt_v(A)+\cred_v(T)\preceq_vV$, \emph{AC} if it is not SI, and
+\emph{strictly AC} if $V\prec_vV+\debt_v(A)+\cred_v(T)$. If world $v$ is
+complete, AC means $V\preceq_vV+\debt_v(A)+\cred_v(T)$. By (IB), $V$ may be
+replaced by any regular model silent on $A\cup T$. Pairwise disjoint SI pairs
+compose to an SI pair, and, if world $v$ is complete, pairwise disjoint
+AC pairs to an AC pair (CCF, Section~6). By strict (G), an SI pair has non-null credit part, a pair
+$(A,\varnothing)$ with $A$ non-null is strictly AC, and a pair
+$(\varnothing,T)$ with $T$ non-null is SI.
+
+\subsection{Fineness, germ points and ultrafilters}\label{sec:germs}
+
+\begin{definition}\label{def:fine}
+Let $A,T\subseteq H'$ be non-null. $\Jid^v_A$ is the family of measurable
+$B\subseteq H'$ contained in a finite union of measurable sets each
+$\preceq^v_dA$; $\Kid^v_T$ is defined likewise with $\preceq^v_c$. For a
+non-null measurable $R\subseteq H'$, world $v$'s debt order is \emph{fine on
+$R$} if $R\in\Jid^v_A$ for every non-null $A\subseteq R$, and its credit
+order is fine on $R$ if $R\in\Kid^v_T$ for every non-null $T\subseteq R$.
+World $v$ is \emph{fine on $R$} if both orders are, and \emph{fine} if it is
+fine on $H'$. For $v=1$ we write $\Jid_A,\Kid_T$.
+\end{definition}
+
+For $R=H'$ this is CCF's notion: a finite union of sets $\preceq A$ can be
+made a partition by (G). Fineness on $R$ uses only yardsticks inside $R$; by
+Lemma~\ref{lem:fineregion} below, for an edge region it is the same as
+fineness with yardsticks anywhere.
+
+\begin{lemma}\label{lem:ideal}
+$\Jid^v_A$ and $\Kid^v_T$ are ideals of the measure algebra: they contain
+the null sets and are closed under measurable subsets and finite unions. If
+$A'\preceq^v_dA$ then $\Jid^v_{A'}\subseteq\Jid^v_A$; if
+$T'\preceq^v_cT$ then $\Kid^v_{T'}\subseteq\Kid^v_T$.
+\end{lemma}
+\begin{proof}
+Null sets are equivalent to $\varnothing$, which is $\preceq A$ by (G). If
+$B\subseteq B_1\cup\dots\cup B_m$ with $B_l\preceq^v_dA$, every measurable
+subset of $B$ lies in the same union, and a finite union of such sets lies
+in the union of the covers. The last statements follow by transitivity. The
+credit case is the same.
+\end{proof}
+
+For an edge $[e_1,e_j]$ write $D_{1j}\coloneqq\{g\in H':g_j<0\}$ (CCF writes
+$D_j$ for this set; we reserve $D_j$ for the ideal model) and
+$t_j\coloneqq g_1/|g_j|$ on $D_{1j}$. For $0\le s<s'\le\infty$ put
+$\Band_j(s,s')\coloneqq D_{1j}\cap\{s<t_j<s'\}$, and similarly with closed
+ends; level sets of $t_j$ are null, so the ends do not matter.
+
+\begin{definition}\label{def:germ}
+A \emph{germ point} of the edge $[e_1,e_j]$ is a pair $(z,\sigma)$ with
+$z\in[0,\infty]$ and $\sigma\in\{-,+\}$, where $\sigma=+$ if $z=0$ and
+$\sigma=-$ if $z=\infty$. Its \emph{one-sided bands} are
+$\Band_j(z-\varepsilon,z)$ for $\sigma=-$ (with $\Band_j(1/\varepsilon,\infty)$
+if $z=\infty$) and $\Band_j(z,z+\varepsilon)$ for $\sigma=+$, for
+$\varepsilon>0$. The germ point is \emph{$A$-heavy} if none of its one-sided
+bands lies in $\Jid_A$, and \emph{$T$-heavy} if none lies in $\Kid_T$.
+\end{definition}
+
+The bands decrease as $\varepsilon\downarrow0$, so by Lemma~\ref{lem:ideal}
+a germ point fails to be $A$-heavy as soon as one of its bands lies in
+$\Jid_A$.
+
+\begin{lemma}\label{lem:germ}
+If $D_{1j}\notin\Jid_A$, some germ point of $[e_1,e_j]$ is $A$-heavy. If
+$D_{1j}\notin\Kid_T$, some germ point is $T$-heavy. No (S) is used.
+\end{lemma}
+\begin{proof}
+Suppose no germ point is $A$-heavy. For $z\in(0,\infty)$ there are
+$\varepsilon,\varepsilon'>0$ with $\Band_j(z-\varepsilon,z)$ and
+$\Band_j(z,z+\varepsilon')$ in $\Jid_A$, so their union, which is the band
+$\Band_j(z-\varepsilon,z+\varepsilon')$ up to a null set, is in $\Jid_A$.
+The points $0$ and $\infty$ have neighbourhoods $[0,\varepsilon)$ and
+$(1/\varepsilon,\infty]$ whose bands are in $\Jid_A$. Finitely many of these
+open sets cover the compact space $[0,\infty]$, so $D_{1j}$ is, up to a null
+set, a finite union of members of $\Jid_A$, hence in $\Jid_A$. The credit
+case is the same.
+\end{proof}
+
+All of this is stated in world~$1$'s frame. For distinct worlds $v,w$ put
+\[
+ D_{vw}\coloneqq\{g\in H':g_vg_w<0\},\qquad
+ t^v_w\coloneqq|g_v|/|g_w|\ \text{on }D_{vw},
+\]
+so that $D_{1j}$ is as above, $t^1_j=t_j$ and $t^w_v=1/t^v_w$. The law of
+$t^v_w$ under $\mu|_{D_{vw}}$ has a positive density on $(0,\infty)$, and
+for distinct $j,k\ne v$ the joint law of $(t^v_j,t^v_k)$ on $D_{vj}\cap D_{vk}$
+has a positive density on $(0,\infty)^2$ (CCF, Section~1). The axioms are
+symmetric in the labels of the worlds, and every object above is a set of
+problems, so every definition and lemma stated for world~$1$ and the edge
+$[e_1,e_j]$ holds for world $v$ and the edge $[e_v,e_w]$, with $D_{vw}$ and
+$t^v_w$ in place of $D_{1j}$ and $t_j$; the change of representing
+half-space is harmless, as in the proof of CCF's Theorem~16. We use this
+relabelling throughout without further comment.
+
+Let $\mathfrak A$ be the measure algebra of $H'$: measurable subsets of $H'$
+modulo null sets. Ultrafilters below are ultrafilters of $\mathfrak A$. An
+ultrafilter $\Uf$ \emph{avoids} an ideal $\Jid$ if $\Uf\cap\Jid=\varnothing$.
+
+\begin{lemma}\label{lem:uf}
+\begin{enumerate}[label=(\alph*)]
+\item Every ultrafilter contains sets of arbitrarily small measure. If a
+finite union of measurable sets is in $\Uf$, one of them is.
+\item If $R\notin\Jid_A$, some ultrafilter contains $R$ and avoids $\Jid_A$.
+If $(z,\sigma)$ is an $A$-heavy germ point of $[e_1,e_j]$, some ultrafilter
+avoids $\Jid_A$ and contains all one-sided bands of $(z,\sigma)$. The same
+holds for $\Kid_T$.
+\item If $\Uf$ avoids $\Jid_A$ and world~$1$ is complete, then
+$A\prec_dB$ for every $B\in\Uf$; and $A'\prec_dB$ whenever moreover
+$A'\preceq_dA$. The same holds for $\Kid_T$ and $\prec_c$.
+\item If $\Uf$ contains $D_{1j}$, there is a unique germ point of $[e_1,e_j]$
+all of whose one-sided bands are in $\Uf$. If $\Uf$ avoids $\Jid_A$ (resp.\
+$\Kid_T$), this germ point is $A$-heavy (resp.\ $T$-heavy).
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Split $B\in\Uf$ into two halves of equal measure ($\mu$ is atomless); one
+half is in $\Uf$; iterate. The second statement holds in every ultrafilter
+of a Boolean algebra.
+
+(b) The family $\{R\}\cup\{H'\setminus J:J\in\Jid_A\}$ has the finite
+intersection property: $R\setminus(J_1\cup\dots\cup J_s)$ is non-null, since
+otherwise $R\subseteq J_1\cup\dots\cup J_s\in\Jid_A$. It extends to an
+ultrafilter, which avoids $\Jid_A$ because it contains $H'\setminus J$ for
+each $J\in\Jid_A$. For the germ point use the family of all its bands
+together with $\{H'\setminus J\}$: a finite intersection is a band minus a
+member of $\Jid_A$, and it is non-null because no band is in $\Jid_A$.
+
+(c) If $B\preceq_dA$ then $B\in\Jid_A$. So $B\not\preceq_dA$, and
+completeness gives $A\prec_dB$; then $A'\preceq_dA\prec_dB$.
+
+(d) For $z\in[0,\infty]$ and $\varepsilon>0$ let $N(z,\varepsilon)$ be the
+band of $t_j$-levels within $\varepsilon$ of $z$ (one-sided at $0$ and at
+$\infty$, with $(1/\varepsilon,\infty]$ as neighbourhood of $\infty$). If
+for every $z$ some $N(z,\varepsilon_z)$ were not in $\Uf$, a finite subcover
+of $[0,\infty]$ would write $D_{1j}$ as a finite union of non-members, which
+is impossible by (a). So some $z$ has $N(z,\varepsilon)\in\Uf$ for all
+$\varepsilon$. For $z\in(0,\infty)$, $N(z,\varepsilon)$ is the union of the
+two one-sided bands of size $\varepsilon$ up to a null set, so one of them is
+in $\Uf$. If the left band of some size is not in $\Uf$, neither is any
+smaller left band, so all small right bands, and hence all right bands, are
+in $\Uf$. So all bands of one side are in $\Uf$. Uniqueness: the bands of
+distinct germ points, including $(z,-)$ and $(z,+)$, are eventually
+disjoint. Heaviness: members of $\Uf$ are not in $\Jid_A$.
+\end{proof}
+
+\subsection{Three worlds: regions and options}\label{sec:regions}
+
+For $n=3$ let $P_x$ be the set of mixed problems at which world $x$ is the
+odd one out:
+\[
+ P_1=\{g_2<0,\ g_3<0\},\qquad P_2=\{g_2<0<g_3\},\qquad P_3=\{g_3<0<g_2\}
+\]
+inside $H$. They partition $H'$ up to null sets, and $D_{vw}=P_v\cup P_w$.
+As in IC, $o_K$ denotes the option good exactly at the worlds in $K$. On
+$P_x$, with $\{x,y,z\}=\{1,2,3\}$, the option $o_{yz}$ is debt at $x$ and
+credit at $y$ and $z$, and $o_x$ is credit at $x$ and debt at $y$ and $z$:
+\begin{center}
+\begin{tabular}{c|ccc|ccc}
+ & \multicolumn{3}{c|}{accept $g$} & \multicolumn{3}{c}{accept $-g$}\\
+ & option & credit at & debt at & option & credit at & debt at\\\hline
+$P_1$ & $o_1$ & $1$ & $2,3$ & $o_{23}$ & $2,3$ & $1$\\
+$P_2$ & $o_{13}$ & $1,3$ & $2$ & $o_2$ & $2$ & $1,3$\\
+$P_3$ & $o_{12}$ & $1,2$ & $3$ & $o_3$ & $3$ & $1,2$
+\end{tabular}
+\end{center}
+On $D_{vw}$ the ranks of worlds $v$ and $w$ add up to $2$ for every regular
+advice, so
+\begin{equation}
+ \cred_v=\debt_w\quad\text{and}\quad\debt_v=\cred_w\qquad\text{on }D_{vw}.
+ \label{eq:swap}
+\end{equation}
+On each $P_x$ the joint law of two ratios $|g_a|/|g_b|$ and $|g_c|/|g_d|$
+with $\{a,b\}\ne\{c,d\}$ has a positive density on $(0,\infty)^2$, since two
+such ratios determine the problem up to scale. Hence every subset of $P_x$ defined by a nonempty open
+condition on two such ratios is non-null; we use this without comment.
+
+For $w\ne v$ and $0<a,b<\infty$ put
+\[
+ \Lo vwa\coloneqq D_{vw}\cap\{t^v_w<a\},\qquad
+ \Hi vwb\coloneqq D_{vw}\cap\{t^v_w>b\},
+\]
+the \emph{low cone} and the \emph{high tail} of world $v$ on the edge
+$[e_v,e_w]$; $\Lo vwa=\Hi wv{1/a}$.
+
+\subsection{Edge models}\label{sec:edgemodels}
+
+By the face lemma a selection on $[e_v,e_w]$ has a credal interval
+$\{se_v+(1-s)e_w:s\in[a,b]\}$. Put $\alpha\coloneqq(1-a)/a\ge
+\beta\coloneqq(1-b)/b$, allowing $0$ and $\infty$. Then (EDL, Section~1) the
+selection gives credit at $v$ on $D_{vw}\cap\{t^v_w>\alpha\}$, silence on
+$D_{vw}\cap\{\beta<t^v_w<\alpha\}$, debt at $v$ on
+$D_{vw}\cap\{t^v_w<\beta\}$, and the option good at $v$ and $w$ off
+$D_{vw}$. We write it $(\alpha,\beta)$, in world $v$'s frame; in world $w$'s
+frame it is $(1/\beta,1/\alpha)$. Regular models of this form, coherent or
+not, are \emph{edge models}. The credal set contains $e_v$ iff $\beta=0$ and
+$e_w$ iff $\alpha=\infty$. A selection whose credal set contains neither
+endpoint lies in the open edge and has $0<\beta\le\alpha<\infty$; we call it
+\emph{two-sided}. In world~$1$'s frame on $[e_1,e_j]$ we use CCF's endpoint
+families
+\[
+ E_j(b)\coloneqq(\infty,b),\qquad E^j_1(a)\coloneqq(a,0),
+\]
+so that $E^j_1(0)=D_1$, $E_j(\infty)=D_j$ and
+$E^j_1(\infty)=E_j(0)=V_{1j}\coloneqq\Dscr_{[e_1,e_j]}$. For edge models,
+$(\alpha,\beta)\le_{\mathrm{pw}}(\alpha',\beta')$ means $\alpha\le\alpha'$ and
+$\beta\le\beta'$; then the first is pointwise at least as good at world $v$,
+and pointwise at least as bad at world $w$.
+
+\subsection{Losses of finitely additive form}\label{sec:losses}
+
+Following CBOI and CCF, Section~1, a loss of \emph{CBOI's form} at world $k$
+is $L_k(M)\coloneqq\sum_{l=1}^3\nu_{kl}\{g:r_k(g,M)\ge l\}$, where the
+$\nu_{kl}$ are finite nonnegative finitely additive measures on the
+measurable subsets of $H$ with
+\begin{equation}
+ \nu_{kl}(A)=0\text{ if }\mu(A)=0,\qquad\nu_{kl}(A)>0\text{ if }\mu(A)>0.
+ \label{eq:positive}
+\end{equation}
+For regular models only $\nu_{k1},\nu_{k2}$ on $H'$ matter. The one-sided
+bound of CCF is
+\begin{equation}
+ B\text{ coherent undominated},\ X\text{ regular},\ B\preceq_kX
+ \ \Longrightarrow\ L_k(B)\le L_k(X).
+ \tag{W$_k$}\label{eq:W}
+\end{equation}
+It needs no completeness. By EDL's Theorem~2, world $k$ has a loss of CBOI's
+form with \eqref{eq:positive} and \eqref{eq:W} if and only if it carries no
+\emph{leverage sequence} in EDL's sense. By CCF's Lemma~1 (CBOI's Theorem~2
+in the one-sided form of EDL's Proposition~1), if $n\ge3$, (G) and (S) hold
+and every world has such a loss, every coherent model whose credal set
+contains three vertices is dominated by a coherent model.
+
+\subsection{The problem}\label{sec:problem}
+
+\begin{quote}
+\textbf{P1.} Let $n=3$, let every ranking be a complete preorder satisfying
+(G) and (IB), and assume (S). Is $V$ dominated?
+\end{quote}
+An edge $[e_i,e_j]$ has the \emph{endpoint property} (EP$_{ij}$) if every
+selection on it has $e_i$ or $e_j$ in its credal set (CCF, Definition~2). By
+CCF's Theorems~7 and~15, a world with (EP) on both of its edges is fine and
+has a weak extension of CBOI's form. By CCF's Theorem~18, two worlds with
+such extensions, or merely with one-sided bounds \eqref{eq:W}, make $V$
+dominated if the third world is complete with (IB). By CCF's Theorem~16, $V$ is
+dominated if every edge has (EP).
+
+\section{Tools}\label{sec:tools}
+
+Throughout this section, $j\ge2$, $D\coloneqq D_{1j}$, $t\coloneqq t_j$, and
+$C_q=(\alpha_q,\beta_q)$ for $q\in[e_1,e_j]$, in world~$1$'s frame. By the
+convention of Section~\ref{sec:germs} every statement also holds for any
+world $v$ and edge $[e_v,e_w]$.
+
+\subsection{The vertex blocks of an edge}
+
+\begin{lemma}\label{lem:ends}
+Assume (G) at worlds $1$ and $j$ and (S). Let $q^*\in[e_1,e_j]$ and
+$q_m\to q^*$ along the edge.
+\begin{enumerate}[label=(\alph*)]
+\item If $C_{q^*}=D_j$, then $\beta_{q_m}\to\infty$. If $C_{q^*}=D_1$, then
+$\alpha_{q_m}\to0$.
+\item $S_j\coloneqq\{q\in[e_1,e_j]:C_q=D_j\}$ is closed, contains $e_j$ and
+not $e_1$. Let $q_e$ be its point nearest to $e_1$. Every $q\in[e_1,q_e)$
+has $C_q\ne D_j$, and there are $q_m\uparrow q_e$ in the open edge.
+\item $S_1\coloneqq\{q\in[e_1,e_j]:C_q=D_1\}$ is closed, contains $e_1$ and
+not $e_j$. It has a boundary point $q_0$ in the edge, and every boundary
+point is a limit of points $q_m$ of the open edge with $C_{q_m}\ne D_1$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Suppose $\beta_{q_m}\le b$ along a subsequence, with $1\le b<\infty$, and
+put $X\coloneqq E_j(2b)$. Each $C_{q_m}$ satisfies $C_{q_m}\le_{\mathrm{pw}}X$,
+so $C_{q_m}\preceq_1X$ by (G), and closedness of $A_1(X)$ gives
+$D_j\preceq_1X$. But $X$ is pointwise better than $D_j$ at world~$1$,
+strictly on $\Band_j(2b,\infty)$, so $X\prec_1D_j$: a contradiction. If
+$\alpha_{q_m}\ge a>0$ along a subsequence, put $X\coloneqq E^j_1(a/2)$. Then
+$X\le_{\mathrm{pw}}C_{q_m}$, so $C_{q_m}\preceq_jX$ by (G) (the pointwise order
+is reversed at $j$), and closedness of $A_j(X)$ gives $D_1\preceq_jX$. But
+$X$ is silent on $\Band_j(0,a/2)$, where $D_1$ gives credit at $1$, which is
+debt at $j$; so $X\prec_jD_1$.
+
+(b) For every regular $M$, $D_j\preceq_jM$ by (G), and $M\preceq_jD_j$ only
+if $M=D_j$ by strict (G). Hence $S_j=A_j(D_j)\cap[e_1,e_j]$, which is closed.
+By the face lemma $C_{e_j}=D_j$ and $C_{e_1}=D_1\ne D_j$. The rest is the
+choice of $q_e$. (c) The same with $A_1(D_1)$; a nonempty proper closed subset
+of the connected edge has a boundary point $q_0$, and $q_0\ne e_j$, so
+nearby points outside $S_1$ lie in the open edge.
+\end{proof}
+
+\subsection{Yardsticks}
+
+\begin{lemma}\label{lem:E12}
+Assume (G) at worlds $1$ and $j$, (IB) at world~$1$ and (S).
+\begin{enumerate}[label=(E\arabic*),leftmargin=*]
+\item For every $c>0$ and every non-null $Q\subseteq D\cap\{t>c\}$ there is
+$a>0$ with $\Band_j(0,a)\preceq_cQ$.
+\item If world~$1$ is complete, then for every $c<\infty$ and every non-null
+$A\subseteq D\cap\{t<c\}$ there is $b<\infty$ with
+$\Band_j(b,\infty)\prec_dA$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(E1) Let $q_0$ and $q_m$ be as in Lemma~\ref{lem:ends}(c). Then
+$\alpha_m\coloneqq\alpha_{q_m}\to0$, and $\alpha_m>0$ since $C_{q_m}\ne D_1$.
+Let $F$ be $D_1$ silenced on $Q$. Credit at $1$ is debt at $j$ on $D$, so
+$F\prec_jD_1=C_{q_0}$, and (T2) gives $C_{q_m}\preceq_1F$ for large $m$. Fix
+such $m$ with $\alpha_m<c$, put $R\coloneqq\Band_j(0,\alpha_m)$, and let $N$
+be $D_1$ silenced on $Q\cup R$. Then $F=N+\cred(R)$, while $C_{q_m}$ gives
+credit on $Q$ and silence or debt on $R$, so $N+\cred(Q)\preceq_1C_{q_m}$ by
+(G). Hence $N+\cred(Q)\preceq_1N+\cred(R)$, and by (IB) $R\preceq_cQ$. Take
+$a\coloneqq\alpha_m$.
+
+(E2) Let $q_e$ and $q_m\uparrow q_e$ be as in Lemma~\ref{lem:ends}(b), so
+$\beta_m\coloneqq\beta_{q_m}\to\infty$. Let $Y$ be $D_j$ with its debt on $A$
+silenced; $Y\prec_1D_j=C_{q_e}$ by strict (G), so (T1) gives
+$Y\prec_1C_{q_m}$ for large $m$. Fix such $m$ with $\beta_m>c$ and let $N$ be
+$D_j$ silenced on $A\cup\Band_j[\beta_m,\infty)$. Then
+$Y=N+\debt(\Band_j[\beta_m,\infty))$ and
+$C_{q_m}=N+\debt(A)+\cred(\Band_j(\alpha_m,\infty))\preceq_1N+\debt(A)$. So
+$N+\debt(\Band_j[\beta_m,\infty))\prec_1N+\debt(A)$, and (IB) gives the claim
+with $b\coloneqq\beta_m$.
+\end{proof}
+
+\begin{lemma}\label{lem:yard}
+Let $n\ge3$, assume (G) at every world, (IB) at world~$1$ and (S), and
+fix $j\ge2$.
+\begin{enumerate}[label=(\alph*)]
+\item If world~$1$ is complete, then for every non-null $A\subseteq H'$ there
+are $k\notin\{1,j\}$, a non-null $A_0\subseteq D_{1j}\cap D_{1k}$ with
+$A_0\preceq_dA$, and $b<\infty$ with $\Band_j(b,\infty)\prec_dA_0$ and
+$\Band_k(b,\infty)\prec_dA_0$. Hence every measurable subset of these two
+tails is $\preceq_dA$, and for every open interval $I\subseteq(0,\infty)$
+and every $b'\ge b$ the set
+\[
+ Z_I(A)\coloneqq D_{1j}\cap D_{1k}\cap\{t_k>b'\}\cap\{t_j\in I\}
+\]
+is non-null and $\preceq_dA$.
+\item For every non-null $T\subseteq H'$ there are $k\notin\{1,j\}$ and
+$a>0$ with $\Band_j(0,a)\preceq_cT$ and $\Band_k(0,a)\preceq_cT$. Hence for
+every open interval $I$ and every $a'\in(0,a]$ the set
+\[
+ Z^c_I(T)\coloneqq D_{1j}\cap D_{1k}\cap\{t_k<a'\}\cap\{t_j\in I\}
+\]
+is non-null and $\preceq_cT$.
+\end{enumerate}
+For $n=3$, $k$ is the third world and $D_{1j}\cap D_{1k}=P_1$. We call
+$Z_I(A)$ a \emph{debt yardstick} for $A$ and $Z^c_I(T)$ a \emph{credit
+yardstick} for $T$, at levels $I$. The parameters $b'$, $a'$ may be chosen
+as needed.
+\end{lemma}
+\begin{proof}
+(a) Since $H'=\bigcup_{l\ge2}D_{1l}$, $A$ meets some $D_{1l}$ in a non-null
+set. Put $k\coloneqq l$ if $l\ne j$, and let $k\notin\{1,j\}$ be arbitrary if
+$l=j$. Choose $c$ with $A\cap D_{1l}\cap\{t_l<c\}$ non-null; (E2) on
+$[e_1,e_l]$ gives $b_0$ with $\Band_l(b_0,\infty)\prec_d
+A\cap D_{1l}\cap\{t_l<c\}\preceq_dA$. Let $l'$ be the other element of
+$\{j,k\}$ and put
+$A_0\coloneqq D_{1j}\cap D_{1k}\cap\{b_0<t_l<b_0+1\}\cap\{t_{l'}<1\}$, which
+is non-null by the positive joint density of $(t_j,t_k)$, and
+$A_0\preceq_dA$ by (G). Since $A_0$ is bounded in $t_j$ and in $t_k$, (E2)
+on $[e_1,e_j]$ and on $[e_1,e_k]$ gives the two tails; take the larger
+level. Subsets of a tail are $\preceq_d$ the tail by (G), and $Z_I(A)$ lies
+in the $t_k$-tail.
+
+(b) Let $T$ meet $D_{1l}$ in a non-null set, and choose $k$ as in (a). If
+$l=k$, choose $c>0$ with $T\cap D_{1k}\cap\{t_k>c\}$ non-null; (E1) gives
+$a_k$ with $\Band_k(0,a_k)\preceq_cT$. The set
+$T_1\coloneqq D_{1j}\cap D_{1k}\cap\{t_k<a_k\}\cap\{1<t_j<2\}$ is non-null,
+$T_1\preceq_cT$ by (G), and (E1) on $[e_1,e_j]$ applied to $T_1$ gives $a_j$
+with $\Band_j(0,a_j)\preceq_cT_1$. If $l=j$, exchange the roles of $j$ and
+$k$ in this argument. Put $a\coloneqq\min(a_j,a_k)$.
+\end{proof}
+
+\begin{corollary}\label{cor:X5}
+Let $n\ge3$ and assume (G) at every world, (IB) at world~$1$ and (S).
+On every edge $[e_1,e_j]$, the germ point $(0,+)$ is never $T$-heavy, and,
+if world~$1$ is complete, $(\infty,-)$ is never $A$-heavy.
+\end{corollary}
+\begin{proof}
+By Lemma~\ref{lem:yard}, $\Band_j(0,a)\preceq_cT$ and
+$\Band_j(b,\infty)\preceq_dA$ for some $a>0$ and $b<\infty$.
+\end{proof}
+
+\begin{lemma}\label{lem:fineregion}
+Let $n\ge3$, assume (G) at every world and (S), and let world $v$ be complete
+with (IB). For $w\ne v$, world $v$'s debt order is fine on $D_{vw}$ if and
+only if $D_{vw}\in\Jid^v_A$ for every non-null $A\subseteq H'$; likewise for
+the credit order and $\Kid^v_T$. World $v$ is fine if and only if it is fine
+on $D_{vw}$ for every $w\ne v$.
+\end{lemma}
+\begin{proof}
+One direction is trivial. Conversely, given $A\subseteq H'$,
+Lemma~\ref{lem:yard}(a) in world $v$'s frame on $[e_v,e_w]$ gives
+$A_0\preceq^v_dA$ with $A_0\subseteq D_{vw}$, so
+$D_{vw}\in\Jid^v_{A_0}\subseteq\Jid^v_A$. For credit use the credit
+yardstick $Z^c_I(T)\subseteq D_{vw}$ of Lemma~\ref{lem:yard}(b). The last
+statement follows since $H'=\bigcup_{w\ne v}D_{vw}$ and the ideals are
+closed under finite unions and subsets.
+\end{proof}
+
+\subsection{Small AC pairs at the far end of an edge}
+
+\begin{lemma}\label{lem:SAC}
+Let world~$1$ be complete with (G) and (IB), and assume (G) at world~$j$ and
+(S). Let $C_{q_e}=D_j$ and let $q_m\to q_e$ along $[e_1,e_j]$ with
+$\alpha_m\coloneqq\alpha_{q_m}<\infty$ for all $m$. Then for every $c<\infty$
+and every non-null $A'\subseteq D\cap\{t<c\}$ there is $m_0$ such that for
+all $m\ge m_0$ and every non-null $W\subseteq\Band_j(\alpha_m,\infty)$ the
+pair $(A',W)$ is strictly AC.
+\end{lemma}
+\begin{proof}
+Let $Y$ be $D_j$ with its debt on $A'$ silenced. Then $Y\prec_1C_{q_e}$, so
+by (T1) $Y\prec_1C_{q_m}$ for large $m$; also $\alpha_m\ge\beta_m\to\infty$
+by Lemma~\ref{lem:ends}(a). For $m$ large with $\beta_m>c$ let $N$ be $D_j$
+silenced on $A'\cup\Band_j[\beta_m,\infty)$. Then
+$N\preceq_1N+\debt(\Band_j[\beta_m,\infty))=Y\prec_1C_{q_m}
+=N+\debt(A')+\cred(\Band_j(\alpha_m,\infty))$. By (IB),
+$V\prec_1V+\debt(A')+\cred(\Band_j(\alpha_m,\infty))$, and removing credit
+from part of the tail makes the right side worse by (G).
+\end{proof}
+
+\subsection{SI and AC pairs always exist}
+
+\begin{theorem}\label{thm:SIAC}
+Assume (G) at worlds $1$ and $j$ and (S). Neither of the following holds:
+\begin{enumerate}[leftmargin=*]
+\item[(DF)] for every regular $N$, every non-null $A\subseteq D$ and every
+measurable $T\subseteq D\setminus A$ such that $N$ is silent on $A\cup T$:
+$N\prec_1N+\debt(A)+\cred(T)$;
+\item[(CF)] for every regular $N$, every non-null $T\subseteq D$ and every
+measurable $A\subseteq D\setminus T$ such that $N$ is silent on $A\cup T$:
+$N+\debt(A)+\cred(T)\prec_1N$.
+\end{enumerate}
+Consequently, if world~$1$ is complete and satisfies (IB), it has an SI pair and an AC pair, each with non-null debt and credit parts contained
+in~$D$.
+\end{theorem}
+\begin{proof}
+All edge models on $[e_1,e_j]$ agree off $D$, and so do the regular models
+below, which differ from edge models only on subsets of $D$.
+
+\emph{Two consequences.} (DF$'$) Under (DF), if regular $X,Y$ agree off $D$,
+$\debt(X)\subseteq\debt(Y)$ and $\debt(Y)\setminus\debt(X)$ is non-null, then
+$X\prec_1Y$. Indeed, let $\mathcal D\coloneqq\{X\ne Y\}\subseteq D$ and let
+$N$ be $X$ silenced on $\mathcal D$, which is also $Y$ silenced on
+$\mathcal D$. On $\mathcal D$, $X$ never gives debt, so $X\preceq_1N$ by (G).
+On $\mathcal D$, $Y$ gives debt exactly on $A\coloneqq\debt(Y)\setminus
+\debt(X)$, so $Y=N+\debt(A)+\cred(T)$ with $T\coloneqq\cred(Y)\cap\mathcal D$,
+and (DF) gives $N\prec_1Y$. (CF$'$) Under (CF), if $X,Y$ agree off $D$,
+$\cred(Y)\subseteq\cred(X)$ and $\cred(X)\setminus\cred(Y)$ is non-null, then
+$X\prec_1Y$: let $N$ be $Y$ silenced on $\mathcal D$; on $\mathcal D$, $Y$
+never gives credit, so $N\preceq_1Y$; and $X=N+\debt(A)+\cred(T)$ with
+$T\coloneqq\cred(X)\cap\mathcal D\supseteq\cred(X)\setminus\cred(Y)$ non-null
+and $A\coloneqq\debt(X)\cap\mathcal D$, so $X\prec_1N$ by (CF).
+
+\emph{Suppose (DF).} Step~1: $q\mapsto\beta_q\in[0,\infty]$ is continuous.
+If $\beta_q<b<\infty$, then $C_q\prec_1E_j(b)$ by (DF$'$), so
+$q\in A_1(E_j(b))$. If $q_m\to p$ and $\lim\beta_{q_m}<\beta_p$, choose $b$
+strictly between; closedness gives $C_p\preceq_1E_j(b)$, but
+$E_j(b)\prec_1C_p$ by (DF$'$). So $\beta$ is lower semicontinuous. Let
+$\beta_p<\infty$ and suppose $q_m\to p$ with $\beta_{q_m}\ge\beta_p+\delta$,
+$\delta>0$. Then $p\ne e_j$, and $\beta_{q_m}>0$, so $q_m$ is in the open
+edge for large $m$.
+Choose a non-null $A\subseteq\Band_j(\beta_p,\beta_p+\delta)$ whose
+complement in that band is non-null, and put $F\coloneqq C_p+\debt(A)$;
+$C_p$ gives silence or credit on $A$, so $F\prec_jC_p$. By (T2),
+$C_{q_m}\preceq_1F$ for large $m$. But $\debt(F)\subseteq
+\Band_j[0,\beta_p+\delta)\subseteq\debt(C_{q_m})$ with non-null difference,
+so $F\prec_1C_{q_m}$ by (DF$'$). Hence $\beta$ is continuous;
+$\beta(e_1)=0$ and $\beta(e_j)=\infty$, so every value in $[0,\infty]$ is
+attained.
+
+Step~2: every $p$ with $0<\beta_p<\infty$ is a local extremum of $\beta$.
+Such $p$ lies in the open edge. If $\beta_p<\alpha_p$, take a non-null
+$Z\subseteq\Band_j(\beta_p,\alpha_p)$ and $E\coloneqq C_p+\cred(Z)$; then
+$E\prec_1C_p$, so near $p$, $C_q\not\preceq_1E$. If $\beta_q<\beta_p$, then
+$\debt(C_q)\subsetneq\debt(E)=\debt(C_p)$ with non-null difference, and
+(DF$'$) gives $C_q\prec_1E$: a contradiction. So $p$ is a local minimum. If
+$\beta_p=\alpha_p$, take a non-null $Z\subseteq\Band_j(\alpha_p,\infty)$ and
+let $F$ be $C_p$ silenced on $Z$; then $F\prec_jC_p$, and by (T2)
+$C_q\preceq_1F$ near $p$. If $\beta_q>\beta_p$, then
+$\debt(F)=\debt(C_p)\subsetneq\debt(C_q)$, and (DF$'$) gives $F\prec_1C_q$.
+So $p$ is a local maximum.
+
+Step~3. The values of a real function at its local minima on a
+second-countable space form a countable set: assign to each such value a
+basic open set on which it is the minimum; distinct values get distinct
+sets. The same holds for maxima. By Steps~1 and~2 every value in
+$(0,\infty)$ is attained, and only at local extrema. So $(0,\infty)$ is
+countable, a contradiction.
+
+\emph{Suppose (CF).} The same argument with $\alpha$ in place of $\beta$ and
+(CF$'$) in place of (DF$'$). Lower semicontinuity: if $\alpha_q<a<\infty$,
+then $C_q\prec_1E^j_1(a)$ by (CF$'$), and $\alpha_p>a$ gives
+$E^j_1(a)\prec_1C_p$. Upper semicontinuity at $\alpha_p<\infty$: let $F$ be
+$C_p$ with its credit silenced on a non-null proper part $A$ of
+$\Band_j(\alpha_p,\alpha_p+\delta)$, where $q_m\to p$ and
+$\alpha_{q_m}\ge\alpha_p+\delta$; then $F\prec_jC_p$, the $q_m$ lie in the
+open edge for large $m$, (T2) gives $C_{q_m}\preceq_1F$, and
+$\cred(C_{q_m})\subsetneq\cred(F)$ with non-null difference gives
+$F\prec_1C_{q_m}$. Every $p$ with $0<\alpha_p<\infty$ has $\beta_p>0$ or
+$\beta_p<\alpha_p$. If $\beta_p>0$, let $E$ be $C_p$ with its debt silenced
+on a non-null $Z\subseteq\Band_j(0,\beta_p)$: $E\prec_1C_p$ and
+$\cred(E)=\cred(C_p)$, so $\alpha_q<\alpha_p$ near $p$ would give
+$C_q\prec_1E$; $p$ is a local minimum. If $\beta_p<\alpha_p$, let
+$F\coloneqq C_p+\debt(Z)$ with a non-null $Z\subseteq\Band_j(\beta_p,\alpha_p)$:
+$F\prec_jC_p$ and $\cred(F)=\cred(C_p)$, so $\alpha_q>\alpha_p$ near $p$
+would give $F\prec_1C_q$; $p$ is a local maximum. Step~3 concludes.
+
+\emph{Consequence.} Since (DF) fails, there are $N$, a non-null
+$A\subseteq D$ and $T\subseteq D\setminus A$ with $N$ silent on $A\cup T$
+and $N\not\prec_1N+\debt(A)+\cred(T)$. By completeness and (IB),
+$V+\debt(A)+\cred(T)\preceq_1V$. Split $A$ into non-null $A_1,A_2$; by
+strict (G), $V+\debt(A_1)+\cred(T)\prec_1V$, and $T$ is non-null since an SI
+pair has non-null credit part. Since (CF) fails, there are $N$, a non-null
+$T\subseteq D$ and $A\subseteq D\setminus T$ with
+$V\preceq_1V+\debt(A)+\cred(T)$; $A$ is non-null by strict (G).
+\end{proof}
+
+\subsection{Local extensions from fineness}
+
+\begin{proposition}\label{prop:localext}
+Let world $v$ be complete with (G) and (IB), and let $R\subseteq H'$ be
+measurable and non-null. Suppose world $v$ is fine on $R$, and some SI pair and some AC pair of world $v$ have non-null debt and credit parts
+contained in $R$. Then there are $\kappa\in(0,\infty)$ and finitely additive
+probabilities $P_d,P_c$ on the measurable subsets of $R$ with the following
+properties.
+\begin{enumerate}[label=(\roman*)]
+\item For $B,C\subseteq R$: $B\preceq^v_dC$ implies $P_d(B)\le P_d(C)$, and
+$P_d(B)<P_d(C)$ implies $B\prec^v_dC$; likewise for $P_c$ and
+$\preceq^v_c$.
+\item $P_d(B)=0$ if and only if $B$ is null; likewise for $P_c$.
+\item Every measurable $B\subseteq R$ has subsets whose $P_d$-mass, resp.\
+$P_c$-mass, is arbitrarily close to any prescribed value in $[0,P_d(B)]$,
+resp.\ $[0,P_c(B)]$. For every $\eta>0$, $R$ is a finite disjoint union of
+measurable sets $Q$ with $P_d(Q)<\eta$ and $P_c(Q)<\eta$.
+\item For regular $X,Y$ that agree off $R$, $X\preceq_vY$ implies
+$\Lambda(X)\le\Lambda(Y)$, where
+\[
+ \Lambda(M)\coloneqq P_d(\debt_v(M)\cap R)-\kappa P_c(\cred_v(M)\cap R);
+\]
+and $\Lambda(X)<\Lambda(Y)$ implies $X\prec_vY$.
+\end{enumerate}
+If $R=H'$, world $v$ has a loss of CBOI's form satisfying
+\eqref{eq:positive} that weakly extends $\preceq_v$ on all regular pairs.
+\end{proposition}
+\begin{proof}
+This is CCF's Sections~5 and~6 and Theorem~15, with $H'$ replaced by $R$. The proof of CCF's
+Lemma~8 shows that $\preceq^v_d$ and $\preceq^v_c$, restricted to the
+measurable subsets of $R$, are atomless comparative probabilities in which
+exactly the non-null sets are $\succ\varnothing$; they are fine by
+hypothesis (a finite cover by sets $\preceq A$ becomes a partition by (G)).
+CCF's Theorem~9 (Savage--Wakker for algebras,
+\cite{Savage,Wakker}) gives the almost agreeing
+$P_d,P_c$, and the proofs of CCF's Lemma~10(i)--(iv) are internal to the
+algebra. This gives (i)--(iii); the partition in (iii) comes from that proof:
+repeated halving gives a non-null $C\subseteq R$ with $P_d(C)<\eta$, a
+partition of $R$ into sets $\preceq^v_dC$ has pieces of $P_d$-mass at most
+$P_d(C)$ by (i), and a common refinement with the analogous partition for
+$P_c$ works for both. CCF's Lemma~11 is the only place where CCF uses (EP)
+after fineness; it is replaced by the hypothesis: with the ratios
+$r(A,T)=P_d(A)/P_c(T)$ and $\sigma_\pm$ defined as in CCF's Section~6 over
+pairs contained in $R$, the given SI pair has ratio in $(0,\infty)$ by (ii),
+so $\sigma_->0$, and the given AC pair has finite ratio, so
+$\sigma_+<\infty$. CCF's proof of Lemma~12 ($\sigma_-\le\sigma_+$) chooses
+its pieces inside the given pairs and $T^*$ inside $R\setminus(A'\cup A_0')$,
+whose $P_c$-mass is at least $1-1/K-1/K_0-2\gamma$ because $P_c(R)=1$; all
+its comparisons are made in contexts silent on the changed sets. Fix
+$\kappa\in[\sigma_-,\sigma_+]$. CCF's Lemma~13 then holds for disjoint
+$A,T\subseteq R$, and CCF's proof of Theorem~14, applied to $M\coloneqq X$
+and $M'\coloneqq Y$, uses only subsets of $\{X\ne Y\}\subseteq R$; it gives
+the first half of (iv). The second half follows from the first and
+completeness. For $R=H'$, CCF's Theorem~15 builds the loss from $\Lambda$.
+\end{proof}
+
+\begin{corollary}\label{cor:ext}
+Let $n\ge3$, assume (G) at every world and (S), and let world $v$ be complete
+with (IB).
+\begin{enumerate}[label=(\alph*)]
+\item If world $v$ is fine on $D_{vw}$, Proposition~\ref{prop:localext}
+applies with $R\coloneqq D_{vw}$. We call the resulting $\Lambda$ the
+\emph{local extension} of world $v$ on $D_{vw}$, and write it
+$\Lambda_v=P^v_d(\debt_v\cap D_{vw})-\kappa_vP^v_c(\cred_v\cap D_{vw})$.
+\item If world $v$ is fine, it has a loss of CBOI's form satisfying
+\eqref{eq:positive} that weakly extends $\preceq_v$ on all regular pairs.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:SIAC} in world $v$'s frame on $[e_v,e_w]$ supplies the
+pairs inside $D_{vw}\subseteq H'$.
+\end{proof}
+
+Here \eqref{eq:positive} is CBOI's positivity condition: the charges vanish
+exactly on null sets. In the setting of CCF's Theorem~15 (all edges at $v$
+with (EP)), Corollary~\ref{cor:ext}(b) is CCF's Theorem~15; the point is that
+fineness alone suffices.
+
+\subsection{Transfer at silent selections}
+
+\begin{lemma}\label{lem:silent}
+Assume (IB) at worlds $1$ and $j$. Let $C$ be a selection on the open edge
+$(e_1,e_j)$, and let $B\subseteq\debt(C)$ and $B'\subseteq\sil(C)$ be
+measurable. If $B'\prec_dB$, then $B'\preceq^j_cB$.
+\end{lemma}
+\begin{proof}
+Let $N$ be $C$ silenced on $B\cup B'$, so $C=N+\debt(B)$; put
+$X\coloneqq N+\debt(B')$. By (IB), $X\prec_1C$, so $C\not\preceq_1X$, and
+competitiveness of $C$ on $\{1,j\}$ gives $C\preceq_jX$. By \eqref{eq:swap},
+$C=N+\cred_j(B)$ and $X=N+\cred_j(B')$, and (IB) gives
+$V+\cred_j(B)\preceq_jV+\cred_j(B')$, that is, $B'\preceq^j_cB$.
+\end{proof}
+
+\section{Edge transfer and one fine world}\label{sec:transfer}
+
+\emph{Standing for Sections~\ref{sec:partner}--\ref{sec:edgefine}:} $n\ge3$;
+(G) at every world; (S); worlds $1$ and $j\ne1$ are complete with (IB).
+$D\coloneqq D_{1j}$, $t\coloneqq t_j$, and the third index enters only through
+the yardsticks of Lemma~\ref{lem:yard}. Nothing is assumed about $V$.
+
+\subsection{Partner bounds}\label{sec:partner}
+
+\begin{definition}\label{def:partner}
+A \emph{partner bound} of world $j$ on $D$ is a pair of finite nonnegative
+finitely additive charges $a,b$ on the measurable subsets of $D$, vanishing on
+null sets and positive on non-null sets, such that for every selection $C$ on
+$[e_1,e_j]$ and every regular $X$ that agrees with $C$ off $D$,
+\begin{equation}
+ C\preceq_jX\ \Longrightarrow\ \Lambda_j(C)\le\Lambda_j(X),\qquad
+ \Lambda_j(M)\coloneqq a(D\setminus\debt(M))+b(D\cap\cred(M)).
+ \label{eq:partner}
+\end{equation}
+For an ultrafilter $\Uf$ containing $D$ put
+$a(\Uf)\coloneqq\inf\{a(B):B\in\Uf,\ B\subseteq D\}$, and similarly
+$b(\Uf)$. $\Uf$ is an \emph{atom} of $a$ if $a(\Uf)>0$.
+\end{definition}
+
+By \eqref{eq:swap}, on $D$ world $j$'s rank is $2$ minus world $1$'s, so
+$D\setminus\debt(M)=D\cap\{r_j(\cdot,M)\ge1\}$ and
+$D\cap\cred(M)=D\cap\{r_j(\cdot,M)\ge2\}$: $\Lambda_j$ is CBOI's form,
+restricted to $D$, in world $j$'s ranks. Since world $j$ is complete,
+\eqref{eq:partner} gives, for $C$ and $X$ as there,
+\begin{equation}
+ \Lambda_j(X)<\Lambda_j(C)\ \Longrightarrow\ X\prec_jC.
+ \label{eq:partnerstrict}
+\end{equation}
+If $X$ and $C$ differ exactly on disjoint sets $E_1,\dots,E_r\subseteq D$, on
+each of which both have constant advice, $\Lambda_j(X)-\Lambda_j(C)$ is the
+sum of the following increments, according to the change of world~$1$'s
+advice from $C$ to $X$ on $E_l$:
+\begin{equation}
+ \debt\to\sil:\ +a(E_l);\qquad\sil\to\cred:\ +b(E_l);\qquad
+ \debt\to\cred:\ +a(E_l)+b(E_l);
+ \label{eq:incr}
+\end{equation}
+and the negatives of these for the reverse changes. If $a(\Uf)=0$, then for
+every $R\in\Uf$ and $\varepsilon>0$ some $B\in\Uf$ with $B\subseteq R\cap D$
+has $a(B)<\varepsilon$; if $a(\Uf)=b(\Uf)=0$, some such $B$ has
+$a(B)+b(B)<\varepsilon$ (intersect members of $\Uf$).
+
+\begin{lemma}\label{lem:sources}
+\begin{enumerate}[label=(\alph*)]
+\item If world $j$ is fine on $D$, its local extension (Corollary~\ref{cor:ext})
+gives a partner bound with $a\coloneqq\kappa_jP^j_c$ and $b\coloneqq P^j_d$,
+and $a(\Uf)=b(\Uf)=0$ for every ultrafilter $\Uf$ containing $D$.
+\item If world $j$ has a loss $L_j$ of CBOI's form with
+\eqref{eq:positive} and \eqref{eq:W}, then $a\coloneqq\nu_{j1}|_D$ and
+$b\coloneqq\nu_{j2}|_D$ form a partner bound.
+\item A strictly positive two-sided local extension of CBOI's form on $D$
+(the implication in \eqref{eq:partner} for all regular $X,C$ that agree off
+$D$) is a partner bound.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) By \eqref{eq:swap}, $\cred_j=\debt$ and $\debt_j=\cred$ on $D$, so the
+local extension is $P^j_d(D\cap\cred(M))-\kappa_jP^j_c(D\cap\debt(M))
+=\Lambda_j(M)-\kappa_j$. It weakly extends $\preceq_j$ on all regular pairs
+agreeing off $D$, and $a,b$ are positive on non-null sets by
+Proposition~\ref{prop:localext}(ii). Given $\eta>0$, partition $D$ into
+finitely many sets of $P^j_d$- and $P^j_c$-mass $<\eta$
+(Proposition~\ref{prop:localext}(iii)); one of them is in $\Uf$. (b)
+Selections are coherent and undominated, and for regular models only
+$\nu_{j1},\nu_{j2}$ on $H'$ matter. If $X$ and $C$ agree off $D$, finite
+additivity gives $L_j(X)-L_j(C)=\Lambda_j(X)-\Lambda_j(C)$. (c) is clear.
+\end{proof}
+
+\subsection{Transfer from a partner bound}
+
+\begin{lemma}\label{lem:creditconf}
+Let world $j$ have a partner bound on $D$. Let $\Uf$ be an ultrafilter
+containing $D$, avoiding $\Kid_T$ for some non-null $T$, with
+$a(\Uf)=b(\Uf)=0$. Then $H'\setminus\cred(C)\notin\Uf$ for every selection
+$C$ on the open edge $(e_1,e_j)$ with $\alpha_C<\infty$.
+\end{lemma}
+\begin{proof}
+Edge models give credit off $D$, so $N_C\coloneqq H'\setminus\cred(C)
+=D\cap\{t\le\alpha_C\}$. Suppose $N_C\in\Uf$. Let
+$B'\coloneqq Z^c_I(T)$ with $I\subseteq(\alpha_C,\infty)$ bounded: then
+$B'\subseteq\cred(C)\cap D$, $B'\preceq_cT$ and $b(B')>0$. Choose
+$B\in\Uf$, $B\subseteq N_C$, with $a(B)+b(B)<b(B')$; replacing $B$ by
+$B\cap\sil(C)$ or $B\cap\debt(C)$, one of which is in $\Uf$, $C$'s advice on
+$B$ is constant. By Lemma~\ref{lem:uf}(c), $T\prec_cB$, so $B'\prec_cB$. Let
+$N$ be $C$ silenced on $B\cup B'$ and $X\coloneqq N+\cred(B)$. Then
+$X\prec_1N+\cred(B')$ by (IB), and $N+\cred(B')\preceq_1C$ by (G), since $C$
+is silent or in debt on $B$. So $C\not\preceq_1X$, and competitiveness of $C$
+on $\{1,j\}$ gives $C\preceq_jX$. $X$ agrees with $C$ off $B\cup B'$, so
+$\Lambda_j(C)\le\Lambda_j(X)$ by \eqref{eq:partner}. But by \eqref{eq:incr}
+$\Lambda_j(X)-\Lambda_j(C)\le a(B)+b(B)-b(B')<0$.
+\end{proof}
+
+\begin{lemma}\label{lem:SIpartner}
+Let world $j$ have a partner bound on $D$, let $T\subseteq H'$ be non-null,
+and let $J\subseteq(0,\infty)$ be a bounded open interval: $J\subseteq(1,2)$
+if (EP$_{1j}$) holds, and $J\subseteq(\alpha_{C_0},\infty)$ for a fixed
+two-sided selection $C_0$ on $[e_1,e_j]$ if (EP$_{1j}$) fails. Then
+$T_y\coloneqq Z^c_J(T)$ satisfies $T_y\preceq_cT$ and $T_y\subseteq
+D\cap\{t\in J\}$, and some non-null $D'\subseteq D\cap\{t<\inf J\}$ makes
+$(D',T_y)$ an SI pair. If (EP$_{1j}$) holds, the partner bound is not
+used.
+\end{lemma}
+\begin{proof}
+$T_y$ is given by Lemma~\ref{lem:yard}(b). Suppose (EP$_{1j}$). By CCF's
+Lemmas~3 and~4 (with $s^*=1$ approached from below) there is $q^*$ with $C_{q^*}=E_j(1)$, every neighbourhood of which
+contains indices $q$ with $C_q=E_j(s)$ for all $s$ in some interval
+$[s_0,1)$. Let $Y\coloneqq E_j(1)+\cred(T_y)$; $E_j(1)$ is silent on
+$T_y\subseteq\Band_j(1,2)$, so $Y\prec_1E_j(1)$, and (T1) gives
+$Y\prec_1E_j(s)$ for some $s<1$. Since
+$Y=E_j(s)+\debt(\Band_j[s,1))+\cred(T_y)$, the pair $(\Band_j[s,1),T_y)$ is
+SI by (IB). This is CCF's Lemma~11 at level~$1$.
+
+Suppose (EP$_{1j}$) fails, and let $C_0=(\alpha_0,\beta_0)$, so
+$0<\beta_0\le\alpha_0<\infty$ and $T_y\subseteq\cred(C_0)\cap D$. Suppose every
+pair $(D',T_y)$ with $D'\subseteq\debt(C_0)\cap D$ non-null is AC. By FAED's
+Lemma~1 there is a non-null $D''\subseteq\debt(C_0)\cap D$ with
+$a(D'')<b(T_y)$; split it into non-null $D'$ and $D''\setminus D'$. For
+$E\in\{D',D''\}$ let $K_E$ be $C_0$ silenced on $E\cup T_y$. Then
+$C_0=K_E+\debt(E)+\cred(T_y)$, so $K_E\preceq_1C_0$ by the AC pair and (IB).
+By \eqref{eq:incr}, $\Lambda_j(K_E)-\Lambda_j(C_0)=a(E)-b(T_y)<0$, so
+$K_E\prec_jC_0$ by \eqref{eq:partnerstrict}, and competitiveness gives
+$C_0\preceq_1K_E$. Hence $K_{D'}\sim_1C_0\sim_1K_{D''}$. But $K_{D''}$ is
+$K_{D'}$ with its debt on the non-null $D''\setminus D'$ silenced, so
+$K_{D''}\prec_1K_{D'}$ by strict (G): a contradiction. So some non-null
+$D'\subseteq\debt(C_0)\cap D=\Band_j(0,\beta_0)$ is an SI partner of
+$T_y$, and $\beta_0\le\alpha_0<\inf J$.
+\end{proof}
+
+\begin{theorem}\label{thm:transfer}
+Let world $j$ have a partner bound $(a,b)$ on $D$, and let $\Uf$ be an
+ultrafilter containing $D$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\Uf$ avoids $\Jid_A$ for some non-null $A\subseteq H'$, then
+$a(\Uf)>0$.
+\item If $\Uf$ avoids $\Kid_T$ for some non-null $T\subseteq H'$, then
+$a(\Uf)>0$ or $b(\Uf)>0$.
+\end{enumerate}
+So every heavy ultrafilter of world~$1$ on $D$ is an atom of the partner's
+charges. Nothing is assumed about $V$, and neither completeness nor (IB) is
+used at worlds other than $1$ and $j$.
+\end{theorem}
+\begin{proof}
+\emph{Preliminaries.} By Lemma~\ref{lem:uf}(d), $\Uf$ contains all one-sided
+bands of a unique germ point $(z,\sigma)$ of $[e_1,e_j]$, which is $A$-heavy
+in~(a) and $T$-heavy in~(b). Let $q_e$ and $q_m\uparrow q_e$ be as in
+Lemma~\ref{lem:ends}(b), and $C_m\coloneqq C_{q_m}=(\alpha_m,\beta_m)$:
+selections on the open edge, $C_m\ne D_j$, so $\beta_m<\infty$, and
+$\beta_m\to\infty$.
+
+(a) Suppose $a(\Uf)=0$. By Corollary~\ref{cor:X5}, $z<\infty$. For
+$\beta_m>z+1$, $\debt(C_m)=\Band_j(0,\beta_m)$ contains a one-sided band of
+$(z,\sigma)$, so $\debt(C_m)\in\Uf$. Pass to a subsequence along which either
+$\beta_m<\alpha_m$ for all $m$ (\emph{silent}) or $\alpha_m=\beta_m$ for all
+$m$ (\emph{precise}).
+
+\emph{Silent.} Fix $m$ in the subsequence with $\beta_m>z+1$. Let $B'\coloneqq Z_I(A)$ with $I$
+a bounded open interval in $(\beta_m,\alpha_m)$: $B'\subseteq\sil(C_m)$,
+$B'\preceq_dA$ and $a(B')>0$. Choose $B\in\Uf$, $B\subseteq\debt(C_m)$, with
+$a(B)<a(B')$. By Lemma~\ref{lem:uf}(c), $B'\prec_dB$. Let $N$ be $C_m$
+silenced on $B\cup B'$, so $C_m=N+\debt(B)$, and put $X\coloneqq
+N+\debt(B')$. By (IB), $X\prec_1C_m$; by competitiveness $C_m\preceq_jX$; by
+\eqref{eq:partner} $\Lambda_j(C_m)\le\Lambda_j(X)$. But by \eqref{eq:incr}
+$\Lambda_j(X)-\Lambda_j(C_m)=a(B)-a(B')<0$.
+
+\emph{Precise.} Then $\alpha_m=\beta_m\to\infty$. Let $A'\coloneqq Z_I(A)$
+with $I\coloneqq(1,2)$, so $A'\subseteq D\cap\{t<2\}$ and $A'\preceq_dA$, and
+let $m_0$ be given by Lemma~\ref{lem:SAC} for $A'$ along the subsequence. Fix
+$m\ge m_0$ in the subsequence with $\beta_m>z+3$ and then $m'\ge m$ in it
+with $\alpha_{m'}>\alpha_m$, and put $W\coloneqq\Band_j(\alpha_{m'},\infty)$.
+Then $A'\subseteq\debt(C_m)$, $W\subseteq\cred(C_m)\cap D$, $A'\cap W=\varnothing$, $b(W)>0$, and $(A',W)$
+is strictly AC. Since $A'\in\Jid_A$, $A'\notin\Uf$, so
+$\debt(C_m)\setminus A'\in\Uf$; choose $B\in\Uf$ inside it with
+$a(B)<b(W)$. By Lemma~\ref{lem:uf}(c), $A'\prec_dB$. Let $K$ be $C_m$
+silenced on the pairwise disjoint sets $A'$, $B$, $W$. By (IB) and the AC
+pair, $K\preceq_1K+\debt(A')+\cred(W)$, and by (IB) and $A'\prec_dB$,
+$K+\cred(W)+\debt(A')\prec_1K+\cred(W)+\debt(B)$; so
+$K\prec_1K+\cred(W)+\debt(B)$. Let $X$ be $C_m$ with $B$ and $W$ silenced.
+The pairs $(X,C_m)$ and $(K,K+\cred(W)+\debt(B))$ each agree off $B\cup W$
+and carry the same advice on $B\cup W$, so $X\prec_1C_m$ by (IB). By
+competitiveness and \eqref{eq:partner}, $\Lambda_j(C_m)\le\Lambda_j(X)$; but
+$\Lambda_j(X)-\Lambda_j(C_m)=a(B)-b(W)<0$.
+
+(b) Suppose $a(\Uf)=b(\Uf)=0$. By Corollary~\ref{cor:X5}, $z>0$; write
+$w\coloneqq z\in(0,\infty]$. Fix $J$, $T_y$ and $D'$ as in
+Lemma~\ref{lem:SIpartner}; $\Uf$ avoids $\Kid_{T_y}\subseteq\Kid_T$
+(Lemma~\ref{lem:ideal}). Fix a non-null $D'_0\subseteq D'$ with
+$D'\setminus D'_0$ non-null; then $D'_0\prec_dD'$ by strict (G), so every set
+$\preceq_dD'_0$ is $\prec_dD'$.
+
+\emph{Step 1: $0<w<\infty$.} (i) Suppose $\alpha_m<\infty$ for infinitely
+many $m$. For such $m$ with $\beta_m>w+1$, the bands of $(w,\sigma)$ of size
+$<1$ lie in $D\cap\{t\le\alpha_m\}=H'\setminus\cred(C_m)$, which is
+therefore in $\Uf$. This contradicts Lemma~\ref{lem:creditconf}, applied
+with $T_y$ in place of $T$.
+
+(ii) Otherwise $C_m=E_j(\beta_m)$ for all large $m$. Fix such $m$ with
+$\beta\coloneqq\beta_m>\max(w,\sup J)+1$, and $E\coloneqq C_m$. Let
+$Z\coloneqq Z_I(D'_0)$ with $I\coloneqq(\beta,\beta+1)$: $Z\subseteq\sil(E)$,
+$Z\prec_dD'$, $a(Z)>0$, and $Z$ misses $T_y$ and $D'$. The set
+$\debt(E)=\Band_j(0,\beta)$ contains bands of $(w,\sigma)$, so it is in
+$\Uf$; $T_y\in\Kid_{T_y}$ is not; choose $B\in\Uf$,
+$B\subseteq\Band_j(0,\beta)\setminus T_y$, with $a(B)+b(B)<a(Z)$. Let $X$
+be $E$ with credit instead of debt on $B$ and debt instead of silence on
+$Z$. By \eqref{eq:incr}, $\Lambda_j(X)-\Lambda_j(E)=a(B)+b(B)-a(Z)<0$, so
+$X\prec_jE$ by \eqref{eq:partnerstrict}, and competitiveness gives
+$E\preceq_1X$. With $N$ the model $E$ silenced on $B\cup Z$,
+$N\preceq_1N+\debt(B)=E\preceq_1X=N+\cred(B)+\debt(Z)$, so (IB) gives
+$V\preceq_1V+\debt(Z)+\cred(B)$. By Lemma~\ref{lem:uf}(c), $T_y\prec_cB$;
+in the context $V+\debt(Z)$, which is silent on $B\cup T_y$, this gives
+$V+\debt(Z)+\cred(B)\prec_1V+\debt(Z)+\cred(T_y)$. Hence
+$V\prec_1V+\debt(Z)+\cred(T_y)$. But $Z\prec_dD'$ in the context
+$V+\cred(T_y)$, silent on $Z\cup D'$, gives
+$V+\debt(Z)+\cred(T_y)\prec_1V+\debt(D')+\cred(T_y)\prec_1V$.
+
+\emph{Step 2: $w=\infty$.} $\Uf$ contains every tail $\Band_j(M,\infty)$.
+(i) Suppose $\alpha_m<\infty$ for infinitely many $m$. Let
+$A'\coloneqq Z_I(D'_0)$ with $I$ a bounded open interval in $(0,\inf J)$
+and $c\coloneqq\sup I$: $A'\subseteq D\cap\{t<c\}$, $A'\prec_dD'$,
+$A'\cap T_y=\varnothing$. By Lemma~\ref{lem:SAC}, for large such $m$ with
+$\alpha_m>\sup J$ the pair $(A',W_m)$, $W_m\coloneqq\Band_j(\alpha_m,\infty)$,
+is strictly AC. Then
+\[
+ V+\debt(A')+\cred(T_y)\prec_1V+\debt(D')+\cred(T_y)\prec_1V
+ \prec_1V+\debt(A')+\cred(W_m),
+\]
+the first step in the context $V+\cred(T_y)$, silent on $A'\cup D'$. (IB) in
+the context $V+\debt(A')$, silent on $T_y\cup W_m$, gives $W_m\prec_cT_y$.
+So this tail is in $\Kid_{T_y}$, and it is in $\Uf$: a contradiction.
+
+(ii) Otherwise $C_m=E_j(\beta_m)$ for all large $m$; fix
+$E\coloneqq C_m$ with $\beta\coloneqq\beta_m>\sup J+1$, and $Z$ as in
+Step~1(ii). Choose $W\in\Uf$, $W\subseteq\Band_j(\beta+1,\infty)$, with
+$b(W)<a(Z)$, and let $X\coloneqq E+\cred(W)+\debt(Z)$; $E$ is silent on the
+disjoint sets $W$, $Z$. Then $\Lambda_j(X)-\Lambda_j(E)=b(W)-a(Z)<0$, so
+$X\prec_jE$, $E\preceq_1X$, and by (IB) $V\preceq_1V+\debt(Z)+\cred(W)$. As
+$T_y\prec_cW$, $V\prec_1V+\debt(Z)+\cred(T_y)$, and $Z\prec_dD'$ gives the
+opposite strict inequality as in Step~1(ii).
+
+Every germ point is $(0,+)$, finite, or $(\infty,-)$, so all cases are
+covered.
+\end{proof}
+
+The proof works at the far end of the edge, where every selection has its
+debt band beyond the germ level. Near $q_e$ each selection is either silent
+on a band, which hosts a debt yardstick, or has a credit tail, which with the
+small AC pair of Lemma~\ref{lem:SAC} pays for removing the heavy debt; no
+analysis of how the selections cross the germ level is needed. The partner's
+charges enter only through the choice of pieces of small charge in $\Uf$,
+which is possible exactly when $\Uf$ is not an atom.
+
+\subsection{Edge transfer of fineness}\label{sec:edgefine}
+
+\begin{corollary}\label{cor:edgefine}
+If world $j$ is fine on $D_{1j}$, then $D_{1j}\in\Jid_A\cap\Kid_T$ for all
+non-null $A,T\subseteq H'$; in particular world~$1$ is fine on $D_{1j}$. So
+fineness on $D_{vw}$ is a property of the edge $[e_v,e_w]$: it holds for
+one of its worlds if and only if it holds for the other, provided both are
+complete with (IB).
+\end{corollary}
+\begin{proof}
+Lemma~\ref{lem:sources}(a) gives a partner bound with $a(\Uf)=b(\Uf)=0$ for
+every ultrafilter $\Uf\ni D$. If $D\notin\Jid_A$, Lemma~\ref{lem:uf}(b) gives
+an ultrafilter containing $D$ and avoiding $\Jid_A$, which contradicts
+Theorem~\ref{thm:transfer}(a). The credit case uses (b).
+\end{proof}
+
+\noindent The partner must be complete with (IB): its debt and credit
+orders are comparative probabilities only under (IB), and the strict form
+\eqref{eq:partnerstrict} needs completeness. (G) at every world and (S) are
+used through the yardsticks of Lemma~\ref{lem:yard}, which is where the third
+world enters; for $n=2$ the argument does not run.
+
+\subsection{The third region}
+
+\begin{proposition}\label{prop:third}
+Let $n=3$. Let worlds $1$ and $3$ be complete with (G) and (IB), assume (G)
+at world~$2$ and (S), and let world $3$ be fine on $D_{32}$, with local
+extension $\Lambda_3=P^3_d(\debt_3\cap D_{32})-\kappa_3P^3_c(\cred_3\cap
+D_{32})$.
+\begin{enumerate}[label=(\alph*)]
+\item No ultrafilter that avoids $\Jid_A$, for some non-null $A$, contains
+$P_3$.
+\item Suppose moreover that world~$1$'s debt order is fine and that
+\begin{enumerate}[label=(H$_{\mathrm{SI}}$),leftmargin=*]
+\item for every non-null $T$ there are a non-null $T_y\preceq_cT$ with
+$T_y\cap P_3=\varnothing$ and a non-null $D'$ such that $(D',T_y)$ is
+an SI pair of world~$1$.
+\end{enumerate}
+Then no ultrafilter that avoids $\Kid_T$, for some non-null $T$, contains
+$P_3$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Work on $[e_1,e_3]$ with $t\coloneqq t_3$ on $D_{13}\supseteq P_3$. Since
+$P_3=D_{13}\cap D_{32}$, models that agree off a subset of $P_3$ agree off
+$D_{32}$, so $\Lambda_3$ and its strict form apply to them; and on $P_3$
+debt at~$1$ is credit at~$3$ and credit at $1$ is debt at $3$, so the
+increments \eqref{eq:incr} hold for changes inside $P_3$ with
+$a\coloneqq\kappa_3P^3_c$ and $b\coloneqq P^3_d$. Pieces of small $P^3_d$-
+and $P^3_c$-mass exist by Proposition~\ref{prop:localext}(iii). Let $q_e$,
+$q_m\uparrow q_e$ and $C_m=(\alpha_m,\beta_m)$ be as in
+Lemma~\ref{lem:ends}(b) on $[e_1,e_3]$; $\beta_m\to\infty$.
+
+(a) Let $\Uf\ni P_3$ avoid $\Jid_A$. By Lemma~\ref{lem:uf}(d) it contains
+all bands of an $A$-heavy germ point $(z,\sigma)$ of $[e_1,e_3]$, and
+$z<\infty$ by Corollary~\ref{cor:X5}. For $\beta_m>z+1$,
+$\debt(C_m)\cap P_3\in\Uf$.
+
+\emph{Case $\alpha_m=\infty$ along a subsequence.} Fix such $m$ with
+$\beta_m>z+1$. By Lemma~\ref{lem:yard}(a) there is $b_3$ such that every
+subset of $\Band_3(b_3,\infty)$ is $\preceq_dA$. The set
+$B'\coloneqq P_3\cap\Band_3(\max(b_3,\beta_m),\infty)$ is non-null, lies in
+$\sil(C_m)$, and $B'\preceq_dA$. Choose a non-null $B'_0\subseteq B'$ with
+$B'\setminus B'_0$ non-null; then $B'_0\prec^3_cB'$ by strict (G) at
+world~$3$. Since world~$3$ is fine on $D_{32}\supseteq B'_0$, the set
+$\debt(C_m)\cap P_3$ has a subset $B\in\Uf$ with $B\preceq^3_cB'_0$. By
+Lemma~\ref{lem:uf}(c), $B'\prec_dB$, and Lemma~\ref{lem:silent} (edge
+$[e_1,e_3]$, partner~$3$) gives $B'\preceq^3_cB\preceq^3_cB'_0\prec^3_cB'$:
+a contradiction.
+
+\emph{Case $\alpha_m<\infty$ along a subsequence.} Let $A'\coloneqq Z_I(A)$
+on $[e_1,e_3]$ with $I\coloneqq(1,2)$; $A'\subseteq P_1\cap\{t<2\}$,
+$A'\preceq_dA$. Let $m_0$ be given by Lemma~\ref{lem:SAC}. Fix $m\ge m_0$ in
+the subsequence with $\beta_m>z+3$, then $m'\ge m$ in it with
+$\alpha_{m'}>\alpha_m$, and put $W\coloneqq P_3\cap\Band_3(\alpha_{m'},
+\infty)$: non-null, in $\cred(C_m)$, disjoint from $A'$, and $(A',W)$ is
+strictly AC. Choose $B\in\Uf$, $B\subseteq\debt(C_m)\cap P_3$, with
+$\kappa_3P^3_c(B)<P^3_d(W)$. Then $A'\prec_dB$, and the argument of the
+precise case of Theorem~\ref{thm:transfer}(a) gives $X\prec_1C_m$ for $X$ the
+model $C_m$ with $B$ and $W$ silenced. Competitiveness on $\{1,3\}$ gives
+$C_m\preceq_3X$, hence $\Lambda_3(C_m)\le\Lambda_3(X)$; but
+$\Lambda_3(X)-\Lambda_3(C_m)=\kappa_3P^3_c(B)-P^3_d(W)<0$.
+
+Since $C_m\ne D_3$, $\beta_m<\infty$, so the two cases are exhaustive.
+
+(b) Let $\Uf\ni P_3$ avoid $\Kid_T$. By Lemma~\ref{lem:uf}(d) it contains all
+bands of a $T$-heavy germ point $(w,\sigma)$ of $[e_1,e_3]$, and $w>0$. Take
+$T_y$, $D'$ from (H$_{\mathrm{SI}}$); $\Uf$ avoids $\Kid_{T_y}$. Fix a
+non-null $D'_0\subseteq D'$ with $D'\setminus D'_0$ non-null, so every set
+$\preceq_dD'_0$ is $\prec_dD'$. By Lemma~\ref{lem:yard}(a) there is $b$ such
+that every subset of $\Band_3(b,\infty)$ is $\preceq_dD'_0$. By fineness of
+world~$1$'s debt order, $H'$ is a finite union of sets $\preceq_dD'_0$; one
+of them meets $P_3\cap\Band_3(0,1)$ in a non-null set $A'$. Then
+$A'\prec_dD'$, $A'\cap T_y=\varnothing$ and $A'\subseteq D_{13}\cap\{t<1\}$.
+
+\emph{Finite $w$, case $\alpha_m<\infty$ along a subsequence.} Let $m_0$ be
+given by Lemma~\ref{lem:SAC} for $A'$. Fix $m\ge m_0$ in the subsequence
+with $\beta_m>w+1$ and $m'\ge m_0$ in it with $\alpha_{m'}>\alpha_m$, and put
+$W\coloneqq P_3\cap\Band_3(\alpha_{m'},\infty)\subseteq\cred(C_m)$. As in
+Step~2(i) of Theorem~\ref{thm:transfer}(b),
+\[
+ V+\debt(A')+\cred(T_y)\prec_1V+\debt(D')+\cred(T_y)\prec_1V
+ \prec_1V+\debt(A')+\cred(W),
+\]
+and (IB) gives $W\prec_cT_y$. Choose $B\in\Uf$,
+$B\subseteq\debt(C_m)\cap P_3$, with $P^3_d(B)+\kappa_3P^3_c(B)<P^3_d(W)$.
+Since $T_y\prec_cB$, $W\prec_cB$. Let $N$ be $C_m$ silenced on $B\cup W$ and
+$X\coloneqq N+\cred(B)$. Then $X\prec_1N+\cred(W)\preceq_1
+N+\cred(W)+\debt(B)=C_m$, and
+$\Lambda_3(X)-\Lambda_3(C_m)=P^3_d(B)+\kappa_3P^3_c(B)-P^3_d(W)<0$, so
+$X\prec_3C_m$. Thus $C_m$ is beaten at both worlds of its support, contrary
+to competitiveness.
+
+\emph{Finite $w$, case $\alpha_m=\infty$ along a subsequence.} Fix such $m$
+with $\beta\coloneqq\beta_m>w+1$, $E\coloneqq C_m=E_3(\beta)$, and put
+$\beta'\coloneqq\max(\beta,b)$, $Z\coloneqq P_3\cap\Band_3(\beta',\beta'+1)$.
+Then $Z\subseteq\sil(E)$, $Z\prec_dD'$ and $Z\cap T_y=\varnothing$. Choose
+$B\in\Uf$, $B\subseteq P_3\cap\Band_3(0,\beta)$, with
+$P^3_d(B)+\kappa_3P^3_c(B)<\kappa_3P^3_c(Z)$, and let $X$ be $E$ with credit
+instead of debt on $B$ and debt instead of silence on $Z$. Then
+$\Lambda_3(X)-\Lambda_3(E)<0$, so $X\prec_3E$ and $E\preceq_1X$, and the
+argument of Step~1(ii) of Theorem~\ref{thm:transfer}(b) gives a
+contradiction. (This case does not use the fineness of world~$1$'s debt
+order.)
+
+\emph{$w=\infty$.} $\Uf$ contains $P_3\cap\Band_3(M,\infty)$ for every
+$M$. If $\alpha_m<\infty$ for infinitely many $m$, the chain of the first
+case gives $P_3\cap\Band_3(\alpha_m,\infty)\prec_cT_y$ for large such $m$, so
+this member of $\Uf$ is in $\Kid_{T_y}$. Otherwise fix $E\coloneqq
+C_m=E_3(\beta)$ and $Z$ as in the second case, choose $W\in\Uf$,
+$W\subseteq P_3\cap\Band_3(\beta'+1,\infty)$, with
+$P^3_d(W)<\kappa_3P^3_c(Z)$, and let $X\coloneqq E+\cred(W)+\debt(Z)$. Then
+$X\prec_3E$, $E\preceq_1X$, $V\preceq_1V+\debt(Z)+\cred(W)$, and
+$T_y\prec_cW$ and $Z\prec_dD'$ give a contradiction as in Step~2(ii) of
+Theorem~\ref{thm:transfer}(b).
+\end{proof}
+
+We do not know whether (H$_{\mathrm{SI}}$) follows from the other
+hypotheses of (b): the credit yardsticks of Lemma~\ref{lem:yard}(b) lie in $P_1$, and an SI
+partner for them comes from a partner bound on $[e_1,e_2]$ or from (EP) on an
+edge at world~$1$ (Lemma~\ref{lem:SIpartner}). It holds in
+Theorem~\ref{thm:onefine}.
+
+\subsection{One fine world}
+
+\begin{theorem}\label{thm:onefine}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). If one world is fine, then all three are fine. Consequently each world
+has a loss of CBOI's form satisfying \eqref{eq:positive} that weakly extends
+its ranking on all regular pairs, and every coherent model whose credal set
+contains three vertices, $V$ in particular, is dominated by a coherent
+model. The first conclusion uses no assumption on~$V$.
+\end{theorem}
+\begin{proof}
+Relabel so that world~$2$ is fine.
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=1pt]
+\item Corollary~\ref{cor:edgefine} (base $1$, partner $2$):
+$D_{12}\in\Jid_A\cap\Kid_T$ for all non-null $A,T$.
+\item Corollary~\ref{cor:edgefine} (base $3$, partner $2$): world~$3$ is
+fine on $D_{32}$.
+\item World~$1$'s debt order. If $H'\notin\Jid_A$, Lemma~\ref{lem:uf}(b)
+gives an ultrafilter avoiding $\Jid_A$. It contains exactly one of
+$P_1,P_2,P_3$; not $P_1$ or $P_2$, which lie in $D_{12}\in\Jid_A$; and not
+$P_3$, by Proposition~\ref{prop:third}(a). So $H'\in\Jid_A$ for every $A$.
+\item World~$1$'s credit order. The same argument with $\Kid_T$, using
+Proposition~\ref{prop:third}(b): world~$1$'s debt order is fine by step~3,
+and (H$_{\mathrm{SI}}$) holds by Lemma~\ref{lem:SIpartner} on $[e_1,e_2]$
+with world~$2$'s partner bound of Lemma~\ref{lem:sources}(a), since
+$T_y=Z^c_J(T)\subseteq P_1$. So world~$1$ is fine.
+\item World~$3$. World~$1$ is fine on $D_{31}$, so
+Corollary~\ref{cor:edgefine} (base $3$, partner $1$) makes world~$3$ fine on
+$D_{31}$; with step~2 and Lemma~\ref{lem:fineregion}, world~$3$ is fine.
+\item Corollary~\ref{cor:ext}(b) at each world gives the losses; they satisfy
+\eqref{eq:W}, and CCF's Lemma~1 gives the dominance.
+\end{enumerate}
+\end{proof}
+
+\noindent Step~5 avoids a second use of Proposition~\ref{prop:third}. For
+the conclusion that $V$ is dominated, Theorem~\ref{thm:fineedge} and
+Remark~\ref{rem:edgeroute} below give a second route that avoids
+Proposition~\ref{prop:third} altogether: by step~2, the edge $[e_2,e_3]$ is
+fine. For $n\ge4$, Corollary~\ref{cor:edgefine} still
+transfers fineness along every edge, but we have not checked the analogue of
+Proposition~\ref{prop:third}; whether one fine world makes all worlds fine
+for $n\ge4$ is open.
+
+\section{One fine edge}\label{sec:edge}
+
+Call the edge $[e_v,e_w]$ \emph{fine} if worlds $v$ and $w$ are fine on
+$D_{vw}$. If both are complete with (IB), one of them suffices, by
+Corollary~\ref{cor:edgefine}.
+
+\begin{lemma}\label{lem:EPfine}
+Let $n\ge3$, assume (G) at every world and (S), and let worlds $v$ and $w$ be
+complete with (IB). If (EP$_{vw}$) holds, the edge $[e_v,e_w]$ is fine.
+\end{lemma}
+\begin{proof}
+Take $v=1$, $w=j$. Step~1 of CCF's proof of Theorem~7 and its credit version
+use only the edge $[e_1,e_j]$, (EP$_{1j}$), (G) at worlds $1$ and $j$, (S),
+and completeness and (IB) of world~$1$. They show: for every non-null
+$A_0\subseteq D_{1j}\cap\{t_j\ge a_1\}$ with $a_1>0$, $D_{1j}$ is a finite
+union of sets $\preceq_dA_0$, and for every non-null
+$T_0\subseteq D_{1j}\cap\{t_j>c\}$ with $c>0$, $D_{1j}$ is a finite union of
+sets $\preceq_cT_0$. A non-null $A\subseteq D_{1j}$ contains such an $A_0$,
+and $A_0\preceq_dA$ by (G); likewise for credit. So world~$1$ is fine on
+$D_{1j}$. (EP$_{1j}$) is symmetric in the two worlds of the edge, so the same
+argument in world $j$'s frame applies to world~$j$.
+\end{proof}
+
+For a selection $E=(\alpha_E,\beta_E)$ on $[e_1,e_2]$, in world~$1$'s frame,
+put
+\[
+ T_0(E)\coloneqq P_2\cap\{t_2>\alpha_E\},\qquad
+ B_0(E)\coloneqq P_1\cap\{t_2<\beta_E\}.
+\]
+$E$ gives $o_{13}$ (credit at $1$ and $3$, debt at $2$) on $T_0(E)$ and
+$o_{23}$ (debt at $1$, credit at $2$ and $3$) on $B_0(E)$. For
+$T\subseteq T_0(E)$ and $B\subseteq B_0(E)$ put
+$\tau_{T,B}\coloneqq o_{13}(T)+o_{23}(B)$, and write $V+\tau_{T,B}$ for $V$
+with these options on $T$ and $B$.
+
+\begin{lemma}\label{lem:XOR}
+Assume (IB) at worlds $1$ and $2$. Let $E$ be a selection on the open edge
+$(e_1,e_2)$, $T\subseteq T_0(E)$ and $B\subseteq B_0(E)$. Then
+$V+\tau_{T,B}\preceq_1V$ or $V+\tau_{T,B}\preceq_2V$. If moreover (G) holds
+at world~$3$, $V$ is undominated and $T\cup B$ is non-null, then not both.
+\end{lemma}
+\begin{proof}
+The pairs $(E,E')$, with $E'$ the model $E$ silenced on $T\cup B$, and
+$(V+\tau_{T,B},V)$ differ exactly on $T\cup B$, with the same advice there.
+By (IB), $E\preceq_kE'$ if and only if $V+\tau_{T,B}\preceq_kV$, for
+$k=1,2$; and $E$ is competitive on $\{1,2\}$. For the second statement:
+$o_{13}$ and $o_{23}$ are credit at world~$3$, so $V+\tau_{T,B}\prec_3V$ by
+strict (G), and if both weak inequalities held, $V+\tau_{T,B}$ would dominate
+$V$.
+\end{proof}
+
+\emph{Standing for the rest of this section:} $n=3$; all three rankings are
+complete with (G) and (IB); (S); and the edge $[e_2,e_3]$ is fine, with local
+extensions $\Lambda_2,\Lambda_3$ on $D_{23}$ (Corollary~\ref{cor:ext}) and
+probabilities $P^2_d,P^2_c,P^3_d,P^3_c$ and rates $\kappa_2,\kappa_3$. Nothing
+is assumed about world~$1$ beyond completeness, (G) and (IB).
+
+\begin{lemma}\label{lem:B1}
+For every non-null $B\subseteq P_1$ there is a non-null $Z_B\subseteq P_3$
+such that $V+o_{12}(Z)+o_{23}(B)\prec_3V$ for every non-null
+$Z\subseteq Z_B$. Only world~$3$'s fineness on $D_{23}$ is used, not
+world~$2$'s.
+\end{lemma}
+\begin{proof}
+We work in world~$3$'s frame, with $s\coloneqq t^3_2$ on $D_{32}=D_{23}$. On
+$P_3$, $o_{12}$ is debt at $3$; on $P_1$, $o_{23}$ is credit at $3$; so the
+claim is that $(Z,B)$ is an SI pair of world~$3$.
+
+(1) By Lemma~\ref{lem:yard}(b) at world~$3$ there is $a'>0$ with
+$L\coloneqq\Lo32{a'}\preceq^3_cB$. (2) Choose a non-null $T''\subseteq L$
+with $D_{23}\setminus T''$ non-null, and then (Proposition~\ref{prop:localext}
+(ii), (iii)) a non-null $A\subseteq D_{23}\setminus T''$ with
+$P^3_d(A)<\kappa_3P^3_c(T'')$. The models $V+\debt_3(A)+\cred_3(T'')$ and $V$
+agree off $D_{23}$, and $\Lambda_3$ decreases by
+$\kappa_3P^3_c(T'')-P^3_d(A)>0$, so $V+\debt_3(A)+\cred_3(T'')\prec_3V$.
+(3) By Lemma~\ref{lem:yard}(a) at world~$3$ there is $b$ with
+$\Hi32b\prec^3_dA_0\preceq^3_dA$. Put
+$Z_B\coloneqq P_3\cap\Hi32{\max(b,a')}$; every non-null $Z\subseteq Z_B$ has
+$Z\prec^3_dA$. (4) $Z$ and $T''$ are disjoint (levels of $s$), $A\cap
+T''=\varnothing$, and $B\subseteq P_1$ misses $Z,T'',A$. Hence
+\[
+ V+\debt_3(Z)+\cred_3(B)\preceq_3V+\debt_3(Z)+\cred_3(T'')
+ \prec_3V+\debt_3(A)+\cred_3(T'')\prec_3V.
+\]
+The first step is $T''\preceq^3_cL\preceq^3_cB$ in the context
+$V+\debt_3(Z)$, silent on $B\cup T''$; the second is $Z\prec^3_dA$ in the
+context $V+\cred_3(T'')$, silent on $Z\cup A$; the third is step~(2).
+\end{proof}
+
+\begin{lemma}\label{lem:B2}
+Assume moreover that $V$ is undominated. Let $E$ be a selection on the open
+edge $(e_1,e_2)$ and $B\subseteq B_0(E)$ non-null. Then
+$V\prec_1V+\tau_{T,B}$ for every $T\subseteq T_0(E)$.
+\end{lemma}
+\begin{proof}
+Suppose $V+\tau_{T^*,B}\preceq_1V$ for some $T^*\subseteq T_0(E)$. Let
+$Z\coloneqq Z_B$ (Lemma~\ref{lem:B1}) and $\eta\coloneqq\kappa_2P^2_c(Z)>0$.
+Write $T^*=Q_1\cup\dots\cup Q_r$, disjoint, with $P^2_d(Q_k)<\eta$
+(Proposition~\ref{prop:localext}(iii); $T^*\subseteq P_2\subseteq D_{23}$),
+and $T_k\coloneqq Q_1\cup\dots\cup Q_k$. Since $V+\tau_{\varnothing,B}=
+V+o_{23}(B)$ has debt at $1$ on $B$, $V\prec_1V+\tau_{\varnothing,B}$; so
+there is a least $k^*\ge1$ with $V+\tau_{T_{k^*},B}\preceq_1V$, and
+$V+\tau_{T_{k^*-1},B}\preceq_2V$ by Lemma~\ref{lem:XOR}. Put
+\[
+ d\coloneqq o_{13}(T_{k^*})+o_{23}(B)+o_{12}(Z),
+\]
+a change on the disjoint sets $T_{k^*}\subseteq P_2$, $B\subseteq P_1$,
+$Z\subseteq P_3$.
+
+\emph{World $1$.} $V+d$ is $V+\tau_{T_{k^*},B}$ with credit at $1$ added on
+$Z$, so $V+d\prec_1V+\tau_{T_{k^*},B}\preceq_1V$ by strict (G).
+
+\emph{World $2$.} The change $\delta\coloneqq o_{13}(Q_{k^*})+o_{12}(Z)$ is
+debt at $2$ on $Q_{k^*}$ and credit at $2$ on $Z$, inside $D_{23}$, and
+lowers $\Lambda_2$ by $\kappa_2P^2_c(Z)-P^2_d(Q_{k^*})>0$; so
+$V+\delta\prec_2V$. The pairs $(V+d,V+\tau_{T_{k^*-1},B})$ and $(V+\delta,V)$
+differ exactly on $Q_{k^*}\cup Z$ with the same advice there, so by (IB)
+$V+d\prec_2V+\tau_{T_{k^*-1},B}\preceq_2V$.
+
+\emph{World $3$.} $o_{13}$ is credit at $3$ on $P_2$, so by (G) and
+Lemma~\ref{lem:B1}, $V+d\preceq_3V+o_{12}(Z)+o_{23}(B)\prec_3V$.
+
+So $V+d$ dominates $V$, a contradiction. Hence $V+\tau_{T,B}\not\preceq_1V$
+for every $T\subseteq T_0(E)$, and completeness gives the claim.
+\end{proof}
+
+\begin{lemma}\label{lem:B3}
+Assume $V$ undominated, and let $E$ be a selection on the open edge
+$(e_1,e_2)$ with $\beta_E>0$. Then every pair $(A,T)$ of world~$1$ with $A$
+non-null and $T\subseteq T_0(E)$ is AC: $T_0(E)$ is credit-null at world~$1$
+in the sense of Section~\ref{sec:LH}.
+\end{lemma}
+\begin{proof}
+Suppose $(A,T)$ is SI. By Lemma~\ref{lem:yard}(a) on $[e_1,e_3]$ there are
+$A_0\preceq_dA$ and $b$ with $\Band_3(b,\infty)\prec_dA_0$. The set
+$Z\coloneqq B_0(E)\cap\Band_3(b,\infty)=P_1\cap\{t_2<\beta_E\}\cap\{t_3>b\}$
+is non-null, and $Z\prec_dA$. The context $V+\cred(T)$ is silent on $Z\cup A$
+($Z\subseteq P_1$, $T\subseteq P_2$, $A\cap T=\varnothing$), so
+$V+\debt(Z)+\cred(T)\prec_1V+\debt(A)+\cred(T)\prec_1V$. On $P_1$, $o_{23}$ is
+debt at $1$, and on $P_2$, $o_{13}$ is credit at $1$; so
+$V+\tau_{T,Z}\prec_1V$, contradicting Lemma~\ref{lem:B2}.
+\end{proof}
+
+\begin{lemma}\label{lem:B4}
+Assume $V$ undominated. No selection on the open edge $(e_1,e_2)$ is
+two-sided.
+\end{lemma}
+\begin{proof}
+Let $E$ be two-sided. Then $T_0(E)$ and $Q_0\coloneqq P_2\cap\{t_2<\beta_E\}$
+are non-null, and $E$ gives $o_2$ (debt at $1$, credit at $2$) on $Q_0$. Put
+$p\coloneqq P^2_d(T_0(E))>0$, choose a non-null $Q\subseteq Q_0$ with
+$\kappa_2P^2_c(Q)<p$, split $Q$ into non-null $Q',Q''$, and let $X$ be $E$
+silenced on $Q\cup T_0(E)$.
+
+\emph{World $1$.} By Lemma~\ref{lem:B3} with $A\coloneqq Q'$ and
+$T\coloneqq T_0(E)$, $V\preceq_1V+\debt(Q')+\cred(T_0(E))$, and strict (G)
+gives $V\prec_1V+\debt(Q)+\cred(T_0(E))$. The pairs
+$(V,V+\debt(Q)+\cred(T_0(E)))$ and $(X,E)$ differ exactly on $Q\cup T_0(E)$
+with the same advice, so $X\prec_1E$.
+
+\emph{World $2$.} $E=X+\cred_2(Q)+\debt_2(T_0(E))$, and $X,E$ agree off
+$Q\cup T_0(E)\subseteq D_{23}$. So $\Lambda_2(E)-\Lambda_2(X)=
+P^2_d(T_0(E))-\kappa_2P^2_c(Q)>0$, and $X\prec_2E$.
+
+So $E$ is beaten at both worlds of its support, contrary to
+competitiveness.
+\end{proof}
+
+Alternatively, once Theorem~\ref{thm:LH} below is available,
+Lemma~\ref{lem:B4} follows from Lemma~\ref{lem:B3} alone: for a two-sided $E$
+the set $T_0(E)$ is non-null and credit-null at world~$1$, which
+Theorem~\ref{thm:LH} excludes. The proof above uses only the fine edge.
+
+\begin{theorem}\label{thm:fineedge}
+Let $n=3$, let all three rankings be complete with (G) and (IB), assume (S),
+and suppose $V$ is undominated. If the edge $[e_2,e_3]$ is fine, then
+(EP$_{12}$) and (EP$_{13}$) hold.
+\end{theorem}
+\begin{proof}
+A selection on $[e_1,e_2]$ whose credal set omits both endpoints lies in the
+open edge and is two-sided; Lemma~\ref{lem:B4} excludes it. (EP$_{13}$)
+follows by exchanging the labels $2$ and $3$, under which the hypotheses are
+invariant; it uses Lemma~\ref{lem:B1} at world~$2$ and $\Lambda_3$ in
+Lemmas~\ref{lem:B2} and~\ref{lem:B4}. So each of (EP$_{12}$), (EP$_{13}$)
+uses the local extensions of both worlds $2$ and $3$.
+\end{proof}
+
+\begin{corollary}\label{cor:fineedge}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). If some edge is fine, $V$ is dominated. Hence, if $V$ is undominated, no
+edge is fine and every edge carries a two-sided selection.
+\end{corollary}
+\begin{proof}
+Relabel so that $[e_2,e_3]$ is fine, and suppose $V$ is undominated.
+Theorem~\ref{thm:fineedge} gives (EP$_{12}$) and (EP$_{13}$), CCF's
+Theorem~7 makes world~$1$ fine, and Theorem~\ref{thm:onefine} makes $V$
+dominated: a contradiction. If $V$ is undominated, each edge is non-fine, so
+by Lemma~\ref{lem:EPfine} it fails (EP), and a selection omitting both
+endpoints is two-sided.
+\end{proof}
+
+\begin{remark}\label{rem:edgeroute}
+Corollary~\ref{cor:fineedge} does not need Theorem~\ref{thm:onefine}. After
+Theorem~\ref{thm:fineedge}, CCF's Theorem~15 gives world~$1$ a loss of
+CBOI's form that weakly extends $\preceq_1$ on all regular pairs. By
+Lemma~\ref{lem:EPfine}, (EP$_{12}$) makes world~$2$ fine on $D_{12}$; it is
+fine on $D_{23}$ by hypothesis, hence fine by Lemma~\ref{lem:fineregion}, and
+Corollary~\ref{cor:ext}(b) gives it such a loss. CCF's Theorem~18, with the
+complete world~$3$ as the third world, makes $V$ dominated.
+
+Theorem~\ref{thm:fineedge} and CCF's Proposition~17 are independent results.
+Proposition~17 assumes only one-sided bounds \eqref{eq:W} at worlds $2$ and
+$3$, with neither completeness nor (IB) there. Theorem~\ref{thm:fineedge}
+needs worlds $2$ and $3$ complete with (IB) and fine on $D_{23}$, but no
+extension beyond $D_{23}$. A loss of CBOI's form does not imply fineness
+(Proposition~\ref{ex:germ}). The two results overlap when worlds $2,3$ are
+complete with (IB) and fine on $D_{23}$, for instance when they are ranked by
+ordinary additive losses as in CCF's Corollary~19.
+\end{remark}
+
+The currency of the proof is $o_{12}$ on $P_3$, good at worlds $1$ and $2$
+and bad at world~$3$: world~$3$ accepts it against the credit $o_{23}$ gives
+it on $P_1$ (Lemma~\ref{lem:B1}), and world~$2$ uses it to absorb the last
+piece of debt in Lemma~\ref{lem:B2}. Every world pays on its own odd region.
+Without a fine edge, this mechanism leaves exactly the relative fineness
+discussed in Theorem~\ref{thm:ownregion}.
+
+\section{One tame world}\label{sec:tame}
+
+\subsection{Pure sets and atoms}
+
+\begin{lemma}\label{lem:YH}
+Let $\nu_1,\dots,\nu_r$ be finite nonnegative finitely additive charges on
+the measurable subsets of $H$, vanishing on null sets. There are measurable
+$Z_1\supseteq Z_2\supseteq\cdots$ with $\mu(Z_m)\to0$ and integrable
+$f_l\ge0$ such that $\nu_l(Q)=\int_Qf_l\,d\mu$ for every measurable
+$Q\subseteq H\setminus Z_m$, every $m$ and every $l$. If $\nu_l$ is positive
+on non-null sets, then $f_l>0$ almost everywhere.
+\end{lemma}
+\begin{proof}
+By the Yosida--Hewitt decomposition \cite{YH} and its concentration
+property \cite[Theorem~1 and its proof]{PP}, as used in CBOI's Lemma~3 and
+in FAED's equation~(2), $\nu_l=f_l\mu+\pi_l$ with $f_l\ge0$ integrable and
+$0\le\pi_l\le\nu_l$, and there are sets $Z'_m$ with $\mu(Z'_m)\to0$ and
+$\pi_l(H\setminus Z'_m)=0$ for all $l$ (take unions over $l$). Pass to a
+subsequence with $\mu(Z'_m)<2^{-m}$ and put $Z_m\coloneqq\bigcup_{k\ge m}Z'_k$.
+Then $Z_m$ decreases, $\mu(Z_m)\le2^{1-m}$, and $\pi_l$ vanishes on subsets
+of $H\setminus Z_m\subseteq H\setminus Z'_m$. If $f_l=0$ on a non-null $N$,
+choose $m$ with $\mu(Z_m)<\mu(N)$; then $\nu_l(N\setminus Z_m)=0$ with
+$N\setminus Z_m$ non-null.
+\end{proof}
+
+We call such $Z_m$ \emph{pure sets} for $\nu_1,\dots,\nu_r$. Charges defined
+only on the subsets of a measurable set are extended by $0$. For a charge
+$\nu$ and an ultrafilter $\Uf$ put $\nu(\Uf)\coloneqq\inf\{\nu(B):B\in\Uf\}$,
+as in Definition~\ref{def:partner}.
+
+\begin{lemma}\label{lem:atoms}
+Let $\nu$ have pure sets $Z_m$. If an ultrafilter $\Uf$ contains a set $R$
+with $R\cap Z_m$ null for some $m$, then $\nu(\Uf)=0$.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:uf}(a) there are $B_k\in\Uf$ with $\mu(B_k)\to0$. Then
+$B_k\cap R\in\Uf$ and $\nu(B_k\cap R)=\int_{B_k\cap R}f\,d\mu\to0$.
+\end{proof}
+
+\subsection{Fine off the partner's pure sets}
+
+In this subsection the standing hypotheses of Section~\ref{sec:partner}
+hold, world $j$ has a partner bound $(a,b)$ on $D=D_{1j}$, $Z_m$ are pure
+sets for $a,b$, and $R_m\coloneqq D\setminus Z_m$.
+
+\begin{corollary}\label{cor:fineoff}
+For every $m$ and all non-null $A,T\subseteq H'$, $R_m\in\Jid_A\cap\Kid_T$.
+In particular, if $R_m$ is non-null, world~$1$ is fine on $R_m$, and the
+almost agreeing probabilities $P_d,P_c$ of its debt and credit orders on
+$R_m$ exist and satisfy Proposition~\ref{prop:localext}(i)--(iii) on $R_m$.
+\end{corollary}
+\begin{proof}
+If $R_m\notin\Jid_A$, Lemma~\ref{lem:uf}(b) gives an ultrafilter $\Uf$
+containing $R_m\subseteq D$ and avoiding $\Jid_A$; then $a(\Uf)>0$ by
+Theorem~\ref{thm:transfer}(a), while $a(\Uf)=0$ by Lemma~\ref{lem:atoms}.
+For $\Kid_T$ use Theorem~\ref{thm:transfer}(b) and Lemma~\ref{lem:atoms} for
+$a$ and $b$. The last statement uses only fineness: see the proof of
+Proposition~\ref{prop:localext}.
+\end{proof}
+
+\begin{lemma}\label{lem:pairsoff}
+For all large $m$ there are an SI pair and an AC pair of world~$1$,
+each with non-null debt and credit parts contained in $R_m$.
+\end{lemma}
+\begin{proof}
+Since $R_m$ increases with $m$, it suffices to find each pair inside some
+$R_m$.
+
+\emph{SI pair.} If (EP$_{1j}$) holds, fix $m_0$ and a non-null
+$T_0\subseteq\Band_j(1,2)\setminus Z_{m_0}$. The proof of the (EP) case of
+Lemma~\ref{lem:SIpartner}, with $T_0$ in place of $T_y$, gives $s<1$ with
+$(\Band_j[s,1),T_0)$ SI. Choose $m\ge m_0$ with
+$\mu(Z_m)<\mu(\Band_j[s,1))$; then $(\Band_j[s,1)\setminus Z_m,T_0)$ is
+SI by (G), and both parts lie in $R_m$. If (EP$_{1j}$) fails, fix a
+two-sided selection $C_0$ and $m$ with $\cred(C_0)\cap R_m$ and
+$\debt(C_0)\cap R_m$ non-null, and run the non-(EP) case of
+Lemma~\ref{lem:SIpartner} with a non-null $T_0\subseteq\cred(C_0)\cap R_m$
+in place of $T_y$ and $D''$ chosen in $\debt(C_0)\cap R_m$; that argument
+does not use that $T_y$ is a yardstick.
+
+\emph{AC pair.} Let $q_n\uparrow q_e$ and $C_n=(\alpha_n,\beta_n)$ be as in
+Lemma~\ref{lem:ends}(b). If $\alpha_n<\infty$ for infinitely many $n$,
+choose $m_0$ and a non-null $A''\subseteq\Band_j(0,1)\setminus Z_{m_0}$; by
+Lemma~\ref{lem:SAC} there is $n$ with $(A'',W)$ strictly AC for every
+non-null $W\subseteq\Band_j(\alpha_n,\infty)$; take $m\ge m_0$ with
+$W\coloneqq\Band_j(\alpha_n,\infty)\setminus Z_m$ non-null. Otherwise
+$C\coloneqq C_n=E_j(\beta_n)$ for some $n$; take $m$ with
+$\Band_j(\beta_n,\infty)\setminus Z_m$ non-null, a non-null $A$ in it
+whose complement there is non-null, and
+(FAED's Lemma~1) a non-null $T\subseteq\Band_j(\beta_n,\infty)\setminus(Z_m
+\cup A)$ with $b(T)<a(A)$. Let $X\coloneqq C+\debt(A)+\cred(T)$; $C$ is silent
+on $A\cup T$. By \eqref{eq:incr}, $\Lambda_j(X)-\Lambda_j(C)=b(T)-a(A)<0$, so
+$X\prec_jC$, $C\preceq_1X$, and by (IB) $(A,T)$ is AC.
+\end{proof}
+
+\subsection{The chain lemma}
+
+For the rest of this section $n=3$ and $\{u,v,w\}=\{1,2,3\}$. On $P_w$ the
+option $o_{uv}$ is good at $u$ and $v$; on $P_v$, $o_{uw}$ is credit at $u$ and
+$w$ and debt at $v$; on $P_u$, $o_{vw}$ is credit at $v$ and $w$ and debt at
+$u$. For a selection $C$ on $[e_u,e_v]$ put
+\[
+ T_0(C)\coloneqq P_v\cap\{C\text{ gives }o_{uw}\},\qquad
+ B_0(C)\coloneqq P_u\cap\{C\text{ gives }o_{vw}\}.
+\]
+For $(u,v)=(1,2)$ these are the sets of Section~\ref{sec:edge}. If $C$ is
+two-sided, both are non-null: in world $u$'s frame $T_0(C)=P_v\cap
+\{t^u_v>\alpha_C\}$ and $B_0(C)=P_u\cap\{t^u_v<\beta_C\}$.
+
+\begin{lemma}\label{lem:chain}
+Assume (IB) at worlds $u$ and $v$ and (G) at world~$u$. Let $V$ be
+competitive on $\{1,2,3\}$ and let $C$ be competitive on $\{u,v\}$. Let
+$A\subseteq D_{uv}$ and $S\subseteq P_w$ be measurable with $S$ non-null,
+$X'\coloneqq V+o_{uv}(S)$, $X$ the model $X'$ with $C$'s advice on $A$, and $Y$
+the model $C$ silenced on $A$. If $V\not\preceq_vX$, $V\not\preceq_wX$ and
+$X\not\preceq_vX'$, then strict (G) fails.
+\end{lemma}
+\begin{proof}
+This is IC's Lemma~2 with the labels $(1,2,3)$ replaced by $(u,v,w)$; its
+proof is order-theoretic. By competitiveness of $V$, $V\preceq_uX$. The
+pairs $(C,Y)$ and $(X,X')$ differ exactly on $A$ with the same advice there
+($X'$ is silent on $A$, since $S\cap A=\varnothing$). By (IB) at $v$,
+$X\not\preceq_vX'$ gives $C\not\preceq_vY$; competitiveness of $C$ gives
+$C\preceq_uY$; and (IB) at $u$ gives $X\preceq_uX'$. So
+$V\preceq_uX\preceq_uX'$. But $X'\prec_uV$ by strict (G), since $o_{uv}$ is
+good at $u$ on the non-null $S$.
+\end{proof}
+
+\subsection{One world with extensions on both of its edges}
+
+\emph{Standing for this subsection:} $n=3$; all three rankings are complete
+with (G) and (IB); (S); and $V$ is undominated.
+
+\begin{theorem}\label{thm:chainEP}
+Suppose world $v$ has strictly positive two-sided local extensions of
+CBOI's form on both $D_{uv}$ and $D_{vw}$: charges $\nu^{uv}_1,\nu^{uv}_2$ on
+$D_{uv}$ and $\nu^{vw}_1,\nu^{vw}_2$ on $D_{vw}$, vanishing on null sets
+and positive on non-null sets,
+such that for regular $X,Y$ agreeing off $D_{uv}$, $X\preceq_vY$ implies
+$\Lambda_{uv}(X)\le\Lambda_{uv}(Y)$, where
+$\Lambda_{uv}(M)\coloneqq\nu^{uv}_1(D_{uv}\cap\{r_v\ge1\})
++\nu^{uv}_2(D_{uv}\cap\{r_v\ge2\})$, and likewise for $D_{vw}$. Then
+(EP$_{uv}$) holds.
+\end{theorem}
+\begin{proof}
+Suppose a selection $C$ on $[e_u,e_v]$ omits both endpoints; it is two-sided,
+in the open edge, and competitive on $\{u,v\}$, and $V$ is competitive on
+$\{1,2,3\}$. Write $T_0\coloneqq T_0(C)$ and $B_0\coloneqq B_0(C)$. By the
+table above, changes from silence change $\Lambda_{uv}$ and $\Lambda_{vw}$ as
+follows: $o_{vw}$ on $E\subseteq P_u$ adds $-\nu^{uv}_1(E)$; $o_{uw}$ on
+$E\subseteq P_v$ adds $+\nu^{uv}_2(E)$ to $\Lambda_{uv}$ and $+\nu^{vw}_2(E)$ to
+$\Lambda_{vw}$; $o_{uv}$ on $E\subseteq P_w$ adds $-\nu^{vw}_1(E)$. By
+completeness, each local extension has the strict form: $\Lambda(X)<\Lambda(Y)$
+implies $X\prec_vY$ for pairs agreeing off its region.
+
+Let $Z_m$ be common pure sets for the four charges (Lemma~\ref{lem:YH}), fix
+$m_1$ with $\mu(Z_{m_1})<\min(\mu(T_0),\mu(B_0))/2$, put $Z\coloneqq Z_{m_1}$,
+$T'_0\coloneqq T_0\setminus Z$ and $B'_0\coloneqq B_0\setminus Z$.
+
+\emph{Step 1.} Choose a non-null $T\subseteq T'_0$ with
+$\nu^{uv}_2(T)<\nu^{uv}_1(B'_0)$ and $\mu(T)<\mu(T'_0)/2$; this is possible
+because $\nu^{uv}_2$ has a density on $T'_0$.
+
+\emph{Step 2 (the third world).} We claim: there is a non-null
+$S\subseteq P_w$ with $V+o_{uv}(S)+o_{uw}(T)\prec_wV$. On $P_w$, $o_{uv}$ is
+debt at $w$; on $P_v$, $o_{uw}$ is credit at $w$; both sets lie in $D_{vw}$.
+Apply Section~\ref{sec:transfer} and Corollary~\ref{cor:fineoff} with base
+world~$w$ and partner $v$ on $D_{vw}$: world $v$'s extension on $D_{vw}$ is a
+partner bound by Lemma~\ref{lem:sources}(c), with $a\coloneqq\nu^{vw}_1$ and
+$b\coloneqq\nu^{vw}_2$, since by \eqref{eq:swap}
+$D_{vw}\cap\{r_v\ge1\}=D_{vw}\setminus\debt_w$ and
+$D_{vw}\cap\{r_v\ge2\}=D_{vw}\cap\cred_w$. By Lemma~\ref{lem:pairsoff} there
+are $m\ge m_1$ with $\mu(Z_m)<\mu(P_w)/2$ and an SI pair $(A_0,T'')$ of
+world~$w$ with non-null parts in $R\coloneqq D_{vw}\setminus Z_m$; by
+Corollary~\ref{cor:fineoff} world~$w$ is fine on $R$, with almost agreeing
+probabilities $P_d,P_c$ on $R$. Since $Z_m\subseteq Z_{m_1}$,
+$T\subseteq P_v\setminus Z_{m_1}\subseteq R$. If $A_0\setminus T$ is
+non-null, replace $A_0$ by it (less debt keeps the pair SI, by (G));
+otherwise $A_0\subseteq T$ up to a null set, and we replace $A_0$ by a
+non-null half $A_1$ of $A_0$ and $T$ by $T\setminus A_1$, which is non-null
+and still satisfies Step~1. Now $A_0\cap T=\varnothing$. Choose an integer
+$K\ge1$ and $\gamma>0$ with $P_c(T'')/K+\gamma<P_c(T)$ (note $P_c(T)>0$).
+Split $A_0$ into $K$ disjoint non-null pieces $A_l$ and, using
+Proposition~\ref{prop:localext}(iii), $T''$ into $K$ disjoint pieces $T_l$
+with $P_c(T_l)\le P_c(T'')/K+\gamma$. If all pairs $(A_l,T_l)$ were AC, so
+would be their composition $(A_0,T'')$; so some $(A_l,T_l)$ is SI. Since
+$P_c(T_l)<P_c(T)$, $T_l\prec^w_cT$, and in the context
+$V+\debt_w(A_l)$, silent on $T\cup T_l$,
+\[
+ V+\debt_w(A_l)+\cred_w(T)\prec_wV+\debt_w(A_l)+\cred_w(T_l)\prec_wV.
+\]
+Choose a non-null $S\subseteq P_w\cap R$ with $0<P_d(S)<P_d(A_l)$; then
+$S\prec^w_dA_l$, and in the context $V+\cred_w(T)$, silent on $S\cup A_l$,
+$V+\debt_w(S)+\cred_w(T)\prec_wV+\debt_w(A_l)+\cred_w(T)\prec_wV$. This is
+the claim.
+
+\emph{Step 3.} Choose a non-null $Q\subseteq T'_0\setminus T$ with
+$\nu^{vw}_2(Q)<\nu^{vw}_1(S)$; $\nu^{vw}_2$ has a density on $P_v\setminus Z$,
+and $T'_0\setminus T$ is non-null by Step~1. The models
+$V+o_{uw}(Q)+o_{uv}(S)$ and $V$ agree off $Q\cup S\subseteq D_{vw}$, and
+$\Lambda_{vw}$ changes by $\nu^{vw}_2(Q)-\nu^{vw}_1(S)<0$, so
+$V+o_{uw}(Q)+o_{uv}(S)\prec_vV$.
+
+\emph{Step 4.} Let $\Sigma_s$, $s\in[0,1]$, be an increasing family of
+subsets of $B'_0$ with $\Sigma_0=\varnothing$, $\Sigma_1=B'_0$ and
+$\mu(\Sigma_s\triangle\Sigma_r)\to0$ as $r\to s$ (for instance
+$\Sigma_s\coloneqq B'_0\cap\{t^u_v<\tan(\pi s/2)\}$). Put
+$\tau_s\coloneqq o_{uw}(T)+o_{vw}(\Sigma_s)$ and
+\[
+ \lambda(s)\coloneqq\Lambda_{uv}(V+\tau_s)-\Lambda_{uv}(V)
+ =\nu^{uv}_2(T)-\nu^{uv}_1(\Sigma_s).
+\]
+$\lambda$ is continuous, since $\nu^{uv}_1$ has a density on $B'_0$;
+$\lambda(0)>0$, and $\lambda(1)<0$ by Step~1. Choose $s$ with
+$0<\lambda(s)<\nu^{uv}_2(Q)$, and put $X'\coloneqq V+o_{uv}(S)$ and
+$X\coloneqq X'+\tau_s$.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $X'\prec_vX$: the two agree off $T\cup\Sigma_s\subseteq D_{uv}$, $X'$
+agrees with $V$ on $D_{uv}$, and $\Lambda_{uv}(X)-\Lambda_{uv}(X')=
+\lambda(s)>0$. So $X\not\preceq_vX'$.
+\item $X\prec_vV$: $V+\tau_s$ and $V+o_{uw}(Q)$ agree off
+$T\cup\Sigma_s\cup Q\subseteq D_{uv}$, with $\Lambda_{uv}$-difference
+$\lambda(s)-\nu^{uv}_2(Q)<0$, so $V+\tau_s\prec_vV+o_{uw}(Q)$. The pairs
+$(V+\tau_s,V+o_{uw}(Q))$ and $(X,V+o_{uw}(Q)+o_{uv}(S))$ differ exactly on
+the pairwise disjoint sets $T,\Sigma_s,Q$ with the same advice, so by (IB)
+and Step~3, $X\prec_vV+o_{uw}(Q)+o_{uv}(S)\prec_vV$. So $V\not\preceq_vX$.
+\item $X\prec_wV$: $X$ is $V+o_{uv}(S)+o_{uw}(T)$ with $o_{vw}$, good at $w$,
+added on $\Sigma_s\subseteq P_u$; by (G) and Step~2,
+$X\preceq_wV+o_{uv}(S)+o_{uw}(T)\prec_wV$. So $V\not\preceq_wX$.
+\end{itemize}
+
+\emph{Step 5.} $X$ is $X'$ with $C$'s advice on $A\coloneqq T\cup\Sigma_s$:
+$C$ gives $o_{uw}$ on $T\subseteq T_0$ and $o_{vw}$ on $\Sigma_s\subseteq B_0$.
+Lemma~\ref{lem:chain} gives a contradiction.
+\end{proof}
+
+The strict form of both local extensions is used at pairs of models that are
+not selections (Steps~3 and~4), so the theorem needs two-sided extensions.
+World $u$ enters only through Lemma~\ref{lem:chain} and the yardsticks, so it
+needs only (G) and (IB). The next theorem uses a \emph{one-sided} bound
+instead, at the price of making it global.
+
+\begin{theorem}\label{thm:chainW}
+Suppose world $v$ has a loss $L_v$ of CBOI's form with \eqref{eq:positive}
+and \eqref{eq:W}. Then (EP$_{uv}$) holds.
+\end{theorem}
+\begin{proof}
+Let $\nu_1,\nu_2$ be $L_v$'s charges on $H'$. By Lemma~\ref{lem:sources}(b)
+their restrictions to $D_{vw}$ form a partner bound of world $v$ for the base
+world $w$, so Corollary~\ref{cor:fineoff} and Lemma~\ref{lem:pairsoff} apply
+with base~$w$. Suppose a selection $C$ on $[e_u,e_v]$ omits both endpoints,
+and carry out Steps~1 and~2 of the proof of Theorem~\ref{thm:chainEP} with
+$\nu^{uv}_k\coloneqq\nu_k|_{D_{uv}}$ and pure sets for $\nu_1,\nu_2$. This gives
+non-null $T\subseteq T_0\setminus Z$ with $\nu_2(T)<\nu_1(B_0\setminus Z)$ and
+non-null $S\subseteq P_w$ with $V+o_{uv}(S)+o_{uw}(T)\prec_wV$. Define
+$\Sigma_s$ and $\tau_s$ as in Step~4, and $\lambda(s)\coloneqq\nu_2(T)
+-\nu_1(\Sigma_s)$; choose $s$ with $0<\lambda(s)<\nu_1(S)$. Put
+$X'\coloneqq V+o_{uv}(S)$, $X\coloneqq X'+\tau_s$, and let $Y$ be $C$
+silenced on $T\cup\Sigma_s$. At world $v$, $o_{uv}$ on $S$ and $o_{vw}$ on
+$\Sigma_s$ are credit and $o_{uw}$ on $T$ is debt, so
+\[
+ L_v(X)-L_v(V)=\lambda(s)-\nu_1(S)<0,\qquad L_v(Y)-L_v(C)=-\lambda(s)<0.
+\]
+By \eqref{eq:W} at the coherent undominated $V$ and at the selection $C$,
+$V\not\preceq_vX$ and $C\not\preceq_vY$; by (IB) the latter is
+$X\not\preceq_vX'$. As in Step~4, $V\not\preceq_wX$. Lemma~\ref{lem:chain}
+gives a contradiction.
+\end{proof}
+
+The world-$v$ computation is that of CCF's Proposition~17; the new
+ingredient is the third world's exchange in Step~2, which comes from world
+$w$'s fineness off $v$'s pure sets. A merely local one-sided bound would not
+suffice: $V$ and $X$ differ on $D_{uv}\cup P_w$.
+
+\subsection{Tame worlds}
+
+Let $(\Gamma,+,\le)$ be an ordered abelian group. A \emph{group primary} at
+world $v$ is a function $L(X)\coloneqq\nu_1(H'\cap\{r_v(\cdot,X)\ge1\})+
+\nu_2(H'\cap\{r_v(\cdot,X)\ge2\})$ on regular models, with
+$\nu_1,\nu_2\ge0$ finitely additive $\Gamma$-valued maps on the measurable
+subsets of $H'$ vanishing on null sets, such that $L(X)<L(Y)$ implies
+$X\prec_vY$. A \emph{local} group primary on $R$ is the same with $H'$
+replaced by $R$ and $X,Y$ restricted to pairs agreeing off $R$. Examples are
+exact representations by lexicographic hierarchies of signed finitely
+additive criteria, by hyperreal-valued charges, or by ultrapowers of
+measures. Let $W_v$ be the regular model that gives debt at $v$ on all of
+$H'$.
+
+\begin{lemma}\label{lem:leading}
+If world $v$ has a group primary $L$ that is nonconstant on regular models,
+it has a real-valued primary $\Phi$ of FAED's form \eqref{eq:primaryFAED}
+below, with $\Phi(W_v)-\Phi(D_v)=1$. If (G) and (S) hold, $\Phi$'s charges
+are positive on non-null sets, and world $v$ has a loss of CBOI's form with
+\eqref{eq:positive} that weakly extends $\preceq_v$ on all regular pairs.
+The same holds locally: a nonconstant local group primary on $D_{vw}$ gives a
+strictly positive two-sided local extension of CBOI's form on $D_{vw}$.
+\end{lemma}
+Here FAED's form, from FAED's equation (1), is
+\begin{equation}
+ \Phi(X)=\nu'_1(H'\cap\{r_v(\cdot,X)\ge1\})+\nu'_2(H'\cap\{r_v(\cdot,X)\ge2\})
+ \label{eq:primaryFAED}
+\end{equation}
+with finite nonnegative real finitely additive $\nu'_k$ vanishing on null
+sets, and a \emph{primary} means $\Phi(X)<\Phi(Y)\Rightarrow X\prec_vY$.
+\begin{proof}
+$L(D_v)=0$, and for regular $X$, $0\le L(X)\le M\coloneqq L(W_v)=\nu_1(H')+
+\nu_2(H')$ by finite additivity and $\nu_k\ge0$. Since $L$ is nonconstant,
+$M>0$. Convex subgroups of $\Gamma$ are totally ordered by inclusion; let
+$C^+$ be the smallest one containing $M$ and $C_-$ the largest one not
+containing $M$. Every convex subgroup between them is one of them, so
+$C^+/C_-$ has no nontrivial proper convex subgroup and is Archimedean. By
+H\"older's theorem \cite{Holder} there is an order-preserving homomorphism
+$h\colon C^+/C_-\to\R$ with $h(M+C_-)=1$. By convexity $[0,M]\subseteq C^+$.
+Put $\varphi(x)\coloneqq h(x+C_-)$ for $x\in C^+$; $\varphi$ is additive and
+monotone. Then $\nu'_k\coloneqq\varphi\circ\nu_k$ are real, nonnegative,
+finitely additive, bounded by $1$ and null on null sets, and
+$\Phi\coloneqq\varphi\circ L$ has the form \eqref{eq:primaryFAED}. If
+$\Phi(X)<\Phi(Y)$, then $L(X)<L(Y)$ (otherwise $L(Y)\le L(X)$ would give
+$\Phi(Y)\le\Phi(X)$), so $X\prec_vY$. And $\Phi(W_v)-\Phi(D_v)=1$.
+
+Under (G) and (S), FAED's Theorem~3 applies to the nonconstant primary
+$\Phi$ and gives alternative (a): the ordinary parts of $\nu'_1,\nu'_2$ have
+densities that are positive almost everywhere on $H'$, so $\nu'_k$ is
+positive on non-null sets. A primary weakly extends $\preceq_v$: if
+$X\preceq_vY$ then not $Y\prec_vX$, so $\Phi(X)\le\Phi(Y)$. Put
+$\nu_{v1}\coloneqq\nu'_1+\mu|_{H\setminus H'}$,
+$\nu_{v2}\coloneqq\nu'_2+\mu|_{H\setminus H'}$ and $\nu_{v3}\coloneqq\mu$;
+on regular models the resulting loss is $\Phi$ plus a constant.
+
+Locally, the same construction with $H'$ replaced by $D_{vw}$ and $W_v$ by
+the model with debt at $v$ on $D_{vw}$ gives a real primary for pairs
+agreeing off $D_{vw}$. FAED's Lemma~2 and the part of FAED's Theorem~3 that
+concerns the single edge $[e_v,e_w]$ compare only edge-$vw$ selections with
+regular models that differ from them on subsets of $D_{vw}$; all these agree
+off $D_{vw}$. So they apply, and the blind alternative is excluded because
+$\nu'_1(D_{vw})+\nu'_2(D_{vw})=1$.
+\end{proof}
+
+World $v$ satisfies the \emph{finite cancellation conditions} (FC) if there
+are no regular models $X_1,\dots,X_m$ and $Y_1,\dots,Y_m$, repetitions
+allowed, with
+$X_l\preceq_vY_l$ for all $l$, $X_l\prec_vY_l$ for some $l$, and
+$\sum_l(u^{X_l}-u^{Y_l})\ge0$ almost everywhere on $H'\times\{1,2\}$, where
+\[
+ u^X\coloneqq\bigl(\mathbf 1\{r_v(\cdot,X)\ge1\},\ \mathbf 1\{r_v(\cdot,X)\ge2\}\bigr).
+\]
+The local form on $R$ restricts to pairs agreeing off $R$ and to
+$R\times\{1,2\}$.
+
+\begin{lemma}\label{lem:FC}
+If world $v$ is complete and satisfies (FC), it has a group primary $L$ with
+$X\preceq_vY\iff L(X)\le L(Y)$ for all regular $X,Y$. If (G) holds at $v$,
+$L$ is nonconstant. The same holds in the local form.
+\end{lemma}
+\begin{proof}
+Consider the first-order language of ordered abelian groups with a constant
+$c_{k,B}$ for each $k\in\{1,2\}$ and each element $B$ of the measure algebra
+$\mathfrak A$ of $H'$. Let $\Sigma$ consist of the axioms of ordered abelian
+groups, $c_{k,B}\ge0$, $c_{k,\varnothing}=0$, $c_{k,B\cup C}=c_{k,B}+c_{k,C}$
+for disjoint $B,C$, and, writing
+$L(X)\coloneqq c_{1,B_1(X)}+c_{2,B_2(X)}$ with
+$B_k(X)\coloneqq H'\cap\{r_v(\cdot,X)\ge k\}$, the
+sentences $L(X)\le L(Y)$ for $X\preceq_vY$ and $L(X)<L(Y)$ for $X\prec_vY$.
+A model of $\Sigma$ gives $\Gamma$ and $\nu_k(B)\coloneqq c_{k,B}$ as required;
+by completeness, $X\preceq_vY$ or $Y\prec_vX$, so $L$ represents
+$\preceq_v$ exactly. By the compactness theorem it suffices to satisfy each
+finite $\Sigma_0\subseteq\Sigma$ in $(\R,+,\le)$. Let $S_1,\dots,S_p$ be the
+non-null atoms of the finite subalgebra generated by the sets occurring in
+$\Sigma_0$, and interpret $c_{k,B}\coloneqq\sum_{S_i\subseteq B}x_{k,i}$ with
+unknowns $x_{k,i}\ge0$. The axioms of additivity, emptiness and positivity
+then hold, and the comparisons in $\Sigma_0$ become finitely many weak
+inequalities $(u^{X_l}-u^{Y_l})\cdot x\le0$ and strict inequalities
+$(u^{X_l}-u^{Y_l})\cdot x<0$ with integer coefficients ($u^X$ is constant on
+each $S_i\times\{k\}$). If there is no strict one, $x=0$ works. Otherwise,
+by Motzkin's transposition theorem \cite{Motzkin}, the system with $x\ge0$
+is infeasible only if a nonnegative combination of its rows, with positive weight on some
+strict row, is $\ge0$ coordinatewise; the data are rational, so the weights
+may be taken to be integers. Repeating each pair according to its weight
+then gives a system that violates (FC). So $\Sigma_0$ is satisfiable. If (G)
+holds, $D_v\prec_vW_v$, so $L(D_v)<L(W_v)$. The local form is the same with
+pairs agreeing off $R$ and $H'$ replaced by~$R$.
+\end{proof}
+
+Conversely an exact group-valued representation satisfies (FC): summing the
+inequalities $L(X_l)\le L(Y_l)$, one of them strict, contradicts
+$\sum_l(u^{X_l}-u^{Y_l})\ge0$ and $\nu_k\ge0$.
+
+\begin{theorem}\label{thm:tame}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). Suppose some world $v$ satisfies one of the following:
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=1pt]
+\item world $v$ is fine;
+\item world $v$ has a loss of CBOI's form with \eqref{eq:positive} and
+\eqref{eq:W}, that is, by EDL's Theorem~2, world $v$ carries no leverage
+sequence; this includes the case that world $v$ has a strictly
+positive finitely additive weak extension of CBOI's form on all regular
+pairs;
+\item world $v$ has a nonconstant group primary;
+\item world $v$ satisfies (FC);
+\item world $v$ has strictly positive two-sided local extensions of CBOI's
+form on both of its edge regions; this holds in particular if world
+$v$ has nonconstant local group primaries on both, or satisfies the local
+(FC) on both.
+\end{enumerate}
+Then $V$ is dominated, by a selected coherent model.
+\end{theorem}
+\begin{proof}
+Suppose $V$ is undominated. (i) contradicts Theorem~\ref{thm:onefine}. In
+case (ii), Theorem~\ref{thm:chainW}, applied with the roles of $u$ and $w$ in
+both orders, gives (EP$_{uv}$) and (EP$_{wv}$), so world $v$ is fine by CCF's
+Theorem~7, which is case (i). (iii) implies (ii) by Lemma~\ref{lem:leading},
+and (iv) implies (iii) by Lemma~\ref{lem:FC}. In case (v),
+Theorem~\ref{thm:chainEP} gives (EP) on both edges at $v$, and again world
+$v$ is fine; the two special cases give local extensions by
+Lemmas~\ref{lem:FC} and~\ref{lem:leading}. So $V$ is dominated; by CBOI's
+Lemma~1, by a selected coherent model.
+\end{proof}
+
+\begin{corollary}\label{cor:tameshape}
+Let $n=3$, let all three rankings be complete with (G) and (IB), assume (S),
+and suppose $V$ is undominated. Then every world carries a leverage sequence
+in EDL's sense, has no nonconstant group primary, violates some finite
+cancellation condition, and is not fine. For every world $v$, at least one of
+its edge regions carries no strictly positive two-sided local extension of
+world~$v$. If world $v$ has such an extension on $D_{vx}$, then world $x$ is
+fine on $D_{vx}\setminus Z_m$ for the pure sets $Z_m$ of $v$'s charges, and
+every ultrafilter on $D_{vx}$ that avoids some $\Jid^x_A$ or $\Kid^x_T$ is an
+atom of $v$'s charges.
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:tame}, Corollary~\ref{cor:fineoff} and
+Theorem~\ref{thm:transfer} with base~$x$ and partner~$v$
+(Lemma~\ref{lem:sources}(c)).
+\end{proof}
+
+\noindent This strengthens CCF's Corollary~20(a), by which at most one world
+has a loss with \eqref{eq:W}, to: no world has one.
+
+\subsection{Extensions off small sets}
+
+\begin{definition}\label{def:aext}
+World $x$ has \emph{(AExt) on $D_{xy}$} if there are measurable
+$Z_1\supseteq Z_2\supseteq\cdots$ with $\mu(Z_m)\to0$ and, for each $m$,
+charges $\nu^m_1,\nu^m_2$ on the measurable subsets of
+$R_m\coloneqq D_{xy}\setminus Z_m$, vanishing on null sets and
+positive on non-null sets, such that for
+regular $X,Y$ agreeing off $R_m$, $X\preceq_xY$ implies
+$\Lambda^m(X)\le\Lambda^m(Y)$, where $\Lambda^m(M)\coloneqq
+\nu^m_1(R_m\cap\{r_x\ge1\})+\nu^m_2(R_m\cap\{r_x\ge2\})$.
+\end{definition}
+
+So world $x$ is Archimedean, in the sense of having a finitely additive
+extension, once a set of arbitrarily small measure is removed. A
+two-sided local extension on $D_{xy}$ gives (AExt), with $Z_m$ its pure sets.
+We may assume that each $\nu^m_k$ has a density on $R_m$ (``with
+densities''): pass to a subsequence with $\sum_m\mu(Z_m)<\infty$, let $Y_m$
+be a pure set for $\nu^m_1,\nu^m_2$ with $\mu(Y_m)<2^{-m}$, replace $Z_m$ by
+$Z'_m\coloneqq\bigcup_{k\ge m}(Z_k\cup Y_k)$, and restrict $\nu^m_k$ to
+$D_{xy}\setminus Z'_m$. Pairs agreeing off $D_{xy}\setminus Z'_m$ agree off
+the old $R_m$, and their $\Lambda^m$-difference involves only subsets of
+$D_{xy}\setminus Z'_m$. If world $x$ is complete, $\Lambda^m$ has the strict
+form.
+
+\begin{theorem}\label{thm:aexttransfer}
+Assume the standing hypotheses of Section~\ref{sec:partner}, and let world
+$j$ have (AExt) on $D=D_{1j}$, with densities. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $R_m\in\Jid_A\cap\Kid_T$ for every $m$ and all non-null $A,T\subseteq
+H'$;
+\item for all large $m$ there are an SI pair and an AC pair of
+world~$1$ with non-null debt and credit parts contained in $R_m$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+In this proof the index of (AExt) is written $r$: the data are $Z_r$,
+$R_r$, $\nu^r_1,\nu^r_2$ and $\Lambda^r$. The indices $m$, $m'$, $m_0$ keep
+their meaning from the proof of Theorem~\ref{thm:transfer} (the selections
+$C_m$ and the threshold of Lemma~\ref{lem:SAC}), and the yardstick $Z$ of
+Steps~1(ii) and~2(ii) of that proof is called $Y$ here.
+
+(a) Suppose an ultrafilter $\Uf$ contains $R_r$ and avoids $\Jid_A$
+(resp.\ $\Kid_T$). Then $\Uf\ni R_{r'}$ for all $r'\ge r$, and for
+every $R\in\Uf$ and $\varepsilon>0$ some $B\in\Uf$, $B\subseteq R\cap
+R_{r'}$, has $\nu^{r'}_1(B)+\nu^{r'}_2(B)<\varepsilon$, by
+Lemma~\ref{lem:uf}(a) and the densities. Run the proof of
+Theorem~\ref{thm:transfer}(a) (resp.\ (b)), including
+Lemmas~\ref{lem:creditconf} and~\ref{lem:SIpartner}, with $a,b$ replaced at
+each use by the charges of a suitable $\Lambda^{r'}$, as follows. Each
+use of the partner bound there compares a selection $C$ (one of $C_m$,
+$C_0$, $E$) with a regular model that differs from $C$ exactly on one piece
+chosen in $\Uf$ ($B$, or $W$ in Step~2(ii)), or on the set $D''$ of
+Lemma~\ref{lem:SIpartner}, and on one auxiliary set fixed before it ($B'$,
+$W$, $Y$ or $T_y$). (1) At the start replace $T_y$ by
+$T_y\setminus Z_{r_0}$, where $r_0\ge r$ and
+$\mu(Z_{r_0})<\mu(T_y)/2$; it is still a non-null credit yardstick
+$\preceq_cT$ inside $D\cap\{t\in J\}$, and this is done before $D'$ is
+constructed. (2) At each use, once the auxiliary set is fixed, choose
+$r'\ge r_0$ with $\mu(Z_{r'})$ less than half its measure, and replace
+it by its part off $Z_{r'}$: $B'\setminus Z_{r'}$ is still a yardstick
+in the same region, $W\setminus Z_{r'}$ keeps the pair $(A',W)$
+strictly AC by (G), and $Y\setminus Z_{r'}$ is still $\prec_dD'$. (3)
+Choose the piece (or $D''$) inside $R_{r'}$ with small
+$\Lambda^{r'}$-charges. The two compared models then agree off
+$R_{r'}$, so $\Lambda^{r'}$ and its strict form apply, and every
+sign computation is unchanged.
+
+(b) The proof of Lemma~\ref{lem:pairsoff} with all sets chosen inside
+$R_r$ for large $r$ and with $\Lambda^r$ in place of $\Lambda_j$.
+\end{proof}
+
+\begin{theorem}\label{thm:aext}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). If some world $v$ has (AExt) on both of its edge regions, $V$ is
+dominated.
+\end{theorem}
+\begin{proof}
+Take $Z_m\coloneqq Z^{uv}_m\cup Z^{vw}_m$, with densities; both families of
+extensions still apply off $Z_m$. Suppose $V$ is undominated, and repeat the
+proof of Theorem~\ref{thm:chainEP} with these changes. In Step~1 use
+$\Lambda^{uv,m_1}$ on $T\cup B'_0\subseteq D_{uv}\setminus Z_{m_1}$. In
+Step~2 use Theorem~\ref{thm:aexttransfer} with base $w$ and partner $v$ on
+$D_{vw}$: world $w$ is fine on $R\coloneqq D_{vw}\setminus Z_m$ and has an SI
+pair inside $R$ for some $m\ge m_1$ with $\mu(Z_m)<\mu(P_w)/2$; the scaling
+argument is unchanged and gives $S\subseteq P_w\cap R$. In Step~3 choose
+$Q\subseteq T'_0\setminus T$ with $\nu^{vw,m}_2(Q)<\nu^{vw,m}_1(S)$; the
+compared models agree off $Q\cup S\subseteq D_{vw}\setminus Z_m$, since
+$Z_m\subseteq Z_{m_1}$. In Step~4 use $\Lambda^{uv,m_1}$; all models compared
+there agree off $T\cup\Sigma_s\cup Q\subseteq D_{uv}\setminus Z_{m_1}$. This
+gives (EP$_{uv}$), symmetrically (EP$_{wv}$), and world $v$ is fine by CCF's
+Theorem~7, so Theorem~\ref{thm:onefine} gives a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:aextshared}
+Assume the standing hypotheses of Section~\ref{sec:partner}. If world $j$ has
+(AExt) on $D_{1j}$, so has world~$1$.
+\end{theorem}
+\begin{proof}
+Take densities. By Theorem~\ref{thm:aexttransfer}, for $m\ge m^*$ world~$1$
+is fine on $R_m$ and has an SI pair and an AC pair with non-null parts
+inside $R_m$. Proposition~\ref{prop:localext} with $R\coloneqq R_m$ gives a
+two-sided extension $P^m_d(\debt\cap R_m)-\kappa_mP^m_c(\cred\cap R_m)$ for
+pairs agreeing off $R_m$, with $P^m_d,P^m_c$ positive on non-null sets. In
+CBOI's form its charges are $\nu^m_1=\kappa_mP^m_c$ and $\nu^m_2=P^m_d$, up to
+a constant, since $\cred=R_m\setminus\{r_1\ge1\}$ and $\debt=\{r_1\ge2\}$ on
+$R_m$. Use the sequence $(Z_m)_{m\ge m^*}$.
+\end{proof}
+
+\begin{corollary}\label{cor:aedge}
+Let $n=3$, let all three rankings be complete with (G) and (IB), assume (S),
+and suppose $V$ is undominated. Call $[e_v,e_w]$ an \emph{A-edge} if world $v$,
+equivalently world $w$, has (AExt) on $D_{vw}$. At most one edge is an
+A-edge. So at least two edges are \emph{leverage edges}: neither of their
+worlds has (AExt) there, and a fortiori neither has a two-sided local
+extension, a nonconstant local group primary, or the local (FC) there.
+\end{corollary}
+\begin{proof}
+Equivalence is Theorem~\ref{thm:aextshared}. Two distinct edges share a world
+$v$, which would have (AExt) on both of its regions; Theorem~\ref{thm:aext}
+excludes this. The last clause follows from Lemmas~\ref{lem:FC}
+and~\ref{lem:leading}.
+\end{proof}
+
+\begin{remark}\label{rem:Q}
+In a counterexample, therefore, every world fails (AExt) on at least one of
+its edge regions, and on that region its partner fails (AExt) too. This
+excludes every non-Archimedean structure that can be confined to sets of
+arbitrarily small measure while the rest of the world carries an exchange
+rate: heaviness at countably many ultrafilters or cone levels, at a null
+compact set of levels, or on finitely many disjoint small sets whose
+unions are ordered, over an Archimedean base, like the finite comparative
+probability without an agreeing measure of Kraft, Pratt and Seidenberg
+\cite{KPS}. The following order-theoretic question, in which
+(S) does not appear, would settle P1 if answered negatively: \emph{is there a
+complete (G)+(IB) ranking that fails (AExt) on some edge region and has no
+nonconstant group primary?} If there is none, every world of a
+configuration with $V$ undominated has a nonconstant group primary or (AExt)
+on both of its regions, and Theorem~\ref{thm:tame} or
+Theorem~\ref{thm:aext} makes $V$ dominated. We know no example.
+\end{remark}
+
+\section{Low-cone heaviness}\label{sec:LH}
+
+\begin{definition}\label{def:CN}
+At world $v$, a measurable $R\subseteq H'$ is \emph{credit-null} if every
+pair $(A,T)$ with $A$ non-null and $T\subseteq R$ is AC, and
+\emph{debt-infinitesimal} if every pair $(A,S)$ with $A\subseteq R$ non-null
+and $S$ non-null is SI. $\CN_v$ and $\DI_v$ denote the families of such sets;
+both are hereditary and invariant under null modifications. We write
+$\CN_v\ne0$ if some non-null set is credit-null, and likewise for $\DI_v$.
+World $v$ satisfies (LH$_v$) if $\CN_v=0$ and (DH$_v$) if $\DI_v=0$; for an
+edge $[e_v,e_w]$, (LH$_{v,w}$) says that no low cone $\Lo vwa$, $a>0$, is
+credit-null at~$v$.
+\end{definition}
+
+A pair $(\varnothing,T)$ with $T$ non-null is SI by strict (G), so the
+non-null debt part in the definition of credit-null is essential.
+\emph{Standing for this section:} $n=3$; all three rankings are complete
+with (G) and (IB); (S). Nothing is assumed about $V$.
+
+\begin{lemma}\label{lem:excl}
+No world has both $\CN_v\ne0$ and $\DI_v\ne0$.
+\end{lemma}
+\begin{proof}
+Let $L\in\CN_v$ and $R\in\DI_v$ be non-null. If $R\setminus L$ is non-null,
+put $A\coloneqq R\setminus L$ and $T\coloneqq L$; otherwise $R\subseteq L$ up
+to a null set, and we split $R$ into non-null halves $A,T$. The pair $(A,T)$
+is SI because $R\in\DI_v$, and AC because $L\in\CN_v$.
+\end{proof}
+
+\begin{lemma}\label{lem:conestails}
+Let $\{v,w,u\}=\{1,2,3\}$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\CN_v\ne0$, there is $a>0$ with $\Lo vwa\in\CN_v$ and
+$\Lo vua\in\CN_v$.
+\item If $\DI_v\ne0$, there is $b<\infty$ with $\Hi vwb\in\DI_v$ and
+$\Hi vub\in\DI_v$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $Q\in\CN_v$ be non-null and split it into non-null disjoint
+$Q_1,Q_2$. Lemma~\ref{lem:yard}(b) at world $v$ gives $a_i>0$ such that
+every subset of $\Lo vw{a_i}$ and of $\Lo vu{a_i}$ is $\preceq^v_cQ_i$; put
+$a\coloneqq\min(a_1,a_2)$, and let $L$ be one of the two cones of level $a$.
+Let $(A,T)$ be a pair with $A$ non-null and $T\subseteq L$. One of
+$A\setminus Q_1$, $A\setminus Q_2$ is non-null, say $A'\coloneqq A\setminus
+Q_i$. Then $T\preceq^v_cQ_i$, and $(A',Q_i)$ is AC since $Q_i\in\CN_v$. In
+the context $V+\debt_v(A')$, silent on $Q_i\cup T$,
+\[
+ V\preceq_vV+\debt_v(A')+\cred_v(Q_i)\preceq_vV+\debt_v(A')+\cred_v(T)
+ \preceq_vV+\debt_v(A)+\cred_v(T),
+\]
+the last step by (G). So $(A,T)$ is AC.
+
+(b) Let $R\in\DI_v$ be non-null and split it into non-null disjoint
+$R_1,R_2$. Lemma~\ref{lem:yard}(a) at world $v$ gives $A^i_0\preceq^v_dR_i$
+and $b_i$ with $\Hi vw{b_i},\Hi vu{b_i}\prec^v_dA^i_0$; put
+$b\coloneqq\max(b_1,b_2)$ and let $H_b$ be one of the two tails of level
+$b$. Let $B\subseteq H_b$ and $S$ be non-null and disjoint. If $S\setminus
+R_1$ is non-null put $i\coloneqq1$ and $S''\coloneqq S\setminus R_1$;
+otherwise $S\subseteq R_1$ up to a null set, so $S$ misses $R_2$: put
+$i\coloneqq2$ and $S''\coloneqq S$. Then $S''$ is non-null and misses
+$B\cup R_i$, $B\preceq^v_dR_i$, and $(R_i,S'')$ is SI. So
+$V+\debt_v(B)+\cred_v(S)\preceq_vV+\debt_v(B)+\cred_v(S'')\preceq_v
+V+\debt_v(R_i)+\cred_v(S'')\prec_vV$, by (G) and then (IB) in the context
+$V+\cred_v(S'')$. So $(B,S)$ is SI.
+\end{proof}
+
+\begin{lemma}\label{lem:EPnotCN}
+If (EP$_{vw}$) holds, no low cone $\Lo vwa$ is credit-null at~$v$.
+\end{lemma}
+\begin{proof}
+Fix $0<b<a$ and a non-null $Z\subseteq D_{vw}\cap\{b<t^v_w<a\}$. By CCF's
+Lemmas~3 and~4 in world $v$'s frame, with $s^*=b$ approached from below,
+there is $q^*$ with $C_{q^*}=E_w(b)$ (debt at $v$ on $\{t^v_w<b\}$, silence
+on the rest of $D_{vw}$) such that indices near $q^*$ carry $E_w(s)$ for all
+$s$ in some $[s_0,b)$. $E_w(b)$ is silent on $Z$, so
+$Y\coloneqq E_w(b)+\cred_v(Z)\prec_vE_w(b)$, and by (T1) $Y\prec_vE_w(s)$ for
+some $s\in(0,b)$. Since $Y=E_w(s)+\debt_v(D_{vw}\cap\{s\le t^v_w<b\})
++\cred_v(Z)$, (IB) makes $(D_{vw}\cap\{s\le t^v_w<b\},Z)$ an SI pair with
+non-null debt part and credit part inside $\Lo vwa$.
+\end{proof}
+
+\begin{lemma}\label{lem:CNtoDI}
+Let $E=(\alpha^v_E,\beta^v_E)$ be a selection on the open edge $(e_v,e_w)$
+with $\beta^v_E>0$, and let $R\subseteq\cred_v(E)\cap D_{vw}$ be credit-null
+at~$v$. Then $R$ is debt-infinitesimal at~$w$.
+\end{lemma}
+\begin{proof}
+Let $A\subseteq R$ and $S$ be non-null and disjoint. Choose a non-null
+$S_0\subseteq S$ with $S'\coloneqq S\setminus S_0$ non-null.
+Lemma~\ref{lem:yard}(b) at world $w$ gives $a'>0$ such that every subset
+of $\Lo wu{a'}$ is $\preceq^w_cS'$. The set
+\[
+ Q\coloneqq P_w\cap\{t^v_w<\beta^v_E\}\cap\Lo wu{a'}
+\]
+is non-null (an open cone condition in $P_w$), lies in $\debt_v(E)\cap
+D_{vw}$, and misses $A\subseteq\cred_v(E)$. Let $X$ be $E$ silenced on
+$Q\cup A$, so $E=X+\debt_v(Q)+\cred_v(A)$. Split $Q$ into non-null $Q_1,Q_2$.
+$(Q_1,A)$ is AC because $A\subseteq R\in\CN_v$, so
+$V\preceq_vV+\debt_v(Q_1)+\cred_v(A)\prec_vV+\debt_v(Q)+\cred_v(A)$ by strict
+(G), and by (IB) $X\prec_vE$. Competitiveness of $E$ on $\{v,w\}$ gives
+$E\preceq_wX$. By \eqref{eq:swap}, $E=X+\debt_w(A)+\cred_w(Q)$, so (IB) gives
+$V+\debt_w(A)+\cred_w(Q)\preceq_wV$. Since $Q\preceq^w_cS'$ and the context
+$V+\debt_w(A)$ is silent on $Q\cup S'$,
+\[
+ V+\debt_w(A)+\cred_w(S)\prec_wV+\debt_w(A)+\cred_w(S')\preceq_w
+ V+\debt_w(A)+\cred_w(Q)\preceq_wV,
+\]
+the first step by strict (G) on $S_0$. So $(A,S)$ is SI at~$w$.
+\end{proof}
+
+\begin{lemma}\label{lem:DItoCN}
+Let $v\ne w$. If $\DI_w\ne0$, then $\CN_v\ne0$.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:conestails}(b), $\Hi wvb\in\DI_w$ for some $b<\infty$. On
+the edge $[e_v,e_w]$, in world $v$'s frame, Lemma~\ref{lem:ends}(c) gives a
+boundary point $q_0$ of $\{q:C_q=D_v\}$ and $q_m\to q_0$ in the open edge
+with $C_m\coloneqq C_{q_m}\ne D_v$ and $\alpha^v_m\to0$. In world $w$'s
+frame $C_m$ has thresholds $\alpha^w_m=1/\beta^v_m$ and
+$\beta^w_m=1/\alpha^v_m\to\infty$, and $D_v$ is the vertex model that gives
+debt at $w$ on all of $D_{vw}$.
+
+\emph{Case I: $\beta^v_m>0$ for infinitely many $m$.} Along them
+$\alpha^w_m<\infty$, and Lemma~\ref{lem:SAC} in world $w$'s frame applies at
+$q_0$. With $A'\coloneqq\Hi wvb\cap\{t^w_v<b+1\}$, non-null, it gives for
+large $m$ a strictly AC pair $(A',\Hi wv{\alpha^w_m})$ at world~$w$. But $A'$
+is debt-infinitesimal at $w$, and the tail is non-null and, for
+$\alpha^w_m>b+1$, disjoint from $A'$, so the pair is SI: a contradiction.
+
+\emph{Case II: $\beta^v_m=0$ for all large $m$.} Then $C_m=(\alpha^v_m,0)$
+with $0<\alpha^v_m<\infty$, silent on $D_{vw}\cap\{t^v_w<\alpha^v_m\}=
+\Hi wv{1/\alpha^v_m}$. Fix such $m$ with $1/\alpha^v_m>b$ and put
+$T'\coloneqq P_w\cap\{t^v_w<\alpha^v_m\}$, non-null, in the silence of $C_m$,
+and in $\Hi wvb$, hence in $\DI_w$. We show $T'\in\CN_v$. Let $T\subseteq T'$
+and $A$ be non-null and disjoint. Lemma~\ref{lem:yard}(a) at world $v$ gives
+a debt yardstick $S\coloneqq Z_I(A)\subseteq P_v\cap\{t^v_w\in I\}$,
+$I\coloneqq(\alpha^v_m/4,\alpha^v_m/2)$, with $S\preceq^v_dA$; $S$ lies in
+the silence of $C_m$ and misses $T$ ($P_v$ versus $P_w$). Let
+$Y\coloneqq C_m+\debt_w(T)+\cred_w(S)$. Since $T\in\DI_w$, $(T,S)$ is SI at
+$w$, so $Y\prec_wC_m$ by (IB), and competitiveness of $C_m$ on $\{v,w\}$ gives
+$C_m\preceq_vY$. By \eqref{eq:swap}, $Y=C_m+\cred_v(T)+\debt_v(S)$, so by
+(IB) $V\preceq_vV+\debt_v(S)+\cred_v(T)\preceq_vV+\debt_v(A)+\cred_v(T)$, the
+second step since $S\preceq^v_dA$ in the context $V+\cred_v(T)$, silent on
+$S\cup A$. So $(A,T)$ is AC. A pair with null credit part and non-null debt
+part is AC by strict (G). Hence $T'\in\CN_v$.
+\end{proof}
+
+\begin{theorem}\label{thm:LH}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). Then at every world $v$:
+\begin{enumerate}[label=(\roman*)]
+\item (LH$_v$): for every non-null $R$ there is an SI pair $(A,T)$ of world
+$v$ with $A$ non-null and $T\subseteq R$; in particular (LH$_{v,w}$) holds
+for both edges at $v$;
+\item (DH$_v$): for every non-null $R$ there is an AC pair $(A,S)$ of world
+$v$ with $A\subseteq R$ and $A,S$ non-null.
+\end{enumerate}
+No assumption on $V$ is used.
+\end{theorem}
+\begin{proof}
+Suppose $\CN_v\ne0$ for some $v$; relabel $v=1$. By
+Lemma~\ref{lem:conestails}(a), $\Lo12a$ and $\Lo13a$ are credit-null at
+world~$1$ for some $a>0$, so by Lemma~\ref{lem:EPnotCN} neither (EP$_{12}$)
+nor (EP$_{13}$) holds: there are two-sided selections $E$ on $(e_1,e_2)$ and
+$E'$ on $(e_1,e_3)$. The sets
+\[
+ R\coloneqq P_1\cap\{t_2>\alpha_E\}\cap\Lo13a,\qquad
+ R'\coloneqq P_1\cap\{t_3>\alpha_{E'}\}\cap\Lo12a
+\]
+are non-null and credit-null at~$1$, and $R\subseteq\cred(E)\cap D_{12}$,
+$R'\subseteq\cred(E')\cap D_{13}$, since $P_1\subseteq D_{12}\cap D_{13}$.
+Lemma~\ref{lem:CNtoDI} gives $R\in\DI_2$ and $R'\in\DI_3$. Lemma~\ref{lem:DItoCN}
+with $(w,v)=(2,3)$ gives $\CN_3\ne0$, which together with $\DI_3\ne0$
+contradicts Lemma~\ref{lem:excl}. So $\CN_v=0$ at every world, which is
+(LH$_v$). If $\DI_w\ne0$ for some $w$, Lemma~\ref{lem:DItoCN} gives
+$\CN_v\ne0$ for $v\ne w$, which has just been excluded.
+\end{proof}
+
+The contradiction is reached on the edge $[e_2,e_3]$ opposite the world
+where credit-nullity was assumed. On a single edge, credit-nullity at one
+world and debt-infinitesimality at the other are mutually consistent:
+Lemmas~\ref{lem:CNtoDI} and~\ref{lem:DItoCN} run in opposite directions.
+Completeness enters as follows: at world~$1$ through (T1) in
+Lemma~\ref{lem:EPnotCN} and in reading AC pairs in
+Lemmas~\ref{lem:conestails}(a) and~\ref{lem:CNtoDI}; at the partner worlds
+through Lemma~\ref{lem:yard}(a) in Lemma~\ref{lem:conestails}(b) and in
+Case~II of Lemma~\ref{lem:DItoCN}, and through Lemma~\ref{lem:SAC} in Case~I.
+Lemma~\ref{lem:excl} uses neither (G) nor completeness. Only edge selections
+are used.
+
+\begin{corollary}\label{cor:relLH}
+Let $\{v,w,u\}=\{1,2,3\}$ and let $E$ be a selection on the open edge
+$(e_v,e_w)$.
+\begin{enumerate}[label=(\alph*)]
+\item If $\beta^v_E>0$, then for every non-null $T\subseteq\cred_v(E)\cap
+D_{vw}$ and every $a'>0$ there are non-null $T''\subseteq T$ and
+non-null $Q\subseteq P_w\cap\debt_v(E)\cap\Lo wu{a'}$ with $(Q,T'')$ an
+SI pair of
+world~$v$.
+\item If $\beta^v_E<\alpha^v_E$, then for every non-null
+$T'\subseteq\sil(E)\cap P_w$ and every $b<\infty$ there is a non-null
+$S\subseteq\sil(E)\cap P_v\cap\Hi vub$ with $(T',S)$ an AC pair of
+world~$w$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) Otherwise, for some $T$ and $a'_0$, every pair $(Q,T'')$ with $Q$ a
+non-null subset of $Q_0\coloneqq P_w\cap\debt_v(E)\cap\Lo wu{a'_0}$ and
+$T''\subseteq T$ is AC at $v$. Run the proof of Lemma~\ref{lem:CNtoDI} with
+$R\coloneqq T$, lowering the level $a'$ there to at most $a'_0$ (subsets of
+smaller cones are still $\preceq^w_cS'$), so that $Q\subseteq Q_0$; its only
+use of credit-nullity is that $(Q_1,A)$ is AC, which is now the assumption.
+So $T\in\DI_w$, contradicting Theorem~\ref{thm:LH}.
+
+(b) Otherwise, for some $T'$ and $b$, $(T',S)$ is SI at $w$ for every
+non-null $S\subseteq\sil(E)\cap P_v\cap\Hi vub$, and then so is $(T,S)$ for
+every non-null $T\subseteq T'$, by (G). Let $T\subseteq T'$ and $A$ be
+non-null and disjoint. By Lemma~\ref{lem:yard}(a) at world $v$ there is
+$b_A$ such that every subset of $\Hi vu{b_A}$ is $\preceq^v_dA$; let
+$S\coloneqq P_v\cap\Hi vu{\max(b,b_A)}\cap\{t^v_w\in I\}$ with $I$ a bounded
+open interval inside $(\beta^v_E,\alpha^v_E)$. Then $S$ is non-null, lies in
+$\sil(E)$, misses $T$, and $S\preceq^v_dA$. Case~II of the proof of
+Lemma~\ref{lem:DItoCN}, with $C_m$ replaced by $E$, gives $(A,T)$ AC at $v$.
+So $T'\in\CN_v$, contradicting Theorem~\ref{thm:LH}.
+\end{proof}
+
+These are lower Archimedean bounds: credit and debt are never negligible.
+They do not give fineness, which is an upper bound; see
+Proposition~\ref{ex:germ}.
+
+\begin{corollary}\label{cor:LHcons}
+Let $j\in\{2,3\}$ and let $k$ be the third world.
+\begin{enumerate}[label=(\alph*)]
+\item For every non-null $A$ and all open intervals $I,K\subseteq(0,\infty)$
+there is an AC pair $(A'',W)$ of world~$1$ with $A''\preceq_dA$,
+$A''\subseteq D_{1j}\cap\{t_j\in I\}$ and $W\subseteq D_{1j}\cap\{t_j\in K\}$,
+both non-null.
+\item For every non-null $T$ and all open intervals $I,J\subseteq(0,\infty)$
+there is an SI pair $(Z,T')$ of world~$1$ with $T'\preceq_cT$,
+$T'\subseteq D_{1j}\cap\{t_j\in J\}$ and $Z\subseteq D_{1j}\cap\{t_j\in I\}$,
+both non-null.
+\item For every non-null $Z\subseteq P_1$ there is $c<\infty$ such that
+$V+o_{12}(Y)+o_{23}(Z)\prec_3V$ for every non-null $Y\subseteq P_3\cap
+\Hi32c$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) Let $A'\coloneqq Z_I(A)\subseteq P_1\cap\{t_k>b'\}\cap\{t_j\in I\}$
+(Lemma~\ref{lem:yard}(a)). By (DH), $A'$ is not debt-infinitesimal: some pair
+$(A'',S)$ with $A''\subseteq A'$ and $S$ non-null is AC. By
+Lemma~\ref{lem:yard}(b), $W\coloneqq Z^c_K(S)\subseteq P_1\cap\{t_k<a'\}
+\cap\{t_j\in K\}$ satisfies $W\preceq_cS$, and with $a'<b'$ it misses $A''$.
+In the context $V+\debt(A'')$, silent on $S\cup W$,
+$V\preceq_1V+\debt(A'')+\cred(S)\preceq_1V+\debt(A'')+\cred(W)$. And
+$A''\preceq_dA'\preceq_dA$.
+
+(b) Let $T_y\coloneqq Z^c_J(T)\subseteq P_1\cap\{t_k<a'\}\cap\{t_j\in J\}$.
+By (LH), some SI pair $(A,T')$ has $A$ non-null and $T'\subseteq T_y$. By
+Lemma~\ref{lem:yard}(a), with tail parameter $b'>a'$, $Z\coloneqq Z_I(A)
+\subseteq P_1\cap\{t_k>b'\}\cap\{t_j\in I\}$ satisfies $Z\preceq_dA$ and
+misses $T'$; in the context $V+\cred(T')$, silent on $Z\cup A$,
+$V+\debt(Z)+\cred(T')\preceq_1V+\debt(A)+\cred(T')\prec_1V$. And
+$T'\preceq_cT_y\preceq_cT$.
+
+(c) The proof of Lemma~\ref{lem:B1}, with the SI pair of its step~(2) taken
+from (LH) at world~$3$ instead of from $\Lambda_3$: by (LH) there is an SI
+pair $(A,T'')$ of world~$3$ with $A$ non-null and $T''\subseteq L$, and the
+remaining steps are unchanged, with the given set in the role of $B$, the
+sets $Y$ in the role of the subsets of $Z_B$, and $c\coloneqq\max(b,a')$. The
+debt part $A$ may now meet the given set; this is harmless, since the chain
+of step~(4) uses only that $B$ misses $Z_B$ and $T''$.
+\end{proof}
+
+\noindent Part (a) supplies, at every level, the small AC pairs whose debt
+part is a yardstick and whose credit part sits at prescribed levels; part (b)
+supplies the small SI pairs with prescribed levels. These are exactly the
+exchange pairs needed to exclude heavy germs at precise points of edge
+selections. Part (c) is Lemma~\ref{lem:B1} without a fine edge. In
+particular, no set $A$ has the property that $(A',Q)$ is SI for every
+$A'\preceq_dA$ and every non-null $Q$: $A$ would be debt-infinitesimal.
+
+\section{Archimedean axioms}\label{sec:arch}
+
+In this section world~$1$ is complete with (G) and (IB); $n\ge2$ unless (S)
+is assumed. A regular model is a \emph{cone model} if its credit, silence
+and debt sets on $H'$ are invariant under $g\mapsto\lambda g$, $\lambda>0$.
+Coherent models, edge models, $V$, $D_i$, the model $W_1$ of
+Section~\ref{sec:tame}, with debt at~$1$ on all of $H'$, and their modifications on bands are cone models. Cone
+models $M_m$ \emph{converge conically} to $M$ if $\mu\{M_m\ne M\}\to0$; for
+edge models this is convergence of the thresholds in $[0,\infty]$.
+
+\begin{definition}\label{def:arch}
+World $1$ satisfies
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item (CC-a) if, for cone models $M_m\to M$ conically and every regular $X$,
+$M_m\preceq_1X$ for all $m$ implies $M\preceq_1X$; and (CC-b) if
+$X\preceq_1M_m$ for all $m$ implies $X\preceq_1M$;
+\item (MC) if for every decreasing sequence of cone sets $C_m\subseteq H'$
+with null intersection and all non-null $A,T$, some $C_m$ has
+$C_m\preceq_dA$ and some has $C_m\preceq_cT$;
+\item (GC) (\emph{germ continuity}) if for every non-null $A$ and $T$ and
+every germ point of every edge $[e_1,e_j]$, some one-sided band at it is
+$\preceq_dA$ and some is $\preceq_cT$;
+\item (BI-a), resp.\ (BI-b), if (CC-a), resp.\ (CC-b), holds along the
+sequences $V+\cred(b_m)\to V$ and ($W_1$ silenced on $b_m$)$\to W_1$, resp.\
+$V+\debt(b_m)\to V$ and ($D_1$ silenced on $b_m$)$\to D_1$, and along their
+tails $m\ge m_0$, where $b_m$ is the one-sided band of size $1/m$ at any germ
+point of any edge.
+\end{itemize}
+\end{definition}
+
+(GC) says that the comparative probabilities $\preceq_d,\preceq_c$ are
+continuous along every band shrinking to a cone level; it is an Archimedean
+axiom in the sense of Savage's P6, restricted to bands. (MC) is monotone
+continuity in Villegas' sense \cite{Villegas}, restricted to cones.
+
+\begin{proposition}\label{prop:GC}
+\begin{enumerate}[label=(\alph*)]
+\item (GC) implies that world~$1$ is fine. No (S) is used.
+\item (CC-a)$\Rightarrow$(BI-a)$\Rightarrow$(GC),
+(CC-b)$\Rightarrow$(BI-b)$\Rightarrow$(GC), and (MC)$\Rightarrow$(GC).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) Under (GC) no germ point is $A$-heavy or $T$-heavy, so by
+Lemma~\ref{lem:germ} every $D_{1j}$ is in $\Jid_A$ and in $\Kid_T$, and so is
+$H'=\bigcup_jD_{1j}$.
+
+(b) The sequences in (BI-a), (BI-b) consist of cone models converging
+conically, since bands are cones and $\mu(b_m)\to0$; and the bands $b_m$ at a
+germ point are decreasing cone sets with null intersection. It remains to
+show that (BI-a) and (BI-b) each imply (GC). Suppose (GC) fails: for some
+non-null $A$ (debt) and germ point, no band $b_m$ is $\preceq_dA$. Since
+$\mu(b_m)\to0$, $A'\coloneqq A\setminus b_{m_0}$ is non-null for some $m_0$.
+For $m\ge m_0$, $b_m\cap A'=\varnothing$, and $b_m\not\preceq_dA'$, since
+$A'\preceq_dA$; by completeness $A'\prec_db_m$, that is,
+$V+\debt(A')\prec_1V+\debt(b_m)$. (BI-b): put $X\coloneqq V+\debt(A')$ and
+$M_m\coloneqq V+\debt(b_m)\to V$; then $X\prec_1M_m$ for $m\ge m_0$, so
+$X\preceq_1V$, while $V\prec_1X$ by strict (G). (BI-a): let $N_m$ be $W_1$
+silenced on $A'\cup b_m$, $M_m\coloneqq N_m+\debt(A')$ ($W_1$ silenced on
+$b_m$) and $X\coloneqq N_m+\debt(b_m)$ ($W_1$ silenced on $A'$). By (IB),
+$M_m\prec_1X$; $M_m\to W_1$, so $W_1\preceq_1X$, while $X\prec_1W_1$.
+
+Suppose instead that for some non-null $T$ no band $b_m$ is $\preceq_cT$.
+With $T'\coloneqq T\setminus b_{m_0}$ non-null, completeness gives
+$T'\prec_cb_m$, that is, $V+\cred(b_m)\prec_1V+\cred(T')$, for $m\ge m_0$.
+(BI-a): $M_m\coloneqq V+\cred(b_m)\to V$ and $X\coloneqq V+\cred(T')$ give
+$V\preceq_1X$, while $X\prec_1V$. (BI-b): let $N_m$ be $D_1$ silenced on
+$T'\cup b_m$, $M_m\coloneqq N_m+\cred(T')$ ($D_1$ silenced on $b_m$) and
+$X\coloneqq N_m+\cred(b_m)$ ($D_1$ silenced on $T'$). Then $X\prec_1M_m$,
+$M_m\to D_1$, so $X\preceq_1D_1$, while $D_1\prec_1X$.
+
+Only strict premises were used, and only targets $X$ that differ from the
+limit by a change on a set away from the germ.
+\end{proof}
+
+For the endpoint chain of $[e_1,e_j]$ we use CCF's parametrization
+$M^j_s\coloneqq E^j_1(-1/s)$ for $s<0$, $M^j_{-\infty}\coloneqq D_1$ and
+$M^j_s\coloneqq E_j(s)$ for $s\ge0$; by CCF's equation (2),
+$s<s'$ implies $M^j_s\prec_1M^j_{s'}$.
+
+\begin{theorem}\label{thm:ECC}
+Let $n\ge3$, assume (G) at every world and (S). Suppose that for every
+$j\ne1$ and every regular $X$:
+\begin{enumerate}[label=(ECC-\alph*),leftmargin=*]
+\item if $s_m\uparrow s$ and $M^j_{s_m}\prec_1X$ for all $m$, then
+$M^j_s\preceq_1X$;
+\item if $s_m\downarrow s$ and $X\prec_1M^j_{s_m}$ for all $m$, then
+$X\preceq_1M^j_s$.
+\end{enumerate}
+Then world~$1$ is fine, and by Corollary~\ref{cor:ext}(b) it has a loss of
+CBOI's form with \eqref{eq:positive} that weakly extends $\preceq_1$ on all
+regular pairs. Only targets $X$ that differ from $M^j_s$ by a yardstick
+change at levels away from the limit level are used.
+\end{theorem}
+\begin{proof}
+Suppose a germ point of some edge $[e_1,e_j]$ is $A$-heavy or $T$-heavy. By
+Corollary~\ref{cor:X5} it is not $(\infty,-)$ for debt or $(0,+)$ for credit.
+If $Z\preceq_dA$, heaviness and Lemma~\ref{lem:ideal} give $b_m\notin\Jid_Z$,
+so $Z\prec_db_m$ by completeness, for every one-sided band $b_m$ of the germ
+point; likewise $Z\prec_cc_m$ if $Z\preceq_cT$. Bands $b_m,c_m$ below are of
+size $1/m$.
+
+\emph{Debt, $(z,+)$, $0\le z<\infty$.} $M^j_{z+1/m}=E_j(z)+\debt(b_m)$ with
+$b_m=\Band_j[z,z+1/m)$. Let $Z\coloneqq Z_I(A)$ with $I\coloneqq(z+1,z+2)$,
+silent for all these models, and $X\coloneqq E_j(z)+\debt(Z)$. The pairs
+$(X,M^j_{z+1/m})$ and $(V+\debt(Z),V+\debt(b_m))$ differ exactly on
+$Z\cup b_m$ with the same advice, so $X\prec_1M^j_{z+1/m}$; (ECC-b) gives
+$X\preceq_1E_j(z)$, but $E_j(z)\prec_1X$ by strict (G).
+
+\emph{Debt, $(z,-)$, $0<z<\infty$.} For large $m$,
+$M^j_{z-1/m}$ is $E_j(z)$ silenced on $b_m=\Band_j[z-1/m,z)$. Let
+$Z\coloneqq Z_I(A)$ with $I\coloneqq(z/4,z/2)$, in the debt of all these
+models for large $m$, and let $X$ be $E_j(z)$ silenced on $Z$. Then
+$M^j_{z-1/m}\prec_1X$ by (IB), (ECC-a) gives $E_j(z)\preceq_1X$, but
+$X\prec_1E_j(z)$.
+
+\emph{Credit, $(w,-)$, $0<w\le\infty$.} $E^j_1(w-1/m)=E^j_1(w)+\cred(c_m)$
+with $c_m=\Band_j(w-1/m,w]$ (for $w=\infty$, $E^j_1(m)=E^j_1(\infty)+
+\cred(\Band_j(m,\infty))$); the parameters $-1/(w-1/m)$ increase to $-1/w$
+(to $0$ if $w=\infty$). Let $Z\coloneqq Z^c_I(T)$ with $I\coloneqq(w/4,w/2)$
+($I\coloneqq(1,2)$ if $w=\infty$), silent for these models for large $m$, and
+$X\coloneqq E^j_1(w)+\cred(Z)$. Then $E^j_1(w-1/m)\prec_1X$ by (IB) and
+$Z\prec_cc_m$; (ECC-a) gives $E^j_1(w)\preceq_1X$, but $X\prec_1E^j_1(w)$.
+
+\emph{Credit, $(w,+)$, $0<w<\infty$.} $E^j_1(w+1/m)$ is $E^j_1(w)$ silenced
+on $c_m=\Band_j(w,w+1/m]$, and the parameters decrease to $-1/w$. Let
+$Z\coloneqq Z^c_I(T)$ with $I\coloneqq(w+1,w+2)$, in the credit of all these
+models, and let $X$ be $E^j_1(w)$ silenced on $Z$. Then
+$X\prec_1E^j_1(w+1/m)$; (ECC-b) gives $X\preceq_1E^j_1(w)$, but
+$E^j_1(w)\prec_1X$.
+
+So no germ point is heavy, and Lemma~\ref{lem:germ} gives fineness.
+\end{proof}
+
+Within the endpoint chain a band can vanish from the worse side only as a
+right band at the limit threshold and from the better side only as a left
+band, so (ECC-a) handles exactly the left germs and (ECC-b) exactly the right
+germs. Under (EP$_{1j}$), CCF's Lemma~3 makes $s\mapsto M^j_s$ the image of a
+continuous surjection $q\mapsto s(q)$ of the edge with $C_q=M^j_{s(q)}$; then
+$\{s:M^j_s\preceq_1X\}=s(A_1(X)\cap[e_1,e_j])$ is compact, which is (ECC-a)
+for all $X$.
+
+\begin{theorem}\label{thm:arch}
+Let $n=3$, let all three rankings be complete with (G) and (IB), and assume
+(S). If one world satisfies (GC) or any of (CC-a), (CC-b), (BI-a),
+(BI-b), (MC), which imply it, or (ECC-a) and (ECC-b) on each of its edges, or (EP) on each
+of its edges, then $V$ is dominated. For any $n\ge3$, if all rankings are
+complete with (G) and (IB), (S) holds, and every world satisfies one of these
+conditions, then every coherent model whose credal set contains three
+vertices is dominated.
+\end{theorem}
+\begin{proof}
+Each condition makes the world fine: Proposition~\ref{prop:GC},
+Theorem~\ref{thm:ECC}, CCF's Theorem~7. For $n=3$ apply
+Theorem~\ref{thm:onefine}. For general $n$, Corollary~\ref{cor:ext}(b) at
+every world and CCF's Lemma~1.
+\end{proof}
+
+The axioms are not consequences of completeness, (G) and (IB), even for a
+world that is ranked exactly by a loss of CBOI's form.
+
+\begin{proposition}\label{ex:germ}
+Fix $z\in(0,\infty)$. Let $\Uf_0$ be an ultrafilter containing the bands
+$\Band_2(z,z+1/m)$, $m\ge1$ (they decrease and are non-null), and put
+$\pi(B)\coloneqq1$ if $B\cap H'\in\Uf_0$ and $\pi(B)\coloneqq0$ otherwise.
+Let world~$1$ be ranked by the loss of CBOI's form with
+$\nu_{11}=\nu_{12}\coloneqq\mu+\pi$ and $\nu_{13}\coloneqq\mu$. Then:
+\begin{enumerate}[label=(\alph*)]
+\item world~$1$'s ranking is complete and satisfies (G) and (IB), and its
+loss satisfies \eqref{eq:positive} and weakly, indeed exactly, extends it;
+\item (GC) fails at $(z,+)$ on $[e_1,e_2]$, and world~$1$ is not fine on
+$D_{12}$; so (CC-a), (CC-b), (MC) fail;
+\item (LH$_1$) and (DH$_1$) hold.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+$\pi$ is a $\{0,1\}$-valued finitely additive charge vanishing on null sets:
+of two disjoint sets at most one is in $\Uf_0$, and if their union is in
+$\Uf_0$, exactly one is. Put $\nu\coloneqq\mu+\pi$ on $H'$.
+
+(a) The loss is real-valued, so the ranking is complete. If $M'$ is a weak
+pointwise improvement of $M$, every rank set $\{r_1\ge l\}$ shrinks, so
+$L(M')\le L(M)$; if the improvement is strict on a non-null $Q$, some
+$Q_l\coloneqq Q\cap\{r_1(\cdot,M')<l\le r_1(\cdot,M)\}$ is non-null and
+$L(M)-L(M')\ge\mu(Q_l)>0$. This is (G). By finite additivity
+$L(M)-L(M')$ depends only on the advice of $M$ and $M'$ where they differ,
+which is (IB).
+
+(b) For $B,C\subseteq H'$, $L(V+\debt(B))-L(V+\debt(C))=\nu(B)-\nu(C)$, so
+$B\preceq_dC$ iff $\nu(B)\le\nu(C)$. Let $A\coloneqq\Band_2(z+1,z+2)$. It is
+disjoint from $\Band_2(z,z+1)\in\Uf_0$, so $\pi(A)=0$ and $\nu(A)=\mu(A)<1$,
+while $\nu(b_m)\ge1$ for every band $b_m$ at $(z,+)$. So no $b_m$ is
+$\preceq_dA$. If $D_{12}$ were contained in a finite union of sets
+$\preceq_dA$, one of them
+would be in $\Uf_0$ and have $\nu\ge1>\nu(A)$. The other axioms imply (GC)
+by Proposition~\ref{prop:GC}.
+
+(c) A pair $(A,T)$ is SI iff $\nu(A)<\nu(T)$. Given a non-null $R$, split it
+into non-null $R_1,R_2$; one of them, say $R_1$, is not in $\Uf_0$. Take
+$T\coloneqq R_2$ and a non-null $A\subseteq R_1$ with $\mu(A)<\mu(R_2)$; then
+$\pi(A)=0$ and $\nu(A)<\nu(T)$, which proves (LH$_1$). For (DH$_1$) take a
+non-null $A\subseteq R$ whose complement $H'\setminus A$ is non-null, split the
+complement into two non-null parts, one of them not in $\Uf_0$, and take in it
+a non-null $S$ with $\mu(S)\le\mu(A)$; then $\nu(S)\le\nu(A)$ and $(A,S)$ is
+AC.
+\end{proof}
+
+So violating the Archimedean axioms is not the same as carrying leverage:
+this world has an exact finitely additive extension. By
+Theorem~\ref{thm:tame}(ii), if world~$1$ of a three-world configuration with
+complete (G)+(IB) rankings and (S) is of this kind, $V$ is dominated; and by
+Corollary~\ref{cor:edgefine}, world~$2$ cannot be fine on $D_{12}$ in such a
+configuration. Whether a world of this kind is compatible with (S) at all is
+open. Part (c) shows that (LH) and (DH) do not imply fineness.
+
+\section{The shape of a counterexample}\label{sec:shape}
+
+\emph{Standing for this section:} $n=3$; all three rankings are complete
+with (G) and (IB); (S); and $V$ is undominated. We use the notation
+$T_0(C)$, $B_0(C)$ of Section~\ref{sec:tame} and $\tau_{T,B}$ of
+Section~\ref{sec:edge}.
+
+\begin{theorem}\label{thm:ownregion}
+Let $E$ be a two-sided selection on $(e_1,e_2)$ and $T\subseteq T_0(E)$
+non-null. Then $T$ fails
+\begin{enumerate}[label=(M2$^*$),leftmargin=*]
+\item for every $c<\infty$, $T$ is a finite union of sets $Q$ such that
+$(Q,P_3\cap\Hi32c)$ is a weakly SI pair of world~$2$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+On $P_2$, $o_{13}$ is debt at $2$, and on $P_3$, $o_{12}$ is credit at $2$;
+so (M2$^*$) says that world~$2$'s debt on small pieces of $T$ is compensated by
+its credit on deep tails of $P_3$. Suppose (M2$^*$) holds.
+
+\emph{Step 1: for every non-null $Z\subseteq B_0(E)$,
+$V\prec_1V+\tau_{T,Z}$.} By Corollary~\ref{cor:LHcons}(c) there is $c$ such
+that $V+o_{12}(Y)+o_{23}(Z)\prec_3V$ for $Y\coloneqq P_3\cap\Hi32c$. By
+(M2$^*$), $T=Q_1\cup\dots\cup Q_r$ with $(Q_k,Y)$ weakly SI at world~$2$;
+replacing $Q_k$ by $Q_k\setminus(Q_1\cup\dots\cup Q_{k-1})$ keeps this, by
+(G). Let $T_k\coloneqq Q_1\cup\dots\cup Q_k$ and suppose
+$V+\tau_{T,Z}\preceq_1V$. As in the proof of Lemma~\ref{lem:B2}, there is a
+least $k^*\ge1$ with $V+\tau_{T_{k^*},Z}\preceq_1V$, and
+$V+\tau_{T_{k^*-1},Z}\preceq_2V$ by Lemma~\ref{lem:XOR}. Let
+$d\coloneqq o_{13}(T_{k^*})+o_{23}(Z)+o_{12}(Y)$. Then
+$V+d\prec_1V+\tau_{T_{k^*},Z}\preceq_1V$ by strict (G) (credit at $1$ on $Y$);
+$V+d\preceq_2V+\tau_{T_{k^*-1},Z}\preceq_2V$ by (IB), since the first pair
+differs from $(V+\debt_2(Q_{k^*})+\cred_2(Y),V)$ only in shared advice; and
+$V+d\preceq_3V+o_{12}(Y)+o_{23}(Z)\prec_3V$ by (G). So $V+d$ dominates $V$, a
+contradiction.
+
+\emph{Step 2.} $T$ is credit-null at world~$1$: let $A$ be non-null and
+$T''\subseteq T$ disjoint from $A$, and suppose $(A,T'')$ is SI. By
+Lemma~\ref{lem:yard}(a) on $[e_1,e_3]$, $Z\coloneqq B_0(E)\cap
+\Band_3(b,\infty)$ is non-null and $\prec_dA$ for suitable $b$; in the context
+$V+\cred(T'')$, silent on $Z\cup A$, $V+\debt(Z)+\cred(T'')\prec_1
+V+\debt(A)+\cred(T'')\prec_1V$, and adding credit on $T\setminus T''$, which
+misses $Z$, gives $V+\tau_{T,Z}\prec_1V$, contradicting Step~1. So $T$ is a
+non-null credit-null set, contrary to Theorem~\ref{thm:LH}.
+\end{proof}
+
+Exchanging the labels $1$ and $2$ maps $T_0(E)$ to $B_0(E)$ and gives the
+same statement for world~$1$'s debt on subsets of $B_0(E)$ relative to
+$P_3\cap\Hi31c$; relabelling gives it on every edge. So at every two-sided
+selection of every edge, each edge world's debt order is, in the sense of
+(M2$^*$), non-fine on its own odd region relative to credit on deep tails of
+the third region. The proof
+is that of Lemmas~\ref{lem:B2} and~\ref{lem:B3}; the fine edge of
+Section~\ref{sec:edge} supplied (M2$^*$) there, and Theorem~\ref{thm:LH}
+supplies the third world's acceptance (Corollary~\ref{cor:LHcons}(c)) and
+excludes the credit-null alternative.
+
+\begin{theorem}\label{thm:dense}
+Let $C$ be a two-sided selection on $(e_u,e_v)$, $T_0\coloneqq T_0(C)$ and
+$B_0\coloneqq B_0(C)$. For every non-null $Q\subseteq B_0$ there are
+non-null $T\subseteq T_0$ and $S\subseteq P_w$ such that $Q\notin\Kid^v_{S'}$
+for every $S'\prec^v_cS$. Hence some ultrafilter contains $Q$ and avoids
+every $\Kid^v_{S'}$ with $S'\prec^v_cS$: world $v$ is credit-heavy inside
+every non-null subset of $B_0$. Symmetrically, world $u$ is credit-heavy in
+the same sense inside every non-null subset of $T_0$.
+\end{theorem}
+\begin{proof}
+On $P_u$, $o_{vw}$ is credit at $v$; on $P_v$, $o_{uw}$ is debt at $v$ and
+credit at $w$; on $P_w$, $o_{uv}$ is debt at $w$ and credit at $v$.
+
+(1) By (LH$_v$), some SI pair $(A,Q_1)$ of world $v$ has $A$ non-null and
+$Q_1\subseteq Q$. In world $v$'s frame $T_0=P_v\cap\{t^v_u<1/\alpha^u_C\}$ meets
+every high tail $\Hi vwb$ in a non-null set; by Lemma~\ref{lem:yard}(a) at
+world $v$ choose $b$ with every subset of $\Hi vwb$ $\preceq^v_dA$, and put
+$T\coloneqq T_0\cap\Hi vwb$. Then $(T,Q_1)$ is SI (context
+$V+\cred_v(Q_1)$, silent on $T\cup A$), and so is $(T,Q)$ by (G):
+$V+o_{uw}(T)+o_{vw}(Q)\prec_vV$.
+
+(2) By (LH$_w$), some SI pair $(A',T_1)$ of world $w$ has $A'$ non-null and
+$T_1\subseteq T$. By Lemma~\ref{lem:yard}(a) at world $w$ choose a non-null
+$S\subseteq P_w$ inside a high tail of an edge at $w$ with $S\preceq^w_dA'$.
+Then $(S,T_1)$ is SI at $w$, in the context $V+\cred_w(T_1)$, silent on
+$S\cup A'$, as in (1), and so is $(S,T)$ by (G):
+$V+o_{uv}(S)+o_{uw}(T)\prec_wV$.
+
+(3) Suppose $Q=Q^1\cup\dots\cup Q^r$ with $Q^i\preceq^v_cS'$ and
+$S'\prec^v_cS$; we may take the $Q^i$ disjoint. Choose an increasing family
+$\Sigma_s\subseteq Q$, $s\in[0,1]$, with $\Sigma_0=\varnothing$,
+$\Sigma_1=Q$, which for $s\in[(k-1)/r,k/r]$ fills $Q^k$ continuously in
+measure after $Q^1,\dots,Q^{k-1}$; then for every $s^*$ and every $s$ close
+to $s^*$ the set $\Sigma_s\setminus\Sigma_{s^*}$ (if $s>s^*$) or
+$\Sigma_{s^*}\setminus\Sigma_s$ (if $s<s^*$) lies in a single $Q^i$. Put
+$X'\coloneqq V+o_{uv}(S)$, $X_s\coloneqq X'+o_{uw}(T)+o_{vw}(\Sigma_s)$,
+$U\coloneqq\{s:X_s\preceq_vX'\}$ and $D\coloneqq\{s:V\preceq_vX_s\}$. Since
+$X_s$ improves at $v$ as $s$ grows, $U$ is an up-set and $D$ a down-set.
+$U\cap D=\varnothing$, since $X'\prec_vV$ by strict (G). $0\notin U$, since
+$X_0$ adds debt at $v$ on $T$ to $X'$. $1\notin D$, since
+$X_1\preceq_vV+o_{uw}(T)+o_{vw}(Q)\prec_vV$ by (G) and (1). If some $s$ lies
+in neither, then $V\not\preceq_vX_s$, $X_s\not\preceq_vX'$, and
+$X_s\preceq_wV+o_{uv}(S)+o_{uw}(T)\prec_wV$ by (G) and (2), and
+Lemma~\ref{lem:chain} with $A\coloneqq T\cup\Sigma_s$ (on which $C$ gives
+$o_{uw}$, resp.\ $o_{vw}$) gives a contradiction. Otherwise $U\cup D=[0,1]$
+with a cut $s^*=\sup D=\inf U$. If $s^*\in D$, take $s>s^*$ close to $s^*$
+and $\Delta\coloneqq\Sigma_s\setminus\Sigma_{s^*}$: then
+$X'+o_{uw}(T)+o_{vw}(\Sigma_{s^*})+\cred_v(\Delta)\preceq_vX'$ and
+$V\preceq_vX_{s^*}$; removing the shared advice $o_{uv}$ on $S$ by (IB), and
+writing $\tau\coloneqq o_{uw}(T)+o_{vw}(\Sigma_{s^*})$,
+\[
+ V+\tau+\cred_v(\Delta)\preceq_vV\preceq_vV+\tau+\cred_v(S),
+\]
+so $S\preceq^v_c\Delta$ by (IB) in the context $V+\tau$. If $s^*\in U$, the
+same computation with $s<s^*$ and $\Delta\coloneqq\Sigma_{s^*}\setminus
+\Sigma_s$ gives $S\preceq^v_c\Delta$. Either way
+$S\preceq^v_c\Delta\preceq^v_cQ^i\preceq^v_cS'\prec^v_cS$, a contradiction.
+
+The ideals $\Kid^v_{S'}$, $S'\prec^v_cS$, are totally ordered by inclusion,
+by completeness, so their union is an ideal, which does not contain $Q$; the
+argument of Lemma~\ref{lem:uf}(b) gives the ultrafilter. The symmetric
+statement is the same with $u$ and $v$ exchanged, which maps $B_0$ to $T_0$.
+\end{proof}
+
+\begin{theorem}\label{thm:shape}
+Let $n=3$, let all three rankings be complete with (G) and (IB), assume (S),
+and suppose $V$ is undominated. Then:
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item No world is fine (Theorem~\ref{thm:onefine}). Every world carries a
+leverage sequence, has no nonconstant group primary, and violates some
+finite cancellation condition (Corollary~\ref{cor:tameshape}). Every world
+fails (AExt) on at least one of its edge regions, and at most one edge is an
+A-edge (Corollary~\ref{cor:aedge}).
+\item No edge is fine, and every edge carries a two-sided selection
+(Corollary~\ref{cor:fineedge}). Where a world has a two-sided local
+extension on an edge region, every heavy ultrafilter of its partner there is
+an atom of its charges (Corollary~\ref{cor:tameshape}).
+\item Every world satisfies (LH) and (DH) (Theorem~\ref{thm:LH}), with the
+relative forms of Corollary~\ref{cor:relLH} and the exchange pairs of
+Corollary~\ref{cor:LHcons}.
+\item At every two-sided selection $C$ on every edge $(e_u,e_v)$, world $v$
+is credit-heavy inside every non-null subset of $B_0(C)$ and world $u$ inside
+every non-null subset of $T_0(C)$ (Theorem~\ref{thm:dense}); and each of the
+two edge worlds has a debt order that is non-fine on its own odd region,
+relative to credit on deep tails of the third region
+(Theorem~\ref{thm:ownregion}).
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Collected from the cited results.
+\end{proof}
+
+\subsection*{What remains open}
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item Problem~P1 remains open: we neither prove that $V$ is dominated nor
+know a configuration satisfying all conditions of Theorem~\ref{thm:shape}.
+\item By Theorem~\ref{thm:ownregion}, P1 follows if (S) forces (M2$^*$) for
+one non-null $T\subseteq T_0(E)$ at one two-sided selection $E$ of one edge;
+and if some edge has no two-sided selection, it has (EP), and $V$ is
+dominated by Lemma~\ref{lem:EPfine} and Corollary~\ref{cor:fineedge}. Every
+transfer used in this note moves the debt side of a comparison into the
+partner's odd region (Lemmas~\ref{lem:CNtoDI} and~\ref{lem:DItoCN}), so
+(M2$^*$), which concerns a world's own odd region, needs a new transfer.
+\item The order-theoretic question of Remark~\ref{rem:Q}: a complete
+(G)+(IB) ranking that fails (AExt) on an edge region and has no nonconstant
+group primary. A negative answer settles P1.
+\item For $n\ge4$, Corollary~\ref{cor:edgefine} transfers fineness along
+every edge, but the analogue of Proposition~\ref{prop:third}, and with it the
+analogue of Theorem~\ref{thm:onefine}, has not been checked. The same holds
+for Theorem~\ref{thm:LH}, whose proof uses $n=3$ only through the regions
+$P_x$ and the yardsticks.
+\item Completeness is used at every world: through (T1), the Savage--Wakker
+step, and the reading of AC pairs. For incomplete rankings the results of
+this note are not available.
+\item Whether a world as in Proposition~\ref{ex:germ}, with a heavy germ
+charge, is compatible with (S) at all.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{Holder} O.~H\"older, Die Axiome der Quantit\"at und die Lehre vom
+Mass, \emph{Berichte \"uber die Verhandlungen der K\"oniglich
+S\"achsischen Gesellschaft der Wissenschaften zu Leipzig,
+Mathematisch-Physische Classe} 53 (1901), 1--64.
+\bibitem{KPS} C.~H.~Kraft, J.~W.~Pratt and A.~Seidenberg, Intuitive
+probability on finite sets, \emph{Annals of Mathematical Statistics} 30
+(1959), 408--419.
+\bibitem{Motzkin} T.~S.~Motzkin, \emph{Beitr\"age zur Theorie der linearen
+Ungleichungen}, Dissertation, Basel, 1936.
+\bibitem{PP} T.~Pennanen and A.-P.~Perkki\"o, Topological duals of locally
+convex function spaces, \emph{Positivity} 26, article 2 (2022), Theorem 1.
+\bibitem{Savage} L.~J.~Savage, \emph{The Foundations of Statistics}, Wiley,
+New York, 1954. Chapter~3, \S3.
+\bibitem{Villegas} C.~Villegas, On qualitative probability
+$\sigma$-algebras, \emph{Annals of Mathematical Statistics} 35 (1964),
+1787--1796.
+\bibitem{Wakker} P.~Wakker, Agreeing probability measures for comparative
+probability structures, \emph{Annals of Statistics} 9 (1981), 658--662.
+\bibitem{YH} K.~Yosida and E.~Hewitt, Finitely additive measures,
+\emph{Transactions of the American Mathematical Society} 72 (1952), 46--66.
+\end{thebibliography}
+
+\end{document}

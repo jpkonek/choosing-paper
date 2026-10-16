@@ -1,0 +1,824 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\acc}{\mathrm{acc}}
+\title{Independence Chains and Two Additive Worlds}
+\author{}\date{10 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues EDL (\emph{Edge Dichotomy and Leverage}) and FAED
+(\emph{Finitely Additive Edge Dichotomy}). The conjecture of CC is still open
+in general. The results below are the first in this series that use (IB) in
+an essential way.
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item EDL's leverage criterion is a known theorem: it is Theorem~2 of Berti,
+Pratelli and Rigo~\cite{BPR} (Remark~\ref{rem:BPR}).
+\item \emph{Chain lemma} (Lemma~\ref{lem:chain}). If $V$ is undominated, then
+(IB) and transitivity at world~$1$ turn two comparisons forced by
+competitiveness into a reversal of strict (G), unless certain conditions at
+worlds $2,3$ fail. When worlds $2,3$ have additive one-sided extensions, or
+satisfy a mild closedness property, this forces every selection on the edges
+$[e_1,e_2]$, $[e_1,e_3]$ to contain an endpoint of its edge
+(Proposition~\ref{prop:endpoint}, Theorem~\ref{thm:pathclosed}).
+\item \emph{One non-additive world} (Section~\ref{sec:two}). Let $n=3$, let
+worlds $2,3$ be ranked by ordinary additive losses, and let world~$1$ be any
+preorder with (G) and (IB). Then (S) forces $V$ to be dominated under each of
+several mild conditions on the losses at worlds $2,3$
+(Theorems~\ref{thm:flat}, \ref{thm:U} and~\ref{thm:rho}). These include the
+homogeneous case and payoff-proportional penalties. One residual configuration
+remains open (Section~\ref{sec:open}).
+\end{enumerate}
+All results in Sections~\ref{sec:chain}--\ref{sec:two} were checked line by
+line by independent referees. Their minor corrections are incorporated.
+
+\section{Setting and notation}\label{sec:setting}
+
+We use the setting of v3, CC, CBOI, EDL and FAED without change. In
+particular (G) is strict guidance monotonicity, (S) supplies coherent
+undominated $C_p$, competitive on $\supp p$, with closed sections
+$A_i(X)=\{p:C_p\preceq_iX\}$. We use (KKMa) and (KKMb) of EDL~\S1, and the
+face lemma (CC, Lemma~7). If $V$ is undominated, it is competitive on all
+worlds.
+
+Let $n=3$. Binary problems are represented by $g\in H=\{g_1>0\}$, and mixed
+problems split into
+\[
+ P_1=\{g_2<0,\ g_3<0\},\qquad P_2=\{g_2<0<g_3\},\qquad P_3=\{g_2>0>g_3\}.
+\]
+Accepting $g$ is good at world~$1$ throughout $H$. Write $o_K$ for the option
+that is good exactly at the worlds in $K$:
+\begin{center}
+\begin{tabular}{c|c|c}
+ & accept $g$ & accept $-g$\\\hline
+$P_1$ & $o_1$ & $o_{23}$\\
+$P_2$ & $o_{13}$ & $o_2$\\
+$P_3$ & $o_{12}$ & $o_3$
+\end{tabular}
+\end{center}
+At world~$1$, accepting $g$ is \emph{credit} (rank $0$), silence has rank $1$,
+and accepting $-g$ is \emph{debt} (rank $2$). For a model $M$ and a
+measurable $Q\subseteq H'$ write $M+o(Q)$ for the model that agrees with $M$
+except that it gives option $o$ on $\pm Q$. The vacuous model $V$ is silent on
+$P_1\cup P_2\cup P_3$.
+
+Ratios used throughout are
+\[
+ t_{12}=\frac{g_1}{|g_2|}\ \text{on }P_1\cup P_2,\qquad
+ t_{13}=\frac{g_1}{|g_3|}\ \text{on }P_1\cup P_3,\qquad
+ t_{23}=\frac{|g_2|}{|g_3|}\ \text{on }P_2\cup P_3.
+\]
+Each pair of them has a positive joint density on the relevant region. Write
+$F_k=\{m\in\Delta:m_k=0\}$ for the edge opposite $e_k$.
+
+\paragraph{Edge models.} By the face lemma, a selection $C_q$ with $q$ on
+$[e_1,e_2]$ has a credal interval $\{se_1+(1-s)e_2:s\in[a,b]\}$. On
+$P_1\cup P_2$ it accepts $g$ where $t_{12}>(1-a)/a$, accepts $-g$ where
+$t_{12}<(1-b)/b$, and is silent between. On $P_3$ it accepts $g$ ($o_{12}$).
+The two families with an endpoint are:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $E_1(a')$, $a'\in[0,\infty]$, credal set containing $e_1$: credit on
+$(P_1\cup P_2)\cap\{t_{12}>a'\}$, silent elsewhere there;
+\item $E_2(b')$, $b'\in[0,\infty]$, credal set containing $e_2$: debt on
+$(P_1\cup P_2)\cap\{t_{12}<b'\}$, silent elsewhere there.
+\end{itemize}
+Both give $o_{12}$ on $P_3$. Then $E_1(0)=D_1$, $E_2(\infty)=D_2$ and
+$E_1(\infty)=E_2(0)=V_{12}\coloneqq\Dscr_{[e_1,e_2]}$. On $[e_1,e_3]$ the
+families $E_1'(a')$ and $E_3(b')$ are defined in the same way, using $t_{13}$
+on $P_1\cup P_3$, with $o_{13}$ on $P_2$.
+
+\paragraph{Accepted changes and chains.} By (IB), whether $M\preceq_1M'$
+holds, for models differing exactly on a symmetric set $\pm Q$, depends only
+on the advice of $M$ and $M'$ on $Q$. Call such a change \emph{accepted} at
+world~$1$ if $M\preceq_1M'$. If $B$ is competitive on $S\ni1$, and $B'$
+differs from $B$ only on $\pm Q$ with $B\not\preceq_kB'$ for every
+$k\in S\setminus\{1\}$, then $B\preceq_1B'$. By (IB), the change from $B$'s
+advice on $Q$ to $B'$'s is then accepted in every model that has $B$'s advice
+on $Q$. A \emph{chain} is a finite sequence of accepted changes, each applied
+to a model that has the base's advice on the change set. By transitivity its
+start is $\preceq_1$ its end. If the end is a strict pointwise world-1
+improvement of the start, strict (G) is contradicted.
+
+\begin{remark}[EDL's leverage test is known]\label{rem:BPR}
+EDL's Theorem~2 is a special case of Berti, Pratelli and Rigo~\cite{BPR},
+Theorem~2. For a convex cone $L$ of bounded functions they prove equivalence
+of four conditions. One is the existence of a finitely additive probability
+$Q$ equivalent to the base measure with $E_QX\le0$ on $L$. Another is
+$\overline{L-L^\infty_+}\cap L^\infty_+=\{0\}$, with closure in norm. A third
+is tightness of the laws of $\{X\in L:X\ge-1\}$. Apply this with $L=-K_i$.
+Then failure of tightness is exactly EDL's leverage sequence, and $Q$ gives
+EDL's $(\nu_1,\nu_2)$. The norm-closure step goes back to Rokhlin~\cite{Rokhlin}.
+\end{remark}
+
+\section{The chain lemma}\label{sec:chain}
+
+\begin{lemma}\label{lem:chain}
+Let $n=3$ and suppose $V$ is competitive on $\{1,2,3\}$. Let $C$ be any model
+competitive on $\{1,2\}$. Let $A\subseteq P_1\cup P_2$ and $S\subseteq P_3$ be
+measurable, with $S$ non-null. Put
+\[
+ X'\coloneqq V+o_{12}(S),\qquad
+ X\coloneqq X'\text{ with $C$'s advice on }\pm A,\qquad
+ Y\coloneqq C\text{ silenced on }\pm A.
+\]
+If (a) $V\not\preceq_2X$, (b) $V\not\preceq_3X$ and (c) $C\not\preceq_2Y$,
+then strict (G) fails. Moreover, by (IB), (c) holds if and only if
+$X\not\preceq_2X'$.
+\end{lemma}
+\begin{proof}
+By (a), (b) and competitiveness of $V$, $V\preceq_1X$. By (c) and
+competitiveness of $C$ on $\{1,2\}$, $C\preceq_1Y$.
+
+The pairs $(C,Y)$ and $(X,X')$ both differ exactly on $\pm A$: on $A$, $C$ and
+$X$ have $C$'s advice, while $Y$ and $X'$ are silent. So (IB) turns
+$C\preceq_1Y$ into $X\preceq_1X'$. The same argument at world~$2$ gives the
+equivalence of (c) with $X\not\preceq_2X'$.
+
+Thus $V\preceq_1X\preceq_1X'$. But $X'$ improves $V$ pointwise at world~$1$
+($o_{12}$ is credit), strictly on the non-null set $S$. So $X'\prec_1V$ by
+strict (G). This is a contradiction.
+\end{proof}
+
+The lemma has content only when $C$ gives debt on part of $A$. Otherwise
+$C\preceq_1Y$ already follows from (G). Its use below is this. Let $C$ be
+coherent and competitive on $\{1,2\}$, with credal interval $[a,b]$ on
+$[e_1,e_2]$ and $0<a\le b<1$. Then
+\begin{gather*}
+ T_0\coloneqq P_2\cap\{t_{12}>(1-a)/a\}\quad(\text{$C$ gives credit }o_{13}),\\
+ B_0\coloneqq P_1\cap\{t_{12}<(1-b)/b\}\quad(\text{$C$ gives debt }o_{23})
+\end{gather*}
+are non-null. We look for $T\subseteq T_0$, $B\subseteq B_0$ and $S$ so that
+(a)--(c) hold with $A=T\cup B$.
+
+\begin{proposition}\label{prop:endpoint}
+Let $n=3$, assume (G), (IB) and (S), and suppose $V$ is undominated. Suppose
+worlds $2,3$ have ordinary additive one-sided extensions $L_2,L_3$ with
+strictly ordered local penalties: $L_k(B)\le L_k(X)$ whenever $B$ is coherent
+undominated, $X$ is regular and $B\preceq_kX$. Then every coherent undominated
+model competitive on $\{1,2\}$ has $e_1$ or $e_2$ in its credal set. The same
+holds for $\{1,3\}$ with $e_1$ or $e_3$.
+\end{proposition}
+\begin{proof}
+Write $c_k,b_k$ for the silence and bad penalties of $L_k$ (good costs $0$),
+so $0<c_k<b_k$ a.e. Suppose $C$ is as above with $0<a\le b<1$. Changes from
+silence change $(L_2,L_3)$ per unit as follows:
+\[
+ P_1:\ 0\to o_{23}\colon(-c_2,-c_3);\qquad
+ P_2:\ 0\to o_{13}\colon(b_2-c_2,-c_3);\qquad
+ P_3:\ 0\to o_{12}\colon(-c_2,b_3-c_3).
+\]
+Choose a non-null $T\subseteq T_0$ so small that
+$(b_2-c_2)(T)<c_2(B_0)$. Choose a non-null $S_*\subseteq P_3$ with
+$(b_3-c_3)(S_*)<c_3(T)$. Choose $\eta>0$ with $2\eta\le c_2(S_*)$ and
+$\eta<(b_2-c_2)(T)$. By atomlessness choose $B\subseteq B_0$ with
+$c_2(B)=(b_2-c_2)(T)-\eta$, and $S\subseteq S_*$ with $c_2(S)=2\eta$. With
+$A=T\cup B$ and $X,Y$ as in Lemma~\ref{lem:chain}:
+\[
+ L_2(X)-L_2(V)=-c_2(S)+(b_2-c_2)(T)-c_2(B)=-\eta<0,
+\]
+\[
+ L_3(X)-L_3(V)=(b_3-c_3)(S)-c_3(T)-c_3(B)<0,
+\]
+\[
+ L_2(Y)-L_2(C)=c_2(B)-(b_2-c_2)(T)=-\eta<0.
+\]
+Since $V$ and $C$ are coherent and undominated, the one-sided extensions give
+(a), (b) and (c). Lemma~\ref{lem:chain} gives a contradiction. Exchange worlds
+$2$ and $3$ for the second statement.
+\end{proof}
+
+The additivity of $L_2,L_3$ is used only to find $S,T,B$. The next theorem
+replaces it by a closedness property of the rankings themselves.
+
+\begin{definition}
+World $k$ is \emph{path-closed} at a model $M$ if, for every family
+$(M_s)_{s\in[0,1]}$ of regular models with $\mu\{M_s\ne M_r\}\to0$ as $r\to s$,
+the sets $\{s:M\preceq_kM_s\}$ and $\{s:M_s\preceq_kM\}$ are closed.
+\end{definition}
+
+\begin{theorem}\label{thm:pathclosed}
+Let $n=3$, assume (G) and (IB), and suppose $V$ is competitive on
+$\{1,2,3\}$. Suppose world $2$ is path-closed at $V$ and at every model
+$V+o_{12}(S)$, and world $3$ is path-closed at $V$. Then no coherent model
+competitive on $\{1,2\}$ has a credal interval $[a,b]$ with $0<a\le b<1$.
+\end{theorem}
+\begin{proof}
+Let $C$, $T_0$, $B_0$ be as above. All families below increase in measure
+continuously, for instance $T_r\subseteq T_0$ with $\mu(T_r)=r\mu(T_0)$.
+
+\emph{Step 1.} Put $M_r\coloneqq V+o_{13}(T_r)+o_{23}(B_0)$. Then
+$M_0=V+o_{23}(B_0)\prec_2V$ by strict (G). The set $\{r:V\preceq_2M_r\}$ is
+closed and does not contain $0$, so some $r>0$ has $V\not\preceq_2M_r$. Put
+$T\coloneqq T_r$.
+
+\emph{Step 2.} Take increasing non-null $S_r\subseteq P_3$ and
+$M'_r\coloneqq V+o_{12}(S_r)+o_{13}(T)$. Then $M'_0\prec_3V$, since $o_{13}$
+is good at~$3$. Path-closedness at $V$ gives $r>0$ with $V\not\preceq_3M'_r$.
+Put $S\coloneqq S_r$.
+
+\emph{Step 3.} Take increasing $B_s\subseteq B_0$ with $B_1=B_0$, and put
+$X_s\coloneqq V+o_{12}(S)+o_{13}(T)+o_{23}(B_s)$ and $X'\coloneqq V+o_{12}(S)$.
+Let $U\coloneqq\{s:X_s\preceq_2X'\}$ and $D\coloneqq\{s:V\preceq_2X_s\}$.
+Both are closed by hypothesis.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $U\cap D=\varnothing$: otherwise $V\preceq_2X_s\preceq_2X'\prec_2V$.
+\item $0\notin U$: $X_0=X'+o_{13}(T)$ is strictly worse than $X'$ at world~$2$.
+\item $1\notin D$: $X_1\preceq_2M_r$ by (G), since $o_{12}$ is good at~$2$, and
+$V\not\preceq_2M_r$.
+\end{itemize}
+So $0\in D$ or $0\notin U\cup D$, and $1\in U$ or $1\notin U\cup D$. Since
+$[0,1]$ is connected, $U\cup D\ne[0,1]$. Choose $s\notin U\cup D$.
+
+\emph{Step 4.} Put $A\coloneqq T\cup B_s$. $C$ gives $o_{13}$ on $T$ and
+$o_{23}$ on $B_s$, so $X_s$ is $X'$ with $C$'s advice on $\pm A$. Condition
+(a) holds because $s\notin D$, and (c) because $s\notin U$
+(Lemma~\ref{lem:chain}). For (b): $X_s\preceq_3V+o_{12}(S)+o_{13}(T)$ by (G),
+since $o_{23}$ is good at~$3$, and $V$ is not $\preceq_3$ the right side.
+Lemma~\ref{lem:chain} gives a contradiction.
+\end{proof}
+
+\begin{remark}
+The theorem needs no additivity and no (S); additivity of $L_2,L_3$ in
+Proposition~\ref{prop:endpoint} only replaces path-closedness. If (S) implied
+the path-closedness used here, Theorem~\ref{thm:pathclosed} would apply in
+general. We have not proved this. Its failure is a ``thin-band priority'' at
+world~$2$ or~$3$: arbitrarily small debt sets would have to outweigh a fixed
+credit set. EDL's Theorem~5 and the band property exclude such priorities when
+an additive or finitely additive primary carries them (FAED), but not in
+general.
+\end{remark}
+
+\section{One non-additive world}\label{sec:two}
+
+\paragraph{Standing hypotheses (SH).} $n=3$. At $k=2,3$,
+$X\preceq_kY\iff L_k(X)\le L_k(Y)$, where $L_k$ is an ordinary additive loss
+with strictly ordered local penalties and an integrable envelope. World $1$ is
+any preorder with (G) and (IB). (S) holds, and $V$ is undominated (assumed
+in order to reach a contradiction).
+
+Write $c_k,b_k$ for the silence and bad penalties of $L_k$ and
+$u\coloneqq b_3-c_3$. From silence, the changes of $(L_2,L_3)$ per unit are:
+\begin{center}
+\begin{tabular}{c|c|c}
+ & silence $\to$ credit & silence $\to$ debt\\\hline
+$P_1$ & $(b_2-c_2,\ u)$ & $(-c_2,\ -c_3)$\\
+$P_2$ & $(b_2-c_2,\ -c_3)$ & $(-c_2,\ u)$\\
+$P_3$ & $(-c_2,\ u)$ & $(b_2-c_2,\ -c_3)$
+\end{tabular}
+\end{center}
+Reversing a change flips both signs. By EDL's Theorem~8 and its proof
+(Steps 2 and 5--6), there are nondecreasing $F,G:(0,\infty)\to(0,\infty)$ with
+\[
+ c_2=F(t_{23})\,u,\qquad b_2-c_2=G(t_{23})\,c_3\qquad\text{a.e.\ on }P_2\cup P_3,
+\]
+and $d\coloneqq\sup F\le g_0\coloneqq\inf G$. On $P_1$ put
+$\rho\coloneqq c_3/c_2$.
+
+\begin{lemma}[Edge structure]\label{lem:edges}
+Under (SH), the selections on $[e_1,e_2]$ are exactly the models $E_1(a')$,
+$E_2(b')$, and each of these is $C_q$ for some $q$ on the edge. Those other
+than $D_1,D_2$ occur at points of the open edge, and so are competitive on
+$\{1,2\}$. The same holds on $[e_1,e_3]$ for $E_1'$, $E_3$.
+\end{lemma}
+\begin{proof}
+By Proposition~\ref{prop:endpoint} and the face lemma, every selection on the
+edge belongs to the two families. On them
+\[
+ L_2(E_1(a'))=L_2(V_{12})+(b_2-c_2)\bigl((P_1\cup P_2)\cap\{t_{12}>a'\}\bigr),
+\]
+\[
+ L_2(E_2(b'))=L_2(V_{12})-c_2\bigl((P_1\cup P_2)\cap\{t_{12}<b'\}\bigr).
+\]
+These are continuous and strictly monotone in the parameter, since $t_{12}$
+has a positive density. Together they map the families bijectively onto
+$[L_2(D_2),L_2(D_1)]$.
+
+$L_2$ is an additive regular primary at world~$2$, continuous in measure. By
+EDL's Lemma~4(c), $q\mapsto L_2(C_q)$ is continuous on the edge, with values
+$L_2(D_1)$ and $L_2(D_2)$ at $e_1$ and $e_2$. By the intermediate value
+theorem every value in between is attained, so every member of the families
+is selected.
+\end{proof}
+
+\begin{lemma}[Weights]\label{lem:weights}
+Assume (SH).
+\begin{enumerate}[label=(\alph*)]
+\item For each full-support selection $C$ there is $w=(w_2,w_3)\ge0$,
+$w\ne0$, such that for a.e.\ mixed $g$ and every advice $a$ better than
+$C(g)$ at world~$1$,
+$w\cdot\bigl(\ell(g,a)-\ell(g,C(g))\bigr)\ge0$, where $\ell=(\ell_2,\ell_3)$.
+\item For each selection $C$ at a point of the open edge $(e_2,e_3)$ there is
+such a $w$ with $w\cdot\ell(g,C(g))\le w\cdot\ell(g,a)$ for a.e.\ $g$ and
+every advice $a$.
+\item If such a $C$ gives $o_2$ on a non-null part of $P_2$ and $o_3$ on a
+non-null part of $P_3$, then $V$ is dominated.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $Y$ improve $C$ pointwise at world~$1$, strictly on a non-null set.
+Then $Y\prec_1C$ by strict (G). Competitiveness on $\{1,2,3\}$ gives
+$C\preceq_kY$, hence $L_k(C)\le L_k(Y)$, for $k=2$ or $3$. Let $I$ be the set of
+vectors $(L_2(Y)-L_2(C),\,L_3(Y)-L_3(C))$ over pointwise weak world-1
+improvements $Y$. A weak improvement that is strict nowhere equals $C$ a.e.
+So $I$ misses the open negative quadrant.
+
+Improvements can be spliced on measurable sets. By the atomless splitting
+argument of v3's Lemma~11(b), $\overline I$ is convex. An open set that meets
+$\overline I$ meets $I$, so $\overline I$ also misses the open quadrant, and
+separation gives $w$.
+
+If the pointwise inequality failed for a measurable choice of improved advice
+on a non-null set, improving $C$ only there would give $w\cdot v<0$ for some
+$v\in I$.
+
+(b) The same argument, applied to all regular models, using competitiveness on
+$\{2,3\}$.
+
+(c) Where $C$ gives $o_2$ on $P_2$, silence is a world-1 improvement with
+change $(c_2,-u)$. So (a), or optimality in (b), gives $w_2F(t_{23})\ge w_3$
+there. Where $C$ gives $o_3$ on $P_3$, silence gives change
+$(-(b_2-c_2),c_3)$. So $w_3\ge w_2G(t_{23})$ there. If $w_2=0$ then $w_3=0$,
+which is impossible. Hence $G(t')\le F(t)$ for $t,t'$ in sets of positive
+Lebesgue measure. Since $F\le d\le g_0\le G$, $F=G=d=g_0$ on those sets, and
+Lemma~\ref{lem:tied} applies.
+\end{proof}
+
+\begin{lemma}\label{lem:tied}
+Under (SH), if for some $\kappa$ both $\{t:F(t)=\kappa\}$ and
+$\{t:G(t)=\kappa\}$ have positive Lebesgue measure, then $V$ is dominated.
+\end{lemma}
+\begin{proof}
+Choose non-null $Q_3\subseteq P_3\cap\{F(t_{23})=\kappa\}$ and
+$Q_2\subseteq P_2\cap\{G(t_{23})=\kappa\}$ with $u(Q_3)=c_3(Q_2)=x>0$. Let
+$Y\coloneqq V+o_{12}(Q_3)+o_{13}(Q_2)$. Then
+\[
+ L_3(Y)-L_3(V)=u(Q_3)-c_3(Q_2)=0,\qquad
+ L_2(Y)-L_2(V)=-\kappa x+\kappa x=0.
+\]
+And $Y\prec_1V$ by strict (G). So $Y$ dominates $V$.
+\end{proof}
+
+\begin{lemma}\label{lem:noboth}
+Under (SH), no full-support selection gives both $o_{13}$ and $o_2$ on non-null
+parts of $P_2$.
+\end{lemma}
+\begin{proof}
+Let $A_+\coloneqq\{C=o_{13}\}\cap P_2$ and $A_-\coloneqq\{C=o_2\}\cap P_2$ be
+non-null.
+
+\emph{Case 1: some non-null $T'\subseteq A_+$, $B'\subseteq A_-$ have
+$a\coloneqq\operatorname{ess\,sup}_{B'}F(t_{23})
+<b\coloneqq\operatorname{ess\,inf}_{T'}G(t_{23})$.} Shrink $B'$ so that
+$\tau\coloneqq\operatorname{ess\,inf}_{B'}t_{12}>0$ and
+$c_2(B')<c_2(P_1\cap\{t_{12}<\tau\})$, and so that $u(B')$ is small enough
+for the choices below. Fix $\alpha_0>0$ with $P_3\cap\{F(t_{23})>\alpha_0\}$
+non-null.
+
+Take nested $T_\lambda\subseteq T'$ with $c_3(T_\lambda)=\lambda u(B')$, and
+put $\varphi(\lambda)\coloneqq(b_2-c_2)(T_\lambda)-c_2(B')$. Then $\varphi$ is
+continuous and increasing, $\varphi(0)<0$, and
+$\varphi(\lambda)\ge(b\lambda-a)u(B')>0$ for $\lambda>a/b$. Let
+$\lambda_0\in(0,a/b]$ be its smallest zero. For $\lambda$ slightly above
+$\lambda_0$ (and below $1$), $\delta\coloneqq\varphi(\lambda)$ is as small as
+we like. Put $T\coloneqq T_\lambda$. Then choose $\eta>0$ small,
+$B\subseteq P_1\cap\{t_{12}<\tau\}$ with $c_2(B)=c_2(B')-\eta$, and
+$S\subseteq P_3\cap\{F(t_{23})>\alpha_0\}$ with $c_2(S)=2(\delta+\eta)$. Then
+$u(S)\le c_2(S)/\alpha_0<c_3(T)$ once $\delta,\eta$ are small.
+
+The chain:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item $V\to V+o_{13}(T)+o_{23}(B)+o_{12}(S)$, accepted because $V$ is
+competitive on $\{1,2,3\}$:
+$\Delta L_2=(b_2-c_2)(T)-c_2(B)-c_2(S)=-\delta-\eta<0$ and
+$\Delta L_3=-c_3(T)-c_3(B)+u(S)<0$.
+\item Base $E_2(\tau)$ (Lemma~\ref{lem:edges}). It has debt on $B$ and is
+silent on $B'\subseteq\{t_{12}\ge\tau\}$. Move $B\colon o_{23}\to0$ and
+$B'\colon0\to o_2$, with $\Delta L_2=c_2(B)-c_2(B')=-\eta<0$.
+\item Base $C$, which has $o_{13}$ on $T$ and $o_2$ on $B'$. Silence both,
+with $\Delta L_2=-(b_2-c_2)(T)+c_2(B')=-\delta<0$ and
+$\Delta L_3=c_3(T)-u(B')=(\lambda-1)u(B')<0$.
+\end{itemize}
+The end is $V+o_{12}(S)$, a strict world-1 improvement of $V$. This is a
+contradiction.
+
+\emph{Case 2: otherwise.} Taking $B'=A_-\cap\{F(t_{23})<d-\epsilon\}$ and
+$T'=A_+$ shows $F(t_{23})=d$ a.e.\ on $A_-$. Similarly $G(t_{23})=g_0$ a.e.\
+on $A_+$. Taking $T'=A_+$, $B'=A_-$ gives $d\ge g_0$, so $d=g_0$. Then
+Lemma~\ref{lem:tied} applies.
+\end{proof}
+
+\paragraph{Good bases.} Call a full-support selection $C=\Dscr_K$ a
+\emph{good base} if $e_2\in K$, $K\cap F_2=\varnothing$, $K\not\subseteq F_1$
+and $K\not\subseteq F_3$. Put
+\[
+ \tau\coloneqq\max_K\frac{m_3}{m_2}\in(0,\infty),\qquad
+ \tau_2\coloneqq\min_K\frac{m_2}{m_1}\in(0,\infty).
+\]
+
+\begin{lemma}[Shape of a good base]\label{lem:shape}
+Let $C$ be a good base.
+\begin{enumerate}[label=(\alph*)]
+\item $C$ gives no credit on $P_1\cup P_2$ and no debt on $P_3$.
+\item Its debt on $P_2$ lies in $\{t_{23}>\tau,\ t_{12}<\tau_2\}$ and contains
+$\{g\in P_2:t_{23}>\tau,\ t_{12}<\tau_2(1-\tau/t_{23})\}$.
+\item On $P_3$ it gives credit on $\{t_{23}>\tau\}$, so its silence on $P_3$
+lies in $\{t_{23}\le\tau\}$. For each $\delta\in(0,\tau)$, its silence
+contains a non-empty open subset of $\{\tau-\delta<t_{23}<\tau\}$.
+\item Its silence on $P_1$ is non-null and lies in $\{t_{12}\ge\tau_2\}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) On $P_1\cup P_2$, $e_2\cdot g=g_2<0$, so $g$ is not accepted. On $P_3$,
+$e_2\cdot g>0$, so $-g$ is not accepted.
+
+(b) Write $g=(g_1,-a,b)\in P_2$. Let $m^*\in K$ attain $\tau$. Then
+$m^*\cdot g\ge m^*_2b(\tau-t_{23})$, so debt requires $t_{23}>\tau$. Debt also
+requires $m^\circ\cdot g<0$ at a minimizer $m^\circ$ of $m_2/m_1$, which gives
+$t_{12}<\tau_2$. Conversely, for every $m\in K$,
+$m\cdot g\le m_1g_1-m_2a(1-\tau/t_{23})$. This is negative when
+$t_{12}<\tau_2(1-\tau/t_{23})$, since $\tau_2\le m_2/m_1$.
+
+(c) For $g=(g_1,a,-b)\in P_3$ with $t_{23}>\tau$,
+$m\cdot g\ge m_2b(t_{23}-m_3/m_2)>0$ for every $m\in K$. For
+$t_{23}<\tau$, $m^*\cdot g=m^*_1g_1-m^*_2b(\tau-t_{23})<0$ once
+$g_1<m^*_2b(\tau-t_{23})/m^*_1$. This defines a non-empty open cone of
+non-credit points, which are silent by (a).
+
+(d) Silence at $g=(g_1,-a,-b)\in P_1$ needs some $m\in K$ with
+$m\cdot g\ge0$, hence $m_1g_1\ge m_2a$, so $t_{12}\ge\tau_2$. For
+non-nullness, consider $g=(x,-1,-y)$. The zero of $m\cdot g$ in $x$ is
+$x_m(y)=(m_2+m_3y)/m_1$, or $\infty$ if $m_1=0$. Take $e_2\in K$ and some
+$m\in K$ with $m_1>0$. Then $x$ strictly between $x_m(y)$ and $\infty$ gives
+silence on an open set.
+\end{proof}
+
+\begin{proposition}[Good bases exist]\label{prop:good}
+Under (SH), for every $\epsilon>0$ there is a good base with $\tau<\epsilon$.
+\end{proposition}
+\begin{proof}
+Choose $\theta_0>0$ and then $\beta_0<\infty$ such that, with
+\[
+ Q_1\coloneqq P_1\cap\{t_{12}\ge\beta_0\},\qquad
+ Q_2\coloneqq P_2\cap(\{t_{23}<\theta_0\}\cup\{t_{12}\ge\beta_0\}),
+\]
+we have
+$c_2(Q_1)+c_2(Q_2)<\min\{c_2(P_2),\ c_2(P_2\cap\{t_{23}<\epsilon\}),\
+c_2(P_2\cap\{t_{23}<\theta_0\})+c_2(P_3\cap\{t_{23}<\theta_0\})\}$. This is
+possible: first make $c_2(P_2\cap\{t_{23}<\theta_0\})$ less than a third of
+the first two quantities, then make the $\{t_{12}\ge\beta_0\}$ parts smaller
+than a third of them and smaller than $c_2(P_3\cap\{t_{23}<\theta_0\})$.
+
+Let $X$ be $D_2$ silenced on $Q_1\cup Q_2$. Then
+$L(X)-L(D_2)=(c_2(Q_1)+c_2(Q_2),\ c_3(Q_1)-u(Q_2))$. By (KKMa) some selection
+$C=\Dscr_K$ has $C\preceq_iX$ for $i=1,2,3$. We exclude every alternative to
+a good base.
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=2pt]
+\item If $K\cap F_2\ne\varnothing$, $C$ never gives $o_2$ on $P_2$, so
+$L_2(C)\ge L_2(D_2)+c_2(P_2)>L_2(X)$. Hence $K\cap F_2=\varnothing$. This
+removes $D_1$, $D_3$, every model on $[e_1,e_3]$, every $E_1(a')$, and every
+model on $[e_2,e_3]$ containing $e_3$.
+\item $C=E_2(b')$ (as a model, at any index) with $b'\ge\beta_0$, including
+$D_2$, is impossible, because
+$X$ is a strict pointwise world-1 improvement of it. $X$ is silent wherever
+$E_2(b')$ is, and also on $P_2\cap\{t_{23}<\theta_0,\ t_{12}<b'\}$.
+
+$C=E_2(b')$ with $b'<\beta_0$ is also impossible. The two models differ on
+\begin{gather*}
+ J=P_1\cap\{b'\le t_{12}<\beta_0\},\qquad
+ A=P_2\cap\{b'\le t_{12}<\beta_0,\ t_{23}\ge\theta_0\},\\
+ A'=P_2\cap\{t_{23}<\theta_0,\ t_{12}<b'\}.
+\end{gather*}
+$L(C)\le L(X)$ reads (I) $c_2(J)+c_2(A)-c_2(A')\le0$ and (II)
+$c_3(J)+u(A')-u(A)\le0$. By (II), $u(A)>u(A')$. $F$ is nondecreasing and
+$t_{23}$ is smaller on $A'$ than on $A$, so
+$c_2(A)-c_2(A')\ge\lambda(u(A)-u(A'))\ge0$ with
+$\lambda=\operatorname{ess\,sup}_{A'}F(t_{23})$. Then (I) fails.
+\item $C=\Dscr_K$ (at any index) with $e_2\in K\subseteq F_1$:
+$K=\{(0,s,1-s):s\in[a,1]\}$,
+$\theta=(1-a)/a$. $C$ gives $o_{23}$ on $P_1$, $o_2$ on
+$P_2\cap\{t_{23}>\theta\}$, $o_{12}$ on $P_3\cap\{t_{23}>\theta\}$, and silence
+on $(P_2\cup P_3)\cap\{t_{23}<\theta\}$. If $\theta\le\theta_0$, $X$ is a
+strict pointwise world-1 improvement of $C$. If $\theta>\theta_0$, then
+$L_2(C)-L_2(D_2)\ge c_2(P_2\cap\{t_{23}<\theta_0\})+c_2(P_3\cap\{t_{23}<\theta_0\})
+>L_2(X)-L_2(D_2)$.
+\item $K\subseteq F_1$ with $e_2,e_3\notin K$, or $K=\{m\}$ with $m$ in the
+interior of $\Delta$: $C$ gives $o_2$ on a non-null part of $P_2$ and $o_3$ on a non-null
+part of $P_3$. Such a $C$ is either on $(e_2,e_3)$ or of full support, and
+Lemma~\ref{lem:weights}(c) applies.
+\item $K\subseteq F_3$ with $e_1,e_2\notin K$, at a full-support index: $C$
+gives $o_{13}$ and $o_2$ on non-null parts of $P_2$, contrary to
+Lemma~\ref{lem:noboth}.
+\end{enumerate}
+The remaining case is a full-support $C$ with $K\cap F_2=\varnothing$,
+$K\not\subseteq F_1$, $K\not\subseteq F_3$. Then $C$ gives $o_2$ on a non-null
+part of $P_2$ (since $K\cap F_2=\varnothing$). By Lemma~\ref{lem:noboth} its
+credit on $P_2$, an open set, is empty. Hence $e_2\in K$: if $e_2\notin K$,
+then $g=(1,-\eta,1)$ is accepted for small $\eta$. So $C$ is a good base.
+
+Finally, by Lemma~\ref{lem:shape}(b),
+$L_2(C)-L_2(D_2)\ge c_2(P_2\cap\{t_{23}\le\tau\})$. And
+$L_2(C)-L_2(D_2)\le L_2(X)-L_2(D_2)<c_2(P_2\cap\{t_{23}<\epsilon\})$. Hence
+$\tau<\epsilon$.
+\end{proof}
+
+At a good base $C$, with weight $w$ from Lemma~\ref{lem:weights}(a), debt on
+$P_2$ gives $w_2F\ge w_3$ there and silence on $P_3$ gives $w_3\ge w_2F$ there.
+So $F(\tau-)\le w_3/w_2\le F(\tau+)$.
+
+\subsection*{Closing by closedness on the edge $[e_1,e_3]$}
+
+For $b'\in(0,\infty)$ and $n>1/b'$ put
+$\mathrm{Band}_n\coloneqq(P_1\cup P_3)\cap\{b'-1/n\le t_{13}<b'\}$. Let
+$\mathrm{debt}(\mathrm{Band}_n)$ denote $o_{23}$ on its $P_1$-part and $o_3$ on
+its $P_3$-part. This is exactly the advice of $E_3(b')$ there.
+
+\begin{lemma}[Closing lemma]\label{lem:closing}
+Under (SH), there are no $b'\in(0,\infty)$ and non-null
+$S\subseteq P_3\cap\{t_{13}\ge b'\}$ such that, for all large $n$,
+\[
+ V\preceq_1V+o_{12}(S)+\mathrm{debt}(\mathrm{Band}_n).\tag{TB$_n$}
+\]
+\end{lemma}
+\begin{proof}
+Put $b'_n\coloneqq b'-1/n$ and $X\coloneqq E_3(b')+o_{12}(S)$. The models
+$E_3(b'_n)$ and $X$ differ exactly on $\mathrm{Band}_n\cup S$. On
+$\mathrm{Band}_n$ the first is silent and the second has debt. On $S$ the
+first is silent (an $E_3$ model never gives credit on $P_3$) and the second
+has $o_{12}$. The pair in (TB$_n$) differs on the same set with the same
+advice. So (IB) turns (TB$_n$) into $E_3(b'_n)\preceq_1X$.
+
+By Lemma~\ref{lem:edges}, $E_3(b'_n)=C_{q_n}$ with $q_n$ in the open edge
+$(e_1,e_3)$. Pass to a subsequence $q_n\to q^*$. By EDL's Lemma~4(c),
+$q\mapsto L_3(C_q)$ is continuous on the edge. Also
+$L_3(E_3(b'_n))\to L_3(E_3(b'))$, and $L_3$ is injective on the edge family.
+So $C_{q^*}=E_3(b')$. Closedness of $A_1(X)$ gives $E_3(b')\preceq_1X$. But
+$X$ improves $E_3(b')$ strictly at world~$1$, by $o_{12}$ on its silent set
+$S$. This is a contradiction.
+\end{proof}
+
+\begin{lemma}[Composition]\label{lem:compose}
+If $V\preceq_1V+o_{12}(S_j)+o_{23}(D_j)$ for $j=1,\dots,N$, with the
+$S_j\subseteq P_3$ and $D_j\subseteq P_1$ pairwise disjoint, then
+$V\preceq_1V+o_{12}(\bigcup S_j)+o_{23}(\bigcup D_j)$.
+\end{lemma}
+\begin{proof}
+Let $W_k\coloneqq V+o_{12}(S_1\cup\dots\cup S_k)+o_{23}(D_1\cup\dots\cup D_k)$.
+Then $W_{k-1}$ and $W_k$ differ exactly on $S_k\cup D_k$, with the same advice
+as the $k$th hypothesis. (IB) gives $W_{k-1}\preceq_1W_k$, and transitivity
+finishes.
+\end{proof}
+
+\begin{lemma}[Ratio criterion]\label{lem:ratio}
+Under (SH), let $C$ be a good base, $S_0\subseteq P_3\cap\{t_{23}>\tau\}\cap
+\{t_{13}\ge1\}$ non-null, and $T<\infty$. Suppose that for every $R>0$ there
+is $s(R)>0$ with the following property. For every $S'\subseteq S_0$ with
+$0<u(S')\le s(R)$ and every $Z\subseteq P_1\cap\{t_{12}\ge T\}$ with
+$c_2(Z)\ge u(S')/R$, some $D'\subseteq Z$ has $c_2(D')\le u(S')/R$ and
+$V\preceq_1V+o_{12}(S')+o_{23}(D')$. Then $V$ is dominated.
+\end{lemma}
+\begin{proof}
+Take $b'=1$ and $S\coloneqq S_0$. Given $n$, the set
+$Z_n\coloneqq\mathrm{Band}_n\cap P_1\cap\{t_{12}\ge T\}$ has $c_2(Z_n)>0$.
+Choose $R$ with $u(S)/R<c_2(Z_n)/2$, and split $S$ into disjoint pieces $S_j$
+with $u(S_j)\le s(R)$. Choose $D_j$ successively inside
+$Z_n\setminus(D_1\cup\dots\cup D_{j-1})$. This is possible: that set has
+$c_2$-mass at least $c_2(Z_n)/2\ge u(S_j)/R$. Lemma~\ref{lem:compose} gives
+$V\preceq_1V+o_{12}(S)+o_{23}(\bigcup D_j)$. Adding debt on the rest of
+$\mathrm{Band}_n$ is a world-1 worsening, so (TB$_n$) follows by (G). This
+holds for every $n$, contradicting Lemma~\ref{lem:closing}.
+\end{proof}
+
+\subsection*{Main results}
+
+\begin{theorem}\label{thm:flat}
+Under (SH), if $F$ is a.e.\ constant on some interval $(0,\epsilon)$, then $V$
+is dominated. The same holds if $G$ is a.e.\ constant on some
+$(T_0,\infty)$. In particular this covers the homogeneous case
+$F\equiv d<g_0\equiv G$.
+\end{theorem}
+\begin{proof}
+Let $\kappa$ be the constant value. Take a good base $C$ with $\tau<\epsilon$
+(Proposition~\ref{prop:good}). Fix the following sets.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $Y\subseteq\{C=o_2\}\cap P_2\cap\{t_{23}<\epsilon\}\cap\{t_{12}\ge\ell\}$,
+non-null for small $\ell>0$ (Lemma~\ref{lem:shape}(b)). Then $\ell<\tau_2$.
+\item $Y_0'$, the silence of $C$ on $P_3$. It lies in $\{t_{23}\le\tau\}$.
+\item A non-null $M_0$ inside the silence of $C$ on $P_1$, with
+$M_0\subseteq\{t_{12}<T\}$ for some $T>\tau_2$.
+\item A non-null $S\subseteq P_3\cap\{t_{23}>\tau\}\cap\{t_{13}\ge1\}$.
+\item $y\in(0,\min(u(Y),u(Y_0'))]$, $Y_y\subseteq Y$ with $u(Y_y)=y$, and
+$B\subseteq P_1\cap\{t_{12}<\ell\}$ with $0<c_2(B)<\kappa y$. Then shrink $S$
+so that $u(S)<c_3(B)$.
+\end{itemize}
+On $Y\cup Y_0'\subseteq\{t_{23}<\epsilon\}$ we have $c_2=\kappa u$. Given
+$n$, put $Z_n\coloneqq\mathrm{Band}_n\cap P_1\cap\{t_{12}\ge T\}$ with $b'=1$.
+Choose $m'\in(0,\min(c_2(Z_n),2\kappa y,c_2(M_0)))$, $M'\subseteq M_0$ with
+$c_2(M')=m'$, $Y'\subseteq Y_0'$ with $u(Y')=y-m'/(2\kappa)$, and
+$D\subseteq Z_n$ with $m'<c_2(D)$. The chain is:
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=2pt]
+\item $V\to V+o_{23}(B)+o_{12}(S)$. This is accepted at $V$:
+$\Delta L_2=-c_2(B)-c_2(S)<0$ and $\Delta L_3=-c_3(B)+u(S)<0$.
+\item Base $E_2(\ell)$, which has debt on $B$ and is silent on $Y_y$. Move
+$B\colon o_{23}\to0$ and $Y_y\colon0\to o_2$, with
+$\Delta L_2=c_2(B)-\kappa y<0$.
+\item Base $C$, which has $o_2$ on $Y_y$ and is silent on $Y'$ and $M'$.
+Make $Y_y\colon o_2\to0$, $Y'\colon0\to o_{12}$, $M'\colon0\to o_{23}$. Then
+$\Delta L_2=\kappa y-\kappa(y-m'/(2\kappa))-m'=-m'/2<0$ and
+$\Delta L_3=-y+y-m'/(2\kappa)-c_3(M')<0$.
+\item Base $E_2(T)$, which has debt on $M'$ and is silent on $D$. Move
+$M'\colon o_{23}\to0$ and $D\colon0\to o_{23}$, with
+$\Delta L_2=m'-c_2(D)<0$.
+\item By (G): $Y'\colon o_{12}\to0$, and debt on $\mathrm{Band}_n\setminus D$.
+\end{enumerate}
+In each step the current model has the base's advice on the change set. The
+sets $B$, $M_0$, $D$ are pairwise disjoint because $\ell<\tau_2\le T$; $S$
+and $Y'$ are disjoint because $t_{23}$ separates them. The end is
+$V+o_{12}(S)+\mathrm{debt}(\mathrm{Band}_n)$. So (TB$_n$) holds for every
+$n$, contrary to Lemma~\ref{lem:closing}.
+
+The second statement follows by exchanging worlds $2$ and $3$. This exchanges
+$P_2$ and $P_3$, $t_{12}$ and $t_{13}$, and the edges $[e_1,e_2]$ and
+$[e_1,e_3]$. It replaces $F$ by $s\mapsto1/G(1/s)$ and $\rho$ by $1/\rho$.
+\end{proof}
+
+\begin{theorem}\label{thm:U}
+Under (SH), $V$ is dominated if any of the following holds.
+\begin{enumerate}[label=(\alph*)]
+\item For every $\ell>0$, $\rho$ is essentially unbounded above on
+$P_1\cap\{t_{12}<\ell\}$.
+\item $F$ is continuous on some $(0,\epsilon)$, and $\rho\ge\rho_0>0$ a.e.\
+on $P_1\cap\{t_{12}<\ell_*,\ t_{13}<1\}$ for some $\ell_*>0$.
+\end{enumerate}
+The same holds for the images of (a) and (b) under exchanging worlds $2$
+and $3$: $1/\rho$ essentially unbounded on $P_1\cap\{t_{13}<\ell\}$ for every
+$\ell$; or $G$ continuous on some $(T_0,\infty)$ and $1/\rho\ge\rho_0>0$ on
+$P_1\cap\{t_{13}<\ell_*,\ t_{12}<1\}$.
+\end{theorem}
+\begin{proof}
+We verify the hypothesis of Lemma~\ref{lem:ratio} for a good base $C$. In (b)
+we take $C$ with $\tau<\epsilon$, so that $F$ is continuous at $\tau$.
+
+\emph{The pieces.} Let a prize $S'\subseteq S_0$ with $u(S')=s$ be given. We
+use sets $B\subseteq P_1$, $Y_y\subseteq\{C=o_2\}\cap P_2$, $Y'$ inside the
+silence of $C$ on $P_3$, $M'$ inside the silence of $C$ on $P_1$ with
+$M'\subseteq\{t_{12}<T\}$, and $D'\subseteq Z$. Here $u(Y_y)=u(Y')=y$ and
+$c_3(B)=2s$. The chain is:
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=2pt]
+\item At $V$: add $o_{23}(B)$ and $o_{12}(S')$. Then
+$\Delta L_2=-c_2(B)-c_2(S')<0$ and $\Delta L_3=-2s+s<0$.
+\item Base $E_2(\ell_B)$, where $B\subseteq\{t_{12}<\ell_B\}$ and
+$Y_y\subseteq\{t_{12}\ge\ell_B\}$. Move $B\to Y_y$ (debt), with
+$\Delta L_2=c_2(B)-c_2(Y_y)<0$; this needs $c_2(Y_y)>c_2(B)$.
+\item Base $C$: $Y_y\colon o_2\to0$, $Y'\colon0\to o_{12}$,
+$M'\colon0\to o_{23}$ with $c_2(M')=m'\coloneqq(c_2(Y_y)-c_2(Y'))^++\eta y$.
+Then $\Delta L_2\le-\eta y<0$ and $\Delta L_3=-c_3(M')<0$.
+\item Base $E_2(T)$: move $M'\to D'$ (debt) with $c_2(D')=(1+\eta)m'$.
+\item By (G): $Y'\colon o_{12}\to0$.
+\end{enumerate}
+The net change is $V\to V+o_{12}(S')+o_{23}(D')$. All auxiliary sets return
+to silence, and $D'$ can be placed in any $Z$ of sufficient $c_2$-mass. It
+remains to make $c_2(D')/s$ arbitrarily small, uniformly for small $s$.
+
+\emph{(a).} Fix $\ell<\tau_2$ and non-null
+$Y\subseteq\{C=o_2\}\cap P_2\cap\{t_{12}\ge\ell\}$. Fix non-null $Y_0'$
+inside the silence of $C$ on $P_3\cap\{t_{23}>\tau/2\}$ (Lemma~\ref{lem:shape}(c)).
+Then $F(t_{23})\ge a\coloneqq F(\tau/2)>0$ on $Y_0'$, $F\ge a_Y>0$ on $Y$, and
+$F\le d$ everywhere. Put $\lambda\coloneqq a/d$. Given $R'$, choose
+$B\subseteq P_1\cap\{t_{12}<\ell\}\cap\{\rho\ge R'\}$ with $c_3(B)=2s$; then
+$c_2(B)\le2s/R'$. Choose $Y_y\subseteq Y$ with $c_2(Y_y)=2c_2(B)$. Then
+$c_2(Y')\ge ay\ge\lambda c_2(Y_y)$ and $y\le c_2(Y_y)/a_Y$, so
+\[
+ c_2(D')\le(1+\eta)(1-\lambda+\eta/a_Y)\,c_2(Y_y)
+ \le\frac{4(1+\eta)(1-\lambda+\eta/a_Y)}{R'}\,s .
+\]
+This is at most $s/R$ once $R'$ is large.
+
+\emph{(b).} Let $\tau=\tau_C<\epsilon$ and $\delta\in(0,\tau)$, and put
+$\ell_\delta\coloneqq\min\bigl(\ell_*,\ \tau_2\delta/(2(2\tau+\delta))\bigr)$.
+By Lemma~\ref{lem:shape}(b),
+$Y_\delta\coloneqq P_2\cap\{\tau+\delta/2<t_{23}<\tau+\delta,\ \ell_\delta/2<t_{12}<\ell_\delta\}$
+lies in the debt of $C$. By Lemma~\ref{lem:shape}(c), the silence of $C$
+contains a non-null $Y_\delta'\subseteq P_3\cap\{\tau-\delta<t_{23}<\tau\}$.
+For $Y_y\subseteq Y_\delta$ and $Y'\subseteq Y_\delta'$ with $u$-mass $y$,
+\[
+ c_2(Y_y)-c_2(Y')\le\gamma_\delta y,\quad
+ \gamma_\delta\coloneqq F(\tau+\delta)-F(\tau-\delta),\qquad
+ c_2(Y_y)\ge F(\tau)y .
+\]
+Choose $B\subseteq P_1\cap\{t_{12}<\ell_\delta/2,\ t_{13}<1\}$ with
+$c_3(B)=2s$, and put $y\coloneqq2c_2(B)/F(\tau)$. Then
+$c_2(B)\le2s/\rho_0$, $c_2(Y_y)\ge2c_2(B)>c_2(B)$, and
+\[
+ c_2(D')\le(1+\eta)(\gamma_\delta+\eta)\,y
+ \le\frac{4(1+\eta)(\gamma_\delta+\eta)}{\rho_0F(\tau)}\,s .
+\]
+This tends to $0$ relative to $s$ as $\delta,\eta\to0$, by continuity of $F$
+at $\tau$.
+
+In both cases all masses are proportional to $s$, so they fit once $s$ is
+small. Lemma~\ref{lem:ratio} applies. The mirror statements follow by
+exchanging worlds $2$ and $3$.
+\end{proof}
+
+For payoff-proportional penalties on $P_1$, say $c_k=\lambda_k|g_k|$ there,
+$\rho=(\lambda_3/\lambda_2)\,t_{12}/t_{13}$, so condition (a) holds.
+
+\begin{theorem}\label{thm:rho}
+Under (SH), if $\rho$ is a.e.\ constant on $P_1$, then $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Let $C$ be a good base. Fix $\ell<\tau_2$ and non-null
+$Y\subseteq\{C=o_2\}\cap P_2\cap\{t_{12}\ge\ell\}$. Fix non-null $Y_0'$ inside
+the silence of $C$ on $P_3\cap\{t_{23}>\tau/2\}$, and put
+$\lambda\coloneqq F(\tau/2)/d\in(0,1]$. Choose $\theta_0$ and $T$ large so
+that $M_0\coloneqq$ (silence of $C$ on $P_1$)$\,\cap\{t_{12}<T,\ t_{13}<\theta_0\}$
+is non-null. Put
+$R_Q\coloneqq P_1\cap\{t_{12}<\ell,\ \theta_0<t_{13}<\theta_0+1\}$ and $b'\coloneqq\theta_0+2$,
+and take non-null $S\subseteq P_3\cap\{t_{23}>\tau\}\cap\{t_{13}\ge b'\}$.
+Pick $\epsilon>0$ with
+$\varphi\coloneqq(1+\epsilon)[(1-\lambda)(1+\epsilon)+\epsilon]<1$.
+
+\emph{Start.} Take $Q_0\subseteq R_Q$ with $c_2(Q_0)=x_0$ small, and shrink
+$S$ so that $u(S)<c_3(Q_0)=\rho x_0$. Then
+$V\preceq_1Z_0\coloneqq V+o_{23}(Q_0)+o_{12}(S)$, by competitiveness of $V$.
+
+\emph{Round $k$}, from $Z_k=V+o_{12}(S)+o_{23}(Q_k)$ with $Q_k\subseteq R_Q$
+and $c_2(Q_k)=x_k$:
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item Base $E_2(\ell)$: move $Q_k\to Y_k\subseteq Y$ (debt), with
+$c_2(Y_k)=(1+\epsilon)x_k$, so $\Delta L_2=-\epsilon x_k$.
+\item Base $C$: $Y_k\colon o_2\to0$; $Y_k'\subseteq Y_0'\colon0\to o_{12}$ with
+$u(Y_k')=u(Y_k)$; $M_k'\subseteq M_0\colon0\to o_{23}$ with
+$c_2(M_k')=\mu_k\coloneqq(c_2(Y_k)-c_2(Y_k'))^++\epsilon x_k$. Since
+$c_2(Y_k')\ge\lambda c_2(Y_k)$, $\mu_k\le[(1-\lambda)(1+\epsilon)+\epsilon]x_k$.
+Also $\Delta L_2\le-\epsilon x_k$ and $\Delta L_3=-c_3(M_k')<0$.
+\item By (G): $Y_k'\colon o_{12}\to0$.
+\item Base $E_3(\theta_0)$, which has debt on $P_1\cap\{t_{13}<\theta_0\}$ and
+is silent on $P_1\cap\{t_{13}>\theta_0\}$. Move $M_k'\to Q_{k+1}\subseteq R_Q$
+(debt), with $c_3(Q_{k+1})=(1+\epsilon)c_3(M_k')$, so $\Delta L_3<0$. Since
+$\rho$ is constant, $x_{k+1}=(1+\epsilon)\mu_k\le\varphi x_k$.
+\end{enumerate}
+Every auxiliary set is silent again at the end of each round, so the same
+sets serve in every round, and masses only decrease.
+
+After $K$ rounds, $V\preceq_1Z_K$ with $x_K\le\varphi^Kx_0$. Given $n$, choose
+$K$ with $x_K<c_2(Z_n)/2$, where
+$Z_n\coloneqq\mathrm{Band}_n\cap P_1\cap\{t_{12}\ge\ell\}$. One more
+$E_2(\ell)$ step moves $Q_K$ into $D\subseteq Z_n$ with $x_K<c_2(D)$, and (G)
+adds the rest of $\mathrm{debt}(\mathrm{Band}_n)$. This gives (TB$_n$) for
+every $n$, contrary to Lemma~\ref{lem:closing}.
+\end{proof}
+
+\section{What remains}\label{sec:open}
+
+\paragraph{The case of one non-additive world.} Combining
+Theorems~\ref{thm:flat}, \ref{thm:U} and~\ref{thm:rho}: under (SH), a ranking
+with $V$ undominated would need all of the following.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $F$ is not a.e.\ constant on any $(0,\epsilon)$, and $G$ on no
+$(T_0,\infty)$. $\rho$ is not a.e.\ constant on $P_1$.
+\item $\rho$ is essentially bounded on $P_1\cap\{t_{12}<\ell\}$, and $1/\rho$
+on $P_1\cap\{t_{13}<\ell\}$, for some $\ell>0$.
+\item For every $\epsilon$: $F$ is discontinuous somewhere in $(0,\epsilon)$,
+or $\rho$ has essential infimum $0$ on $P_1\cap\{t_{12}<\ell,\ t_{13}<1\}$ for
+every $\ell$. The mirror condition holds for $G$ and $1/\rho$.
+\end{itemize}
+In the remaining configuration the swaps through a good base used above cost
+at least the jump of $F$ at the base's threshold, and the chains above do not
+close. Whether this residual case is consistent is open. Closing it seems to
+require either a good base whose threshold $\tau$ is a continuity point of $F$
+(Proposition~\ref{prop:good} only shows that thresholds can be taken
+arbitrarily small), or a new way of destroying debt.
+
+\paragraph{The general conjecture.} Still open. When worlds $2,3$ are not
+additive, Lemma~\ref{lem:chain} still applies. Every step of
+Section~\ref{sec:two} that needs additivity at worlds $2,3$ is a balancing
+argument: finding sets whose effects at worlds $2,3$ have prescribed signs.
+Theorem~\ref{thm:pathclosed} shows that path-closedness of the rankings at
+worlds $2,3$ suffices for the first step. Whether (S), (G) and (IB) imply it
+is the open question. A counterexample to the conjecture would need, at
+worlds $2$ or $3$, comparisons in which arbitrarily small debt sets outweigh a
+fixed credit set (thin-band priorities). These are invisible to every
+additive or finitely additive primary.
+
+\begin{thebibliography}{9}
+\bibitem{BPR} P.~Berti, L.~Pratelli and P.~Rigo, Two versions of the
+fundamental theorem of asset pricing, \emph{Electronic Journal of
+Probability} 20 (2015). doi:10.1214/EJP.v20-3321.
+\bibitem{Rokhlin} D.~B. Rokhlin, The Kreps--Yan theorem for $L^\infty$,
+\emph{International Journal of Mathematics and Mathematical Sciences}
+2005(17), 2749--2756. doi:10.1155/IJMMS.2005.2749.
+\end{thebibliography}
+\end{document}

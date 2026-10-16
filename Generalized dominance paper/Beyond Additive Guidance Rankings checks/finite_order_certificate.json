@@ -1,0 +1,30 @@
+{
+  "ordered_subset_pairs_verified": 4096,
+  "rank_profiles_verified": 4096,
+  "short_certificate": [
+    [
+      37,
+      2
+    ],
+    [
+      34,
+      13
+    ],
+    [
+      6,
+      48
+    ],
+    [
+      25,
+      38
+    ]
+  ],
+  "sum_difference": [
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

@@ -1,0 +1,10 @@
+(K) competitiveness at interior cut              tests   1500  failures 0
+generator accepted at world 1                    tests     40  failures 0
+mirrored generator accepted at world 2           tests     40  failures 0
+no weak domination of C_b                        tests   1500  failures 0
+strict (G) (w2)                                  tests    600  failures 0
+strict (G): nonzero delta<=0 rejected (w1)       tests    600  failures 0
+transitivity w1                                  tests    129  failures 0
+transitivity w2                                  tests    399  failures 0
+world-1 section is an initial segment            tests     40  failures 0
+world-2 section is a final segment               tests     40  failures 0

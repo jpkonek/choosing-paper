@@ -1,0 +1,422 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\one}{\mathbf 1}
+\title{Finitely Additive Edge Dichotomy}
+\author{}\date{10 October 2026}
+\begin{document}\maketitle
+
+\noindent
+The finitely additive extension of the edge dichotomy suggested after
+\emph{Edge Dichotomy and Leverage} (EDL) holds without an extra assumption
+about splitting charges. It holds in every dimension, not just two.
+The decisive observation is elementary: a finite nonnegative charge gives
+arbitrarily small weight to \emph{some} positive-measure subset of any
+positive-measure region. This is enough for continuity along an edge.
+
+The resulting theorem says that a finitely additive primary is either
+completely blind on mixed problems or has strictly positive \emph{ordinary}
+increments there. Its purely finitely additive part need not vanish.
+Consequently lexicographic hierarchies of finitely additive criteria cannot
+give full coverage. We also extend EDL's two-additive-world theorem to
+finitely additive one-sided extensions.
+
+These results do not settle whether (G), (IB), and (S) exclude leverage
+sequences for arbitrary rankings. None of the new arguments uses (IB).
+
+\section{Setting}
+
+There are $n\ge2$ worlds and $\Delta=\{p\ge0:\sum_i p_i=1\}$.
+Binary problems are represented by $g\in H=\{g_1>0\}$, with normalized
+Gaussian measure $\mu$. Coordinate hyperplanes are ignored. A model gives
+one of four kinds of advice at each problem: recommend the better option,
+remain silent, recommend the worse option, or reject both options. Their
+ranks at world $i$ are $r_i=0,1,2,3$, respectively.
+
+Models are measurable and identified modulo null sets. A model is
+\emph{regular} if it never gives contradictory advice and is correct on
+unanimous problems. Let $H'$ be the mixed problems. Every coherent model is
+regular and has, up to a null set, the form
+\[
+ \Dscr_M=\{g:\underline{P_M}(g)>0\}\cup\{g\ge0:g\ne0\},
+ \qquad \underline{P_M}(g)=\min_{m\in M}m\cdot g,
+\]
+for a nonempty compact convex $M\subseteq\Delta$. The ideal at $i$ is
+$D_i=\{g:g_i>0\}$; the vacuous model is $V=\Dscr_\Delta$.
+
+At each world $\preceq_i$ is a preorder; smaller means better.
+\textbf{(G)} preserves pointwise improvement in guidance and makes it strict
+when it occurs on a positive-measure set. \textbf{(S)} supplies coherent
+undominated $C_p$, competitive on $\supp p$, with every section
+\[
+ A_i(X)=\{p:C_p\preceq_iX\}
+\]
+closed. Competitive means that against every measurable model $X$ there is
+some supported $i$ with $C_p\preceq_iX$. Rankings need not be complete.
+
+A \emph{regular primary} at $i$ is a real function $\Phi$ on regular models
+such that $\Phi(X)<\Phi(Y)$ implies $X\prec_iY$. It follows that
+$X\preceq_iY$ implies $\Phi(X)\le\Phi(Y)$ for regular $X,Y$.
+We consider finitely additive primaries of the form
+\begin{equation}
+ \Phi(X)=a+\nu_1\{g\in H':r_i(g,X)\ge1\}
+             +\nu_2\{g\in H':r_i(g,X)\ge2\},
+ \label{eq:primary}
+\end{equation}
+where the $\nu_k$ are finite nonnegative finitely additive measures,
+vanishing on $\mu$-null sets. They may vanish on positive-measure sets too.
+The constant $a$ has no effect on comparisons.
+
+We will use one consequence of coherence and competitiveness. On an edge
+$[e_i,e_j]$, the credal set of $C_p$ lies on that edge. Otherwise an option
+positive at both supported worlds, but sufficiently negative at an
+unsupported world, would allow a strict guidance improvement at both
+supported worlds. This contradicts competitiveness. In particular
+$C_{e_i}=D_i$ and $C_{e_j}=D_j$.
+
+Put $D_{ij}=\{g\in H':g_ig_j<0\}$ and $t=|g_i|/|g_j|$ on this set.
+The edge credal set is an interval
+$\{s e_i+(1-s)e_j:s\in[a_p,b_p]\}$. Set
+$\alpha=(1-a_p)/a_p$ and $\beta=(1-b_p)/b_p$, allowing $0,\infty$.
+Then $0\le\beta\le\alpha\le\infty$. At world $i$, $C_p$ is good for
+$t>\alpha$, silent for $\beta<t<\alpha$, and bad for $t<\beta$.
+Off $D_{ij}$ it is good at both $i$ and $j$.
+Every finite level set of $t$ is null, and the distribution of $t$ on
+$D_{ij}$ has a positive density on $(0,\infty)$.
+
+\section{Finite additivity is enough for edge continuity}
+
+\begin{lemma}[A cheap change always exists]\label{lem:cheap}
+Let $\nu$ be a finite nonnegative finitely additive measure. If $\mu(Q)>0$
+and $\epsilon>0$, there is $B\subseteq Q$ with $\mu(B)>0$ and
+$\nu(B)<\epsilon$.
+\end{lemma}
+\begin{proof}
+Partition $Q$ into $N$ positive-$\mu$-measure pieces, where
+$N>\nu(Q)/\epsilon$. Finite additivity gives at least one piece with
+charge at most $\nu(Q)/N<\epsilon$.
+\end{proof}
+
+This does not assert that every small-measure set has small charge, or
+that a charge can be split into prescribed fractions. Neither assertion
+is needed. We only need one cheap place to make a strict guidance change.
+
+\begin{lemma}\label{lem:continuity}
+Assume (G) and (S). If \eqref{eq:primary} is a regular primary at $i$, then
+$f(p)=\Phi(C_p)$ is continuous on every edge $[e_i,e_j]$.
+\end{lemma}
+\begin{proof}
+The ideal $D_i$ minimizes $\Phi$ on regular models. Among coherent edge
+models, $D_j$ maximizes it, by the pointwise guidance order at $i$.
+
+Suppose $p_m\to p$ on the edge and $f(p_m)\le f(p)-\epsilon$.
+Then $C_p\ne D_i$. On a positive-measure subset of $D_{ij}$ its advice
+can be strictly improved at $i$. Lemma~\ref{lem:cheap}, applied to
+$\nu_1+\nu_2$, supplies such a subset on which the change has primary
+cost less than $\epsilon$. The resulting regular $E$ satisfies
+\[
+ E\prec_i C_p,\qquad f(p)-\epsilon<\Phi(E)\le f(p).
+\]
+Thus $C_{p_m}\prec_i E$ for every $m$. Closedness of $A_i(E)$ gives
+$C_p\preceq_i E$, a contradiction. The argument includes changes of
+zero primary cost.
+
+Conversely, suppose $f(p_m)\ge f(p)+\epsilon$. Then $C_p\ne D_j$.
+Make a strict guidance improvement at $j$ on a positive-measure subset
+of $D_{ij}$ whose $(\nu_1+\nu_2)$-charge is less than $\epsilon$.
+The resulting regular $F$ satisfies
+\[
+ F\prec_j C_p,\qquad \Phi(F)<f(p)+\epsilon.
+\]
+Consequently $C_{p_m}\not\preceq_i F$. Competitiveness on the edge gives
+$C_{p_m}\preceq_j F$, and closedness gives $C_p\preceq_j F$, again a
+contradiction.
+\end{proof}
+
+\section{The strict-or-blind alternative}
+
+Decompose the increments into ordinary and purely finitely additive parts:
+\begin{equation}
+ \nu_1=c\mu+\pi_1,\qquad \nu_2=d\mu+\pi_2,\qquad c,d\ge0.
+ \label{eq:split}
+\end{equation}
+Here $c,d$ are integrable. The Yosida--Hewitt decomposition supplies such a
+decomposition and concentrating sets $Z_m$ with $\mu(Z_m)\to0$ and
+$\pi_k(H'\setminus Z_m)=0$ \cite[Theorem 1 and its proof]{PP}.
+In particular, if $c=0$ on a positive-measure set $Q$, then some
+positive-measure $B\subseteq Q$ has $\nu_1(B)=0$: take
+$B=Q\setminus Z_m$ for sufficiently large $m$. The corresponding statement
+holds for $d$ and $\nu_2$.
+
+\begin{theorem}[Finitely additive edge dichotomy]\label{thm:dichotomy}
+Assume (G) and (S), and let \eqref{eq:primary} be a regular primary at $i$.
+For every $j\ne i$, exactly one alternative holds:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item $c>0$ and $d>0$ almost everywhere on $D_{ij}$;
+\item $\nu_1(D_{ij})=\nu_2(D_{ij})=0$.
+\end{enumerate}
+If $n\ge3$, the alternatives agree for all $j\ne i$. Thus either the
+ordinary parts of both increments are strictly positive a.e. on $H'$, or
+the entire primary is constant on regular models.
+\end{theorem}
+\begin{proof}
+Fix $j$. Write $m_0=\Phi(D_i)$ and
+\[
+ J(x)=(\nu_1+\nu_2)(D_{ij}\cap\{t<x\}),\qquad 0\le x\le\infty.
+\]
+For a selected edge model with thresholds $\alpha\ge\beta$,
+\begin{equation}
+ f(p)=m_0+\nu_1(D_{ij}\cap\{t<\alpha\})
+             +\nu_2(D_{ij}\cap\{t<\beta\}),\qquad
+ m_0+J(\beta)\le f(p)\le m_0+J(\alpha).
+ \label{eq:bounds}
+\end{equation}
+By Lemma~\ref{lem:continuity}, $f$ takes every value in
+$[m_0,m_0+J(\infty)]$ on the edge. No continuity of $J$ is assumed.
+
+\emph{Invisible changes force local extrema.}
+If $E\prec_i C_p$ is regular and $\Phi(E)=f(p)$, then closedness excludes
+$C_q\preceq_i E$ near $p$. The primary property gives $f(q)\ge f(p)$:
+$p$ is a local minimum. If instead $F\prec_j C_p$ and $\Phi(F)=f(p)$,
+closedness excludes $C_q\preceq_j F$ near $p$ on the edge.
+Competitiveness gives $C_q\preceq_i F$, so $f(q)\le f(p)$:
+$p$ is a local maximum on the edge.
+
+Apply the zero-charge observation following \eqref{eq:split} to make these
+changes wherever the relevant density vanishes. This gives four sufficient
+conditions:
+\begin{center}
+\begin{tabular}{ccl}
+Density zero on a non-null set & Location & Consequence\\[2pt]
+$c=0$ & $\beta<t<\alpha$ & local minimum: silence to $i$-good\\
+$d=0$ & $t<\beta$ & local minimum: $i$-bad to silence\\
+$c=0$ & $t>\alpha$ & local maximum: $j$-bad to silence\\
+$d=0$ & $\beta<t<\alpha$ & local maximum: silence to $j$-good
+\end{tabular}
+\end{center}
+All sets in this table are restricted to $D_{ij}$.
+The values at local minima of a real function on a second-countable space
+form a countable set: assign to each value a basic neighbourhood on which
+it is the infimum. Distinct values require distinct neighbourhoods.
+The same argument applies to local maxima. Thus the values accounted for
+by the table form a countable set.
+
+\emph{Every other value lies between two fixed thresholds.}
+Call a selected point free if none of the four conditions applies. Put
+\[
+ U=\inf\{x:\mu(D_{ij}\cap\{c=0\}\cap\{t>x\})=0\},
+ \qquad
+ L=\sup\{x:\mu(D_{ij}\cap\{d=0\}\cap\{t<x\})=0\},
+\]
+where $x\in[0,\infty]$. Continuity of the ordinary measure $\mu$ gives
+\begin{equation}
+ c>0\ \text{a.e. on }D_{ij}\cap\{t>U\},\qquad
+ d>0\ \text{a.e. on }D_{ij}\cap\{t<L\}.
+ \label{eq:positive-tails}
+\end{equation}
+At a free point, the table and the nullity of threshold level sets give
+$U\le\beta\le\alpha\le L$. Its value therefore lies in
+$[m_0+J(U),m_0+J(L)]$.
+
+If there are no free points, the entire interval of values is countable,
+so $J(\infty)=0$, giving (b). Otherwise $U\le L$, and every value in
+\[
+ [m_0,m_0+J(U))\ \cup\ (m_0+J(L),m_0+J(\infty)]
+\]
+is a local-extremum value. Both intervals must be empty. Hence
+\begin{equation}
+ J(U)=0,\qquad J(L)=J(\infty).
+ \label{eq:tails-zero}
+\end{equation}
+Both charges, and therefore both densities, vanish on the tails $t<U$
+and $t>L$. This uses only finite additivity and the fact that $\{t=L\}$
+is null when $L$ is finite.
+
+If $U>0$ and $L>0$, the region $0<t<\min(U,L)$ has positive measure.
+There $d=0$ by \eqref{eq:tails-zero}, but $d>0$ by
+\eqref{eq:positive-tails}, a contradiction. If $L=0$, then
+$J(\infty)=J(0)=0$, giving (b). In the remaining case $U=0$,
+\eqref{eq:positive-tails} gives $c>0$ a.e. throughout $D_{ij}$.
+Then \eqref{eq:tails-zero} forces $L=\infty$, and
+\eqref{eq:positive-tails} gives $d>0$ a.e. too. This is (a).
+
+For $n\ge3$, the regions $D_{ij}$ cover $H'$ and any two with fixed $i$
+overlap on a positive-measure set. The strict and blind alternatives cannot
+hold on overlapping regions. If they are all blind, finite subadditivity
+gives $\nu_1(H')=\nu_2(H')=0$.
+\end{proof}
+
+\begin{remark}
+The strict alternative does not remove the purely finitely additive parts.
+CBOI's Proposition 5 supplies a primary with strictly positive ordinary
+increments and nonzero pure increments, satisfying (S) but having no ordinary
+additive weak extension. Accordingly, $\Phi$ itself supplies a finitely
+additive weak extension; its ordinary part need not supply a weak extension.
+\end{remark}
+
+\section{Lexicographic hierarchies of any length}
+
+The obstruction from CBOI, strengthened by EDL's Proposition 1, says:
+if each world's comparisons from coherent undominated models to regular
+models have a strictly guidance-respecting finitely additive weak extension,
+then, for $n\ge3$, every target containing three simplex vertices is
+dominated by a coherent model. We apply that result here.
+
+There is also a local conclusion. At any world with a leverage sequence,
+every finitely additive regular primary must be constant on regular models.
+Indeed, a nonconstant primary is strict by Theorem~\ref{thm:dichotomy}
+(also when $n=2$, where $H'=D_{12}$). Its increments give a strictly
+positive finitely additive extension, contradicting EDL's exact leverage
+test. Thus such a world cannot even retain a nontrivial finitely additive
+criterion as an overriding priority.
+
+\begin{corollary}\label{cor:lex}
+Let $n\ge3$, and assume (G), (LA), and (S). At each world suppose the ranking
+on regular models respects a lexicographic hierarchy of criteria of the
+form \eqref{eq:primary}, and at least one criterion is nonconstant there.
+The hierarchy may be of any length, provided every unequal pair of criterion
+vectors has a first differing index. Then every $\Dscr_M$ whose credal set
+contains three simplex vertices is dominated by a coherent model.
+\end{corollary}
+\begin{proof}
+At world $i$, let $W_i$ be the regular model that gives bad advice at $i$
+on every mixed problem. Compare its criterion vector with that of $D_i$.
+Exactly the nonconstant criteria distinguish this pair, because their
+increments are nonnegative. Thus the first differing index is the first
+nonconstant criterion, even if the index order is not well ordered.
+
+All preceding criteria are constant on regular models. The first
+nonconstant criterion is therefore a regular primary. By
+Theorem~\ref{thm:dichotomy}, both its ordinary increments are positive
+a.e. on $H'$. Its finitely additive increments are consequently strictly
+positive on every positive-measure subset of $H'$.
+Extending the increments positively on unanimous problems, and adding a
+positive contradiction increment, gives a strictly guidance-respecting
+finitely additive weak extension on regular models. Apply the stated
+obstruction at all worlds.
+\end{proof}
+
+This includes finite, countable, and transfinite well-ordered hierarchies.
+If the hierarchy itself determines all comparisons, strict (G) ensures
+that it is nonconstant at every world. If arbitrary extra tie-breaking is
+allowed, a world at which all criteria are constant merely delegates the
+entire problem to that extra rule.
+
+\section{Two finitely additive worlds and one unrestricted world}
+
+EDL's Theorem 8 also extends, but its conclusion must be expressed using
+the ordinary parts of the two finitely additive losses. We do not assert
+that those ordinary parts weakly extend the original comparisons.
+
+\begin{proposition}\label{prop:two-worlds}
+Let $n=3$, assume (G), (LA), and (S), and suppose $V$ is undominated.
+At worlds $2,3$, suppose the comparisons from coherent undominated models
+to regular models have strictly guidance-respecting finitely additive weak
+extensions $L_2,L_3$. Write $L_k=L_k^c+L_k^s$ for their ordinary and pure
+parts, and let $c_k,b_k$ be the silence and bad penalties of $L_k^c$.
+There is $\kappa^*\in(0,\infty)$ such that, on problems oriented with
+$g_2>0>g_3$,
+\[
+ \frac{c_2}{b_2}+\frac{c_3}{b_3}\le1,\qquad
+ c_2\le\kappa^*(b_3-c_3),\qquad
+ \kappa^*c_3\le b_2-c_2
+ \quad\text{a.e.}
+\]
+Thus silence minimizes ordinary expected loss at weights $(1,\kappa^*)$
+on every $(2,3)$-mixed problem. World $1$ needs no numerical representation.
+\end{proposition}
+\begin{proof}
+Strict positivity of each finitely additive increment implies that its
+ordinary density is positive a.e. Indeed, on a positive-measure set where
+the density vanished, removing a sufficiently small concentrating set for
+the pure part would leave a positive-measure set of zero total charge.
+Thus $L_2^c,L_3^c$ have strictly ordered local penalties.
+
+The proof of EDL's Theorem 8 needs two ingredients. We establish both for
+$L^c$, using common concentrating sets $Z_m$ for the pure parts, with
+$\mu(Z_m)\to0$.
+
+\emph{Coherent ordinary Bayes models on the edge.} Fix $\kappa>0$.
+Let $B$ minimize $L_2^c+\kappa L_3^c$ pointwise, with minimum $a$.
+Let regular $E_m$ approach the infimum $b$ of $L_2^s+\kappa L_3^s$.
+Splice $E_m$ on $Z_m$ with $B$ elsewhere to obtain regular $X_m$.
+Then $(L_2+\kappa L_3)(X_m)\to a+b$.
+
+The closed sets $A_2(X_m)$ and $A_3(X_m)$ cover the connected edge
+$[e_2,e_3]$ and contain its respective endpoints. They intersect, giving
+a selected $C_m$ weakly better than $X_m$ at both worlds. The one-sided
+extension inequalities imply
+\[
+ a\le(L_2^c+\kappa L_3^c)(C_m)
+ \le(L_2+\kappa L_3)(X_m)-b\longrightarrow a.
+\]
+The edge credal intervals have a Hausdorff-convergent subsequence; their
+advice converges a.e. to the limiting coherent edge model, since boundary
+hyperplanes are null. Ordinary integral losses converge too. The limit
+is a coherent Bayes model for $L_2^c+\kappa L_3^c$.
+
+\emph{No trade improving world 1 and both ordinary losses.}
+Let regular $X$ agree with $V$ except for recommending an option positive
+at world $1$ on a positive-measure set of mixed problems. Suppose both
+$L_2^c(X)<L_2^c(V)$ and $L_3^c(X)<L_3^c(V)$.
+Replace $X$ by $V$ on $Z_m$, obtaining $Y_m$. For large $m$, a
+positive-measure part of the recommendation remains, so $Y_m\prec_1V$
+by (G). Meanwhile
+\[
+ L_k(Y_m)-L_k(V)
+   =L_k^c(Y_m)-L_k^c(V)
+   \longrightarrow L_k^c(X)-L_k^c(V)<0,\qquad k=2,3.
+\]
+The undominated $V$ is competitive on some support by the simplex lemma,
+and hence on all three worlds. It cannot satisfy $V\preceq_1Y_m$; the
+one-sided extension inequalities rule out $V\preceq_kY_m$ for $k=2,3$.
+This is a contradiction.
+
+These are precisely Steps 1 and 3 needed in EDL's proof, with $L^c$ in
+place of $L$. Steps 2 and 4--6 then use only the ordinary penalties and
+atomless splitting: the two Bayes thresholds are monotone functions of
+$g_2/(-g_3)$, and the no-trade condition separates the cross-world ratios.
+They give the three displayed inequalities. No extension property of
+$L^c$ has been used.
+\end{proof}
+
+Consequently EDL's Corollary 9 applies to the contrasts of these ordinary
+parts. For every finite sign-preserving world-$1$ contrast $\psi_1$, some
+prior with $p_1>0$ admits no coherent contrast completion. This follows by
+the same three-world compatibility argument as in that corollary.
+
+\section{What is still missing}
+
+EDL's leverage test is an exact test for a one-sided finitely additive
+extension. Its use of Rokhlin's norm-topology Kreps--Yan theorem is valid.
+The weak-star variant supplies the corresponding test for ordinary
+extensions. These tests should not be confused with the stronger question
+of constructing a ranking satisfying all the axioms and leaving $V$
+undominated: a ranking with leverage alone need not do that.
+
+The present results settle the proposed finitely additive edge sub-question
+and rule out lexicographic finitely additive hierarchies of arbitrary length.
+They also extend the two-additive-world reduction. They do not show that
+an arbitrary independent ranking admits any such hierarchy or any additive
+primary. That representation step remains unproved. In particular, the
+argument does not exclude leverage sequences for genuinely non-additive
+incomplete rankings.
+
+\begin{thebibliography}{9}
+\bibitem{PP} T.~Pennanen and A.-P.~Perkki\"o,
+Topological duals of locally convex function spaces,
+\emph{Positivity} 26, article 2 (2022), Theorem 1.
+\href{https://doi.org/10.1007/s11117-022-00867-4}{doi:10.1007/s11117-022-00867-4}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,488 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\dH}{d_{\mathrm H}}
+\newcommand{\lo}{\underline P}
+\newcommand{\hi}{\overline P}
+\title{Full Coverage by Homothetic Credal Families}
+\author{}
+\date{8 October 2026}
+\begin{document}
+\maketitle
+
+\noindent
+Every finite-dimensional credal set belongs to a continuous family satisfying
+face support and compatibility of covers. This includes the vacuous set and
+all other vertex-containing credal sets. Combined with the ordinal refinement
+of \cite{OR}, the construction gives rankings on all measurable models which
+strictly respect background error inclusion and collectively satisfy
+\textbf{(E)}, \textbf{(LA)}, \textbf{(A)}, and \textbf{(S)}. With coherence
+understood modulo null sets, they also satisfy \textbf{(C)}.
+
+The observation is that common covers order both endpoints of a marginal
+probability interval. Indexing by a fixed weighted average of those endpoints
+therefore suffices. Upper probabilities alone need not order the indices.
+
+\section{Common covers order both endpoints}
+
+Fix $n\ge2$, $\Delta=\{p\in\R^n:p\ge0,\ \sum_i p_i=1\}$, and any
+finite probability measure $\mu$ equivalent to Lebesgue measure. All inclusions
+and equalities between models below are understood modulo null sets where
+indicated. Models are all Lebesgue-measurable subsets of $\R^n$.
+
+For a nonempty closed convex $K\subseteq\Delta$, put
+\[
+ \varphi_K(g)=\min_{m\in K}m\cdot g,\qquad
+ D_K=\{g:\varphi_K(g)>0\}\cup\{g:g\ge0,\ g\ne0\},
+\]
+and define the marginal endpoints
+\[
+ \lo_K(i)=\min_{m\in K}m_i,\qquad
+ \hi_K(i)=\max_{m\in K}m_i.
+\]
+Let $G_i=\{g:g_i>0\}$, $E_i(X)=X\sd G_i$, and
+\[
+ X\le_iY\quad\Longleftrightarrow\quad
+ E_i(X)\subseteq E_i(Y)\text{ a.e.}
+\]
+Its strict part is $<_i$. Let $W_{ij}=\{g:g_i>0\ge g_j\}$ for $i\ne j$.
+
+\begin{lemma}\label{lem:endpoints}
+Suppose $i\ne j$, $X\le_iD_K$, and $X\le_jD_H$. Then
+\[
+ \lo_K(i)\le\lo_H(i),\qquad
+ \hi_K(i)\le\hi_H(i).
+ \tag{1}\label{eq:endpoints}
+\]
+\end{lemma}
+\begin{proof}
+On $W_{ij}$, the two background comparisons give
+\[
+ D_K\cap W_{ij}\subseteq X\cap W_{ij}\subseteq D_H\cap W_{ij}
+ \quad\text{a.e.}
+\]
+Exchanging $i$ and $j$ gives $D_H\cap W_{ji}\subseteq D_K$ a.e.
+
+If $\lo_K(i)>\lo_H(i)$, choose $t$ strictly between them. Then $0<t<1$,
+and $g=e_i-t\one$ satisfies
+\[
+ g_i>0>g_j,\qquad
+ \varphi_K(g)=\lo_K(i)-t>0>\lo_H(i)-t=\varphi_H(g).
+\]
+The strict inequalities persist on an open neighbourhood, contradicting
+$D_K\cap W_{ij}\subseteq D_H$ a.e.
+
+If $\hi_K(i)>\hi_H(i)$, choose $t$ strictly between them. Now
+$g=t\one-e_i$ satisfies
+\[
+ g_j>0>g_i,\qquad
+ \varphi_H(g)=t-\hi_H(i)>0>t-\hi_K(i)=\varphi_K(g).
+\]
+Again an open neighbourhood contradicts $D_H\cap W_{ji}\subseteq D_K$ a.e.
+\end{proof}
+
+\begin{corollary}\label{cor:cc}
+Suppose a family $p\mapsto K_p$ satisfies, for some fixed $0<\lambda<1$,
+\[
+ (1-\lambda)\lo_{K_p}(i)+\lambda\hi_{K_p}(i)=p_i
+ \quad\text{for every }p,i.
+ \tag{2}\label{eq:index}
+\]
+Then it satisfies compatibility of covers:
+\[
+ X\le_iD_{K_p},\quad X\le_jD_{K_q},\quad i\ne j
+ \quad\Longrightarrow\quad p_i\le q_i.
+ \tag{CC}\label{eq:cc}
+\]
+\end{corollary}
+\begin{proof}
+Take the weighted average in \eqref{eq:endpoints}.
+\end{proof}
+
+\section{A family through an arbitrary target}
+
+Let $M\subseteq\Delta$ be any nonempty closed convex set. Put
+\[
+ \ell_i=\lo_M(i),\qquad u_i=\hi_M(i),\qquad
+ L=\sum_i\ell_i,\qquad U=\sum_i u_i.
+\]
+If $M$ is not a singleton, then $L<1<U$: equality in either bound would
+force every member of $M$ to equal the same endpoint vector. Define
+\[
+ \lambda=\frac{1-L}{U-L},\qquad
+ r=(1-\lambda)\ell+\lambda u,
+ \qquad d=r-\ell=\lambda(u-\ell).
+ \tag{3}\label{eq:anchor}
+\]
+Then $0<\lambda<1$ and $r\in\Delta$. If $M=\{m\}$, instead take
+$\lambda=1/2$, $r=m$, and $d=0$. The anchor $r$ need not belong to $M$;
+only $r\in\Delta$ is needed.
+
+For $p\in\Delta$, set
+\[
+ \theta(p)=\min\left\{1,\ \min_{i:d_i>0}\frac{p_i}{d_i}\right\},
+ \qquad
+ \boxed{\quad K_p=p+\theta(p)(M-r).\quad}
+ \tag{4}\label{eq:family}
+\]
+The minimum over an empty set is $+\infty$, so for singleton targets
+$\theta\equiv1$ and $K_p=\{p\}$.
+
+\begin{theorem}[Full family coverage]\label{thm:family}
+For every target $M$, the family \eqref{eq:family} has the following properties.
+\begin{enumerate}[label=(\alph*)]
+\item Each $K_p$ is a nonempty closed convex subset of $\Delta$, and $K_r=M$.
+\item The endpoint identity \eqref{eq:index} holds. Hence (CC) holds.
+\item $K_p\subseteq\Delta_{\supp p}$ for every $p$.
+\item $p\mapsto K_p$ is Hausdorff-Lipschitz. In particular
+$\mu(D_{K_p}\sd D_{K_q})\to0$ as $q\to p$.
+\end{enumerate}
+No interiority or vertex exclusion assumption on $M$ is required.
+\end{theorem}
+\begin{proof}
+An affine image of the compact convex set $M$ is nonempty, compact and convex.
+Every point of $K_p$ has coordinate sum one, and its minimum $i$th coordinate is
+\[
+ \lo_{K_p}(i)=p_i+\theta(p)(\ell_i-r_i)
+             =p_i-\theta(p)d_i\ge0.
+ \tag{5}\label{eq:lower}
+\]
+Thus $K_p\subseteq\Delta$. Since $r_i=d_i+\ell_i\ge d_i$, we have
+$\theta(r)=1$, giving $K_r=M$. This proves (a).
+
+The maximum coordinate is
+\[
+ \hi_{K_p}(i)=p_i+\theta(p)(u_i-r_i)
+             =p_i+\theta(p)(1-\lambda)(u_i-\ell_i).
+ \tag{6}\label{eq:upper}
+\]
+Combining \eqref{eq:lower}, \eqref{eq:upper}, and
+$d_i=\lambda(u_i-\ell_i)$ gives \eqref{eq:index}; Corollary~\ref{cor:cc}
+proves (CC).
+
+For (c), let $p_i=0$. If $d_i>0$, then $\theta(p)=0$ and $K_p=\{p\}$.
+If $d_i=0$, then $u_i=\ell_i=r_i$, so every $m\in M$ has $m_i=r_i$ and
+every member of $K_p$ has coordinate $p_i+\theta(p)(m_i-r_i)=0$.
+
+For (d), $\theta$ is the minimum of finitely many affine functions and the
+constant one, hence Lipschitz. Pairing the images of the same $m\in M$ gives
+\[
+ \dH(K_p,K_q)
+ \le\|p-q\|_1+|\theta(p)-\theta(q)|\max_{m\in M}\|m-r\|_1
+ \le\|p-q\|_1+2|\theta(p)-\theta(q)|.
+\]
+Hausdorff convergence makes the lower expectations converge pointwise. Their
+zero sets are Lebesgue-null, since constant additivity gives exactly one zero
+on every line parallel to $\one$. Desirable sets differ from their strict
+positive regions only on null sets. Dominated convergence therefore gives the
+stated continuity in symmetric-difference measure.
+\end{proof}
+
+\begin{remark}
+The family also satisfies $\hi_{K_p}(i)\le p_i/\lambda$. For $d_i>0$ this
+follows from $\theta(p)d_i\le p_i$ and \eqref{eq:upper}; for $d_i=0$ the upper
+probability is exactly $p_i$. The ordinal refinement does not need this bound.
+\end{remark}
+
+\section{The ordinal coverage theorem}
+
+For clarity, recall the construction from \cite{OR}. For a fixed family let
+\[
+ \mathcal P_i(X)=\{p:X\le_iD_{K_p}\},\qquad
+ T(X)=\{i:\mathcal P_i(X)\ne\varnothing\},
+\]
+\[
+ a_i(X)=\max_{p\in\mathcal P_i(X)}p_i\quad(i\in T(X)),\qquad
+ s(X)=1-\sum_{i\in T(X)}a_i(X).
+\]
+The maxima exist by continuity. The ordinal refinement uses
+\[
+ b_i(X)=\inf_{Y\le_iX}\left(a_i(Y)+\frac{s(Y)}{2n}\right)
+ \quad(i\in T(X)).
+ \tag{7}\label{eq:envelope}
+\]
+For covered worlds, compare $(a_i(X),b_i(X))$ coordinatewise, with larger
+coordinates better; assign $(-1,-1)$ at uncovered worlds. Inside an equal-pair
+class use background inclusion, except that all models at a nonnegative
+degenerate pair $(t,t)$ tie. This defines preorders, generally with
+incomparabilities.
+
+Under (CC), face support and continuity, \cite[Theorem~4]{OR} proves that these
+preorders strictly respect background inclusion, that every selected model
+$D_{K_p}$ is undominated and competitive on $\supp p$, and that
+\[
+ \{p:D_{K_p}\preceq_iX\}=
+ \begin{cases}
+ \{p:p_i\ge b_i(X)\}&i\in T(X),\\
+ \Delta&i\notin T(X).
+ \end{cases}
+ \tag{8}\label{eq:sections}
+\]
+The undominated models are exactly the null modifications of family members;
+every other model is strictly dominated at every world by a family member.
+The essential compactness argument proving positivity of the envelope is given
+in full in \cite{OR}; no quantitative estimates on error measures are used.
+
+\begin{theorem}[Full ordinal coverage]\label{thm:coverage}
+Fix any finite number $n\ge2$ of worlds. There is a class $\mathfrak L$ of
+rankings, each defined on all measurable models, such that:
+\begin{enumerate}[label=(\alph*)]
+\item every ranking respects background inclusion and makes every
+positive-measure background improvement strict;
+\item $\mathfrak L$ satisfies \textbf{(E)}, \textbf{(LA)}, \textbf{(A)}, and
+\textbf{(S)} of the generalized dominance framework;
+\item with coherence understood modulo null sets, every ranking satisfies
+\textbf{(C)}; its undominated models are exactly its selected family modulo
+null sets, and every other model is strictly dominated at every world by a
+selected coherent model.
+\end{enumerate}
+In particular, every coherent desirable-gamble set, including the vacuous one,
+is undominated under at least one ranking in $\mathfrak L$.
+\end{theorem}
+\begin{proof}
+For each credal set $M$, form the family of Theorem~\ref{thm:family} and its
+ordinal refinement \eqref{eq:envelope}. Theorem~\ref{thm:family} supplies all
+three hypotheses of \cite[Theorem~4]{OR}. That theorem gives (a), (LA), (S),
+and (c). Every ranking evaluates every measurable model, so (E) holds.
+
+For (A), every coherent desirable-gamble set $D$ agrees modulo null sets with
+$D_M$ for a nonempty closed convex $M\subseteq\Delta$. Indeed, normalize the
+nonzero vectors in the dual cone of $\overline D$ to obtain $M$. The dual
+vectors are nonnegative because $D$ contains the positive orthant. Cone
+duality gives
+$\operatorname{int}\overline D=\{g:\min_{m\in M}m\cdot g>0\}$, and a
+full-dimensional convex set differs from its interior only on a null set.
+The family for this $M$ has $K_r=M$, so $D\approx D_M=D_{K_r}$ is undominated
+under its corresponding ranking. The same holds for all models coherent
+modulo null sets. Thus every coherent model belongs to some $\mathcal C_L$.
+\end{proof}
+
+\begin{remark}[Uniform target index]
+If desired, the selection can be reparametrized so that the target is selected
+at $u=\one/n$. Let
+\[
+ \gamma(p)=n\min_i p_i,\qquad
+ f(p)=(1-\gamma(p))p+\gamma(p)r.
+\]
+Then $f$ is continuous, $f(u)=r$, and $\supp f(p)\subseteq\supp p$: on the
+boundary $f(p)=p$, while an interior $p$ has full support. Under the same
+ranking, choose $u_p=D_{K_{f(p)}}$. It is competitive on $\supp p$, and all
+comparison sections remain closed as continuous inverse images of the sets
+in \eqref{eq:sections}. Thus $u_u=D_M$, including for targets supported on a
+proper face. This reparametrization need not preserve (CC) in the new indices;
+it is applied after constructing the ranking and preserves (S) directly.
+\end{remark}
+
+\section{The vacuous target and the limit of upper-probability conditions}
+
+For $M=\Delta$ we have $\ell=0$, $u=\one$, $\lambda=1/n$, $r=\one/n$ and
+$d=\one/n$. Writing $m(p)=\min_i p_i$, the family reduces to
+\[
+ \boxed{\quad K_p=p-m(p)\one+n\,m(p)\Delta.\quad}
+ \tag{9}\label{eq:vacuous}
+\]
+Its endpoints are
+\[
+ \lo_{K_p}(i)=p_i-m(p),\qquad
+ \hi_{K_p}(i)=p_i+(n-1)m(p).
+\]
+It equals $\Delta$ at the uniform index and $\{p\}$ on the boundary. The
+endpoint identity is
+\[
+ p_i=\frac{n-1}{n}\lo_{K_p}(i)+\frac1n\hi_{K_p}(i).
+\]
+Thus the vacuous target is covered without any special case in the ranking.
+
+The family generally fails the proposed upper-probability condition (U$^*$).
+For example, in three worlds take
+\[
+ p=(.70,.20,.10),\qquad q=(.65,.13,.22).
+\]
+Their upper-probability vectors are respectively
+\[
+ (.90,.40,.30),\qquad (.91,.39,.48).
+\]
+The first upper coordinate increases and the second decreases from $p$ to $q$,
+but $p_1>q_1$, violating (U$^*$). There is no common-cover obstruction:
+the lower first coordinates are $.60$ and $.52$, so the first required gluing
+inclusion already fails by Lemma~\ref{lem:endpoints}.
+
+\begin{proposition}\label{prop:ustar}
+Suppose a continuous family of credal sets satisfies face support and
+\[
+ \hi_{K_p}(i)\le\hi_{K_q}(i),\quad
+ \hi_{K_q}(j)\le\hi_{K_p}(j),\quad i\ne j
+ \quad\Longrightarrow\quad p_i\le q_i.
+ \tag{U$^*$}\label{eq:ustar}
+\]
+If $K_p$ contains a simplex vertex, then $|\supp p|\le2$. Consequently such
+families cannot contain a vertex-containing credal set whose union of supports
+has at least three worlds. In particular, they cannot contain $\Delta$ when
+$n\ge3$.
+\end{proposition}
+\begin{proof}
+Suppose $e_i\in K_p$. Face support gives $i\in\supp p$. If the support has
+at least three worlds, choose distinct $j,k\in\supp p\setminus\{i\}$ and
+vary only coordinates $i,j,k$, holding all others fixed. The index $p$ is an
+interior point of this two-dimensional triangular slice.
+
+On the slice the map
+$x\mapsto(\hi_{K_x}(i),\hi_{K_x}(j))$ is continuous and injective.
+Indeed equality of both outputs, with (U$^*$) applied in both directions and
+with both choices of the distinguished coordinate, gives equality of $x_i$
+and $x_j$. Equality of $x_k$ follows from normalization; all remaining
+coordinates were fixed. Invariance of domain therefore makes the image of the
+slice's interior open in $\R^2$. But at $p$ its first coordinate is one,
+and every image point has first coordinate at most one. This is impossible.
+\end{proof}
+
+The endpoint construction avoids this obstruction because (CC) uses actual
+common covers. It does not require upper-probability inequalities alone to
+determine the index order.
+
+\section{Full coverage by bounded real-valued losses}
+
+Incomparability is not necessary for full coverage. The same families also
+meet the hypotheses of the numerical construction in \cite{LR}, once its
+assumption (U) is replaced by (CC). This replacement is valid because the
+only use of (U) in that construction's main theorem is to prove its
+two-world common-cover lemma, whose conclusion is exactly (CC).
+
+In this section fix $\mu$ to be standard Gaussian measure. Let $A$ be a
+Hausdorff-Lipschitz constant for the family and set $B=1/\lambda$.
+Theorem~\ref{thm:family} and the remark following it give
+\[
+ \dH(K_p,K_q)\le A\|p-q\|_1,
+ \qquad \hi_{K_p}(i)\le Bp_i.
+\]
+Put $\kappa=8n^2(A+2B)$ and choose $0<\eta<1/(n\kappa)$.
+Using the cover sets $\mathcal P_i(X)$ defined above, let
+\[
+ L_\eta(X,i)=
+ \begin{cases}
+ \displaystyle\min_{p\in\mathcal P_i(X)}
+ \left[1-p_i-\eta\mu\big(E_i(D_{K_p})\setminus E_i(X)\big)\right],
+       &\mathcal P_i(X)\ne\varnothing,\\[3pt]
+ 2+\mu(E_i(X)),&\mathcal P_i(X)=\varnothing.
+ \end{cases}
+ \tag{10}\label{eq:finite-loss}
+\]
+The minimum exists: the cover set is compact and the objective is continuous.
+
+\begin{theorem}[Full numerical coverage]\label{thm:numerical}
+For each target $M$, the loss \eqref{eq:finite-loss} takes values in
+$[0,1]\cup[2,3]$, evaluates every measurable model, and strictly respects
+background improvements of positive measure. Moreover:
+\begin{enumerate}[label=(\alph*)]
+\item $L_\eta(D_{K_p},i)=1-p_i$;
+\item the selected models are undominated and competitive on their index
+supports, and all selected-model comparison sections are closed;
+\item every model outside the selected family modulo null sets is strictly
+dominated at every world by a selected model.
+\end{enumerate}
+The class obtained by letting $M$ range over all credal sets satisfies
+\textbf{(E)}, \textbf{(LA)}, \textbf{(A)}, and \textbf{(S)}, as well as
+\textbf{(C)} with coherence understood modulo null sets.
+\end{theorem}
+\begin{proof}
+Here is the budget argument underlying \cite{LR}, with (CC) explicit.
+For $T=T(X)\ne\varnothing$, choose any covers $p^i\in\mathcal P_i(X)$ and put
+\[
+ \rho=1-\sum_{i\in T}p^i_i,
+ \qquad h_i=\mu\big(E_i(D_{K_{p^i}})\setminus E_i(X)\big).
+\]
+By (CC), $p^j_k\ge p^k_k$ for distinct $j,k\in T$. Hence
+\[
+ \rho\ge0,\qquad p^j(T^c)\le\rho,
+ \qquad\|p^i-p^j\|_1\le2\rho.
+\]
+The Gaussian estimates proved in \cite{LR} give
+\[
+ \mu(D_{K_p}\sd D_{K_q})\le4nA\|p-q\|_1,
+\]
+and, with $G_T^+=\{g:g_i>0\ (i\in T)\}$ and
+$G_T^-=\{g:g_i\le0\ (i\in T)\}$,
+\[
+ \mu(G_T^+\setminus D_{K_p}),\quad
+ \mu(D_{K_p}\cap G_T^-)
+ \ \le\ 8n^2B\,p(T^c).
+\]
+An error removed from $D_{K_{p^j}}$ by $X$ either witnesses disagreement
+with another covering model or lies in one of these two face-error regions.
+Consequently
+\[
+ h_j\le\sum_{i\in T\setminus\{j\}}
+       \mu(D_{K_{p^i}}\sd D_{K_{p^j}})
+       +16n^2B\,p^j(T^c)
+ \le\kappa\rho.
+\]
+It follows that
+\[
+ \sum_{i\in T}(p^i_i+\eta h_i)
+ \le1-(1-n\kappa\eta)\rho\le1.
+ \tag{11}\label{eq:numerical-budget}
+\]
+Choose the covers attaining \eqref{eq:finite-loss} and write
+$c_i(X)=1-L_\eta(X,i)$ for $i\in T$. These numbers are nonnegative, and
+their sum is at most one, proving the claimed loss range. Equality in the
+budget forces $\rho=0$, all chosen covers equal, and all $h_i=0$.
+Thus equality implies $X$ agrees a.e. with a family member.
+
+For a family model, its own index is an available cover at every world,
+so $c_i(D_{K_p})\ge p_i$; the budget forces equality at every coordinate.
+This proves (a). If $X$ weakly dominates $D_{K_p}$, it is covered everywhere
+and $c_i(X)\ge p_i$ for all $i$. Equality in the budget then forces
+$X\approx D_{K_p}$. This proves undominatedness.
+
+If $E_i(X)\subseteq E_i(Y)$ a.e. and $Y$ is covered at $i$, every cover of
+$Y$ covers $X$ and the correction increases by
+$\eta\mu(E_i(Y)\setminus E_i(X))$. Hence
+\[
+ L_\eta(X,i)\le L_\eta(Y,i)
+       -\eta\mu(E_i(Y)\setminus E_i(X)).
+\]
+If both are uncovered, strict monotonicity follows directly from the error
+measure; if only $X$ is covered, it follows from the disjoint loss ranges.
+
+Competitiveness follows from the budget: strict improvement over $D_{K_p}$
+at every $i\in\supp p$ would require $\sum_{i\in\supp p}c_i(X)>1$.
+The comparison sections are
+\[
+ \{p:L_\eta(D_{K_p},i)\le L_\eta(X,i)\}
+ =\{p:p_i\ge1-L_\eta(X,i)\},
+\]
+which are closed. Finally set $\beta_i=c_i(X)$ at covered worlds and zero
+elsewhere. For a nonfamily model $\sum_i\beta_i<1$, and the index
+$q=\beta+(1-\sum_i\beta_i)\one/n$ supplies strict dominance everywhere.
+Full coverage follows from $K_r=M$, exactly as in
+Theorem~\ref{thm:coverage}.
+\end{proof}
+
+This loss does not represent the ordinal preorder from the preceding sections,
+which has incomparabilities; nor is it asserted to preserve every strict
+comparison of that preorder. It is another construction on the same families.
+Its dependence on the full model and optimization over covers makes it different
+from the additive CPM error losses. The CPM realisation obstruction therefore
+does not extend to all real-valued losses.
+
+\begin{thebibliography}{9}
+\bibitem{OR} \emph{An Ordinal Refinement by a Slack Envelope}.
+Companion note, 7 October 2026. Source file:
+\texttt{Ordinal Refinement by Slack Envelopes.tex}.
+\bibitem{LR} \emph{Loss Relations for Sets of Desirable Gambles}.
+Companion note. Source file:
+\texttt{Loss Relations for Sets of Desirable Gambles.tex}.
+\end{thebibliography}
+\end{document}

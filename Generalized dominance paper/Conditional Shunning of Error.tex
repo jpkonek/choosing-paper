@@ -1,0 +1,724 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\M}{\mathcal M}
+\newcommand{\R}{\mathbb R}
+\newcommand{\K}{\mathcal K}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\one}{\mathbf 1}
+\title{Conditional Shunning of Error}
+\author{}\date{12 October 2026}
+\begin{document}\maketitle
+
+\noindent
+Fix a set $T$ of worlds. The systems $\Sigma_T$ below model an evaluator
+with conditional values: conditional on $T$ she only shuns error, and
+conditional on the complement of $T$ she also seeks truth, so that (G) is
+strict there. Unanimous problems are scored strictly at every world. For
+$T$ equal to all worlds, $\Sigma_T$ is the accepted exceptional system for
+the vacuous model $V$; for $T$ empty it is the strict two-slope system. We show that every $\Sigma_T$
+satisfies (IB), (LA), (C), (S), and the guidance order weakened exactly at
+the worlds of $T$. Closed competitive selection holds for every $T$, but
+only because the selected model need not be Bayes at its own prior: no
+selection of Bayes models works once $n\ge3$ and $\varnothing\ne T\ne\Omega$.
+We identify the undominated models of each system and the credal sets
+covered by the whole family. They are the normalized boxes in which some
+lower bounds may vanish, and an upper bound may be infinite where the lower
+bound vanishes. The family covers $V$, every face, every precise model,
+every credal set in two worlds, and many proper targets containing three
+vertices. No system in the family covers $\varepsilon$-contamination
+classes, or any polytope with a facet not of the form $\{m_k=0\}$ or
+$\{m_b=\rho m_a\}$. Every result below is proved; the open questions are
+listed at the end. The rankings are complete. The note was checked by an
+independent referee, and the referee's corrections are incorporated; no
+human verification is asserted.
+
+\section{The systems}
+
+There are $n\ge2$ worlds, $\Omega=\{1,\ldots,n\}$, with simplex $\Delta$,
+vertices $e_i$ and faces $\Delta_S=\{m\in\Delta:\supp m\subseteq S\}$.
+A model is a measurable acceptance set, identified modulo Gaussian null
+sets. Each binary problem $\{g,-g\}$ is counted once by $g\in H=\{g_1>0\}$,
+which carries the normalized Gaussian measure $\mu$. It is convenient to
+write $\bar\mu$ for the centred Gaussian measure on $\R^n$ scaled so that
+$\bar\mu(H)=1$: a set $A$ of orientations with $A\cap(-A)=\varnothing$
+represents a set of problems of $\mu$-measure $\bar\mu(A)$. Coordinate
+hyperplanes are null and are ignored. A problem is \emph{unanimous} if $g$
+or $-g$ is strictly positive, and \emph{mixed} otherwise. The advice of a
+model on $g\in H$ is $+$ (accept $g$ only), $0$ (silence), $-$ (accept $-g$
+only) or $\times$ (accept both). At world $i$ it is good, silent, bad or
+contradictory. We write $x^+=\max(x,0)$ and $x^-=\max(-x,0)$, and use
+$\M_K=\{g:\min_{m\in K}m\cdot g>0\}\cup\{g\ge0:g\ne0\}$ for a credal set
+$K$, so that $V=\M_\Delta$.
+
+Fix $T\subseteq\Omega$ and put $U=\Omega\setminus T$. Choose numbers
+\[
+ 0<\lambda_j\le\eta_j<\infty\ (j\in U),\qquad
+ \lambda_i\coloneqq0<\eta_i<\infty\ (i\in T).
+\]
+At world $i$ the local penalties are
+\[
+\begin{array}{c|cccc}
+ &\text{good}&\text{silence}&\text{bad}&\text{contradictory}\\\hline
+ \text{mixed}&0&\lambda_i|g_i|&(\lambda_i+\eta_i)|g_i|
+     &2(\lambda_i+\eta_i)|g_i|\\
+ \text{unanimous}&0&|g_i|&2|g_i|&4|g_i|.
+\end{array}
+\tag{1}
+\]
+The loss $L_i(X)$ is the $\mu$-integral of the penalty of the advice of $X$.
+Smaller is better, and $\Sigma_T=\Sigma_T(\lambda,\eta)$ denotes the
+resulting complete rankings. For $T=\Omega$ the mixed row is
+$0,0,\eta_i|g_i|,2\eta_i|g_i|$, which is the accepted exception. For
+$T=\varnothing$ it is the strict table (3) of \emph{Coverage after Neutral
+Abstention}.
+
+\begin{proposition}\label{prop:basic}
+Each $\Sigma_T$ has finite losses on all models and satisfies (IB). It
+satisfies (G) in the following weakened form. Every pointwise improvement
+of advice weakly lowers the loss. It lowers the loss strictly unless, up
+to a null set, every strict improvement is a change from silence to good
+advice on a mixed problem at a world of $T$. Such changes leave the loss
+unchanged.
+\end{proposition}
+\begin{proof}
+All penalties are at most $4\max(1,\lambda_i+\eta_i)|g_i|$, which is
+integrable. Shared advice contributes the same amount to both losses, which
+gives (IB). In (1), every adjacent gap is positive except good versus
+silence on mixed problems at $i\in T$, where both penalties are $0$.
+\end{proof}
+
+\section{Expected penalties}
+
+For a prior $r\in\Delta$ and a mixed $g\in H$, write $E(a)$ for the
+$r$-expected penalty of advice $a$, and put
+\[
+ \psi_r(g)=\sum_ir_i\bigl(\lambda_ig_i^+-\eta_ig_i^-\bigr)
+ =\sum_ir_i\min(\lambda_ig_i,\eta_ig_i).
+\]
+A direct computation from (1) gives
+\[
+ E(0)-E(+)=\psi_r(g),\qquad E(0)-E(-)=\psi_r(-g),\qquad
+ E(\times)=2\bigl(E(+)+E(-)\bigr).
+\tag{2}
+\]
+Here $E(+)+E(-)=\sum_ir_i(\lambda_i+\eta_i)|g_i|>0$, so contradiction is
+never optimal, and $\psi_r(g)+\psi_r(-g)=-\sum_ir_i(\eta_i-\lambda_i)|g_i|
+\le0$. On a unanimous problem good advice is the unique optimum.
+
+It is useful to separate the two kinds of world. For
+$\alpha\in[0,\infty]^T$ and $\beta\in[0,\infty)^U$ with $\beta\ne0$, put
+\[
+ Q_{\alpha,\beta}(g)=\sum_{j\in U}\beta_j\bigl(\lambda_jg_j^+-\eta_jg_j^-\bigr)
+ -\sum_{i\in T}\alpha_i\eta_ig_i^-\in[-\infty,\infty),
+ \qquad \infty\cdot0\coloneqq0,
+\]
+\[
+ M(\alpha,\beta)=\{g:Q_{\alpha,\beta}(g)>0\}\cup\{g\ge0:g\ne0\},
+ \qquad I(\alpha)=\{i\in T:\alpha_i=\infty\}.
+\]
+Thus $M(\alpha,\beta)$ rejects every $g$ with $g_i<0$ for some
+$i\in I(\alpha)$. Both $Q$ and $M$ are unchanged when $(\alpha,\beta)$ is
+multiplied by a positive number, so we normalize $\beta\in\Delta_U$
+whenever $U\ne\varnothing$. If $s=r(U)>0$, then
+$\psi_r=s\,Q_{r_T/s,\,r_U/s}$.
+
+\begin{lemma}\label{lem:Q}
+Let $\beta\ne0$.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item $Q_{\alpha,\beta}$ is concave, positively homogeneous and
+nondecreasing in each coordinate. Hence $M(\alpha,\beta)$ is coherent, and
+$Q_{\alpha,\beta}(g)+Q_{\alpha,\beta}(-g)\le0$.
+\item The set $\{Q_{\alpha,\beta}=0\}$ is null.
+\item The advice of $M(\alpha,\beta)$ is never contradictory and is good on
+every unanimous problem.
+\item The map $(\alpha,\beta)\mapsto L(M(\alpha,\beta))$ is continuous on
+$[0,\infty]^T\times\Delta_U$, where $[0,\infty]$ has its usual compact
+topology.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Each term $\beta_j\min(\lambda_jg_j,\eta_jg_j)$ is a minimum of linear
+functions because $\lambda_j\le\eta_j$. Each term $-\alpha_i\eta_ig_i^-$ is
+concave, including when $\alpha_i=\infty$, where it is $0$ for $g_i\ge0$ and
+$-\infty$ otherwise. All terms are positively homogeneous and
+nondecreasing. Concavity and homogeneity give
+$Q(g+h)\ge Q(g)+Q(h)$. So $\{Q>0\}$ is a convex cone, it omits $0$, and
+adding a nonnegative gamble cannot leave it. Hence $M(\alpha,\beta)$ is
+coherent, and $Q(g)+Q(-g)\le Q(0)=0$.
+
+(b) On an open orthant, $Q$ is identically $-\infty$ if some $i\in
+I(\alpha)$ has $g_i<0$. Otherwise it is linear, and its coefficient on
+$g_j$, for $j\in\supp\beta$, is $\beta_j\lambda_j$ or $\beta_j\eta_j$, both
+positive. Its zero set in the orthant is therefore contained in a
+hyperplane.
+
+(c) Both $g$ and $-g$ lie in $\{Q>0\}$ for no $g$, by (a); and if $g\ge0$ then $Q(-g)\le Q(0)=0$ by monotonicity. If $g\gg0$ then $g\in M$, and
+$Q(-g)=-\sum_U\beta_j\eta_jg_j-\sum_T\alpha_i\eta_ig_i<0$, so $-g\notin M$.
+
+(d) Fix $g$ with no zero coordinate. Each term of $Q_{\alpha,\beta}(g)$ is
+continuous in $(\alpha,\beta)$ with values in $[-\infty,\infty)$: terms with
+$g_i>0$ do not depend on $\alpha_i$, and $\alpha_i\mapsto\alpha_i\eta_i|g_i|$
+is continuous into $[0,\infty]$. If $(\alpha^k,\beta^k)\to(\alpha,\beta)$
+and $Q_{\alpha,\beta}(\pm g)\ne0$, the signs of $Q_{\alpha^k,\beta^k}(\pm g)$
+are eventually those of $Q_{\alpha,\beta}(\pm g)$. By (b) this holds for
+almost every $g$. The advice therefore converges almost everywhere, and
+dominated convergence with the bound in Proposition~\ref{prop:basic}
+gives convergence of the losses.
+\end{proof}
+
+\begin{proposition}\label{prop:bayes}
+Let $r\in\Delta$.
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item If $r\notin\Delta_T$, the $r$-Bayes model is unique modulo null sets
+and equals $M(r_T/s,r_U/s)$, where $s=r(U)$. It is coherent and
+undominated. Its credal set is the normalized box
+\[
+ K_r=\Bigl\{\frac{a}{\one\cdot a}:
+ r_i\lambda_i\le a_i\le r_i\eta_i\text{ for all }i\Bigr\},
+\]
+whose lower bounds vanish on $T\cup(\Omega\setminus\supp r)$.
+\item If $r\in\Delta_T$ and $S=\supp r$, then $\min_X r\cdot L(X)=0$, and
+$X$ is $r$-Bayes exactly when $L_i(X)=0$ for all $i\in S$. Equivalently,
+for almost every problem, $X$ gives good advice if it is unanimous, is
+silent if both orientations have coordinates of both signs on $S$, and
+otherwise either accepts the orientation $h$ with $h_S\gg0$ or is silent.
+If $S\ne\Omega$, these choices are non-null. In particular
+$\{\psi_r>0\}\cup\{g\ge0:g\ne0\}=V$, whose credal set is $\Delta$ and not
+the normalized box $\Delta_S$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) Some $j\in U$ has $r_j>0$, so by Lemma~\ref{lem:Q}(b) the tie set
+$\{\psi_r=0\}$ is null. By (2), the pointwise optimal advice is unique
+almost everywhere, and it is the advice of $M(r_T/s,r_U/s)$ by
+Lemma~\ref{lem:Q}(c). Integrating the nonnegative difference from the
+pointwise optimum shows that a model is $r$-Bayes exactly when it agrees
+with this advice almost everywhere. A weak dominator of a model that is
+uniquely $r$-Bayes is itself $r$-Bayes, so it agrees with that model and
+ties with it. Hence the model is undominated. For the credal set, note that
+$\psi_r(g)=\min\{a\cdot g:r_i\lambda_i\le a_i\le r_i\eta_i\}$. Every point
+$a$ of this box is nonzero, since $a_j\ge r_j\lambda_j>0$, and
+$a\cdot g=(\one\cdot a)\,(a/\one\cdot a)\cdot g$. So $\psi_r(g)>0$ exactly
+when $m\cdot g>0$ for all $m\in K_r$. The set $K_r$ is compact and convex,
+since the normalization map sends segments to segments.
+
+(b) The model $V$ has $L_i(V)=0$ for every $i\in T$. Hence
+$\min_Xr\cdot L(X)=0$, and $r$-Bayes means $L_i(X)=0$ for all $i\in S$. At
+$i\in T$ a mixed problem has positive penalty exactly for bad or
+contradictory advice, and a unanimous problem has positive penalty for all
+advice except good advice. Combining the conditions over $i\in S$ gives
+the description. If $S\ne\Omega$, the problems with an orientation $h$
+satisfying $h_S\gg0$ and $h_k<0$ for some $k\notin S$ form an open set. As
+$\psi_r=-\sum_S r_i\eta_ig_i^-\le0$, the strict set is $V$.
+\end{proof}
+
+\begin{remark}\label{rem:variant}
+One might let the worlds of $T$ also credit gambles that pay throughout
+$T$. In this variant, fix $\kappa_i>0$ for $i\in T$. On a mixed problem
+whose $T$-coordinates all have the same sign ($g_T\gg0$ or $g_T\ll0$), world
+$i\in T$ uses the row $0,\ \kappa_i|g_i|,\ (\kappa_i+\eta_i)|g_i|,\
+2(\kappa_i+\eta_i)|g_i|$. On other mixed problems it uses
+$0,\ 0,\ \eta_i|g_i|,\ 2\eta_i|g_i|$. Worlds outside $T$ and unanimous
+problems are scored as in (1). This variant can be incoherent. Take
+$n=3$, $T=\{1,2\}$, $\kappa_i=\eta_i=\lambda_3=\eta_3=1$ and the uniform
+prior. The expected costs of $(+,0,-)$, multiplied by $3$, are
+$(6,7,8)$ at $(2,2,-3)$, $(10,10.5,21.01)$ at $(-10,0.01,10.5)$, and
+$(4,3.75,8.505)$ at their midpoint $(-4,1.005,3.75)$. On each open
+orthant all differences of expected costs are linear forms, with a
+nonzero coefficient on $g_3$, so ties are null. The uniform-prior Bayes
+model is therefore unique modulo null sets. By continuity it accepts open
+neighbourhoods $N_1,N_2$ of the first two gambles, and is silent on an
+open neighbourhood of their midpoint. No coherent model agrees with it
+almost everywhere. If $D$ did, $D$ would contain full-measure subsets
+$N_1',N_2'$, and every point $x$ of $\tfrac12(N_1+N_2)$ is a midpoint of
+some $a\in N_1'$ and $b\in N_2'$, since $\{a\in N_1:2x-a\in N_2\}$ is a
+nonempty open set. So $D$ would contain an open neighbourhood of the
+midpoint. On the other hand, (S) yields a coherent Bayes model at every
+prior, by the simplex argument of part~(a) of the first lemma in
+Appendix~C of \emph{Full Coverage by Homothetic Credal Families v3}. Hence
+the variant violates (S).
+\end{remark}
+
+\section{The undominated models}
+
+For $S\subseteq T$, let $R_S$ be the open cone of mixed $h$ with $h_S\gg0$.
+For $k\in\Omega$ put
+\[
+ c_k(h)=-\lambda_kh_k^++\eta_kh_k^-.
+\]
+This is the change in penalty at world $k$ when a model that was silent on
+the problem of $h$ accepts $h$.
+
+\begin{theorem}\label{thm:undominated}
+If $U\ne\varnothing$, a model is undominated in $\Sigma_T$ exactly when it
+agrees almost everywhere with $M(\alpha,\beta)$ for some
+$\alpha\in[0,\infty]^T$ and $\beta\in\Delta_U$. If $U=\varnothing$, the only
+undominated model is $V$. In either case every undominated model is
+coherent modulo null sets, so $\Sigma_T$ satisfies (LA) and (C).
+\end{theorem}
+\begin{proof}
+\emph{Sufficiency.} If $I=I(\alpha)$ is empty, $M(\alpha,\beta)$ is the
+unique Bayes model at the prior proportional to $(\alpha,\beta)$, and
+Proposition~\ref{prop:bayes}(a) applies. Suppose $I\ne\varnothing$. By
+Lemma~\ref{lem:Q}, $M(\alpha,\beta)$ accepts a mixed $g$ only if $g_I\ge0$,
+so $L_i(M(\alpha,\beta))=0$ for $i\in I$. Let $Y$ weakly dominate it. Then
+$L_I(Y)=0$, and Proposition~\ref{prop:bayes}(b) for a prior with support
+$I$ fixes the advice of $Y$ except on $R_I$, where $Y$ accepts some set
+$A_Y$. Put $w=(\alpha_{T\setminus I},\beta)$, a finite nonzero weight on
+$\Omega\setminus I$. On $R_I$ we have
+$-\sum_{k\notin I}w_kc_k=Q_{\alpha,\beta}$, so every model $Z$ with
+$L_I(Z)=0$ satisfies
+\[
+ \sum_{k\notin I}w_kL_k(Z)=\sum_{k\notin I}w_kL_k(V)
+ -\int_{A_Z}Q_{\alpha,\beta}\,d\bar\mu.
+\]
+By Lemma~\ref{lem:Q}(b) this is minimized exactly when
+$A_Z=R_I\cap\{Q_{\alpha,\beta}>0\}$ modulo null sets, which is the choice
+made by $M(\alpha,\beta)$. Weak dominance gives
+$\sum w_kL_k(Y)\le\sum w_kL_k(M(\alpha,\beta))$, so $Y$ is also a minimizer
+and agrees with $M(\alpha,\beta)$ almost everywhere. Hence nothing
+dominates $M(\alpha,\beta)$.
+
+\emph{Necessity.} Let $X$ be undominated. The closure of the set of
+attainable loss vectors is convex (Gaussian measure has no atoms; see
+part~(b) of the first lemma in Appendix~C of \emph{Full Coverage by
+Homothetic Credal Families v3}). Separating it from $L(X)-(0,\infty)^n$ shows that $X$ is
+$r$-Bayes for some $r\in\Delta$. If $r\notin\Delta_T$,
+Proposition~\ref{prop:bayes}(a) identifies $X$. Otherwise the set
+$S=\{i\in T:L_i(X)=0\}$ contains $\supp r$ and is nonempty. By
+Proposition~\ref{prop:bayes}(b), $X$ is fixed except on $R_S$, where it
+accepts a set $A_X$. For $k\notin S$,
+\[
+ L_k(Z)=L_k(V)+\int_{A_Z}c_k\,d\bar\mu
+\]
+for every model $Z$ with $L_S(Z)=0$. Thus $A_X$ is Pareto optimal for the
+vector $(\int_Ac_k\,d\bar\mu)_{k\notin S}$ over measurable $A\subseteq R_S$,
+or $X$ would be dominated. By Lyapunov's theorem these vectors form a
+compact convex set. Separation gives $w\in\Delta_{\Omega\setminus S}$ such
+that $A_X$ minimizes $\int_A\sum_kw_kc_k\,d\bar\mu$. Note that
+$-\sum_kw_kc_k=\psi_w$. If $\supp w$ meets $U$, then by
+Lemma~\ref{lem:Q}(b) $A_X=R_S\cap\{\psi_w>0\}$ modulo null sets. Hence
+$X=M(\alpha,\beta)$ almost everywhere, where $\alpha_i=\infty$ on $S$,
+$\alpha_i=w_i/w(U)$ on $T\setminus S$, and $\beta=w_U/w(U)$. If
+$\supp w\subseteq T\setminus S$, then $\psi_w(h)<0$ unless
+$h_{\supp w}\ge0$. So almost every accepted $h\in R_S$ has
+$h_{\supp w}\ge0$, and $L_k(X)=0$ for $k\in\supp w$. This contradicts the
+definition of $S$. This argument needs $S\ne\Omega$; if $U\ne\varnothing$
+this holds because $S\subseteq T$. If $U=\varnothing$ and $S\ne\Omega$, then
+$\supp w\subseteq T\setminus S$, and the second alternative gives a
+contradiction. Hence $S=\Omega$, $R_\Omega=\varnothing$, and $X=V$.
+
+Every $M(\alpha,\beta)$ is coherent by Lemma~\ref{lem:Q}(a), giving (LA).
+A model tied at every world with an undominated model is undominated,
+hence coherent modulo null sets. This gives (C).
+\end{proof}
+
+\begin{proposition}\label{prop:V}
+$V$ is undominated in $\Sigma_T$ if and only if $|U|\le1$.
+\end{proposition}
+\begin{proof}
+If $U=\varnothing$, Theorem~\ref{thm:undominated} applies. If $U=\{j\}$, then
+$M(\alpha,e_j)$ with $\alpha=\infty$ on $T$ accepts exactly the gambles
+with $g_T\ge0$ and $g_j>0$, up to null sets, which is $V$.
+
+Let $j\ne k$ lie in $U$. For $0<\delta<1$ let $A$ be the open cone of $g$
+with $g_j>0$, $-\delta g_j<g_k<-\tfrac\delta2g_j$, and
+$0<g_l<\delta^2g_j$ for $l\notin\{j,k\}$. Let $B$ be its image under the
+transposition of $j$ and $k$. Put $Y=V\cup A\cup B$. On $A\cup B$ the model
+$V$ is silent and $Y$ accepts. At worlds of $T$ this changes silence to good
+advice on mixed problems, which costs nothing. At $l\in U\setminus\{j,k\}$
+it is a strict gain. At world $j$ the change is
+\[
+ -\lambda_j\int_Ag_j\,d\bar\mu+\eta_j\int_B|g_j|\,d\bar\mu
+ \le(\eta_j\delta-\lambda_j)\int_Ag_j\,d\bar\mu,
+\]
+because the transposition preserves $\bar\mu$ and $|g_k|\le\delta g_j$ on
+$A$. For $\delta<\min(\lambda_j/\eta_j,\lambda_k/\eta_k)$ this is negative,
+and world $k$ is symmetric. The sets $A$, $B$, $-A$, $-B$ and $\pm V$ meet
+only in null sets, so $Y$ gives no contradictory advice. Hence $Y$
+dominates $V$.
+\end{proof}
+
+\section{Closed competitive selection}
+
+A model that is $r$-Bayes is competitive on every $S\supseteq\supp r$:
+against any $X$, the inequality $r\cdot L(C)\le r\cdot L(X)$ needs some
+$i\in\supp r$ with $L_i(C)\le L_i(X)$. Conversely, separation in the
+coordinates of $S$ shows that a model competitive on $S$ is Bayes for some
+prior supported in $S$. So (S) asks for coherent undominated models $C_q$
+that are Bayes at \emph{some} prior supported in $\supp q$, not necessarily
+at $q$.
+
+\begin{remark}\label{rem:lsc}
+For a fixed world $i$, the values $L_i(X)$ fill the interval from $0$ to
+$L_i$ of the everywhere contradictory model. To see this, interpolate
+between $D_i=\{g_i>0\}$ and that model on growing balls. Hence the sections
+$\{q:C_q\preceq_iX\}$ are closed for all $X$ if and only if
+$q\mapsto L_i(C_q)$ is lower semicontinuous.
+\end{remark}
+
+\begin{theorem}\label{thm:S}
+Every $\Sigma_T$ satisfies (S) with a selection whose losses are
+continuous in the prior.
+\end{theorem}
+\begin{proof}
+If $U=\varnothing$, take $C_q=V$. If $T=\varnothing$, take the Bayes
+selection of Proposition~\ref{prop:bayes}(a). Its losses are continuous by
+Lemma~\ref{lem:Q}(d). Otherwise let $t=|T|$, fix $0<\varepsilon\le\tfrac12$
+and $d\in\Delta_U$. For $q\in\Delta$ put $s=q(U)$ and
+\[
+ m(s)=\max(s,\varepsilon),\qquad
+ k(s)=t\min\bigl(1,\max(0,2-s/\varepsilon)\bigr),\qquad
+ w(s)=\max(0,1-s/\varepsilon).
+\]
+Define
+\[
+ \alpha_i(q)=
+ \begin{cases}
+ q_i/(m(s)-k(s)q_i),& k(s)q_i<m(s),\\
+ \infty,&\text{otherwise},
+ \end{cases}
+ \quad(i\in T),\qquad
+ \beta(q)=\frac{q_U+w(s)\,d}{s+w(s)},
+\]
+and let $C_q=M(\alpha(q),\beta(q))$.
+
+\emph{Continuity.} Since $m\ge\varepsilon>0$, the denominator
+$m-kq_i$ tends to $0$ only when $q_i\ge\varepsilon/t$. Hence
+$q\mapsto\alpha(q)\in[0,\infty]^T$ is continuous, and $\alpha_i(q)=0$
+exactly when $q_i=0$. The denominator $s+w(s)$ is positive, so
+$\beta(q)\in\Delta_U$ is continuous. Lemma~\ref{lem:Q}(d) makes every
+$L_i(C_q)$ continuous, and Remark~\ref{rem:lsc} gives closed sections.
+
+\emph{Competitiveness.} If $I(\alpha(q))\ne\varnothing$, each of its
+indices has $q_i>0$. Then $C_q$ has zero loss at that world, as in the
+proof of Theorem~\ref{thm:undominated}, so it is Bayes at a vertex in
+$\Delta_{\supp q}$. If $I(\alpha(q))=\varnothing$, then $s>\varepsilon$:
+for $s\le\varepsilon$ we have $k=t$ and $m=\varepsilon$, and some $i\in T$
+has $q_i\ge(1-\varepsilon)/t$, so $kq_i\ge1-\varepsilon\ge m$. Hence $w=0$,
+$\beta=q_U/s$, and $C_q$ is the unique Bayes model at the prior
+proportional to $(\alpha(q),q_U/s)$, whose support is $\supp q$.
+
+By Theorem~\ref{thm:undominated} every $C_q$ is coherent and undominated.
+For $s\ge2\varepsilon$ the selection is the Bayes selection.
+\end{proof}
+
+The freedom to select a non-Bayes model is essential.
+
+\begin{proposition}\label{prop:bayessel}
+A selection with $C_q$ being $q$-Bayes for every $q$ satisfies (S) if and
+only if $T=\varnothing$, $T=\Omega$, or $n=2$.
+\end{proposition}
+\begin{proof}
+The three cases are covered by the selections above. When $n=2$ and
+$T=\{i\}$, take $C_{e_i}=V$; it is the limit of the Bayes models from the
+only direction of approach. Otherwise $U\ne\varnothing$, and some $p\in\Delta_T$ has
+$S=\supp p\ne\Omega$ and admits two directions of approach: if $|T|\ge2$,
+take $p=e_i$ with $i\in T$, so $T\setminus S\ne\varnothing$; if $|T|=1$,
+then $|U|\ge2$. For $a\in[0,\infty)^{T\setminus S}$ and $b\in\Delta_U$, the
+priors $q_\tau\propto(p_S/\tau,a,b)$ lie outside $\Delta_T$. By
+Lemma~\ref{lem:Q}(d) their Bayes models $M((p_S/\tau,a),b)$ converge in
+loss, as $\tau\to0$, to $M_{a,b}\coloneqq M(\alpha^*,b)$ with
+$\alpha^*=\infty$ on $S$ and $\alpha^*=a$ on $T\setminus S$, while
+$q_\tau\to p$. Lower semicontinuity requires $L(C_p)\le L(M_{a,b})$. Since
+$M_{a,b}$ is undominated, the two loss vectors are equal. So all $M_{a,b}$
+have the same losses.
+
+Now take $(a,b)\ne(a',b')$. If $b\ne b'$, choose $j,k\in U$ with
+$b_j>b'_j$ and $b_k<b'_k$. On gambles with $g_S\gg0$, $g_j>0>g_k$ and
+the other $U$-coordinates positive and sufficiently small, and the
+remaining coordinates positive, $Q$ for $(a,b)$ is positive and $Q$ for
+$(a',b')$ is negative whenever $g_j/|g_k|$ lies strictly between
+$b_k\eta_k/(b_j\lambda_j)$ and $b'_k\eta_k/(b'_j\lambda_j)$ (the latter is
+$\infty$ if $b'_j=0$). If $b=b'$ and $a_i<a'_i$, compare $g_j>0$
+with $g_i<0$ for some $j\in\supp b$ in the same way. In each case the two
+models differ on an open subset of $R_S$. By the sufficiency part of
+Theorem~\ref{thm:undominated}, with $I=S$, each is the unique minimizer
+modulo null sets of a weighted loss among models with $L_S=0$. If the two
+had equal losses, each would minimize the other's weighted loss, which is
+impossible. This contradiction proves the claim.
+\end{proof}
+
+\section{The covered credal sets}
+
+Call $(l,u)\in[0,\infty)^n\times[0,\infty]^n$ \emph{admissible} if
+$l_i\le u_i$ for every $i$, $u_i<\infty$ whenever $l_i>0$, and $u\ne0$.
+Put $P=\{i:u_i>0\}$, $L=\{i:l_i>0\}$ and $F=\{i:u_i<\infty\}$. Define
+\[
+ K(l,u)=\cl\Bigl\{\frac{a}{\one\cdot a}:a\in\R^n,\ a\ne0,\
+ l_i\le a_i\le u_i\text{ for all }i\Bigr\}.
+\]
+Thus each world is either \emph{anchored} ($0<l_i\le u_i<\infty$) or
+\emph{free} ($l_i=0$), and a free world may have an infinite upper bound.
+When every world in $P$ is anchored, these are the normalized boxes of
+\emph{Coverage after Neutral Abstention}, equation (4).
+
+\begin{lemma}\label{lem:intrinsic}
+For admissible $(l,u)$,
+\[
+ K(l,u)=\{m\in\Delta_P:\ l_am_b\le u_bm_a\ \text{ for all }a\in L,\
+ b\in P\cap F\}.
+\]
+That is, $m_b/m_a\le u_b/l_a$ for all anchored $a$ and all $b$ with
+finite upper bound. If $L=\varnothing$, then $K(l,u)=\Delta_P$. Moreover
+$e_k\in K(l,u)$ if and only if $k\in P$ and either $u_k=\infty$ or
+$L\subseteq\{k\}$.
+\end{lemma}
+\begin{proof}
+Write $K'$ for the right side. If $l\le a\le u$ with $a$ finite, then
+$l_aa_b\le a_au_b$, so normalized box points lie in the closed set $K'$.
+For the converse, let $m\in K'$. If $L=\varnothing$, $sm$ lies in the box
+for small $s>0$. If $m_a>0$ for all $a\in L$, put $s=\max_{a\in L}l_a/m_a$.
+Then $sm\ge l$, and for $b\in F$ some $a\in L$ gives
+$sm_b=(l_a/m_a)m_b\le u_b$. So $m$ is a normalized box point. If $m_a=0$
+for some $a\in L$, the constraints force $m_b=0$ for every $b\in P\cap F$,
+so $\supp m\subseteq\{u=\infty\}$. Fix a box point $a^0$; then $a^0+Nm$
+lies in the box for $N>0$, and its normalization tends to $m$. For the
+vertex criterion, $m=e_k$ violates the constraint for $(a,b)=(a,k)$
+exactly when $a\in L\setminus\{k\}$ and $k\in F$.
+\end{proof}
+
+\begin{lemma}\label{lem:credal}
+For $\alpha\in[0,\infty]^T$ and $\beta\in\Delta_U$, $M(\alpha,\beta)$
+agrees almost everywhere with $\M_K$, where $K=K(l,u)$, $l_j=\beta_j\lambda_j$
+and $u_j=\beta_j\eta_j$ on $U$, and $l_i=0$ and $u_i=\alpha_i\eta_i$ on $T$.
+The two sets are equal when $I(\alpha)=\varnothing$.
+\end{lemma}
+\begin{proof}
+Coordinatewise, $Q_{\alpha,\beta}(g)=\inf\{a\cdot g:a\text{ finite},\
+l\le a\le u\}$, since $\inf_{0\le a_i<\infty}a_ig_i$ is $0$ or $-\infty$.
+Let $I=I(\alpha)$ and let $K'$ be the normalized compact box with
+$a_I=0$, as in the proof of Proposition~\ref{prop:bayes}(a). Then $Q>0$
+means $g_I\ge0$ together with $\min_{K'}m\cdot g>0$. Normalizing
+$a'+a_I$ produces convex combinations of points of $K'$ and $\Delta_I$,
+with any weight in $(0,1]$ on $K'$; hence $K=\conv(K'\cup\Delta_I)$. So
+$\min_Km\cdot g>0$ means $g_I\gg0$ together with $\min_{K'}m\cdot g>0$.
+The two sets differ only where some $g_i=0$ with $i\in I$.
+\end{proof}
+
+\begin{lemma}\label{lem:ident}
+Let $K,K'\subseteq\Delta$ be nonempty, compact and convex. If $\M_K$ and
+$\M_{K'}$ agree almost everywhere, then $K=K'$.
+\end{lemma}
+\begin{proof}
+Suppose some $m^0\in K'\setminus K$. Separating $m^0$ from $K$ within the
+affine hull of $\Delta$ gives $c$ and $d$ with $c\cdot m>d>c\cdot m^0$ for
+all $m\in K$. Put $g=c-d\one$. Then $\min_Km\cdot g>0>\min_{K'}m\cdot g$.
+Both minima are continuous in $g$, so these strict inequalities hold on an
+open neighbourhood of $g$. No point $h$ of that neighbourhood is
+nonnegative, since $m^0\cdot h<0$. The neighbourhood therefore lies in
+$\M_K\setminus\M_{K'}$, which is impossible. By symmetry, $K\subseteq K'$
+as well.
+\end{proof}
+
+\begin{theorem}\label{thm:coverage}
+Let $\K$ be the set of all $K(l,u)$ with $(l,u)$ admissible. Then:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item Fix $T$ and $(\lambda,\eta)$. If $U\ne\varnothing$, the coherent
+undominated models of $\Sigma_T$ are, modulo null sets, exactly the
+$\M_{K(l,u)}$ with $(l,u)$ admissible, $l=0$ on $T$, $u_T\in[0,\infty]^T$,
+and $(l_j,u_j)=c_j(\lambda_j,\eta_j)$ on $U$ for some $c\in[0,\infty)^U$
+with $c\ne0$. If $U=\varnothing$, the only one is $V$.
+\item The family of all $\Sigma_T(\lambda,\eta)$, every one of which
+satisfies the conclusions of Proposition~\ref{prop:basic},
+Theorem~\ref{thm:undominated} and Theorem~\ref{thm:S}, covers exactly
+the targets $\M_K$ with $K\in\K$.
+\item Suppose $K=K(l,u)$ with $L\ne\varnothing$.
+\begin{enumerate}[label=(c\arabic*),leftmargin=*]
+\item If $u$ is finite and $p$ is any prior with $\supp p=P$, then $\M_K$
+is the unique Bayes model at $p$ in $\Sigma_T$ with $T=\Omega\setminus L$,
+$\lambda_j=l_j/p_j$ and $\eta_j=u_j/p_j$ on $L$, and $\eta_i=u_i/p_i$ on
+$P\setminus L$; any $\eta_i>0$ may be used off $P$.
+\item If $I\coloneqq\{i:u_i=\infty\}$ is nonempty, then in the system used
+in the proof of (b), $\M_K$ agrees almost everywhere with $M(\alpha,\beta)$,
+where $I(\alpha)=I$, and it is Bayes exactly at the priors in $\Delta_I$.
+\end{enumerate}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) By Theorem~\ref{thm:undominated} and Lemma~\ref{lem:credal}, the
+undominated models are, modulo null sets, the $\M_{K(l,u)}$ with
+$l_j=\beta_j\lambda_j$ and $u_j=\beta_j\eta_j$ on $U$, and $l_i=0$ and
+$u_i=\alpha_i\eta_i$ on $T$. Since $K(l,u)$ is unchanged when $(l,u)$ is
+multiplied by a positive number, any $c\ne0$ arises, with $\beta=c/\sum_Uc$
+and $\alpha_i=u_i/(\eta_i\sum_Uc)$. For (b),
+given admissible $(l,u)$ with $L\ne\varnothing$, put $T=\Omega\setminus L$,
+$\beta=l_L/\sum_Ll$, $\lambda_j=\sum_Ll$ and $\eta_j=(u_j/l_j)\sum_Ll$ on
+$L$, and $\eta_i=1$, $\alpha_i=u_i$ on $T$. Lemma~\ref{lem:credal} returns
+$K(l,u)$. If $L=\varnothing$, then $K(l,u)=\Delta_P$, which is also
+$K(l',u')$ with one anchored $j\in P$ ($l'_j=u'_j=1$), $u'=\infty$ on
+$P\setminus\{j\}$ and $u'=0$ off $P$. Conversely, if $\M_K$ is
+undominated in some $\Sigma_T$, then by (a) it agrees almost everywhere
+with some $\M_{K(l,u)}$, or with $V=\M_\Delta$, and Lemma~\ref{lem:ident}
+gives $K=K(l,u)$ or $K=\Delta$. Both lie in $\K$.
+
+(c1) With these parameters the box of Proposition~\ref{prop:bayes}(a) at
+$p$ is $\prod_i[l_i,u_i]$. Here $L\subseteq\supp p$ meets $U$, so
+$p\notin\Delta_T$, and the Bayes model is unique.
+
+(c2) The model $M(\alpha,\beta)$ has zero loss on $I$, hence is Bayes on
+$\Delta_I$. At a prior outside $\Delta_T$ the
+Bayes model has $I(\alpha)=\varnothing$ and differs from $M(\alpha,\beta)$
+on an open set. At $r\in\Delta_T$ with some $i\in\supp r\setminus I$,
+$M(\alpha,\beta)$ accepts an open set of gambles with $g_i<0$, so
+$L_i>0$.
+\end{proof}
+
+\begin{example}\label{ex:covered}
+The following targets are in $\K$.
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item $V$: one anchored world, all others free with $u=\infty$. A
+system in the family covers $V$ only if $|U|\le1$
+(Proposition~\ref{prop:V}; compare Corollary~\ref{cor:vertices} below).
+\item Every face $\Delta_W$, every precise model ($l=u=m$ on
+$\supp m$), and every credal set when $n=2$. Take the interval of
+$m\in\Delta_{\{1,2\}}$ with $x\le m_1\le y$. If $y<1$, use $l_2=u_2=1$,
+$l_1=x/(1-x)$ and $u_1=y/(1-y)$; world $1$ is free when $x=0$. If $y=1$
+and $x>0$, use $l_1=u_1=1$, $l_2=0$ and $u_2=(1-x)/x$. If $x=0$ and $y=1$,
+the interval is a face. All other coordinates have $l=u=0$.
+\item The sets
+$\{m:m_3\ge\theta\max(m_1/p_1,m_2/p_2)\}$, $\theta>0$, of Example 5.1 in
+\texttt{truth\_\allowbreak directed\_\allowbreak losses.tex}, where
+$\theta$ is the constant written $\eta$ there. Here world $3$ is anchored,
+and worlds $1$ and $2$ are free with $u_i=p_i/\theta$. Their boundary points have
+incomparable supports $\{1,3\}$ and $\{2,3\}$.
+\item Single-anchor sets $\{m\in\Delta:m_b\le c_bm_a\ (b\ne a)\}$ with
+$c_b\in[0,\infty]$.
+\item $\conv(K\cup\Delta_I)$, for a normalized box $K$ whose lower bounds
+vanish on $I$: raise those upper bounds to $\infty$.
+\end{enumerate}
+\end{example}
+
+\begin{proposition}\label{prop:notcovered}
+Let $n\ge3$. The following targets are not in $\K$, so no $\Sigma_T$
+covers them:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item every $\varepsilon$-contamination class $(1-\varepsilon)p+\varepsilon\Delta$
+with $0<\varepsilon<1$;
+\item every segment from an interior $p$ to a vertex $e_j$;
+\item for $n=4$ and interior $p$, $\conv(\Delta_{\{1,2,3\}}\cup\{p\})$,
+a proper target containing three vertices.
+\end{enumerate}
+More generally, every facet of a full-dimensional member of $\K$ lies in a
+hyperplane $\{m_k=0\}$ or $\{m_b=\rho m_a\}$. So a full-dimensional
+polytope with any other facet is not in $\K$, and no $\Sigma_T$ covers it.
+\end{proposition}
+\begin{proof}
+A full-dimensional $K\in\K$ has $P=\Omega$, and by
+Lemma~\ref{lem:intrinsic} it is the solution set in the affine hull of
+$\Delta$ of finitely many inequalities $c\cdot m\le0$, each with
+$c=l_ae_b-u_be_a$ or $c=-e_k$. Every facet is cut out by one of them.
+Within $\{\one\cdot m=1\}$, a hyperplane has a homogeneous equation $c\cdot
+m=0$ that is unique up to a nonzero factor: if $c'\cdot m=0$ defines the
+same hyperplane, then $c'=\gamma c+\tau\one$ and $\tau=0$. If the
+inequality is oriented so that $K\subseteq\{c\cdot m\le0\}$, the factor is
+positive. Each listed $c$ has at most one negative and at most one
+positive entry.
+
+(a) For $p_i>0$, the set $\{m_i=(1-\varepsilon)p_i\}$ is a facet. Its
+homogeneous normal $e_i-(1-\varepsilon)p_i\one$ has $n-1\ge2$ negative
+entries.
+
+(c) Let $\{a,b,c\}=\{1,2,3\}$. The facet through $e_a,e_b,p$ lies in
+$\{p_cm_4=p_4m_c\}$. Since $e_c\in K$ gives $p_c\cdot0-p_4\cdot1<0$, the
+oriented inequality is $p_cm_4-p_4m_c\le0$. Its normal $p_ce_4-p_4e_c$ is a
+positive multiple of a listed $l_{a'}e_{b'}-u_{b'}e_{a'}$ only if $b'=4$ and
+$a'=c$. This forces $c\in L$. Hence $L\supseteq\{1,2,3\}$,
+so $u_1<\infty$ and $L\not\subseteq\{1\}$. By Lemma~\ref{lem:intrinsic},
+$e_1\notin K$.
+
+(b) Suppose $K(l,u)$ is such a segment. Then $P=\Omega$, $L\ne\varnothing$,
+and by Lemma~\ref{lem:intrinsic} either $u_j=\infty$ or $L=\{j\}$. If
+$u_j=\infty$, then $l_j=0$, and box points with $a_j=0$ give a point of $K$
+with $m_j=0$. If $L=\{j\}$, the box contains every $a$ with $a_j=l_j$ and
+$0<a_b<u_b$ for $b\ne j$. Normalization is injective on the hyperplane
+$\{a_j=l_j\}$, so $K$ has dimension $n-1\ge2$. Either way $K$ is not
+the segment.
+\end{proof}
+
+\section{Comparison with the three-vertex obstruction}
+
+The additive obstruction of \emph{Full Coverage by Homothetic Credal
+Families v3} states that, under (LA) and (S), every target containing
+three vertices is strictly dominated. It assumes
+$0<\ell_i(g,0)<\ell_i(g,\text{bad})$ at every world, off null sets. In
+$\Sigma_T$ the first inequality fails at every world of $T$ on mixed
+problems. The proof of every step that uses it no longer applies, and the
+first step is in fact false in $\Sigma_T$:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Part (c) of the first lemma in its Appendix C, that a coherent
+$p$-Bayes model has its credal set in $\Delta_{\supp p}$, fails at priors in $\Delta_T$, where these are
+ties (Proposition~\ref{prop:bayes}(b)). The covering models with
+$I(\alpha)\ne\varnothing$ are Bayes on $\Delta_{I(\alpha)}$, yet their
+credal sets leave that face.
+\item The step that finds ``a third index with positive weight and positive
+silence penalty'' needs a strictly scored vertex world.
+\item The three-world compatibility lemma needs $\operatorname{sgn}
+\psi_i=\operatorname{sgn}g_i$, while $\psi_i=0$ when $g_i>0$ and $i\in T$.
+\end{itemize}
+The finitely additive version in \emph{Closed Choice Beyond Ordinary
+Integrals} assumes a strictly guidance-respecting extension, and fails to
+apply for the same reason.
+
+The family covers exactly the three-vertex targets in $\K$, by
+Lemma~\ref{lem:intrinsic}: those with at least three indices $k\in P$
+such that $u_k=\infty$ or $L\subseteq\{k\}$. Examples in four worlds are the proper face
+$\Delta_{\{1,2,3\}}$ and the full-dimensional set
+$\{m\in\Delta:m_4\le c\,m_3\}$. It does not cover
+$\conv(\Delta_{\{1,2,3\}}\cup\{p\})$ (Proposition~\ref{prop:notcovered}).
+The obstruction is respected in a sharper form within the family.
+
+\begin{corollary}\label{cor:vertices}
+If $\M_K$ is undominated in $\Sigma_T$ and $K$ contains the vertices $e_k$
+for $k\in E$, then $|E\setminus T|\le1$. In particular, a three-vertex
+target is covered only by systems that conditionally shun error at two or
+more of its vertex worlds.
+\end{corollary}
+\begin{proof}
+If $U=\varnothing$, then $E\setminus T=\varnothing$. Otherwise, by
+Theorem~\ref{thm:undominated} and Lemma~\ref{lem:credal}, $\M_K$ agrees
+almost everywhere with $\M_{K(l,u)}$ for the pair $(l,u)$ of
+Lemma~\ref{lem:credal}, and Lemma~\ref{lem:ident} gives $K=K(l,u)$. There
+$L=\supp\beta\ne\varnothing$, and $u_k=\infty$ exactly when
+$k\in I(\alpha)\subseteq T$. By Lemma~\ref{lem:intrinsic}, $e_k\in K$
+requires $k\in I(\alpha)$ or $\supp\beta=\{k\}$. The second can hold for at
+most one $k$.
+\end{proof}
+
+\section{Status}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+\item \textbf{Proved.} For every $T$, $\lambda$ and $\eta$, $\Sigma_T$ has
+finite complete rankings satisfying the weakened (G), (IB), (LA), (C) and
+(S). Its undominated models are exactly the $M(\alpha,\beta)$ (only $V$
+when $U=\varnothing$), and $V$ is among them if and only if $|U|\le1$. The family covers exactly $\K$.
+\item \textbf{Proved, negative.} Bayes-at-the-prior selections fail (S)
+unless $T\in\{\varnothing,\Omega\}$ or $n=2$. The variant whose
+$T$-worlds credit gambles paying throughout $T$ can be incoherent, and
+then violates (S) (Remark~\ref{rem:variant}).
+\item \textbf{Not covered by the family.} Targets outside $\K$, including
+$\varepsilon$-contamination classes, segments from interior points to
+vertices, and $\conv(\Delta_{\{1,2,3\}}\cup\{p\})$. In the parametrization
+above, a box coordinate with $l_i>0$ and $u_i=\infty$ would correspond to
+$\lambda_i>0$ and $\eta_i=\infty$, an infinite penalty for bad advice.
+Remark 5.3 of \texttt{truth\_\allowbreak directed\_\allowbreak losses.tex} shows that such
+penalties break (S) in a closely related setting. This is a heuristic, not
+an impossibility theorem.
+\item \textbf{Open.} Whether an additive system outside this family, with
+strict penalties at two of three vertex worlds, can cover a three-vertex
+target. Also, whether any system satisfying the axioms, with (G) weakened
+only by conditional shunning, covers the targets listed above.
+\end{itemize}
+\end{document}

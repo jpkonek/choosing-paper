@@ -1,0 +1,3 @@
+GA: chord/edge/wedge failures (incl. GB misses): 0
+GB: 19942 hull samples, max C = (distance along ray)/(|x-p*|) = 721.652
+GC: facet sign / middle-arc / crossing-pattern failures over 7 eps: 0

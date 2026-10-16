@@ -1,0 +1,5 @@
+c2b22495b7b15cad9024657c5f5857b4  ./CPMs/outputs/domain-axioms/Domain Closure and Extendability.tex
+d2c5bf32c16f7f7f9aaf7a4eaf5e3fc5  ./CPMs/outputs/menu-domain-audit/Assessment and Boundary Resolution 2026-10-13.md
+92d10882798ed77ebe0de22ed84534be  ./CPMs/outputs/menu-domain-audit/Assessment of Contamination Triangle 2026-10-14.md
+ec9929e330ed0393f2bee9456d1dc61d  ./CPMs/outputs/menu-domain-audit/Assessment of Menu Domain Results 2026-10-12.md
+ba553ca734d8707c632245ee599bafd8  ./CPMs/outputs/menu-domain-audit/Closed Choice from Interior Bayes Uniqueness.tex

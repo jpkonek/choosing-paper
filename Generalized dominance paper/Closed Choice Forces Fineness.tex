@@ -1,0 +1,858 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\cred}{\mathrm{credit}}
+\newcommand{\sil}{\mathrm{silence}}
+\newcommand{\Band}{\mathrm{B}}
+\title{Closed Choice Forces Fineness}
+\author{}\date{10 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note continues IC (\emph{Independence Chains and Two Additive Worlds})
+and DT (\emph{Dense Thresholds and Debt Reduction}). It settles the case of
+two additive worlds studied there, provided the third world's ranking is
+complete. It also reduces the conjecture for complete rankings to a property
+of edge selections.
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item \emph{Main theorem} (Theorem~\ref{thm:two}). Let $n=3$ and assume (G)
+and (S). Suppose two worlds have one-sided weak extensions of CBOI's finitely
+additive form; ordinary additive losses are a special case. Suppose the third
+world's ranking is complete and satisfies (IB). Then $V$ is dominated.
+\item In particular, the sub-case of IC and DT is settled whenever world~$1$
+is complete. This includes DT's residual configuration
+(Corollary~\ref{cor:SH}). Of the chain arguments of IC and DT, only IC's
+chain lemma is used (through Proposition~\ref{prop:FA}).
+\item \emph{Reduction} (Theorem~\ref{thm:reduction}). Let $n\ge3$, let every
+ranking be complete with (G) and (IB), and assume (S). Suppose every
+selection on every edge contains an endpoint of that edge. Then every
+coherent model whose credal set contains three vertices is dominated.
+\item \emph{Consequence} (Corollary~\ref{cor:shape}). Let $n=3$, with
+complete rankings, and suppose $V$ is undominated. Then at most one world has
+such a weak extension, so at least two worlds carry leverage sequences in
+EDL's sense. Moreover, some edge has a selection that omits both endpoints.
+\end{enumerate}
+The new ingredient is the following. By (IB), the comparisons at a single
+world of pure debt sets, and separately of pure credit sets, are comparative
+probabilities in de Finetti's sense. The closed sections of (S) at the edge
+selections make them \emph{fine}. The Savage--Wakker theorem then gives
+finitely additive probabilities that almost agree with them. One exchange
+rate between debt and credit assembles these into a weak extension of the
+form required by CBOI's theorem.
+
+\emph{What remains open.} First, the case where the third world's preorder
+is incomplete (Remark~\ref{rem:complete}). Second, the endpoint property
+without any additive world, which is now the whole conjecture for complete
+rankings. Section~\ref{sec:remarks} also records a referee report on DT. It
+found one gap there, in the lemma on debt contraction, and a repair.
+
+Two independent referees checked the argument: the first the core argument
+for two exactly additive worlds, the second this note in full. Their
+corrections are incorporated. The proofs of Lemma~\ref{lem:rates} and
+Theorem~\ref{thm:extension} are the first referee's replacements for proofs
+that had gaps.
+
+\section{Setting}\label{sec:setting}
+
+We use the setting of v3, CC, CBOI, EDL, IC and DT. Binary problems
+$\{g,-g\}$ are represented by $g\in H\coloneqq\{g\in\R^n:g_1>0\}$, with
+normalized Gaussian measure $\mu$. The mixed problems are
+$H'\coloneqq\{g\in H:g_j<0\text{ for some }j\}$; the remaining problems in
+$H$ are unanimous (up to null sets). A regular model is correct on unanimous
+problems and never contradictory. On $H'$ it is an advice function with three
+values. At world~$1$ these are \emph{credit} (accept $g$, rank $0$),
+\emph{silence} (rank $1$) and \emph{debt} (accept $-g$, rank $2$). For a
+regular $M$ write $\cred(M)$ and $\debt(M)$ for the corresponding subsets of
+$H'$. For measurable $Q\subseteq H'$, $M+\debt(Q)$ is the model that agrees
+with $M$ except that it gives debt on $Q$. Similarly for credit and silence.
+
+(G) is strict guidance monotonicity and (IB) independence under replacement
+of shared advice. (S) supplies coherent undominated models $C_p$,
+$p\in\Delta$, competitive on $\supp p$, with closed sections
+$A_i(X)=\{p:C_p\preceq_iX\}$. (S) implies (LA). We use the following
+consequences of (S): every model has a selected coherent weak dominator at
+all worlds (CBOI, Lemma~1); and the face lemma (CC, Lemma~7), by which the
+credal set of $C_q$ lies in $\Delta_{\supp q}$. If $V$ is undominated, it is
+competitive on all worlds (IC, Section~1).
+
+For $j\ge2$ put
+\[
+ D_j\coloneqq\{g\in H:g_j<0\},\qquad t_j\coloneqq g_1/|g_j|\ \text{ on }D_j.
+\]
+Then $H'=\bigcup_{j\ge2}D_j$. The law of $t_j$ under $\mu|_{D_j}$ has a
+positive density on $(0,\infty)$, and for $j\ne k$ the joint law of
+$(t_j,t_k)$ on $D_j\cap D_k$ has a positive density on $(0,\infty)^2$. For
+$0\le s<s'\le\infty$ put
+\[
+ \Band_j[s,s')\coloneqq D_j\cap\{s\le t_j<s'\},\qquad
+ \Band_j(s,s']\coloneqq D_j\cap\{s<t_j\le s'\}.
+\]
+
+\paragraph{Losses of finitely additive form.} Following CBOI, let
+$\nu_{k1},\nu_{k2},\nu_{k3}$ be finite nonnegative finitely additive
+measures on the measurable subsets of $H$ with
+\begin{equation}
+ \nu_{kl}(A)=0\text{ if }\mu(A)=0,\qquad\nu_{kl}(A)>0\text{ if }\mu(A)>0,
+ \label{eq:positive}
+\end{equation}
+and put $L_k(\Dscr)\coloneqq\sum_{l=1}^3\nu_{kl}\{g:r_k(g,\Dscr)\ge l\}$.
+Ordinary additive losses with strictly ordered local penalties and an
+integrable envelope are the special case of densities. Regular models never
+use rank~$3$, and are correct on unanimous problems. So for regular models
+only $\nu_{k1},\nu_{k2}$ on $H'$ matter, and $\nu_{k3}$ and the restrictions
+to unanimous problems may be replaced by $\mu$ without changing $L_k$ on
+regular models. Consider the one-sided bound
+\begin{equation}
+ B\text{ coherent undominated},\ X\text{ regular},\ B\preceq_kX
+ \ \Longrightarrow\ L_k(B)\le L_k(X).
+ \tag{W$_k$}\label{eq:W}
+\end{equation}
+It needs no completeness of $\preceq_k$.
+
+\begin{lemma}\label{lem:cboi}
+Let $n\ge3$ and assume (G) and (S). Suppose every world $k$ has a loss $L_k$
+of the above form satisfying \eqref{eq:positive} and \eqref{eq:W}. Then every
+coherent model whose credal set contains three vertices is dominated.
+\end{lemma}
+\begin{proof}
+This is CBOI's Theorem~2, in the one-sided form of EDL's Proposition~1. Its
+proof uses the weak-extension property only for
+pairs $(C_m,X_m)$, with $C_m$ selected and $X_m$ regular, and for pairs
+$(T,X_m)$, with $T$ the coherent target assumed undominated and $X_m$
+regular. Both kinds of pair are covered by \eqref{eq:W}.
+\end{proof}
+
+\section{Edge selections with the endpoint property}\label{sec:edges}
+
+Fix $j\ge2$. A selection $C_q$ with $q$ on the edge $[e_1,e_j]$ has a credal
+interval on that edge (face lemma). Off $D_j$ such a model gives credit,
+since there $g_1>0$ and $g_j\ge0$. On $D_j$ it is determined by two
+thresholds in $t_j$. The two families with an endpoint are:
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item $E^j_1(a)$, $a\in[0,\infty]$, whose credal set contains $e_1$: credit
+on $\Band_j(a,\infty)$, silence on the rest of $D_j$;
+\item $E_j(b)$, $b\in[0,\infty]$, whose credal set contains $e_j$: debt on
+$\Band_j[0,b)$, silence on the rest of $D_j$.
+\end{itemize}
+Then $E^j_1(0)=D_1$, $E_j(\infty)=D_j$ and
+$E^j_1(\infty)=E_j(0)=V_{1j}\coloneqq\Dscr_{[e_1,e_j]}$. Index both families
+by one parameter $s\in[-\infty,\infty]$:
+\[
+ M^j_s\coloneqq E^j_1(-1/s)\ (s<0),\qquad M^j_{-\infty}\coloneqq D_1,\qquad
+ M^j_s\coloneqq E_j(s)\ (s\ge0).
+\]
+If $s<s'$, the models $M^j_s$ and $M^j_{s'}$ differ only on $D_j$. There the
+world-1 rank of $M^j_s$ is pointwise no larger, and strictly smaller on a
+non-null band. On $D_j$ the world-$j$ ranks are reversed: accepting $g$ is
+bad at $j$ and accepting $-g$ is good. By strict (G),
+\begin{equation}
+ s<s'\ \Longrightarrow\ M^j_s\prec_1M^j_{s'}\quad\text{and}\quad
+ M^j_{s'}\prec_jM^j_s.
+ \label{eq:order}
+\end{equation}
+
+\begin{definition}\label{def:EP}
+The \emph{endpoint property} (EP$_{ij}$) holds if every selection $C_q$ with
+$q\in[e_i,e_j]$ has $e_i$ or $e_j$ in its credal set.
+\end{definition}
+
+\begin{lemma}\label{lem:edge}
+Assume (G) at worlds $1$ and $j$, (S), and (EP$_{1j}$). Then there is a
+continuous map $s\colon[e_1,e_j]\to[-\infty,\infty]$ with $C_q=M^j_{s(q)}$,
+$s(e_1)=-\infty$ and $s(e_j)=\infty$. Every $M^j_s$ is selected. If $s$ is
+finite, it is selected only at points of the open edge.
+\end{lemma}
+\begin{proof}
+By (EP$_{1j}$) and the face lemma, each $C_q$ on the edge is some $E^j_1(a)$
+or $E_j(b)$, hence some $M^j_s$. The parameter is unique, since different
+parameters give models that differ on a non-null band. By the face lemma,
+$C_{e_1}$ has credal set $\{e_1\}$, so $C_{e_1}=D_1$; likewise $C_{e_j}=D_j$.
+
+For every $s$ we claim
+\[
+ A_1(M^j_s)\cap[e_1,e_j]=\{q:s(q)\le s\},\qquad
+ A_j(M^j_s)\cap[e_1,e_j]=\{q:s(q)\ge s\}.
+\]
+If $s(q)\le s$, then $C_q\preceq_1M^j_s$ by (G). If $s(q)>s$, then
+$M^j_s\prec_1C_q$ by \eqref{eq:order}, so $C_q\not\preceq_1M^j_s$. The second
+identity is proved the same way. Both sets are closed by (S). So $s$ is lower
+and upper semicontinuous, hence continuous into the extended line. By the
+intermediate value theorem every $s\in[-\infty,\infty]$ is attained. If $s$
+is finite, then $M^j_s\notin\{D_1,D_j\}$, so it is not selected at $e_1$ or
+$e_j$.
+\end{proof}
+
+\begin{lemma}\label{lem:approach}
+Under the hypotheses of Lemma~\ref{lem:edge}, let $s^*\in[-\infty,\infty]$
+and let $s_n\to s^*$, with all $s_n<s^*$ or all $s_n>s^*$. Then there is
+$q^*$ with $s(q^*)=s^*$ such that every neighbourhood $N$ of $q^*$ has the
+following property: for some $n_0$, every $s$ between $s_{n_0}$ and $s^*$
+(inclusive) equals $s(q)$ for some $q\in N$.
+\end{lemma}
+\begin{proof}
+Choose $q_n$ with $s(q_n)=s_n$ and pass to a convergent subsequence
+$q_n\to q^*$. By continuity, $s(q^*)=s^*$. A neighbourhood $N$ contains an
+interval $I\ni q^*$ of the edge. Its image $s(I)$ is an interval containing
+$s^*$ and $s_n$ for all large $n$ in the subsequence.
+\end{proof}
+
+\section{Band lemmas at the free world}\label{sec:bands}
+
+From now on until Section~\ref{sec:main}, world~$1$ is the \emph{free world}.
+Its ranking is \emph{complete} and satisfies (G) and (IB). For measurable
+$B,C\subseteq H'$ define
+\begin{gather*}
+ B\preceq_dC\ :\Longleftrightarrow\ V+\debt(B)\preceq_1V+\debt(C),\\
+ B\preceq_cC\ :\Longleftrightarrow\ V+\cred(C)\preceq_1V+\cred(B).
+\end{gather*}
+So $B\preceq_dC$ says that debt on $B$ is no worse than debt on $C$, and
+$B\preceq_cC$ says that credit on $B$ is worth no more than credit on $C$.
+By (IB), $V$ may be replaced by any regular model silent on $B\cup C$: the
+two pairs share their advice outside $B\triangle C$ and agree on it. Strict
+relations are written $\prec_d$, $\prec_c$. By (G), $B\subseteq C$ implies
+$B\preceq_dC$ and $B\preceq_cC$.
+
+Two consequences of (S) are used at an edge $[e_1,e_j]$.
+\begin{enumerate}[label=(T\arabic*),leftmargin=*,itemsep=2pt]
+\item If $Y$ is regular and $Y\prec_1C_{q^*}$, then $Y\prec_1C_q$ for all
+$q$ near $q^*$. Indeed $q^*\notin A_1(Y)$, a closed set; so near $q^*$,
+$C_q\not\preceq_1Y$, and completeness gives $Y\prec_1C_q$.
+\item If $F$ is regular, $q^*\in[e_1,e_j]$ and $F\prec_jC_{q^*}$, then
+$C_q\preceq_1F$ for all $q$ in the open edge near $q^*$. Indeed near $q^*$,
+$C_q\not\preceq_jF$ since $A_j(F)$ is closed, and $C_q$ is competitive on
+$\{1,j\}$.
+\end{enumerate}
+Only (T1) uses completeness.
+
+In Lemmas~\ref{lem:debtbands} and~\ref{lem:creditbands} assume (G) at
+worlds $1$ and $j$, (S) and (EP$_{1j}$), and write $t=t_j$ and
+$\Band=\Band_j$.
+
+\begin{lemma}\label{lem:debtbands}
+Let $A\subseteq D_j$ be non-null.
+\begin{enumerate}[label=(\alph*)]
+\item If $A\subseteq\{t<a\}$ and $a<b<\infty$, there is $b'\in[a,b)$ with
+$\Band[s,b)\prec_dA$ for all $s\in[b',b)$.
+\item If $A\subseteq\{t\ge c\}$ and $0\le b<c$, there is $b'\in(b,c]$ with
+$\Band[b,s)\preceq_dA$ for all $s\in(b,b']$.
+\item If $A\subseteq\{t<a\}$, there is $s>a$ with $\Band[s,\infty)\prec_dA$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Apply Lemma~\ref{lem:approach} with $s^*=b$ and $s_n\uparrow b$,
+$s_n\ge a$. It gives $q^*$ with $C_{q^*}=E_j(b)$. Let $Y$ be $E_j(b)$ with
+its debt on $A$ silenced; then $Y\prec_1E_j(b)$ by strict (G). By (T1) and
+Lemma~\ref{lem:approach}, there is $n_0$ with $Y\prec_1E_j(s)$ for every
+$s\in[s_{n_0},b)$. The two models differ exactly on $A$, where $Y$ is silent
+and $E_j(s)$ has debt, and on $\Band[s,b)$, where $Y$ has debt and $E_j(s)$
+is silent. By (IB), $\Band[s,b)\prec_dA$. Put $b'\coloneqq s_{n_0}$.
+
+(b) Apply Lemma~\ref{lem:approach} with $s^*=b$ and $s_n\downarrow b$,
+$s_n<c$. It gives $q^*$ with $C_{q^*}=E_j(b)$, in the open edge. Let
+$F\coloneqq E_j(b)+\debt(A)$; $E_j(b)$ is silent on $A$. Debt on $D_j$ is
+good at world $j$, so $F\prec_jE_j(b)$. By (T2) and
+Lemma~\ref{lem:approach}, there is $n_0$ with $E_j(s)\preceq_1F$ for every
+$s\in(b,s_{n_0}]$; these indices lie in the open edge since $s$ is finite.
+The two models differ exactly on $\Band[b,s)$, where $E_j(s)$ has debt, and
+on $A\subseteq\{t\ge s\}$, where $F$ has debt. So $\Band[b,s)\preceq_dA$. Put
+$b'\coloneqq s_{n_0}$.
+
+(c) Apply Lemma~\ref{lem:approach} with $s^*=\infty$ and $s_n\uparrow\infty$,
+$s_n>a$; then $C_{q^*}=D_j$. Let $Y$ be $D_j$ with its debt on $A$ silenced,
+so $Y\prec_1D_j$. By (T1), $Y\prec_1E_j(s)$ for some $s>a$. These differ on
+$A$ and on $\Band[s,\infty)$, so $\Band[s,\infty)\prec_dA$.
+\end{proof}
+
+\begin{lemma}\label{lem:creditbands}
+Let $T\subseteq D_j$ be non-null.
+\begin{enumerate}[label=(\alph*)]
+\item If $T\subseteq\{t<a\}$ and $a<a'<\infty$, there is $a''\in[a,a')$ with
+$\Band(s,a']\prec_cT$ for all $s\in[a'',a')$.
+\item If $T\subseteq\{t>c\}$ and $0\le a'<c$, there is $a''\in(a',c]$ with
+$\Band(a',s]\preceq_cT$ for all $s\in(a',a'']$.
+\item If $T\subseteq\{t<a\}$, there is $s>a$ with $\Band(s,\infty)\prec_cT$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $E^j_1(s)$ with $s<a'$ has parameter $-1/s<-1/a'$. Apply
+Lemma~\ref{lem:approach} with $s^*=-1/a'$ from below, using only $s\ge a$.
+Let $Y\coloneqq E^j_1(a')+\cred(T)$; $E^j_1(a')$ is silent on $T$. Then
+$Y\prec_1E^j_1(a')$. By (T1), $Y\prec_1E^j_1(s)$ for all $s\in[a'',a')$, for
+some $a''$. The two models differ on $T$, where $Y$ has credit, and on
+$\Band(s,a']$, where $E^j_1(s)$ has credit. So $V+\cred(T)\prec_1
+V+\cred(\Band(s,a'])$, that is, $\Band(s,a']\prec_cT$.
+
+(b) Apply Lemma~\ref{lem:approach} with $s^*=-1/a'$ (or $-\infty$ if $a'=0$)
+from above. Then $C_{q^*}=E^j_1(a')$, which is $D_1$ if $a'=0$. Let $F$ be
+$E^j_1(a')$ with its credit on $T$ silenced. Credit on $D_j$ is bad at world
+$j$, so $F\prec_jE^j_1(a')$. By (T2), $E^j_1(s)\preceq_1F$ for all
+$s\in(a',a'']$, for some $a''$; these indices lie in the open edge. The
+models differ on $\Band(a',s]$, where $F$ has credit, and on
+$T\subseteq\{t>s\}$, where $E^j_1(s)$ has credit. So $\Band(a',s]\preceq_cT$.
+
+(c) Apply Lemma~\ref{lem:approach} with $s^*=0$ from below, so
+$C_{q^*}=V_{1j}$. Let $Y\coloneqq V_{1j}+\cred(T)$, so $Y\prec_1V_{1j}$. By
+(T1), $Y\prec_1E^j_1(s)$ for some $s>a$. These differ on $T$ and on
+$\Band(s,\infty)$.
+\end{proof}
+
+\section{Fineness}\label{sec:fine}
+
+\begin{theorem}\label{thm:fine}
+Assume (G) at every world and (S). Let world~$1$ be complete with (IB), and
+assume (EP$_{1j}$) for every $j\ge2$. Then for every non-null $A\subseteq H'$
+there is a finite partition of $H'$ into measurable sets each $\preceq_dA$.
+The same holds for $\preceq_c$.
+\end{theorem}
+\begin{proof}
+We give the proof for debt; the credit proof is parallel, with
+Lemma~\ref{lem:creditbands} and half-open bands $(\cdot,\cdot]$ in place of
+Lemma~\ref{lem:debtbands} (details at the end). Null sets are absorbed into
+any piece.
+
+\emph{Step 0.} Since $H'=\bigcup_jD_j$, choose $j$ with $A\cap D_j$ non-null,
+and $0<a_1<a_2<\infty$ such that $A_0\coloneqq A\cap D_j\cap\{a_1\le t_j\le
+a_2\}$ is non-null. Then $A_0\preceq_dA$.
+
+\emph{Step 1: one edge.} We claim: for every $j$ and every non-null
+$A_0\subseteq D_j\cap\{t_j\ge a_1\}$, $a_1>0$, there are $s_0\in(0,a_1)$ and
+a finite partition of $D_j$ into sets each $\preceq_dA_0$, one of which is
+$\Band_j[0,s_0)$. Write $t=t_j$, $\Band=\Band_j$.
+
+By Lemma~\ref{lem:debtbands}(b) with $b=0$, $c=a_1$, there is $s_0\in(0,a_1)$
+with $\Band[0,s_0)\preceq_dA_0$. Put $A'\coloneqq\Band[0,s_0/2)$, so
+$A'\preceq_dA_0$. By Lemma~\ref{lem:debtbands}(c) with $a=s_0$ there is
+$s_1>s_0$ with $\Band[s_1,\infty)\prec_dA'$. Put $w\coloneqq s_1+1$. By
+Lemma~\ref{lem:debtbands}(a), with $a=s_0/2$, there is $w''\in(s_1,w)$ with
+$A_{\mathrm{up}}\coloneqq\Band[w'',w)\prec_dA'$, and
+$A_{\mathrm{up}}\subseteq\{t\ge w''\}$.
+
+For each $z\in[s_0,s_1]$, Lemma~\ref{lem:debtbands}(a), with yardstick $A'$
+and $a=s_0/2<z$, gives $z'<z$ with $\Band[r,z)\prec_dA'$ for all
+$r\in[z',z)$. Lemma~\ref{lem:debtbands}(b), with yardstick $A_{\mathrm{up}}$
+and $c=w''>z$, gives $z''>z$ with $\Band[z,r)\preceq_dA_{\mathrm{up}}$ for all
+$r\in(z,z'']$. Put $U_z\coloneqq(z',z'')$. Finitely many $U_z$ cover the
+compact interval $[s_0,s_1]$. Let $\lambda>0$ be a Lebesgue number of this
+cover, and choose $s_0=r_0<r_1<\dots<r_m=s_1$ with $r_{l+1}-r_l<\lambda$.
+Each $[r_l,r_{l+1}]$ lies in some $U_z$. If $z\le r_l$, then
+$\Band[r_l,r_{l+1})\subseteq\Band[z,r_{l+1})\preceq_dA_{\mathrm{up}}\prec_dA'$.
+If $z\ge r_{l+1}$, then $\Band[r_l,r_{l+1})\subseteq\Band[r_l,z)\prec_dA'$. If
+$r_l<z<r_{l+1}$, split $\Band[r_l,r_{l+1})$ into $\Band[r_l,z)$ and
+$\Band[z,r_{l+1})$, each $\preceq_dA'$.
+
+The sets $\Band[0,s_0)$, the pieces of $\Band[s_0,s_1)$ just obtained, and
+$\Band[s_1,\infty)$ partition $D_j$ up to a null set. Each is $\preceq_dA_0$,
+because $A'\preceq_dA_0$ and $\preceq_d$ is transitive.
+
+\emph{Step 2: the other edges.} Apply Step~1 to the edge $[e_1,e_j]$ chosen
+in Step~0. For $k\ne j$ the set
+\[
+ A_k\coloneqq\Band_j[0,s_0)\cap D_k\cap\{1\le t_k\le2\}
+\]
+is non-null, by the positive joint density of $(t_j,t_k)$, and
+$A_k\preceq_d\Band_j[0,s_0)\preceq_dA_0$. Step~1 on the edge $[e_1,e_k]$ with
+yardstick $A_k$ gives a finite partition of $D_k$ into sets
+$\preceq_dA_k\preceq_dA_0$.
+
+\emph{Step 3.} Enumerate $\{2,\dots,n\}$ as $j=j_1,j_2,\dots$. The sets
+$Q\setminus\bigcup_{r'<r}D_{j_{r'}}$, with $Q$ a piece of the partition of
+$D_{j_r}$, form a finite partition of $H'$. Each is a subset of a piece, so
+it is $\preceq_dA_0\preceq_dA$.
+
+\emph{Credit.} Steps 0 and 3 are unchanged. In Step~2 use
+$A_k\coloneqq\Band_j(0,s_0]\cap D_k\cap\{1\le t_k\le2\}\subseteq\{t_k>1/2\}$.
+In Step~1, with a yardstick $T_0\subseteq D_j\cap\{t>c\}$ (in Step~0 take
+$c\coloneqq a_1/2$; in Step~2, $c\coloneqq1/2$): Lemma~\ref{lem:creditbands}(b) with
+$a'=0$ gives $s_0\in(0,c)$ with $\Band(0,s_0]\preceq_cT_0$. Put
+$T'\coloneqq\Band(0,s_0/2]\subseteq\{t<3s_0/4\}$. Part (c) gives $s_1>s_0$
+with $\Band(s_1,\infty)\prec_cT'$. Part (a) at $a'=w\coloneqq s_1+1$ gives
+$w''\in(s_1,w)$ with $T_{\mathrm{up}}\coloneqq\Band(w'',w]\prec_cT'$. For
+$z\in[s_0,s_1]$, part (a) with yardstick $T'$ and $a=3s_0/4<z$ handles bands
+$(r,z]$, and part (b) with yardstick $T_{\mathrm{up}}\subseteq\{t>w''\}$
+handles bands $(z,r]$. The Lebesgue-number argument is the same.
+\end{proof}
+
+\section{Comparative probabilities}\label{sec:cp}
+
+A \emph{comparative probability} on a $\sigma$-algebra $\mathcal A$ of
+subsets of $\Omega$ is a complete preorder $\preceq$ on $\mathcal A$ with
+$\varnothing\preceq B$ for all $B$, $\varnothing\prec\Omega$, and
+$B\preceq C\iff B\cup E\preceq C\cup E$ whenever $E\cap(B\cup C)=\varnothing$.
+It is \emph{fine} if for every $B\succ\varnothing$ there is a finite
+partition of $\Omega$ into events each $\preceq B$. It is \emph{atomless} if
+every $B\succ\varnothing$ is the union of two disjoint events each
+$\succ\varnothing$. A finitely additive probability $P$ \emph{almost agrees}
+with $\preceq$ if $B\preceq C$ implies $P(B)\le P(C)$.
+
+\begin{lemma}\label{lem:cp}
+Under the hypotheses of Theorem~\ref{thm:fine}, $\preceq_d$ and $\preceq_c$
+are fine atomless comparative probabilities on the measurable subsets of
+$H'$. Moreover $B\succ_d\varnothing$, and likewise $B\succ_c\varnothing$, if
+and only if $B$ is non-null.
+\end{lemma}
+\begin{proof}
+Completeness and transitivity come from those of $\preceq_1$, with the single
+context $V$. Then $\varnothing\preceq_dB$ by (G), and strictly if $B$ is
+non-null by strict (G). Null sets are equivalent to $\varnothing$ because
+models are compared modulo null sets. Additivity is (IB): the pairs
+$(V+\debt(B),V+\debt(C))$ and $(V+\debt(B\cup E),V+\debt(C\cup E))$ share
+their advice off $B\triangle C$ and agree on it. A non-null set splits into
+two non-null sets because $\mu$ is atomless. Fineness is
+Theorem~\ref{thm:fine}. Credit is the same.
+\end{proof}
+
+\begin{theorem}\label{thm:SW}
+A fine atomless comparative probability on an algebra of events has a unique
+finitely additive probability that almost agrees with it.
+\end{theorem}
+This is due to Savage~\cite[\S3.3]{Savage}; Wakker~\cite{Wakker} proves it for
+algebras, not only $\sigma$-algebras: fineness and atomlessness give almost
+uniform partitions of every order (his Theorem~2), and these give the almost
+agreeing probability (his Theorem~1 and Lemma~3). A finite partition into
+events $\preceq B$ implies Wakker's form of fineness.
+
+Let $P_d$ and $P_c$ be the probabilities given by Theorem~\ref{thm:SW} for
+$\preceq_d$ and $\preceq_c$.
+
+\begin{lemma}\label{lem:Pd}
+Under the hypotheses of Theorem~\ref{thm:fine}:
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=1pt]
+\item If $P_d(B)<P_d(C)$ then $B\prec_dC$. If $P_c(B)<P_c(C)$ then
+$B\prec_cC$.
+\item $P_d(B)=0$ if and only if $B$ is null; likewise for $P_c$.
+\item For measurable $R$, $v\in[0,P_d(R)]$ and $\varepsilon>0$ there is
+$R'\subseteq R$ with $|P_d(R')-v|<\varepsilon$; likewise for $P_c$.
+\item For measurable $R$, $\theta\in[0,1]$ and $\varepsilon>0$ there is
+$R'\subseteq R$ with $|P_d(R')-\theta P_d(R)|\le\varepsilon$ and
+$|P_c(R')-\theta P_c(R)|\le\varepsilon$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(i) If $C\preceq_dB$ held, almost agreement would give $P_d(C)\le P_d(B)$.
+So $C\not\preceq_dB$, and completeness gives $B\prec_dC$.
+
+(ii) A null $B$ is equivalent to $\varnothing$, so $P_d(B)\le0$. If $B$ is
+non-null, a fine partition $Q_1,\dots,Q_m$ of $H'$ into events
+$\preceq_dB$ gives $1=\sum_lP_d(Q_l)\le mP_d(B)$.
+
+(iii) Given $\eta>0$, repeated halving of a non-null set gives a non-null
+$C$ with $P_d(C)<\eta$. A fine partition of $H'$ into events $\preceq_dC$ has
+pieces of $P_d$-mass $\le P_d(C)<\eta$. Intersect it with $R$. The partial
+unions of the pieces increase from $0$ to $P_d(R)$ in steps $<\eta$.
+
+(iv) Let $\eta>0$. Intersect a common refinement of partitions as in (iii),
+for $P_d$ and for $P_c$, with $R$. This gives $R=R_1\cup\dots\cup R_m$,
+disjoint, with $v_l\coloneqq(P_d(R_l),P_c(R_l))\in[0,\eta]^2$. Let
+$S=(S_1,S_2)\coloneqq\sum_lv_l$; if $S_1+S_2=0$ take $R'=\varnothing$. Put
+$\sigma(v)\coloneqq v_1S_2-v_2S_1$, so $\sigma(S)=0$ and
+$|\sigma(v_l)|\le\eta(S_1+S_2)$. Order the pieces greedily: if the current
+partial sum $p$ has $\sigma(p)\ge0$, append a remaining piece with
+$\sigma\le0$, which exists because the remaining sum has $\sigma=-\sigma(p)$;
+otherwise append one with $\sigma\ge0$. Then every partial sum satisfies
+$|\sigma(p)|\le\eta(S_1+S_2)$. The quantity $p_1+p_2$ increases from $0$ to
+$S_1+S_2$ in steps $\le2\eta$, so some partial sum has
+$|p_1+p_2-\theta(S_1+S_2)|\le\eta$. Put $w\coloneqq p-\theta S$. Then
+\[
+ w_1=\frac{\sigma(p)+S_1(w_1+w_2)}{S_1+S_2},\qquad
+ w_2=\frac{S_2(w_1+w_2)-\sigma(p)}{S_1+S_2},
+\]
+so $|w_1|,|w_2|\le2\eta$. Take $\eta=\varepsilon/2$ and let $R'$ be the
+union of the pieces in that partial sum.
+\end{proof}
+
+\section{One exchange rate}\label{sec:rate}
+
+For disjoint measurable $A,T\subseteq H'$, the \emph{pair} $(A,T)$ is the
+change from silence to debt on $A$ and to credit on $T$. Call it \emph{SI}
+(a strict improvement) if $V+\debt(A)+\cred(T)\prec_1V$, and \emph{AC}
+otherwise. By completeness, AC means $V\preceq_1V+\debt(A)+\cred(T)$. By
+(IB) the classification does not change if $V$ is replaced by any regular
+model silent on $A\cup T$. Pairwise disjoint pairs that are all SI compose to
+an SI pair, and pairs that are all AC compose to an AC pair: apply them one
+after another. An SI pair has $T$ non-null, by (G). Put
+\[
+ r(A,T)\coloneqq P_d(A)/P_c(T)\in[0,\infty],\qquad
+ \sigma_-\coloneqq\sup_{\text{SI}}r,\qquad\sigma_+\coloneqq\inf_{\text{AC}}r,
+\]
+with the convention $r(A,T)\coloneqq\infty$ whenever $P_c(T)=0$, including
+the case $P_d(A)=0$.
+
+\begin{lemma}\label{lem:SIAC}
+Under the hypotheses of Theorem~\ref{thm:fine}, $0<\sigma_-$ and
+$\sigma_+<\infty$.
+\end{lemma}
+\begin{proof}
+Use any edge $[e_1,e_j]$ and Lemma~\ref{lem:approach}. \emph{An SI pair.} Let
+$Z\subseteq\Band_j[1,\infty)$ be non-null and $Y\coloneqq E_j(1)+\cred(Z)$,
+so $Y\prec_1E_j(1)$. As in Lemma~\ref{lem:debtbands}(a), (T1) gives
+$Y\prec_1E_j(s)$ for some $s<1$. The two models differ by the pair
+$(\Band_j[s,1),Z)$, which is therefore SI. Its ratio is positive and finite,
+by Lemma~\ref{lem:Pd}(ii).
+
+\emph{An AC pair.} Let $A\subseteq\Band_j[0,1)$ be non-null and
+$F\coloneqq E^j_1(1)+\debt(A)$, so $F\prec_jE^j_1(1)$. As in
+Lemma~\ref{lem:creditbands}(b), (T2) gives $E^j_1(s)\preceq_1F$ for some
+$s>1$. So $(A,\Band_j(1,s])$ is AC, with finite ratio.
+\end{proof}
+
+\begin{lemma}\label{lem:rates}
+Under the hypotheses of Theorem~\ref{thm:fine}, $\sigma_-\le\sigma_+$.
+\end{lemma}
+\begin{proof}
+Suppose $(A,T)$ is AC and $(A_0,T_0)$ is SI with $r(A,T)<r(A_0,T_0)$. Write
+$a=P_d(A)$, $t=P_c(T)$, $a_0=P_d(A_0)$, $t_0=P_c(T_0)$. Here $t_0>0$, and
+$t>0$ since the ratio of $(A,T)$ is finite. Also $a>0$, because adding credit
+alone is a strict improvement, and $a_0>0$, because $a_0/t_0>a/t\ge0$.
+Choose integers $K,K_0\ge4$ with
+\[
+ t_0/t<K_0/K<a_0/a,
+\]
+which is possible because $t_0/t<a_0/a$. Let $\gamma>0$ be small. By repeated
+use of Lemma~\ref{lem:Pd}(iv), split $A$ and $T$ into $K$ pieces each, and
+$A_0$ and $T_0$ into $K_0$ pieces each. Each piece carries, for both $P_d$
+and $P_c$, within $\gamma$ of $1/K$ (resp.\ $1/K_0$) of the mass of the set
+it comes from. Pair the pieces to get $K$ pairs $(A_l,T_l)$ and $K_0$ pairs
+$(A_{0l},T_{0l})$.
+
+If all $(A_l,T_l)$ were SI, their composition $(A,T)$ would be SI. So one of
+them, say $(A',T')$, is AC. Likewise some $(A_0',T_0')$ is SI. For $\gamma$
+small,
+\[
+ P_d(A')<P_d(A_0'),\qquad P_c(T')>P_c(T_0'),\qquad
+ P_c\bigl(H'\setminus(A'\cup A_0')\bigr)\ge1-\tfrac1K-\tfrac1{K_0}-2\gamma
+ >P_c(T_0').
+\]
+The last inequality holds because the left side is at least $\tfrac12-2\gamma$
+and $P_c(T_0')\le\tfrac1{K_0}+\gamma\le\tfrac14+\gamma$.
+By Lemma~\ref{lem:Pd}(iii) choose $T^*\subseteq H'\setminus(A'\cup A_0')$
+with $P_c(T_0')<P_c(T^*)<P_c(T')$. By Lemma~\ref{lem:Pd}(i) and (IB),
+\begin{align*}
+ V+\debt(A_0')+\cred(T^*)&\prec_1V+\debt(A_0')+\cred(T_0'),\\
+ V+\debt(A')+\cred(T^*)&\prec_1V+\debt(A_0')+\cred(T^*),\\
+ V+\debt(A')+\cred(T')&\prec_1V+\debt(A')+\cred(T^*).
+\end{align*}
+The first replaces credit by heavier credit in the context $\debt(A_0')$,
+which $T^*$ and $T_0'$ avoid. The second replaces debt by lighter debt in the
+context $\cred(T^*)$, which $A'$ and $A_0'$ avoid. The third replaces credit
+by heavier credit in the context $\debt(A')$, which $T^*$ and $T'$ avoid.
+Overlaps of the two compared sets are allowed, since $\preceq_d,\preceq_c$
+compare differences. All models are regular. Hence
+$V+\debt(A')+\cred(T')\prec_1V+\debt(A_0')+\cred(T_0')\prec_1V$, so
+$(A',T')$ is SI. This is a contradiction.
+\end{proof}
+
+Fix $\kappa\in[\sigma_-,\sigma_+]$. Then $0<\kappa<\infty$.
+
+\begin{lemma}\label{lem:kappa}
+Let $A,T\subseteq H'$ be disjoint.
+\begin{enumerate}[label=(\alph*)]
+\item If $P_d(A)<\kappa P_c(T)$, then $(A,T)$ is SI.
+\item If $P_d(A)>\kappa P_c(T)$, then $V\prec_1V+\debt(A)+\cred(T)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $r(A,T)<\kappa\le\sigma_+$, so $(A,T)$ is not AC. (b) By
+Lemma~\ref{lem:Pd}(iii) choose $A_1\subseteq A$ with
+$\kappa P_c(T)<P_d(A_1)<P_d(A)$. Then $A_2\coloneqq A\setminus A_1$ has
+positive $P_d$-mass, so it is non-null. Since $r(A_1,T)>\kappa\ge\sigma_-$,
+$(A_1,T)$ is not SI, hence AC. Adding debt on $A_2$ is a strict worsening by
+strict (G).
+\end{proof}
+
+\begin{theorem}\label{thm:extension}
+Under the hypotheses of Theorem~\ref{thm:fine}, put
+$\Lambda(M)\coloneqq P_d(\debt(M))-\kappa P_c(\cred(M))$ for regular $M$.
+Then $M\preceq_1M'$ implies $\Lambda(M)\le\Lambda(M')$ for all regular
+$M,M'$.
+\end{theorem}
+\begin{proof}
+Let $\mathcal D\coloneqq\{g\in H':M(g)\ne M'(g)\}$ and let $N$ be $M$
+silenced on $\mathcal D$; it is also $M'$ silenced on $\mathcal D$. Let $A,T$
+be the debt and credit sets of $M$ inside $\mathcal D$, and $A',T'$ those of
+$M'$. Then $M=N+\debt(A)+\cred(T)$ and $M'=N+\debt(A')+\cred(T')$, with
+$A\cap T=A'\cap T'=\varnothing$. Put
+\[
+ \lambda\coloneqq P_d(A)-\kappa P_c(T),\qquad
+ \lambda'\coloneqq P_d(A')-\kappa P_c(T'),
+\]
+so $\Lambda(M)-\Lambda(M')=\lambda-\lambda'$. Suppose $\lambda'<\lambda$; we
+show $M'\prec_1M$. Fix $\varepsilon>0$ with $3\varepsilon<\lambda-\lambda'$.
+All choices of subsets below use Lemma~\ref{lem:Pd}(iii), and all comparisons
+use Lemma~\ref{lem:kappa} in a context silent on the sets changed, via (IB).
+
+\emph{Step 1: from $M$ to a one-signed model $Z\preceq_1M$.}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item If $\lambda>0$: choose $A^1\subseteq A$ with
+$\kappa P_c(T)<P_d(A^1)<\min(\kappa P_c(T)+\varepsilon,P_d(A))$, and put
+$Z\coloneqq N+\debt(A\setminus A^1)$. Then $M=Z+\debt(A^1)+\cred(T)$ and
+$Z\prec_1M$ by Lemma~\ref{lem:kappa}(b). Here $Z$ has debt only, on a
+non-null set, and $l\coloneqq\Lambda(Z)-\Lambda(N)\in(\lambda-\varepsilon,
+\lambda)$, $l>0$.
+\item If $\lambda\le0$ and $P_d(A)>0$: choose $T^1\subseteq T$ with
+$P_d(A)-\varepsilon<\kappa P_c(T^1)<P_d(A)$ and put
+$Z\coloneqq N+\cred(T\setminus T^1)$. Then $M=Z+\debt(A)+\cred(T^1)$ and
+$Z\prec_1M$ by Lemma~\ref{lem:kappa}(b). Here $Z$ has credit only, and
+$l\in(\lambda-\varepsilon,\lambda)$, $l<0$.
+\item If $P_d(A)=0$: $A$ is null; put $Z\coloneqq M=N+\cred(T)$, credit
+only, with $l=\lambda\le0$.
+\end{itemize}
+
+\emph{Step 2: from $M'$ to a one-signed model $Z'$ with $M'\preceq_1Z'$.}
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item If $\lambda'\ge0$ and $P_c(T')>0$: choose $A'^1\subseteq A'$ with
+$\kappa P_c(T')-\varepsilon<P_d(A'^1)<\kappa P_c(T')$ and put
+$Z'\coloneqq N+\debt(A'\setminus A'^1)$. Then $M'=Z'+\debt(A'^1)+\cred(T')$
+and $M'\prec_1Z'$ by Lemma~\ref{lem:kappa}(a). Here $Z'$ has debt only, and
+$l'\coloneqq\Lambda(Z')-\Lambda(N)\in(\lambda',\lambda'+\varepsilon)$,
+$l'>0$.
+\item If $\lambda'<0$: choose $T'^1\subseteq T'$ with
+$P_d(A')<\kappa P_c(T'^1)<\min(P_d(A')+\varepsilon,\kappa P_c(T'))$ and put
+$Z'\coloneqq N+\cred(T'\setminus T'^1)$. Then $M'=Z'+\debt(A')+\cred(T'^1)$
+and $M'\prec_1Z'$ by Lemma~\ref{lem:kappa}(a). Here $Z'$ has credit only, on
+a non-null set, and $l'\in(\lambda',\lambda'+\varepsilon)$, $l'<0$.
+\item If $\lambda'\ge0$ and $P_c(T')=0$: put $Z'\coloneqq M'=N+\debt(A')$,
+debt only, with $l'=\lambda'\ge0$.
+\end{itemize}
+
+\emph{Step 3: $Z'\prec_1Z$.} We have $l'<\lambda'+\varepsilon<\lambda-
+2\varepsilon<l$. The debt or credit sets of $Z$ lie in $A\cup T$, those of
+$Z'$ in $A'\cup T'$; $A\cap A'=T\cap T'=\varnothing$.
+\begin{itemize}[leftmargin=*,itemsep=1pt]
+\item Both debt only, $Z=N+\debt(B)$, $Z'=N+\debt(B')$: $P_d(B')=l'<l=
+P_d(B)$, so $B'\prec_dB$ and $Z'\prec_1Z$.
+\item Both credit only, $Z=N+\cred(B)$, $Z'=N+\cred(B')$:
+$\kappa P_c(B')=-l'>-l=\kappa P_c(B)$, so $B\prec_cB'$ and $Z'\prec_1Z$.
+\item $Z$ debt only and $Z'$ credit only: $Z$ arises only in the first case
+of Step~1, on a non-null set, so $N\prec_1Z$; and $Z'\preceq_1N$ by (G).
+\item $Z$ credit only and $Z'$ debt only: then $l\le0\le l'$, contradicting
+$l'<l$.
+\end{itemize}
+Every model in the chain $M'\preceq_1Z'\prec_1Z\preceq_1M$ is regular. So
+$M'\prec_1M$, and $M\preceq_1M'$ fails.
+\end{proof}
+
+\section{Main results}\label{sec:main}
+
+\begin{theorem}\label{thm:A}
+Let $n\ge3$, assume (G) at every world and (S), and let world~$i$ be complete
+with (IB). If (EP$_{ij}$) holds for every $j\ne i$, then world $i$ has a loss
+$L_i$ of the form of Section~\ref{sec:setting}, with \eqref{eq:positive},
+such that $D\preceq_iE$ implies $L_i(D)\le L_i(E)$ for all regular $D,E$.
+\end{theorem}
+\begin{proof}
+Relabel so that $i=1$; for $i\ne1$, the losses obtained on the half-space
+$\{g_i>0\}$ are transported to $H$ as in the proof of
+Theorem~\ref{thm:reduction}. Theorem~\ref{thm:extension} gives $\Lambda$. With $U$
+the unanimous problems, put
+\[
+ \nu_{11}(B)\coloneqq\kappa P_c(B\cap H')+\mu(B\cap U),\qquad
+ \nu_{12}(B)\coloneqq P_d(B\cap H')+\mu(B\cap U),\qquad
+ \nu_{13}\coloneqq\mu.
+\]
+These satisfy \eqref{eq:positive} by Lemma~\ref{lem:Pd}(ii). For regular $D$,
+the rank of $D$ at world~$1$ is $0$ on $U$, and on $H'$ it is at least $1$ off
+$\cred(D)$ and at least $2$ on $\debt(D)$. So
+$L_1(D)=\kappa P_c(H'\setminus\cred(D))+P_d(\debt(D))=\kappa+\Lambda(D)$.
+\end{proof}
+
+\begin{theorem}\label{thm:reduction}
+Let $n\ge3$. Suppose every world's ranking is complete and satisfies (G) and
+(IB), and that (S) holds. If (EP$_{ij}$) holds for every edge, then every
+coherent model whose credal set contains three vertices is dominated. In
+particular $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:A} applies at every world. For world $i$ the losses are
+built on the representative half-space $\{g_i>0\}$. The map
+$g\mapsto\operatorname{sgn}(g_1)\,g$ carries it to $H$ off a null set and
+preserves $\mu$, so the losses transport to the form of
+Section~\ref{sec:setting}. Lemma~\ref{lem:cboi} finishes.
+\end{proof}
+
+For $n=3$ the endpoint property follows from extensions at the other two
+worlds. The next proposition is IC's Proposition~3 with finitely additive
+losses. Write $\{u,v,w\}=\{1,2,3\}$.
+
+\begin{proposition}\label{prop:FA}
+Let $n=3$, assume (G) and (S), let world $u$ satisfy (IB), and suppose $V$ is
+undominated. Suppose worlds $v,w$ have losses $L_v,L_w$ of the form of
+Section~\ref{sec:setting} with \eqref{eq:positive} and \eqref{eq:W}. Then
+every coherent undominated model competitive on $\{u,v\}$ has $e_u$ or $e_v$
+in its credal set, and every one competitive on $\{u,w\}$ has $e_u$ or
+$e_w$. No completeness is assumed at any world.
+\end{proposition}
+\begin{proof}
+Relabel so that $u=1$, $v=2$, $w=3$, and use IC's notation $P_1,P_2,P_3$ and
+$o_K$. Let $C$ be coherent, undominated and competitive on $\{1,2\}$, with
+credal interval $[a,b]$ on $[e_1,e_2]$ and $0<a\le b<1$. Then
+\[
+ T_0\coloneqq P_2\cap\{t_2>(1-a)/a\}\ (o_{13}),\qquad
+ B_0\coloneqq P_1\cap\{t_2<(1-b)/b\}\ (o_{23})
+\]
+are non-null.
+
+By the proof of CBOI's Lemma~3 (Yosida--Hewitt), there are integrable densities
+$f_{kl}>0$ a.e.\ and measurable sets $Z_m$ with $\mu(Z_m)\to0$ such that
+$\nu_{kl}(Q)=\int_Qf_{kl}\,d\mu$ for every measurable $Q\subseteq H\setminus
+Z_m$, for $k=2,3$ and all $l$. Fix $Z\coloneqq Z_m$ with $\mu(Z)$ smaller
+than the measures of $T_0$, $B_0$ and $P_3$. If two regular models agree off
+a measurable $Q\subseteq H\setminus Z$, finite additivity shows that the
+difference of their $L_k$-values is the integral over $Q$ of the difference
+of local penalties, with silence penalty $c_k\coloneqq f_{k1}$ and bad
+penalty $b_k\coloneqq f_{k1}+f_{k2}$. Thus IC's cost table holds for changes
+inside $H\setminus Z$:
+\[
+ P_1:\ 0\to o_{23}\colon(-c_2,-c_3);\qquad
+ P_2:\ 0\to o_{13}\colon(b_2-c_2,-c_3);\qquad
+ P_3:\ 0\to o_{12}\colon(-c_2,b_3-c_3).
+\]
+Now repeat the proof of IC's Proposition~3 inside $T_0\setminus Z$,
+$B_0\setminus Z$ and $P_3\setminus Z$. Choose a non-null
+$T\subseteq T_0\setminus Z$ with $(b_2-c_2)(T)<c_2(B_0\setminus Z)$, a
+non-null $S_*\subseteq P_3\setminus Z$ with $(b_3-c_3)(S_*)<c_3(T)$, and
+$\eta>0$ with $2\eta\le c_2(S_*)$ and $\eta<(b_2-c_2)(T)$. The measure
+$c_2\,d\mu$ is countably additive and atomless, so there are
+$B\subseteq B_0\setminus Z$ with $c_2(B)=(b_2-c_2)(T)-\eta$ and
+$S\subseteq S_*$ with $c_2(S)=2\eta$. With $A=T\cup B$ and $X,Y$ as in IC's
+Lemma~2,
+\[
+ L_2(X)-L_2(V)=-\eta,\qquad L_3(X)-L_3(V)<0,\qquad L_2(Y)-L_2(C)=-\eta.
+\]
+Since $V$ and $C$ are coherent and undominated, \eqref{eq:W} in contrapositive
+form gives $V\not\preceq_2X$, $V\not\preceq_3X$ and $C\not\preceq_2Y$. IC's
+Lemma~2 contradicts strict (G). The statement for $\{1,3\}$ follows by
+exchanging worlds $2$ and $3$.
+\end{proof}
+
+\begin{theorem}\label{thm:two}
+Let $n=3$ and assume (G) at every world and (S). Suppose two worlds $v,w$
+have losses of the form of Section~\ref{sec:setting} with
+\eqref{eq:positive} and \eqref{eq:W}, and the third world $u$ has a complete
+ranking satisfying (IB). Then $V$ is dominated.
+\end{theorem}
+\begin{proof}
+Suppose $V$ is undominated. The selections at the endpoints of $[e_u,e_v]$
+are $D_u$ and $D_v$. The others are coherent, undominated and competitive on
+$\{u,v\}$. Likewise on $[e_u,e_w]$. By Proposition~\ref{prop:FA}, (EP$_{uv}$)
+and (EP$_{uw}$) hold.
+Theorem~\ref{thm:A} gives world $u$ a loss satisfying \eqref{eq:positive} and
+the weak-extension property for all regular pairs, hence \eqref{eq:W}.
+Lemma~\ref{lem:cboi} makes $V$ dominated, a contradiction.
+\end{proof}
+
+\begin{corollary}\label{cor:SH}
+Let $n=3$, let worlds $2,3$ be ranked by ordinary additive losses with
+strictly ordered local penalties and an integrable envelope, and let world
+$1$ have a complete ranking with (G) and (IB). If (S) holds, $V$ is
+dominated. In particular no configuration of DT's Section~6 (dense jumps of
+$F$ and $G$, separable $\rho$ with unbounded jump ratios) can occur with a
+complete world~$1$.
+\end{corollary}
+
+\begin{corollary}\label{cor:shape}
+Let $n=3$, let all rankings be complete with (G) and (IB), assume (S), and
+suppose $V$ is undominated. Then:
+\begin{enumerate}[label=(\alph*)]
+\item at most one world has a loss of the form of
+Section~\ref{sec:setting} with \eqref{eq:positive} and \eqref{eq:W}; by EDL's
+Theorem~2, at least two worlds carry leverage sequences;
+\item some edge has a selection whose credal set contains neither endpoint.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) is Theorem~\ref{thm:two}, applied to any two worlds with such losses.
+(b) is Theorem~\ref{thm:reduction}.
+\end{proof}
+
+\section{Remarks and what remains}\label{sec:remarks}
+
+\begin{remark}\label{rem:complete}
+\emph{Completeness.} Completeness of the free world is used in (T1), in the
+comparative-probability step (Lemma~\ref{lem:cp} and
+Theorem~\ref{thm:SW}), and in the SI/AC dichotomy. (T2),
+Lemma~\ref{lem:edge}, Proposition~\ref{prop:FA} and Lemma~\ref{lem:cboi} do
+not use it. For an incomplete free world, (T1) gives only non-comparisons
+$C_q\not\preceq_1Y$. A variant of (S) that also requires the strict sections
+$\{p:X\prec_iC_p\}$ to be open restores (T1). For complete rankings this
+variant is equivalent to (S). We have not checked whether the rest of the
+argument then goes through for incomplete rankings; Wakker's theorem needs a
+complete order. The sub-case of IC and DT with an \emph{incomplete} world~$1$
+therefore remains open. For it, the chain results of IC and DT, which never
+use completeness, are the strongest known.
+\end{remark}
+
+\begin{remark}\label{rem:DT}
+\emph{Status of DT.} A referee checked every result of DT.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Lemma~1 (Bayes models $B_\theta$), Theorem~2 (dense thresholds), and
+Corollaries~3 and~4 are correct. Theorem~2 needs three small additions: cite
+the face lemma for the full-support step; use IC's weights lemma, part (c),
+for full-support indices as well as for indices on $(e_2,e_3)$; and state
+that the limit $C_*$ minimizes $L_2+\kappa L_3$.
+\item Lemma~5 (debt contraction) has a gap. The silence of a good base on
+$P_1$ lies in $\{t_{13}>\sigma\}$, where
+$\sigma\coloneqq\inf\{m_3/m_1:m\in K,\ m_1>0\}$. Nothing bounds $\sigma$, so
+the reservoir $M_0\subseteq\{t_{13}<\theta_0\}$ with $2\theta_0<h$ need not
+exist. Theorem~6 (one-strip bound) and Corollary~7 inherit the gap.
+\item \emph{Repair.} Replace step~2 of Lemma~5 by the change
+$[Y\colon o_2\to0,\ Y'\colon0\to o_{12},\ M\colon0\to o_{23}]$ at the good
+base, with $u(Y')$ chosen freely. Let $a\coloneqq\operatorname{ess\,sup}_YF$
+and $b\coloneqq\operatorname{ess\,inf}_{Y'_0}F$. The change is accepted
+whenever $c_3(M)+c_2(M)/b>(1/b-1/a)\,c_2(Y)$, for any $M$ in the silence;
+no bound on $\rho$ over $M$ is needed. This gives: if $\rho\ge A>0$ on
+$P_1\cap\{t_{12}<h\}$ and some good base has
+$1/F(\tau-)-1/F(\tau+)<A$, then $V$ is dominated. With Theorem~2 at a
+continuity point of $F$, and its mirror, this yields a stronger form of
+Theorem~6: $V$ is dominated if $\operatorname{ess\,inf}\rho>0$ on some
+$P_1\cap\{t_{12}<h\}$, or $\operatorname{ess\,sup}\rho<\infty$ on some
+$P_1\cap\{t_{13}<h\}$. Corollary~7 and the strip claims of Section~6 then
+hold.
+\item Lemma~8 and Theorem~9 (separable ratios) are correct; Lemma~8 even
+holds with $\lambda=F(\tau-)/\sup F$. Section~6 should add the mirror
+statement for $h$.
+\end{itemize}
+A further refereed fact for the sub-case of IC: if $\rho$ is essentially
+unbounded above on $P_1\cap\{t_{12}<\ell\}$ for \emph{some} $\ell$, then $V$
+is dominated, directly by IC's ratio criterion and one $E_2(\ell)$ move; no
+good base is needed. This strengthens IC's Theorem~17(a). These results are
+superseded by Corollary~\ref{cor:SH} when world $1$ is complete. They remain relevant for an incomplete world~$1$. So does
+the separability theorem for $\rho=c_3/c_2$ and
+$\sigma=(b_3-c_3)/(b_2-c_2)$ on $P_1$, which is written up in full
+separately.
+\end{remark}
+
+\begin{remark}\label{rem:open}
+\emph{What remains.} For complete rankings and any $n\ge3$, the conjecture
+now reduces to the following statement: if $V$ is undominated, then (EP)
+holds on every edge. Indeed, if (EP) holds everywhere,
+Theorem~\ref{thm:reduction} makes $V$ dominated. The endpoint property on the
+two edges at a world is known when the other two worlds have extensions
+(Proposition~\ref{prop:FA}), and, for $n=3$, when they satisfy the
+path-closedness at $V$ and at the models $V+o_{12}(S)$ used in IC's
+Theorem~5. We could not prove it in general. By
+Corollary~\ref{cor:shape}, a counterexample with complete rankings needs an
+edge with a two-sided selection and leverage at two worlds. Neither is
+excluded by the arguments above.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{Savage} L.~J.~Savage, \emph{The Foundations of Statistics}, Wiley,
+New York, 1954. Chapter~3, \S3.
+\bibitem{Wakker} P.~Wakker, Agreeing probability measures for comparative
+probability structures, \emph{Annals of Statistics} 9 (1981), 658--662.
+doi:10.1214/aos/1176345469.
+\end{thebibliography}
+\end{document}

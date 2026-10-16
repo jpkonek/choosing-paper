@@ -1,0 +1,9 @@
+(1) rigid blind set: fraction of mixed sample in Z = 0.1100
+    S_1 == D_K1 on sample: True
+    S_0 == D_K0 on sample: True
+    consistency on R12 n R13 (both descriptions agree): True
+    midpoint violations for S_1: 0 of 20000 sums in U
+    midpoint violations for S_0: 0 of 20000 sums in U
+(2) slab blind set in (+,-,+): fraction = 0.0354
+    midpoint violations for S_1: 836 of 200000 sums in U
+    midpoint violations for S_0: 0 of 200000 sums in U

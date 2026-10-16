@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,enumitem}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\U}{\mathcal U}
+\newcommand{\W}{\mathcal W}
+\newcommand{\debt}{\mathrm{debt}}
+\newcommand{\cred}{\mathrm{credit}}
+\title{Independent Rankings Without Additive Structure}
+\author{}\date{11 October 2026}
+\begin{document}\maketitle
+
+\noindent
+\emph{Fineness Spreads Along Edges} (FSE) asks whether a complete ranking
+can satisfy guidance improvement (G) and independence (IB), yet have
+neither a nonconstant ordered-group primary nor finitely additive local
+extensions off arbitrarily small sets (AExt). The answer is yes. In fact,
+the example below has no strictly positive two-sided finitely additive
+extension on any non-null region. It also satisfies FSE's conclusions
+(LH) and (DH).
+
+This settles that auxiliary question, not the main question. We construct
+a ranking at a single world. We do not supply a competitive coherent
+selection satisfying (S). In particular this is not a counterexample to
+the conjecture that (G), (IB) and (S) force the vacuous model to be
+dominated. The arguments here are author-checked, not independently
+refereed.
+
+\section{A finite starting point}
+
+We use the following classical existence result. There is a finite set
+$J$ and a linear order $\le_0$ on its subsets such that
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item $A\subsetneq B$ implies $A<_0B$;
+\item $A\le_0B$ if and only if $A\cup C\le_0B\cup C$, whenever
+$C\cap(A\cup B)=\varnothing$;
+\item no nonzero vector $(w_j)_{j\in J}$ of nonnegative real numbers
+satisfies
+\begin{equation}
+ A\le_0B\quad\Longrightarrow\quad
+ \sum_{j\in A}w_j\le\sum_{j\in B}w_j
+ \quad\hbox{for all }A,B\subseteq J.                 \label{eq:noalmost}
+\end{equation}
+\end{enumerate}
+This is a finite comparative-probability order that is not even
+\emph{almost representable}. Such examples exist with $|J|=6$: see
+Kraft--Pratt--Seidenberg \cite{KPS}, and the definition and six-element
+results in Conder--Slinko \cite[Sections 2 and 5]{CS}. Here ``almost''
+allows zero weights and ties; merely failing strict representation
+would not be enough for our argument.
+
+Property (ii) also allows replacement of a common part. If
+$A\cap I=B\cap I$, replacing this common subset of $I$ by any other
+subset of $I$ preserves their comparison: first remove the old common
+part, then add the new one.
+
+\section{The ranking}
+
+Fix a world $i$. Let $H$ represent binary problems, with the atomless
+finite Gaussian measure $\mu$ used in the other notes. Let $H'\subseteq H$
+be the mixed problems. All sets and models are identified modulo null
+sets. A model $M$ has measurable guidance rank
+$r_M:H\to\{0,1,2,3\}$ at $i$, with ranks respectively good, silent, bad,
+and contradictory. Smaller is better. Every such rank assignment gives
+a model, by prescribing its advice separately on each binary problem.
+
+Partition $H'$ into non-null sets $(E_j)_{j\in J}$. Choose an ultrafilter
+$\U_j$ of the measure algebra containing $E_j$. An ultrafilter chooses
+exactly one cell of a finite measurable partition. Thus $r_{\U}(M)$,
+the unique rank whose level set belongs to $\U$, is well defined.
+
+Well-order all ultrafilters of the measure algebra as
+$(\W_\alpha)_{\alpha<\kappa}$. The use of the axiom of choice here is
+explicit. These ultrafilters separate distinct elements of the measure
+algebra. For $l=3,2,1$, put
+\[
+ S_l(M)=\{j\in J:r_{\U_j}(M)\ge l\}.
+\]
+Compare models by the lexicographic order of
+\begin{equation}
+ \bigl(S_3(M),S_2(M),S_1(M);
+                (r_{\W_\alpha}(M))_{\alpha<\kappa}\bigr),       \label{eq:order}
+\end{equation}
+using $\le_0$ on each of the first three entries and the usual numerical
+order on the remaining entries. Thus the first entry at which two
+models differ decides their comparison. A least differing entry exists
+because the index set is well ordered. Write the resulting ranking as
+$\preceq$.
+
+\begin{theorem}\label{thm:GIB}
+The ranking \eqref{eq:order} is complete and transitive, respects null
+equivalence, and satisfies strict (G) and (IB).
+\end{theorem}
+\begin{proof}
+Lexicographic order gives completeness and transitivity. If
+$r_X\le r_Y$ almost everywhere, each $S_l(X)$ is contained in $S_l(Y)$,
+and every ultrafilter rank of $X$ is at most that of $Y$. If the
+improvement has positive measure, some ultrafilter contains a non-null
+cell on which $r_X<r_Y$. Hence at least one entry is strictly better,
+and the first differing entry is strictly better. This proves (G).
+
+For (IB), suppose two models have common advice on $B$, and replace
+that advice by any other common advice there. Each $\U_j$ either
+contains $B$, in which case both ranks at $\U_j$ change together, or
+contains its complement, in which case neither rank changes. The sets
+$S_l(X),S_l(Y)$ therefore undergo replacement of a common part.
+Property (ii) preserves their comparison, including equality, for each
+$l$. At every tail entry $\W_\alpha$, an equal pair remains equal and
+an unequal pair remains unchanged. The first differing entry and its
+direction are consequently preserved. All these statements concern
+the measure algebra, so null modifications have no effect.
+\end{proof}
+
+\section{No nonconstant additive primary}
+
+A real additive primary on regular models has the form
+\begin{equation}
+ L(M)=\nu_1(H'\cap\{r_M\ge1\})+
+       \nu_2(H'\cap\{r_M\ge2\}),                       \label{eq:primary}
+\end{equation}
+where $\nu_1,\nu_2$ are finite nonnegative finitely additive charges
+vanishing on null sets, and
+$L(X)<L(Y)\Rightarrow X\prec Y$. Completeness implies the equivalent
+weak-extension condition $X\preceq Y\Rightarrow L(X)\le L(Y)$.
+
+\begin{theorem}\label{thm:noprimary}
+Every primary of the form \eqref{eq:primary} is constant. There is also
+no nonconstant primary of the same form with values in a linearly
+ordered abelian group.
+\end{theorem}
+\begin{proof}
+For $A\subseteq J$, let $E_A=\bigcup_{j\in A}E_j$. Start with the vacuous
+model $V$, silent on $H'$, and add debt on $E_A$. Its first coarse entry
+is empty and its second is $A$, so these models are ordered exactly by
+$\le_0$. The numbers $w_j=\nu_2(E_j)$ must therefore satisfy
+\eqref{eq:noalmost}. They are all zero; hence $\nu_2(H')=0$.
+
+Next take the regular model silent on $E_A$ and good on $H'\setminus E_A$.
+Its first two coarse entries are empty and its third is $A$. Applying
+the same argument to $w_j=\nu_1(E_j)$ gives $\nu_1(H')=0$. Thus $L=0$
+on regular models.
+
+For the group-valued claim, the first part of FSE's leading-primary
+lemma uses no selection axiom. For clarity, here is the argument.
+If a group primary is nonconstant, its maximal value
+$M=\nu_1(H')+\nu_2(H')$ is positive. In the convex subgroup generated
+by $M$, quotient by the largest convex subgroup not containing $M$.
+The quotient is an Archimedean ordered group, so it embeds in
+$\mathbb R$, with $M$ mapped to $1$. Composing the charges with this
+map gives a nonconstant real primary. Strict inequality in the
+quotient implies strict inequality before taking the quotient, so
+the primary property is preserved. This contradicts the first part.
+\end{proof}
+
+\section{No local extension, even off small sets}
+
+\begin{lemma}\label{lem:small}
+Every ultrafilter of this measure algebra contains sets of arbitrarily
+small positive $\mu$-measure. If $R$ belongs to the ultrafilter, the
+small sets may be chosen inside $R$.
+\end{lemma}
+\begin{proof}
+Partition $R$ into finitely many sets of arbitrarily small measure.
+Exactly one belongs to the ultrafilter, and no null set does.
+\end{proof}
+
+\begin{theorem}\label{thm:nolocal}
+For every non-null $R\subseteq H'$, there is no two-sided weak
+extension of the ranking on regular pairs agreeing off $R$ of the form
+\[
+ L_R(M)=\nu_1(R\cap\{r_M\ge1\})+
+        \nu_2(R\cap\{r_M\ge2\}),
+\]
+with both charges vanishing on null sets and positive on every
+non-null subset of $R$. In particular (AExt) fails on every edge region.
+\end{theorem}
+\begin{proof}
+Suppose such charges exist. Decompose $\nu_2$ into its countably
+additive and pure parts. As in FSE's pure-set lemma, there is a set
+$Z\subseteq R$ of arbitrarily small $\mu$-measure outside which its
+pure part vanishes. On $R\setminus Z$, therefore, $\nu_2$ has an
+integrable density. It remains strictly positive on every non-null
+subset there.
+
+Choose $B_j\in\U_j$ of sufficiently small measure that
+\[
+ R_0=R\setminus\bigl(Z\cup\textstyle\bigcup_{j\in J}B_j\bigr)
+\]
+is non-null. No $\U_j$ contains any subset of $R_0$. Hence changing
+advice inside $R_0$ leaves all three coarse entries unchanged.
+Let $\alpha$ be the first index for which $R_0\in\W_\alpha$.
+Every earlier ultrafilter ignores every subset of $R_0$.
+
+By Lemma~\ref{lem:small} and absolute continuity, choose
+$B\in\W_\alpha$, $B\subseteq R_0$, with
+$0<\nu_2(B)<\nu_2(R_0)/2$. Put $A=R_0\setminus B$.
+The two models $X=V+\debt(A)$ and $Y=V+\debt(B)$ first differ at
+$\W_\alpha$: $X$ is silent there and $Y$ gives debt. Thus $X\prec Y$.
+But
+\[
+ L_R(X)-L_R(Y)=\nu_2(A)-\nu_2(B)>0,
+\]
+contradicting weak extension. The two models agree off $R_0\subseteq R$.
+
+For (AExt), the complements of sets whose measures tend to zero inside
+a fixed non-null edge region are non-null for all sufficiently large
+indices. The result just proved excludes an extension on each of them.
+\end{proof}
+
+\section{Even the two non-negligibility conditions hold}
+
+\begin{theorem}\label{thm:LHDH}
+For every non-null $R\subseteq H'$ there is a strict improvement of $V$
+with non-null debt and credit contained in $R$, and there is a strict
+worsening of $V$ with non-null debt and credit contained in $R$.
+Consequently the ranking satisfies (LH) and (DH).
+\end{theorem}
+\begin{proof}
+Remove finitely many small $B_j\in\U_j$ to obtain non-null
+$R_0\subseteq R$ ignored by every $\U_j$, and let $\W_\alpha$ be its
+first tail ultrafilter, as above. Choose $B\in\W_\alpha$, $B\subseteq R_0$,
+with $A=R_0\setminus B$ non-null. At the first active entry, credit on
+$B$ and debt on $A$ gives rank $0$, while the reverse gives rank $2$;
+$V$ has rank $1$. Hence
+\[
+ V+\debt(A)+\cred(B)\prec V
+ \prec V+\debt(B)+\cred(A).
+\]
+All four sets in these two comparisons are non-null and inside $R$.
+\end{proof}
+
+\section{Consequence for the remaining question}
+
+The counterexample answers FSE's Remark~Q positively. Its local failure
+is stronger than failure of (AExt), and Theorem~\ref{thm:LHDH} shows
+that adding (LH) and (DH) does not repair the proposed alternative.
+Thus completeness, (G) and (IB), even with these two consequences of
+(S), do not force an additive primary or a local additive extension.
+
+What remains is whether the full selection axiom (S) excludes such
+rankings when worlds must share one coherent competitive selection.
+The construction supplies no answer to that question. In particular,
+it neither proves full coverage (A) possible nor proves it impossible.
+It identifies why an argument using (S) itself, beyond (LH) and (DH),
+is still needed.
+
+\begin{thebibliography}{9}
+\bibitem{KPS} C.~H.~Kraft, J.~W.~Pratt and A.~Seidenberg,
+Intuitive probability on finite sets,
+\emph{Annals of Mathematical Statistics} 30 (1959), 408--419.
+\href{https://doi.org/10.1214/aoms/1177706260}{doi:10.1214/aoms/1177706260}.
+\bibitem{CS} M.~Conder and A.~Slinko,
+A counterexample to Fishburn's conjecture on finite linear qualitative
+probability, \emph{Journal of Mathematical Psychology} 48 (2004), 425--431.
+\href{https://doi.org/10.1016/j.jmp.2004.08.004}{doi:10.1016/j.jmp.2004.08.004}.
+\end{thebibliography}
+\end{document}

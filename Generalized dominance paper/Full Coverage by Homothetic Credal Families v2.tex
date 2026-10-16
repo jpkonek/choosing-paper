@@ -1,0 +1,851 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\dH}{d_{\mathrm H}}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\Escr}{\mathcal E}
+\newcommand{\lpr}[1]{\underline{P_{#1}}}
+\newcommand{\upr}[1]{\overline{P_{#1}}}
+\newcommand{\lowprob}[1]{\underline{p_{#1}}}
+\newcommand{\upprob}[1]{\overline{p_{#1}}}
+\title{Accuracy Rankings for Every Coherent Set of Desirable Gambles}
+\author{}
+\date{8 October 2026}
+\begin{document}
+\maketitle
+
+\noindent
+Given any coherent set of desirable gambles, we construct an accuracy ranking
+under which it is undominated. The ranking evaluates every measurable
+acceptance set and strictly rewards reductions in errors, up to null sets.
+The resulting class of rankings satisfies \textbf{(E)}, \textbf{(LA)},
+\textbf{(A)}, and \textbf{(S)}, defined below. We also construct bounded
+real-valued losses with the same properties.
+
+The proof has three steps. First place the target in a continuous family of
+coherent sets. Next use their lower and upper probabilities to construct
+rankings that keep every family member undominated. Finally repeat the
+construction for each target. The numerical loss uses the same families,
+with an additional estimate controlling how much an error reduction lowers loss.
+
+\section{Models, accuracy, and comparisons across worlds}
+
+Fix worlds $\Omega=\{\omega_1,\dots,\omega_n\}$, with $n\ge2$, and the simplex
+$\Delta=\{p\in\R^n:p\ge0,\ \sum_i p_i=1\}$.
+A gamble $g\in\R^n$ pays $g_i$ at $\omega_i$. A model, or acceptance set,
+is a Lebesgue-measurable set $\Dscr\subseteq\R^n$: accept exactly its members. Fix a probability measure
+$\mu$ with the same null sets as Lebesgue measure, and write
+$\Dscr\approx \Escr$ when $\mu(\Dscr\sd \Escr)=0$, where $\sd$ denotes symmetric difference.
+All background comparisons below are understood modulo null sets.
+
+Write $[n]=\{1,\dots,n\}$, $\one=(1,\dots,1)$, and let $e_i$ be the $i$th
+unit vector, also written $\one_{\omega_i}$ as an indicator gamble.
+Write $p_i=p(\omega_i)$. For $p\in\Delta$, put $\supp p=\{i:p_i>0\}$; for
+$S\subseteq[n]$, put $p(S)=\sum_{i\in S}p_i$,
+$S^c=[n]\setminus S$, and $\Delta_S=\{p\in\Delta:\supp p\subseteq S\}$.
+We use the usual norms $\|x\|_1=\sum_i|x_i|$ and
+$\|x\|_\infty=\max_i|x_i|$. The Hausdorff distance $\dH(K,H)$ is measured in
+$\|\cdot\|_1$: it is the least distance within which each point of either set
+has a point of the other.
+
+A coherent set of desirable gambles excludes $0$, contains every nonzero
+$g\ge0$, and is closed under addition and multiplication by positive scalars.
+A \emph{credal set} is a nonempty closed convex set $K\subseteq\Delta$ of
+probability distributions. Its coherent lower prevision and upper prevision are
+\[
+ \lpr{K}(g)\coloneqq\min_{m\in K}m\cdot g,\qquad
+ \upr{K}(g)\coloneqq\max_{m\in K}m\cdot g=-\lpr{K}(-g).
+\]
+The lower and upper probabilities of a world are
+\[
+ \begin{aligned}
+ \lowprob{K}(\omega_i)&\coloneqq\lpr{K}(\one_{\omega_i})=\min_{m\in K}m_i,\\
+ \upprob{K}(\omega_i)&\coloneqq\upr{K}(\one_{\omega_i})=\max_{m\in K}m_i.
+ \end{aligned}
+\]
+We identify these functions with their vectors of values on the $n$ worlds.
+Thus $\lowprob{K}$ and $\upprob{K}$ need not themselves sum to one.
+As in the CPM notation, distinguish the strictly positive set from its coherent
+completion:
+\[
+ D_K\coloneqq\{g:\lpr{K}(g)>0\},\qquad
+ \Dscr_K\coloneqq D_K\cup\{g:g\ge0,\ g\ne0\}.
+\]
+For a single distribution $p$, write $D_p=D_{\{p\}}=\{g:p\cdot g>0\}$.
+For general acceptance sets we use $\Dscr,\Escr$; they need not be coherent.
+The added nonnegative gambles ensure coherence at boundary credal sets and,
+as shown below, change $D_K$ only on a null set.
+
+We first record the elementary properties needed to compare these sets and
+take limits. They follow directly from minimizing expectations over $K$.
+For any credal sets $K,H$ and gambles $g,h$,
+\begin{equation}
+ \begin{aligned}
+ |\lpr{K}(g)-\lpr{K}(h)|&\le\|g-h\|_\infty,\\
+ |\lpr{K}(g)-\lpr{H}(g)|&\le\dH(K,H)\|g\|_\infty.
+ \end{aligned}\label{eq:phi-estimates}
+\end{equation}
+The first bound follows by taking minima in
+$|m\cdot(g-h)|\le\|g-h\|_\infty$ for $m\in\Delta$.
+For the second, choose $m\in K$ minimizing $m\cdot g$ and $m'\in H$ with
+$\|m-m'\|_1\le\dH(K,H)$. Then
+$\lpr{H}(g)\le m'\cdot g\le\lpr{K}(g)+\dH(K,H)\|g\|_\infty$;
+exchange $K,H$ for the reverse bound. Adding a constant shifts every expectation by that constant, since
+$m\cdot\one=1$ for every $m\in\Delta$.
+
+The set $\Dscr_{K}$ excludes zero and contains every nonzero nonnegative gamble by
+definition. Positive homogeneity of $\lpr{K}$ gives closure under positive
+scaling. For addition, use
+$\lpr{K}(g+h)\ge\lpr{K}(g)+\lpr{K}(h)$. If one of $g,h\in \Dscr_{K}$ has
+strictly positive lower prevision, so does their sum, since the other has
+nonnegative lower prevision. Otherwise both are nonzero and nonnegative,
+and so is their sum. Thus $\Dscr_{K}$ is coherent.
+
+The lower prevision is therefore continuous, and adding a constant gives
+\begin{equation}
+ \lpr{K}(g+t\one)=\lpr{K}(g)+t.\label{eq:constant}
+\end{equation}
+Thus its zero set meets each line parallel to $\one$ exactly once, and is null
+by Fubini's theorem. Since
+$\{\lpr{K}>0\}\subseteq \Dscr_{K}\subseteq\{\lpr{K}\ge0\}$, we have
+$\Dscr_{K}\approx\{\lpr{K}>0\}$.
+
+The ideal acceptance set at $\omega_i$ is $D_i=\{g:g_i>0\}$.
+The errors made by $\Dscr$ there are $E_i(\Dscr)=\Dscr\sd D_i$.
+The background accuracy order is
+\[
+ \Dscr\le_i\Escr\quad\Longleftrightarrow\quad E_i(\Dscr)\subseteq E_i(\Escr)\text{ a.e.}
+\]
+Its strict part $\Dscr<_i\Escr$ means, additionally,
+$\mu(E_i(\Escr)\setminus E_i(\Dscr))>0$. Equivalently, $\Dscr\le_i\Escr$ says that, up to
+null sets,
+\begin{equation}
+ \Escr\cap D_i\subseteq \Dscr,\qquad \Dscr\setminus D_i\subseteq \Escr.\label{eq:acceptance}
+\end{equation}
+Where accepting is correct, $\Dscr$ accepts at least what $\Escr$ accepts; where
+accepting is an error, it accepts at most what $\Escr$ accepts. We will also use
+$E_i(\Dscr)\sd E_i(\Escr)=\Dscr\sd \Escr$.
+
+\paragraph{Rankings and the requirements.}
+A \emph{ranking} assigns each world $\omega_i$ a reflexive, transitive relation
+$\preceq_i$ on its evaluation domain, with $\Dscr\preceq_i\Escr$ meaning that $\Dscr$
+is at least as accurate as $\Escr$. Its strict part is $\prec_i$; models tie
+when both comparisons hold. The relations need not be complete.
+A model $\Dscr$ \emph{weakly dominates} $\Escr$ if $\Dscr\preceq_i\Escr$ at every world;
+it \emph{dominates} $\Escr$ if, in addition, $\Dscr\prec_i\Escr$ at some world, and
+\emph{strictly dominates} $\Escr$ if this holds at every world. A model is
+\emph{undominated} if none dominates it. It is \emph{competitive on}
+$S\ne\varnothing$ if for every evaluated model $\Escr$ some $i\in S$ has
+$\Dscr\preceq_i\Escr$.
+
+Let $\mathcal C$ be the set of all models agreeing a.e. with a coherent set of
+desirable gambles. For each ranking $R$ in a class $\mathfrak R$, let
+$\mathcal C_R$ be its evaluated, coherent, undominated models. We establish
+these requirements:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item[\textbf{(E)}] Every model is evaluated by some ranking in $\mathfrak R$.
+\item[\textbf{(LA)}] $\mathcal C_R\ne\varnothing$ for every $R\in\mathfrak R$.
+\item[\textbf{(A)}] Every member of $\mathcal C$ belongs to some $\mathcal C_R$.
+\item[\textbf{(S)}] Each ranking admits a selection $p\mapsto c_p\in\mathcal C_R$
+such that $c_p$ is competitive on $\supp p$ and
+$\{p:c_p\preceq_i\Dscr\}$ is closed for every world $i$ and evaluated model $\Dscr$.
+\item[\textbf{(C)}] If an evaluated model ties at every world with a member of
+$\mathcal C_R$, it also belongs to $\mathcal C_R$.
+\end{enumerate}
+Every ranking constructed below evaluates every measurable model. The symbol
+$\approx$ continues to mean agreement a.e.; it does not by definition mean
+that two models tie under a ranking.
+
+The next lemma is the link between accuracy and probability. If one acceptance
+set makes no more errors than two reference sets at different worlds, their
+lower and upper probabilities must be ordered in the same direction.
+
+\begin{lemma}\label{lem:endpoints}
+If $\Dscr\le_i\Dscr_{K}$, $\Dscr\le_j\Dscr_{H}$, and $i\ne j$, then
+\begin{equation}
+ \lowprob{K}(\omega_i)\le\lowprob{H}(\omega_i),\qquad \upprob{K}(\omega_i)\le\upprob{H}(\omega_i).\label{eq:endpoints}
+\end{equation}
+\end{lemma}
+\begin{proof}
+On $W_{ij}=\{g:g_i>0\ge g_j\}$, accepting is correct at $i$ and an error at
+$j$. Thus \eqref{eq:acceptance} gives
+\[
+ \Dscr_{K}\cap W_{ij}\subseteq \Dscr\cap W_{ij}\subseteq \Dscr_{H}\cap W_{ij}
+ \quad\text{a.e.}
+\]
+Exchanging $i,j$ gives $\Dscr_{H}\cap W_{ji}\subseteq \Dscr_{K}$ a.e.
+
+If $\lowprob{K}(\omega_i)>\lowprob{H}(\omega_i)$, choose $t$ strictly between them. Then $0<t<1$, and
+$g=e_i-t\one$ satisfies
+\[
+ g_i>0>g_j,\qquad
+ \lpr{K}(g)=\lowprob{K}(\omega_i)-t>0>\lowprob{H}(\omega_i)-t=\lpr{H}(g).
+\]
+By continuity, these strict inequalities persist on an open neighbourhood,
+which lies in $(\Dscr_{K}\cap W_{ij})\setminus \Dscr_{H}$. This contradicts its nullity.
+Similarly, if $\upprob{K}(\omega_i)>\upprob{H}(\omega_i)$, choose $t$ between them and use
+$g=t\one-e_i$: then $g\in W_{ji}$ and
+$\lpr{H}(g)=t-\upprob{H}(\omega_i)>0>t-\upprob{K}(\omega_i)=\lpr{K}(g)$, contradicting the
+other inclusion.
+\end{proof}
+
+We will use a weighted average of lower and upper probabilities to label the
+family. The lemma then turns background accuracy comparisons into inequalities
+between those labels.
+
+\begin{corollary}\label{cor:cc}
+Suppose a family $p\mapsto K_p$ satisfies, for a fixed $0<\lambda<1$,
+\begin{equation}
+ (1-\lambda)\lowprob{K_p}(\omega_i)+\lambda\upprob{K_p}(\omega_i)=p_i\quad\text{for all }p,i.\label{eq:index}
+\end{equation}
+Then it satisfies the following condition on comparisons at different worlds:
+\begin{equation*}
+ \Dscr\le_i\Dscr_{K_p},\quad \Dscr\le_j\Dscr_{K_q},\quad i\ne j
+ \quad\Longrightarrow\quad p_i\le q_i.
+ \tag{CC}\label{eq:cc}
+\end{equation*}
+\end{corollary}
+\begin{proof}
+Take the weighted average in \eqref{eq:endpoints} with $K=K_p$ and $H=K_q$.
+\end{proof}
+
+\section{A family containing the target}
+
+Fix the target credal set $M$; our goal is to make $\Dscr_M$ undominated.
+We now build a family containing it whose lower and upper probabilities obey
+\eqref{eq:index}. This will supply the comparisons needed to define the ranking.
+
+Let $M\subseteq\Delta$ be any credal set, with lower- and upper-probability vectors $\ell=\lowprob{M}$
+and $u=\upprob{M}$. Put $L=\sum_i\ell_i$ and $U=\sum_i u_i$. If $M$ is not a
+singleton, then $L<1<U$: equality in either bound would force every member
+of $M$ to equal that endpoint vector.
+
+Choose the reference point $r$ where the segment from $\ell$ to $u$ crosses the
+hyperplane $\sum_i x_i=1$. Explicitly,
+\begin{equation}
+ \lambda\coloneqq\frac{1-L}{U-L},\qquad
+ r\coloneqq(1-\lambda)\ell+\lambda u,\qquad
+ d\coloneqq r-\ell=\lambda(u-\ell).\label{eq:anchor}
+\end{equation}
+Then $0<\lambda<1$, $r\in\Delta$ and $d\ge0$. The reference point need not belong to
+$M$. For a singleton $M=\{m\}$, take $\lambda=1/2$, $r=m$ and $d=0$.
+
+We translate and scale $M$ so that the reference point moves from $r$ to $p$:
+\begin{equation}
+ \theta(p)\coloneqq\min\left\{1,\ \min_{i:d_i>0}\frac{p_i}{d_i}\right\},
+ \qquad
+ \boxed{\quad K_p\coloneqq p+\theta(p)(M-r).\quad}\label{eq:family}
+\end{equation}
+The scale is the largest factor at most one for which the translated copy
+stays in the simplex: its lowest $i$th coordinate is $p_i-\theta(p)d_i$.
+The minimum over an empty set is $+\infty$, so for singleton targets
+$\theta\equiv1$ and $K_p=\{p\}$.
+
+\begin{theorem}[Full family coverage]\label{thm:family}
+For every target $M$, the family \eqref{eq:family} has the following properties.
+\begin{enumerate}[label=(\alph*)]
+\item Each $K_p$ is a credal set, and $K_r=M$.
+\item The weighted-average identity \eqref{eq:index}, and hence (CC), holds.
+\item $\upprob{K_p}(\omega_i)\le p_i/\lambda$. In particular,
+$K_p\subseteq\Delta_{\supp p}$: if the index assigns zero probability
+to a world, every distribution in $K_p$ does too.
+\item There is a finite constant $A$ such that
+$\dH(K_p,K_q)\le A\|p-q\|_1$. In particular,
+$\mu(\Dscr_{K_p}\sd \Dscr_{K_q})\to0$ as $q\to p$.
+\end{enumerate}
+The target may meet any boundary of the simplex, including its vertices.
+\end{theorem}
+\begin{proof}
+Each $K_p$ is a nonempty compact convex set whose points have coordinate sum
+one. Since $\theta(p)d_i\le p_i$, its lower-probability vector is
+\[
+ \lowprob{K_p}=p+\theta(p)(\ell-r)=p-\theta(p)d\ge0.
+\]
+Thus $K_p\subseteq\Delta$. Also $r_i\ge d_i$, so $\theta(r)=1$ and $K_r=M$.
+
+The upper-probability vector is $\upprob{K_p}=p+\theta(p)(u-r)$. Their weighted
+average is therefore
+\[
+ \begin{aligned}
+ (1-\lambda)\lowprob{K_p}+\lambda\upprob{K_p}
+ &=p+\theta(p)\big((1-\lambda)\ell+\lambda u-r\big)\\
+ &=p.
+ \end{aligned}
+\]
+This proves (b). Since the lower probabilities are nonnegative, the same identity
+gives $p_i\ge\lambda\upprob{K_p}(\omega_i)$. If $p_i=0$, every member of $K_p$ must
+therefore have zero $i$th coordinate, proving (c).
+
+For (d), $\theta$ is a minimum of finitely many affine functions, hence
+Lipschitz. Pairing the images of the same $m\in M$ gives
+\begin{equation}
+ \dH(K_p,K_q)\le\|p-q\|_1+2|\theta(p)-\theta(q)|,\label{eq:hausdorff}
+\end{equation}
+since $\|m-r\|_1\le2$. Hausdorff convergence implies pointwise convergence
+of the lower previsions by \eqref{eq:phi-estimates}. Their signs therefore
+converge outside the null zero set of the limit. Since $\mu$ is finite,
+dominated convergence gives the asserted continuity in measure.
+\end{proof}
+
+\paragraph{The vacuous target.}
+For $M=\Delta$, the reference point is $r=\one/n$ and $\lambda=1/n$. Writing
+$m(p)=\min_i p_i$, the family becomes
+\begin{equation}
+ \boxed{\quad K_p=p-m(p)\one+n\,m(p)\Delta.\quad}\label{eq:vacuous}
+\end{equation}
+It equals $\Delta$ at the uniform index and $\{p\}$ on the boundary. Its
+endpoints are $\lowprob{K_p}(\omega_i)=p_i-m(p)$ and
+$\upprob{K_p}(\omega_i)=p_i+(n-1)m(p)$, so
+\[
+ p_i=\frac{n-1}{n}\lowprob{K_p}(\omega_i)+\frac1n\upprob{K_p}(\omega_i).
+\]
+This family need not satisfy the earlier upper-probability condition (U$^*$).
+Appendix~\ref{app:ustar} explains why that stronger condition excludes some
+targets even though (CC) permits full coverage.
+
+\section{Constructing the accuracy ranking}
+
+The family is now fixed and contains the target. We next assign comparison
+levels to every acceptance set, then adjust them just enough to make strict
+background improvements strict without allowing any family member to be dominated.
+
+Write $C_p=\Dscr_{K_p}$ for a selected family member; in particular,
+$C_r=\Dscr_M$. This notation keeps it distinct from the precise-probability
+set $D_p$. Call $p$ \emph{available for $\Dscr$ at world $i$} when
+$\Dscr\le_iC_p$: $\Dscr$ makes no error there that $C_p$ avoids. Let $\mathcal P_i(\Dscr)$ collect those indices, and $T(\Dscr)$ the worlds
+where at least one exists. Define comparison levels $a_i$ and the remaining
+allowance $s$ by
+\[
+ \mathcal P_i(\Dscr)\coloneqq\{p:\Dscr\le_iC_{p}\},\qquad
+ T(\Dscr)\coloneqq\{i:\mathcal P_i(\Dscr)\ne\varnothing\},
+\]
+\[
+ a_i(\Dscr)\coloneqq\max_{p\in\mathcal P_i(\Dscr)}p_i\quad(i\in T(\Dscr)),\qquad
+ s(\Dscr)\coloneqq1-\sum_{i\in T(\Dscr)}a_i(\Dscr).
+\]
+Here $a_i$ takes the largest available coordinate, and $s$ is what remains
+after adding these values and subtracting from one.
+These sets of indices are compact: the function
+$p\mapsto\mu(E_i(\Dscr)\setminus E_i(C_{p}))$ is continuous and its zero set is
+$\mathcal P_i(\Dscr)$. Thus the maxima exist. Set $\bar a_i(\Dscr)=a_i(\Dscr)$ at worlds with an available index and $\bar a_i(\Dscr)=0$ otherwise, so $s(\Dscr)=1-\sum_i\bar a_i(\Dscr)$.
+
+The next lemma shows that the comparison levels sum to at most one.
+Equality identifies exactly the selected family; the amount left over will
+allow us to make strict accuracy improvements strict in the final ranking.
+
+\begin{lemma}[Comparison levels and the remaining allowance]\label{lem:levels}
+The following hold.
+\begin{enumerate}[label=(\alph*)]
+\item If $\Dscr\le_i\Escr$ and $\Escr$ has an available index at $i$, then $\Dscr$ has an available index there and
+$a_i(\Dscr)\ge a_i(\Escr)$.
+\item $a_i(C_{p})=p_i$. If $C_{p}\le_iC_{q}$ and $p_i=q_i$, then $p=q$.
+\item $s(\Dscr)\ge0$, with equality exactly when $\Dscr\approx C_{p}$ for some $p$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) follows from inclusion of the sets of available indices. For (b), $p$ is available for $C_p$ at every world. Any other available index $q$ at $i$, paired with the index $p$ at a different
+world in (CC), gives $q_i\le p_i$. If $C_{p}\le_iC_{q}$, pairing $q$ at $i$
+with $p$ at each $j\ne i$ instead gives $p_j\le q_j$; equality at $i$ and
+equal coordinate sums then force $p=q$.
+
+For (c), let $T=T(\Dscr)\ne\varnothing$, and choose $p^j$ attaining the maximum in $a_j(\Dscr)$
+for each $j\in T$. By (CC), $p^j_k\ge p^k_k=\bar a_k(\Dscr)$ for $k\in T$,
+with equality when $k=j$. Nonnegativity handles $k\notin T$. Hence
+\begin{equation}
+ p^j\ge\bar a(\Dscr),\qquad \|p^j-\bar a(\Dscr)\|_1=s(\Dscr)\ge0.
+ \label{eq:cover-distance}
+\end{equation}
+We use the following consequence of the property in Theorem~\ref{thm:family}(c). Whenever $p\in\Delta_T$
+and $\Dscr\le_jC_{q^j}$ for $j\in T$,
+\begin{equation}
+ \mu(\Dscr\sd C_{p})\le\sum_{j\in T}\mu(C_{q^j}\sd C_{p}).
+ \label{eq:face-comparison}
+\end{equation}
+Indeed, if $g\in \Dscr\setminus C_{p}$, some $g_j\le0$ for $j\in T$:
+strictly positive payoffs throughout $T$ would force acceptance by $C_{p}$.
+The corresponding family member must accept $g$, so it differs from $C_{p}$.
+If $g\in C_{p}\setminus \Dscr$, some $g_j>0$ for $j\in T$, apart from the null
+coordinate hyperplanes; otherwise the property in Theorem~\ref{thm:family}(c) forces rejection by $C_{p}$.
+The corresponding family member must reject $g$, so again it differs from $C_{p}$.
+This proves the bound, after discarding the finitely many null exceptions
+to the background comparisons.
+
+If $s(\Dscr)=0$, all the indices attaining the maxima equal $p=\bar a(\Dscr)\in\Delta_T$;
+\eqref{eq:face-comparison} gives $\Dscr\approx C_{p}$. Conversely, (b) gives
+$s(\Dscr)=0$ for such a model. If $T(\Dscr)$ is empty, $s(\Dscr)=1$.
+\end{proof}
+
+The adjustment must remain positive even when we compare a model with all
+its possible background improvements. The next lemma controls the limiting
+case: a sequence with vanishing allowance must approach a family member.
+
+\begin{lemma}[Approaching a family member]\label{lem:stability}
+If $s(\Dscr_k)\to0$, some subsequence and some $p\in\Delta$ satisfy
+$\bar a(\Dscr_k)\to p$ and $\mu(\Dscr_k\sd C_{p})\to0$.
+\end{lemma}
+\begin{proof}
+Pass to a subsequence with the nonempty set $T(\Dscr_k)=T$ fixed and
+$\bar a(\Dscr_k)\to p$. The coordinate sums tend to one, so $p\in\Delta_T$.
+Choose $p^{j,k}$ attaining the maximum in $a_j(\Dscr_k)$ for $j\in T$. By
+\eqref{eq:cover-distance}, each $p^{j,k}\to p$.
+Continuity in measure and \eqref{eq:face-comparison} give
+\[
+ \mu(\Dscr_k\sd C_{p})\le\sum_{j\in T}\mu(C_{p^{j,k}}\sd C_{p})\longrightarrow0.
+\]
+\end{proof}
+
+To adjust the levels while preserving background monotonicity, put
+\begin{equation}
+ b_i(\Dscr)\coloneqq\inf_{\Escr\le_i\Dscr}\left(a_i(\Escr)+\frac{s(\Escr)}{2n}\right)
+ \quad(i\in T(\Dscr)).
+ \label{eq:envelope}
+\end{equation}
+Every background improvement $\Escr\le_i\Dscr$ also has an available index at $i$. Taking the
+infimum over all such improvements makes the adjustment compatible with all
+of them at once. The next lemma shows that the adjustment is positive
+whenever it is needed.
+
+\begin{lemma}[A positive adjustment that respects accuracy]\label{lem:reserve}
+At a world with an available index,
+\begin{equation}
+ a_i(\Dscr)\le b_i(\Dscr)\le a_i(\Dscr)+\frac{s(\Dscr)}{2n},\qquad
+ \sum_{i\in T(\Dscr)}b_i(\Dscr)\le1-\frac{s(\Dscr)}2.
+ \label{eq:budget}
+\end{equation}
+If $\Dscr\le_i\Escr$ and $\Escr$ has an available index at $i$, then $b_i(\Dscr)\ge b_i(\Escr)$.
+Moreover, $b_i(\Dscr)=a_i(\Dscr)$ exactly when $\Dscr\approx C_{p}$ for some $p$.
+In particular, $a_i(C_{p})=b_i(C_{p})=p_i$.
+\end{lemma}
+\begin{proof}
+Every term in the infimum is at least $a_i(\Dscr)$ by Lemma~\ref{lem:levels}(a),
+and the term $\Escr=\Dscr$ gives the upper bound. Summing gives
+$\sum_{i\in T(\Dscr)}b_i(\Dscr)\le1-s(\Dscr)+|T(\Dscr)|s(\Dscr)/(2n)\le1-s(\Dscr)/2$.
+The set of background improvements of $\Dscr$ is contained in that of $\Escr$,
+so its infimum is no smaller. This proves monotonicity.
+
+If $\Dscr\approx C_{p}$, then $s(\Dscr)=0$ and the bounds give equality.
+Conversely, suppose $b_i(\Dscr)=a_i(\Dscr)$. Choose $\Escr_k\le_i\Dscr$ with
+\[
+ a_i(\Escr_k)+s(\Escr_k)/(2n)\longrightarrow a_i(\Dscr).
+\]
+Since $a_i(\Escr_k)\ge a_i(\Dscr)$ and $s(\Escr_k)\ge0$, we have
+$a_i(\Escr_k)\to a_i(\Dscr)$ and $s(\Escr_k)\to0$.
+Lemma~\ref{lem:stability} gives a subsequence converging in measure to some
+$C_{p}$, with $p_i=a_i(\Dscr)$. Passing to the limit in $\Escr_k\le_i\Dscr$ gives
+$C_{p}\le_i\Dscr$: the measure of $E_i(C_{p})\setminus E_i(\Dscr)$ is at most
+$\mu(C_{p}\sd \Escr_k)$. Choose $q$ attaining the maximum in $a_i(\Dscr)$. Then
+\[
+ C_{p}\le_i\Dscr\le_iC_{q},\qquad p_i=q_i=a_i(\Dscr).
+\]
+Lemma~\ref{lem:levels}(b) gives $p=q$, and the sandwich gives $\Dscr\approx C_{p}$.
+\end{proof}
+
+We can now define the ranking. Compare the pairs
+$(a_i(\Dscr),b_i(\Dscr))$ coordinate by coordinate, with larger values better;
+assign $(-1,-1)$ when no index is available. If two models have the same pair,
+use their background comparison, except that all models with pair $(t,t)$,
+$t\ge0$, tie. Such pairs belong only to family members, by
+Lemma~\ref{lem:reserve}.
+
+Denote the resulting relations by $\preceq_i$, with strict parts $\prec_i$.
+Changes on null sets do not affect the ranking. The next formulas show exactly
+how each selected family member compares with an arbitrary acceptance set;
+they will give the closedness and competitiveness required by (S).
+Since a family member has pair $(p_i,p_i)$, its comparisons are exactly
+\begin{equation}
+ C_{p}\preceq_i\Dscr\quad\Longleftrightarrow\quad
+ \begin{cases}p_i\ge b_i(\Dscr),&i\in T(\Dscr),\\
+ \text{always},&i\notin T(\Dscr),\end{cases}\label{eq:outgoing}
+\end{equation}
+\begin{equation}
+ \Dscr\preceq_iC_{p}\quad\Longleftrightarrow\quad
+ i\in T(\Dscr)\ \text{and}\ a_i(\Dscr)\ge p_i.\label{eq:incoming}
+\end{equation}
+In particular, the sets of indices giving a comparison are closed:
+\begin{equation}
+ \{p:C_{p}\preceq_i\Dscr\}=\{p:p_i\ge b_i(\Dscr)\}\quad(i\in T(\Dscr)),\label{eq:sections}
+\end{equation}
+and that set is all of $\Delta$ at a world with no available index.
+
+We have built a family through every credal set $M$. The next lemma ensures
+that this is enough: every coherent acceptance set agrees, up to a null set,
+with $\Dscr_M$ for some $M$.
+\begin{lemma}\label{lem:coherent}
+For any coherent set of desirable gambles $\Dscr$, the set
+\[
+ M=\{m\in\Delta:m\cdot g\ge0\text{ for all }g\in \Dscr\}
+\]
+is a credal set, and
+$\{\lpr{M}>0\}\subseteq \Dscr\subseteq\{\lpr{M}\ge0\}$.
+Consequently $\Dscr$ is Lebesgue measurable and $\Dscr\approx \Dscr_{M}$.
+\end{lemma}
+
+\begin{proof}
+The set $M$ is closed and convex as an intersection of closed half-spaces with
+$\Delta$. Let $C=\overline \Dscr$. It is a closed convex cone and contains zero,
+since $te_1\in \Dscr$ for $t>0$. No strictly negative vector lies in $C$: $\Dscr$
+contains no nonzero $g\le0$, since otherwise $-g\in \Dscr$ and addition would
+put zero in $\Dscr$; a strictly negative vector has a neighbourhood of such
+excluded points.
+
+We first show that if $h\notin C$, some $m\in M$ has $m\cdot h<0$.
+Choose $c\in C$ nearest to $h$ in Euclidean distance, which exists because
+$C$ is nonempty and closed, and put $w=c-h\ne0$. For $x\in C$, minimality
+along the segment from $c$ to $x$ gives
+\[
+ \|w+t(x-c)\|^2\ge\|w\|^2\quad(0<t\le1).
+\]
+Dividing the expanded inequality by $t$ and letting $t\to0$ yields
+$w\cdot(x-c)\ge0$. Taking $x=0$ and $x=2c$ shows $w\cdot c=0$.
+Hence $w\cdot x\ge0$ on $C$, while $w\cdot h=-\|w\|^2<0$.
+Since every $e_i\in \Dscr$, we have $w_i\ge0$, and normalization gives
+$m=w/\sum_iw_i\in M$ with $m\cdot h<0$.
+
+Applying this to $h=-\one\notin C$ proves $M\ne\varnothing$.
+The inclusion $\Dscr\subseteq\{\lpr{M}\ge0\}$ follows from the definition of
+$M$. For the other inclusion, suppose $\lpr{M}(g)=2\varepsilon>0$ and put
+$h=g-\varepsilon\one$. Then $\lpr{M}(h)=\varepsilon>0$, so the separation
+just proved implies $h\in C$. Choose $h'\in \Dscr$ with
+$\|h'-h\|_\infty<\varepsilon$. Now $g-h'$ has every coordinate positive,
+so $g-h'\in \Dscr$ and $g=h'+(g-h')\in \Dscr$.
+
+Both $\Dscr$ and $\Dscr_{M}$ thus lie between $\{\lpr{M}>0\}$ and
+$\{\lpr{M}\ge0\}$. Their difference from the first, open set is contained
+in the null zero set of $\lpr{M}$. This proves measurability and
+$\Dscr\approx \Dscr_{M}$.
+\end{proof}
+
+We now put the construction together. The theorem verifies the background
+accuracy requirements, keeps the chosen family undominated, and shows that
+allowing the target to vary covers every coherent acceptance set.
+
+\begin{theorem}[Full coverage by accuracy rankings]\label{thm:coverage}
+For each target $M$, the relations above are preorders on all measurable
+models. They respect both weak and strict background comparisons:
+\begin{equation}
+ \boxed{\quad \Dscr\le_i\Escr\ \Longrightarrow\ \Dscr\preceq_i\Escr,
+ \qquad \Dscr<_i\Escr\ \Longrightarrow\ \Dscr\prec_i\Escr.\quad}\label{eq:accuracy}
+\end{equation}
+Their undominated models are exactly the selected family modulo null sets.
+Each $C_{p}$ is competitive on $\supp p$, the sets of comparison indices are closed,
+and every model outside the family modulo null sets is strictly dominated at
+every world by a family member.
+
+Letting $M$ range over all credal sets gives a class of rankings satisfying
+\textbf{(E)}, \textbf{(LA)}, \textbf{(A)}, and \textbf{(S)}. With coherence
+understood modulo null sets, they also satisfy \textbf{(C)}.
+\end{theorem}
+\begin{proof}
+The relations are reflexive. Along a comparison chain the comparison pairs
+can only decrease coordinatewise; if the first and last pairs agree, the
+whole chain lies in one group, where comparison is either background
+inclusion or a tie between every pair of models. Thus the relations are transitive.
+
+For accuracy, $\Dscr\le_i\Escr$ gives $\mathcal P_i(\Escr)\subseteq\mathcal P_i(\Dscr)$,
+so $a_i(\Dscr)\ge a_i(\Escr)$ when $\Escr$ has an available index. The set of background improvements
+of $\Dscr$ is contained in that of $\Escr$, so $b_i(\Dscr)\ge b_i(\Escr)$ as well.
+At a fixed world, a model with an available index also ranks above one without. Unequal comparison pairs
+therefore make a strict background improvement strict; equal pairs retain
+background inclusion. The only possible exception is a pair $(t,t)$ with $t\ge0$, where $\Dscr\approx C_{p}$, $\Escr\approx C_{q}$ and $p_i=q_i=t$.
+But $C_{p}\le_iC_{q}$ then forces $p=q$ by Lemma~\ref{lem:levels}(b): (CC) gives
+$p_j\le q_j$ for every $j\ne i$, and the coordinate sums are equal.
+Thus $\Dscr\approx \Escr$, ruling out a strict background comparison in this
+exceptional case. This proves \eqref{eq:accuracy}.
+
+For competitiveness, any $i\in\supp p$ with no available index supplies the comparison
+by \eqref{eq:outgoing}. Otherwise, failure at every world in $\supp p$ would
+require $p_i<b_i(\Dscr)$ there, contradicting
+$1=\sum_{i\in\supp p}p_i<\sum_{i\in\supp p}b_i(\Dscr)\le1$.
+Closedness follows from \eqref{eq:sections}.
+If $\Dscr\preceq_iC_{p}$ at every world, \eqref{eq:incoming} and the sum bound force
+$a_i(\Dscr)=p_i$ for all $i$ and $s(\Dscr)=0$, hence $\Dscr\approx C_{p}$.
+So family members are undominated.
+
+For a model outside the selected family up to null sets, set $\beta_i=b_i(\Dscr)$ at worlds with an available index and zero
+elsewhere. By \eqref{eq:budget}, $\sum_i\beta_i<1$. The index
+$q=\beta+(1-\sum_i\beta_i)\one/n$ has $q_i>b_i(\Dscr)\ge a_i(\Dscr)$ at worlds with an available index, and its pair exceeds $(-1,-1)$ at worlds with no available index. Thus $C_{q}\prec_i\Dscr$
+everywhere.
+
+All models are evaluated, giving (E); the selected coherent undominated models
+give (LA); and $p\mapsto C_{p}$ gives (S). The characterization of undominated
+models and the fact that changes on null sets do not affect the ranking give (C).
+Finally, any coherent $\Dscr$ agrees a.e. with $\Dscr_{M}$ by Lemma~\ref{lem:coherent}.
+The family for that target has $K_r=M$, so $\Dscr$ ties everywhere with its
+undominated member $C_{r}$. Thus $\Dscr$ is undominated under this ranking,
+establishing (A), also for all models coherent modulo null sets.
+\end{proof}
+
+\begin{remark}[Uniform target index]
+The target can be selected at the uniform index without changing the ranking.
+Put $\gamma(p)=n\min_i p_i$ and $f(p)=(1-\gamma(p))p+\gamma(p)r$.
+Then $f$ is continuous, $f(\one/n)=r$, and
+$\supp f(p)\subseteq\supp p$: on the boundary $f(p)=p$, while interior
+indices have full support. Hence $\sigma_p=\Dscr_{K_{f(p)}}$ is competitive on
+$\supp p$, and its sets of comparison indices are closed as continuous inverse
+images. Thus $\sigma_{\one/n}=\Dscr_{M}$. This reparametrization is applied after
+constructing the ranking; it need not preserve (CC) in the new indices.
+\end{remark}
+
+\section{Constructing a bounded real-valued loss}
+
+The same family also gives a numerical loss. Its dependence on the target is
+through the family $K_p$ and the available indices $\mathcal P_i(\Dscr)$.
+We will make every $C_p=\Dscr_{K_p}$ have loss $1-p_i$ at $\omega_i$;
+since $C_r=\Dscr_M$, this includes the target.
+
+This requires quantitative bounds on how the family changes with its index.
+Theorem~\ref{thm:family} supplies
+\[
+ \dH(K_p,K_q)\le A\|p-q\|_1,\qquad \upprob{K_p}(\omega_i)\le Bp_i,
+ \qquad B=1/\lambda.
+\]
+An explicit choice is $A=1+2/\delta$, where $\delta=\min_{i:d_i>0}d_i$:
+the minimum defining $\theta$ is $1/\delta$-Lipschitz, so
+\eqref{eq:hausdorff} applies. For singleton targets take $A=1$.
+
+Fix $\mu$ to be standard Gaussian measure, put $\kappa=8n^2(A+2B)$, and choose
+$0<\eta<1/(n\kappa)$. Using the same sets of available indices, define
+\begin{equation}
+ L_\eta(\Dscr,\omega_i)\coloneqq
+ \begin{cases}
+ \displaystyle\min_{p\in\mathcal P_i(\Dscr)}
+ \left[1-p_i-\eta\mu\big(E_i(\Dscr_{K_p})\setminus E_i(\Dscr)\big)\right],
+       &\mathcal P_i(\Dscr)\ne\varnothing,\\[3pt]
+ 2+\mu(E_i(\Dscr)),&\mathcal P_i(\Dscr)=\varnothing.
+ \end{cases}\label{eq:finite-loss}
+\end{equation}
+The minimum exists: the set of available indices is compact, and continuity in measure of
+$\Dscr_{K_p}$ makes the objective continuous in $p$. The correction rewards errors removed from a family member used for comparison; the bound on $\eta$ keeps these rewards within the sum bound needed for competitiveness.
+
+The next two lemmas bound the size of the error reductions. They let us
+choose the reward $\eta$ small enough that no model can beat a family member
+at every world. Both use elementary estimates for Gaussian measure. Here a random vector with
+law $\mu$ has independent standard normal coordinates; $\|\cdot\|_2$ denotes
+the Euclidean norm.
+
+\begin{lemma}[Gambles with lower prevision near zero]\label{lem:thin}
+For a credal set $K$ and $\delta\ge0$,
+\[
+ \mu\{g:|\lpr{K}(g)|\le\delta\|g\|_\infty\}\le4n\delta.
+\]
+Consequently $\mu(\Dscr_{K}\sd \Dscr_{H})\le4n\,\dH(K,H)$ for any credal sets $K,H$.
+\end{lemma}
+\begin{proof}
+For $\delta>1/2$ the bound is automatic. Otherwise write
+$g=h+t\one$, where $t=n^{-1}\sum_i g_i$ and $\sum_i h_i=0$.
+Equation~\eqref{eq:constant} and $|\lpr{K}(h)|\le\|h\|_\infty$ give
+\[
+ \|g\|_\infty\le2\|h\|_\infty+|t+\lpr{K}(h)|.
+\]
+Thus $|\lpr{K}(g)|\le\delta\|g\|_\infty$ implies
+$|t+\lpr{K}(h)|\le4\delta\|h\|_\infty$.
+For standard Gaussian $g$, the density factorizes in these coordinates
+because $\|g\|_2^2=\|h\|_2^2+nt^2$. Thus $t$ and $h$ are independent,
+$t$ has variance $1/n$, and its density is bounded by
+$\sqrt{n/(2\pi)}$. Conditional on $h$, the displayed condition restricts $t$
+to an interval of length $8\delta\|h\|_\infty$. Since
+\[
+ \mathbb E\|h\|_\infty\le\mathbb E\|h\|_2
+ \le\sqrt{\mathbb E\|h\|_2^2}=\sqrt{n-1},
+\]
+its probability is at most
+$8\delta\sqrt{n(n-1)/(2\pi)}\le4n\delta$.
+Finally, if $\Dscr_{K}$ and $\Dscr_{H}$ disagree, their lower previsions have opposite
+signs, up to null sets. By \eqref{eq:phi-estimates}, this implies
+$|\lpr{K}(g)|\le\dH(K,H)\|g\|_\infty$, giving the consequence.
+\end{proof}
+
+\begin{lemma}[Errors when outside probability is small]\label{lem:face-errors}
+For nonempty $T\subseteq[n]$, let
+$A_T^+=\{g:g_i>0\ (i\in T)\}$ and $A_T^-=\{g:g_i\le0\ (i\in T)\}$.
+If $\upprob{K_p}(\omega_i)\le Bp_i$ for all $i$, then
+\[
+ \mu(A_T^+\setminus \Dscr_{K_p}),\quad\mu(\Dscr_{K_p}\cap A_T^-)
+ \ \le\ 8n^2B\,p(T^c).
+\]
+\end{lemma}
+\begin{proof}
+Put $\varepsilon=Bp(T^c)$. If $\varepsilon>1/2$ the bounds are automatic.
+Otherwise every $m\in K_p$ has $m(T^c)\le\varepsilon$ and
+$m(T)\ge1-\varepsilon$.
+For $g\in A_T^+\setminus \Dscr_{K_p}$, choose $m\in K_p$ with $m\cdot g\le0$
+and put $\gamma=\min_{i\in T}g_i$. Then
+\[
+ 0\ge m\cdot g\ge(1-\varepsilon)\gamma-\varepsilon\|g\|_\infty,
+\]
+so $\gamma\le2\varepsilon\|g\|_\infty$.
+For $g\in \Dscr_{K_p}\cap A_T^-$, discard the null coordinate hyperplanes and
+put $\gamma=\min_{i\in T}|g_i|$. All coordinates on $T$ are negative, while
+$\lpr{K_p}(g)>0$, so any $m\in K_p$ gives
+\[
+ 0<m\cdot g\le-(1-\varepsilon)\gamma+\varepsilon\|g\|_\infty.
+\]
+Again $\gamma\le2\varepsilon\|g\|_\infty$. Both error regions therefore lie,
+up to null sets, in
+$\bigcup_{i\in T}\{g:|g_i|\le2\varepsilon\|g\|_\infty\}$.
+Apply Lemma~\ref{lem:thin} with $K=\{e_i\}$ to bound each term by
+$8n\varepsilon$, and sum over at most $n$ coordinates.
+\end{proof}
+
+With these estimates, the numerical proof follows the same pattern as the
+ordinal one: establish a sum bound, show that family members attain it,
+and use it to rule out domination of the target.
+
+\begin{theorem}[Full coverage by bounded losses]\label{thm:numerical}
+For each target $M$, the loss \eqref{eq:finite-loss} takes values in
+$[0,1]\cup[2,3]$ and evaluates every measurable model. It satisfies
+\[
+ \Dscr\le_i\Escr\ \Longrightarrow\ L_\eta(\Dscr,\omega_i)\le L_\eta(\Escr,\omega_i),\qquad
+ \Dscr<_i\Escr\ \Longrightarrow\ L_\eta(\Dscr,\omega_i)<L_\eta(\Escr,\omega_i).
+\]
+Moreover:
+\begin{enumerate}[label=(\alph*)]
+\item $L_\eta(\Dscr_{K_p},\omega_i)=1-p_i$;
+\item the selected models are undominated and competitive on their index
+supports, and all sets of indices giving a comparison are closed;
+\item every model outside the selected family modulo null sets is strictly
+dominated at every world by a selected model.
+\end{enumerate}
+Letting $M$ range over all credal sets gives \textbf{(E)}, \textbf{(LA)},
+\textbf{(A)}, and \textbf{(S)}, as well as \textbf{(C)} with coherence
+understood modulo null sets.
+\end{theorem}
+\begin{proof}
+We give the sum bound argument, writing $C_{p}=\Dscr_{K_p}$. For
+$T=T(\Dscr)\ne\varnothing$, choose available indices $p^i\in\mathcal P_i(\Dscr)$ and put
+\[
+ \rho=1-\sum_{i\in T}p^i_i,\qquad
+ h_i=\mu\big(E_i(C_{p^i})\setminus E_i(\Dscr)\big).
+\]
+Let $\alpha_k=p^k_k$ for $k\in T$ and $\alpha_k=0$ otherwise. By (CC),
+$p^j\ge\alpha$ for every $j\in T$, so $\|p^j-\alpha\|_1=\rho$. Thus
+\[
+ \rho\ge0,\qquad p^j(T^c)\le\rho,\qquad
+ \|p^i-p^j\|_1\le2\rho.
+\]
+Lemmas~\ref{lem:thin} and~\ref{lem:face-errors} give
+$\mu(C_{p}\sd C_{q})\le4nA\|p-q\|_1$ and bound each of the two error regions by
+$8n^2B\,p(T^c)$.
+An error removed from $C_{p^j}$ by $\Dscr$ either witnesses disagreement with
+another family member used for comparison or lies in one of these two error regions. Indeed,
+if $g\in \Dscr\setminus C_{p^j}$ and some $g_i\le0$ for $i\in T$, the family member indexed by $p^i$ must accept $g$; otherwise $g\in A_T^+\setminus C_{p^j}$. If
+$g\in C_{p^j}\setminus \Dscr$ and some $g_i>0$ for $i\in T$, that family member must reject $g$; otherwise $g\in C_{p^j}\cap A_T^-$. These statements hold outside
+the null exceptional sets of the background comparisons. Hence
+\[
+ h_j\le\sum_{i\in T\setminus\{j\}}\mu(C_{p^i}\sd C_{p^j})
+       +16n^2B\,p^j(T^c)\le\kappa\rho,
+\]
+and therefore
+\begin{equation}
+ \sum_{i\in T}(p^i_i+\eta h_i)
+ \le1-(1-n\kappa\eta)\rho\le1.\label{eq:numerical-budget}
+\end{equation}
+Choose indices attaining the loss minimum and write $c_i(\Dscr)=1-L_\eta(\Dscr,\omega_i)$
+for $i\in T$. These numbers are nonnegative and sum to at most one, proving
+the loss range. Equality forces $\rho=0$, all chosen indices equal to some
+$p$, and every $h_i=0$. Thus $E_i(\Dscr)=E_i(C_{p})$ a.e. at any world with an available index,
+and $\Dscr\approx C_{p}$.
+
+For a family member, its own index is available at every world, so
+$c_i(C_{p})\ge p_i$; the sum bound forces equality, proving (a). If $\Dscr$ weakly
+dominates $C_{p}$, it has an available index at every world and $c_i(\Dscr)\ge p_i$ for all $i$.
+Equality in the sum bound gives $\Dscr\approx C_{q}$ for some $q$, and then
+$q_i=c_i(\Dscr)\ge p_i$ for all $i$, forcing $q=p$. Hence $C_{p}$ is undominated.
+
+For accuracy, if $\Dscr\le_i\Escr$ and $\Escr$ has an available index, every index available for $\Escr$ is available for $\Dscr$
+and the correction increases by $\eta\mu(E_i(\Escr)\setminus E_i(\Dscr))$. Thus
+\[
+ L_\eta(\Dscr,\omega_i)\le L_\eta(\Escr,\omega_i)-\eta\mu(E_i(\Escr)\setminus E_i(\Dscr)).
+\]
+If both models have no available index, monotonicity and strictness follow from the
+error measure; if only $\Dscr$ has an available index, they follow from the disjoint loss ranges.
+
+Competitiveness follows from the sum bound: strict improvement over $C_{p}$ at
+every world in $\supp p$ would require $\sum_{i\in\supp p}c_i(\Dscr)>1$.
+The set of comparison indices is $\{p:p_i\ge1-L_\eta(\Dscr,\omega_i)\}$, which is closed.
+Finally, set $\beta_i=c_i(\Dscr)$ at worlds with an available index and zero elsewhere.
+For a model outside the selected family up to null sets $\sum_i\beta_i<1$, so
+$q=\beta+(1-\sum_i\beta_i)\one/n$ supplies strict dominance everywhere.
+The axioms follow as in Theorem~\ref{thm:coverage}, with full coverage again
+supplied by $K_r=M$.
+\end{proof}
+
+\paragraph{Why the target is undominated.}
+The proof gives $\sum_i L_\eta(\Dscr,\omega_i)\ge n-1$ for every acceptance
+set, while $L_\eta(C_p,\omega_i)=1-p_i$ for every family member.
+In particular $C_r=\Dscr_M$ attains total loss $n-1$.
+A model dominating it would have a smaller total, contradicting the bound.
+
+This loss gives another ranking on the same family; it does not represent the
+preceding ranking, which has incomparabilities, and need not preserve all its
+strict comparisons. The construction imposes no additivity requirement on the loss.
+
+\appendix
+\section{Why upper probabilities alone are too restrictive}\label{app:ustar}
+
+This appendix is not needed for either construction. It explains why an earlier
+condition, which used only upper probabilities, excluded targets that the
+present proof can include.
+
+An earlier sufficient condition for (CC) was
+\begin{equation*}
+ \upprob{K_p}(\omega_i)\le\upprob{K_q}(\omega_i),\quad
+ \upprob{K_q}(\omega_j)\le\upprob{K_p}(\omega_j),\quad i\ne j
+ \quad\Longrightarrow\quad p_i\le q_i.
+ \tag{U$^*$}\label{eq:ustar}
+\end{equation*}
+Unlike (CC), it requires an index comparison even when the upper-probability
+inequalities do not arise from a single acceptance set compared at two worlds.
+
+For example, the vacuous family \eqref{eq:vacuous} in three worlds gives,
+at $p=(.70,.20,.10)$ and $q=(.65,.13,.22)$, upper probability vectors
+$(.90,.40,.30)$ and $(.91,.39,.48)$. The first coordinate increases and the
+second decreases, but $p_1>q_1$, violating (U$^*$). This causes no failure
+of (CC): an acceptance set $\Dscr$ with $\Dscr\le_1\Dscr_{K_p}$ and
+$\Dscr\le_2\Dscr_{K_q}$ would also require
+$\lowprob{K_p}(\omega_1)\le\lowprob{K_q}(\omega_1)$, whereas these values are $.60$ and $.52$.
+
+\begin{proposition}\label{prop:ustar}
+Suppose a family is continuous in Hausdorff distance and satisfies both
+$K_p\subseteq\Delta_{\supp p}$ and (U$^*$).
+If $K_p$ contains a simplex vertex, then $|\supp p|\le2$. Consequently such
+families cannot contain a credal set containing a vertex whose distributions collectively assign positive probability
+to at least three worlds; in particular, they cannot contain $\Delta$ for
+$n\ge3$.
+\end{proposition}
+\begin{proof}
+Suppose $e_i\in K_p$ and choose distinct $j,k\in\supp p\setminus\{i\}$.
+Here $i\in\supp p$ because $K_p\subseteq\Delta_{\supp p}$. Hold all other coordinates fixed and
+vary $i,j,k$. With $c=p_i+p_j+p_k$, the interior of this triangular slice is
+parametrized by
+\[
+ V=\{(s,t):s>0,\ t>0,\ s+t<c\},\qquad
+ x_i=s,\quad x_j=t,\quad x_k=c-s-t.
+\]
+The map $F(s,t)=(\upprob{K_x}(\omega_i),\upprob{K_x}(\omega_j))$ is continuous. It is injective:
+equality of both outputs, applying (U$^*$) in both directions and exchanging
+$i,j$, gives equality of both $x_i,x_j$.
+
+Brouwer's invariance of domain theorem says that a continuous injective map
+from an open subset of $\R^2$ into $\R^2$ has open image. Thus $F(V)$ is open.
+It contains $F(p_i,p_j)$, whose first coordinate is one because $e_i\in K_p$.
+An open neighbourhood of this point includes first coordinates greater than
+one, impossible for upper probabilities. Hence $|\supp p|\le2$.
+\end{proof}
+
+This restriction concerns the stronger condition (U$^*$).
+The coverage construction needs only (CC) and does not use invariance of domain.
+
+\end{document}

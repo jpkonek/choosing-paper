@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,enumitem,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[proposition]{Remark}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\C}{\mathcal C}
+\newcommand{\M}{\mathcal M}
+\title{Vacuous Targets and Transfinite Construction}
+\author{}\date{12 October 2026}
+\begin{document}\maketitle
+
+\noindent
+The new complete-ranking impossibility theorem settles full coverage
+under strict guidance improvement, independence, and closed competitive
+selection. It does not settle which proper credal targets these rankings
+can cover. This note separates that issue from the treatment of the
+vacuous target, and records what a transfinite construction would still
+have to prove. The two elementary constructions and the union lemma
+below are author-checked, not independently refereed.
+
+\section{What the new theorem establishes}
+
+\emph{Three Complete Rankings Cannot Cover} proves that complete
+rankings satisfying (G), (IB), and (S) dominate the vacuous model $V$.
+\emph{Complete Rankings for Any Number of Worlds} extends this to every
+finite $n\ge3$. The counting lemma is the key new step: it uses only
+transitivity, weak (G), and (IB), and bounds the number of disjoint heavy
+sets using a finite connecting chain. Closed competitive selection
+provides the chains and the light perturbations; completeness is used
+in obtaining them and in converting failed comparisons into strict
+reverse comparisons.
+
+The conclusion concerns a class of rankings as follows. Axiom (A)
+requires, for each coherent model, \emph{some} ranking system under which
+it is undominated. It does not require one system under which all
+coherent models are undominated. Nevertheless, if every permitted
+system has complete rankings and satisfies strict (G), (IB), and (S),
+none can protect $V$. Therefore the class cannot satisfy full (A).
+
+This is a genuine obstruction to full (A), but is not an impossibility
+theorem for imprecision in general. For $n\ge4$, the many-world note
+also gives a conditional result for targets whose credal sets contain
+three vertices; its universal domination claim for all such targets
+remains open. For $n=3$ the only closed convex credal set containing all
+three vertices is $\Delta$ itself.
+
+\section{Strict guidance improvement can protect the vacuous model}
+
+Use the papers' binary-problem space $H$, with finite Gaussian measure
+$\mu$, and identify models modulo null sets. A problem is \emph{mixed}
+if the worlds disagree about which option is better, and
+\emph{unanimous} otherwise. The model $V=\Dscr_\Delta$ gives silence on
+mixed problems and the unanimously good recommendation on unanimous
+ones. Advice at world $i$ is good, silent, bad, or contradictory.
+
+\begin{proposition}\label{prop:strict}
+For every finite $n\ge2$, there are complete real-valued additive rankings
+on all measurable models satisfying strict (G) and (IB) under which $V$
+is undominated, indeed the unique minimizer of the sum of the losses.
+\end{proposition}
+\begin{proof}
+Choose $0<c<1/n$. At every problem and every world assign penalties
+\[
+ \begin{array}{c|cccc}
+ \text{advice}&\text{good}&\text{silence}&\text{bad}&\text{contradictory}\\
+ \hline
+ \text{penalty}&0&c&1&2
+ \end{array}
+\]
+and let $L_i(X)$ be the integral of the penalty at world $i$.
+The penalties are strictly increasing in guidance rank, so the rankings
+satisfy strict (G). Additivity makes replacement of common advice
+irrelevant to a comparison, so (IB) holds.
+
+On a mixed problem, silence has total penalty $nc<1$. Either definite
+recommendation is bad at some world and consequently has total penalty
+at least $1$. Contradiction has total penalty $2n$. Silence therefore
+uniquely minimizes the total. On a unanimous problem the unanimously
+good recommendation uniquely minimizes the total, at zero. Integrating
+shows that $V$ uniquely minimizes $\sum_iL_i(X)$ modulo null sets.
+A dominator would lower that sum, which is impossible.
+\end{proof}
+
+Thus giving good advice can have strictly positive value over silence
+even when $V$ is undominated. The decision-theoretic interpretation is
+ordinary caution: an error costs enough that abstention can be optimal
+under uncertainty. For three worlds, for example, take $c=1/4$.
+Silence costs $3/4$ across the worlds, whereas either recommendation on
+a mixed problem costs at least $1$.
+
+For $n\ge3$ these rankings cannot satisfy (S), by the new theorem.
+The incompatibility concerns the full conjunction of requirements, not
+strict (G) by itself. A related stronger example already appears in
+\emph{Beyond Additive Guidance Rankings}, in its section on completeness
+without (S): complete independent rankings can leave every coherent
+model undominated when (S) is omitted.
+
+\section{A precise way to allow neutral abstention}
+
+One may nevertheless want a ranking tailored to $V$ to give no reward
+for choosing a good option on a problem about which the worlds disagree.
+The following version keeps a strict incentive to follow unanimous
+advice. That qualification avoids tying $V$ with the incoherent model
+that gives no advice even on unanimous problems.
+
+\begin{proposition}\label{prop:neutral}
+There are complete additive rankings on all measurable models satisfying
+(IB), weak (G), (E), (LA), (S), and closure under equal undominated
+profiles (C), whose only undominated model is $V$, modulo null sets.
+The sole failure of the strict guidance requirement is that good advice
+and silence tie on mixed problems.
+\end{proposition}
+\begin{proof}
+Integrate the following penalties at each world:
+\[
+ \begin{array}{c|cccc}
+ &\text{good}&\text{silence}&\text{bad}&\text{contradictory}\\
+ \hline
+ \text{mixed problem}&0&0&1&2\\
+ \text{unanimous problem}&0&1&2&3
+ \end{array}
+\]
+All losses are finite and nonnegative; $L_i(V)=0$ at every world.
+If a model differs from $V$ on a non-null set, it either changes
+unanimously correct advice, contradicts itself, or gives a definite
+recommendation on mixed problems. The first two possibilities have
+positive penalty. In the third, the recommendation is bad at at least
+one world at each changed problem. Since there are finitely many worlds,
+some fixed world has positive integrated penalty. Thus $V$ weakly
+improves every loss and strictly improves at least one: it dominates
+every other model modulo null sets.
+
+Define $C_p=V$ for every $p\in\Delta$. This selection is coherent and
+undominated, and $C_p\preceq_iX$ for every $i,p,X$. In particular it is
+competitive on every support. Each section
+$\{p:C_p\preceq_iX\}$ is the whole simplex and is closed, proving (S).
+All models are evaluable, proving (E); $V$ proves (LA); and a model tied
+with $V$ at all worlds must equal it modulo null sets, proving (C).
+The penalty table proves weak (G) and its stated strict parts, and
+additivity proves (IB).
+\end{proof}
+
+This ranking system covers $V$ only. It does not establish full (A).
+But if a class already covers other targets, adjoining this system
+supplies coverage of $V$ without changing the coverage previously
+obtained. The enlarged class satisfies the weakened guidance
+requirement, not the original strict (G).
+
+Two consequences of this change should be explicit. First, $D_i$ and
+$V$ tie at world $i$, so the ideal model is no longer unique. The old
+face lemma, which forces $C_{e_i}=D_i$ under strict (G), is unavailable;
+the constant selection above illustrates its failure. Second, under
+(IB), an indifference between good advice and silence transfers to
+every common context. It cannot be made an exception only when one of
+the two whole models happens to be $V$, while retaining strictness for
+the identical local change elsewhere.
+
+\section{Other boundary targets}
+
+It would be premature to treat every boundary credal set alike.
+Precise vertex models have zero lower probabilities at all but one
+world, yet they are ordinary ideal models under strict (G). Zero lower
+probability therefore does not, by itself, justify neutralizing the
+value of good advice. Likewise, silence on some mixed problems is
+common to ordinary imprecise models and does not by itself imply such
+neutrality.
+
+A useful distinction is between precise targets, imprecise targets
+strictly inside the simplex, targets meeting its boundary, and targets
+containing several vertices (including vacuous models on faces).
+The many-world note's clique theorem concerns the last class. It does
+not determine the coverage of the first three classes, or prove that
+$V$ is the only excluded target. Removing $V$ from the coverage demand
+removes this particular obstruction; a positive theorem for the
+remaining class would still be needed.
+
+\section{What survives of transfinite construction}
+
+The original idea was to add the comparisons required by competitiveness
+one at a time while preserving guidance improvement and the target's
+undominatedness. There are two distinct issues: consistency when a
+comparison is added, and preservation of closed sections at a limit.
+
+\begin{lemma}\label{lem:union}
+Fix a finite set of worlds, a common model domain, and an increasing
+ordinal-indexed family of preorders $R_i^\alpha$ at each world. Suppose
+each stage satisfies (G) and (IB), and a fixed target $M$ is undominated
+at every stage. Then $R_i=\bigcup_\alpha R_i^\alpha$ is a preorder
+satisfying (G) and (IB), and $M$ remains undominated. Any competitiveness
+witness installed at a stage remains installed in the union.
+\end{lemma}
+\begin{proof}
+Reflexivity is immediate. A finite transitivity chain lies in some
+single stage, so transitivity persists. Every positive background
+comparison persists. A reverse comparison forbidden by strict (G)
+occurs at no stage and therefore not in the union. Context replacement
+of any comparison occurs at the stage where that comparison occurs;
+the inverse replacement gives the other direction of (IB).
+
+If $X$ dominated $M$ in the union, the finitely many comparisons
+$X R_i M$ would all hold at one stage. At a world where the union
+comparison is strict, the reverse $M R_i X$ occurs at no stage.
+Consequently $X$ would already dominate $M$ at that stage, a
+contradiction. Competitiveness witnesses are positive comparisons,
+which persist under extension.
+\end{proof}
+
+So the purely ordinal limit step has a useful positive answer.
+\emph{Closedness does not follow.} Even with the selection fixed, an
+increasing union of closed sections need not be closed:
+\[
+ \bigcup_{m\ge2}[0,1-1/m]=[0,1).
+\]
+Closing the union would add comparisons not justified by any stage.
+After transitivity and (IB) are imposed, these may reverse a protected
+strict guidance comparison or dominate the target. The missing
+assertion is that some compatible way of closing them always exists;
+the topological example alone does not prove that assertion false for
+every possible construction.
+
+\begin{proposition}[A sufficient invariant for closed sections]
+Fix a selection $p\mapsto C_p$. Along an increasing construction,
+suppose that whenever a comparison $C_p\preceq_iX$ is permanently
+rejected, a relatively open neighbourhood $U$ of $p$ is reserved on
+which every comparison $C_q\preceq_iX$ is permanently forbidden.
+Suppose every such comparison is eventually either installed or
+rejected, and no forbidden comparison is installed, including by
+transitivity or (IB). Then the final comparison sections are closed.
+\end{proposition}
+\begin{proof}
+If $p$ is outside the final section for $i,X$, its comparison was
+rejected. The reserved neighbourhood $U$ remains outside that section.
+Thus the section's complement is open.
+\end{proof}
+
+This replaces a proposed numerical ``uniform bound on lifts'' with a
+topological invariant: permanent open regions of forbidden comparisons.
+It does not yet supply a construction. One must prove an extension
+lemma saying that the next competitiveness requirement, or the next
+decision about a section, can be met while respecting all the previous
+reservations after taking (IB) and transitive closure. Reserving a
+neighbourhood at one world also requires competitiveness to be supplied
+by other worlds throughout that neighbourhood. This is a genuine
+compatibility obligation.
+
+The earlier \emph{Ordinal Refinement by Slack Envelopes} proved that an
+unrestricted refinement lemma is false, and instead established a
+simultaneous refinement using extra structure. That success preceded
+(IB); v3 subsequently showed why the benchmark/default-comparison
+construction fails (IB). Neither result proves that all transfinite
+constructions of incomplete rankings must fail. The new complete-case
+theorem does exclude any construction that finishes with complete
+rankings while retaining $V$ and the original axioms.
+
+\section{Research priorities}
+
+There are now three separate questions.
+\begin{enumerate}[leftmargin=*]
+\item With strict (G), (IB), (S), and complete rankings, characterize
+which proper credal targets can be covered. Full coverage is impossible,
+but its failure at $V$ does not answer this positive question.
+\item If neutral abstention is appropriate for extreme targets, allow
+the corresponding weak guidance ranking explicitly. Proposition
+\ref{prop:neutral} handles $V$ completely under that revised requirement.
+\item If full (A) and strict (G) are both retained, construct genuinely
+incomplete rankings, or exclude them. A transfinite approach remains
+possible in principle, but requires the compatibility extension lemma
+just described. It must preserve the incomparabilities that the new
+incomplete-ranking note identifies, rather than silently completing them.
+\end{enumerate}
+These questions should not be conflated. The first asks how broadly the
+ordinary strict-guidance programme succeeds. The second changes how
+abstention is evaluated. The third is the remaining existence problem
+under the original full list of requirements.
+\end{document}

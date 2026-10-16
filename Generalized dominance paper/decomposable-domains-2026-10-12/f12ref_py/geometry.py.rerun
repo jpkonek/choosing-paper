@@ -1,0 +1,22 @@
+T(th_b) = 0.6  T(th_a) = 0.3
+P_K'((1,0)) = 0.4 > 0 : ray (1,0) is in the open cone U
+P_K'((-al,1-al)) = 0.0 : ray (-alpha',1-alpha') is on dU
+T' on [th_b,0]: [0.5200, 1.0000];  on [pi/2,th_a]: [0.5800, 1.0000]
+host A: G(0+)=0.0011 G(1-)=0.999076 increasing=True
+host B: G(0+)=0.0015 G(1-)=0.998959 increasing=True
+
+ th(M+)      1-x_A(th)     (1-x_A)/|th|     x_B(th)
+ -1.0e-01   2.13647e-01      2.136473      0.491495
+ -1.0e-02   2.29002e-02      2.290022      0.582139
+ -1.0e-03   2.30754e-03      2.307541      0.591203
+ -1.0e-04   2.30932e-04      2.309316      0.592110
+ -1.0e-05   2.30949e-05      2.309494      0.592201
+=> host A: 1 - x ~ c|th| on M+ near the INTERIOR ray (1,0); host B: x stays at lambda(M+) < 1 there.
+
+ cut     int_{K_eta, th<-cut} 1/(1-x_A) dmu     same for host B
+  1e-02         0.053354                        0.006853
+  1e-03         0.128372                        0.008486
+  1e-04         0.203165                        0.008652
+  1e-05         0.277935                        0.008668
+  1e-06         0.352620                        0.008670
+=> host A: grows like log(1/cut) (not locally integrable on U); host B: bounded.

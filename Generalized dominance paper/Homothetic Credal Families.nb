@@ -1,0 +1,235 @@
+Notebook[{
+Cell["Homothetic credal families in three worlds", "Title"],
+Cell["Companion to Full Coverage by Homothetic Credal Families v2", "Subtitle"],
+Cell["For a target credal set M \[SubsetEqual] \[CapitalDelta], let \[ScriptL] and u be its vectors of lower and upper coordinate endpoints, \[Lambda] = (1 - \[CapitalSigma]\[ScriptL])/(\[CapitalSigma]u - \[CapitalSigma]\[ScriptL]), r = (1 - \[Lambda])\[ScriptL] + \[Lambda]u and d = r - \[ScriptL]. For a singleton M = {m}: \[Lambda] = 1/2, r = m, d = 0. The family is K_p = p + \[Theta](p)(M - r), with \[Theta](p) = min{1, min over d_i > 0 of p_i/d_i}. So K_r = M, K_p lies in the face of p, and (1 - \[Lambda])\[CenterDot](lower endpoints of K_p) + \[Lambda]\[CenterDot](upper endpoints of K_p) = p.", "Text"],
+Cell["To use: Evaluation > Evaluate Notebook. The index is p = (s, t, 1 - s - t); if s + t > 1, t is lowered to 1 - s. The picture shows M (dashed grey) with its anchor r, and K_p (orange). The vertex e1 is bottom left, e2 bottom right, e3 at the top; the faint lines are m_i = 0.1, ..., 0.9. Two optional overlays: the lines m_i = lower and upper endpoint of K_p (blue, green, pink for i = 1, 2, 3); and the triangle {p \[GreaterEqual] d} of indices with \[Theta](p) = 1 (light blue), where K_p is a full-size translate of M. The table on the right reports the quantities above and checks the endpoint identity.", "Text"],
+Cell["Definitions", "Section"],
+Cell["ClearAll[\"Global`*\"];
+
+(* ---------- The simplex in the plane ---------- *)
+(* m = {m1, m2, m3} in Delta is drawn at m1 e1 + m2 e2 + m3 e3, with
+   e1 at (0, 0), e2 at (1, 0) and e3 at (1/2, Sqrt[3]/2). *)
+vtx = N[{{0, 0}, {1, 0}, {1/2, Sqrt[3]/2}}];
+toXY[m_List] := m . vtx;
+
+(* p = (s, t, 1 - s - t). If s + t > 1, t is lowered to 1 - s. *)
+pOf[s_, t_] := Module[{tt = Min[t, 1 - s]}, N[{s, tt, 1 - s - tt}]];
+
+(* ---------- Target credal sets M, as convex polygons (lists of 3-vectors) ---------- *)
+(* Sutherland-Hodgman: keep the part of a convex polygon where the affine function g is >= 0. *)
+clipBy[poly_List, g_] := Module[{out = {}, n = Length[poly], a, b, ga, gb},
+  Do[
+   a = poly[[k]]; b = poly[[Mod[k, n] + 1]]; ga = g[a]; gb = g[b];
+   Which[
+    ga >= 0 && gb >= 0, AppendTo[out, b],
+    ga >= 0, AppendTo[out, a + ga/(ga - gb) (b - a)],
+    gb >= 0, AppendTo[out, a + ga/(ga - gb) (b - a)]; AppendTo[out, b]],
+   {k, n}];
+  out];
+clipToSimplex[poly_List] := Fold[Function[{P, i}, clipBy[P, Function[m, m[[i]]]]], poly, {1, 2, 3}];
+
+(* Orthonormal basis of the plane x1 + x2 + x3 = 0. *)
+w1base = {1, -1, 0}/Sqrt[2.]; w2base = {1, 1, -2}/Sqrt[6.];
+
+(* Ellipse with centre c, semi-axes a and b, rotated by phi, intersected with Delta.
+   The six boundary points where a coordinate is extreme are added to the sample,
+   so the endpoint vectors of M are exact up to rounding. *)
+ellipseM[c_List, a_, b_, phi_, n_Integer: 240] := Module[{u1, u2, extra, taus},
+  u1 = Cos[phi] w1base + Sin[phi] w2base;
+  u2 = -Sin[phi] w1base + Cos[phi] w2base;
+  extra = Flatten[Table[With[{tau = ArcTan[a u1[[i]], b u2[[i]]]}, {tau, tau + Pi}], {i, 3}]];
+  taus = Union[Mod[Join[Table[2. Pi k/n, {k, 0, n - 1}], extra], 2. Pi]];
+  clipToSimplex[(c + a Cos[#] u1 + b Sin[#] u2) & /@ taus]];
+discM[c_List, rho_] := ellipseM[c, rho, rho, 0.];
+
+(* epsilon-contamination of q: (1 - eps) q + eps Delta, a triangle. *)
+contaminationM[q_List, eps_] := ((1 - eps) q + eps #) & /@ N[IdentityMatrix[3]];
+
+(* Box lo <= m <= up, intersected with Delta. *)
+boxM[lo_List, up_List] := Fold[
+  Function[{P, i}, clipBy[clipBy[P, Function[m, m[[i]] - lo[[i]]]], Function[m, up[[i]] - m[[i]]]]],
+  N[IdentityMatrix[3]], {1, 2, 3}];
+
+(* ---------- The family of the paper ---------- *)
+(* lo, up: endpoint vectors of M; lambda, r, d as in (3); singleton targets: lambda = 1/2, r = m, d = 0. *)
+familyData[M_List] := Module[{lo, up, L, U, lam, r, d},
+  lo = Min /@ Transpose[M]; up = Max /@ Transpose[M];
+  L = Total[lo]; U = Total[up];
+  If[U - L < 10^-9,
+   lam = 0.5; r = Mean[M]; d = {0., 0., 0.},
+   lam = (1 - L)/(U - L); r = (1 - lam) lo + lam up; d = lam (up - lo)];
+  <|\"lo\" -> lo, \"up\" -> up, \"L\" -> L, \"U\" -> U, \"lambda\" -> lam, \"r\" -> r, \"d\" -> d|>];
+
+(* theta(p) = min{1, min over d_i > 0 of p_i/d_i}; K_p = p + theta(p) (M - r). *)
+theta[p_List, d_List] := Min[1, Min[MapThread[If[#2 > 10^-12, #1/#2, Infinity] &, {p, d}]]];
+familyMember[p_List, M_List, fd_Association] :=
+  With[{th = theta[p, fd[\"d\"]]}, (p + th (# - fd[\"r\"])) & /@ M];
+
+(* Indices p with theta(p) = 1: the triangle {p >= d}, with vertices d + (1 - Total[d]) e_i. *)
+fullScaleRegion[fd_Association] := (fd[\"d\"] + (1 - Total[fd[\"d\"]]) #) & /@ N[IdentityMatrix[3]];
+
+(* ---------- Pictures ---------- *)
+colK = RGBColor[0.85, 0.37, 0.0]; colM = GrayLevel[0.4];
+colI = {RGBColor[0.0, 0.45, 0.70], RGBColor[0.0, 0.62, 0.45], RGBColor[0.80, 0.40, 0.70]};
+
+(* The segment {m in Delta : m_i = c}. *)
+levelLine[i_Integer, c_] := Module[{j, k},
+  {j, k} = Complement[{1, 2, 3}, {i}];
+  Line[{toXY[c UnitVector[3, i] + (1 - c) UnitVector[3, j]],
+        toXY[c UnitVector[3, i] + (1 - c) UnitVector[3, k]]}]];
+
+(* A point, a segment, or a filled polygon, depending on how many distinct points there are. *)
+shape[pts_List] := Module[{n = Length[Union[pts, SameTest -> (Norm[#1 - #2] < 10^-9 &)]]},
+  Which[
+   n == 1, {PointSize[0.022], Point[First[pts]]},
+   n == 2, Line[Append[pts, First[pts]]],
+   True, {Polygon[pts], Line[Append[pts, First[pts]]]}]];
+
+(* Main picture: Delta, the target M (dashed grey) with its anchor r, and K_p (orange). *)
+simplexPicture[p_List, M_List, showLines_, showFull_] :=
+ Module[{fd = familyData[M], K, kLo, kUp},
+  K = familyMember[p, M, fd];
+  kLo = Min /@ Transpose[K]; kUp = Max /@ Transpose[K];
+  Graphics[{
+    {FaceForm[GrayLevel[0.97]], EdgeForm[{Black, AbsoluteThickness[1.5]}], Polygon[vtx]},
+    {GrayLevel[0.88], AbsoluteThickness[0.5], Table[levelLine[i, c], {i, 3}, {c, 0.1, 0.9, 0.1}]},
+    If[showFull,
+     {FaceForm[RGBColor[0.85, 0.92, 1.0]], EdgeForm[{RGBColor[0.5, 0.7, 0.9], AbsoluteThickness[1]}],
+      shape[toXY /@ fullScaleRegion[fd]]}, {}],
+    {colM, AbsoluteDashing[{5, 4}], AbsoluteThickness[1.2], FaceForm[Opacity[0.12, colM]],
+     EdgeForm[None], shape[toXY /@ M]},
+    {colM, AbsolutePointSize[6], Point[toXY[fd[\"r\"]]],
+     Text[Style[\"r\", 13, Italic, colM], toXY[fd[\"r\"]], {-1.8, -1.2}]},
+    If[showLines,
+     Table[{colI[[i]], AbsoluteDashing[{3, 3}], AbsoluteThickness[1.2],
+       levelLine[i, kLo[[i]]], levelLine[i, kUp[[i]]]}, {i, 3}], {}],
+    {colK, AbsoluteThickness[2], FaceForm[Opacity[0.45, colK]], EdgeForm[None], shape[toXY /@ K]},
+    {Black, AbsolutePointSize[7], Point[toXY[p]],
+     Text[Style[\"p\", 14, Italic], toXY[p], {-1.8, -1.2}]},
+    Text[Style[Subscript[\"e\", 1], 14], vtx[[1]], {1.4, 1.4}],
+    Text[Style[Subscript[\"e\", 2], 14], vtx[[2]], {-1.4, 1.4}],
+    Text[Style[Subscript[\"e\", 3], 14], vtx[[3]], {0, -1.6}]},
+   PlotRange -> {{-0.08, 1.08}, {-0.08, 0.95}}, ImageSize -> 440]];
+
+(* Numerical read-out. *)
+fmt[x_List] := Row[{\"(\", Row[fmt /@ x, \", \"], \")\"}];
+fmt[x_?NumericQ] := NumberForm[N[Chop[x, 10^-10]], {4, 3}];
+
+readout[p_List, M_List] := Module[{fd = familyData[M], K, th, kLo, kUp, lam},
+  lam = fd[\"lambda\"]; th = theta[p, fd[\"d\"]];
+  K = familyMember[p, M, fd];
+  kLo = Min /@ Transpose[K]; kUp = Max /@ Transpose[K];
+  Grid[{
+    {Style[\"target M\", Bold], \"\"},
+    {\"lower endpoints \[ScriptL]\", fmt[fd[\"lo\"]]},
+    {\"upper endpoints u\", fmt[fd[\"up\"]]},
+    {\"\[Lambda] = (1 - \[CapitalSigma]\[ScriptL])/(\[CapitalSigma]u - \[CapitalSigma]\[ScriptL])\", fmt[lam]},
+    {\"anchor r = (1 - \[Lambda])\[ScriptL] + \[Lambda]u\", fmt[fd[\"r\"]]},
+    {\"d = r - \[ScriptL]\", fmt[fd[\"d\"]]},
+    {\"\", \"\"},
+    {Style[\"index p\", Bold], \"\"},
+    {\"p\", fmt[p]},
+    {\"supp p\", Select[Range[3], p[[#]] > 10^-12 &]},
+    {\"\[Theta](p)\", fmt[th]},
+    {Row[{\"lower endpoints of \", Subscript[\"K\", \"p\"]}], fmt[kLo]},
+    {Row[{\"upper endpoints of \", Subscript[\"K\", \"p\"]}], fmt[kUp]},
+    {Row[{\"(1 - \[Lambda])\[CenterDot]lower + \[Lambda]\[CenterDot]upper\"}], fmt[(1 - lam) kLo + lam kUp]}},
+   Alignment -> Left, Spacings -> {2, 0.5}]];
+
+show[p_List, M_List, showLines_, showFull_] :=
+  Row[{simplexPicture[p, M, showLines, showFull], Spacer[15], readout[p, M]}];
+
+(* The whole family on a lattice of indices p with denominator k. *)
+familyOverview[M_List, k_Integer] := Module[{fd = familyData[M], ps},
+  ps = N[Flatten[Table[{i, j, k - i - j}/k, {i, 0, k}, {j, 0, k - i}], 1]];
+  Graphics[{
+    {FaceForm[GrayLevel[0.97]], EdgeForm[{Black, AbsoluteThickness[1.5]}], Polygon[vtx]},
+    Table[{colK, AbsoluteThickness[1], FaceForm[Opacity[0.08, colK]], EdgeForm[None],
+      shape[toXY /@ familyMember[q, M, fd]],
+      Black, AbsolutePointSize[3], Point[toXY[q]]}, {q, ps}],
+    {colM, AbsoluteDashing[{5, 4}], AbsoluteThickness[1.5], FaceForm[None], EdgeForm[None],
+     shape[toXY /@ M]}},
+   PlotRange -> {{-0.08, 1.08}, {-0.08, 0.95}}, ImageSize -> 440]];", "Input"],
+Cell["Disc", "Section"],
+Cell["Credal sets are closed, so the ball is a closed disc. It lives in the plane of \[CapitalDelta] (Euclidean metric of R^3) and is intersected with \[CapitalDelta]. Discs and ellipses are drawn as polygons with about 240 boundary points; the points where a coordinate is extreme are included, so \[ScriptL] and u are exact up to rounding. The disc meets the edges of \[CapitalDelta] once the radius exceeds the distance from its centre to an edge (0.408 for the centre (1/3, 1/3, 1/3)).", "Text"],
+Cell["Manipulate[
+ show[pOf[s, t], discM[pOf[c1, c2], rho], lines, full],
+ Style[\"index p = (s, t, 1 - s - t)\", Bold],
+ {{s, 0.55, \"s\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{t, 0.25, \"t\"}, 0, 1, Appearance -> \"Labeled\"},
+ Delimiter,
+ Style[\"target M = closed disc \[Intersection] \[CapitalDelta]\", Bold],
+ {{c1, 0.3, \"centre, 1st coordinate\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{c2, 0.3, \"centre, 2nd coordinate\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{rho, 0.2, \"radius\"}, 0.01, 0.8, Appearance -> \"Labeled\"},
+ Delimiter,
+ {{lines, False, \"show endpoint lines of K_p\"}, {False, True}},
+ {{full, False, \"show indices with \[Theta](p) = 1\"}, {False, True}},
+ SaveDefinitions -> True]", "Input"],
+Cell["Ellipse", "Section"],
+Cell["Semi-axis a points along (cos \[Phi], -cos \[Phi], 0)/\[Sqrt]2 + sin \[Phi] (1, 1, -2)/\[Sqrt]6 in the plane of \[CapitalDelta]; semi-axis b is perpendicular to it.", "Text"],
+Cell["Manipulate[
+ show[pOf[s, t], ellipseM[pOf[c1, c2], a, b, phi], lines, full],
+ Style[\"index p = (s, t, 1 - s - t)\", Bold],
+ {{s, 0.55, \"s\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{t, 0.25, \"t\"}, 0, 1, Appearance -> \"Labeled\"},
+ Delimiter,
+ Style[\"target M = closed elliptical region \[Intersection] \[CapitalDelta]\", Bold],
+ {{c1, 0.3, \"centre, 1st coordinate\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{c2, 0.3, \"centre, 2nd coordinate\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{a, 0.3, \"semi-axis a\"}, 0.01, 0.9, Appearance -> \"Labeled\"},
+ {{b, 0.1, \"semi-axis b\"}, 0.01, 0.9, Appearance -> \"Labeled\"},
+ {{phi, 0.5, \"rotation (radians)\"}, 0, N[Pi], Appearance -> \"Labeled\"},
+ Delimiter,
+ {{lines, False, \"show endpoint lines of K_p\"}, {False, True}},
+ {{full, False, \"show indices with \[Theta](p) = 1\"}, {False, True}},
+ SaveDefinitions -> True]", "Input"],
+Cell["\[Epsilon]-contamination", "Section"],
+Cell["M = (1 - \[Epsilon])q + \[Epsilon]\[CapitalDelta]. Here \[Lambda] = 1/3 and r = (1 - \[Epsilon])q + \[Epsilon](1/3, 1/3, 1/3), which lies in M. \[Epsilon] = 0 gives the singleton {q} and \[Epsilon] = 1 the vacuous set.", "Text"],
+Cell["Manipulate[
+ show[pOf[s, t], contaminationM[pOf[q1, q2], eps], lines, full],
+ Style[\"index p = (s, t, 1 - s - t)\", Bold],
+ {{s, 0.55, \"s\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{t, 0.25, \"t\"}, 0, 1, Appearance -> \"Labeled\"},
+ Delimiter,
+ Style[\"target M = (1 - \[Epsilon]) q + \[Epsilon] \[CapitalDelta],  q = (q1, q2, 1 - q1 - q2)\", Bold],
+ {{q1, 0.6, \"q1\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{q2, 0.25, \"q2\"}, 0, 1, Appearance -> \"Labeled\"},
+ {{eps, 0.3, \"\[Epsilon]\"}, 0, 1, Appearance -> \"Labeled\"},
+ Delimiter,
+ {{lines, False, \"show endpoint lines of K_p\"}, {False, True}},
+ {{full, False, \"show indices with \[Theta](p) = 1\"}, {False, True}},
+ SaveDefinitions -> True]", "Input"],
+Cell["Other targets", "Section"],
+Cell["Vertex-containing, face-supported, degenerate and box-shaped targets.", "Text"],
+Cell["presets = <|
+   \"vacuous set \[CapitalDelta]\" -> N[IdentityMatrix[3]],
+   \"box 0.1 \[LessEqual] m1 \[LessEqual] 0.6, 0.2 \[LessEqual] m2 \[LessEqual] 0.5\" -> boxM[{0.1, 0.2, 0.}, {0.6, 0.5, 1.}],
+   \"triangle containing the vertex e1\" -> N[{{1, 0, 0}, {0.5, 0.4, 0.1}, {0.6, 0.1, 0.3}}],
+   \"segment on the edge from e1 to e2\" -> N[{{0.7, 0.3, 0}, {0.3, 0.7, 0}}],
+   \"segment through the interior\" -> N[{{0.6, 0.3, 0.1}, {0.2, 0.3, 0.5}}],
+   \"singleton {(0.5, 0.3, 0.2)}\" -> N[{{0.5, 0.3, 0.2}}],
+   \"disc cut by all three edges\" -> discM[N[{1, 1, 1}/3], 0.45],
+   \"ellipse cut by one edge\" -> ellipseM[N[{0.45, 0.45, 0.1}], 0.35, 0.15, 0.],
+   \"\[Epsilon]-contamination of a boundary point\" -> contaminationM[{0.7, 0.3, 0.}, 0.4]|>;", "Input"],
+Cell["With[{keys = Keys[presets], k1 = First[Keys[presets]]},
+ Manipulate[
+  show[pOf[s, t], presets[target], lines, full],
+  Style[\"index p = (s, t, 1 - s - t)\", Bold],
+  {{s, 0.55, \"s\"}, 0, 1, Appearance -> \"Labeled\"},
+  {{t, 0.25, \"t\"}, 0, 1, Appearance -> \"Labeled\"},
+  Delimiter,
+  {{target, k1, \"target M\"}, keys, ControlType -> PopupMenu},
+  Delimiter,
+  {{lines, False, \"show endpoint lines of K_p\"}, {False, True}},
+  {{full, False, \"show indices with \[Theta](p) = 1\"}, {False, True}},
+  SaveDefinitions -> True]]", "Input"],
+Cell["The whole family at once", "Section"],
+Cell["K_p for every index p on the lattice {i/k, j/k, (k - i - j)/k}. Near the centre the sets are full-size translates of M; towards the boundary they shrink, and on the boundary they collapse to the single point p whenever d_i > 0 for the coordinate that vanishes.", "Text"],
+Cell["With[{keys = Keys[presets], k1 = First[Keys[presets]]},
+ Manipulate[
+  familyOverview[presets[target], k],
+  {{target, k1, \"target M\"}, keys, ControlType -> PopupMenu},
+  {{k, 6, \"lattice of indices with denominator\"}, 2, 12, 1, Appearance -> \"Labeled\"},
+  SaveDefinitions -> True]]", "Input"]
+}]

@@ -1,0 +1,564 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\ess}{\operatorname{ess}}
+\title{Dense Thresholds and Debt Reduction}
+\author{}\date{10 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note strengthens \emph{Independence Chains} (IC). It does not settle
+the general conjecture. It proves the following restrictions on a proposed
+counterexample with two ordinary additive worlds:
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item The thresholds of IC's useful full-support selections are dense in
+\emph{all} of $(0,\infty)$, not merely arbitrarily close to zero.
+\item Both threshold functions $F,G$ must have jumps in every open interval.
+In particular, a single interval of continuity, anywhere, suffices for
+impossibility. Even a single constant interval suffices without any further
+condition on the penalties.
+\item A positive lower bound on $c_3/c_2$ in a strip $t_{12}<h$, or a finite
+upper bound in a strip $t_{13}<h$, suffices for impossibility. In particular, a global upper
+bound alone, or a global positive lower bound alone, suffices. No continuity
+assumption on $F$ or $G$ is needed.
+\item For a separable ratio $\rho=f(t_{12})/h(t_{13})$ with positive
+nondecreasing factors, continuity of either factor suffices. More generally,
+it suffices that the factor's multiplicative jump ratios are bounded
+for all sufficiently large arguments.
+\end{enumerate}
+The earlier version was independently reviewed in \emph{Closed Choice
+Forces Fineness} (CCF). That review found an invalid placement of the
+silent reservoir in the original debt-contraction argument. The local
+cycle below states its geometric hypotheses explicitly, and the following
+flexible-credit lemma writes out CCF's proposed repair. The expanded repair
+has been checked by the author, not independently refereed. The earlier
+notes are used only for the facts explicitly listed below.
+
+\section{Setting and the facts used from IC}
+
+There are three worlds. Smaller loss is better. Models are compared modulo
+null sets. Guidance ranks good advice, silence, bad advice and contradictory
+advice in that order. We assume strict guidance monotonicity (G), independence
+under replacement of common advice (IB), and closed competitive selection (S).
+Thus $C_p$ is coherent and undominated, competitive on $\operatorname{supp}p$,
+and $\{p:C_p\preceq_iX\}$ is closed for every model $X$.
+At worlds $2,3$, the rankings are represented by ordinary additive losses
+$L_2,L_3$ with strictly ordered local penalties and an integrable envelope.
+World $1$ can have any preorder satisfying (G) and (IB).
+
+Assume, for a contradiction, that the vacuous model $V$ is undominated.
+Represent binary problems by $H=\{g_1>0\}$, with its finite Gaussian measure
+$\mu$, and put
+\[
+ P_1=\{g_2<0,g_3<0\},\quad P_2=\{g_2<0<g_3\},\quad
+ P_3=\{g_2>0>g_3\}.
+\]
+The option $o_K$ is good exactly at worlds in $K$. At world $1$, accepting
+$g$ gives \emph{credit}, accepting $-g$ gives \emph{debt}, and neither gives
+silence. Thus the credit/debt options on $P_1,P_2,P_3$ are respectively
+$(o_1,o_{23})$, $(o_{13},o_2)$ and $(o_{12},o_3)$.
+Write
+\[
+ x=t_{12}=g_1/|g_2|,\qquad y=t_{13}=g_1/|g_3|,\qquad
+ t=t_{23}=|g_2|/|g_3|
+\]
+where applicable. All relevant ratio intervals and rectangles have positive
+measure. At worlds $k=2,3$, normalize good advice to cost zero, and write
+$c_k,b_k$ for the silence and bad costs. Put $u=b_3-c_3$ and
+$\rho=c_3/c_2$ on $P_1$. All these densities are positive and integrable.
+For a density $v$, write $v(A)=\int_Av\,d\mu$.
+
+Here are the facts from IC and its stated predecessors that we use.
+\begin{enumerate}[label=(\roman*),leftmargin=*,itemsep=3pt]
+\item Every model $X$ has a selected coherent $C$ with $C\preceq_iX$ at
+all worlds (the ordinal KKM lemma). An undominated $V$ is competitive.
+\item There are finite positive nondecreasing functions $F,G$ such that
+\[
+ c_2=F(t)u,\qquad b_2-c_2=G(t)c_3\quad\text{on }P_2\cup P_3,
+ \qquad \sup F\le\inf G.
+\]
+If $\{F=\kappa\}$ and $\{G=\kappa\}$ both have positive Lebesgue measure,
+$V$ is dominated (IC's tied-level lemma).
+\item All the edge models $E_2(a)$ and $E_3(b)$ occur as selections.
+$E_2(a)$ gives debt on $(P_1\cup P_2)\cap\{x<a\}$ and silence on the
+remainder of $P_1\cup P_2$, and gives credit on $P_3$.
+$E_3(b)$ gives debt on $(P_1\cup P_3)\cap\{y<b\}$ and silence on the
+remainder of $P_1\cup P_3$, and gives credit on $P_2$.
+For finite positive parameters they are competitive on their respective
+two-world supports.
+\item A full-support selection cannot give both $o_{13}$ and $o_2$ on
+positive parts of $P_2$ (IC's no-both lemma). A selection on $(e_2,e_3)$
+cannot give both $o_2$ on $P_2$ and $o_3$ on $P_3$ (IC's weights lemma).
+\item A \emph{good base} is a full-support selection $C=\Dscr_K$ such that
+$e_2\in K$, $\min_Km_2>0$, and $K$ is contained in neither
+$\{m_1=0\}$ nor $\{m_3=0\}$. Its parameters are
+\[
+ \tau=\max_K\frac{m_3}{m_2}>0,\qquad
+ \tau_2=\min_{m\in K:m_1>0}\frac{m_2}{m_1}>0.
+\]
+It gives no credit on $P_1\cup P_2$ and no debt on $P_3$.
+Its debt on $P_2$ contains
+\[
+ \{t>\tau,\ x<\tau_2(1-\tau/t)\}.
+\]
+Its silence on $P_3$ lies in $\{t\le\tau\}$ and meets every band
+$\{\tau-\delta<t<\tau\}$ in a nonempty open set.
+Its silence on $P_1$ has positive measure and lies in $\{x\ge\tau_2\}$.
+\item Closedness on $(e_1,e_3)$ forbids a fixed positive credit set
+$S\subset P_3\cap\{y\ge b\}$ from being financed by the entire debt band
+\[
+ B_n=(P_1\cup P_3)\cap\{b-1/n\le y<b\}
+\]
+for every sufficiently large $n$: one cannot have
+$V\preceq_1V+o_{12}(S)+\mathrm{debt}(B_n)$ for all such $n$
+(IC's closing lemma).
+\end{enumerate}
+To use competitiveness in a chain, make a change which strictly decreases
+both $L_2,L_3$ at a full-support base, or decreases $L_k$ at a base competitive
+on $\{1,k\}$. The base must rank itself no worse than the changed model at
+world $1$. By (IB), this comparison transfers to every context with the same
+advice on the change set. Finite chains compose by transitivity.
+
+\section{Good bases near every threshold}
+
+For $\theta>0$, let $B_\theta$ have credal set
+\[
+ K_\theta=\operatorname{conv}\left\{e_2,
+       \left(0,\frac1{1+\theta},\frac\theta{1+\theta}\right)\right\}.
+\]
+It gives debt on $P_1$, debt on $P_2\cap\{t>\theta\}$, credit on
+$P_3\cap\{t>\theta\}$, and silence on the remaining mixed problems.
+The symbol $B_\theta$ specifies a model; we do not assume that it is selected.
+
+\begin{lemma}\label{lem:bayes}
+For every finite $\theta>0$, some finite $\kappa>0$ makes $B_\theta$
+a minimizer of $L_2+\kappa L_3$ over all models. Every coherent minimizer
+is a model $B_s$, with $s\in[0,\infty]$. Among these minimizers,
+the two inequalities $L_k(C)\le L_k(B_\theta)$, $k=2,3$, force
+$C=B_\theta$ modulo null sets.
+\end{lemma}
+\begin{proof}
+Take $\kappa=F(\theta+)$. Then $F(t)\le\kappa$ below $\theta$ and
+$F(t)\ge\kappa$ above it. Also $G>\kappa$ almost everywhere. Indeed this is
+immediate if $\kappa<\inf G$. Otherwise $\kappa=\sup F=\inf G$, and $F$
+equals $\kappa$ on $(\theta,\infty)$; the tied-level lemma forces
+$\{G=\kappa\}$ to be null.
+
+On $P_1$, $o_{23}$ uniquely minimizes the weighted loss. On $P_2$ and
+$P_3$, respectively, the changes from silence to $o_2$ and $o_{12}$ cost
+$(\kappa-F(t))u$. The other decisive option costs
+$(G(t)-\kappa)c_3>0$ relative to silence. Contradictory advice costs more
+than either decisive option. These observations prove optimality of
+$B_\theta$.
+
+A coherent minimizer must give $o_{23}$ almost everywhere on $P_1$, so its
+credal set lies on $[e_2,e_3]$: any member with $m_1>0$ would prevent this
+advice on an open subset of $P_1$. It must contain $e_2$, since otherwise
+it gives $o_3$ on a positive part of $P_3$, where that option is never
+optimal. Hence it is $B_s$. The two weak inequalities, together with
+weighted optimality and $\kappa>0$, imply equality in both losses.
+Finally $s\mapsto L_2(B_s)$ is strictly increasing, so $s=\theta$.
+\end{proof}
+
+\begin{theorem}[Dense thresholds]\label{thm:dense}
+For every finite $\theta>0$ there are good bases $C_j=\Dscr_{K_j}$ with
+$K_j\to K_\theta$ in Hausdorff distance. In particular, their thresholds
+$\tau_j$ tend to $\theta$.
+\end{theorem}
+\begin{proof}
+We first make a small improvement of $B_\theta$ which cannot be dominated
+by any nearby model on the edge $[e_2,e_3]$.
+
+Choose $a_j\uparrow\theta$ and $b_j\downarrow\theta$ with
+\[
+ u(P_2\cap\{\theta<t<b_j\})
+ =u(P_3\cap\{a_j<t<\theta\})=z_j>0.
+\]
+This is possible because both weighted ratio distributions are atomless
+and positive on every interval. Denote these sets by $A_j$ and $T_j$.
+Choose a non-null $Q_j\subset P_1$ so small that
+\begin{align}
+ c_2(Q_j)&<c_2(P_3\cap\{\theta<t<b_j\})+c_2(T_j),\label{eq:q2}\\
+ c_3(Q_j)&<u((P_2\cup P_3)\cap\{a_j<t<\theta\}),\label{eq:q3}
+\end{align}
+and $\mu(Q_j)\to0$. Let $X_j$ be $B_\theta$ with its debt silenced on
+$Q_j\cup A_j$, and with credit added on $T_j$. Then
+\begin{align*}
+ L_2(X_j)-L_2(B_\theta)&=c_2(Q_j)+c_2(A_j)-c_2(T_j),\\
+ L_3(X_j)-L_3(B_\theta)&=c_3(Q_j)-u(A_j)+u(T_j)=c_3(Q_j).
+\end{align*}
+Both differences tend to zero.
+
+No $B_s$ can dominate $X_j$. If $a_j\le s\le b_j$, $X_j$ is a pointwise
+world-1 improvement of $B_s$, strict on $Q_j$. If $s>b_j$, then
+\[
+ L_2(B_s)-L_2(B_\theta)
+ \ge c_2(A_j)+c_2(P_3\cap\{\theta<t<b_j\})
+ >L_2(X_j)-L_2(B_\theta)
+\]
+by \eqref{eq:q2}. If $s<a_j$, then
+\[
+ L_3(B_s)-L_3(B_\theta)
+ \ge u((P_2\cup P_3)\cap\{a_j<t<\theta\})
+ >L_3(X_j)-L_3(B_\theta)
+\]
+by \eqref{eq:q3}.
+
+By KKM choose selected $C_j=\Dscr_{K_j}\preceq_iX_j$ at all worlds.
+We claim $K_j\to K_\theta$. The nonempty compact convex subsets of
+$\Delta$ are compact in Hausdorff distance. Along any convergent
+subsequence, coherent advice converges almost everywhere, so both ordinary
+losses converge. Its limit $C_*$ therefore satisfies
+$L_k(C_*)\le L_k(B_\theta)$, $k=2,3$. Since $B_\theta$ is globally
+optimal for $L_2+\kappa L_3$, $C_*$ is also a minimizer of that weighted
+loss. Lemma~\ref{lem:bayes} forces
+$C_*=B_\theta$, and hence $K_*=K_\theta$.
+Here we use the standard facts that the zero set of a coherent lower
+prevision is null (translate along the all-ones direction), and that
+distinct compact convex credal sets give distinct advice on an open set
+(strict separation followed by such a translation).
+
+For large $j$, $\min_{K_j}m_2>0$, and $K_j$ is not contained in
+$\{m_3=0\}$. If $K_j\subset\{m_1=0\}$, the weights lemma forces
+$C_j=B_s$: an edge interval omitting both endpoints would recommend both
+$o_2$ on $P_2$ and $o_3$ on $P_3$, and a credal set containing $e_3$ is
+excluded by $\min m_2>0$. But all $B_s$ were excluded above.
+By the face lemma, the selection therefore has full support. It gives $o_2$ on a positive part of
+$P_2$, so the no-both lemma says it never gives $o_{13}$ there, modulo
+null sets. This forces $e_2\in K_j$: otherwise $(1,-\eta,1)$ is strictly
+desirable for sufficiently small $\eta>0$, and remains so on an open set.
+Consequently $C_j$ is a good base. The continuous function $m_3/m_2$ on
+a neighborhood of $K_\theta$ gives $\tau_j\to\theta$.
+\end{proof}
+
+\section{What dense thresholds already rule out}
+
+\begin{corollary}\label{cor:flat}
+Neither $F$ nor $G$ can be constant almost everywhere on a nonempty open
+interval.
+\end{corollary}
+\begin{proof}
+Suppose $F=\kappa$ on an interval. Theorem~\ref{thm:dense} supplies a good
+base whose threshold lies strictly inside it. Choose a non-null debt set
+$Y\subset P_2$ and a non-null silent set $Y'\subset P_3$, both close enough
+to that threshold that $c_2=\kappa u$ on both. These are precisely the two
+sets needed in IC's flat-threshold proof. That proof only uses constancy
+on its chosen debt and silence sets; it does not require constancy on the
+whole interval down to zero. Its four accepted changes and final guidance
+worsening therefore give the forbidden thin-band comparisons. Exchange
+worlds $2,3$ for $G$; the transformed function is $s\mapsto1/G(1/s)$.
+\end{proof}
+
+\begin{corollary}[Jumps everywhere]\label{cor:jumps}
+Under the standing hypotheses, the discontinuities of $F$ are dense in
+$(0,\infty)$, and so are those of $G$.
+\end{corollary}
+\begin{proof}
+If $1/\rho$ is essentially unbounded on $P_1\cap\{y<\ell\}$ for every
+$\ell>0$, IC's unbounded-ratio theorem already gives a contradiction.
+Otherwise, for some $\ell,r>0$, $\rho\ge r$ on $P_1\cap\{y<\ell\}$.
+At any good base with $F$ continuous at its threshold, IC's continuity
+proof applies: its initial debt set can be chosen with
+$y<\min(1,\ell)$, and the same uniform lower bound $r$ controls its cost.
+Thus every good-base threshold must be a discontinuity of $F$.
+Theorem~\ref{thm:dense} makes these thresholds dense. The mirror argument
+gives the conclusion for $G$.
+\end{proof}
+
+This rules out much more than isolated jumps accumulating at zero or
+infinity. It does not rule out a strictly increasing monotone function
+whose countably many jumps are dense.
+
+\section{Repeated debt reduction}
+
+A jump need not prevent a chain from closing. It is enough that each round
+reduce the remaining debt by a fixed proportion. The next lemma makes the
+required inequality explicit.
+
+\begin{lemma}[Local debt cycle]\label{lem:contract}
+Let $C$ be a good base. Suppose $Y$ is a non-null debt set of $C$ in
+$P_2\cap\{x\ge\ell\}$, and $Y_0'$ a non-null silent set in
+$P_3\cap\{t<\tau\}$, with $0<\ell<\tau_2$. Suppose matching their
+$u$-masses gives $c_2(Y')\ge\lambda c_2(Y_*)$, for some $0<\lambda\le1$.
+Suppose there are non-null sets $M_0,R\subset P_1$, with $M_0$ silent
+at $C$, and finite $\theta_0<b$, such that
+\[
+ M_0\subset\{y<\theta_0\},\qquad
+ R\subset\{x<\ell,\ \theta_0<y<b\},\qquad
+ \rho\le B\text{ on }M_0,\quad \rho\ge A>0\text{ on }R.
+\]
+If $(B/A)(1-\lambda)<1$, then $V$ is dominated.
+\end{lemma}
+\begin{proof}
+Fix a sufficiently small non-null $S\subset P_3\cap\{t>\tau,y\ge b\}$.
+Choose $\varepsilon>0$ so small that
+\[
+ q=\frac BA(1+\varepsilon)
+       \big[(1-\lambda)(1+\varepsilon)+\varepsilon\big]<1.
+\]
+Start with a small debt set $Q_0\subset R$ and shrink $S$ further so that
+$u(S)<c_3(Q_0)$. Competitiveness of $V$ gives
+$V\preceq_1V+o_{12}(S)+o_{23}(Q_0)$: both other losses decrease.
+
+Suppose the current debt is $Q_k\subset R$, of $c_2$-mass $x_k$.
+The following round preserves $S$ and returns all auxiliary sets to silence.
+\begin{enumerate}[label=\arabic*.,leftmargin=*,itemsep=3pt]
+\item At base $E_2(\ell)$, move the debt from $Q_k$ to $Y_k\subset Y$ with
+$c_2(Y_k)=(1+\varepsilon)x_k$. The change in $L_2$ is $-\varepsilon x_k$.
+\item At the good base, silence $Y_k$, add credit on $Y_k'\subset Y_0'$
+with $u(Y_k')=u(Y_k)$, and add debt on $M_k\subset M_0$ with
+\[
+ c_2(M_k)=m_k=(c_2(Y_k)-c_2(Y_k'))^++\varepsilon x_k.
+\]
+The changes satisfy $\Delta L_2\le-\varepsilon x_k$ and
+$\Delta L_3=-c_3(M_k)<0$. Moreover
+$m_k\le[(1-\lambda)(1+\varepsilon)+\varepsilon]x_k$.
+\item Erase the added credit on $Y_k'$; this is a guidance worsening at
+world $1$ and so preserves the accepted chain.
+\item At base $E_3(\theta_0)$, move the debt from $M_k$ to
+$Q_{k+1}\subset R$ with $c_3(Q_{k+1})=(1+\varepsilon)c_3(M_k)$.
+This decreases $L_3$ strictly, and
+\[
+ x_{k+1}=c_2(Q_{k+1})
+ \le\frac1A c_3(Q_{k+1})
+ \le\frac BA(1+\varepsilon)m_k\le qx_k.
+\]
+\end{enumerate}
+All sets exist by atomlessness if $Q_0$ is small enough. The same positive
+reservoirs can be reused because they are silent again after each round.
+The regions of the simultaneous changes are disjoint; in particular,
+$S$ lies above $\tau$ in $P_3$ and $Y_k'$ lies below it.
+
+For any sufficiently large $n$, take enough rounds that
+$x_k<c_2(Z_n)/2$, where
+$Z_n=P_1\cap\{b-1/n\le y<b,\ x\ge\ell\}$.
+One $E_2(\ell)$ change moves the remaining debt into $D_n\subset Z_n$
+with $c_2(D_n)>x_k$. Add debt on the rest of $B_n$ by (G).
+This gives the thin-band comparison forbidden by the closing lemma,
+for every sufficiently large $n$.
+\end{proof}
+
+\begin{lemma}[Flexible temporary credit]\label{lem:flexible}
+Suppose $\rho\ge A>0$ on $P_1\cap\{x<h\}$. If a good base has threshold
+$\tau$ satisfying
+\[
+ \frac1{F(\tau-)}-\frac1{F(\tau+)}<A,
+ \tag{*}\label{eq:contraction}
+\]
+then $V$ is dominated.
+\end{lemma}
+\begin{proof}
+Choose $0<\beta\le\alpha<\infty$ and non-null sets $Y$ in the base's
+$P_2$ debt and $Y_0'$ in its $P_3$ silence, close to $\tau$ on opposite
+sides, so that
+\[
+ F\le\alpha\text{ on }Y,\qquad F\ge\beta\text{ on }Y_0',\qquad
+ 1/\beta-1/\alpha<A.
+\]
+This is possible by the strict inequality in the hypothesis. Shrink $Y$
+so that $x\ge\ell$ on it, with $0<\ell<\min(h,\tau_2)$.
+Choose any bounded non-null silent reservoir $M_0\subset P_1$ of the base,
+and then choose $\theta_0$ so large that $y<\theta_0$ on $M_0$.
+There is no prescribed upper bound on $\theta_0$. Put
+\[
+ R=P_1\cap\{x<\ell,\ \theta_0<y<\theta_0+1\},\qquad b=\theta_0+2.
+\]
+Thus $\rho\ge A$ on $R$. No bound on $\rho$ is imposed on $M_0$.
+
+Choose $\varepsilon>0$ so small that $\varepsilon<1/\alpha$ and, with
+\[
+ \gamma=1-\beta/\alpha+2\beta\varepsilon>0,\qquad
+ q=\frac{(1+\varepsilon)^2\gamma}{A\beta},
+\]
+we have $q<1$. Start as in the local debt cycle with a sufficiently small
+$Q_0\subset R$ and a fixed non-null
+$S\subset P_3\cap\{t>\tau,y\ge b\}$, taking $u(S)<c_3(Q_0)$.
+
+Suppose the current debt is $Q_k\subset R$, with $c_2$-mass $x_k$.
+An $E_2(\ell)$ step moves it to $Y_k\subset Y$ with
+$z_k=c_2(Y_k)=(1+\varepsilon)x_k$. Choose $M_k\subset M_0$ using the
+atomless measure with density $c_2+\beta c_3$, so that
+\[
+ m_k+\beta r_k=\gamma z_k,\qquad
+ m_k=c_2(M_k),\quad r_k=c_3(M_k)>0.
+\]
+This time choose the temporary credit $Y_k'\subset Y_0'$ with
+\[
+ u(Y_k')=u(Y_k)+r_k-\varepsilon z_k.
+\]
+Its prescribed mass is positive because $u(Y_k)\ge z_k/\alpha$.
+At the good base, silence $Y_k$, add credit on $Y_k'$, and add debt on
+$M_k$. Then
+\begin{align*}
+ \Delta L_3&=-u(Y_k)+u(Y_k')-r_k=-\varepsilon z_k<0,\\
+ \Delta L_2&=z_k-c_2(Y_k')-m_k\\
+ &\le z_k-\beta\bigl(u(Y_k)+r_k-\varepsilon z_k\bigr)-m_k\\
+ &\le (1-\beta/\alpha)z_k-(m_k+\beta r_k)+\beta\varepsilon z_k
+   =-\beta\varepsilon z_k<0.
+\end{align*}
+Erase the temporary credit by (G). An $E_3(\theta_0)$ step moves the debt
+from $M_k$ to $Q_{k+1}\subset R$ with
+$c_3(Q_{k+1})=(1+\varepsilon)r_k$. Consequently
+\[
+ c_2(Q_{k+1})\le\frac{(1+\varepsilon)r_k}{A}
+ \le\frac{(1+\varepsilon)\gamma z_k}{A\beta}=q x_k.
+\]
+All prescribed masses are bounded by constants times $x_k$: on $Y$,
+$F$ has a positive lower bound, and $r_k\le\gamma z_k/\beta$.
+Thus all reservoirs suffice for a small enough initial $Q_0$, and are
+silent again after each round. The same finite-band closing argument as
+in Lemma~\ref{lem:contract} gives the contradiction.
+\end{proof}
+
+\begin{theorem}[A bound on one strip suffices]\label{thm:bounded}
+Suppose worlds $2,3$ have ordinary additive rankings as above, and world $1$
+is any preorder satisfying (G) and (IB). If (S) holds and, for some
+$h>0$, either
+\[
+ \frac{c_3}{c_2}\ge A>0\quad\text{on }P_1\cap\{t_{12}<h\},
+ \qquad\text{or}\qquad
+ \frac{c_3}{c_2}\le B<\infty\quad\text{on }P_1\cap\{t_{13}<h\},
+\]
+then $V$ is dominated. This remains true when the jumps of $F$ and $G$
+are dense.
+\end{theorem}
+\begin{proof}
+Assume $V$ undominated. Choose any continuity point $\theta>0$ of $F$;
+one exists because a monotone function has at most countably many
+discontinuities. By Theorem~\ref{thm:dense} there are good bases with
+$\tau_j\to\theta$. Monotonicity and continuity at $\theta$ give
+\[
+ F(\tau_j-)\longrightarrow F(\theta)>0,
+ \qquad F(\tau_j+)\longrightarrow F(\theta).
+\]
+Thus \eqref{eq:contraction} holds for large $j$, contradicting
+Lemma~\ref{lem:flexible}. The other strip follows by exchanging
+worlds $2,3$, which replaces $\rho$ by its reciprocal.
+\end{proof}
+
+\begin{corollary}\label{cor:onesided}
+A global finite upper bound on $\rho$, or a global positive lower bound
+on $\rho$, suffices for domination of $V$.
+\end{corollary}
+\begin{proof}
+Either global bound implies the corresponding strip bound in
+Theorem~\ref{thm:bounded}.
+\end{proof}
+
+\section{Separable ratios}
+
+The local cycle of Lemma~\ref{lem:contract} only needs an upper bound
+for $\rho$ on its auxiliary silent set $M_0$, and a lower bound on its
+returning debt reservoir $R$. Choosing these reservoirs explicitly handles
+some unbounded ratios.
+
+\begin{lemma}\label{lem:factor}
+Suppose $\rho=f(x)/h(y)$ on $P_1$, where $f,h$ are finite positive
+nondecreasing functions. At any good base put $a=\tau_2$ and
+$\lambda=F(\tau/2)/\sup F>0$. If
+\[
+ \frac{f(a+)}{f(a-)}(1-\lambda)<1,
+ \tag{**}\label{eq:factor}
+\]
+then $V$ is dominated. In particular this holds if $f$ is continuous at $a$.
+\end{lemma}
+\begin{proof}
+Choose $x_-<\ell<a<x_+$ sufficiently close to $a$ that
+$(f(x_+)/f(x_-))(1-\lambda)<1$. The base gives debt on a non-null part
+of $P_2\cap\{x\ge\ell\}$: take $t$ sufficiently large in the shape
+inequality. Choose $Y$ there, and choose a non-null silent
+$Y_0'\subset P_3\cap\{\tau/2<t<\tau\}$. Matching their $u$-masses gives
+$c_2(Y')\ge\lambda c_2(Y_*)$ as in the debt cycle.
+
+There is a credal member attaining $m_2/m_1=a$, with $m_1>0$.
+For $x$ close to $x_+>a$ and all sufficiently large $y$, its scalar
+product with $(g_1,-|g_2|,-|g_3|)$ is positive. Since $e_2$ gives a
+negative scalar product, this is an open silent region of the base.
+Choose a sufficiently large continuity point $\theta_0$ of $h$.
+Take a small silent reservoir $M_0$ with $x<x_+$ and
+$\theta_0-\delta<y<\theta_0$, and a returning reservoir $R$ with
+$x_-<x<\ell$ and $\theta_0<y<\theta_0+\delta$. Then
+\[
+ \rho\le B=\frac{f(x_+)}{h(\theta_0-\delta)}\quad\hbox{on }M_0,
+ \qquad
+ \rho\ge A=\frac{f(x_-)}{h(\theta_0+\delta)}\quad\hbox{on }R.
+\]
+Continuity of $h$ allows $\delta$ so small that $(B/A)(1-\lambda)<1$.
+Choose $\varepsilon>0$ as in Lemma~\ref{lem:contract}. Its same four
+changes now contract the debt by a fixed factor less than one, and its
+closing argument gives the contradiction. No continuity of $F$ at $\tau$
+has been used.
+\end{proof}
+
+\begin{theorem}\label{thm:factor}
+For a separable ratio as in Lemma~\ref{lem:factor}, $V$ is dominated if
+there are $J<\infty$ and $a_0<\infty$ such that
+\[
+ \frac{f(a+)}{f(a-)}\le J\quad\text{for all }a>a_0,
+ \qquad\text{or}\qquad
+ \frac{h(a+)}{h(a-)}\le J\quad\text{for all }a>a_0.
+\]
+In particular, continuity of either factor suffices, however fast it grows.
+\end{theorem}
+\begin{proof}
+Suppose the bound holds for $f$. Write $d=\sup F$ and choose $\theta$ so
+large that $J(1-F(\theta/4)/d)<1$; this is possible because $F(t)\to d$.
+Take the good bases of Theorem~\ref{thm:dense} at this $\theta$.
+Their thresholds $\tau_j\to\theta$, while $a_j=\tau_{2,j}\to\infty$:
+their credal sets approach $K_\theta\subset\{m_1=0\}$, with $m_2$
+uniformly bounded away from zero. For large $j$, $a_j>a_0$ and
+$F(\tau_j/2)/d\ge F(\theta/4)/d$, so \eqref{eq:factor} holds.
+Lemma~\ref{lem:factor} gives the contradiction. Exchange worlds $2,3$
+for the assertion about $h$.
+\end{proof}
+
+This includes $\rho=(1+x)/(1+y)$, which escapes all the strip bounds above.
+The theorem assumes separability explicitly. The necessity of separability
+has now been written out in \emph{Edge Cycles and Separability}; its proof
+does not assume completeness.
+
+\section{The remaining gap}
+
+The general conjecture remains open. CCF settles the case of two finitely
+additive one-sided extensions when the remaining world is complete. The
+unrestricted case of two ordinary additive worlds remains open only when
+the remaining preorder is allowed to be incomplete. The new conclusions are necessary conditions,
+not a construction of a counterexample.
+
+In the latter case a counterexample now needs dense jumps of both $F$ and
+$G$. Moreover, $\rho$ must be unbounded above on every strip $y<h$,
+and $1/\rho$ must be unbounded above on every strip $x<h$. These are
+additional to IC's bounds in the opposite directions. Indeed IC forces a
+positive lower bound on $\rho$ in some strip $y<h$; a finite upper bound
+on any such strip would invoke Theorem~\ref{thm:bounded}. The mirror
+argument applies to $x<h$. These requirements are consistent at the level
+of ratio functions. For example,
+\[
+ \rho(x,y)=\frac{1+x}{1+y}
+\]
+is bounded above on every strip $x<\ell$, and its reciprocal is bounded
+above on every strip $y<\ell$, but $\rho$ is unbounded on every strip $y<h$ and $1/\rho$ is unbounded
+on every strip $x<h$. This particular ratio is nevertheless excluded by
+Theorem~\ref{thm:factor}. A separable counterexample must instead have
+multiplicative jump ratios of both factors that are unbounded at
+arbitrarily large arguments. More precisely, at every good-base parameter $a=\tau_2$ it must
+fail \eqref{eq:factor}. These are necessary conditions only, not an
+existence argument for a ranking.
+
+In Theorem~\ref{thm:dense}, $K_j\to K_\theta$ also forces
+$\tau_{2,j}\to\infty$. Consequently the auxiliary silent debt sets used
+in the contraction proof can move to regions where $\rho$ is arbitrarily
+large, while the returning debt sets can have arbitrarily small $\rho$.
+Without a strip bound or a bound on the factors' multiplicative jumps, the
+exchange cost may grow faster than the jump of $F$ shrinks. The proofs
+above do not control that competition of rates.
+Nor do these arguments establish path-closedness, or an additive extension, for three
+arbitrary ordinal rankings.
+\end{document}
