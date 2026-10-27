@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\F}{\mathcal F}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\supp}{\operatorname{supp}}
+\usepackage{xcolor}
+\newcommand{\new}[1]{\textcolor{red}{#1}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and Dominance under General Rankings}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}\label{def:rankings}
+Let $\Omega$ be a nonempty set of \emph{worlds} and $\M$ a nonempty set of \emph{models}. A \emph{ranking} $L$ consists of a nonempty set $\M_L\subseteq\M$, whose members are the models \emph{evaluable} by $L$, and, for each world $\omega$, a binary relation $\preceq_\omega$ on $\M_L$. We read $m\preceq_\omega m'$ as: $m$ performs at least as well as $m'$ at $\omega$. Models $m$ and $m'$ are \emph{tied at $\omega$} if $m\preceq_\omega m'$ and $m'\preceq_\omega m$. No property of the relations is assumed. $L$ is \emph{transitive} if every $\preceq_\omega$ is transitive. For a fixed ranking $L$, ``model'' means a member of $\M_L$.
+\end{definition}
+
+\begin{definition}\label{def:dominance}
+Fix a ranking.
+\begin{itemize}[leftmargin=*]
+\item $c$ \emph{weakly dominates} $m$ if $c\preceq_\omega m$ at every world.
+\item $m$ and $c$ are \emph{tied at every world} if each weakly dominates the other.
+\item $c$ \emph{dominates} $m$ if $c$ weakly dominates $m$ and they are not tied at every world.
+\end{itemize}
+A model is \emph{undominated} if no model dominates it. $\U_L$ is the set of undominated models.
+\end{definition}
+
+\begin{definition}\label{def:priors}
+For a finite nonempty $F\subseteq\Omega$, let $\Delta_F$ be the set of probability mass functions \new{(pmfs)} on $F$, $p=(p_\omega)_{\omega\in F}$, with the Euclidean topology. The support of a pmf $p$ is $\supp p\coloneqq\{\omega:p_\omega>0\}$. Let $\delta_\omega$ be the point mass at $\omega$. When $\Omega$ is finite, $\Delta\coloneqq\Delta_\Omega$.
+\end{definition}
+
+\begin{definition}\label{def:coherence-property}
+A class $\C\subseteq\M$ of \emph{coherent} models is fixed in advance, independently of the rankings. For a ranking $L$, the \emph{undominated coherent models} of $L$ are
+\[
+\C_L\coloneqq\{c\in\C\cap\M_L:\ \text{no } m\in\M_L \text{ dominates } c\}=\C\cap\U_L.
+\]
+%$L$ has the \emph{dominance property} if every model in $\M_L$ is weakly dominated by a member of $\C_L$.
+\end{definition}
+
+\subsection{Axioms}
+
+\begin{definition}\label{def:tie-closure}
+A ranking $L$ is \emph{closed under ties} if every model tied at every world with a member of $\C_L$ is itself a member of $\C_L$.
+\end{definition}
+
+\begin{definition}\label{def:family-assumptions}
+Let $\Lf$ be a family of rankings.
+\begin{itemize}[leftmargin=*]
+\item \emph{Evaluability}: every model in $\M$ is evaluable by some ranking in $\Lf$.
+\item \emph{Coherent admissibility}: every coherent model belongs to $\C_L$ for some $L\in\Lf$.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:ties}
+Let $c\in\C_L$ weakly dominate a model $m$.
+\begin{enumerate}[label=(\alph*)]
+\item If $m$ is undominated, then $m$ and $c$ are tied at every world.
+\item If $L$ is closed under ties and $m\notin\C_L$, then $c$ dominates $m$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) If $m$ did not weakly dominate $c$, then $c$ would dominate $m$. (b) By closure under ties, $m$ is not tied at every world with $c$. Since $c$ weakly dominates $m$, $m$ does not weakly dominate $c$, so $c$ dominates $m$.
+\end{proof}
+
+\section{The dominance theorems}\label{sec:general}
+
+\begin{lemma}\label{lem:kkm}
+Let $F$ be finite and nonempty, and let $(A_\omega)_{\omega\in F}$ be closed subsets of $\Delta_F$ such that every $p\in\Delta_F$ lies in $A_\omega$ for some $\omega\in\supp p$. Then $\bigcap_{\omega\in F}A_\omega\ne\varnothing$.
+\end{lemma}
+\begin{proof}
+Each $A_\omega$ is nonempty, since by hypothesis we always have 
+\[
+\delta_\omega\in\bigcup_{\omega^\prime\in\supp \delta_\omega}A_{\omega^\prime}=A_\omega.
+\]
+Let $d_\omega(p):=\min_{q\in A_\omega}\lVert p-q \rVert$ and $s(p):=\sum_{\omega\in F} d_\omega(p)$. The map $G(p)_\omega:=(\textcolor{red}{p_\omega}+d_\omega(p))/(1+s(p))$ is continuous. Moreover, $G$ maps each $p\in\Delta_F$ to some point in $\Delta_F$ (since each coordinate $G(p)_\omega$ of $G(p)$ is nonnegative and these coordinates sum to 1). Brouwer's fixed-point theorem then guarantees that there is some $p\in\Delta_F$ with $G(p)=p$. This holds just in case $\textcolor{red}{p_\omega}\cdot s(p)=d_\omega(p)$ for all $\omega\in F$. By assumption, there is some $\omega\in\supp p$ with $p\in A_\omega$. Choose some such $\omega$. Then \new{$d_\omega(p)=0$, so} $\textcolor{red}{p_\omega}\cdot s(p)=0$\new{. Since $p_\omega>0$,} $s(p)=0$ and hence $p\in\bigcap_{\omega\in F}A_\omega$.
+\end{proof}
+
+This is the lemma of Knaster, Kuratowski and Mazurkiewicz~\cite{KKM}.
+
+
+
+
+\subsection{Finitely many worlds}
+\begin{theorem}\label{thm:finite}
+Let $\Omega$ be finite and let $L$ be any ranking. Suppose that for each pmf $p\in\Delta$, there is \new{an assigned model} $c_p\in\C_L$. And for each model $m$ and world $\omega$, there is a closed set $A_\omega(m)\subseteq\Delta$, such that:
+\begin{enumerate}[label=(\roman*)]
+\item $c_p\preceq_\omega m$ for every $p\in A_\omega(m)$;
+\item for every model $m$ and every pmf $p\in\Delta$, there is some $\omega\in\supp p$ such that $p\in A_\omega(m)$.
+\end{enumerate}
+Then:
+\begin{enumerate}[label=(\alph*)]
+\item for each model $m$, some pmf lies in every $A_\omega(m)$, and the model assigned to any such \new{pmf} weakly dominates $m$;
+\item every undominated model is tied at every world with a member of $\C_L$;
+\item if $L$ is closed under ties, then $\U_L=\C_L$, and every other model is dominated by a member of $\C_L$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Start with (a). Choose $m$. By (ii), the closed sets $A_\omega(m)$ satisfy the hypothesis of Lemma~\ref{lem:kkm}, so some $p^*$ lies in all of them. By (i), $c_{p^*}\preceq_\omega m$ at every world. 
+
+Now proceed to (b) and (c). \new{Let $m$ be any model.} There is some $c\in\C_L$ that weakly dominates $m$, by (a). If $m$ is undominated, Lemma~\ref{lem:ties}(a) ties it to $c$, which gives (b). If \new{$m$ is undominated and} $L$ is closed under ties, then it follows that $m\in\C_L$\new{. As $m$ was an arbitrary undominated model,} $\U_L\subseteq\C_L\subseteq\U_L$. If $m\notin\C_L$, then $c$ dominates $m$ by Lemma~\ref{lem:ties}(b).
+\end{proof}
+
+\begin{corollary}\label{cor:closed-choice}
+Let $\Omega$ be finite. Suppose that \new{for} each $p\in\Delta$ there is an assigned model $c_p\in\C_L$ \new{such that every model $m$ has some $\omega\in\supp p$ with $c_p\preceq_\omega m$}. Suppose further that for any model $m$ \new{and world $\omega$}, the set $\{p:c_p\preceq_\omega m\}$ is closed. Then the conclusions of Theorem~\ref{thm:finite} hold.
+\end{corollary}
+\begin{proof}
+Take $A_\omega(m)\coloneqq\{p:c_p\preceq_\omega m\}$. Then condition (i) of Theorem~\ref{thm:finite} holds by definition of $A_\omega(m)$, and condition (ii) holds by \new{the first assumption}.
+\end{proof}
+
+\subsection{Arbitrary sets of worlds}
+%A space is \emph{compact} if every open cover has a finite subcover; no separation property is assumed.
+
+\begin{theorem}\label{thm:local}
+Let $\Omega$ be any nonempty set and $L$ any ranking. Suppose:
+\begin{enumerate}[label=\arabic*.,leftmargin=*]
+\item There is a compact space of parameters $\Theta$. For each $\theta\in\Theta$, there is a selected model $c_\theta\in\C_L$. For each world $\omega$ and model $m$ there is a closed set $K_\omega(m)\subseteq\Theta$ such that $c_\theta\preceq_\omega m$ for every $\theta\in K_\omega(m)$.
+\item For every finite set of worlds $G\subseteq\Omega$, there \new{are} a nonempty finite set $F\supseteq G$\new{,} a map $\theta_F:\Delta_F\to\Theta$\new{, and, for each $\omega\in F$ and model $m$, a closed set $A^F_\omega(m)\subseteq\Delta_F$, such that}
+\begin{enumerate}[label=(\alph*)]
+\item \new{for every $\omega\in F$ and model $m$,} $\theta_F(p)\in K_\omega(m)$ for all $p\in A^F_\omega(m)$;
+\item for every model $m$ and every pmf $p\in\Delta_F$, there is some $\omega\in\supp p$ such that $p\in A^F_\omega(m)$.
+\end{enumerate}
+\end{enumerate}
+Then every model is weakly dominated by some $c_\theta$ and conclusions (b) and (c) of Theorem~\ref{thm:finite} hold.
+\end{theorem}
+\begin{proof}
+Choose a model $m$. Let $F$ be any set provided by assumption~2. The closed sets $A^F_\omega(m)$, $\omega\in F$, satisfy the hypothesis of Lemma~\ref{lem:kkm}, by assumption~2(b). So some $p_F$ lies in their intersection. By assumption~2(a), $\theta_F(p_F)\in\bigcap_{\omega\in F}K_\omega(m)$. For any finite number of worlds $\omega_1,\dots,\omega_k$, apply assumption~2 to $G\coloneqq\{\omega_1,\dots,\omega_k\}$ to obtain $F\supseteq G$. Then $\bigcap_iK_{\omega_i}(m)\supseteq\bigcap_{\omega\in F}K_\omega(m)\ni\theta_F(p_F)$. So every finite subfamily of the closed sets $K_\omega(m)$, $\omega\in\Omega$, has a nonempty intersection. It follows that $\bigcap_{\omega\in\Omega}K_\omega(m)\ne\varnothing$. Otherwise the open sets $\Theta\setminus K_\omega(m)$, $\omega\in\Omega$, would cover $\Theta$. By compactness, finitely many of them, $\Theta\setminus K_{\omega_1}(m),\dots,\Theta\setminus K_{\omega_k}(m)$, would cover $\Theta$. But then $K_{\omega_1}(m)\cap\dots\cap K_{\omega_k}(m)=\varnothing$, a contradiction. 
+
+Choose $\theta^*\in\bigcap_{\omega\in\Omega}K_\omega(m)$. By assumption~1, $c_{\theta^*}\preceq_\omega m$ for every world $\omega$. That is, $c_{\theta^*}$ weakly dominates $m$. Conclusions (b) and (c) follow from Lemma~\ref{lem:ties} as in the proof of Theorem~\ref{thm:finite}.
+\end{proof}
+
+\section{The dominance argument}\label{sec:conclusion}
+
+\begin{proposition}\label{prop:conclusion}
+Let $L$ be a ranking under which every model is weakly dominated by a member of $\C_L$. Then every undominated model is tied at every world with a member of $\C_L$. If $L$ is also closed under ties, then $\U_L=\C_L$, and every other model is dominated by a member of $\C_L$.
+\end{proposition}
+\begin{proof}
+Apply Lemma~\ref{lem:ties} to each model and a member of $\C_L$ weakly dominating it. By part (a) of Lemma~\ref{lem:ties}, every undominated model $m$ is tied with a member of $\C_L$. If $L$ is also closed under ties, then $m\in\C_L$. Hence $\U_L=\C_L$. Part (b) of Lemma~\ref{lem:ties} gives the last claim.
+\end{proof}
+
+\begin{proposition}\label{prop:profiles}
+Let $L$ be a transitive ranking under which every model is weakly dominated by a member of $\C_L$. Then $\U_L$ consists of the models tied at every world with some member of $\C_L$, and every other model is dominated by a member of $\C_L$.
+\end{proposition}
+\begin{proof}
+By Proposition~\ref{prop:conclusion}, every undominated model is tied with some $c\in\C_L$. Conversely, let $m$ be tied with $c\in\C_L$, and suppose $m'$ dominates $m$. Then $m'\preceq_\omega m\preceq_\omega c$ at every world, so $m'$ weakly dominates $c$ by transitivity. If $c$ weakly dominated $m'$, then $m\preceq_\omega c\preceq_\omega m'$ would make $m$ weakly dominate $m'$, which is false. So $m'$ dominates $c$, which is impossible. Hence $m$ is undominated. Finally, if $m$ is dominated, let $c\in\C_L$ weakly dominate it. Since $m$ is not tied with $c$, $c$ dominates $m$.
+\end{proof}
+
+\begin{definition}\label{def:permissibility}
+Let $\Lf$ be a family of rankings. A model is \emph{irrational} if every ranking in $\Lf$ that evaluates it has an undominated model that dominates it. A model is \emph{rationally permissible} if it is undominated under some ranking in $\Lf$.
+\end{definition}
+
+\begin{proposition}\label{prop:permissible}
+Suppose that under each ranking $L\in\Lf$, every model in $\M_L$ is weakly dominated by a member of $\C_L$. Then for each $L\in\Lf$:
+\begin{enumerate}[label=(\alph*)]
+\item every undominated model is tied at every world with a member of $\C_L$;
+\item if $L$ is closed under ties, then $\U_L=\C_L$, and every other model in $\M_L$ is dominated by a member of $\C_L$;
+\item if $L$ is transitive, then $\U_L$ consists of the models tied at every world with a member of $\C_L$, and every other model in $\M_L$ is dominated by a member of $\C_L$.
+\end{enumerate}
+If every ranking in $\Lf$ is closed under ties or transitive, then a model is undominated under no ranking iff, under every ranking that evaluates it, some undominated model dominates it. Coherent admissibility alone, without this assumption, makes every coherent model rationally permissible. If, in addition, every ranking in $\Lf$ is closed under ties, the rationally permissible models are exactly the coherent ones.
+\end{proposition}
+\begin{proof}
+Parts (a) and (b) are Proposition~\ref{prop:conclusion}, and (c) is Proposition~\ref{prop:profiles}. If $m\notin\bigcup_L\U_L$, then for each $L$ that evaluates $m$, by (b) or (c), some member of $\C_L\subseteq\U_L$ dominates $m$. The converse is immediate from the definitions. Coherent admissibility says $\C\subseteq\bigcup_L\C_L\subseteq\bigcup_L\U_L$. If every ranking is closed under ties, (b) gives $\bigcup_L\U_L=\bigcup_L\C_L$, which is $\C$ by coherent admissibility, since every $\C_L\subseteq\C$.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{KKM} B.~Knaster, C.~Kuratowski and S.~Mazurkiewicz. Ein Beweis des Fixpunktsatzes f\"ur $n$-dimensionale Simplexe. \emph{Fund. Math.} 14 (1929) 132--137.
+\end{thebibliography}
+\end{document}

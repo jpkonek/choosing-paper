@@ -1,0 +1,3221 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\lexle}{\le_{\mathrm{lex}}}
+\newcommand{\lexlt}{<_{\mathrm{lex}}}
+\newcommand{\VB}{\mathrm{VB}}
+\newcommand{\VBB}{\mathcal{V}_{\mathrm B}}
+\newcommand{\ub}{\bar u}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\rbd}{rbd}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ext}{ext}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\inter}{int}
+\DeclareMathOperator{\spn}{span}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{Covering coherent sets of desirable gambles}
+\author{Jason Konek \and Catrin Campbell-Moore}
+\date{Draft, 25 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Fix finitely many worlds. A model is a set of gambles: the gambles it accepts. A ranking
+assigns to each world a reflexive relation on models; the relations need not be transitive
+or complete, and are required only to satisfy a weak acyclicity condition. A coherent
+model is \emph{covered} by a ranking if the ranking is strictly guided by the truth and
+compares models only where they differ, every undominated model is coherent, every
+incoherent model is dominated by a coherent undominated one, ties with coherent
+undominated models preserve that status, the target is undominated, and the domain leaves
+the target free to vary near its boundary. We prove four covering theorems. First,
+veto--Brier rankings, on open convex one-sided cones containing the positive orthant,
+cover exactly the credal sets in the open simplex all of whose extreme points but at most
+one are uniformly visible from the vertices of the simplex; this class contains many
+standard imprecise-probability models. Second, single-level orthant-diagonal rankings
+cover every orthant-planar credal set, on the full domain and on one-sided domains; these
+include normalised boxes and density-ratio classes, and in three worlds they are exactly
+the polygons each of whose edge lines passes through a vertex of the simplex. Third,
+veto--box rankings, which follow the vetoes by a box chart instead of the Brier score,
+allow one whole normalised box, possibly degenerate, to be exempt from visibility; in
+three worlds this covers triangles that lie in neither of the first two classes. Fourth,
+a composition of veto--Brier rankings with orthant-diagonal maps covers new targets in four
+or more worlds and new targets with an exempt point on the boundary of the simplex; in
+three worlds it yields no new target of composed form inside the open simplex. We also
+show that strict guidance and global coherence alone force every domain for an interior
+target, in three or more worlds, to be essentially one-sided or to contain every gamble
+that is not a sure loss. Finally, we collect exclusions, each scoped to a class of
+rankings: we prove those for veto--Brier rankings, for vetoes followed by a Brier-type
+error, and for composed rankings, and we record others without proof. We list open
+problems. Whether every coherent model is covered by some ranking remains open.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}\label{sec:intro}
+
+A \emph{model}, in this paper, is a set of gambles on finitely many worlds: the gambles it
+accepts. A \emph{ranking} assigns to each world a relation on models, read as an ordering
+by how well a model's acceptances fare if that world is actual. A dominance argument for
+coherence needs a ranking under which every undominated model is coherent, every incoherent
+model is dominated by a coherent undominated model, and a given coherent model, the
+\emph{target}, is undominated. The ranking should also meet basic constraints. It should
+reward correct acceptances and penalise wrong ones (strict guidance); it should compare
+models only through the gambles on which they differ (independence); and the class of
+models it evaluates should leave the target free to vary near its boundary (local
+freedom). When all of this holds we say that the ranking \emph{covers} the target
+(Definition~\ref{def:cover}).
+
+We do not assume that the relations are transitive or complete. We assume only that they
+are reflexive, that almost everywhere equal models are tied, and that they satisfy the
+condition (TC) of Section~\ref{sec:framework}: if $A$ is at least as good as $B$ and $B$ at
+least as good as $C$, then $C$ is not strictly better than $A$. All the rankings we
+construct are generated by integrated scores, and are complete and transitive. They also
+achieve a stronger dominance property than coverage requires: every model is weakly
+dominated by a coherent undominated model.
+
+The paper has four positive theorems.
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{Veto--Brier coverage} (Section~\ref{sec:vb}). At world $i$ a veto--Brier
+  ranking first charges wrong acceptances that fall below zero under a prescribed set of
+  probabilities, and then minimises a Brier-type error. It covers the coherent model $D_K$
+  whenever all extreme points of $K$ except at most one are uniformly visible from the
+  vertices of the simplex (Theorems~\ref{thm:cover}, \ref{thm:exempt} and~\ref{thm:vis}).
+  The undominated family is identified exactly (Theorem~\ref{thm:family}). For targets in
+  the open simplex this visibility condition is also necessary for this construction
+  (Theorem~\ref{thm:reach}).
+  \item \emph{Orthant-planar coverage} (Section~\ref{sec:op}). If, on every orthant
+  whose gambles have coordinates of both signs, the coherent cone $D_K$ is cut out by a single
+  hyperplane, then the single-level ranking with integrand $c(h)=d_\sigma\odot h$ on each
+  orthant $\sigma$ covers $K$, both on the full domain and on one-sided domains
+  (Theorem~\ref{thm:opcover}). This class contains every normalised box, and so every
+  density-ratio class (Proposition~\ref{prop:box}); on the full domain it contains every
+  precise model. In three worlds it is exactly the class of polygons each of whose edge
+  lines passes through a vertex of the simplex (Theorem~\ref{thm:cevian}), and it contains
+  triangles none of whose vertices is visible (Example~\ref{ex:cyclic}).
+  \item \emph{Veto--box coverage} (Section~\ref{sec:vbox}). Replacing the Brier score by a
+  box chart $c_j(h)=\min(l_jh_j,u_jh_j)$ after the vetoes lets one normalised box,
+  possibly degenerate, be exempt from visibility (Theorem~\ref{thm:BX}). Since a segment on
+  a line through a vertex of the simplex is a degenerate box, in three worlds this covers
+  every interior triangle with exactly two non-visible vertices joined by such an edge, and among
+  interior triangles the veto--box targets are exactly these and the veto--Brier targets
+  (Corollary~\ref{cor:BX3}). An explicit example is the triangle with vertices
+  $\frac15(1,2,2)$, $\frac15(2,1,2)$ and $\frac15(3,1,1)$ (Example~\ref{ex:T}), which is
+  neither a veto--Brier target nor orthant-planar.
+  \item \emph{Composition} (Section~\ref{sec:comp}). Running a veto--Brier ranking on the
+  image of an orthant-diagonal map covers the composed target $L\star K_0=\conv\{\nu(q\odot
+  m):q\in L,m\in K_0\}$ (Theorem~\ref{thm:comp}). In four or more worlds this covers
+  targets that lie outside the veto--Brier and orthant-planar classes
+  (Theorem~\ref{thm:F}, Example~\ref{ex:n4}); so does an exempt point on a face of the
+  simplex, in any number of worlds (Theorem~\ref{thm:BE}, Example~\ref{ex:pentagon}). In
+  three worlds, every target of the form $L\star K_0$ of Theorem~\ref{thm:comp} that lies
+  inside the open simplex is already a veto--Brier target (Theorem~\ref{thm:n3}).
+\end{enumerate}
+Alongside these we prove that strict guidance alone forces a strong restriction on
+domains: for a target meeting no edge of the simplex, if the models that are best at a
+single world are coherent, then the domain is either essentially one-sided or contains
+every gamble that is not a sure loss (Theorem~\ref{thm:dichotomy}). Every
+full-dimensional credal set is a Hausdorff limit of covered polytopes
+(Proposition~\ref{prop:dense}).
+
+Section~\ref{sec:excl} collects exclusions. Each concerns a stated class of rankings, and
+most concern the pari-mutuel models, of which the \emph{reversed triangle}
+$\{m\in\Delta_3:m_i\le\frac25\}$ is the simplest. These are results about constructions.
+None of them shows that a pari-mutuel model cannot be covered by a ranking meeting the
+requirements of Section~\ref{sec:framework}; that question is open
+(Section~\ref{sec:open}).
+
+\section{Framework}\label{sec:framework}
+
+\subsection{Gambles and credal sets}
+
+Let $\Omega=\{1,\dots,n\}$ with $n\ge2$. A \emph{gamble} is a vector $h\in\R^n$; $h_i$ is
+its payoff at world $i$. Write $e_1,\dots,e_n$ for the standard basis, $\one\coloneqq
+(1,\dots,1)$, $\Delta\coloneqq\{m\in\R^n_+:\one\cdot m=1\}$ for the simplex, and
+$\aff\Delta=\{m:\one\cdot m=1\}$. For $S\subseteq\Omega$ nonempty, $\Delta_S\coloneqq\{m\in
+\Delta:\supp m\subseteq S\}$, where $\supp m\coloneqq\{i:m_i\neq0\}$; the \emph{edges} of
+$\Delta$ are the sets $\Delta_{\{i,j\}}=[e_i,e_j]$. For $C\subseteq\aff\Delta$, $\relint C$
+is the interior of $C$ relative to $\aff\Delta$ and $\rbd C\coloneqq C\setminus\relint C$.
+A compact convex $K\subseteq\Delta$ is \emph{full-dimensional} if $\aff K=\aff\Delta$, that
+is, if $\relint K\neq\emptyset$. A \emph{credal set} is a nonempty closed convex subset of
+$\Delta$. For $S\subseteq\R^n$, $\cone S$ is the set of finite non-negative combinations of
+points of $S$. For $w\in\R^n$ with $\one\cdot w>0$ put $\nu(w)\coloneqq w/(\one\cdot w)$.
+We write $x\odot y\coloneqq(x_1y_1,\dots,x_ny_n)$, and $x\oslash y$ for the coordinatewise
+quotient when $y$ has no zero coordinate.
+
+For $S\subseteq\Delta$ define
+\[
+  D_S\coloneqq\{h\in\R^n: m\cdot h>0\text{ for all }m\in S\},\qquad
+  C_S\coloneqq\{h\in\R^n: m\cdot h\ge0\text{ for all }m\in S\},
+\]
+with $D_\emptyset=C_\emptyset\coloneqq\R^n$. For $x\in S$ put $F^S_x\coloneqq\{h\in
+C_S:x\cdot h=0\}$; when $S=K$ is fixed we write $F_x$.
+
+\begin{lemma}\label{lem:D}
+Let $S,S_1,S_2\subseteq\Delta$ be nonempty and compact.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_S$ is an open convex cone containing every $h$ with all $h_i>0$, and
+  $D_S\cap(-D_S)=\emptyset$. Moreover $D_S=D_{\conv S}$ and $D_{S_1}\cap D_{S_2}
+  =D_{S_1\cup S_2}$.
+  \item $\cl D_S=C_S$, and $\partial D_S=\{h:\min_{m\in S}m\cdot h=0\}$.
+  \item If $S_1,S_2$ are convex and $D_{S_1}\subseteq D_{S_2}$, then $S_2\subseteq S_1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The function $h\mapsto\min_{m\in S}m\cdot h$ is continuous, since $|m\cdot h-m\cdot
+h'|\le\max_j|h_j-h'_j|$ for $m\in\Delta$; so $D_S$ is open. Convexity, the cone property
+and positivity on gambles with positive coordinates are immediate, and $m\cdot h>0$,
+$m\cdot(-h)>0$ cannot both hold. A linear function has the same minimum over $S$ and
+over $\conv S$, and this minimum is attained on $S$; hence $D_S=D_{\conv S}$. The last
+identity is the definition.
+(b) $D_S\subseteq C_S$ and $C_S$ is closed. If $h\in C_S$ then $h+t\one\in D_S$ for
+$t>0$, because $m\cdot\one=1$. Hence $\cl D_S=C_S$, and $\partial D_S=C_S\setminus D_S$
+since $D_S$ is open.
+(c) Suppose $k\in S_2\setminus S_1$. Strict separation of $k$ from the compact convex set
+$S_1$ gives $g\in\R^n$ and $c\in\R$ with $g\cdot m>c>g\cdot k$ for all $m\in S_1$. Put
+$h\coloneqq g-c\one$. Since $\one\cdot m=1$ on $\Delta$, $m\cdot h>0$ on $S_1$ and
+$k\cdot h<0$, so $h\in D_{S_1}\setminus D_{S_2}$.
+\end{proof}
+
+\begin{lemma}\label{lem:fulldim}
+Let $K\subseteq\Delta$ be a full-dimensional compact convex set.
+\begin{enumerate}[label=(\alph*)]
+  \item Every affine function $\ell$ on $\aff\Delta$ has the form $\ell(m)=m\cdot h$ for
+  exactly one $h\in\R^n$.
+  \item $\relint K\subseteq\relint\Delta$, and $\ext K\subseteq\rbd K$.
+  \item If $h\in C_K\setminus\{0\}$, then $m\cdot h>0$ for every $m\in\relint K$. In
+  particular $C_K\cap(-C_K)=\{0\}$.
+  \item If $x\in\rbd K$, then $F_x\neq\{0\}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $\ell(m)=a\cdot m+c$ on $\aff\Delta$, then $\ell(m)=(a+c\one)\cdot m$ there. If
+$m\cdot h=0$ for all $m\in\aff\Delta$, then $h_i=e_i\cdot h=0$ for every $i$.
+(b) $\relint K$ is open in $\aff\Delta$ and contained in $\Delta$, hence in $\relint\Delta$.
+A point $x\in\relint K$ is the midpoint of the segment $[x-td,x+td]\subseteq K$ for any
+$d\neq0$ with $\one\cdot d=0$ and small $t>0$, so it is not extreme.
+(c) If $m\mapsto m\cdot h$ is constant on $\aff\Delta$, then by (a) $h=c\one$, and $c>0$
+because $h\in C_K\setminus\{0\}$. Otherwise suppose $x\in\relint K$ and $x\cdot h=0$.
+Choose $d$ with $\one\cdot d=0$ and $d\cdot h\neq0$. For small $t>0$ both $x\pm td$ lie in
+$K$, and one of $(x\pm td)\cdot h=\pm t\,d\cdot h$ is negative, contradicting $h\in C_K$.
+If $h,-h\in C_K$, then $m\cdot h=0$ on $\relint K\ne\emptyset$, so $h=0$.
+(d) By the supporting hyperplane theorem in $\aff\Delta$ \cite[Thm.~11.6]{Rockafellar}
+there is a non-constant affine $\ell$ on $\aff\Delta$ with $\ell\ge\ell(x)$ on $K$. By (a)
+$\ell-\ell(x)$ is $m\mapsto m\cdot h$ for some $h$, and $h\neq0$. Then $h\in F_x$.
+\end{proof}
+
+We use the following standard facts of convex geometry \cite{Rockafellar,Schrijver}: the
+convex hull of a compact subset of $\R^n$ is compact; if $S$ is compact then $\ext\conv
+S\subseteq S$; every compact convex set is the convex hull of its extreme points, and every
+point of it is a convex combination of finitely many extreme points; if $x\in\relint K$ and
+$k\in K$ then $(1-s)x+sk\in\relint K$ for $0\le s<1$; a full-dimensional polytope is the
+intersection of the closed half-spaces defined by its facets; and a cone is polyhedral if
+and only if it is finitely generated \cite[Cor.~7.1a]{Schrijver}. A \emph{face} of a convex
+set $C$ is a convex $G\subseteq C$ such that whenever a point of $G$ is a convex
+combination of points of $C$ with positive weights, all those points lie in $G$; extreme
+points of a face are extreme in $C$. If a linear function is non-negative on $C$, its zero
+set in $C$ is a face (an \emph{exposed} face).
+
+For $q\in\Delta$ and $m\in\relint\Delta$ we have $q\cdot m>0$, so $\nu(q\odot m)$ is
+defined. For fixed $m\in\relint\Delta$ the map $T_m(q)\coloneqq\nu(q\odot m)$ is a bijection
+of $\Delta$ onto itself, with inverse $q\mapsto\nu(q\oslash m)$; it is continuous, maps
+$\relint\Delta$ onto itself, fixes each vertex $e_j$, and maps segments onto segments,
+because
+\begin{equation}\label{eq:proj}
+  \nu\bigl(((1-\lambda)q+\lambda q')\odot m\bigr)=(1-\mu)\,\nu(q\odot m)+\mu\,\nu(q'\odot m),
+  \qquad \mu=\frac{\lambda\, q'\cdot m}{(1-\lambda)\,q\cdot m+\lambda\,q'\cdot m}.
+\end{equation}
+In particular $T_m$ is a homeomorphism of $\relint\Delta$, maps convex sets to convex sets,
+maps each line through a vertex $e_j$ into a line through $e_j$, and maps extreme points of
+a convex subset of $\Delta$ to extreme points of its image. The same holds with the roles
+of $q$ and $m$ exchanged.
+
+\subsection{Measure, models and domains}
+
+\begin{itemize}
+  \item[(M)] $\mu$ is a finite Borel measure on $\R^n$ with the same null sets as Lebesgue
+  measure, and $\int|h|\,d\mu(h)<\infty$.
+\end{itemize}
+The standard Gaussian measure satisfies (M). The requirements of
+Section~\ref{sec:framework} depend on $\mu$ only through its null sets; (M) is used only to
+make the scores of the constructed rankings finite. So a ranking built with a measure
+satisfying (M) is also a ranking in the sense of the framework for Lebesgue measure, or
+for any measure with a positive density. Equalities and inclusions between sets of
+gambles hold \emph{almost everywhere} (a.e.) if they hold up to a $\mu$-null set. Every
+hyperplane is null and a nonempty open set is never null.
+
+\begin{lemma}\label{lem:open}
+Let $S\subseteq\Delta$ be nonempty and compact. If $O$ is open and $O\subseteq D_S$
+a.e., then $O\subseteq D_S$. If $S_1,S_2\subseteq\Delta$ are nonempty, compact and
+convex, and $D_{S_1}=D_{S_2}$ a.e., then $S_1=S_2$.
+\end{lemma}
+
+\begin{proof}
+The open set $O\setminus\cl D_S$ is null, hence empty. So $O\subseteq\cl D_S$ and, being
+open, $O\subseteq\inter\cl D_S$. For a convex set with nonempty interior the interior of
+the closure is the interior \cite[Thm.~6.3]{Rockafellar}, so $O\subseteq D_S$. The second % citation number to be verified
+claim follows from the first, applied to $O=D_{S_1}$ and $O=D_{S_2}$, and
+Lemma~\ref{lem:D}(c).
+\end{proof}
+
+A \emph{domain} is a measurable set $U\subseteq\R^n$. The \emph{models} on $U$ are the
+measurable sets $X\subseteq U$, identified when they agree a.e.; their class is $\M_U$. A
+model $X$ \emph{accepts} $h$ if $h\in X$, and is otherwise silent about $h$. At world $i$,
+accepting $h$ is \emph{correct} if $h_i>0$ and \emph{wrong} if $h_i<0$. The class $\M_U$ is
+\emph{decomposable}: it is closed under splices $(X\cap S)\cup(Y\setminus S)$ for measurable
+$S$, and under limits in measure. The \emph{full domain} is $U=\R^n$. Let $M$ be the set of
+gambles with a positive and a negative coordinate. We call $U$ \emph{one-sided} if
+$U\cap(-U)=\emptyset$, and \emph{essentially one-sided} if $U\cap(-U)\cap M$ is null.
+Gambles outside $M$ are sure gains or sure losses (or zero).
+
+A model $X$ is \emph{coherent} if $X=D_Q$ a.e.\ for some credal set $Q$. These are the
+coherent sets of desirable gambles of the form $D_Q$, taken up to null sets. The
+condition is global: a model on a domain $U$ is coherent only if it agrees a.e.\ with a
+coherent cone in $\R^n$, not merely with the trace of one on $U$. By
+Lemma~\ref{lem:open}, $Q$ is unique. If $U=D_{K'}$ for a nonempty compact convex $K'$, then
+$X\subseteq U$ and Lemmas~\ref{lem:open} and~\ref{lem:D}(c) give $K'\subseteq Q$.
+
+\subsection{Rankings and dominance}
+
+A \emph{ranking} on $\M_U$ is a family $(\preceq_i)_{i\in\Omega}$ of binary relations on
+$\M_U$. Lower is better: $X\preceq_iY$ says that $X$ does at least as well as $Y$ at world
+$i$. We write $X\prec_iY$ if $X\preceq_iY$ and not $Y\preceq_iX$; $X$ and $Y$ are
+\emph{tied} at $i$ if $X\preceq_iY$ and $Y\preceq_iX$, and \emph{incomparable} at $i$ if
+neither holds. We assume throughout that each $\preceq_i$ is reflexive, that a.e.-equal
+models are tied, and
+\begin{itemize}
+  \item[(TC)] if $A\preceq_iB$ and $B\preceq_iC$, then not $C\prec_iA$.
+\end{itemize}
+Every transitive relation satisfies (TC). We do \emph{not} assume transitivity or
+completeness. For instance, (TC) permits $Y\preceq_iX$ and $X\prec_iM$ with $Y$ and $M$
+incomparable at $i$.
+
+\begin{definition}\label{def:dom}
+Let $X,Y\in\M_U$. $Y$ \emph{weakly dominates} $X$ if $Y\preceq_iX$ for every $i$. $Y$
+\emph{dominates} $X$ if $Y$ weakly dominates $X$ and $Y\prec_iX$ for some $i$. $Y$
+\emph{strictly dominates} $X$ if $Y\prec_iX$ for every $i$. $X$ is \emph{undominated} if
+no model dominates it. We write $\mathcal U$ for the undominated models, $\mathcal C$ for
+the coherent models, and $\mathcal C^\ast\coloneqq\mathcal C\cap\mathcal U$.
+\end{definition}
+
+When a ranking is generated by real-valued losses $\ell(X,i)$, with $X\preceq_iY$ iff
+$\ell(X,i)\le\ell(Y,i)$, one says that $Y$ \emph{uniformly dominates} $X$ if
+$\ell(Y,i)+\varepsilon\le\ell(X,i)$ at every world for some $\varepsilon>0$. With finitely
+many worlds this is strict dominance. The rankings below are lexicographic and uniform
+dominance plays no role.
+
+If $Y$ weakly dominates $X$ but does not dominate it, then for every $i$ we have
+$Y\preceq_iX$ and not $Y\prec_iX$, hence $X\preceq_iY$: the two models are tied at every
+world. This uses only the definition of $\prec_i$, not completeness.
+
+\subsection{Requirements}
+
+\begin{itemize}
+  \item[(G)] \emph{Strict guidance.} If $X\setminus Y\subseteq\{h_i>0\}$ a.e.,
+  $Y\setminus X\subseteq\{h_i<0\}$ a.e., and $X\triangle Y$ is not null, then
+  $X\prec_iY$.
+  \item[(IB)] \emph{Independence.} Let $S$ be measurable and $X,Y,X',Y'\in\M_U$ with
+  $X\setminus S=Y\setminus S$, $X'\setminus S=Y'\setminus S$, $X\cap S=X'\cap S$ and
+  $Y\cap S=Y'\cap S$, all a.e. Then $X\preceq_iY$ if and only if $X'\preceq_iY'$.
+  \item[(GC)] \emph{Global coherence.} Every undominated model is coherent.
+  \item[(C)] \emph{Direct closure under ties.} A model that is tied at every world with a
+  member of $\mathcal C^\ast$ belongs to $\mathcal C^\ast$.
+  \item[(ID)] \emph{Incoherent-model dominance.} Every incoherent model is dominated by a
+  member of $\mathcal C^\ast$.
+  \item[(LF)] \emph{Local freedom at $D_K$.} There is an open set $N\supseteq\partial
+  D_K\setminus\{0\}$ such that every measurable $X$ with $X\triangle D_K\subseteq N$ a.e.\
+  belongs to $\M_U$, that is, satisfies $X\subseteq U$ a.e.
+\end{itemize}
+By (IB), the comparison $X\preceq_iY$ depends only on the pair $(X\cap S,Y\cap S)$ for any
+$S\supseteq X\triangle Y$.
+
+\begin{definition}\label{def:cover}
+Let $K$ be a credal set and $U$ a domain. A ranking on $\M_U$ \emph{covers} $K$ if:
+\begin{enumerate}[label=(\roman*)]
+  \item it satisfies (G) and (IB);
+  \item it satisfies global coherence (GC);
+  \item it satisfies direct closure under ties (C);
+  \item $D_K\in\M_U$ and $D_K$ is undominated;
+  \item it satisfies incoherent-model dominance (ID);
+  \item (LF) holds at $D_K$.
+\end{enumerate}
+The domain $\M_U$ is decomposable by construction.
+\end{definition}
+
+Several conditions are \emph{not} required: transitivity, completeness, numerical
+representation, continuity, homogeneity, uniqueness of optima, and the following stronger
+dominance objective, which our constructions nevertheless achieve.
+\begin{itemize}
+  \item[(W)] Every model is weakly dominated by a member of $\mathcal C^\ast$.
+\end{itemize}
+
+\begin{lemma}\label{lem:dominance}
+Consider a ranking on $\M_U$.
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose every model is weakly dominated by an undominated model, and (GC) holds.
+  Then (W) holds and $\mathcal U=\mathcal C^\ast$. If in addition (C) holds, then (ID)
+  holds.
+  \item If every $\preceq_i$ is transitive, then (GC) implies (C).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) (W) and $\mathcal U=\mathcal C^\ast$ are immediate. Let $X$ be incoherent and let
+$Y\in\mathcal C^\ast$ weakly dominate it. If $Y$ did not dominate $X$, then $X$ and $Y$
+would be tied at every world (see the remark after Definition~\ref{def:dom}), and (C)
+would make $X$ coherent. So $Y$ dominates $X$.
+
+(b) Let $X$ be tied at every world with $Y\in\mathcal C^\ast$, and suppose $Z$ dominates
+$X$. For every $i$, $Z\preceq_iX\preceq_iY$ gives $Z\preceq_iY$ by transitivity. For some
+$i$, $Z\prec_iX$; if $Y\preceq_iZ$, then $X\preceq_iY\preceq_iZ$ would give $X\preceq_iZ$,
+contradicting $Z\prec_iX$. So $Z\prec_iY$ and $Z$ dominates $Y$, which is impossible.
+Hence $X\in\mathcal U$, and $X\in\mathcal C$ by (GC).
+\end{proof}
+
+\begin{remark}\label{rem:TC}
+The derivation in (b) uses transitivity. For abstract relations satisfying (TC) the
+implication fails. Consider three abstract objects $X,Y,Z$ and one world, with $X$ and $Y$
+tied, $Z\prec X$, and $Z$ and $Y$ incomparable; the relation consists of these comparisons
+and reflexivity. It satisfies (TC): the only strict comparison is $Z\prec X$, so a
+violation would need a chain $X\preceq B\preceq Z$, but the only $B$ with $B\preceq Z$ is
+$Z$, and $X\preceq Z$ fails. Here $Y$ is undominated, $X$ is tied with $Y$, and $Z$
+dominates $X$. This configuration is not a ranking on a class $\M_U$ and need not satisfy
+(G) or (IB). We do not know whether (G), (IB), (TC) and (GC) together imply (C); this is
+why (C) is listed as a requirement.
+\end{remark}
+
+\subsection{What strict guidance alone forces}\label{sec:guidance}
+
+The following results use only (G) at single worlds and the structure of $\M_U$. They hold
+for every ranking in the sense of this section; no transitivity, completeness or (IB) is
+used.
+
+\begin{lemma}\label{lem:worldbest}
+Let $U$ be a domain and $i\in\Omega$. Under (G) at world $i$, the model $B_i\coloneqq
+U\cap\{h_i>0\}$ is undominated.
+\end{lemma}
+
+\begin{proof}
+Let $Y\in\M_U$ with $Y\neq B_i$ a.e. Then $B_i\setminus Y\subseteq\{h_i>0\}$ and
+$Y\setminus B_i\subseteq\{h_i\le0\}$, which is a.e.\ $\{h_i<0\}$. By (G), $B_i\prec_iY$,
+so not $Y\preceq_iB_i$, and $Y$ does not weakly dominate $B_i$. A model a.e.\ equal to
+$B_i$ is $B_i$.
+\end{proof}
+
+\begin{theorem}\label{thm:dichotomy}
+Let $n\ge3$, let $K$ be a credal set that meets no edge of $\Delta$, and let $U$ be a domain
+with $D_K\subseteq U$ a.e. Suppose some ranking on $\M_U$ satisfies (G), and that the $n$
+models $B_i=U\cap\{h_i>0\}$ are coherent (for instance, because (GC) holds). Write
+$B_i=D_{Q_i}$ a.e. Then $e_i\in Q_i\subseteq\conv(K\cup\{e_i\})$ and $Q_j\subseteq
+\conv(Q_i\cup\{e_j\})$ for all $i,j$, and exactly one of the following holds.
+\begin{enumerate}[label=(\alph*)]
+  \item Every two of the sets $Q_i$ intersect, and $U$ is essentially one-sided.
+  \item $Q_i=\{e_i\}$ for every $i$, and $U\supseteq\{h:h_l>0\text{ for some }l\}$ a.e.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1.} $D_{Q_i}$ is open and a.e.\ contained in $\{h_i>0\}=D_{\{e_i\}}$, so
+Lemma~\ref{lem:open} gives $D_{Q_i}\subseteq D_{\{e_i\}}$, and Lemma~\ref{lem:D}(c) gives
+$e_i\in Q_i$.
+
+\emph{Step 2.} $D_{Q_i}\subseteq U$ a.e., so $D_{\conv(Q_i\cup\{e_j\})}=D_{Q_i}\cap\{h_j>0\}
+\subseteq U\cap\{h_j>0\}=D_{Q_j}$ a.e. Lemma~\ref{lem:open} and Lemma~\ref{lem:D}(c) give
+$Q_j\subseteq\conv(Q_i\cup\{e_j\})$. Likewise $D_{\conv(K\cup\{e_i\})}=D_K\cap\{h_i>0\}
+\subseteq D_{Q_i}$ a.e.\ gives $Q_i\subseteq\conv(K\cup\{e_i\})$.
+
+\emph{Step 3: disjoint pairs lie in an edge.} Let $i\ne j$ and $f(m)\coloneqq1-m_i-m_j$,
+which is affine, non-negative on $\Delta$ and zero at $e_i,e_j$. Put $s_i\coloneqq
+\max_{Q_i}f$ and $s_j\coloneqq\max_{Q_j}f$. Every point $(1-\lambda)e_i+\lambda q$ of
+$\conv(Q_j\cup\{e_i\})$ ($q\in Q_j$) has $f=\lambda f(q)\le s_j$, so Step 2 gives $s_i\le
+s_j$; by symmetry $s_i=s_j\eqqcolon s$. If $s>0$, take $a\in Q_i$ with $f(a)=s$ and write
+$a=(1-\lambda)e_i+\lambda q$ with $q\in Q_j$; then $s=\lambda f(q)\le\lambda s$ forces
+$\lambda=1$ and $a=q\in Q_i\cap Q_j$. So if $Q_i\cap Q_j=\emptyset$ then $s=0$, that is,
+$Q_i,Q_j\subseteq[e_i,e_j]$.
+
+\emph{Step 4: an edge forces precise vertices.} A point $(1-t)k+te_i$ with $k\in K$ and
+$t<1$ lying in $[e_i,e_j]$ would have $k_l=0$ for all $l\notin\{i,j\}$, so $k\in[e_i,e_j]$,
+which is excluded. Hence $\conv(K\cup\{e_i\})\cap[e_i,e_j]=\{e_i\}$, and if $Q_i\cap Q_j=
+\emptyset$ then Step 2 gives $Q_i=\{e_i\}$, and likewise $Q_j=\{e_j\}$. For any other $l$,
+Step 2 gives $Q_l\subseteq\conv(Q_i\cup\{e_l\})=[e_i,e_l]$ and $Q_l\subseteq\conv(K\cup
+\{e_l\})$, and the same argument with the edge $[e_i,e_l]$ gives $Q_l=\{e_l\}$.
+
+\emph{Step 5: sidedness.} Suppose $U\cap(-U)\cap M$ is not null. Since $M=\bigcup_{i\neq
+j}\{h_i>0>h_j\}$, for some $i\ne j$ the set $E\coloneqq U\cap(-U)\cap\{h_i>0>h_j\}$ is not
+null. Then $E\subseteq B_i=D_{Q_i}$ a.e.\ and $-E\subseteq B_j=D_{Q_j}$ a.e. If
+$q\in Q_i\cap Q_j$, almost every $h\in E$ would satisfy $q\cdot h>0$ and $q\cdot(-h)>0$,
+which is impossible. So some pair $Q_i,Q_j$ is disjoint, and Step 4 gives (b). Conversely,
+in case (b), $U\cap\{h_l>0\}=D_{\{e_l\}}=\{h_l>0\}$ a.e.\ for every $l$, and two sets
+$\{e_i\},\{e_j\}$ with $i\ne j$ are disjoint, so (a) fails. In summary: if all pairs
+intersect, Step~5 shows that $U$ is essentially one-sided; if some pair is disjoint,
+Step~4 gives (b); and (a) and (b) exclude each other.
+\end{proof}
+
+\begin{proposition}\label{prop:lowdim}
+Let $K$ be a credal set that is not full-dimensional, and let $U$ be a domain with
+$D_K\subseteq U$ a.e.\ and (LF) at $D_K$. Then $U$ is not essentially one-sided. If
+moreover $n\ge3$, $K$ meets no edge of $\Delta$, and some ranking on $\M_U$ satisfies (G)
+and (GC), then $U\supseteq\{h:h_l>0\text{ for some }l\}$ a.e.
+\end{proposition}
+
+\begin{proof}
+The linear span of $K$ has dimension less than $n$, so some $h\neq0$ has $m\cdot h=0$ for
+all $m\in K$. Then $\pm h\in C_K\setminus D_K=\partial D_K$. Let $N$ be as in (LF). The
+model $D_K\cup N$ belongs to $\M_U$, so $N\subseteq U$ a.e. Choose $r>0$ with $B(\pm
+h,r)\subseteq N$. Then $B(h,r)\subseteq U$ a.e.\ and $B(h,r)=-B(-h,r)\subseteq-U$ a.e.
+Since $m\cdot h=0$ for some $m\in\Delta$ and $h\ne0$, the vector $h$ has a coordinate
+$h_a\ge0$ and a coordinate $h_b\le0$ with $a\ne b$ (if all coordinates have one sign, some
+coordinate is zero and another is not). Then $h+t(e_a-e_b)\in M$ for $t>0$, so every ball
+around $h$ meets the open set $M$ in a nonempty open set. Hence $U\cap(-U)\cap M$ is not null. The second claim
+then follows from Theorem~\ref{thm:dichotomy}.
+\end{proof}
+
+So targets that are not full-dimensional, including precise models $\{p\}$, require
+two-sided domains, and under (GC) a precise model in $\relint\Delta$ with $n\ge3$ requires
+essentially the full domain. Such targets are covered there (Corollary~\ref{cor:precise}).
+
+\section{Two-level integral rankings}\label{sec:route}
+
+All rankings constructed in this paper belong to the following class. Throughout this
+section $U$ is a domain.
+
+\begin{definition}\label{def:twolevel}
+A \emph{two-level integral ranking} on $\M_U$ is given by $\mu$-integrable functions
+$\varphi_i:U\to[0,\infty)$ and $\psi_i:U\to\R$, $i\in\Omega$, through
+\[
+  a_i(X)\coloneqq\int_X\varphi_i\,d\mu,\qquad b_i(X)\coloneqq\int_X\psi_i\,d\mu,\qquad
+  X\preceq_iY\iff(a_i(X),b_i(X))\lexle(a_i(Y),b_i(Y)),
+\]
+where $(x_1,x_2)\lexle(y_1,y_2)$ means $x_1<y_1$, or $x_1=y_1$ and $x_2\le y_2$. It is
+\emph{single-level} if every $\varphi_i=0$. It satisfies the \emph{sign condition} (SC) if,
+for every $i$, $\varphi_i=0$ a.e.\ on $U\cap\{h_i>0\}$, $\psi_i<0$ a.e.\ on $U\cap
+\{h_i>0\}$, and $\psi_i>0$ a.e.\ on $U\cap\{h_i<0\}$.
+\end{definition}
+
+\begin{lemma}\label{lem:axioms}
+Every two-level integral ranking consists of total preorders under which a.e.-equal models
+are tied; in particular it satisfies reflexivity and (TC). It satisfies (IB). Under (SC) it
+satisfies (G).
+\end{lemma}
+
+\begin{proof}
+$\lexle$ is a total order on $\R^2$, and the scores depend only on the a.e.-class of $X$.
+(IB): with $X,Y,X',Y',S$ as in (IB), $a_i(X)-a_i(Y)=\int_S(1_X-1_Y)\varphi_i\,d\mu=
+a_i(X')-a_i(Y')$, and likewise for $b_i$; and $p\lexle q$ iff $0\lexle q-p$. (G): let
+$X,Y$ be as in (G). Since $\varphi_i=0$ a.e.\ on $X\setminus Y$, $a_i(X)-a_i(Y)=
+-\int_{Y\setminus X}\varphi_i\,d\mu\le0$. Also
+\[
+  b_i(X)-b_i(Y)=\int_{X\setminus Y}\psi_i\,d\mu-\int_{Y\setminus X}\psi_i\,d\mu<0,
+\]
+because $\psi_i<0$ a.e.\ on $X\setminus Y$, $\psi_i>0$ a.e.\ on $Y\setminus X$, and
+$X\triangle Y$ is not null. Hence $(a_i(X),b_i(X))\lexlt(a_i(Y),b_i(Y))$.
+\end{proof}
+
+Write $z(X)\coloneqq(a_1(X),\dots,a_n(X),b_1(X),\dots,b_n(X))\in\R^{2n}$ and
+$Z\coloneqq\{z(X):X\in\M_U\}$. For $y,y'\in\R^{2n}$ write $y\trianglelefteq y'$ if
+$(y_{a_i},y_{b_i})\lexle(y'_{a_i},y'_{b_i})$ for every $i$, where $y_{a_i}$ and $y_{b_i}$
+are the coordinates in the positions of $a_i$ and $b_i$. This is a partial order, because
+$\lexle$ is antisymmetric. By definition, $Y$ weakly dominates $X$ iff $z(Y)\trianglelefteq
+z(X)$, and $Y$ dominates $X$ iff in addition $z(Y)\neq z(X)$.
+
+\begin{lemma}\label{lem:lyap}
+$Z$ is a compact convex subset of $\R^{2n}$, and $0=z(\emptyset)\in Z$.
+\end{lemma}
+
+\begin{proof}
+$z(X)=\int_Xf\,d\mu$ with $f\coloneqq(\varphi_1,\dots,\varphi_n,\psi_1,\dots,\psi_n)$, which
+is $\mu$-integrable on $U$. Each coordinate of the vector measure $X\mapsto\int_Xf\,d\mu$
+on the measurable subsets of $U$ is absolutely continuous with respect to $\mu$, which has
+no atoms. By Lyapunov's convexity theorem \cite{Lyapunov,Lindenstrauss} its range is
+compact and convex. Since every measurable subset of $U$ is a model, this range is $Z$.
+\end{proof}
+
+\begin{lemma}\label{lem:zorn}
+Every model is weakly dominated by an undominated model.
+\end{lemma}
+
+\begin{proof}
+Fix $X_0$ and put $D\coloneqq\{y\in Z:y\trianglelefteq z(X_0)\}$. We show that every chain
+$\mathcal K\subseteq D$ has a lower bound in $D$. If $\mathcal K=\emptyset$, take
+$z(X_0)$. Otherwise, for $\gamma\in\mathcal K$ let $T_\gamma\coloneqq\{\gamma'\in
+\mathcal K:\gamma'\trianglelefteq\gamma\}$. Since $\mathcal K$ is a chain, the intersection
+of finitely many sets $T_\gamma$ contains the least of their indices, so the closed sets
+$\cl T_\gamma$ have the finite intersection property. As $Z$ is compact, some $y^\infty\in
+Z$ lies in every $\cl T_\gamma$.
+
+Fix $\gamma\in\mathcal K$ and a world $i$. Every $\gamma'\in T_{\gamma''}$ has
+$\gamma'_{a_i}\le\gamma''_{a_i}$, so $y^\infty_{a_i}\le\gamma''_{a_i}$ for every
+$\gamma''\in\mathcal K$. If $y^\infty_{a_i}<\gamma_{a_i}$, then
+$(y^\infty_{a_i},y^\infty_{b_i})\lexlt(\gamma_{a_i},\gamma_{b_i})$. Otherwise
+$y^\infty_{a_i}=\gamma_{a_i}$, and for $\gamma'\in T_\gamma$ we get $\gamma_{a_i}=
+y^\infty_{a_i}\le\gamma'_{a_i}\le\gamma_{a_i}$. So $a_i$ is constant on $T_\gamma$, and
+the lexicographic order then gives $\gamma'_{b_i}\le\gamma_{b_i}$ on $T_\gamma$. Since
+$y^\infty\in\cl T_\gamma$, $y^\infty_{b_i}\le\gamma_{b_i}$. In both cases
+$(y^\infty_{a_i},y^\infty_{b_i})\lexle(\gamma_{a_i},\gamma_{b_i})$.
+
+Hence $y^\infty\trianglelefteq\gamma\trianglelefteq z(X_0)$ for all $\gamma\in\mathcal K$,
+so $y^\infty\in D$ is a lower bound. By Zorn's lemma $D$ has a minimal element $y^\ast$.
+Let $X^\ast$ be a model with $z(X^\ast)=y^\ast$; it weakly dominates $X_0$. If $Y$
+dominated $X^\ast$, then $z(Y)\trianglelefteq y^\ast$ and $z(Y)\neq y^\ast$, so $z(Y)\in
+D$ would contradict minimality.
+\end{proof}
+
+For $W_0\subseteq\Omega$ put
+\[
+  N(W_0)\coloneqq U\cap\bigcap_{\omega\in W_0}\{\varphi_\omega=0\}.
+\]
+Since $\varphi_\omega\ge0$, a model $X$ has $a_\omega(X)=0$ iff $X\subseteq
+\{\varphi_\omega=0\}$ a.e. A triple $(W_0,\beta,\alpha)$ is \emph{admissible} if
+$W_0\subseteq\Omega$, $\beta\in\R^n_+\setminus\{0\}$ with $\supp\beta\subseteq W_0$, and
+$\alpha\in\R_+^{\Omega\setminus W_0}$. For such a triple put
+\[
+  J(X)\coloneqq\sum_{\omega\in W_0}\beta_\omega b_\omega(X)
+    +\sum_{\omega\notin W_0}\alpha_\omega a_\omega(X),\qquad
+  g\coloneqq\sum_{\omega\notin W_0}\alpha_\omega\varphi_\omega+\sum_{\omega\in W_0}
+  \beta_\omega\psi_\omega,
+\]
+and $X^\ast(W_0,\beta,\alpha)\coloneqq N(W_0)\cap\{g<0\}$. Then $J(X)=\int_Xg\,d\mu$
+whenever $X\subseteq N(W_0)$ a.e. For a single-level ranking, $N(W_0)=U$ for every $W_0$,
+and we may always take $W_0=\Omega$.
+
+\begin{lemma}\label{lem:sep}
+Let $X^\ast$ be undominated and $W_0\coloneqq\{\omega:a_\omega(X^\ast)=0\}$. Then $W_0\neq
+\emptyset$, $X^\ast\subseteq N(W_0)$ a.e., and there are $\beta,\alpha$ with
+$(W_0,\beta,\alpha)$ admissible such that $X^\ast$ minimises $J$ over the models $X\subseteq
+N(W_0)$.
+\end{lemma}
+
+\begin{proof}
+If $W_0=\emptyset$, every $a_\omega(X^\ast)>0=a_\omega(\emptyset)$, so $\emptyset$ strictly
+dominates $X^\ast$. Hence $W_0\neq\emptyset$, and $X^\ast\subseteq N(W_0)$ a.e.\ by the
+remark above.
+
+Let $Z'\coloneqq\{y\in Z:y_{a_\omega}=0\text{ for }\omega\in W_0\}$, a convex set
+containing $z(X)$ for every model $X\subseteq N(W_0)$, and $y^\ast\coloneqq z(X^\ast)\in
+Z'$. Let $\mathrm{pr}$ be the projection of $\R^{2n}$ onto the coordinates $y_{b_\omega}$
+($\omega\in W_0$) and $y_{a_\omega},y_{b_\omega}$ ($\omega\notin W_0$), and let
+\[
+  P\coloneqq\{d:d_{b_\omega}<0\text{ for }\omega\in W_0,\ d_{a_\omega}<0\text{ for }
+  \omega\notin W_0\}
+\]
+in the target of $\mathrm{pr}$, a nonempty open convex cone. If some $y\in Z'$ had
+$\mathrm{pr}(y-y^\ast)\in P$, the model realising $y$ would be strictly better than
+$X^\ast$ at every world: at $\omega\in W_0$ its first level is equal (zero) and its second
+level strictly smaller, and at $\omega\notin W_0$ its first level is strictly smaller. So
+the convex set $E\coloneqq\mathrm{pr}(Z'-y^\ast)$ is disjoint from $P$.
+
+By the separation theorem \cite[Thm.~11.3]{Rockafellar} there is a nonzero linear % citation number to be verified
+functional $L$ with $\sup_PL\le\inf_EL$. Since $0\in E$ and $P$ is a cone with $0\in\cl P$,
+$\sup_PL=0$; so $L\le0$ on $\cl P$ and $L\ge0$ on $E$. Write
+\[
+  L(d)=\sum_{\omega\in W_0}\beta_\omega d_{b_\omega}+\sum_{\omega\notin W_0}
+  (\alpha_\omega d_{a_\omega}+\gamma_\omega d_{b_\omega}).
+\]
+Testing $L\le0$ on the vectors of $\cl P$ with one coordinate equal to $-1$ and the others
+zero, and on $\pm$ the unit vectors in the coordinates $d_{b_\omega}$ ($\omega\notin W_0$),
+which are unconstrained in $\cl P$, gives $\beta\ge0$, $\alpha\ge0$ and $\gamma=0$. Extend
+$\beta$ by zero outside $W_0$. Then $L(\mathrm{pr}(y-y^\ast))=J(y)-J(y^\ast)\ge0$ for $y\in
+Z'$, where $J$ is read as a function of the score vector. So $X^\ast$ minimises $J$ over the
+models $X\subseteq N(W_0)$.
+
+It remains to show $\beta\neq0$. Otherwise $\alpha\neq0$ and $J=\sum_{\omega\notin W_0}
+\alpha_\omega a_\omega\ge0$ on $Z'$, with $J(0)=0$ and $0=z(\emptyset)\in Z'$. Hence
+$J(y^\ast)=0$, so $\alpha_\omega a_\omega(X^\ast)=0$ for every $\omega\notin W_0$. But
+$a_\omega(X^\ast)>0$ for $\omega\notin W_0$, so $\alpha=0$, a contradiction.
+\end{proof}
+
+We say that the ranking has \emph{null ties} if $N(W_0)\cap\{g=0\}$ is null for every
+admissible triple.
+
+\begin{lemma}\label{lem:unique}
+Let $(W_0,\beta,\alpha)$ be admissible and suppose $N\coloneqq N(W_0)$ meets $\{g=0\}$ in a
+null set. Then the models $X\subseteq N$ minimising $\int_Xg\,d\mu$ are exactly those equal
+a.e.\ to $X^\ast(W_0,\beta,\alpha)$.
+\end{lemma}
+
+\begin{proof}
+For $X\subseteq N$,
+\[
+  \int_Xg\,d\mu=\int_{X\cap\{g<0\}}g\,d\mu+\int_{X\cap\{g>0\}}g\,d\mu\ \ge\
+  \int_{N\cap\{g<0\}}g\,d\mu,
+\]
+with equality iff $(N\cap\{g<0\})\setminus X$ and $X\cap\{g>0\}$ are null, that is, iff
+$X=N\cap\{g<0\}$ a.e.
+\end{proof}
+
+\begin{theorem}\label{thm:route}
+Let $(\varphi,\psi)$ be a two-level integral ranking on $\M_U$ satisfying (SC) and having
+null ties.
+\begin{enumerate}[label=(\alph*)]
+  \item It consists of total preorders and satisfies (TC), (G) and (IB).
+  \item Every model is weakly dominated by an undominated model.
+  \item A model is undominated if and only if it equals $X^\ast(W_0,\beta,\alpha)$ a.e.\
+  for some admissible triple.
+  \item If a model is tied at every world with an undominated model $X$, it equals $X$
+  a.e.
+  \item If every model $X^\ast(W_0,\beta,\alpha)$ is coherent, then (GC), (C), (ID) and
+  (W) hold, and $\mathcal U=\mathcal C^\ast$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is Lemma~\ref{lem:axioms} and (b) is Lemma~\ref{lem:zorn}.
+
+(c) Let $X^\ast$ be undominated. Lemma~\ref{lem:sep} gives an admissible triple such that
+$X^\ast\subseteq N(W_0)$ minimises $\int_Xg\,d\mu$ over the models $X\subseteq N(W_0)$, and
+Lemma~\ref{lem:unique} gives $X^\ast=X^\ast(W_0,\beta,\alpha)$ a.e. Conversely, let
+$(W_0,\beta,\alpha)$ be admissible, $X^\ast\coloneqq X^\ast(W_0,\beta,\alpha)$, and let $Y$
+weakly dominate $X^\ast$. For $\omega\in W_0$, $a_\omega(X^\ast)=0$, so $a_\omega(Y)\le0$;
+hence $a_\omega(Y)=0$, and the lexicographic order then gives $b_\omega(Y)\le
+b_\omega(X^\ast)$. For $\omega\notin W_0$, $a_\omega(Y)\le a_\omega(X^\ast)$. Thus
+$Y\subseteq N(W_0)$ a.e.\ and, as the weights are non-negative, $J(Y)\le J(X^\ast)$. By
+Lemma~\ref{lem:unique}, $Y=X^\ast$ a.e. So every weak dominator of $X^\ast$ equals it
+a.e., and $X^\ast$ is undominated.
+
+(d) Let $Y$ be tied with $X$ at every world. Then $z(Y)=z(X)$, because $\lexle$ is
+antisymmetric. By (c), $X=X^\ast(W_0,\beta,\alpha)$ a.e.\ for an admissible triple. Then
+$a_\omega(Y)=0$ for $\omega\in W_0$, so $Y\subseteq N(W_0)$ a.e., and $J(Y)=J(X)$. By
+Lemma~\ref{lem:unique}, $Y=X$ a.e.
+
+(e) (GC) follows from (c). (C) follows from (d): a model tied at every world with a member
+of $\mathcal C^\ast$ is that member. Lemma~\ref{lem:dominance}(a) gives (W), (ID) and
+$\mathcal U=\mathcal C^\ast$.
+\end{proof}
+
+So for a two-level integral ranking with (SC), null ties and coherent minimisers, coverage
+of $K$ reduces to two further facts: $D_K$ is one of the models $X^\ast(W_0,\beta,\alpha)$
+(or is otherwise shown to be undominated), and (LF) holds at $D_K$. Every ranking
+constructed in Sections~\ref{sec:vb}--\ref{sec:comp} is a two-level integral ranking with
+(SC), null ties and coherent minimisers. So each of them is generated by integrated
+scores, is complete and transitive, and satisfies the stronger objective (W) as well as
+the requirements of Definition~\ref{def:cover}.
+
+\begin{lemma}\label{lem:fubini}
+Let $F:\R^n\to\R$ be continuous, and suppose $t\mapsto F(h+t\one)$ is strictly monotone
+for every $h$. Then $\{F=0\}$ is null.
+\end{lemma}
+
+\begin{proof}
+$\{F=0\}$ is closed. Every $h$ is uniquely $y+t\one$ with $y\in\one^\perp$ and $t\in\R$;
+this linear change of coordinates multiplies Lebesgue measure by a constant. For each $y$
+the section $\{t:F(y+t\one)=0\}$ has at most one point. By Fubini's theorem $\{F=0\}$ is
+Lebesgue-null, hence null by (M).
+\end{proof}
+
+\section{Veto--Brier rankings and the visibility class}\label{sec:vb}
+
+\subsection{Veto--Brier rankings}
+
+Throughout this section $K'\subseteq\Delta$ is nonempty, compact and convex, and
+$U=D_{K'}$. Everything in this section holds for every measure satisfying (M).
+
+\begin{definition}\label{def:vb}
+A \emph{veto profile} over $K'$ is a tuple $B=(B_1,\dots,B_n)$ of compact convex sets
+with $0\in B_i\subseteq\cone(K'\cup\{e_i\})$. Put
+\[
+  \varphi_i(h)\coloneqq\max_{v\in B_i}(-v\cdot h),\qquad
+  a_i(X)\coloneqq\int_X\varphi_i\,d\mu,\qquad
+  b_i(X)\coloneqq-\int_Xh_i\,d\mu .
+\]
+The \emph{veto--Brier ranking} $\VB(K',B)$ on $\M_U$ is the two-level integral ranking
+with integrands $\varphi_i$ and $\psi_i(h)\coloneqq-h_i$. The \emph{normalised veto set} of
+world $i$ is $\hat A_i\coloneqq\cl\{\nu(v):v\in B_i\setminus\{0\}\}$ (empty if
+$B_i=\{0\}$).
+\end{definition}
+
+The error of $X$ at world $i$, weighting each wrong acceptance and each silence on a
+correct gamble by $|h_i|$, is $\int_{X\cap\{h_i<0\}}|h_i|\,d\mu+\int_{(U\setminus X)
+\cap\{h_i>0\}}|h_i|\,d\mu$, which equals $b_i(X)$ plus a constant. So the second level is a
+Brier-type error.
+
+The main case is the following. Let $A_1,\dots,A_n$ be compact (possibly empty) sets with
+$A_i\subseteq\conv(K'\cup\{e_i\})$, and put $B_i\coloneqq\conv(\{0\}\cup A_i)$. Then
+\[
+  \varphi_i(h)=\max\Bigl(0,\max_{v\in A_i}(-v\cdot h)\Bigr),
+\]
+so the veto charges an acceptance $h$ by the amount by which its expectation falls below
+zero under the least favourable member of $A_i$. We write $\VB(K',A)$ for this ranking.
+Here $B_i\setminus\{0\}=\{ta:t\in(0,1],\,a\in\conv A_i\}$ and $\one\cdot a=1$, so
+$\hat A_i=\conv A_i$.
+
+\begin{lemma}\label{lem:veto}
+For every $i$:
+\begin{enumerate}[label=(\alph*)]
+  \item $\varphi_i$ is non-negative, convex, positively homogeneous and continuous, and
+  $\varphi_i(h)\le c_i\max_j|h_j|$ with $c_i\coloneqq\max_{v\in B_i}\one\cdot v$;
+  \item $\varphi_i(h)=0$ whenever $h\in U$ and $h_i\ge0$;
+  \item $\varphi_i(h+t\one)\le\varphi_i(h)$ for $t\ge0$;
+  \item $\hat A_i$ is a compact subset of $\conv(K'\cup\{e_i\})$, and
+  $\{\varphi_i=0\}=C_{\hat A_i}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $K'$ is convex, $\conv(K'\cup\{e_i\})=\{(1-\lambda)k+\lambda e_i:k\in K',\,
+\lambda\in[0,1]\}$, and $\cone(K'\cup\{e_i\})=\{tx:t\ge0,\,x\in\conv(K'\cup\{e_i\})\}
+\subseteq\R^n_+$.
+(a) $\varphi_i$ is a maximum of linear functions over a compact set, and $0\in B_i$ gives
+$\varphi_i\ge0$. For $v\ge0$, $|v\cdot h|\le(\one\cdot v)\max_j|h_j|$.
+(b) Write $v\in B_i$ as $v=t((1-\lambda)k+\lambda e_i)$. For $h\in U$ with $h_i\ge0$,
+$v\cdot h=t((1-\lambda)k\cdot h+\lambda h_i)\ge0$, so $\varphi_i(h)\le0$.
+(c) $v\cdot\one\ge0$ for $v\in B_i$.
+(d) Each $v\in B_i\setminus\{0\}$ is $tx$ with $t>0$ and $x\in\conv(K'\cup\{e_i\})$, and
+$\nu(v)=x$. That set is closed, so it contains $\hat A_i$, which is therefore compact.
+Finally $\varphi_i(h)=0$ iff $v\cdot h\ge0$ for all $v\in B_i$, iff $a\cdot h\ge0$ for all
+$a\in\nu(B_i\setminus\{0\})$, iff (by continuity) $a\cdot h\ge0$ for all $a\in\hat A_i$.
+\end{proof}
+
+\begin{lemma}\label{lem:coh}
+$\VB(K',B)$ satisfies (SC) and has null ties. For an admissible triple $(W_0,\beta,\alpha)$
+put
+\[
+  W\coloneqq\Bigl\{\beta+\sum_{\omega\notin W_0}\alpha_\omega v_\omega:v_\omega\in
+  B_\omega\Bigr\},\qquad\hat W\coloneqq\nu(W).
+\]
+Then $\hat W\subseteq\Delta$ is compact, and $X^\ast(W_0,\beta,\alpha)=D_{K(W_0,\beta,
+\alpha)}$ a.e., where
+\[
+  K(W_0,\beta,\alpha)\coloneqq\conv\Bigl(K'\cup\bigcup_{\omega\in W_0}\hat A_\omega\cup
+  \hat W\Bigr)
+\]
+is a credal set containing $K'$. In particular $X^\ast(W_0,\beta,\alpha)$ is coherent.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:veto}(a) and (M), $\varphi_i$ and $h_i$ are integrable. (SC) follows from
+Lemma~\ref{lem:veto}(b). For an admissible triple, $g=\sum_{\omega\notin W_0}
+\alpha_\omega\varphi_\omega-\beta\cdot h$ is continuous, and by Lemma~\ref{lem:veto}(c),
+$g(h+t\one)\le g(h)-t\,\one\cdot\beta<g(h)$ for $t>0$, since $\one\cdot\beta>0$.
+Lemma~\ref{lem:fubini} makes $\{g=0\}$ null; so the ranking has null ties.
+
+Since $\alpha\ge0$, a sum of maxima over independent choices is the maximum of the sums:
+\[
+  g(h)=\max_{w\in W}(-w\cdot h).
+\]
+$W$ is compact, as a continuous image of a product of compact sets. Each $w\in W$ is
+non-negative with $\one\cdot w\ge\one\cdot\beta>0$, so $\nu$ is continuous on $W$ and
+$\hat W\subseteq\Delta$ is compact. As the maximum is attained, $\{g<0\}=\{h:w\cdot h>0
+\text{ for all }w\in W\}=D_{\hat W}$.
+
+Let $\omega\in W_0$. By Lemma~\ref{lem:veto}(d), $\{\varphi_\omega=0\}=C_{\hat
+A_\omega}$. If $\hat A_\omega=\emptyset$, this is $\R^n=D_{\hat A_\omega}$. Otherwise
+$\psi_\omega'(h)\coloneqq\min_{a\in\hat A_\omega}a\cdot h$ is continuous with
+$\psi_\omega'(h+t\one)=\psi_\omega'(h)+t$, so $\{\psi_\omega'=0\}$ is null by
+Lemma~\ref{lem:fubini}, and $C_{\hat A_\omega}=D_{\hat A_\omega}\cup\{\psi_\omega'=0\}$.
+Either way $\{\varphi_\omega=0\}=D_{\hat A_\omega}$ a.e. By Lemma~\ref{lem:D}(a),
+\[
+  X^\ast(W_0,\beta,\alpha)=D_{K'}\cap\bigcap_{\omega\in W_0}D_{\hat A_\omega}\cap
+  D_{\hat W}=D_{K'\cup\bigcup_{\omega\in W_0}\hat A_\omega\cup\hat W}=
+  D_{K(W_0,\beta,\alpha)}\quad\text{a.e.}
+\]
+The union is a finite union of compact subsets of $\Delta$, so its convex hull is a
+credal set.
+\end{proof}
+
+\begin{theorem}\label{thm:family}
+Let $B$ be a veto profile over $K'$. The ranking $\VB(K',B)$ on $\M_U$ is complete and
+transitive and satisfies (G), (IB), (GC), (C), (ID) and (W). Every model is weakly dominated
+by an undominated model. A model is undominated if and only if it equals
+$D_{K(W_0,\beta,\alpha)}$ a.e.\ for some admissible triple, and a model tied at every world
+with an undominated model equals it a.e.
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:coh} and Theorem~\ref{thm:route}.
+\end{proof}
+
+\subsection{The covering theorem}\label{sec:cover}
+
+\begin{lemma}\label{lem:LF}
+Let $K\subseteq\Delta$ be full-dimensional, compact and convex, and let $K'\subseteq\Delta$
+be nonempty, compact and convex, with $U=D_{K'}$.
+\begin{enumerate}[label=(\alph*)]
+  \item If $K'\subseteq\relint K$, then $D_K\subseteq U$ and $\partial D_K\setminus\{0\}
+  \subseteq U$. Hence $D_K\in\M_U$ and (LF) holds at $D_K$ with $N=U$.
+  \item Conversely, if $D_K\subseteq U$ a.e.\ and (LF) holds at $D_K$, then $K'\subseteq
+  \relint K$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $K'\subseteq K$ gives $D_K\subseteq D_{K'}$. Let $h\in\partial D_K\setminus\{0\}$. By
+Lemma~\ref{lem:D}(b), $h\in C_K\setminus\{0\}$, so Lemma~\ref{lem:fulldim}(c) gives
+$k'\cdot h>0$ for every $k'\in K'$, that is, $h\in U$. $U$ is open, and every measurable
+$X$ with $X\triangle D_K\subseteq U$ a.e.\ satisfies $X\subseteq U$ a.e.
+
+(b) By Lemma~\ref{lem:open}, $D_K\subseteq U$, and Lemma~\ref{lem:D}(c) gives
+$K'\subseteq K$. Let $N$ be as in (LF). By (LF) the set $D_K\cup N$ belongs to $\M_U$, so
+$N\subseteq U$ a.e., and $N\subseteq U$ by Lemma~\ref{lem:open}. Suppose $k'\in K'\cap\rbd
+K$. By Lemma~\ref{lem:fulldim}(d) there is $h\in F_{k'}\setminus\{0\}$. Then $h\in
+C_K\setminus D_K=\partial D_K$, so $h\in N\subseteq U$; but $k'\cdot h=0$, so $h\notin U$.
+\end{proof}
+
+\begin{theorem}\label{thm:cover}
+Let $K\subseteq\Delta$ be a full-dimensional credal set. Suppose that $K'\subseteq\relint
+K$ is nonempty, compact and convex, that $A_1,\dots,A_n$ are compact (possibly empty)
+with $A_i\subseteq\conv(K'\cup\{e_i\})$, and that
+\[
+  K=\conv(K'\cup A_1\cup\dots\cup A_n).
+\]
+Then $\VB(K',A)$ covers $K$ on $\M_{D_{K'}}$, and satisfies (W). Its undominated models
+are exactly the coherent models $D_{K(W_0,\beta,\alpha)}$ of Theorem~\ref{thm:family}.
+\end{theorem}
+
+\begin{proof}
+Theorem~\ref{thm:family} gives every requirement except (iv) and (vi) of
+Definition~\ref{def:cover}. Lemma~\ref{lem:LF}(a) gives $D_K\in\M_U$ and (LF). Fix $p\in
+K'$. The triple $(\Omega,p,\emptyset)$ is admissible (there are no $\alpha$-weights), and
+$W=\{p\}$, $\hat W=\{p\}$. Since $\hat A_\omega=\conv A_\omega$,
+\[
+  K(\Omega,p,\emptyset)=\conv\Bigl(K'\cup\bigcup_\omega\conv A_\omega\cup\{p\}\Bigr)
+  =\conv(K'\cup A_1\cup\dots\cup A_n)=K .
+\]
+By Theorem~\ref{thm:family}, $D_K$ is undominated.
+\end{proof}
+
+\begin{remark}\label{rem:direct}
+The target step can also be seen directly. If $Y$ weakly dominates $D_K$, then
+$a_i(Y)\le a_i(D_K)=0$ for every $i$, so $Y\subseteq N(\Omega)=D_K$ a.e. With the vetoes
+tied, $b_i(Y)\le b_i(D_K)$ for every $i$. For $p\in K$, $\sum_ip_i(b_i(Y)-b_i(D_K))=
+\int_{D_K\setminus Y}p\cdot h\,d\mu$, which is positive unless $D_K\setminus Y$ is null.
+Hence $Y=D_K$ a.e.
+\end{remark}
+
+\begin{corollary}\label{cor:contam}
+Let $p\in\relint\Delta$, $0<\varepsilon\le1$ and $K\coloneqq(1-\varepsilon)p+
+\varepsilon\Delta$, with vertices $v_i\coloneqq(1-\varepsilon)p+\varepsilon e_i$. For
+$0\le s<1$ let $K'\coloneqq p+s(K-p)$ and $A_i\coloneqq\{v_i\}$. Then $\VB(K',A)$ covers
+$K$ on $\M_{D_{K'}}$, in every number $n\ge2$ of worlds. At world $i$ the ranking compares
+\[
+  \Bigl(\int_X\bigl[-(1-\varepsilon)\,p\cdot h-\varepsilon h_i\bigr]_+d\mu(h),\
+  -\int_Xh_i\,d\mu(h)\Bigr)
+\]
+lexicographically. The case $\varepsilon=1$ is the vacuous model $K=\Delta$.
+\end{corollary}
+
+\begin{proof}
+The map $m\mapsto(1-\varepsilon)p+\varepsilon m$ is an affine bijection of $\aff\Delta$
+mapping $\Delta$ onto $K$ and fixing $p$, so $K$ is full-dimensional and $p\in\relint K$.
+Hence $K'\subseteq\relint K$. Also $v_i\in\conv(\{p\}\cup\{e_i\})\subseteq\conv(K'\cup
+\{e_i\})$, and $K=\conv\{v_1,\dots,v_n\}=\conv(K'\cup A_1\cup\dots\cup A_n)$ because
+$K'\subseteq K$. Apply Theorem~\ref{thm:cover}; the veto is $\max(0,-v_i\cdot h)$.
+\end{proof}
+
+\begin{theorem}\label{thm:exempt}
+Let $K'\subseteq\Delta$ be nonempty, compact and convex, let $A_1,\dots,A_n$ be compact
+with $A_i\subseteq\conv(K'\cup\{e_i\})$, and let $p\in\Delta$ be arbitrary. Put
+\[
+  K\coloneqq\conv(K'\cup A_1\cup\dots\cup A_n\cup\{p\}).
+\]
+If $K$ is full-dimensional and $K'\subseteq\relint K$, then $\VB(K',A)$ covers $K$ on
+$\M_{D_{K'}}$, and satisfies (W).
+\end{theorem}
+
+\begin{proof}
+The triple $(\Omega,p,\emptyset)$ is admissible, since $p\in\R^n_+\setminus\{0\}$, and
+$\hat W=\{p\}$. As in the proof of Theorem~\ref{thm:cover}, $K(\Omega,p,\emptyset)=K$, so
+$D_K$ is undominated by Theorem~\ref{thm:family}. Lemma~\ref{lem:LF}(a) gives $D_K\in
+\M_U$ and (LF), and Theorem~\ref{thm:family} gives the remaining requirements.
+\end{proof}
+
+\begin{remark}\label{rem:exempt}
+The exempt point $p$ may lie on the boundary of $\Delta$. The set
+$K_0\coloneqq\conv(K'\cup A_1\cup\dots\cup A_n)$ need not be full-dimensional, and $K'$
+need not lie in $\relint K_0$. The ranking does not depend on $p$: a single ranking
+$\VB(K',A)$ covers every $\conv(K_0\cup\{p\})$, $p\in\Delta$, that is full-dimensional and
+contains $K'$ in its relative interior.
+\end{remark}
+
+\subsection{Visibility}\label{sec:vis}
+
+Throughout this subsection $K\subseteq\Delta$ is a full-dimensional credal set.
+
+\begin{definition}\label{def:vis}
+Let $x\in K$ and $j\in\Omega$.
+\begin{enumerate}[label=(\alph*)]
+  \item $x$ is \emph{visible from $j$} if $x=e_j$, or the open ray $\{x+s(x-e_j):s>0\}$
+  meets $\relint K$. $x$ is \emph{visible} if it is visible from some world.
+  \item $x$ is \emph{weakly visible from $j$} if $h_j\le0$ for every $h\in F_x$, and
+  \emph{tangential from $j$} if it is weakly visible but not visible from $j$. It is
+  \emph{anti-visible from $j$} if $h_j\ge0$ for every $h\in F_x$, and $j$ is
+  \emph{crossing} at $x$ if $F_x$ contains gambles with $h_j>0$ and gambles with $h_j<0$.
+  \item For $\delta>0$ let $K_\delta\coloneqq\{k\in K:\bar B(k,\delta)\cap\aff\Delta
+  \subseteq K\}$, where $\bar B(k,\delta)$ is the closed Euclidean ball. A set $S\subseteq
+  K$ is \emph{uniformly visible} if, for some $\delta>0$,
+  \[
+    S\subseteq\bigcup_{j\in\Omega}\conv(K_\delta\cup\{e_j\}).
+  \]
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}\label{lem:visbasic}
+\begin{enumerate}[label=(\alph*)]
+  \item Let $x\in K$ and $x\neq e_j$. Then $x$ is visible from $j$ if and only if
+  $x=(1-t)k+te_j$ for some $k\in\relint K$ and $t\in[0,1)$.
+  \item Each $K_\delta$ is compact, convex and contained in $\relint K$; $K_\delta
+  \supseteq K_{\delta'}$ for $\delta\le\delta'$; $K_\delta\neq\emptyset$ for small
+  $\delta$; and every compact subset of $\relint K$ lies in some $K_\delta$.
+  \item Let $x=(1-t)k+te_j$ with $k\in K_\delta$ and $t\in[0,1)$. Then every $y\in K$ with
+  $|y-x|<(1-t)\delta/2$ lies in $\conv(K_{\delta/2}\cup\{e_j\})$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $k\coloneqq x+s(x-e_j)\in\relint K$ with $s>0$, then $x=\frac1{1+s}k+\frac
+s{1+s}e_j$. Conversely let $x=(1-t)k+te_j$ with $k\in\relint K$. If $t>0$, then
+$k=x+\frac t{1-t}(x-e_j)$ lies on the open ray. If $t=0$, then $x\in\relint K$, which is
+open in $\aff\Delta$ and contains the points of the ray near $x$.
+
+(b) Let $d(k)\coloneqq\inf\{|k-y|:y\in\aff\Delta\setminus K\}$, a $1$-Lipschitz function.
+Since $K$ is closed, $K_\delta=\{k\in K:d(k)\ge\delta\}$, which is compact. If $k,k'\in
+K_\delta$, $\lambda\in[0,1]$ and $y=\lambda k+(1-\lambda)k'+u$ with $|u|\le\delta$ and
+$\one\cdot u=0$, then $y=\lambda(k+u)+(1-\lambda)(k'+u)\in K$; so $K_\delta$ is convex.
+Clearly $K_\delta\subseteq\relint K$ and the sets increase as $\delta$ decreases. $d$ is
+positive and continuous on the nonempty set $\relint K$, so it has a positive minimum on
+any compact subset of $\relint K$.
+
+(c) Put $k_y\coloneqq(y-te_j)/(1-t)\in\aff\Delta$. Then $|k_y-k|=|y-x|/(1-t)<\delta/2$, so
+$\bar B(k_y,\delta/2)\subseteq\bar B(k,\delta)$ and $k_y\in K_{\delta/2}$. Moreover
+$y=(1-t)k_y+te_j$.
+\end{proof}
+
+\begin{lemma}\label{lem:V1}
+Let $x\in K$ and $x\neq e_j$. Then $x$ is visible from $j$ if and only if $h_j<0$ for
+every nonzero $h\in F_x$. In particular, every point of $\relint K$ is visible from every
+world, and visible points are weakly visible.
+\end{lemma}
+
+\begin{proof}
+($\Rightarrow$) Let $k=x+s(x-e_j)\in\relint K$ with $s>0$, and $h\in F_x\setminus\{0\}$.
+Then $k\cdot h=(1+s)\,x\cdot h-s\,h_j=-s\,h_j$, and $k\cdot h>0$ by
+Lemma~\ref{lem:fulldim}(c). So $h_j<0$.
+
+($\Leftarrow$) Suppose the open ray $R$ misses $\relint K$. Both are convex subsets of
+$\aff\Delta$ and $\relint K$ is relatively open and nonempty. By separation in $\aff\Delta$
+\cite[Thm.~11.3]{Rockafellar} there are a non-constant affine $\ell$ on $\aff\Delta$ and % citation number to be verified
+$c\in\R$ with $\ell\ge c$ on $\relint K$, hence on $K$, and $\ell\le c$ on $R$. Letting
+$s\to0$ along $R$ gives $\ell(x)\le c$, and $x\in K$ gives $\ell(x)\ge c$; so $\ell(x)=c$.
+By Lemma~\ref{lem:fulldim}(a), $\ell-c$ is $m\mapsto m\cdot h$ for some $h\neq0$. Then
+$h\in F_x$, and on $R$, $(x+s(x-e_j))\cdot h=-s\,h_j\le0$, so $h_j\ge0$.
+
+For $x\in\relint K$, $F_x=\{0\}$ by Lemma~\ref{lem:fulldim}(c).
+\end{proof}
+
+\begin{theorem}\label{thm:vis}
+The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+  \item There are $K'$ and $A_1,\dots,A_n$ satisfying the hypotheses of
+  Theorem~\ref{thm:cover}.
+  \item $\ext K$ is uniformly visible.
+  \item Both of the following hold:
+  \begin{enumerate}[label=(\alph*)]
+    \item every point of $\cl(\ext K)$ that is not a vertex of $\Delta$ is visible;
+    \item no vertex $e_i$ of $\Delta$ that lies in $K$ is an accumulation point of
+    $\ext K$.
+  \end{enumerate}
+\end{enumerate}
+Under these conditions $K$ is covered by $\VB(K_\delta,A)$ with
+$A_j\coloneqq K\cap\conv(K_\delta\cup\{e_j\})$, for $\delta$ as in (ii) and small enough
+that $K_\delta\neq\emptyset$.
+\end{theorem}
+
+\begin{proof}
+(i)$\Rightarrow$(ii). $\ext K\subseteq K'\cup\bigcup_iA_i$, since $K$ is the convex hull of
+this compact set, and $K'\cap\ext K=\emptyset$ by Lemma~\ref{lem:fulldim}(b). By
+Lemma~\ref{lem:visbasic}(b), $K'\subseteq K_\delta$ for some $\delta>0$, so $\ext
+K\subseteq\bigcup_i\conv(K_\delta\cup\{e_i\})$.
+
+(ii)$\Rightarrow$(i). Decreasing $\delta$ preserves (ii), so we may assume $K_\delta\neq
+\emptyset$. Put $K'\coloneqq K_\delta\subseteq\relint K$ and $A_j\coloneqq K\cap
+\conv(K_\delta\cup\{e_j\})$, which is compact. Then $\ext K\subseteq\bigcup_jA_j$, and
+$K=\conv\ext K\subseteq\conv(K'\cup\bigcup_jA_j)\subseteq K$. This also proves the last
+sentence of the theorem, by Theorem~\ref{thm:cover}.
+
+(ii)$\Rightarrow$(iii). Let $x\in\cl(\ext K)$, $x=\lim v_m$ with $v_m\in\ext K$, and write
+$v_m=(1-t_m)k_m+t_me_{j_m}$ with $k_m\in K_\delta$ and $t_m\in[0,1]$. Passing to a
+subsequence, $j_m=j$, $t_m\to t$ and $k_m\to k\in K_\delta$, so $x=(1-t)k+te_j$. For (a):
+if $x$ is not a vertex of $\Delta$, then $t<1$, and $x$ is visible from $j$ by
+Lemma~\ref{lem:visbasic}(a). For (b): suppose $e_i\in K$ and $v_m\to e_i$ with $v_m\neq
+e_i$. Then $e_i=(1-t)k+te_j$ with $k\in\relint K\subseteq\relint\Delta$
+(Lemma~\ref{lem:fulldim}(b)); since $k$ has full support and $n\ge2$, this forces $t=1$
+and $j=i$. So $v_m=(1-t_m)k_m+t_me_i$ with $t_m<1$ (as $v_m\ne e_i$) and $t_m>0$ (as
+$v_m\notin\relint K$). Then $v_m$ lies in the open segment between $k_m\in K$ and $e_i\in
+K$, so it is not extreme, a contradiction.
+
+(iii)$\Rightarrow$(ii). For $x\in\cl(\ext K)$ not a vertex of $\Delta$, (a) and
+Lemma~\ref{lem:visbasic}(a) give $x=(1-t)k+te_j$ with $k\in\relint K$, $t\in[0,1)$; let
+$\delta(x)\coloneqq d(k)>0$, so $k\in K_{\delta(x)}$. By Lemma~\ref{lem:visbasic}(c) the open
+ball $O_x$ of radius $(1-t)\delta(x)/2$ about $x$ satisfies $O_x\cap K\subseteq
+\conv(K_{\delta(x)/2}\cup\{e_j\})$. For a vertex $e_i\in\cl(\ext K)$, (b) gives an open
+ball $O_{e_i}$ about $e_i$ meeting $\ext K$ only in $e_i$, and $e_i\in\conv(K_\delta\cup
+\{e_i\})$ for every $\delta$ with $K_\delta\ne\emptyset$. The compact set $\cl(\ext K)$ is
+covered by finitely many of these balls. Let $\delta$ be the least of the corresponding
+numbers $\delta(x)/2$, decreased if necessary so that $K_\delta\neq\emptyset$. Since
+$K_{\delta'}\subseteq K_\delta$ for $\delta'\ge\delta$, every extreme point lies in some
+$\conv(K_\delta\cup\{e_j\})$.
+\end{proof}
+
+\begin{corollary}\label{cor:exemptvis}
+If, for some $p\in K$, the set $\ext K\setminus\{p\}$ is uniformly visible, then $K$ is
+covered by $\VB(K_\delta,A)$ with $A_j\coloneqq K\cap\conv(K_\delta\cup\{e_j\})$, for
+suitable $\delta>0$.
+\end{corollary}
+
+\begin{proof}
+Choose $\delta$ for $\ext K\setminus\{p\}$ with $K_\delta\neq\emptyset$, and put
+$K'\coloneqq K_\delta$. Then $\ext K\subseteq\bigcup_jA_j\cup\{p\}$, so
+$K=\conv(K'\cup\bigcup_jA_j\cup\{p\})$, and $K'\subseteq\relint K$. Apply
+Theorem~\ref{thm:exempt}.
+\end{proof}
+
+For polytopes, visibility can be read off the facet normals.
+
+\begin{lemma}\label{lem:poly}
+Suppose $K=\{m\in\aff\Delta:g_f\cdot m\ge0\text{ for }f\in I\}$ with $I$ finite. Then
+$C_K=\cone\{g_f:f\in I\}+\R_+\one$, and for $x\in K$,
+\[
+  F_x=\cone\{g_f:f\in I,\ g_f\cdot x=0\}.
+\]
+Hence $x\neq e_j$ is visible from $j$ if and only if $(g_f)_j<0$ for every $f$ with
+$g_f\neq0$ and $g_f\cdot x=0$.
+\end{lemma}
+
+\begin{proof}
+By the affine Farkas lemma \cite[Cor.~7.1h]{Schrijver}, applied to the system $g_f\cdot
+m\ge0$, $\one\cdot m\ge1$, $-\one\cdot m\ge-1$, the inequality $h\cdot m\ge0$ holds on
+$K$ iff $h=\sum_f\lambda_fg_f+(\eta_+-\eta_-)\one$ with $\lambda,\eta_\pm\ge0$ and
+$\eta_+-\eta_-\ge0$. This is the formula for $C_K$. If such an $h$ has $x\cdot h=0$, then
+$\sum_f\lambda_f\,g_f\cdot x+(\eta_+-\eta_-)=0$ with non-negative terms, so $\lambda_f=0$
+unless $g_f\cdot x=0$, and the $\one$-term vanishes. The visibility criterion follows from
+Lemma~\ref{lem:V1}: a nonzero element of $F_x$ has a positive coefficient on some nonzero
+active $g_f$, and each nonzero active $g_f$ lies in $F_x$.
+\end{proof}
+
+Every polytope $K\subseteq\Delta$ has such a description: an affine inequality $a\cdot
+m\ge c$ on $\aff\Delta$ is $(a-c\one)\cdot m\ge0$.
+
+\begin{corollary}\label{cor:poly}
+Let $K$ be a full-dimensional polytope. If every vertex of $K$, with at most one
+exception, is a vertex of $\Delta$ or visible, then $K$ is covered by a veto--Brier
+ranking. If there is no exception, the hypotheses of Theorem~\ref{thm:cover} hold.
+\end{corollary}
+
+\begin{proof}
+A visible vertex $v\neq e_j$ has the form $(1-t)k+te_j$ with $k\in\relint K$, so
+$v\in\conv(K_{d(k)}\cup\{e_j\})$; and $e_j\in\conv(K_\delta\cup\{e_j\})$. Taking the least
+of finitely many depths, $\ext K$ minus the exception is uniformly visible. Apply
+Corollary~\ref{cor:exemptvis} or Theorem~\ref{thm:vis}.
+\end{proof}
+
+\begin{corollary}\label{cor:smooth}
+Let $K\subseteq\relint\Delta$ be full-dimensional, and suppose $K$ has exactly one
+supporting hyperplane (in $\aff\Delta$) at each point of $\rbd K$. Then every point of $K$
+is visible, the hypotheses of Theorem~\ref{thm:cover} hold, and $K$ is covered.
+\end{corollary}
+
+\begin{proof}
+Let $x\in\rbd K$. By Lemma~\ref{lem:fulldim}(d) there is $h_x\in F_x\setminus\{0\}$. If
+$h\in F_x\setminus\{0\}$, the affine functions $m\mapsto m\cdot h$ and $m\mapsto m\cdot
+h_x$ on $\aff\Delta$ vanish on the same supporting hyperplane, so they are proportional;
+both are non-negative on $K$, which has points off that hyperplane, so the factor is
+positive, and by Lemma~\ref{lem:fulldim}(a) $h$ is a positive multiple of $h_x$. Thus
+$F_x=\R_+h_x$. Since $x$ has full support, $x\cdot h_x=0$ and $h_x\neq0$, some coordinate
+$(h_x)_j$ is negative, and $x$ is visible from $j$ by Lemma~\ref{lem:V1}. Points of
+$\relint K$ are visible by Lemma~\ref{lem:V1}. No vertex of $\Delta$ lies in $K$, so
+condition (iii) of Theorem~\ref{thm:vis} holds.
+\end{proof}
+
+Examples of such $K$, whenever they lie in $\relint\Delta$, are Euclidean balls
+$\{m\in\aff\Delta:|m-c|\le r\}$; outer parallel bodies $\{m\in\aff\Delta:\operatorname{dist}
+(m,L)\le r\}$ of a compact convex $L\subseteq\aff\Delta$ with $r>0$ (each boundary point
+lies on the boundary of a ball of radius $r$ contained in the body, and any supporting
+hyperplane there supports that ball); and compact sublevel sets $\{m\in\aff\Delta:G(m)\le
+r\}$, $r>\inf G$, of a function $G$ that is convex and differentiable on an open convex
+subset $V$ of $\aff\Delta$ containing the set. In the last
+case, at a boundary point $x$ we have $G(x)=r$ and $\nabla G(x)\ne0$ (a critical point of
+a convex function is a minimiser); if $y$ is an outward normal at $x$, then $y\cdot d\le0$
+for every direction $d$ with $\nabla G(x)\cdot d<0$, since $x+td$ lies in the set for
+small $t>0$, so $y$ is a non-negative multiple of $\nabla G(x)$. The last class includes
+ellipsoids and balls $\{m:\mathrm{KL}(m\|q)\le r\}$ for the Kullback--Leibler divergence,
+$q\in\relint\Delta$, with $V=\relint\Delta$.
+
+\begin{corollary}\label{cor:n2}
+If $n=2$, every full-dimensional credal set $K\subseteq\Delta$ is covered by a
+veto--Brier ranking satisfying the hypotheses of Theorem~\ref{thm:cover}.
+\end{corollary}
+
+\begin{proof}
+$K$ is a segment with endpoints $x,y$, $x_1<y_1$. If $y\neq e_1$, the points
+$y+s(y-e_1)$ have first coordinate $y_1-s(1-y_1)\in(x_1,y_1)$ for small $s>0$, so they lie in
+$\relint K$ and $y$ is visible from $1$. Symmetrically $x$ is $e_2$ or visible from $2$.
+Apply Corollary~\ref{cor:poly}.
+\end{proof}
+
+\begin{remark}\label{rem:qual}
+Three qualifications in these statements matter.
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{Strict, not weak, visibility.} Visible points are weakly visible, but not
+  conversely. Let $K=\conv\{v,w,x\}$ with $v=(\frac25,\frac3{10},\frac3{10})$,
+  $w=(\frac15,\frac25,\frac25)$ and $x=(\frac9{20},\frac9{20},\frac1{10})$. Its facet
+  normals at $v$ are $(0,1,-1)$ (through $v,w$) and $(-21,19,9)$ (through $v,x$). Both have
+  non-positive first coordinate, so $v$ is weakly visible from world $1$; but
+  $w=v+\frac13(v-e_1)$, so the ray from $e_1$ through $v$ runs along the edge $[v,w]$ and
+  misses $\relint K$. By Lemma~\ref{lem:poly}, $v$ is not visible from worlds $2$ or $3$
+  either. So $v$ is tangential from world $1$ and is not visible; by
+  Lemma~\ref{lem:visbasic}(a) it lies in no set $\conv(K''\cup\{e_j\})$ with $K''$ a
+  compact subset of $\relint K$. Tangential points count as not visible in
+  Theorems~\ref{thm:cover} and~\ref{thm:vis}, and also in Theorem~\ref{thm:reach} below.
+  \item \emph{Uniformity.} Theorem~\ref{thm:vis} requires visibility on $\cl(\ext K)$, not
+  only on $\ext K$, together with condition (iii)(b) at vertices of $\Delta$. For
+  polytopes both reduce to visibility of the vertices.
+  \item \emph{Dimension and interiority.} Full-dimensionality of $K$ is assumed throughout
+  this section; it is forced by (LF) on one-sided domains
+  (Proposition~\ref{prop:lowdim}). The assumption $K\subseteq\relint\Delta$ is used only in
+  Corollary~\ref{cor:smooth} and in the exclusions of Section~\ref{sec:excl}.
+\end{enumerate}
+\end{remark}
+
+\subsection{Examples}\label{sec:examples}
+
+Interior $\varepsilon$-contaminations, including the vacuous model, are covered by
+Corollary~\ref{cor:contam}, in every number of worlds. Smooth credal sets in
+$\relint\Delta$ and all full-dimensional credal sets on two worlds are covered by
+Corollaries~\ref{cor:smooth} and~\ref{cor:n2}.
+
+\begin{proposition}\label{prop:tv}
+Let $p\in\relint\Delta$, $0<\delta<\min_jp_j$, and $K\coloneqq\{m\in\Delta:\frac12\sum_i
+|m_i-p_i|\le\delta\}$. Then $K$ is a full-dimensional polytope in $\relint\Delta$ whose
+vertices are all visible, and $K$ is covered, for every $n\ge2$.
+\end{proposition}
+
+\begin{proof}
+Every $m\in\aff\Delta$ with $\frac12\sum|m_i-p_i|\le\delta$ has $m_j\ge p_j-\delta>0$, so
+$K=p+\delta Q$ with $Q\coloneqq\{d:\one\cdot d=0,\ \sum|d_i|\le2\}$, and $K\subseteq
+\relint\Delta$ is full-dimensional. If $d\in Q$, $d\ne0$, write $d=d^+-d^-$ with
+$\one\cdot d^+=\one\cdot d^-\eqqcolon\sigma\le1$; then $d=\sum_{i\neq j}\frac{d^+_id^-_j}\sigma
+(e_i-e_j)$, with weights summing to $\sigma$, and $0=\frac12(e_1-e_2)+\frac12(e_2-e_1)$.
+So $Q=\conv\{e_i-e_j:i\neq j\}$, and every vertex of $K$ has the form $v=p+\delta(e_i-e_j)$.
+For small $s>0$ the point $y\coloneqq v+s(v-e_i)$ satisfies
+\[
+  y-p=(1+s)\delta(e_i-e_j)+s(p-e_i),\qquad
+  \tfrac12\textstyle\sum_k|y_k-p_k|=\delta+s(\delta-p_j)<\delta ,
+\]
+by a direct computation of the coordinates $i$, $j$ and $k\notin\{i,j\}$. So $y\in\relint K$
+and $v$ is visible from $i$. Apply Corollary~\ref{cor:poly}.
+\end{proof}
+
+Let $\underline P:2^\Omega\to[0,1]$ with $\underline P(\emptyset)=0$ and $\underline
+P(\Omega)=1$, and put $K\coloneqq\{m\in\aff\Delta:m(A)\ge\underline P(A)\text{ for all
+}A\subseteq\Omega\}$, where $m(A)\coloneqq\sum_{k\in A}m_k$. The constraints on singletons
+give $K\subseteq\Delta$. An event $A$ is \emph{active} at $x\in K$ if $x(A)=\underline
+P(A)$.
+
+\begin{lemma}\label{lem:events}
+Suppose $K$ is full-dimensional. A point $x\in K$ with $x\neq e_j$ is visible from $j$ if
+and only if every active event $A$ with $\emptyset\neq A\neq\Omega$ satisfies $j\notin A$
+and $\underline P(A)>0$.
+\end{lemma}
+
+\begin{proof}
+On $\aff\Delta$, $m(A)-\underline P(A)=m\cdot g_A$ with $g_A\coloneqq1_A-\underline
+P(A)\one$, so Lemma~\ref{lem:poly} applies. $g_\emptyset=g_\Omega=0$, and $g_A\neq0$ for
+proper nonempty $A$. For such $A$, $\underline P(A)<1$: otherwise $m(\Omega\setminus A)=0$
+on $K$, and $K$ would not be full-dimensional. Hence $(g_A)_j=1-\underline P(A)>0$ if
+$j\in A$, and $(g_A)_j=-\underline P(A)$ if $j\notin A$.
+\end{proof}
+
+For a permutation $\sigma$ of $\Omega$ let $S_k\coloneqq\{\sigma(1),\dots,\sigma(k)\}$ and
+define the marginal vector $v^\sigma$ by $v^\sigma_{\sigma(k)}\coloneqq\underline P(S_k)
+-\underline P(S_{k-1})$. If $\underline P$ is supermodular, that is, $\underline P(A\cup
+B)+\underline P(A\cap B)\ge\underline P(A)+\underline P(B)$, then $K$ is the core of
+$\underline P$ and its extreme points are exactly the vectors $v^\sigma$
+\cite{Shapley,Ichiishi}.
+
+\begin{proposition}\label{prop:bel}
+Let $\rho$ be a mass function on the nonempty subsets of $\Omega$, $\mathrm{Bel}(A)
+\coloneqq\sum_{\emptyset\neq F\subseteq A}\rho(F)$, and suppose $\rho(\Omega)>0$ and
+$\rho(\{k\})>0$ for every $k$. Then the credal set $K$ of $\mathrm{Bel}$ is a
+full-dimensional polytope in $\relint\Delta$, each vertex $v^\sigma$ is visible from
+$\sigma(n)$, and $K$ is covered.
+\end{proposition}
+
+\begin{proof}
+Belief functions are supermodular \cite{Shafer}, so $\ext K=\{v^\sigma\}$. Since
+$\mathrm{Bel}(S_k)-\mathrm{Bel}(S_{k-1})$ sums $\rho(F)$ over the $F$ whose
+$\sigma$-last element is $\sigma(k)$,
+\[
+  v^\sigma(A)=\sum_{F:\,\mathrm{last}_\sigma(F)\in A}\rho(F)\ \ge\
+  \sum_{F\subseteq A}\rho(F)=\mathrm{Bel}(A).
+\]
+If $\sigma(n)\in A\neq\Omega$, the set $F=\Omega$ contributes to the left side but not
+the right, so $v^\sigma(A)\ge\mathrm{Bel}(A)+\rho(\Omega)>\mathrm{Bel}(A)$. Hence every
+active proper event at $v^\sigma$ omits $\sigma(n)$, and it has $\mathrm{Bel}(A)\ge
+\sum_{k\in A}\rho(\{k\})>0$. For each proper nonempty $A$ some $\sigma$ has $\sigma(n)
+\in A$, so the average of all $v^\sigma$ satisfies every constraint strictly; it lies in
+$\relint K$, and $K$ is full-dimensional. Also $m_k\ge\rho(\{k\})>0$ on $K$. By
+Lemma~\ref{lem:events} each $v^\sigma$ is visible from $\sigma(n)$; apply
+Corollary~\ref{cor:poly}.
+\end{proof}
+
+\begin{proposition}\label{prop:2mon}
+Suppose $\underline P$ is \emph{strictly supermodular}: $\underline P(A\cup B)+
+\underline P(A\cap B)>\underline P(A)+\underline P(B)$ whenever neither of $A,B$ contains
+the other. Suppose also $\underline P(\{k\})>0$ for every $k$. Then $K$ is a
+full-dimensional polytope in $\relint\Delta$, each vertex $v^\sigma$ is visible from
+$\sigma(n)$, and $K$ is covered.
+\end{proposition}
+
+\begin{proof}
+$\ext K=\{v^\sigma\}$ by supermodularity. Since $\underline P\ge0$ is supermodular, it is
+monotone: for $A\subseteq B$, $\underline P(B)\ge\underline P(A)+\underline P(B\setminus
+A)\ge\underline P(A)$. Let $A$ be nonempty, with elements $\sigma(k_1),\dots,\sigma(k_r)$,
+$k_1<\dots<k_r$, and put $C_t\coloneqq A\cap S_{k_t}$. Applying supermodularity to
+$S_{k_t-1}$ and $C_t$, whose union is $S_{k_t}$ and whose intersection is $C_{t-1}$,
+\[
+  \underline P(S_{k_t})-\underline P(S_{k_t-1})\ \ge\ \underline P(C_t)-\underline
+  P(C_{t-1}),
+\]
+strictly unless $S_{k_t-1}\subseteq C_t$, that is, unless $S_{k_t-1}\subseteq A$ (note
+$C_t\not\subseteq S_{k_t-1}$). Summing over $t$ gives $v^\sigma(A)\ge\underline P(A)$,
+with equality only if $S_{k_r-1}\subseteq A\subseteq S_{k_r}$, so only if $A=S_{k_r}$ is an
+initial segment of $\sigma$. The proper initial segments omit $\sigma(n)$ and have
+$\underline P(S_k)\ge\underline P(\{\sigma(1)\})>0$. Each proper nonempty $A$ is not an
+initial segment for some $\sigma$ (one with $\sigma(n)\in A$), so averaging the
+$v^\sigma$ gives a point of $\relint K$, and $K$ is full-dimensional; $K\subseteq
+\relint\Delta$ as before. Apply Lemma~\ref{lem:events} and Corollary~\ref{cor:poly}.
+\end{proof}
+
+\begin{corollary}\label{cor:distortion}
+Let $p\in\relint\Delta$ and let $f:[0,1]\to[0,1]$ be strictly convex with $f(0)=0$,
+$f(1)=1$ and $f>0$ on $(0,1]$. Then the credal set of $\underline P\coloneqq f\circ p$,
+$\underline P(A)=f(p(A))$, is covered. This includes $f(x)=(1-\tau)x/(1-\tau x)$,
+$0<\tau<1$, the event lower probability of the constant-odds-ratio model with reference
+$p$ \cite{Walley}.
+\end{corollary}
+
+\begin{proof}
+Let $A,B$ be non-nested, $x\coloneqq p(A\cap B)$, $a\coloneqq p(A\setminus B)>0$ and
+$b\coloneqq p(B\setminus A)>0$. With $\lambda\coloneqq b/(a+b)\in(0,1)$, $x+a=\lambda x+
+(1-\lambda)(x+a+b)$ and $x+b=(1-\lambda)x+\lambda(x+a+b)$. Strict convexity gives
+$f(x+a)+f(x+b)<f(x)+f(x+a+b)$, which is strict supermodularity. Also $f(p_k)>0$. Apply
+Proposition~\ref{prop:2mon}. For the example, $f''(x)=2\tau(1-\tau)(1-\tau x)^{-3}>0$.
+\end{proof}
+
+The covered set in the constant-odds-ratio case is the core of the event lower
+probability. It differs from the density-ratio class $\{m:m_i/p_i\le km_j/p_j\}$,
+$k=1/(1-\tau)$: for $n=3$, $p$ uniform and $\tau=\frac12$, the core contains
+$(\frac15,\frac3{10},\frac12)$, which violates $m_3\le2m_1$. Density-ratio classes are not
+reached by veto--Brier rankings (Corollary~\ref{cor:out}); they are covered by the
+orthant-diagonal rankings of Section~\ref{sec:op} (Proposition~\ref{prop:box}).
+
+\begin{proposition}\label{prop:pri}
+Let $K\coloneqq\{m\in\Delta:l_i\le m_i\le u_i\}$ be full-dimensional with $K\subseteq
+\relint\Delta$. A vertex of $K$ is visible if and only if at most one of its coordinates is
+at its upper bound. Hence $K$ is covered if every vertex, with at most one exception, has
+at most one coordinate at its upper bound.
+\end{proposition}
+
+\begin{proof}
+On $\aff\Delta$ the constraints are $m\cdot(e_i-l_i\one)\ge0$ and $m\cdot(u_i\one-e_i)
+\ge0$; at a vertex $v\in\relint\Delta$ the constraints $m_k\ge0$ are inactive. Let $L$ and
+$H$ be the sets of coordinates of $v$ at their lower and upper bounds. For $i\in H$,
+$u_i=v_i<1$, so $u_i\one-e_i$ is negative exactly at coordinate $i$. For $i\in L$,
+$l_i=v_i>0$, so $e_i-l_i\one$ is negative exactly off $i$. By Lemma~\ref{lem:poly}, $v$ is
+visible from $j$ iff $H\subseteq\{j\}$ and $j\notin L$. If $|H|\ge2$ no $j$ works. If
+$H=\{i\}$, then $j=i\notin L$ works, since $l_i<u_i$ by full-dimensionality. If
+$H=\emptyset$, then $L\neq\Omega$ (otherwise $\sum_il_i=1$ and $K=\{l\}$), and any $j\notin
+L$ works. Apply Corollary~\ref{cor:poly}.
+\end{proof}
+
+\begin{corollary}\label{cor:hexagon}
+Let $n=3$. Every probability-interval model $K\subseteq\relint\Delta$ that is a hexagon is
+covered by a ranking satisfying the hypotheses of Theorem~\ref{thm:cover}.
+\end{corollary}
+
+\begin{proof}
+Each edge of $K$ lies on one of the six lines $m_i=l_i$, $m_i=u_i$, and the six edges have
+distinct outward normals, so each line carries exactly one edge. Within $\aff\Delta$ the
+outward normal of the edge on $m_i=l_i$ is $-\pi(e_i)$ and that on $m_i=u_i$ is $\pi(e_i)$,
+where $\pi$ is the orthogonal projection onto $\one^\perp$. The vectors $\pi(e_i)$ have
+equal length and pairwise angles of $120^\circ$, so in angular order the six normals are
+$\pi(e_1),-\pi(e_3),\pi(e_2),-\pi(e_1),\pi(e_3),-\pi(e_2)$, alternating in sign. Consecutive
+edges meet at a vertex, and no vertex lies on a third line (a supporting line through a
+vertex that carries an edge contains that vertex in the edge, and a vertex lies on exactly
+two edges). So every vertex has exactly one coordinate at its upper bound. Apply
+Proposition~\ref{prop:pri}.
+\end{proof}
+
+The \emph{reversed triangle} is $R\coloneqq\{m\in\Delta_3:m_i\le\frac25\}$, with vertices
+$v_1=(\frac15,\frac25,\frac25)$, $v_2=(\frac25,\frac15,\frac25)$ and
+$v_3=(\frac25,\frac25,\frac15)$. It is the pari-mutuel model with uniform reference and
+$\delta=\frac15$, and lies in $\relint\Delta$. No vertex of $R$ is visible
+(Corollary~\ref{cor:out}). Nearby targets are covered.
+
+\begin{proposition}\label{prop:trunc}
+For $0<\eta<\frac1{10}$ let $R_\eta\coloneqq\{m\in\Delta:\frac15+\eta\le m_i\le\frac25\}$.
+\begin{enumerate}[label=(\alph*)]
+  \item $R_\eta$ is covered by a ranking satisfying the hypotheses of
+  Theorem~\ref{thm:cover}, and $d_H(R_\eta,R)=\eta\sqrt{3/2}$.
+  \item $P_\eta\coloneqq\conv(R_\eta\cup\{v_1\})$ is covered. It coincides with $R$ on
+  $\{m_1\le\frac15+\eta\}$, and $d_H(P_\eta,R)=\eta\sqrt{3/2}$.
+\end{enumerate}
+For $\eta=\frac1{10}$, $R_\eta=\{m:m_i\ge\frac3{10}\}=\frac9{10}u+\frac1{10}\Delta$, $u$
+uniform, is covered by Corollary~\ref{cor:contam}.
+\end{proposition}
+
+\begin{proof}
+(a) $R_\eta\subseteq\relint\Delta$ contains $u$ in its relative interior. A vertex has two
+active constraints; if two coordinates were at the upper bound $\frac25$, the third would
+be $\frac15<\frac15+\eta$. So every vertex has at most one coordinate at its upper bound,
+and Proposition~\ref{prop:pri} applies (with no exception). The distance from a point of
+$R$ to $R_\eta$ is a convex function, so $d_H(R_\eta,R)$ is attained at a vertex of $R$,
+by symmetry at $v_1$. Since $R_\eta\subseteq\{m_1\ge\frac15+\eta\}$ and $|\pi(e_1)|=
+\sqrt{2/3}$, $\operatorname{dist}(v_1,R_\eta)\ge\eta\sqrt{3/2}$, with equality at
+$(\frac15+\eta,\frac25-\frac\eta2,\frac25-\frac\eta2)\in R_\eta$.
+
+(b) By (a) and Theorem~\ref{thm:vis} there are $K'\subseteq\relint R_\eta$ and
+$A_i\subseteq\conv(K'\cup\{e_i\})$ with $R_\eta=\conv(K'\cup\bigcup A_i)$. Then
+$P_\eta=\conv(K'\cup\bigcup A_i\cup\{v_1\})$ is full-dimensional and $K'\subseteq
+\relint R_\eta\subseteq\relint P_\eta$, so Theorem~\ref{thm:exempt} applies.
+$R\cap\{m_1\le\frac15+\eta\}$ is the triangle with vertices $v_1$,
+$(\frac15+\eta,\frac25,\frac25-\eta)$ and $(\frac15+\eta,\frac25-\eta,\frac25)$, whose last
+two vertices lie in $R_\eta$; so it is contained in $P_\eta\subseteq R$. The distance
+claim follows as in (a), at $v_2$.
+\end{proof}
+
+\subsection{Dense approximation}\label{sec:dense}
+
+\begin{proposition}\label{prop:dense}
+Let $K\subseteq\Delta$ be a full-dimensional credal set, $u_0\in\relint K$ and
+$s\in(0,1)$. Put $K'_s\coloneqq u_0+s(K-u_0)$, $A_i\coloneqq K\cap\conv(K'_s\cup\{e_i\})$
+and $K_s\coloneqq\conv(K'_s\cup A_1\cup\dots\cup A_n)$. Then $K'_s\subseteq\relint K_s$,
+$K_s\subseteq K$,
+\[
+  d_H(K_s,K)\le(1-s)\max_{k\in K}|k-u_0|,
+\]
+and $\VB(K'_s,A)$ covers $K_s$ on $\M_{D_{K'_s}}$. In particular every full-dimensional
+credal set is a Hausdorff limit of covered polytopes.
+\end{proposition}
+
+\begin{proof}
+$K'_s$ is compact, convex, full-dimensional and contained in $\relint K$, since
+$(1-s)u_0+sk\in\relint K$ for $k\in K$. Each $A_i$ is compact and contained in
+$\conv(K'_s\cup\{e_i\})$, and $K'_s\subseteq K_s\subseteq K$. For $k\in K$, the point
+$u_0+s(k-u_0)\in K_s$ lies at distance $(1-s)|k-u_0|$ from $k$, which gives the bound.
+
+Suppose $x\in K'_s\cap\rbd K_s$. There is a supporting hyperplane of $K_s$ at $x$, given by
+Lemma~\ref{lem:fulldim}(a) as $c\cdot m\le c\cdot x$ on $K_s$ with $m\mapsto c\cdot m$
+non-constant on $\aff\Delta$, that is, $c$ not a multiple of $\one$. Since $x\in\relint
+K\subseteq\relint\Delta$ has full support, $c\cdot x<\max_ic_i\eqqcolon c_{i^\ast}$. For
+small $t>0$, $y_t\coloneqq(1-t)x+te_{i^\ast}\in K$ because $x\in\relint K$, so $y_t\in
+A_{i^\ast}\subseteq K_s$; but $c\cdot y_t=c\cdot x+t(c_{i^\ast}-c\cdot x)>c\cdot x$, a
+contradiction. Hence $K'_s\subseteq\relint K_s$, $K_s$ is full-dimensional, and
+Theorem~\ref{thm:cover} applies. If $K$ is a polytope, so is each $A_i$ (an intersection
+of polytopes), and hence so is $K_s$. Applying this to full-dimensional polytopes
+approximating a general $K$ gives the last claim.
+\end{proof}
+
+The domain $D_{K'_s}$ depends on $s$: the approximation is by targets covered on their own
+domains. For the reversed triangle, Proposition~\ref{prop:trunc} gives an explicit family
+with exact distances.
+
+\section{Orthant-planar targets}\label{sec:op}
+
+\subsection{Orthant-planar credal sets}
+
+For a sign vector $s\in\{-1,1\}^n$ let $\sigma_s\coloneqq\{h:s_ih_i>0\text{ for all }i\}$,
+an open orthant. It is \emph{pure} if $s$ is constant and \emph{mixed} otherwise. For a
+mixed orthant $\sigma$ we write $P(\sigma)\coloneqq\{i:s_i=1\}$ and
+$N(\sigma)\coloneqq\{i:s_i=-1\}$, both nonempty. Let $O\coloneqq\bigcup_s\sigma_s$, the
+gambles with no zero coordinate; its complement $Z\coloneqq\R^n\setminus O$ is null.
+
+\begin{definition}\label{def:op}
+A credal set $K\subseteq\relint\Delta$ is \emph{orthant-planar} if for every mixed orthant
+$\sigma$ there is $d_\sigma\in\R^n$ with positive coordinates such that
+\[
+  D_K\cap\sigma=\{h:d_\sigma\cdot h>0\}\cap\sigma .
+\]
+An \emph{orthant-diagonal chart} for $K$ is the map $c:\R^n\to\R^n$ with
+$c(h)\coloneqq d_\sigma\odot h$ for $h\in\sigma$, where $d_\sigma$ is as above for mixed
+$\sigma$ and is an arbitrary vector with positive coordinates for the two pure orthants, and
+$c(h)\coloneqq h$ for $h\in Z$.
+\end{definition}
+
+On the pure orthants nothing is required, since $D_K$ contains the positive orthant and
+misses the negative one. On each open orthant $\sigma$, $c$ is the restriction of the
+invertible linear map $\operatorname{diag}(d_\sigma)$, which maps $\sigma$ onto $\sigma$;
+so $c$ maps $O$ bijectively onto $O$, $c_i(h)$ has the sign of $h_i$ for every $h$, and
+$|c(h)|\le\max_\sigma\max_jd_{\sigma,j}\,|h|$.
+
+\begin{lemma}\label{lem:closedorthant}
+Let $K\subseteq\relint\Delta$ be orthant-planar and $\sigma$ a mixed orthant. Then
+\[
+  D_K\cap\cl\sigma=\{x:d_\sigma\cdot x>0\}\cap\cl\sigma .
+\]
+\end{lemma}
+
+\begin{proof}
+Note that $x+\varepsilon s\in\sigma$ whenever $x\in\cl\sigma$, $s\in\sigma$ and
+$\varepsilon>0$.
+($\subseteq$) Let $x\in D_K\cap\cl\sigma$ and suppose $d_\sigma\cdot x\le0$. Since
+$\sigma$ is mixed and $d_\sigma$ has positive coordinates, some $s\in\sigma$ has
+$d_\sigma\cdot s<0$. For small $\varepsilon>0$, $y\coloneqq x+\varepsilon s$ lies in
+$\sigma\cap D_K$, since $D_K$ is open, but $d_\sigma\cdot y<0$, a contradiction.
+($\supseteq$) Let $x\in\cl\sigma$ with $d_\sigma\cdot x>0$, and suppose $x\notin D_K$. Pick
+$m\in K$ with $m\cdot x\le0$; since $m$ has positive coordinates, some $s\in\sigma$ has
+$m\cdot s<0$. For small $\varepsilon>0$, $y\coloneqq x+\varepsilon s\in\sigma$ has
+$d_\sigma\cdot y>0$ and $m\cdot y<0$, so $y\in(\{d_\sigma\cdot h>0\}\cap\sigma)\setminus
+D_K$, a contradiction.
+\end{proof}
+
+For a compact $Q\subseteq\Delta$ and a compact $K\subseteq\relint\Delta$ put
+\[
+  Q\star K\coloneqq\conv\{\nu(q\odot m):q\in Q,\ m\in K\}.
+\]
+The generating set is compact, as the image of $Q\times K$ under the continuous map
+$(q,m)\mapsto\nu(q\odot m)$ (note $q\cdot m\ge\min_{m\in K}\min_im_i>0$). So $Q\star K$
+is a credal set. For $q\in\Delta$, $\{q\}\star K=\nu(q\odot K)$, the image of $K$ under
+$m\mapsto\nu(q\odot m)$, which is convex by~\eqref{eq:proj}.
+
+\begin{lemma}\label{lem:pullback}
+Let $K\subseteq\relint\Delta$ be orthant-planar with chart $c$, and let $Q\subseteq\Delta$
+be nonempty and compact. For every $h\in O$,
+\[
+  c(h)\in D_Q\iff h\in D_{Q\star K}.
+\]
+In particular, for $\pi\in\R^n_+\setminus\{0\}$, $\{h\in O:\pi\cdot c(h)>0\}=
+D_{\nu(\pi\odot K)}\cap O$.
+\end{lemma}
+
+\begin{proof}
+Fix $q\in Q$ and $h\in\sigma$. If $\sigma$ is the positive orthant, $q\cdot c(h)>0$ and
+$(q\odot m)\cdot h>0$ for all $m\in K$; if it is the negative orthant, both are negative.
+Let $\sigma$ be mixed. Then $q\cdot c(h)=d_\sigma\cdot x$ with $x\coloneqq q\odot h$, and
+$x\in\cl\sigma\setminus\{0\}$ because $h$ has no zero coordinate and $q\neq0$. By
+Lemma~\ref{lem:closedorthant}, $q\cdot c(h)>0$ iff $x\in D_K$, iff $m\cdot(q\odot h)=
+(q\odot m)\cdot h>0$ for every $m\in K$, iff $\nu(q\odot m)\cdot h>0$ for every $m\in K$.
+Taking all $q\in Q$, $c(h)\in D_Q$ iff $h\in D_S$ with $S\coloneqq\{\nu(q\odot m):q\in
+Q,m\in K\}$, and $D_S=D_{Q\star K}$ by Lemma~\ref{lem:D}(a). The last claim is the case
+$Q=\{\nu(\pi)\}$.
+\end{proof}
+
+\begin{lemma}\label{lem:ratio}
+Let $K\subseteq\relint\Delta$ be a credal set and $\sigma$ a mixed orthant, with
+$P=P(\sigma)$ and $N=N(\sigma)$.
+\begin{enumerate}[label=(\alph*)]
+  \item If some $d\in K$ satisfies $m_bd_a\le d_bm_a$ for all $m\in K$, $a\in P$ and $b\in
+  N$ (that is, $d$ maximises every ratio $m_b/m_a$ with $a\in P$, $b\in N$), then
+  $D_K\cap\sigma=\{d\cdot h>0\}\cap\sigma$.
+  \item Conversely, if $D_K\cap\sigma=\{d\cdot h>0\}\cap\sigma$ for some $d$ with positive
+  coordinates, then $\nu(d)\in K$, and $\nu(d)$ maximises every ratio $m_b/m_a$ with $a\in
+  P$, $b\in N$.
+\end{enumerate}
+Hence $K$ is orthant-planar if and only if, for every mixed orthant, some point of $K$
+maximises all the corresponding ratios; and we may then take $d_\sigma\in K$.
+\end{lemma}
+
+\begin{proof}
+(a) $D_K\cap\sigma\subseteq\{d\cdot h>0\}$ because $d\in K$. Conversely let $h\in\sigma$
+with $d\cdot h>0$ and $m\in K$. Put $\lambda\coloneqq\min_{a\in P}m_a/d_a>0$. Then
+$m_a\ge\lambda d_a$ for $a\in P$, and for $b\in N$ and the $a$ attaining the minimum,
+$m_b\le(m_a/d_a)d_b=\lambda d_b$. As $h_a>0$ on $P$ and $h_b<0$ on $N$,
+$m\cdot h\ge\lambda\,d\cdot h>0$.
+
+(b) First, $m_b/m_a\le d_b/d_a$ for $m\in K$, $a\in P$, $b\in N$. Fix $w\in\sigma$ and
+$x>d_b/d_a$, and put $h_\delta\coloneqq xe_a-e_b+\delta w$. For small $\delta>0$,
+$h_\delta\in\sigma$ and $d\cdot h_\delta=xd_a-d_b+\delta\,d\cdot w>0$, so $h_\delta\in D_K$
+and $xm_a-m_b+\delta\,m\cdot w>0$. Letting $\delta\to0$ gives $xm_a\ge m_b$; letting
+$x\downarrow d_b/d_a$ gives the claim. Next, choose $h\in\sigma$ with $d\cdot h=0$ (possible
+as $\sigma$ is mixed), and $s\in\sigma$ with $d\cdot s>0$. Then $h+ts\in\sigma\cap
+\{d\cdot y>0\}\subseteq D_K$ for $t>0$, so $h\in C_K$, while $h\notin D_K$. So $m\cdot h=0$
+for some $m\in K$. With $\lambda\coloneqq\min_{a\in P}m_a/d_a$ the argument of (a) gives
+$m_a\ge\lambda d_a$ on $P$ and $m_b\le\lambda d_b$ on $N$, so $0=m\cdot h\ge\lambda\,d\cdot
+h=0$, with equality only if $m_a=\lambda d_a$ and $m_b=\lambda d_b$ for all $a\in P$,
+$b\in N$, because $h$ has no zero coordinate. So $m=\lambda d$, $\lambda>0$, and
+$\nu(d)=m\in K$. Its ratios are those of $d$.
+\end{proof}
+
+\begin{lemma}\label{lem:planarobs}
+Let $K\subseteq\relint\Delta$ be orthant-planar.
+\begin{enumerate}[label=(\alph*)]
+  \item $K$ is a polytope.
+  \item If $g\in\R^n$ has no zero coordinate and $\min_{m\in K}m\cdot g=0$, then this
+  minimum is attained at only one point of $K$.
+  \item Every edge of $K$ lies on a line through a vertex of $\Delta$.
+  \item No facet normal of a full-dimensional orthant-planar $K$ has all coordinates
+  nonzero, when $n\ge3$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) For a mixed orthant $\sigma$, $D_K\cap\sigma$ is nonempty and open, and for $x\in C_K
+\cap\cl\sigma$ and $y\in D_K\cap\sigma$ the points $(1-t)x+ty$, $t\in(0,1]$, lie in
+$D_K\cap\sigma$; so $C_K\cap\cl\sigma=\cl(D_K\cap\sigma)=\{d_\sigma\cdot h\ge0\}\cap
+\cl\sigma$, a polyhedral cone. Also $C_K\cap\cl\sigma$ is $\cl\sigma$ for the positive
+orthant and $\{0\}$ for the negative one. So the convex cone $C_K$ is a finite union of
+polyhedral cones, hence generated by finitely many vectors $g_1,\dots,g_r$
+\cite[Cor.~7.1a]{Schrijver}. Since $K$ is closed and convex, Lemma~\ref{lem:D}(c) applied
+to points outside $K$ shows $K=\{m\in\Delta:m\cdot h\ge0\text{ for all }h\in C_K\}=
+\{m\in\Delta:m\cdot g_t\ge0,\ t=1,\dots,r\}$, a polytope.
+
+(b) Let $V$ be the vertex set of $K$, so $D_K=D_V$, and suppose $\min_Km\cdot g=0$ is
+attained at two distinct points; then it is attained at two distinct vertices $a,b$. The
+vector $g$ lies in an open orthant $\sigma$, which is mixed, because $m\cdot g$ would
+otherwise have constant nonzero sign on $\Delta$. Let $G\coloneqq\{w\in V:w\cdot g=0\}$.
+There is $r>0$ with $w\cdot y>0$ for all $w\in V\setminus G$ and $y\in B(g,r)\subseteq
+\sigma$. For $z\in\R^n$ and small $t>0$, $g+tz\in B(g,r)$, and $g+tz\in D_K$ iff $w\cdot
+z>0$ for every $w\in G$, while $g+tz\in\{d_\sigma\cdot y>0\}$ iff $d_\sigma\cdot z>0$ (note
+$d_\sigma\cdot g=0$: $g\in\cl(D_K\cap\sigma)\setminus D_K$). By orthant-planarity,
+$\{z:d_\sigma\cdot z>0\}=\{z:w\cdot z>0\ \forall w\in G\}\subseteq\{z:a\cdot z>0\}$. An
+open half-space contained in another open half-space through $0$ has a positively
+proportional normal, so $a$ and likewise $b$ are positive multiples of $d_\sigma$. Two
+distinct points of $\Delta$ are not proportional, a contradiction.
+
+(c) Let $[a,b]$ be an edge, with vertex set $V$ of $K$. Since faces of polytopes are
+exposed, there is $g_0$ with $g_0\cdot a=g_0\cdot b=0<g_0\cdot w$ for $w\in V\setminus
+\{a,b\}$; then every $g$ in a neighbourhood of $g_0$ in the subspace $H\coloneqq\{a,b\}^
+\perp$ has $\min_Km\cdot g=0$ attained at $a$ and $b$. If the line through $a,b$ contains
+no vertex of $\Delta$, then $e_l\notin\spn\{a,b\}$ for every $l$, so $H\not\subseteq
+e_l^\perp$, and $H\cap e_l^\perp$ is a proper subspace of $H$. A nonempty open subset of
+$H$ is not covered by finitely many proper subspaces, so some such $g$ has no zero
+coordinate, contradicting (b).
+
+(d) A facet of a full-dimensional polytope in $\aff\Delta$ has dimension $n-2\ge1$, so
+contains two points; apply (b) to its normal.
+\end{proof}
+
+\subsection{The covering theorem}
+
+\begin{definition}\label{def:chart}
+Let $K$ be orthant-planar with chart $c$, and let $U$ be a domain. The \emph{chart ranking}
+on $\M_U$ is the single-level integral ranking with $\psi_j(h)\coloneqq-c_j(h)$:
+\[
+  X\preceq_jY\iff\int_Xc_j\,d\mu\ \ge\ \int_Yc_j\,d\mu .
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:opcover}
+Let $K\subseteq\relint\Delta$ be orthant-planar with chart $c$. Let $U$ be either the full
+domain $\R^n$, or $U=D_{K'}$ with $K'\subseteq\relint K$ nonempty, compact and convex (this
+requires $K$ to be full-dimensional). Then the chart ranking on $\M_U$ is complete and
+transitive, covers $K$, and satisfies (W). Its undominated models are exactly the models
+a.e.\ equal to
+\[
+  U\cap D_{\nu(\pi\odot K)}=
+  \begin{cases}
+    D_{\nu(\pi\odot K)}&\text{if }U=\R^n,\\
+    D_{\conv(K'\cup\nu(\pi\odot K))}&\text{if }U=D_{K'},
+  \end{cases}
+  \qquad\pi\in\R^n_+\setminus\{0\},
+\]
+and a model tied at every world with an undominated model equals it a.e.
+\end{theorem}
+
+\begin{proof}
+The integrands $c_j$ are integrable by (M), since $|c(h)|$ is bounded by a multiple of
+$|h|$. (SC) holds because $c_j$ has the sign of $h_j$. For a single-level ranking we take
+$W_0=\Omega$; an admissible triple is then $\beta\in\R^n_+\setminus\{0\}$, with
+$g=-\beta\cdot c$ and $X^\ast=U\cap\{\beta\cdot c>0\}$. On each open orthant $\sigma$,
+$\beta\cdot c(h)=(\beta\odot d_\sigma)\cdot h$ with $\beta\odot d_\sigma\ne0$, so $\{g=0\}$
+lies in $Z$ together with finitely many hyperplanes, and is null: the ranking has null
+ties. By Lemma~\ref{lem:pullback}, $X^\ast=U\cap D_{\nu(\beta\odot K)}$ a.e. On the full
+domain this is coherent. If $U=D_{K'}$, it is $D_{\conv(K'\cup\nu(\beta\odot K))}$ by
+Lemma~\ref{lem:D}(a), which is coherent. Theorem~\ref{thm:route} now gives all requirements
+except (iv) and (vi) of Definition~\ref{def:cover}, together with (W), the description of
+the undominated models, and the statement about ties.
+
+\emph{Target.} With $\beta=\one$, $\nu(\one\odot K)=K$, so $X^\ast=U\cap D_K$. On the full
+domain this is $D_K$; if $U=D_{K'}$ with $K'\subseteq K$, then $D_K\subseteq U$ and again
+$X^\ast=D_K$. So $D_K$ is undominated.
+
+\emph{Local freedom.} On the full domain (LF) holds with $N=\R^n$. If $U=D_{K'}$ with
+$K'\subseteq\relint K$, Lemma~\ref{lem:LF}(a) gives $D_K\in\M_U$ and (LF).
+\end{proof}
+
+The undominated family depends on $K$ but not on the arbitrary choices in the chart, while
+the comparisons the ranking makes do depend on them. Multiplying $c_j$ by a positive
+constant does not change the order at world $j$.
+
+\begin{lemma}\label{lem:charttarget}
+Let $K_0\subseteq\relint\Delta$ be orthant-planar with chart $c$, let $U$ be any domain, and
+let $K$ be a polytope such that $D_K$ is an undominated model of the chart ranking on
+$\M_U$ and (LF) holds at $D_K$. Then $K=\nu(\pi\odot K_0)$ for some $\pi\in\R^n_+\setminus
+\{0\}$. If moreover $K\subseteq\relint\Delta$, then $\pi$ has positive coordinates and $K$ is
+orthant-planar.
+\end{lemma}
+
+\begin{proof}
+The chart ranking satisfies (SC) and has null ties on every domain (proof of
+Theorem~\ref{thm:opcover}). By Theorem~\ref{thm:route}(c) and Lemma~\ref{lem:pullback},
+$D_K=U\cap D_E$ a.e.\ with $E\coloneqq\nu(\pi\odot K_0)$ for some $\pi\in\R^n_+\setminus
+\{0\}$. So $D_K\subseteq D_E$ a.e., hence $D_K\subseteq D_E$ by Lemma~\ref{lem:open}, and
+$E\subseteq K$ by Lemma~\ref{lem:D}(c). Suppose a vertex $x$ of $K$ lies outside $E$, and
+choose $h$ with $\min_{m\in K}m\cdot h=0$ attained only at $x$. Then $h\in\partial D_K
+\setminus\{0\}$, and $h\in D_E$ because $m\cdot h>0$ on $K\setminus\{x\}\supseteq E$. By
+(LF), as in the proof of Lemma~\ref{lem:LF}(b), some ball around $h$ lies a.e.\ in $U$, and
+since $D_E$ is open a smaller ball lies a.e.\ in $U\cap D_E=D_K$. But every ball around
+$h$ contains a nonempty open set of gambles $h'$ with $x\cdot h'<0$, which lie outside
+$\cl D_K$. So every vertex of $K$ lies in the convex set $E\subseteq K$, and $K=E$. If
+$K\subseteq\relint\Delta$, then $\supp\pi=\Omega$, since $\nu(\pi\odot m)$ has the support of
+$\pi$; for a mixed orthant $\sigma$ and $h\in\sigma$ we have $\pi\odot h\in\sigma$, so
+$h\in D_K$ iff $\pi\odot h\in D_{K_0}$ iff $(d_\sigma\odot\pi)\cdot h>0$, and $K$ is
+orthant-planar.
+\end{proof}
+
+\begin{corollary}\label{cor:precise}
+On the full domain, the Brier ranking $X\preceq_jY\iff\int_Xh_j\,d\mu\ge\int_Yh_j\,d\mu$
+covers every precise model $\{p\}$ with $p\in\relint\Delta$, and its undominated models
+are exactly the precise models $D_{\{q\}}$, $q\in\Delta$.
+\end{corollary}
+
+\begin{proof}
+$\{p\}$ is orthant-planar with $d_\sigma=p$ for every $\sigma$, and $c(h)=p\odot h$ gives at
+world $j$ the order of $\int_Xp_jh_j\,d\mu$, which is the Brier order. By
+Theorem~\ref{thm:opcover} the undominated models are the $D_{\nu(\pi\odot p)}$, $\pi\in
+\R^n_+\setminus\{0\}$, and $\nu(\pi\odot p)$ ranges over all of $\Delta$.
+\end{proof}
+
+\subsection{Boxes and density-ratio classes}
+
+\begin{proposition}\label{prop:box}
+Let $0<l_j\le u_j$ for $j\in\Omega$, $Q\coloneqq\prod_j[l_j,u_j]$, and $K\coloneqq\nu(Q)$, a
+\emph{normalised box}. Then $K\subseteq\relint\Delta$ is orthant-planar, with
+$d_{\sigma,j}=l_j$ for $j\in P(\sigma)$ and $d_{\sigma,j}=u_j$ for $j\in N(\sigma)$. On $O$ a
+chart is given by the concave, continuous, piecewise-linear map
+\[
+  c_j(h)=\min(l_jh_j,u_jh_j),
+\]
+and $D_K=\{h:\sum_j\min(l_jh_j,u_jh_j)>0\}$. In particular, for $p\in\relint\Delta$ and
+$k\ge1$, the density-ratio class $\{m\in\Delta:m_i/p_i\le k\,m_j/p_j\text{ for all
+}i,j\}=\nu(p\odot[1,k]^n)$ is orthant-planar, and $D_K$ is the set of $h$ with
+$\sum_jp_j(h_j^+-kh_j^-)>0$. By Theorem~\ref{thm:opcover} all these targets are covered on
+the full domain, and the full-dimensional ones on every $D_{K'}$ with $K'\subseteq\relint
+K$ compact convex.
+\end{proposition}
+
+\begin{proof}
+For $m=\nu(q)$ with $q\in Q$, $a\in P(\sigma)$ and $b\in N(\sigma)$ we have $m_b/m_a=q_b/q_a
+\le u_b/l_a$, with equality at $d\coloneqq\nu(x)$, $x_j=l_j$ ($j\in P$), $x_j=u_j$ ($j\in
+N$), which lies in $K$. Lemma~\ref{lem:ratio}(a) gives orthant-planarity with
+$d_\sigma=x$, and $d_{\sigma}\odot h=(\min(l_jh_j,u_jh_j))_j$ on $\sigma$; on the pure
+orthants we choose $d_\sigma=l$ (positive) and $u$ (negative), which agree with the same
+formula. The formula for $D_K$ is the case $\pi=\one$ of Lemma~\ref{lem:pullback}, or
+directly $\min_{q\in Q}q\cdot h=\sum_j\min(l_jh_j,u_jh_j)$. For the density-ratio class,
+$m=\nu(p\odot q)$ with $q\in[1,k]^n$ iff the ratios $m_i/p_i$ lie in an interval
+$[t,kt]$, which is the stated condition; and $\min(p_jh_j,kp_jh_j)=p_j(h_j^+-kh_j^-)$.
+\end{proof}
+
+The last criterion, that $h$ is desirable iff $E_p(h^+)>k\,E_p(h^-)$, is the desirability
+criterion of the constant-odds-ratio model with reference $p$ \cite{Walley}. At a point
+$\nu(x)$ of a box with $x_a=l_a$ and $x_b=u_b$, the point minimises $m_a/m_b$, so the
+two-term vector $x_be_a-x_ae_b$ lies in its normal cone. By Lemma~\ref{lem:twopair} below,
+a corner with one coordinate at its lower bound and two coordinates at their upper bounds
+is visible from no world, provided $K$ is full-dimensional. Density-ratio classes are not
+veto--Brier targets (Corollary~\ref{cor:out}(b)).
+
+\subsection{Three worlds: cevian polygons}
+
+Call a line in $\aff\Delta$ \emph{cevian} if it passes through a vertex of $\Delta$.
+
+\begin{theorem}\label{thm:cevian}
+Let $n=3$ and let $K\subseteq\relint\Delta$ be a full-dimensional polygon. Then $K$ is
+orthant-planar if and only if every edge of $K$ lies on a cevian line.
+\end{theorem}
+
+\begin{proof}
+Necessity is Lemma~\ref{lem:planarobs}(c). Conversely suppose every edge line is cevian.
+An edge line through $e_l$ has an inward normal $g$ with $g_l=0$; since $g\cdot m=0$ at
+points of $K\subseteq\relint\Delta$, the other two coordinates have opposite signs, so the
+edge inequality reads $r\,m_i-m_j\ge0$ with $r>0$ and $\{i,j,l\}=\{1,2,3\}$. Since $K$ is
+the intersection of its edge half-planes,
+\[
+  K=\{m\in\relint\Delta:r_fm_{i_f}\ge m_{j_f}\text{ for each edge }f\}.
+\]
+Let $H\coloneqq\{y\in\R^3:\one\cdot y=0\}$ and $\zeta(m)\coloneqq\log m-\frac13(\one\cdot
+\log m)\one$, a homeomorphism of $\relint\Delta$ onto $H$ with inverse $y\mapsto\nu(\exp
+y)$. Then $\zeta(K)=\{y\in H:(e_{j_f}-e_{i_f})\cdot y\le\log r_f\}$ is a compact convex
+polygon whose outward edge normals are among the six vectors $e_a-e_b$ ($a\ne b$), which
+lie in $H$ at angles of $60^\circ$ to their neighbours. Maximising $m_b/m_a$ over $K$ is
+maximising the linear function $(e_b-e_a)\cdot y$ over $\zeta(K)$.
+
+Let $\sigma$ be a mixed orthant. By Lemma~\ref{lem:ratio}(a) it suffices to find a point of
+$K$ maximising both ratios $m_b/m_a$ with $a\in P(\sigma)$, $b\in N(\sigma)$. There are two
+such pairs, and the corresponding vectors $\rho_1,\rho_2$ (namely $e_b-e_a$ and
+$e_{b'}-e_a$ if $|P|=1$, or $e_b-e_a$ and $e_b-e_{a'}$ if $|N|=1$) make an angle of
+$60^\circ$; so no vector $e_c-e_d$ lies strictly between them. For $f$ in the open cone
+$\Gamma$ between $\rho_1$ and $\rho_2$, $f$ is not a positive multiple of an outward edge
+normal of $\zeta(K)$, so $f$ is maximised over $\zeta(K)$ at a unique vertex $v(f)$
+(otherwise it would be maximised on an edge, and $f$ would be an outward normal of that
+edge). The map $f\mapsto v(f)$ is locally constant on $\Gamma$: if $f_k\to f$ and
+$v(f_k)=v'$ for infinitely many $k$, then $f$ is maximised at $v'$ by continuity, so
+$v'=v(f)$; and there are finitely many vertices. As $\Gamma$ is connected, $v(f)=v$ is
+constant, and by continuity $\rho_1$ and $\rho_2$ are both maximised at $v$. The point
+$\zeta^{-1}(v)\in K$ maximises both ratios.
+\end{proof}
+
+\begin{example}\label{ex:cyclic}
+The \emph{cyclic triangle} $K\coloneqq\{m\in\Delta:m_3\le2m_1,\ m_1\le2m_2,\ m_2\le2m_3\}$
+has vertices $w_1=\frac17(1,4,2)$, $w_2=\frac17(2,1,4)$ and $w_3=\frac17(4,2,1)$, and its
+edge lines $m_3=2m_1$, $m_1=2m_2$, $m_2=2m_3$ pass through $e_2$, $e_3$ and $e_1$. So it is
+orthant-planar. Explicitly, the six ratio maxima are $\max m_2/m_1=4$ (at $w_1$), $\max
+m_3/m_1=2$ (at $w_1,w_2$), $\max m_1/m_2=2$ (at $w_2,w_3$), $\max m_3/m_2=4$ (at $w_2$),
+$\max m_1/m_3=4$ (at $w_3$) and $\max m_2/m_3=2$ (at $w_1,w_3$), so the deciding vertex of
+the orthant with $P=\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\}$ is $w_1,w_2,w_3,w_2,w_1,w_3$
+respectively. The facet normals are $(-1,2,0)$, $(0,-1,2)$ and $(2,0,-1)$. By
+Lemma~\ref{lem:poly}, the normal cone at $w_1$ is generated by $(0,-1,2)$ and $(2,0,-1)$:
+their first coordinates are non-negative, their second are $-1$ and $0$, and their third
+have both signs. So $w_1$ is anti-visible from world $1$, tangential from world $2$ and
+crossing for world $3$, and is not visible. By symmetry no vertex of $K$ is
+visible. The triangle is not a normalised box: for a box,
+\[
+  \max\tfrac{m_2}{m_1}\max\tfrac{m_3}{m_2}\max\tfrac{m_1}{m_3}
+  =\frac{u_1u_2u_3}{l_1l_2l_3}=\max\tfrac{m_3}{m_1}\max\tfrac{m_2}{m_3}\max\tfrac{m_1}{m_2},
+\]
+whereas here the two products are $64$ and $8$. By Theorem~\ref{thm:opcover}, $K$ is
+covered on the full domain and on every $D_{K'}$ with $K'\subseteq\relint K$; by
+Corollary~\ref{cor:polyreach} below, no veto--Brier ranking on a domain $D_{K'}$ has it as
+an undominated target with (LF).
+\end{example}
+
+\begin{example}\label{ex:hexagon}
+The hexagon with vertices $\nu(1,2,2)$, $\nu(1,1,2)$, $\nu(2,1,2)$, $\nu(2,1,1)$,
+$\nu(2,\frac{11}5,1)$ and $\nu(\frac{11}{10},\frac{11}5,1)$ has facet normals $(-1,0,2)$,
+$(-1,2,0)$, $(0,-5,11)$, $(0,2,-1)$, $(2,-1,0)$ and $(2,0,-1)$, each with a zero
+coordinate; so it is orthant-planar by Theorem~\ref{thm:cevian}. The two cyclic products of
+maximal ratios are $8$ and $\frac{44}5$, so it is not a normalised box. Three of its
+vertices are not visible. (Exact computation.)
+\end{example}
+
+\section{Veto--box rankings}\label{sec:vbox}
+
+In this section the Brier level of a veto--Brier ranking is replaced by a box chart. The
+single exempt point of Theorem~\ref{thm:exempt} then becomes an exempt normalised box,
+which may be degenerate. Throughout, $K'\subseteq\Delta$ is nonempty, compact and convex,
+$U=D_{K'}$, $B$ is a veto profile over $K'$ with vetoes $\varphi_i$ and normalised veto
+sets $\hat A_i$ as in Definition~\ref{def:vb}, and $R\coloneqq\prod_j[l_j,u_j]$ with
+$0<l_j\le u_j$.
+
+\begin{definition}\label{def:vbox}
+The \emph{box chart} of $R$ is the map with coordinates $c_j(h)\coloneqq\min(l_jh_j,
+u_jh_j)$. The \emph{veto--box ranking} $\mathrm{VBox}(K',B,R)$ on $\M_U$ is the two-level
+integral ranking with integrands $\varphi_i$ and $\psi_i\coloneqq-c_i$.
+\end{definition}
+
+With $R=\{\one\}$ this is $\VB(K',B)$. With $R=\{r\}$ a point, world $i$ ranks by
+$(a_i,r_ib_i)$, which induces the same order as $\VB(K',B)$. With $B_i=\{0\}$ for all
+$i$ it is the chart ranking of the normalised box $\nu(R)$ (Proposition~\ref{prop:box}).
+
+\begin{lemma}\label{lem:boxchart}
+\begin{enumerate}[label=(\alph*)]
+  \item Each $c_j$ is continuous, concave and positively homogeneous, has the sign of
+  $h_j$, and satisfies $|c_j(h)|\le u_j|h_j|$.
+  \item $c_j(h+t\one)\ge c_j(h)+tl_j$ for $t\ge0$.
+  \item For $\beta\in\R^n_+$, $\sum_j\beta_jc_j(h)=\min_{\rho\in R}(\beta\odot\rho)\cdot h$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $c_j$ is the minimum of two linear functions of $h_j$ with positive slopes $l_j\le
+u_j$. (b) A concave positively homogeneous function of one variable is superadditive, so
+$c_j(h_j+t)\ge c_j(h_j)+c_j(t)=c_j(h_j)+l_jt$. (c) For each $j$, the linear function
+$\rho_j\mapsto\beta_j\rho_jh_j$ attains its minimum over $[l_j,u_j]$ at $\rho_j=l_j$ if
+$h_j\ge0$ and at $\rho_j=u_j$ if $h_j<0$, where it equals $\beta_jc_j(h)$; the choices for
+different $j$ are independent.
+\end{proof}
+
+For an admissible triple $(W_0,\beta,\alpha)$ the function of Section~\ref{sec:route} is
+$g=\sum_{\omega\notin W_0}\alpha_\omega\varphi_\omega-\sum_j\beta_jc_j$, because
+$\supp\beta\subseteq W_0$. Put
+\[
+  W\coloneqq\Bigl\{\beta\odot\rho+\sum_{\omega\notin W_0}\alpha_\omega v_\omega:
+  \rho\in R,\ v_\omega\in B_\omega\Bigr\},\qquad
+  K(W_0,\beta,\alpha)\coloneqq\conv\Bigl(K'\cup\bigcup_{\omega\in W_0}\hat A_\omega\cup
+  \nu(W)\Bigr).
+\]
+
+\begin{lemma}\label{lem:vboxcoh}
+$\mathrm{VBox}(K',B,R)$ satisfies (SC) and has null ties, and for every admissible triple
+$X^\ast(W_0,\beta,\alpha)=D_{K(W_0,\beta,\alpha)}$ a.e., a coherent model.
+\end{lemma}
+
+\begin{proof}
+The integrands are integrable by Lemmas~\ref{lem:veto}(a), \ref{lem:boxchart}(a) and (M).
+(SC) holds by Lemma~\ref{lem:veto}(b) and Lemma~\ref{lem:boxchart}(a).
+
+\emph{Null ties.} $g$ is continuous, and by Lemma~\ref{lem:veto}(c) and
+Lemma~\ref{lem:boxchart}(b), $g(h+t\one)\le g(h)-t\,\beta\cdot l<g(h)$ for $t>0$, because
+$l$ has positive coordinates and $\beta\ge0$, $\beta\ne0$, so $\beta\cdot l>0$.
+Lemma~\ref{lem:fubini} shows that $\{g=0\}$ is null. Only $\beta\cdot l>0$ is used, so
+$\beta$ may have zero coordinates.
+
+\emph{Coherence.} By Lemma~\ref{lem:boxchart}(c), $-\sum_j\beta_jc_j(h)=\max_{\rho\in R}
+(-(\beta\odot\rho)\cdot h)$, and $\varphi_\omega(h)=\max_{v\in B_\omega}(-v\cdot h)$. Since
+$\alpha\ge0$, a sum of maxima over independent choices is the maximum of the sums, so
+\[
+  g(h)=\max_{w\in W}(-w\cdot h).
+\]
+$W$ is compact, as a continuous image of a product of compact sets. Every $w\in W$ has
+non-negative coordinates (as $\beta\odot\rho\ge0$ and $B_\omega\subseteq\R^n_+$) and
+$\one\cdot w\ge\one\cdot(\beta\odot\rho)\ge\beta\cdot l>0$. So $\nu$ is continuous on $W$,
+$\nu(W)\subseteq\Delta$ is compact, and, the maximum being attained, $\{g<0\}=D_{\nu(W)}$.
+As in the proof of Lemma~\ref{lem:coh}, $\{\varphi_\omega=0\}=D_{\hat A_\omega}$ a.e.\ for
+$\omega\in W_0$, so by Lemma~\ref{lem:D}(a)
+\[
+  X^\ast(W_0,\beta,\alpha)=D_{K'}\cap\bigcap_{\omega\in W_0}D_{\hat A_\omega}\cap
+  D_{\nu(W)}=D_{K(W_0,\beta,\alpha)}\quad\text{a.e.},
+\]
+and $K(W_0,\beta,\alpha)$ is a credal set containing $K'$.
+\end{proof}
+
+The coherence step uses only that the second level, weighted and added to the weighted
+vetoes, is a maximum of linear functionals $-w\cdot h$ over a compact set $W\subseteq\R^n_+$
+with $\one\cdot w>0$ on $W$. Compactness makes the maximum attained and $\nu(W)$ compact.
+
+\begin{theorem}\label{thm:BX}
+Let $K'\subseteq\Delta$ be nonempty, compact and convex, let $A_1,\dots,A_n$ be compact
+(possibly empty) with $A_i\subseteq\conv(K'\cup\{e_i\})$, put $B_i\coloneqq\conv(\{0\}
+\cup A_i)$, let $R$ be a box as above, and let $\beta\in\R^n_+\setminus\{0\}$. Put
+\[
+  K\coloneqq\conv\bigl(K'\cup A_1\cup\dots\cup A_n\cup\nu(\beta\odot R)\bigr).
+\]
+If $K$ is full-dimensional and $K'\subseteq\relint K$, then $\mathrm{VBox}(K',B,R)$ on
+$\M_{D_{K'}}$ is complete and transitive, covers $K$, and satisfies (W). Its undominated
+models are exactly the models a.e.\ equal to $D_{K(W_0,\beta',\alpha)}$ for admissible
+triples $(W_0,\beta',\alpha)$, and a model tied at every world with an undominated model
+equals it a.e.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:vboxcoh} and Theorem~\ref{thm:route}, all requirements hold except (iv)
+and (vi) of Definition~\ref{def:cover}, together with the remaining claims. The triple
+$(\Omega,\beta,\emptyset)$ is admissible, with $W=\beta\odot R$; and $\hat A_\omega=\conv
+A_\omega$ (Section~\ref{sec:vb}), so $K(\Omega,\beta,\emptyset)=K$, and $D_K$ is
+undominated by Theorem~\ref{thm:route}(c). Lemma~\ref{lem:LF}(a) gives $D_K\in\M_U$ and
+(LF).
+\end{proof}
+
+If $R=\{r\}$ is a point, then $\nu(\beta\odot R)$ is the single point $\nu(\beta\odot r)$,
+which can be any point of $\Delta$; so Theorem~\ref{thm:BX} contains
+Theorem~\ref{thm:exempt}. With $A=\emptyset$ and $\beta=\one$ it gives the box coverage of
+Proposition~\ref{prop:box} on one-sided domains. The exempt set $\nu(\beta\odot R)$ is a
+normalised box: if $\beta$ has positive coordinates, $\beta\odot R$ is again a box, and
+$l_j=u_j$ is allowed. If $\beta$ has zero coordinates, $\nu(\beta\odot R)$ is a normalised
+box of the face $\Delta_{\supp\beta}$, and the vertex $e_j$ when $\supp\beta=\{j\}$.
+
+\begin{lemma}\label{lem:boxgeom}
+Let $R'=\prod_j[l'_j,u'_j]$ with $0<l'_j\le u'_j$.
+\begin{enumerate}[label=(\alph*)]
+  \item $\nu(R')=\{m\in\Delta:l'_im_j\le u'_jm_i\text{ for all }i\ne j\}$.
+  \item Every segment $[a,b]\subseteq\relint\Delta$ with $a\ne b$ lying on a cevian line
+  is $\nu(R')$ for a box $R'$ with exactly one nondegenerate coordinate.
+  \item Let $n=3$. If $\nu(R')$ has dimension $2$, each of its edges lies on a cevian line;
+  if it has dimension $1$, it lies on a cevian line; and it is never a triangle.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $m=\nu(y)$ with $y\in R'$, then $m_j/m_i=y_j/y_i\le u'_j/l'_i$. Conversely, if $m$
+satisfies the inequalities, then $m$ has positive coordinates (if $m_i=0$ then $l'_im_j\le
+0$ for all $j$, so $m=0$), and $\max_il'_i/m_i\le\min_ju'_j/m_j$; for $t$ between these
+numbers, $tm\in R'$, so $m=\nu(tm)\in\nu(R')$.
+
+(b) Let the line pass through $e_l$. After exchanging $a$ and $b$ if necessary,
+$b=(1-\tau)a+\tau e_l$ with $\tau\in(0,1)$: indeed $b=a+s(e_l-a)$ with $s\ne0$, and $s<1$
+because $b\in\relint\Delta$; if $s<0$ then $a=b+s'(e_l-b)$ with $s'=-s/(1-s)\in(0,1)$.
+Put $R'_l\coloneqq[a_l,a_l+\tau/(1-\tau)]$ and $R'_i\coloneqq\{a_i\}$ for $i\ne l$. For
+$t\ge0$, $\nu(a+te_l)=(1-\tau')a+\tau'e_l$ with $\tau'=t/(1+t)$, which runs over $[0,\tau]$
+as $t$ runs over $[0,\tau/(1-\tau)]$. So $\nu(R')=[a,b]$.
+
+(c) By (a), $\nu(R')$ is the intersection of $\relint\Delta$ with the six half-planes
+$l'_im_j\le u'_jm_i$, each bounded by a cevian line (through the third vertex). If
+$\nu(R')$ has dimension $2$, each of its edges lies on one of these lines. If exactly two
+coordinates are nondegenerate, say $l'_3=u'_3$, then the ratios $m_1/m_3$ and $m_2/m_3$
+range independently over intervals with nonempty interior, so $\nu(R')$ has dimension $2$;
+if all three are nondegenerate, it contains such a set. So dimension $1$ means that
+exactly one coordinate $l$ is nondegenerate, and then $\nu(R')$ lies on the line through
+$e_l$ and $\nu(y)$ for any fixed $y\in R'$. Finally suppose $\nu(R')$ is a triangle. Apply
+the homeomorphism $\zeta$ of the proof of Theorem~\ref{thm:cevian}; it maps cevian lines
+to lines, so $\zeta(\nu(R'))=\{y\in H:(e_j-e_i)\cdot y\le a_{ij}\}$ with $a_{ij}\coloneqq
+\log(u'_j/l'_i)$ is a triangle. Its three outward edge normals are among the vectors
+$e_j-e_i$, contain no opposite pair, and positively span $H$; so they are $e_2-e_1$,
+$e_3-e_2$, $e_1-e_3$ or their negatives. In the first case the vertex on the edges with
+normals $e_2-e_1$ and $e_3-e_2$ has $y_3-y_1=a_{12}+a_{23}$, and it satisfies $y_3-y_1\le
+a_{13}$; this gives $\log(u'_2/l'_2)\le0$, so $l'_2=u'_2$. The other two vertices give
+$l'_3=u'_3$ and $l'_1=u'_1$ in the same way, so $\nu(R')$ is a point. The second case is
+symmetric. So $\nu(R')$ is not a triangle.
+\end{proof}
+
+\begin{corollary}\label{cor:BX3}
+Let $n=3$ and let $T\subseteq\relint\Delta$ be a triangle. Call a vertex \emph{bad} if it
+is not visible. The following are equivalent.
+\begin{enumerate}[label=(\roman*)]
+  \item For some nonempty compact convex $K'\subseteq\Delta$, veto profile $B$ over $K'$
+  and box $R$, $D_T$ is an undominated model of $\mathrm{VBox}(K',B,R)$ on
+  $\M_{D_{K'}}$ and (LF) holds at $D_T$.
+  \item $T$ is covered by some veto--box ranking on some $\M_{D_{K'}}$.
+  \item Either (V) $T$ has at most one bad vertex, or (X) $T$ has exactly two bad vertices
+  and the edge joining them lies on a cevian line.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(ii)$\Rightarrow$(i) is immediate.
+
+(iii)$\Rightarrow$(ii). In case (V), Corollary~\ref{cor:poly} gives a veto--Brier ranking
+covering $T$, and veto--Brier rankings are veto--box rankings with $R=\{\one\}$. In case
+(X), let $a,b$ be the bad vertices and $c$ the third, visible from some world $j$. Since
+$c\ne e_j$, there is $\varepsilon>0$ with $k\coloneqq c+\varepsilon(c-e_j)\in\relint T$.
+Put $K'\coloneqq\{k\}$, $A_j\coloneqq\{c\}$ (note $c=(k+\varepsilon e_j)/(1+\varepsilon)
+\in\conv(K'\cup\{e_j\})$), $A_i\coloneqq\emptyset$ for $i\ne j$, $\beta\coloneqq\one$, and
+let $R$ be the box of Lemma~\ref{lem:boxgeom}(b) with $\nu(R)=[a,b]$. Then $\conv(\{k,c\}
+\cup[a,b])=T$, which is full-dimensional with $K'\subseteq\relint T$, and
+Theorem~\ref{thm:BX} applies.
+
+(i)$\Rightarrow$(iii). By Lemma~\ref{lem:LF}(b), $K'\subseteq\relint T$. By
+Lemma~\ref{lem:vboxcoh}, Theorem~\ref{thm:route}(c) and Lemma~\ref{lem:open},
+$T=K(W_0,\beta,\alpha)$ for an admissible triple. Taking $v_\omega=0$ in the definition of $W$, $\nu(\beta\odot\rho)\in\nu(W)
+\subseteq T\subseteq\relint\Delta$ for $\rho\in R$, so $\supp\beta=\Omega$; hence
+$W_0=\Omega$, there are no $\alpha$-weights, $W=\beta\odot R$, and $T=\conv(K'\cup
+\bigcup_\omega\hat A_\omega\cup E)$ with $E\coloneqq\nu(\beta\odot R)$, a normalised box
+contained in $T$. Every vertex of $T$ lies in $K'\cup\bigcup_\omega\hat A_\omega\cup E$.
+It is not in $K'\subseteq\relint T$. A vertex $x\in\hat A_\omega\subseteq\conv(K'\cup
+\{e_\omega\})$ is $(1-t)k+te_\omega$ with $k\in K'$; here $t<1$, because $x\in\relint\Delta$, and then
+$x$ is visible from $\omega$ by
+Lemma~\ref{lem:visbasic}(a). So every bad vertex lies in $E$. If all three vertices were
+bad, then $T=E$, which is impossible by Lemma~\ref{lem:boxgeom}(c). Suppose exactly two
+vertices $a,b$ are bad, and let $\ell$ be the line of the edge $[a,b]$, which supports $T$.
+Since $E\subseteq T$ lies on one side of $\ell$ and contains $a$ and $b$, $E\cap\ell$ is a
+face of $E$ containing two points. If $E$ has dimension $2$, this face is an edge of $E$
+and $\ell$ is cevian by Lemma~\ref{lem:boxgeom}(c); if $E$ has dimension $1$, then
+$E\subseteq\ell$ and $\ell$ is cevian by the same lemma. So $T$ satisfies (X).
+\end{proof}
+
+In (iii), both bad vertices lie in the exempt box; this is how a single veto--box ranking
+exempts two corners at once.
+
+\begin{example}\label{ex:T}
+Let $n=3$, $p\coloneqq\frac15(1,2,2)$, $q\coloneqq\frac15(2,1,2)$, $s\coloneqq\frac15
+(3,1,1)$ and $T\coloneqq\conv\{p,q,s\}$. Its facet normals are $(2,2,-3)$ for the edge
+$[p,q]$ (the line $m_3=\frac25$), $(0,-1,1)$ for $[p,s]$ (the line $m_2=m_3$, through
+$e_1$) and $(-1,4,-1)$ for $[q,s]$ (the line $m_2=\frac15$). By Lemma~\ref{lem:poly}:
+\begin{itemize}
+  \item at $p$ the normals are $(2,2,-3)$ and $(0,-1,1)$, so $p$ is anti-visible from
+  world $1$ and worlds $2$ and $3$ are crossing; $p$ is not visible;
+  \item at $s$ the normals are $(0,-1,1)$ and $(-1,4,-1)$, so $s$ is tangential from world
+  $1$ and worlds $2$ and $3$ are crossing; $s$ is not visible;
+  \item at $q$ the normals are $(2,2,-3)$ and $(-1,4,-1)$, whose third coordinates are
+  negative, so $q$ is visible from world $3$.
+\end{itemize}
+So $T$ has exactly two bad vertices, joined by the cevian edge $[p,s]$, and $T$ satisfies
+(X). It has a non-cevian edge, so it is not orthant-planar (Theorem~\ref{thm:cevian}), and
+it is not a veto--Brier target (Corollary~\ref{cor:polyreach}).
+
+An explicit cover is as follows. Let $k\coloneqq\frac1{50}(22,11,17)=\frac1{10}p+\frac35q+
+\frac3{10}s\in\relint T$. Then $q=\frac{10}{11}k+\frac1{11}e_3$. Take $K'\coloneqq\{k\}$,
+$A_3\coloneqq\{q\}$, $A_1=A_2\coloneqq\emptyset$, $R\coloneqq[1,6]\times\{2\}\times\{2\}$
+and $\beta\coloneqq\one$. Then $\nu(R)=[\nu(1,2,2),\nu(6,2,2)]=[p,s]$, and
+$\conv(\{k\}\cup\{q\}\cup[p,s])=T$, so Theorem~\ref{thm:BX} shows that the following
+ranking covers $T$, on the domain $U=D_{\{k\}}=\{h:22h_1+11h_2+17h_3>0\}$:
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+world & first level & second level\\
+\midrule
+$1$ & --- & $-\int_X\min(h_1,6h_1)\,d\mu=\int_X(6h_1^--h_1^+)\,d\mu$\\
+$2$ & --- & $-\int_X2h_2\,d\mu$\\
+$3$ & $\int_X\max(0,-q\cdot h)\,d\mu$ & $-\int_X2h_3\,d\mu$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The factor $2$ at worlds $2$ and $3$ does not change their orders. With all weights equal,
+the second levels add up to $-\min(5\,p\cdot h,10\,s\cdot h)$, since $(6,2,2)\cdot h-
+(1,2,2)\cdot h=5h_1$; on the veto-free set $U\cap\{q\cdot h\ge0\}$ this selects exactly
+$D_T$. The ranking is complete and transitive and satisfies (W). Finally, $T$ is not of the
+form $L\star K_0$ with (L) at all: since $\nu(\pi^\ast\odot m)\in T\subseteq\relint\Delta$
+has the support of $\pi^\ast$, such a factorisation would have $\pi^\ast\in\relint\Delta$,
+and then $T$ would have at most one bad vertex (Theorem~\ref{thm:n3} below).
+\end{example}
+
+\section{Composition}\label{sec:comp}
+
+\subsection{Composed rankings}
+
+Throughout this section $K_0\subseteq\relint\Delta$ is an orthant-planar credal set, of any
+dimension, with chart $c$, and the following holds.
+\begin{itemize}
+  \item[(L)] $L'\subseteq\Delta$ is nonempty, compact and convex; $A_1,\dots,A_n$ are
+  compact with $A_i\subseteq\conv(L'\cup\{e_i\})$; $\pi^\ast\in\Delta$; and
+  $L\coloneqq\conv(L'\cup A_1\cup\dots\cup A_n\cup\{\pi^\ast\})$ is full-dimensional with
+  $L'\subseteq\relint L$.
+\end{itemize}
+Taking $\pi^\ast\in L'$ recovers the case without an exempt point. We write
+$K(W_0,\beta,\alpha)$ for the credal sets of Lemma~\ref{lem:coh} for $\VB(L',A)$, and put
+\[
+  K\coloneqq L\star K_0,\qquad K'\coloneqq L'\star K_0,\qquad U\coloneqq D_{K'}.
+\]
+
+\begin{definition}\label{def:composed}
+The \emph{composed ranking} on $\M_U$ is the two-level integral ranking with
+\[
+  \varphi_i(h)\coloneqq\max\Bigl(0,\max_{v\in A_i}(-v\cdot c(h))\Bigr),\qquad
+  \psi_i(h)\coloneqq-c_i(h).
+\]
+\end{definition}
+
+Taking $K_0=\{\one/n\}$ and $c=$ identity recovers $\VB(L',A)$. The exempt point does not
+enter the ranking.
+
+\begin{lemma}\label{lem:conj}
+Let $\mu_c\coloneqq c_\sharp\mu$, that is, $\mu_c(E)\coloneqq\mu(c^{-1}(E))$.
+\begin{enumerate}[label=(\alph*)]
+  \item $\mu_c$ satisfies (M).
+  \item $U\cap O=c^{-1}(D_{L'})\cap O$, and $\Phi(X)\coloneqq c(X\cap O)$ is a bijection
+  from $\M_U$ (under $\mu$) onto $\M_{D_{L'}}$ (under $\mu_c$), modulo null sets, which
+  commutes with unions, intersections and differences.
+  \item For each $i$ and $X,Y\in\M_U$: $X\preceq_iY$ in the composed ranking iff
+  $\Phi(X)\preceq_i\Phi(Y)$ in $\VB(L',A)$ under $\mu_c$. Moreover $X\subseteq\{h_i>0\}$
+  a.e.\ iff $\Phi(X)\subseteq\{x_i>0\}$ a.e., and likewise for $\{h_i<0\}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $\mu_c$ is a finite Borel measure, and $\int|x|\,d\mu_c=\int|c(h)|\,d\mu<\infty$. Let
+$E$ be Borel. Since $c$ maps each open orthant $\sigma$ onto itself by the invertible
+linear map $\operatorname{diag}(d_\sigma)$, and maps $Z$ into $Z$ (as the identity),
+$c^{-1}(E)$ is the union of the sets $\operatorname{diag}(d_\sigma)^{-1}(E\cap\sigma)$ and
+of $E\cap Z$. If $E$ is Lebesgue-null, so is each of these, and $\mu_c(E)=0$. If
+$\mu_c(E)=0$, each set $\operatorname{diag}(d_\sigma)^{-1}(E\cap\sigma)$ is null, so
+$E\cap\sigma$ is null, and $E\cap Z$ is null; hence $E$ is null.
+
+(b) The first claim is Lemma~\ref{lem:pullback} with $Q=L'$. Since $c$ is a bijection of $O$
+onto itself with measurable inverse, $\Phi$ maps measurable subsets of $U\cap O$
+bijectively onto measurable subsets of $D_{L'}\cap O$ and commutes with set operations;
+$Z$ is null for both measures; and $\mu_c(\Phi(X))=\mu(X\cap O)=\mu(X)$, so null sets
+correspond.
+
+(c) For integrable $f$, $\int_Xf(c(h))\,d\mu(h)=\int_{\Phi(X)}f\,d\mu_c$, by the definition
+of the image measure and $1_X=1_{\Phi(X)}\circ c$ on $O$. With
+$f(x)=\max(0,\max_{v\in A_i}(-v\cdot x))$ and $f(x)=-x_i$ this identifies the scores of $X$
+in the composed ranking with the scores of $\Phi(X)$ in $\VB(L',A)$. The last claim holds
+because $c_i(h)$ has the sign of $h_i$.
+\end{proof}
+
+\begin{theorem}\label{thm:comp}
+Assume (L). Then $K=L\star K_0$ is a full-dimensional credal set, $K'=L'\star K_0$ is a
+compact convex subset of $\relint K$, and the composed ranking on $\M_{D_{K'}}$ is complete
+and transitive, covers $K$, and satisfies (W). Its undominated models are exactly the
+models a.e.\ equal to $D_{K(W_0,\beta,\alpha)\star K_0}$ for admissible triples
+$(W_0,\beta,\alpha)$, and a model tied at every world with an undominated model equals it
+a.e.
+\end{theorem}
+
+\begin{proof}
+\emph{Geometry.} For $m\in K_0$ the map $T_m:q\mapsto\nu(q\odot m)$ is a homeomorphism of
+$\relint\Delta$ onto itself. Since $\relint L$ is open in $\aff\Delta$ and contained in
+$\relint\Delta$, $T_m(\relint L)$ is open in $\aff\Delta$ and contained in $K$; so $K$ is
+full-dimensional and $T_m(\relint L)\subseteq\relint K$. Hence every generator $\nu(q\odot
+m)$ of $K'$ ($q\in L'\subseteq\relint L$) lies in $\relint K$, and so does their convex
+hull $K'$, which is compact.
+
+\emph{Ranking.} By Lemma~\ref{lem:conj}, $\Phi$ is an isomorphism between the composed
+ranking on $\M_U$ under $\mu$ and $\VB(L',A)$ on $\M_{D_{L'}}$ under $\mu_c$, which
+preserves set operations, null sets and the correctness of acceptances at every world.
+So (G), (IB), completeness, transitivity, the dominance relations, undominatedness and ties
+correspond. Theorem~\ref{thm:family} applies to $\VB(L',A)$ under $\mu_c$. Its undominated
+models are the $D_{K(W_0,\beta,\alpha)}$, and every model is weakly dominated by one of
+them. Since $K(W_0,\beta,\alpha)\supseteq L'$, Lemma~\ref{lem:pullback} gives
+$\Phi^{-1}(D_{K(W_0,\beta,\alpha)})=D_{K(W_0,\beta,\alpha)\star K_0}$ a.e., a coherent
+model. Theorem~\ref{thm:route}(e), applied through $\Phi$, gives (GC), (C), (ID) and (W).
+
+\emph{Target.} By Theorem~\ref{thm:exempt}, $D_L$ is undominated in $\VB(L',A)$ under
+$\mu_c$, and $L=K(\Omega,\pi^\ast,\emptyset)$. So $\Phi^{-1}(D_L)=D_{L\star K_0}=D_K$ is
+undominated.
+
+\emph{Local freedom.} $K'\subseteq\relint K$ and Lemma~\ref{lem:LF}(a) give $D_K\in\M_U$
+and (LF).
+\end{proof}
+
+\begin{lemma}\label{lem:reach}
+Let $Q\subseteq\Delta$ be compact and convex. Every extreme point of $Q\star K_0$ has the
+form $\nu(q\odot m)$ with $q\in\ext Q$ and $m\in\ext K_0$.
+\end{lemma}
+
+\begin{proof}
+An extreme point $x$ of the convex hull of the compact generating set is a generator,
+$x=\nu(q\odot m)$. Write $m=\sum_t\lambda_tm_t$ as a convex combination of extreme points
+of $K_0$ with positive weights. By~\eqref{eq:proj}, $x$ is a convex combination with
+positive weights of the points $\nu(q\odot m_t)\in Q\star K_0$, so $x=\nu(q\odot m_t)$ for
+each $t$. Repeating the argument in $q$ with $m_t$ fixed gives the claim.
+\end{proof}
+
+\begin{lemma}\label{lem:U}
+Assume (L) and let $\delta>0$ be such that $K'\subseteq K_\delta$. Every extreme point of
+$K$ that does not lie in $\nu(\pi^\ast\odot K_0)$ lies in $\bigcup_j\conv(K_\delta\cup
+\{e_j\})$. The extreme points of $K$ that lie in $\nu(\pi^\ast\odot K_0)$ are among the
+finitely many points $\nu(\pi^\ast\odot w)$, $w\in\ext K_0$.
+\end{lemma}
+
+\begin{proof}
+Such $\delta$ exists by Lemma~\ref{lem:visbasic}(b), since $K'$ is a compact subset of
+$\relint K$. Let $x$ be extreme in $K$. By Lemma~\ref{lem:reach}, $x=\nu(q\odot m)$ with
+$q\in\ext L\subseteq L'\cup\bigcup_jA_j\cup\{\pi^\ast\}$. If $q\in L'$, then $x\in
+K'\subseteq\relint K$, which is impossible. If $q\in A_j$, write $q=(1-t)k+te_j$ with $k\in
+L'$, $t\in[0,1]$; then $t>0$, and by~\eqref{eq:proj} (applied in $q$ with $m$ fixed), $x$
+lies on the segment from $\nu(k\odot m)\in K'\subseteq K_\delta$ to $\nu(e_j\odot m)=e_j$.
+Otherwise $q=\pi^\ast$. For the second claim, if $x=\nu(\pi^\ast\odot m)$ is extreme in $K$,
+the argument of Lemma~\ref{lem:reach} shows $x=\nu(\pi^\ast\odot w)$ for an extreme point
+$w$ of $K_0$, and $K_0$ has finitely many by Lemma~\ref{lem:planarobs}(a).
+\end{proof}
+
+\subsection{Three worlds: no new interior targets}
+
+For a credal set $S$, a point $x\in S$ and $i\ne j$, say that $x$ \emph{minimises $m_i/m_j$
+over $S$} if $m_ix_j-m_jx_i\ge0$ for all $m\in S$, and put
+\[
+  M_i(S)\coloneqq\{x\in S\cap\relint\Delta:x\text{ minimises }m_i/m_j\text{ over }S\text{
+  for every }j\ne i\}.
+\]
+Equivalently, the two-term vector $g^{ij}_x\coloneqq x_je_i-x_ie_j$ lies in $F^S_x$ for
+every $j\ne i$: indeed $g^{ij}_x\cdot x=0$ always, and $g^{ij}_x\in C_S$ is the stated
+inequality.
+
+\begin{lemma}\label{lem:N3}
+Let $n=3$, let $S$ be a full-dimensional credal set and $x\in S\cap\relint\Delta$. Then $x$
+is visible from no world if and only if $x\in M_i(S)$ for some $i$. Each $M_i(S)$ has at
+most one point, which is an extreme point of $S$, and $M_i(S)\cap M_j(S)=\emptyset$ for
+$i\ne j$.
+\end{lemma}
+
+\begin{proof}
+Let $\Pi\coloneqq x^\perp$, a plane, and $F\coloneqq F^S_x\subseteq\Pi$, a closed convex
+cone with $F\cap(-F)=\{0\}$ (Lemma~\ref{lem:fulldim}(c)). By Lemma~\ref{lem:V1}, $x$ is
+visible from no world iff $F$ meets $H_l\coloneqq\{h_l\ge0\}\setminus\{0\}$ for every
+$l$. Since $x$ has positive coordinates, no nonzero $h\in\Pi$ has $h\ge0$ or $h\le0$. For
+each $l$, $\Pi\cap e_l^\perp=\R g^{ij}_x$ with $\{i,j,l\}=\{1,2,3\}$, and $g^{ij}_x$ is
+positive at $i$, negative at $j$ and zero at $l$. So the nonzero points of $\Pi$ with a
+zero coordinate form six open rays, $\pm\R_+g^{ij}_x$, which divide $\Pi\setminus\{0\}$ into
+six open sectors, each of angle less than $\pi$. On each sector every coordinate has a
+constant nonzero sign, not all equal; crossing a ray on which $h_l=0$ changes the sign of
+$h_l$ only. So the number of positive coordinates is $1$ or $2$ on each sector, and the
+two kinds alternate. The closure of a sector with one positive coordinate $i$ is
+$\cone\{g^{ij}_x,g^{ik}_x\}$.
+
+($\Leftarrow$) If $g^{ij}_x,g^{ik}_x\in F$, then $g^{ij}_x$ meets $H_i$ and $H_k$, and
+$g^{ik}_x$ meets $H_j$.
+
+($\Rightarrow$) $F\neq\{0\}$, since otherwise $F$ meets no $H_l$. If $F$ contained none of
+the six rays, $F\setminus\{0\}$ would be a connected set on which no coordinate vanishes,
+so each coordinate would have constant sign there, some coordinate $l$ negative, and $F$
+would miss $H_l$. If $F$ contained exactly one ray, on which $h_l=0$, $h_i>0>h_j$, then
+$F\setminus\{0\}$ would lie in that ray and the two adjacent sectors, on all of which
+$h_j<0$; so $F$ would miss $H_j$. Hence $F$ contains two rays, and, being convex with
+angle less than $\pi$, the closed sector between two consecutive ones. If this sector has
+one positive coordinate $i$, it is $\cone\{g^{ij}_x,g^{ik}_x\}\subseteq F$, and we are
+done. Otherwise it has two positive coordinates and one negative coordinate $l$, which is
+negative on both bounding rays; if $F$ contained no further ray, $F\setminus\{0\}$ would
+lie in this closed sector and the two adjacent open sectors, on all of which $h_l<0$, and
+$F$ would miss $H_l$. So $F$ contains a third ray adjacent to this sector, and hence the
+closed sector beyond it, which has one positive coordinate.
+
+The points of $S$ minimising $m_i/m_j$ form an exposed face of $S$ lying on a line through
+$e_k$, and those minimising $m_i/m_k$ an exposed face on a line through $e_j$; the lines
+are distinct, since a line through $e_j$ and $e_k$ is the edge $\{m_i=0\}$, which misses
+$x$. So $M_i(S)$ is contained in a face of $S$ with at most one point, which is then an
+extreme point. If $x\in M_i(S)\cap M_j(S)$, then $x$ minimises both $m_i/m_j$ and $m_j/m_i$,
+so $m_i/m_j$ is constant on $S$ and $S$ lies on a line, contradicting
+full-dimensionality.
+\end{proof}
+
+\begin{lemma}\label{lem:decouple}
+Let $S\subseteq\Delta$ be compact and convex, $q\in S\cap\relint\Delta$, $w\in K_0$, and
+$x\coloneqq\nu(q\odot w)$. For $i\ne j$, $x$ minimises $m_i/m_j$ over $S\star K_0$ if and
+only if $q$ minimises $m_i/m_j$ over $S$ and $w$ minimises $m_i/m_j$ over $K_0$.
+Consequently $x\in M_i(S\star K_0)$ iff $q\in M_i(S)$ and $w\in M_i(K_0)$.
+\end{lemma}
+
+\begin{proof}
+The inequality $m_ix_j-m_jx_i\ge0$ is linear in $m$, so it holds on $S\star K_0$ iff it
+holds at the generators $\nu(q'\odot m')$, that is, iff $q'_im'_iq_jw_j-q'_jm'_jq_iw_i\ge0$
+for all $q'\in S$, $m'\in K_0$. If $q'_iq_j\ge q'_jq_i$ and $m'_iw_j\ge m'_jw_i$ for all
+$q',m'$, the products of these non-negative quantities satisfy the inequality. Conversely,
+$m'=w$ gives $(q'_iq_j-q'_jq_i)w_iw_j\ge0$, and $q'=q$ gives $(m'_iw_j-m'_jw_i)q_iq_j\ge0$;
+and $q,w$ have positive coordinates.
+\end{proof}
+
+For a full-dimensional credal set $S$ let $\mathsf N(S)$ be the number of extreme points of
+$S$ in $\relint\Delta$ that are not visible.
+
+\begin{theorem}\label{thm:n3}
+Let $n=3$, assume (L) with $\pi^\ast\in\relint\Delta$, and let $K_0\subseteq\relint\Delta$
+be orthant-planar. Then $\mathsf N(L\star K_0)=\mathsf N(L)\le1$, and every extreme point of
+$L\star K_0$, with at most one exception, is uniformly visible. Consequently $L\star K_0$ is
+covered by a veto--Brier ranking (Corollary~\ref{cor:exemptvis}): in three worlds,
+composition with an interior exempt point produces no target outside the class of
+Section~\ref{sec:vb}.
+\end{theorem}
+
+\begin{proof}
+Write $K=L\star K_0$. \emph{The factor $L$.} Every extreme point of $L$ other than
+$\pi^\ast$ lies in $L'\cup\bigcup_jA_j$; points of $L'$ are not extreme, points of $A_j$
+other than $e_j$ have the form $(1-t)k+te_j$ with $k\in L'\subseteq\relint L$, $t<1$, so are
+visible by Lemma~\ref{lem:visbasic}(a), and $e_j\notin\relint\Delta$. So $\mathsf N(L)\le
+1$, with equality iff $\pi^\ast$ is not visible, iff (Lemma~\ref{lem:N3}) $\pi^\ast\in
+M_i(L)$ for some $i$, which is then unique.
+
+\emph{The factor $K_0$.} For each $i$, $M_i(K_0)$ is a single point $w_i$: apply
+Lemma~\ref{lem:ratio}(b) to the mixed orthant with $P=\{i\}$, $N=\Omega\setminus\{i\}$,
+which gives a point of $K_0$ maximising $m_j/m_i$ for both $j\ne i$; and $|M_i(K_0)|\le1$
+by the argument in the proof of Lemma~\ref{lem:N3} (two distinct lines), which does not use
+full-dimensionality of $K_0$.
+
+\emph{The composite.} By Lemma~\ref{lem:U}, extreme points of $K$ outside
+$\nu(\pi^\ast\odot K_0)$ are uniformly visible, hence visible. Let $x$ be a non-visible
+extreme point of $K$ in $\relint\Delta$; then $x=\nu(\pi^\ast\odot w)$ with $w\in K_0$, and
+by Lemma~\ref{lem:N3}, $x\in M_i(K)$ for some $i$. By Lemma~\ref{lem:decouple},
+$\pi^\ast\in M_i(L)$ and $w=w_i$. So $\mathsf N(K)\le\mathsf N(L)$, and $x$ is determined.
+Conversely, if $\pi^\ast\in M_i(L)$, Lemma~\ref{lem:decouple} gives $\nu(\pi^\ast\odot w_i)
+\in M_i(K)$, which by Lemma~\ref{lem:N3} is an extreme point of $K$ in $\relint\Delta$ that is
+not visible. So $\mathsf N(K)=\mathsf N(L)$.
+
+\emph{Uniformity.} The remaining extreme points are those of Lemma~\ref{lem:U} outside
+$\nu(\pi^\ast\odot K_0)$, which lie in $\bigcup_j\conv(K_\delta\cup\{e_j\})$, and finitely
+many visible points $\nu(\pi^\ast\odot w)$, each of which is $(1-t)k+te_j$ with
+$k\in\relint K$, $t<1$, hence lies in $\conv(K_{d(k)}\cup\{e_j\})$. Taking the least depth,
+all extreme points except the non-visible one (if any) are uniformly visible.
+\end{proof}
+
+\begin{corollary}\label{cor:trireach}
+Let $n=3$ and let $T\subseteq\relint\Delta$ be a triangle. Then $T$ is covered by one of
+the constructions of this paper, namely a veto--Brier ranking (Section~\ref{sec:vb}), a
+chart ranking of an orthant-planar credal set on any domain (Definition~\ref{def:chart}), a
+veto--box
+ranking (Theorem~\ref{thm:BX}), or a composed ranking with a target of the form
+$L\star K_0$ of Theorem~\ref{thm:comp}, if and only if $T$ satisfies (V) or (X) of
+Corollary~\ref{cor:BX3}, or all three edges of $T$ lie on cevian lines.
+\end{corollary}
+
+\begin{proof}
+The constructions give the three classes by Corollary~\ref{cor:BX3} and
+Theorem~\ref{thm:cevian}. Conversely, a veto--Brier ranking is a veto--box ranking, so
+Corollary~\ref{cor:BX3} applies to both. If $D_T$ is an undominated model of a chart
+ranking of an orthant-planar credal set on any domain, with (LF) at $D_T$, then $T$ is
+orthant-planar by Lemma~\ref{lem:charttarget}, and all its edges are cevian by
+Theorem~\ref{thm:cevian}. Finally, if $T=L\star K_0$ with (L),
+then $\pi^\ast\in\relint\Delta$, since $\nu(\pi^\ast\odot m)\in T$ has the support of
+$\pi^\ast$; by Theorem~\ref{thm:n3}, $T$ has at most one bad vertex.
+\end{proof}
+
+\begin{remark}\label{rem:n3}
+The mechanism is specific to three worlds: there the normal cone of a non-visible interior
+point must contain a whole sector bounded by two two-term vectors (Lemma~\ref{lem:N3}), and
+these two-term conditions decouple across the factors (Lemma~\ref{lem:decouple}). In four
+or more worlds the two-term condition is still sufficient for non-visibility
+(Lemma~\ref{lem:twopair} below); we do not know whether it is necessary there, and
+composition does produce new targets (Theorem~\ref{thm:F}).
+\end{remark}
+
+\subsection{Four or more worlds}
+
+\begin{lemma}\label{lem:twopair}
+Let $S$ be a full-dimensional credal set and $x\in S\cap\relint\Delta$. If there are pairs
+$(a,b)$ and $(a',b')$ with $b\ne b'$ such that $x$ minimises $m_a/m_b$ and $m_{a'}/m_{b'}$
+over $S$, then $x$ is visible from no world.
+\end{lemma}
+
+\begin{proof}
+$g\coloneqq x_be_a-x_ae_b\in F^S_x$ is nonzero and has $g_l\ge0$ for every $l\ne b$, and
+similarly $g'\coloneqq x_{b'}e_{a'}-x_{a'}e_{b'}$ for $l\ne b'$. Every world $l$ differs
+from $b$ or from $b'$, so by Lemma~\ref{lem:V1} $x$ is not visible from $l$; and
+$x\ne e_l$.
+\end{proof}
+
+\begin{theorem}\label{thm:F}
+Let $n\ge4$, $0<\alpha_j<\beta_j$ for $j\in\Omega$, $K_0\coloneqq\nu(\prod_j[\alpha_j,
+\beta_j])$, and $\ub\coloneqq\one/n$. Assume (L) with $\pi^\ast=\ub$ and $L\subseteq\relint
+\Delta$, and suppose that for some world $a$,
+\begin{itemize}
+  \item[(F)] $q_a>q_b$ for every $q\in L\setminus\{\ub\}$ and every $b\ne a$.
+\end{itemize}
+Put $K\coloneqq L\star K_0$. Then:
+\begin{enumerate}[label=(\alph*)]
+  \item $K$ is covered by the composed ranking on $\M_{D_{L'\star K_0}}$, whose chart is
+  $c_j(h)=\min(\alpha_jh_j,\beta_jh_j)$ (Proposition~\ref{prop:box});
+  \item for every corner $x$ of $\prod_j[\alpha_j,\beta_j]$ with $x_a=\alpha_a$ and at least
+  two coordinates $x_j=\beta_j$, the point $\nu(x)$ is an extreme point of $K$ that is
+  visible from no world; there are $2^{n-1}-n\ge4$ such points;
+  \item if some facet normal of $L$ has no zero coordinate, then so does some facet normal
+  of $K$, and $K$ is not orthant-planar.
+\end{enumerate}
+By (b) and Theorem~\ref{thm:reach} below, no veto--Brier ranking on any domain $D_{K''}$
+has $D_K$ as an undominated model with (LF).
+\end{theorem}
+
+\begin{proof}
+(a) is Theorem~\ref{thm:comp}.
+
+(b) Let $x$ be such a corner, $H\coloneqq\{j:x_j=\beta_j\}\subseteq\Omega\setminus\{a\}$,
+and $w\coloneqq\nu(x)$; $w\in K_0\subseteq K$ because $\ub\in L$. For $j\in H$ and a
+generator $\nu(q\odot m)$ of $K$, $m=\nu(y)$ with $y$ in the box: $y_j/y_a\le\beta_j/\alpha_a
+=w_j/w_a$, so $w_jm_a\ge w_am_j$; and $q_a\ge q_j$ by (F). Hence
+$w_jq_am_a\ge w_jq_jm_a\ge q_jw_am_j$, so $w$ minimises $m_a/m_j$ over $K$. As $|H|\ge2$,
+Lemma~\ref{lem:twopair} shows that $w$ is visible from no world. For extremality, let
+$E\coloneqq\{m\in K:m_aw_j=m_jw_a\text{ for all }j\in H\}$, an intersection of exposed
+faces, hence a face of $K$, equal to the convex hull of the generators it contains.
+Equality throughout the chain above forces $q_a=q_j$, hence $q=\ub$ by (F), and
+$y_j/y_a=\beta_j/\alpha_a$, that is $y_a=\alpha_a$ and $y_j=\beta_j$ for $j\in H$. So
+$E=\nu(G_x)$ with $G_x\coloneqq\{y\in\prod_j[\alpha_j,\beta_j]:y_a=\alpha_a,\ y_j=\beta_j\
+(j\in H)\}$, a face of the box having $x$ as a vertex. On the affine set $\{y_a=\alpha_a\}$
+the map $\nu$ is injective, and by~\eqref{eq:proj} it maps segments to segments, so it maps
+the extreme point $x$ of $G_x$ to an extreme point of $\nu(G_x)=E$. Hence $w$ is extreme in
+$K$. Distinct corners with $x_a=\alpha_a$ have distinct images. The number of subsets
+$H\subseteq\Omega\setminus\{a\}$ with $|H|\ge2$ is $2^{n-1}-1-(n-1)$.
+
+(c) Let $\eta$ be a facet normal of $L$: $\eta\cdot q\ge0$ on $L$, with equality on a facet
+$F_L$ of dimension $n-2$. Put $x^\ast_j\coloneqq\alpha_j$ if $\eta_j\ge0$ and
+$x^\ast_j\coloneqq\beta_j$ if $\eta_j<0$, and $\eta'\coloneqq\eta\oslash x^\ast$. For
+$q\in L$ and $y$ in the box, $\eta'\cdot(q\odot y)=\sum_j\eta_jq_jy_j/x^\ast_j\ge\sum_j
+\eta_jq_j\ge0$, since $y_j/x^\ast_j\ge1$ where $\eta_j\ge0$ and $\le1$ where $\eta_j<0$.
+So $\eta'\cdot m\ge0$ on $K$, with equality on $T_{\nu(x^\ast)}(F_L)$, which has dimension
+$n-2$ because $T_{\nu(x^\ast)}$ is a homeomorphism of $\relint\Delta$ mapping segments to
+segments. So $\eta'$ is a facet normal of $K$, with the zero pattern of $\eta$.
+Lemma~\ref{lem:planarobs}(d) completes the proof.
+\end{proof}
+
+\begin{corollary}\label{cor:Ffamily}
+Let $n\ge4$, $p_0\in\relint\Delta$ with $p_{0,a}>p_{0,b}$ for all $b\ne a$, and
+\[
+  0<\varepsilon<\min_{b\ne a}\frac{p_{0,a}-p_{0,b}}{1+p_{0,a}-p_{0,b}}.
+\]
+Put $v_j\coloneqq(1-\varepsilon)p_0+\varepsilon e_j$, $L'\coloneqq\{p_0\}$, $A_j\coloneqq
+\{v_j\}$ and $L\coloneqq\conv(\{\ub,v_1,\dots,v_n\})$. Then every conclusion of
+Theorem~\ref{thm:F}, including (c), holds for $L\star K_0$, for every box
+$K_0=\nu(\prod_j[\alpha_j,\beta_j])$ with $\alpha\ll\beta$.
+\end{corollary}
+
+\begin{proof}
+$\Sigma\coloneqq\conv\{v_j\}=(1-\varepsilon)p_0+\varepsilon\Delta$ is a full-dimensional
+simplex in $\relint\Delta$ containing $p_0$ in its relative interior, so $L$ is
+full-dimensional, $L\subseteq\relint\Delta$, $p_0\in\relint L$, and $A_j\subseteq[p_0,
+e_j]$: (L) holds with $\pi^\ast=\ub$. For each $j$, $v_{j,a}-v_{j,b}\ge(1-\varepsilon)
+(p_{0,a}-p_{0,b})-\varepsilon>0$ by the choice of $\varepsilon$, so $q_a>q_b$ on $\Sigma$;
+a point of $L$ is $(1-\lambda)s+\lambda\ub$ with $s\in\Sigma$, and $\ub$ has equal
+coordinates, so (F) holds. Finally, $\sum_k(1-\varepsilon)p_{0,k}<1=\sum_k\ub_k$, so
+$\ub_k>(1-\varepsilon)p_{0,k}$ for some $k$. The facet $\Sigma\cap\{m_k=(1-\varepsilon)
+p_{0,k}\}$ of $\Sigma$ is then a facet of $L$, since both $\Sigma$ and $\ub$ satisfy
+$m_k\ge(1-\varepsilon)p_{0,k}$. Its normal $e_k-(1-\varepsilon)p_{0,k}\one$ has no zero
+coordinate.
+\end{proof}
+
+\begin{example}\label{ex:n4}
+Let $n=4$, $K_0\coloneqq\nu([1,2]^4)=\{m:m_j\le2m_i\text{ for all }i,j\}$, $p_0\coloneqq
+\frac1{10}(4,3,2,1)$, $a=1$ and $\varepsilon=\frac1{20}<\frac1{11}$. So $L=\conv\{\ub,
+v_1,\dots,v_4\}$ with
+\[
+  v_1=\bigl(\tfrac{43}{100},\tfrac{57}{200},\tfrac{19}{100},\tfrac{19}{200}\bigr),\
+  v_2=\bigl(\tfrac{19}{50},\tfrac{67}{200},\tfrac{19}{100},\tfrac{19}{200}\bigr),\
+  v_3=\bigl(\tfrac{19}{50},\tfrac{57}{200},\tfrac{6}{25},\tfrac{19}{200}\bigr),\
+  v_4=\bigl(\tfrac{19}{50},\tfrac{57}{200},\tfrac{19}{100},\tfrac{29}{200}\bigr).
+\]
+At world $i$ the composed ranking compares, lexicographically, on measurable
+$X\subseteq D_{K'}$ with $K'=\nu(p_0\odot K_0)=\{m:m_j/m_i\le2p_{0,j}/p_{0,i}\}$,
+\[
+  \Bigl(\int_X\max\bigl(0,-v_i\cdot c(h)\bigr)\,d\mu(h),\ -\int_Xc_i(h)\,d\mu(h)\Bigr),
+  \qquad c(h)=h^+-2h^- .
+\]
+It covers $K=L\star K_0$. An exact computation of the hull of the $70$ generators
+$\nu(q\odot m)$, $q\in\ext L$, $m\in\ext K_0$, shows that $K$ has $32$ vertices, $63$
+edges and $33$ facets. Exactly five vertices are visible from no world: the normalised box
+corners
+\[
+  \nu(1,1,2,2),\ \nu(1,2,1,2),\ \nu(1,2,2,1),\ \nu(1,2,2,2),\ \nu(2,1,2,2);
+\]
+the first four are those of Theorem~\ref{thm:F}(b), and all five are tangential from two
+or three worlds. Six facet normals have no zero coordinate, among them
+$(-19,-19,-19,362)$ and $(134,-57,-57,94)$; so $K$ is not orthant-planar. Thus $K$ is
+covered, lies outside the visibility class of Section~\ref{sec:vb}, and lies outside the
+orthant-planar class. Its non-visible vertices are tangential; we do not claim that $K$
+lies outside every class of rankings with a veto level followed by a Brier-type level.
+\end{example}
+
+\subsection{Exempt points on the boundary}
+
+\begin{proposition}\label{prop:facecount}
+Let $K''\subseteq\relint\Delta$ be nonempty, compact and convex, $B$ a veto profile over
+$K''$, $(W_0,\beta,\alpha)$ an admissible triple, and $S\subsetneq\Omega$ with $|S|\ge2$.
+Then $K(W_0,\beta,\alpha)\cap\Delta_S$ has at most one extreme point whose support is
+exactly $S$.
+\end{proposition}
+
+\begin{proof}
+Put $K^\ast\coloneqq K(W_0,\beta,\alpha)=\conv T$ with $T\coloneqq K''\cup\bigcup_{\omega
+\in W_0}\hat A_\omega\cup\hat W$, a compact set. Since $m\mapsto\sum_{k\notin S}m_k$ is
+non-negative on $K^\ast$, $G\coloneqq K^\ast\cap\Delta_S$ is a face, $G=\conv(T\cap\Delta
+_S)$, and $\ext G\subseteq T\cap\Delta_S$. Points of $K''$ have full support. By
+Lemma~\ref{lem:veto}(d), points of $\hat A_\omega$ have full support or equal $e_\omega$.
+Every $v\in B_\omega\subseteq\cone(K''\cup\{e_\omega\})$ is $0$, has full support, or is a
+positive multiple of $e_\omega$. A point $w=\beta+\sum_{\omega\notin W_0}\alpha_\omega
+v_\omega$ of $W$ has $\supp w\subseteq S$ iff $\supp\beta\subseteq S$ and, whenever
+$\alpha_\omega>0$, either $v_\omega=0$ or $v_\omega=te_\omega$ with $\omega\in S$. With
+$T_\omega\coloneqq\max\{t\ge0:te_\omega\in B_\omega\}$, the set of such $w$ is the box
+$\{\beta+\sum_{\omega\in S'}t_\omega\alpha_\omega e_\omega:t_\omega\in[0,T_\omega]\}$,
+$S'\coloneqq(S\setminus W_0)\cap\{\alpha_\omega>0\}$. The image under $\nu$ of a convex
+combination of corners is a convex combination of the images of the corners, so an
+extreme point of $G$ with support exactly $S$ is $\nu$ of a corner $\beta+\sum_{\omega\in
+M}\alpha_\omega T_\omega e_\omega$, $M\subseteq S'$, with support exactly $S$. As
+$\supp\beta\subseteq W_0$ is disjoint from $S'$, this support is $\supp\beta\cup\{\omega\in
+M:T_\omega>0\}$, so the corner is determined: it is the one with $\{\omega\in M:T_\omega>0
+\}=S\setminus\supp\beta$.
+\end{proof}
+
+\begin{theorem}\label{thm:BE}
+Let $n\ge3$. Assume (L) with $\pi^\ast$ in the relative interior of a face $\Delta_S$ of
+$\Delta$, where $S\subsetneq\Omega$ and $|S|\ge2$, and suppose $e_i\notin L$ for every
+$i\in S$. Let $K_0\subseteq\relint\Delta$ be a full-dimensional orthant-planar credal set
+and $K\coloneqq L\star K_0$. Then:
+\begin{enumerate}[label=(\alph*)]
+  \item $K$ is covered by the composed ranking on $\M_{D_{L'\star K_0}}$;
+  \item $K\cap\Delta_S=\nu(\pi^\ast\odot K_0)$, which has at least two extreme points, all
+  with support exactly $S$;
+  \item no veto--Brier ranking $\VB(K'',B)$ with $K''\subseteq\relint\Delta$ on
+  $\M_{D_{K''}}$ has $D_K$ as an undominated model;
+  \item if $n=3$ and $K$ is a polygon (which holds whenever $L$ is a polygon, since $K_0$
+  is then a polytope by Lemma~\ref{lem:planarobs}(a) and Lemma~\ref{lem:reach} applies),
+  some edge line of $K$ passes through no vertex of $\Delta$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is Theorem~\ref{thm:comp}. (b) $L\cap\Delta_S$ is a face of $L$, the convex hull of the
+generators of $L$ in $\Delta_S$. Points of $L'\subseteq\relint L\subseteq\relint\Delta$ have
+full support; points of $A_i$ are $e_i$ or have full support; $e_i\in\Delta_S$ only for
+$i\in S$, and those are excluded. So $L\cap\Delta_S=\{\pi^\ast\}$. Likewise
+$K\cap\Delta_S$ is the convex hull of the generators $\nu(q\odot m)$ in $\Delta_S$; as $m$
+has full support, these are those with $q\in L\cap\Delta_S$, so $K\cap\Delta_S=\nu(\pi^\ast
+\odot K_0)$, a compact convex set whose points have support exactly $S$. It is not a point:
+for $i\ne j$ in $S$ the ratio $m_i/m_j$ is not constant on the full-dimensional $K_0$, and
+$\nu(\pi^\ast\odot m)$ has ratio $(\pi^\ast_i/\pi^\ast_j)(m_i/m_j)$. So it has at least two
+extreme points, which are extreme in $K$ since $K\cap\Delta_S$ is a face.
+(c) If $D_K$ were undominated, then $D_K=D_{K(W_0,\beta,\alpha)}$ a.e.\ by
+Theorem~\ref{thm:family}, so $K=K(W_0,\beta,\alpha)$ by Lemma~\ref{lem:open}, contradicting
+(b) and Proposition~\ref{prop:facecount}.
+(d) Let $S=\{a,b\}$ and let $c$ be the third world. By (b), $K\cap\Delta_S=\nu(\pi^\ast
+\odot K_0)$ is a segment $[x^-,x^+]$ on the line $\{m_c=0\}$; it is an edge of $K$, and
+$x^\pm$ are vertices of $K$. Let $\theta^-<\theta^+$ be the least and greatest values of
+$m_a/m_b$ on $K_0$, attained at $m^\pm$, so that the ratio $m_a/m_b$ takes the values
+$\rho^\pm\coloneqq(\pi^\ast_a/\pi^\ast_b)\theta^\pm$ at $x^\pm$. Suppose every edge line of
+$K$ is cevian. The other edge of $K$ at $x^+$ lies on a line through $x^+$ and some $e_l$.
+For $l\in S$ this line is $\{m_c=0\}$, which carries only the edge $[x^-,x^+]$; so $l=c$,
+and the line is $\{m_a=\rho^+m_b\}$. It supports $K$, and $x^-$ lies on the side
+$\{m_a<\rho^+m_b\}$, so $m_a\le\rho^+m_b$ on $K$. Likewise $m_a\ge\rho^-m_b$ on $K$. Since
+$L$ is full-dimensional, some $q\in\relint L$ has $q_a/q_b\ne\pi^\ast_a/\pi^\ast_b$. If
+$q_a/q_b>\pi^\ast_a/\pi^\ast_b$, the point $\nu(q\odot m^+)\in K$ has ratio
+$(q_a/q_b)\theta^+>\rho^+$; otherwise $\nu(q\odot m^-)\in K$ has ratio below $\rho^-$. This
+is a contradiction.
+\end{proof}
+
+\begin{example}\label{ex:pentagon}
+Let $n=3$, let $K_0$ be the cyclic triangle of Example~\ref{ex:cyclic}, and let
+\[
+  L\coloneqq\conv\Bigl\{\tfrac15(1,2,2),\ \bigl(\tfrac12,\tfrac12,0\bigr),\
+  \tfrac15(1,3,1)\Bigr\},\qquad \pi^\ast\coloneqq\bigl(\tfrac12,\tfrac12,0\bigr).
+\]
+The facet normals of $L$ are $(-2,2,-1)$, $(1,-1,2)$ and $(4,-1,-1)$. By
+Lemma~\ref{lem:poly}, $\frac15(1,2,2)$ is visible from world $3$ and $\frac15(1,3,1)$ from
+world $2$. So, by Corollary~\ref{cor:exemptvis} and its proof, (L) holds with
+$L'=L_\delta$ for small $\delta$ and $A_j=L\cap\conv(L_\delta\cup\{e_j\})$. Neither $e_1$
+nor $e_2$ lies in $L$. An exact computation gives $K=L\star K_0$ as the pentagon with
+vertices
+\[
+  \tfrac1{15}(1,12,2),\quad\tfrac1{13}(1,8,4),\quad\tfrac16(1,1,4),\quad
+  \tfrac13(2,1,0),\quad\tfrac15(1,4,0),
+\]
+and facet normals $(-4,8,-1)$, $(0,0,1)$, $(4,-1,4)$, $(4,0,-1)$ and $(16,-1,-2)$. Its
+edge joining $\frac13(2,1,0)$ and $\frac15(1,4,0)$ is $\nu(\pi^\ast\odot K_0)$ and lies on
+the boundary of $\Delta$. By Theorem~\ref{thm:BE}, $K$ is covered and is not the
+undominated target of any veto--Brier ranking on a domain $D_{K''}$ with
+$K''\subseteq\relint\Delta$. Three of its edge lines pass through no vertex of $\Delta$, in
+accordance with Theorem~\ref{thm:BE}(d).
+\end{example}
+
+\section{Scoped exclusions}\label{sec:excl}
+
+Each result in this section concerns a stated class of rankings, or a stated route to
+coverage, and nothing more. Every class considered consists of complete and transitive
+rankings, or (in Section~\ref{sec:excl-other}, items~(2) and~\ref{it:unanimity}) of
+transitive unanimity rankings. None of these results shows that the targets concerned cannot be
+covered in the sense of Definition~\ref{def:cover} by rankings outside the class; that
+question is open (Section~\ref{sec:open}).
+
+\subsection{Veto--Brier rankings}\label{sec:excl-vb}
+
+\begin{lemma}\label{lem:sublinear}
+Let $K''\subseteq\Delta$ be nonempty, compact and convex, and let $\varphi:\R^n\to\R$ be
+non-negative, convex and positively homogeneous, with $\varphi(h)=0$ whenever $h\in
+D_{K''}$ and $h_i\ge0$. Then $\varphi(h)=\max_{v\in B}(-v\cdot h)$ for a compact convex $B$
+with $0\in B\subseteq\cone(K''\cup\{e_i\})$.
+\end{lemma}
+
+\begin{proof}
+A finite convex positively homogeneous function on $\R^n$ is continuous, and is the
+support function of a nonempty closed convex set $\tilde B$ \cite[Thm.~13.2]{Rockafellar}, % citation number to be verified
+which is bounded because the function is finite: $\varphi(h)=\max_{y\in\tilde B}y\cdot h$.
+Put $B\coloneqq-\tilde B$, compact and convex. If $0\notin B$, separation
+gives $h$ with $-v\cdot h<0$ for all $v\in B$, so $\varphi(h)<0$; hence $0\in B$. Let
+$V\coloneqq D_{K''}\cap\{h_i\ge0\}$. The hypothesis says $v\cdot h\ge0$ for $v\in B$,
+$h\in V$, that is, $B\subseteq V^\ast$, the dual cone. Now $\cl V=\{h:k\cdot h\ge0\text{
+for }k\in K'',\ h_i\ge0\}$ (if $h$ is in the right side, $h+t\one\in V$ for $t>0$), which
+is the dual cone of $Q\coloneqq\cone(K''\cup\{e_i\})$. $Q=\R_+\conv(K''\cup\{e_i\})$ is
+closed, as $\conv(K''\cup\{e_i\})$ is compact and avoids $0$. By the bipolar theorem
+$V^\ast=(\cl V)^\ast=Q^{\ast\ast}=Q$.
+\end{proof}
+
+So the rankings $\VB(K'',B)$ are exactly the two-level rankings on $\M_{D_{K''}}$ whose
+first level is a non-negative sublinear integral veto that vanishes on correct
+acceptances, and whose second level is the error $b_i$. By Remark~\ref{rem:convexU}, the
+domains $D_{K''}$ are exactly the open convex one-sided cones containing the positive
+orthant. We call a credal set a \emph{veto--Brier target} if it is covered by some
+$\VB(K'',B)$ on some $\M_{D_{K''}}$.
+
+\begin{remark}\label{rem:convexU}
+Let $U\subseteq\R^n$ be an open convex cone containing every gamble with positive
+coordinates, with $U\cap(-U)=\emptyset$, and let $C\coloneqq\cl U$. Then $C\neq\R^n$, so
+its dual cone $C^\ast$ is nonzero and contained in $\R^n_+$; put $K''\coloneqq C^\ast\cap
+\Delta$, a nonempty compact convex set. For a closed convex cone with nonempty interior,
+$\inter C=\{h:y\cdot h>0\text{ for all }y\in C^\ast\setminus\{0\}\}$: if $h\in\inter C$ and
+$y\in C^\ast\setminus\{0\}$, then $h-\epsilon y\in C$ for small $\epsilon>0$, so $y\cdot
+h\ge\epsilon|y|^2>0$; conversely, if the minimum $c$ of $y\cdot h$ over unit vectors $y\in
+C^\ast$ is positive, the ball of radius $c$ about $h$ lies in $C^{\ast\ast}=C$. Since $U$
+is open and convex, $U=\inter C=D_{K''}$.
+\end{remark}
+
+\begin{theorem}\label{thm:reach}
+Let $K\subseteq\relint\Delta$ be a full-dimensional credal set. The following are
+equivalent.
+\begin{enumerate}[label=(\alph*)]
+  \item For some nonempty compact convex $K''\subseteq\Delta$ and veto profile $B$ over
+  $K''$, $D_K$ is an undominated model of $\VB(K'',B)$ on $\M_{D_{K''}}$ and (LF) holds at
+  $D_K$.
+  \item $K$ is a veto--Brier target.
+  \item For some $p\in K$, the set $\ext K\setminus\{p\}$ is uniformly visible.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(b)$\Rightarrow$(a) is immediate, and (c)$\Rightarrow$(b) is
+Corollary~\ref{cor:exemptvis}.
+
+(a)$\Rightarrow$(c). Let $U=D_{K''}$. Since $D_K\in\M_U$, Lemma~\ref{lem:LF}(b) gives
+$K''\subseteq\relint K$. By Theorem~\ref{thm:family}, $D_K=D_{K(W_0,\beta,\alpha)}$ a.e.\
+for an admissible triple, so $K=K(W_0,\beta,\alpha)$ by Lemma~\ref{lem:open}. Taking every
+$v_\omega=0$ in the definition of $W$ shows $\nu(\beta)\in\hat W\subseteq K\subseteq
+\relint\Delta$. So $\supp\beta=\Omega$, hence $W_0=\Omega$, there are no
+$\alpha$-weights, and $\hat W=\{\nu(\beta)\}$. Thus
+\[
+  K=\conv\Bigl(K''\cup\bigcup_{\omega\in\Omega}\hat A_\omega\cup\{\nu(\beta)\}\Bigr).
+\]
+Then $\ext K\subseteq K''\cup\bigcup_\omega\hat A_\omega\cup\{\nu(\beta)\}$, and
+$K''\cap\ext K=\emptyset$. By Lemma~\ref{lem:visbasic}(b), $K''\subseteq K_\delta$ for some
+$\delta>0$, and $\hat A_\omega\subseteq\conv(K''\cup\{e_\omega\})\subseteq\conv(K_\delta
+\cup\{e_\omega\})$ by Lemma~\ref{lem:veto}(d). So $\ext K\setminus\{\nu(\beta)\}$ is
+uniformly visible.
+\end{proof}
+
+\begin{corollary}\label{cor:polyreach}
+Let $K\subseteq\relint\Delta$ be a full-dimensional polytope. $K$ is a veto--Brier target
+if and only if at most one vertex of $K$ is not visible. Tangential vertices count as not
+visible.
+\end{corollary}
+
+\begin{proof}
+For a finite set of points of $K$, uniform visibility is equivalent to visibility of each
+point (Lemma~\ref{lem:visbasic}(a), and the proof of Corollary~\ref{cor:poly}); and no
+vertex of $\Delta$ lies in $K$. Apply Theorem~\ref{thm:reach}.
+\end{proof}
+
+\begin{corollary}\label{cor:out}
+Let $n\ge3$. None of the following credal sets is a veto--Brier target.
+\begin{enumerate}[label=(\alph*)]
+  \item \emph{Pari-mutuel models} $K=\{m\in\Delta:m_i\le(1+\delta)p_i\}$ with
+  $p\in\relint\Delta$, $\delta>0$ and $K\subseteq\relint\Delta$; in particular the reversed
+  triangle $R$. No vertex is visible.
+  \item \emph{Density-ratio classes} $K=\{m\in\Delta:m_i/p_i\le k\,m_j/p_j\text{ for all
+  }i,j\}$ with $p\in\relint\Delta$ and $k>1$. At least three vertices are not visible.
+  \item Full-dimensional probability-interval models $K\subseteq\relint\Delta$ with at
+  least two vertices having two or more coordinates at their upper bounds.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+In each case $K$ is a full-dimensional polytope in $\relint\Delta$; we apply
+Corollary~\ref{cor:polyreach} and Lemma~\ref{lem:poly}. We use that a point $v$ of
+$\{m:\one\cdot m=1,\ g_f\cdot m\ge0\}$ is a vertex iff $\one$ and the active $g_f$ span
+$\R^n$, equivalently iff $v$ is the only point of $\aff\Delta$ at which all active
+constraints are equalities \cite[Sec.~8.5]{Schrijver}. % citation number to be verified
+
+(a) Put $u_i\coloneqq(1+\delta)p_i$. $p$ satisfies every constraint strictly, so $K$ is
+full-dimensional. At a vertex $v$ the constraints $m_k\ge0$ are inactive, and with $H$ the
+set of $i$ with $v_i=u_i$, the span of $\one$ and the normals $u_i\one-e_i$ ($i\in H$)
+is the span of $\one$ and $e_i$ ($i\in H$); so $|H|\ge n-1\ge2$. Each $u_i\one-e_i$ with
+$i\in H$ is negative exactly at $i$ (as $u_i=v_i<1$), so by Lemma~\ref{lem:poly} $v$ is
+not visible. A full-dimensional polytope in $\aff\Delta$ has at least $n\ge3$ vertices.
+
+(b) If $m_j=0$ for some $m\in K$ then $m=0$; so $K\subseteq\relint\Delta$, and $p$
+satisfies all constraints strictly. Write the constraints as $m\cdot g^{ij}\ge0$ with
+$g^{ij}\coloneqq(k/p_j)e_j-(1/p_i)e_i$, negative exactly at $i$. For $\emptyset\neq H
+\subsetneq\Omega$ let $w^H\coloneqq\nu\bigl(\sum_{i\in H}kp_ie_i+\sum_{i\notin H}p_ie_i
+\bigr)\in K$. The active constraints at $w^H$ are those with $i\in H$, $j\notin H$. If all
+of them hold with equality at $m\in\aff\Delta$, the ratios $m_i/p_i$ take a common value
+$c$ on $H$ and $c/k$ off $H$, so $m=w^H$; hence $w^H$ is a vertex. If $|H|\ge2$, two
+active normals are negative at different coordinates, so $w^H$ is not visible. Distinct
+$H$ give distinct vertices (the coordinates of maximal ratio form $H$), and there are
+$2^n-n-2\ge3$ sets $H$ with $2\le|H|\le n-1$.
+
+(c) This is Proposition~\ref{prop:pri}.
+\end{proof}
+
+The density-ratio classes of (b) are covered by orthant-diagonal rankings
+(Proposition~\ref{prop:box}). Coverage of the classes (a) and (c) is not settled.
+
+\begin{proposition}\label{prop:contamzero}
+Let $n\ge3$, $0<\varepsilon<1$, and $p\in\Delta\setminus\relint\Delta$. Then
+$K\coloneqq(1-\varepsilon)p+\varepsilon\Delta$ is not a veto--Brier target. More precisely,
+there are no $K''$ and $B$ as in Theorem~\ref{thm:reach}(a).
+\end{proposition}
+
+\begin{proof}
+$K$ is a full-dimensional simplex with vertices $v_i=(1-\varepsilon)p+\varepsilon e_i$.
+Suppose $K''$ and $B$ are as in Theorem~\ref{thm:reach}(a). As in that proof, $K''\subseteq
+\relint K\subseteq\relint\Delta$ and $K=K(W_0,\beta,\alpha)$ for an admissible triple. Let
+$S\coloneqq\supp p$, a proper subset of $\Omega$.
+
+\emph{Case $|S|\ge2$.} The face $K\cap\Delta_S=\conv\{v_i:i\in S\}$ has $|S|\ge2$ extreme
+points, each with support exactly $S$. This contradicts Proposition~\ref{prop:facecount}.
+
+\emph{Case $|S|=1$}, say $p=e_1$. Write $T\coloneqq K''\cup\bigcup_{\omega\in W_0}\hat
+A_\omega\cup\hat W$, so $K=\conv T$. Points of $K''$ have full support; points of $\hat
+A_\omega$ have full support or equal $e_\omega$. For $i\ge2$, $v_i=(1-\varepsilon)e_1+
+\varepsilon e_i$ is extreme with support $\{1,i\}$, so it lies in $\hat W$. Write
+$v_i=\nu(w^i)$. Since $\supp w^i=\{1,i\}$ for $i=2,3$, $\supp\beta\subseteq\{1\}$, so
+$\beta=\beta_1e_1$ with $\beta_1>0$ and $1\in W_0$. Each $w^i$ is then $\beta_1e_1+\alpha_i
+t_ie_i$ with $i\notin W_0$, $t_ie_i\in B_i$, all other terms zero; and $\nu(w^i)=v_i$
+forces $\alpha_it_i=a\beta_1$ with $a\coloneqq\varepsilon/(1-\varepsilon)$. Choosing
+$v_2=t_2e_2$, $v_3=t_3e_3$ and all other $v_\omega=0$ gives $w\coloneqq\beta_1(e_1+ae_2+
+ae_3)\in W$. But the first coordinate of $\nu(w)$ is $1/(1+2a)=(1-\varepsilon)/
+(1+\varepsilon)<1-\varepsilon\le\min_{m\in K}m_1$, so $\nu(w)\notin K$, contradicting
+$\hat W\subseteq K$.
+\end{proof}
+
+\subsection{Vetoes followed by a Brier-type error}\label{sec:excl-veto}
+
+The following class contains every veto--Brier ranking. Fix a one-sided domain $U$ and
+$K\subseteq\relint\Delta$ with $D_K\subseteq U$ and (LF) at $D_K$.
+
+\begin{definition}\label{def:VB}
+A ranking on $\M_U$ is in the class $\VBB$ if at each world $k$ it compares models
+lexicographically by finitely many integrated levels
+\[
+  \int_X\varphi_{k,1}\,d\mu,\ \dots,\ \int_X\varphi_{k,r_k}\,d\mu,\ \int_X\ell_k\,d\mu,\
+  \text{followed by any finite number of further integrated levels},
+\]
+where the \emph{vetoes} $\varphi_{k,t}\ge0$ are integrable ($r_k=0$ allowed), and with
+$Z_k\coloneqq U\cap\bigcap_t\{\varphi_{k,t}=0\}$ and $N_{\mathrm v}\coloneqq\bigcap_kZ_k$,
+the \emph{error level} $\ell_k$ is integrable, nonzero a.e.\ on $Z_k$, and equal on
+$N_{\mathrm v}$ to $-w(h)h_k$ for a measurable $w>0$ that does not depend on $k$. The
+ranking is assumed to satisfy (G).
+\end{definition}
+
+Rankings in $\VBB$ are complete and transitive and satisfy (IB). The vetoes need not be
+convex, homogeneous or continuous, and the target need not be exempt from them in
+advance. Say that $x\in K$ is \emph{invisible from $j$} if $F_x$ meets $\{h_j>0\}$, and
+\emph{invisible} if it is invisible from every world. Invisible points are not visible;
+tangential points are not invisible.
+
+\begin{lemma}\label{lem:V1a}
+Let a ranking in $\VBB$ be given. For every $k$: every $\varphi_{k,t}=0$ a.e.\ on $U\cap
+\{h_k>0\}$, so $Z_k\supseteq U\cap\{h_k>0\}$ a.e.; and on $Z_k$, $\ell_k$ has the sign of
+$-h_k$ a.e.
+\end{lemma}
+
+\begin{proof}
+Suppose some veto at world $k$ is not a.e.\ zero on $U\cap\{h_k>0\}$, and let $t$ be the
+first such level. Then $S\coloneqq U\cap\{h_k>0\}\cap\{\varphi_{k,t}>0\}$ is not null, and
+the earlier vetoes vanish a.e.\ on $S$. Comparing $\emptyset$ with $S$, the first $t-1$
+levels tie at $0$ and level $t$ favours $\emptyset$; so $\emptyset\prec_kS$. But (G) gives
+$S\prec_k\emptyset$. Next suppose $S\subseteq Z_k\cap\{h_k<0\}$ is not null with
+$\ell_k\le0$, hence $\ell_k<0$ a.e., on $S$. Then all vetoes of $S$ at $k$ vanish and
+$\int_S\ell_k<0$, so $S\prec_k\emptyset$, while (G) gives $\emptyset\prec_kS$. The case
+$\{h_k>0\}$ is symmetric.
+\end{proof}
+
+\begin{lemma}\label{lem:V2}
+Let a ranking in $\VBB$ be given with $D_K$ undominated. Then $D_K\subseteq Z_k$ a.e.\ for
+every $k$.
+\end{lemma}
+
+\begin{proof}
+Let $W_0$ be the set of worlds at which $D_K$ pays no veto. For $k\notin W_0$ let
+$\kappa_k$ be the first veto level that $D_K$ pays. Let $\mathcal Z$ be the class of
+models contained a.e.\ in the set where all vetoes of the worlds in $W_0$ vanish and the
+vetoes at levels below $\kappa_k$ vanish for $k\notin W_0$. It contains $D_K$ and
+$\emptyset$, and by Lyapunov's theorem the range of the vector
+$\bigl((\int_Y\ell_k)_{k\in W_0},(\int_Y\varphi_{k,\kappa_k})_{k\notin W_0}\bigr)$ over
+$Y\in\mathcal Z$ is convex. A model in $\mathcal Z$ strictly smaller than $D_K$ in every
+coordinate of this vector would strictly dominate $D_K$. So by separation there are
+$\beta\ge0$ on $W_0$ and $\alpha\ge0$ off $W_0$, not both zero, such that $D_K$ minimises
+$\int_Yg$ over $Y\in\mathcal Z$, where $g\coloneqq\sum_{W_0}\beta_k\ell_k+\sum_{k\notin W_0}
+\alpha_k\varphi_{k,\kappa_k}$. If $\beta=0$, then $\int_\emptyset g=0<\int_{D_K}g$, as
+$D_K$ pays each $\varphi_{k,\kappa_k}$, a contradiction; so $\beta\neq0$. Minimality gives
+$g\le0$ a.e.\ on $D_K$, hence $\sum_{W_0}\beta_k\ell_k\le0$ a.e.\ on $D_K$. If
+$W_0\ne\Omega$, pick $j_0\notin W_0$. The open set $O'\coloneqq D_K\cap\{h_k<0\text{ for
+all }k\in W_0\}$ is nonempty: it contains $-\sum_{k\in W_0}e_k+Me_{j_0}$ for large $M$,
+because $\min_{m\in K}m_{j_0}>0$. On $O'\subseteq D_K\subseteq Z_k$ ($k\in W_0$),
+Lemma~\ref{lem:V1a} gives $\ell_k>0$ a.e., so $\sum_{W_0}\beta_k\ell_k>0$ a.e.\ on $O'$,
+a contradiction. Hence $W_0=\Omega$.
+\end{proof}
+
+\begin{lemma}\label{lem:V3}
+Let a ranking in $\VBB$ be given. For $j\ne k$, the model $X_{kj}\coloneqq Z_k\cap
+\{h_j>0\}$ is undominated.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:V1a}, $X_{kj}\subseteq Z_j\cap Z_k$ a.e. Let $Y$ weakly dominate
+$X_{kj}$. Since $X_{kj}$ pays no veto at worlds $j$ and $k$, the lexicographic order forces
+every veto of $Y$ at $j$ and $k$ to vanish, so $Y\subseteq Z_j\cap Z_k$ a.e., and
+$\int_Y\ell_j\le\int_{X_{kj}}\ell_j$. On $Z_j$, $\ell_j<0$ a.e.\ where $h_j>0$ and
+$\ell_j>0$ a.e.\ where $h_j<0$, so
+$\int_Y\ell_j-\int_{X_{kj}}\ell_j=\int_{Y\setminus X_{kj}}\ell_j+\int_{X_{kj}\setminus Y}
+|\ell_j|$ is positive unless $Y=X_{kj}$ a.e.
+\end{proof}
+
+\begin{lemma}\label{lem:V4}
+Let a ranking in $\VBB$ be given with $D_K$ undominated and the models $X_{kj}$
+coherent. Let $v\in\ext K$ be invisible. Then for every $r\in\relint F_v$ there is
+$\rho>0$ with $B(r,\rho)\subseteq N_{\mathrm v}$ a.e.
+\end{lemma}
+
+\begin{proof}
+Let $N_{\mathrm{LF}}$ be the open set of (LF); as in the proof of Lemma~\ref{lem:LF}(b),
+$N_{\mathrm{LF}}\subseteq U$ a.e. For each $j$ let $P_j\coloneqq\relint F_v\cap
+\{h_j>0\}$, a relatively open convex cone; $P_j\neq\emptyset$ because $v$ is invisible from
+$j$ and $\relint F_v$ is dense in $F_v$. Every nonzero point of $F_v$ has a positive
+coordinate (Lemma~\ref{lem:fulldim}(c) and $K\subseteq\relint\Delta$), so $\relint
+F_v=\bigcup_jP_j$, and $\relint F_v\subseteq\partial D_K\setminus\{0\}\subseteq
+N_{\mathrm{LF}}$.
+
+\emph{Spreading.} Let $D_Q$ be an open convex cone containing $D_K\cap\{h_j>0\}$ and a
+ball $B(p,\rho)$ with $p\in P_j$. Then $D_Q$ contains a ball around every $r\in P_j$. If
+$r$ is a positive multiple of $p$, use homogeneity. Otherwise $q\coloneqq r+t(r-p)\in P_j$
+for small $t>0$, and $r=\lambda p+(1-\lambda)q$ with $\lambda=t/(1+t)$. Any $h\in
+B(r,\lambda\rho/2)$ can be written $\lambda(p+d)+(1-\lambda)(q+\zeta\one)$ with
+$|d|<\rho$ and small $\zeta>0$. Since $q+\zeta\one\in D_K\cap\{h_j>0\}$ and $p+d\in
+B(p,\rho)$, convexity gives $h\in D_Q$.
+
+\emph{Induction.} Fix $k$. Join $j$ and $l$ when $P_j\cap P_l\ne\emptyset$. This graph is
+connected: along a segment from a point of $P_j$ to a point of $P_l$ inside $\relint F_v$,
+the relatively open sets $\{t:\gamma(t)_i>0\}$ cover $[0,1]$, and an open cover of a
+connected set has a connected overlap graph. For $r\in P_k$ there is a ball around $r$
+inside $N_{\mathrm{LF}}\cap\{h_k>0\}$, which lies a.e.\ in $U\cap\{h_k>0\}\subseteq Z_k$
+(Lemma~\ref{lem:V1a}). Suppose balls around all points of $P_j$ lie a.e.\ in $Z_k$, and
+let $l\ne k$ be joined to $j$. Pick $p\in P_j\cap P_l$ and a ball $B(p,\rho)$ lying a.e.\ in
+$Z_k\cap\{h_l>0\}=X_{kl}$. By hypothesis $X_{kl}=D_Q$ a.e.\ for a credal set $Q$, and by
+Lemma~\ref{lem:open} $B(p,\rho)\subseteq D_Q$. Also $D_K\subseteq Z_k$ a.e.\
+(Lemma~\ref{lem:V2}), so $D_K\cap\{h_l>0\}\subseteq X_{kl}=D_Q$ a.e., hence everywhere by
+Lemma~\ref{lem:open}. Spreading puts a ball around every point of $P_l$ inside $D_Q$; after
+shrinking, inside $D_Q\cap N_{\mathrm{LF}}\cap\{h_l>0\}$, which lies a.e.\ in $X_{kl}
+\subseteq Z_k$. By connectedness, every point of $\relint F_v$ has a ball lying a.e.\ in
+$Z_k$. Intersecting over the finitely many $k$ gives the claim.
+\end{proof}
+
+\begin{theorem}\label{thm:A}
+Let $U$ be a one-sided domain and $K\subseteq\relint\Delta$ with $D_K\subseteq U$ and (LF)
+at $D_K$. Suppose a ranking in $\VBB$ on $\M_U$ has $D_K$ undominated and the models
+$X_{kj}$ of Lemma~\ref{lem:V3} coherent (as (GC) requires). Then some $\pi\in K$ has
+$\pi\cdot h=0$ for every $h\in F_v$ and every invisible extreme point $v$ of $K$. In
+particular a polytope $K$ has at most one invisible vertex.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:V2}, $D_K\subseteq N_{\mathrm v}$ a.e. Models $Y\subseteq N_{\mathrm v}$
+pay no veto anywhere, and their error vectors $(\int_Y-wh_k\,d\mu)_k$ form a convex set.
+$D_K$ is not strictly dominated by such a model, so separation gives $\pi\in\Delta$ such
+that $D_K$ minimises $\int_Y-w\,\pi\cdot h\,d\mu$ over $Y\subseteq N_{\mathrm v}$. Hence
+$N_{\mathrm v}\cap\{\pi\cdot h>0\}\subseteq D_K$ a.e., and $D_K\cap\{\pi\cdot h<0\}$ is null,
+hence empty (it is open). So $D_K\subseteq\{\pi\cdot h\ge0\}$, and as $D_K$ is open,
+$D_K\subseteq\{\pi\cdot h>0\}=D_{\{\pi\}}$; Lemma~\ref{lem:D}(c) gives $\pi\in K$. Let $v$ be invisible and $r\in\relint F_v$, and take the ball of
+Lemma~\ref{lem:V4}. If $\pi\cdot r>0$, shrink the ball so that $\pi\cdot h>0$ on it; then it
+lies a.e.\ in $D_K$. But it contains the nonempty open set of points $h$ near $r-\epsilon v$
+with $v\cdot h<0$, which lies outside $\cl D_K$. So $\pi\cdot r=0$ on $\relint F_v$, hence on
+$F_v$. If $K$ is a polytope, it is full-dimensional by Proposition~\ref{prop:lowdim}, since $U$ is
+one-sided and (LF) holds; for a vertex $v$ of a full-dimensional polytope, the only point
+of $K$ orthogonal to all of $F_v$ is $v$, so $\pi=v$ for every invisible vertex $v$.
+\end{proof}
+
+\begin{corollary}\label{cor:Apmm}
+Let $n\ge3$ and let $K\subseteq\relint\Delta$ be a pari-mutuel model as in
+Corollary~\ref{cor:out}(a), for instance the reversed triangle. Every vertex of $K$ is
+invisible, so no ranking in $\VBB$ on any one-sided domain with (LF) at $D_K$ has $D_K$
+undominated and all models $X_{kj}$ coherent.
+\end{corollary}
+
+\begin{proof}
+At a vertex $v$ with upper set $H$, $|H|\ge n-1\ge2$, the normal cone is generated by the
+vectors $u_i\one-e_i$, $i\in H$ (Lemma~\ref{lem:poly}). For $j\in H$ choose $i\in H$,
+$i\ne j$: the $j$-th coordinate of $u_i\one-e_i$ is $u_i>0$. For $j\notin H$, every
+generator has $j$-th coordinate $u_i>0$. So $v$ is invisible, and $K$ has at least $n\ge3$
+vertices. Apply Theorem~\ref{thm:A}.
+\end{proof}
+
+\subsection{Further exclusions, recorded without proof}\label{sec:excl-other}
+
+The following statements have been established, for the stated classes, in unpublished
+notes; we record them here without proof, with their hypotheses. In items
+(3)--(5) a \emph{chart} is a positively homogeneous integrable map $c:U\to\R^3$, and the
+ranking at world $i$ is the order of $\int_Xc_i\,d\mu$; for $\pi\in\R^3_+\setminus\{0\}$
+put $B_\pi\coloneqq U\cap\{\pi\cdot c>0\}$. The \emph{four-condition certificate} for $K$
+is: (C1) $c_i$ has the sign of $h_i$ a.e.\ on $U$; (C2) $\{\pi\cdot c=0\}$ is null for
+every $\pi\in\R^3_+\setminus\{0\}$; (C3) every $B_\pi$, $\pi\in\R^3_+\setminus\{0\}$, is
+coherent; (C4) $B_{\pi^\ast}=D_K$ a.e.\ for some $\pi^\ast$ with positive coordinates. By
+Theorem~\ref{thm:route}, the certificate together with (LF) suffices for coverage; items
+(3)--(5) concern the certificate, or stated parts of it, not coverage by such charts in
+general. All items concern three worlds and the reversed triangle $R$, except where
+stated; $C_R=\cl D_R$.
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{Convex error levels.} Consider complete lexicographic rankings that have, at
+  each world, finitely many non-negative measurable veto levels, then an error level that
+  is nonzero a.e.\ on its veto-free set and convex on an open convex set $G$, then any
+  further levels, and that satisfy (G), on a one-sided domain $U\subseteq G$ with (LF) at
+  $D_K$. No such ranking has $D_K$ undominated and all undominated models coherent when $K$
+  is $R$ or any pari-mutuel triangle in $\relint\Delta_3$: for these targets the collar
+  mechanism of Lemma~\ref{lem:V4} (whose proof uses only Lemmas~\ref{lem:V1a}--\ref{lem:V3},
+  and these hold for every ranking of this kind with (G)) reaches all three faces of
+  $C_K$, and the resulting linear system on
+  the three extreme rays of $C_K$ is nonsingular. The same holds for every polytope
+  $K\subseteq\relint\Delta_3$ with two or more vertices at which every world is crossing.
+  The conclusion does not extend to all targets with two non-visible vertices: the cover
+  in Example~\ref{ex:T} has a veto followed by a convex error level.
+  \item \emph{Concave charts.} Consider rankings whose worlds are unanimities of finitely
+  many views, each view consisting of a veto $\varphi_v\ge0$ vanishing on correct
+  acceptances (paid by the target or not), then a level $\int_X\sigma_v$ whose integrand is
+  strictly sign-correct, then any further levels, where $\varphi_v$ is convex and
+  $-\sigma_v$ is concave on an open convex set containing $C_R\setminus\{0\}$. On any
+  one-sided domain with (LF) at $D_R$, no such ranking covers $R$.
+  \item \emph{Regular single charts.} No chart ranking with strictly sign-correct chart,
+  a.e.\ unique coherent Bayes models $B_\pi$ at all $\pi$ in the open simplex, $D_R=
+  B_{\pi^\ast}$ with $\pi^\ast$ interior, (LF), and the first-order regularity hypotheses
+  that $\pi\mapsto\min_{m\in Q_\pi}m\cdot h$ (where $B_\pi=D_{Q_\pi}$) is Gâteaux
+  differentiable at $\pi^\ast$ for $h$ in the relative interiors of the faces of $C_R$,
+  with derivative not identically zero on any face, exists. The resulting corner equations
+  reduce to the map $x\mapsto\frac32-\frac1x$, which has no real periodic point. On the
+  full domain, in any number $n\ge3$ of worlds, a chart that is locally Lipschitz on each
+  closed orthant, with $c_j/h_j$ bounded above and below by positive constants on compact
+  sets away from $0$, and that meets the certificate (with null ties at every prior),
+  forces $D_K$ to be orthant-planar. The argument uses only gambles that are not sure
+  losses. Since $R$ is not orthant-planar (Lemma~\ref{lem:planarobs}(d)), with
+  Theorem~\ref{thm:dichotomy} no such chart meets the certificate for $R$ on any domain
+  that is not essentially one-sided.
+  \item \emph{Continuous piecewise-linear charts.} No chart that is continuous and linear
+  on each cone of a finite conic partition of a neighbourhood of $C_R\setminus\{0\}$
+  satisfies (C1)--(C4) for $R$, on any open convex cone $U\supseteq C_R\setminus\{0\}$ that
+  contains no nonzero $h\le0$.
+  \item \emph{Direction-continuous piecewise-linear charts.} The same holds, on the same
+  cones $U$, for charts whose direction $c/|c|$ agrees on each cone of a finite conic
+  partition with the direction of a linear map, the scale being an arbitrary positive
+  measurable function, and whose direction is continuous, provided (C1), (C4), (C3) for
+  all $\pi$ in a neighbourhood of $\pi^\ast$, and (C2) at $\pi=\pi^\ast$. The corner
+  equations reduce to $2z^2-3z+2=0$, which has no real root.
+  \item\label{it:unanimity} \emph{Finite unanimity.} Let $U\supseteq C_R\setminus\{0\}$ be
+  an open convex one-sided cone containing no nonzero $h\le0$. Let each world $j$ be the
+  unanimity of finitely many views, each either a single level whose gain is concave,
+  positively homogeneous and weakly sign-correct on $U$, or a convex positively
+  homogeneous veto vanishing on $\{h_j>0\}$ (paid by the target or not) followed by such a
+  level. Suppose the views are jointly strictly guiding: for each $j$, a.e.\ on $\{h_j\ne
+  0\}$ some view at $j$ has a nonzero integrand. If every undominated model is coherent,
+  then $D_R$ is dominated.
+\end{enumerate}
+Items (1)--(6) use the collar mechanism of Lemma~\ref{lem:V4} or a variant of it, or a
+corner system at the extreme rays of $C_R$. Where a variant of Lemma~\ref{lem:V4} is used
+for unanimity rankings, transitivity of each world's relation enters through the step: if
+$Y\preceq_jX$ and $X$ is pointwise at least as good at $j$ as $M$, then $Y\preceq_jM$.
+This holds for unanimities of lexicographic views, but it is not implied by (TC).
+
+\subsection{Composition, veto--box and chart rankings}\label{sec:excl-comp}
+
+\begin{proposition}\label{prop:compexcl}
+Let $K\subseteq\relint\Delta$ be a full-dimensional credal set that is not orthant-planar
+and none of whose extreme points is visible. Then for no orthant-planar $K_0$ and data
+$L',A$ as in (L) is $D_K$ an undominated model of the composed ranking on
+$\M_{D_{L'\star K_0}}$ with (LF) at $D_K$.
+\end{proposition}
+
+\begin{proof}
+Suppose it is. By Theorem~\ref{thm:comp} and Lemma~\ref{lem:open}, $K=Q\star K_0$ with
+$Q=K(W_0,\beta,\alpha)$. Since $\nu(\beta)\in\hat W$, $\nu(\nu(\beta)\odot m)\in K\subseteq
+\relint\Delta$ for $m\in K_0$, so $\supp\beta=\Omega$; hence $W_0=\Omega$, $\hat W=\{\hat
+\beta\}$ with $\hat\beta\coloneqq\nu(\beta)$, and $Q=\conv(L'\cup\bigcup_\omega\hat
+A_\omega\cup\{\hat\beta\})$. By Lemma~\ref{lem:LF}(b), $L'\star K_0\subseteq\relint K$. Let
+$x$ be extreme in $K$; by Lemma~\ref{lem:reach}, $x=\nu(q\odot m)$ with $q\in\ext Q
+\subseteq L'\cup\bigcup_\omega\hat A_\omega\cup\{\hat\beta\}$. If $q\in L'$, then
+$x\in\relint K$, which is impossible. If $q\in\hat A_\omega\subseteq\conv(L'\cup\{e_\omega
+\})$, $q=(1-t)k+te_\omega$ with $k\in L'$: $t=0$ is excluded as before, $t=1$ gives $x=
+e_\omega\notin\relint\Delta$, and $0<t<1$ puts $x$ on the open segment from $\nu(k\odot m)\in
+\relint K$ to $e_\omega$, so $x$ is visible from $\omega$ (Lemma~\ref{lem:visbasic}(a)),
+which is excluded. So $\ext K\subseteq\nu(\hat\beta\odot K_0)\subseteq K$, and since
+$\nu(\hat\beta\odot K_0)$ is convex, $K=\nu(\hat\beta\odot K_0)$. For each mixed orthant
+$\sigma$ and $h\in\sigma$, $h\in D_K$ iff $\hat\beta\odot h\in D_{K_0}$ iff $(d_\sigma\odot
+\hat\beta)\cdot h>0$, because $\hat\beta\odot h\in\sigma$. So $K$ is orthant-planar, a
+contradiction.
+\end{proof}
+
+\begin{corollary}\label{cor:comppmm}
+For $n\ge3$, no pari-mutuel model $K\subseteq\relint\Delta$, in particular not the
+reversed triangle, is an undominated target with (LF) of any composed ranking.
+\end{corollary}
+
+\begin{proof}
+No vertex is visible (Corollary~\ref{cor:out}(a)). Each facet normal has the form
+$u_i\one-e_i$ with $0<u_i<1$, so its coordinates $u_i$ and $u_i-1$ are nonzero, so $K$ is not orthant-planar by
+Lemma~\ref{lem:planarobs}(d). Apply Proposition~\ref{prop:compexcl}.
+\end{proof}
+
+\begin{corollary}\label{cor:pmmvbox}
+Let $n\ge3$. No pari-mutuel model $K\subseteq\relint\Delta$ is an undominated model with
+(LF) of a veto--box ranking on some $\M_{D_{K'}}$, or of a chart ranking of an
+orthant-planar credal set on any domain.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:planarobs}(d), as in the proof of Corollary~\ref{cor:comppmm}, $K$ is not
+orthant-planar. \emph{Veto--box.} Suppose $D_K$ is an undominated model of
+$\mathrm{VBox}(K',B,R)$ on $\M_{D_{K'}}$ with (LF). The first steps of the proof of
+Corollary~\ref{cor:BX3}, (i)$\Rightarrow$(iii), do not use $n=3$: they give $K'\subseteq
+\relint K$, $K=\conv(K'\cup\bigcup_\omega\hat A_\omega\cup E)$ with $E=\nu(\beta\odot R)$
+and $\beta$ with positive coordinates, and every vertex of $K$ that is not visible lies in
+$E$. Every vertex of $K$ is not visible (Corollary~\ref{cor:out}(a)), so $K=E$, a
+normalised box, which is orthant-planar by Proposition~\ref{prop:box}; a contradiction.
+\emph{Chart.} By Lemma~\ref{lem:charttarget}, $K$ would be orthant-planar; a contradiction.
+\end{proof}
+
+\begin{corollary}\label{cor:twocevian}
+Let $n=3$ and let $K\subseteq\relint\Delta$ be a triangle exactly two of whose edges lie on
+cevian lines. Then $K$ is neither a veto--Brier target nor orthant-planar, and it is not
+$L\star K_0$ for any $L$ as in (L) with $\pi^\ast\in\relint\Delta$ and orthant-planar
+$K_0$.
+\end{corollary}
+
+\begin{proof}
+A vertex $w$ of a triangle with other vertices $w',w''$ is visible from $j$ iff
+$e_j=w+s(w-w')+t(w-w'')$ for some $s,t>0$, by Lemma~\ref{lem:visbasic}(a) and the
+description of $\relint K$ near $w$; that is, iff $e_j$ lies in the open angle opposite to
+$K$ at $w$. These three open angles are disjoint, and none contains a point of an edge line.
+The two cevian edges pass through two different vertices of $\Delta$ (two edges through
+the same $e_l$ would share the line through $e_l$ and their common vertex). So at most one
+vertex of $\Delta$ lies in an opposite angle, and at least two vertices of $K$ are not
+visible. By Corollary~\ref{cor:polyreach}, $K$ is not a veto--Brier target; by
+Theorem~\ref{thm:cevian} it is not orthant-planar; by Theorem~\ref{thm:n3} it is not such a
+composed target.
+\end{proof}
+
+Such a triangle may still be covered: if exactly two of its vertices are not visible and
+the edge joining them is one of the two cevian edges, it is a veto--box target
+(Corollary~\ref{cor:BX3}).
+
+\begin{proposition}\label{prop:ZC}
+Let $n\ge3$, $0<\varepsilon<1$, let $p\in\Delta$ have exactly one zero coordinate, and put
+$K\coloneqq(1-\varepsilon)p+\varepsilon\Delta$. For no orthant-planar $K_0\subseteq
+\relint\Delta$, of any dimension, and no data $L',A$ as in (L) is $D_K$ an undominated model
+of the composed ranking on $\M_{D_{L'\star K_0}}$. In particular $K$ is not of the form
+$L\star K_0$ with $L$ as in (L).
+\end{proposition}
+
+\begin{proof}
+Suppose $D_K$ is undominated. By Theorem~\ref{thm:comp} and Lemma~\ref{lem:open},
+$K=Q\star K_0$ with $Q\coloneqq K(W_0,\beta,\alpha)$, a credal set, for an admissible
+triple of $\VB(L',A)$. (If $K=L\star K_0$, then $D_K$ is undominated by
+Theorem~\ref{thm:comp}.) Here $L'\subseteq\relint L\subseteq\relint\Delta$. Let $k$ be the
+zero coordinate of $p$ and $S\coloneqq\Omega\setminus\{k\}$, so $2\le|S|<n$. The vertices
+of $K$ are $v_i=(1-\varepsilon)p+\varepsilon e_i$, and no $e_i$ lies in $K$, since $p$ has
+at least two nonzero coordinates. The face $K\cap\Delta_S=\conv\{v_i:i\in S\}$ has
+$n-1\ge2$ extreme points, each with support exactly $S$. By
+Proposition~\ref{prop:facecount}, applied with $K''=L'$, the face $Q\cap\Delta_S$ has at
+most one extreme point with support exactly $S$.
+
+\emph{$\dim K_0=0$.} Then $K_0=\{p_0\}$ and $K=T_{p_0}(Q)$. The bijection $T_{p_0}$ of
+$\Delta$ preserves supports and maps extreme points of convex sets to extreme points, so
+$Q\cap\Delta_S=T_{p_0}^{-1}(K\cap\Delta_S)$ has $n-1\ge2$ extreme points with support
+exactly $S$, a contradiction.
+
+\emph{$\dim K_0\ge1$.} The vertex $v_k$ lies in $\relint\Delta$ and the tangent cone of the
+simplex $K$ at $v_k$ is $\mathcal T\coloneqq\cone\{e_i-e_k:i\ne k\}=\{y:\one\cdot y=0,\ y_i\ge0
+\text{ for }i\ne k\}$. Of the directions $\pm(e_j-v_k)$, only $v_k-e_k$ lies in $\mathcal T$: for
+$j\ne k$, $e_j-v_k$ is negative at each $i\notin\{j,k\}$ (as $p_i>0$) and $v_k-e_j$ is
+negative at $j$; and $e_k-v_k$ is negative off $k$. By Lemma~\ref{lem:reach},
+$v_k=\nu(q\odot m)$ with $q\in\ext Q$, $m\in\ext K_0$, and $q\in\relint\Delta$ since $v_k$
+is. The copy $T_q(K_0)\subseteq K$ is a polytope of dimension $\dim K_0$ with vertex
+$v_k=T_q(m)$, and its edges lie on cevian lines, because those of $K_0$ do
+(Lemma~\ref{lem:planarobs}(c)) and $T_q$ maps lines through $e_j$ into lines through
+$e_j$. The direction of each edge at $v_k$ lies in $\mathcal T$ and is $\pm(e_j-v_k)$ for some $j$,
+hence a positive multiple of $v_k-e_k$. If $\dim K_0\ge2$, the vertex $v_k$ of the copy
+lies on at least two edges with independent directions \cite{Ziegler}, which is impossible.
+If $\dim K_0=1$, the copy is a segment on the line through $e_k$ and $v_k$, so $K_0$ lies
+on a line through $e_k$, and the ratios $m_i/m_j$ with $i,j\in S$ are constant on $K_0$.
+The face $K\cap\Delta_S$ is the convex hull of the generators $\nu(q'\odot m')$ with
+$q'\in Q\cap\Delta_S$, and these do not depend on $m'\in K_0$. So, for any fixed
+$m'\in K_0$, $K\cap\Delta_S=T_{m'}(Q\cap\Delta_S)$, and $Q\cap\Delta_S=T_{m'}^{-1}(K\cap
+\Delta_S)$ has $n-1\ge2$ extreme points with support exactly $S$, a contradiction.
+\end{proof}
+
+Contaminations whose centre has two or more zero coordinates are not treated by
+Proposition~\ref{prop:ZC}; all their vertices lie on $\rbd\Delta$. Every contamination
+whose centre lies on $\rbd\Delta$ is excluded from the veto--Brier targets by
+Proposition~\ref{prop:contamzero}.
+
+\subsection{What the exclusions do and do not show}
+
+Each exclusion above says that a particular construction, or a particular sufficient
+route, does not reach a target. The reversed triangle is reached by none of the
+constructions of this paper and lies in the scope of every exclusion above. For the other
+pari-mutuel models, the exclusions that apply are Corollary~\ref{cor:out}(a),
+Theorem~\ref{thm:A} with Corollary~\ref{cor:Apmm}, Corollaries~\ref{cor:comppmm}
+and~\ref{cor:pmmvbox}, and, for triangles in $\relint\Delta_3$, item~(1) of
+Section~\ref{sec:excl-other}. None of this shows that these targets are uncovered. A ranking
+covering the reversed triangle would have to lie outside every class above; one covering
+another pari-mutuel model would have to lie outside the classes whose exclusions apply to
+it. It could do so, for instance, by using incomparability in an essential way, by having
+levels that are not integrals of measurable functions, or by being additive with a chart
+outside the regularity classes listed. In particular, nothing here says that
+pari-mutuel models are impermissible as coherent models.
+
+\section{Open problems}\label{sec:open}
+
+\begin{enumerate}[label=(\arabic*)]
+  \item \emph{Universal coverage.} Is every full-dimensional credal set covered, in the
+  sense of Definition~\ref{def:cover}, by some ranking on some domain with (LF)? The
+  simplest open case is the reversed triangle. An impossibility proof would have to work
+  from the requirements of Section~\ref{sec:framework} alone: it must identify the rival
+  models, the comparisons the requirements force (including disjunctions over worlds), the
+  places where coherent undominated dominators are needed, and how (IB) transfers
+  comparisons, without assuming a numerical representation, transitivity or completeness.
+  \item \emph{Necessary relational lemmas.} Lemma~\ref{lem:worldbest} and
+  Theorem~\ref{thm:dichotomy} use only strict guidance. Which further restrictions on
+  rankings, beyond these, follow from the requirements of Definition~\ref{def:cover}
+  under (TC) alone?
+  \item \emph{Incomparability.} Can a ranking that leaves some comparisons undecided, while
+  satisfying (G), (IB) and (TC), protect a target such as the reversed triangle against
+  the collar rivals of Lemma~\ref{lem:V4} and still have only coherent undominated models?
+  \item \emph{Three worlds.} The covered targets in $\relint\Delta_3$ are not just the
+  veto--Brier targets together with the cevian polygons: the triangle of
+  Example~\ref{ex:T} is covered and lies in neither class. Among interior triangles, the
+  ones covered by the constructions of this paper, in the sense of
+  Corollary~\ref{cor:trireach} (in particular, with composition restricted to targets of
+  the form $L\star K_0$), are exactly those in which every edge joining two non-visible
+  vertices lies on a cevian line.
+  We conjecture that an interior triangle is covered, in the sense of
+  Definition~\ref{def:cover}, by some ranking on some domain with (LF), if and only if
+  every edge joining two of its non-visible vertices lies on a cevian line. The ``if''
+  half holds by Corollary~\ref{cor:trireach}, so the content of the conjecture is its
+  ``only if'' half. That half implies that the reversed triangle is not covered, so proving
+  the conjecture would settle the simplest open case of problem (1), negatively. Test cases are
+  triangles with exactly two non-visible vertices joined by an edge on no cevian line,
+  such as $\conv\{\frac18(1,6,1),\frac1{10}(6,1,3),\frac18(6,1,1)\}$, with one cevian edge,
+  and $\conv\{\frac1{11}(6,4,1),\frac1{10}(6,1,3),\frac18(6,1,1)\}$, with two.
+  \item \emph{Composition in four or more worlds.} Characterise the extreme points of
+  $L\star K_0$ that are not visible, and decide which targets factor as $L\star K_0$. The
+  two-term criterion of Lemma~\ref{lem:twopair} is sufficient; decide whether it is
+  necessary. Decide
+  whether the targets of Theorem~\ref{thm:F}, whose bad vertices are tangential, are
+  reached by rankings with a veto level followed by a Brier-type level.
+  \item \emph{Boundary targets.} Decide coverage of $\varepsilon$-contaminations whose centre
+  lies on $\rbd\Delta$, including centres with two or more zero coordinates, and decide
+  whether the targets of Theorem~\ref{thm:BE} for $n\ge4$ have an edge on no cevian line.
+  \item \emph{Two-sided domains.} By Theorem~\ref{thm:dichotomy}, for interior targets in
+  $n\ge3$ worlds the only domains that are not essentially one-sided contain every gamble
+  that is not a sure loss. Which full-dimensional interior targets
+  that are not orthant-planar are covered on the full domain?
+  \item \emph{Probability intervals.} Decide coverage of probability-interval models with
+  two or more vertices having at least two coordinates at their upper bounds.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{Ichiishi}
+T.~Ichiishi.
+\newblock Super-modularity: applications to convex games and to the greedy algorithm
+for {LP}.
+\newblock \emph{Journal of Economic Theory}, 25:283--286, 1981.
+
+\bibitem{Lindenstrauss}
+J.~Lindenstrauss.
+\newblock A short proof of {L}iapounoff's convexity theorem.
+\newblock \emph{Journal of Mathematics and Mechanics}, 15:971--972, 1966.
+
+\bibitem{Lyapunov}
+A.~Lyapunov.
+\newblock Sur les fonctions-vecteurs compl\`etement additives.
+\newblock \emph{Izvestiya Akademii Nauk SSSR, Seriya Matematicheskaya}, 4:465--478,
+1940.
+
+\bibitem{Rockafellar}
+R.~T. Rockafellar.
+\newblock \emph{Convex Analysis}.
+\newblock Princeton University Press, 1970.
+
+\bibitem{Schrijver}
+A.~Schrijver.
+\newblock \emph{Theory of Linear and Integer Programming}.
+\newblock Wiley, 1986.
+
+\bibitem{Shafer}
+G.~Shafer.
+\newblock \emph{A Mathematical Theory of Evidence}.
+\newblock Princeton University Press, 1976.
+
+\bibitem{Shapley}
+L.~S. Shapley.
+\newblock Cores of convex games.
+\newblock \emph{International Journal of Game Theory}, 1:11--26, 1971.
+
+\bibitem{Walley}
+P.~Walley.
+\newblock \emph{Statistical Reasoning with Imprecise Probabilities}.
+\newblock Chapman and Hall, 1991.
+
+\bibitem{Ziegler}
+G.~M. Ziegler.
+\newblock \emph{Lectures on Polytopes}.
+\newblock Springer, 1995.
+
+\end{thebibliography}
+
+\end{document}

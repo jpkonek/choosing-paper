@@ -1,0 +1,824 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem,booktabs,array,longtable}
+\usepackage{url}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\hypersetup{pdftitle={Quorum Rankings and the Contamination Triangle}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{observation}[theorem]{Observation}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Di}{\Delta^{\circ}}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\W}{\mathcal W}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\co}{\operatorname{conv}}
+\newcommand{\cone}{\operatorname{cone}}
+\newcommand{\spn}{\operatorname{span}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\relint}{\operatorname{relint}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\lp}{\underline{P}}
+\newcommand{\up}{\overline{P}}
+\newcommand{\src}[1]{\textsf{#1}}
+\DeclareUrlCommand\file{\urlstyle{tt}}
+\newcommand{\status}[1]{\par\smallskip\noindent\textbf{Status:} #1\par}
+\newcommand{\deps}[1]{\noindent\textbf{Depends on:} #1\par}
+\newcommand{\inwords}[1]{\noindent\textit{In plain terms.} #1\par\smallskip}
+\newcommand{\QS}{\textup{(QS)}}
+\newcommand{\TC}{\textup{(TC)}}
+\newcommand{\NT}{\textup{(NT$_F$)}}
+\newcommand{\WB}{\textup{(WB$_F$)}}
+
+\title{Quorum Rankings and the Contamination Triangle\\[2pt]
+\large Consolidated statements of rounds 40--42}
+\author{Working note OO3}
+\date{19 October 2026}
+
+\begin{document}
+\emergencystretch=2em
+\maketitle
+
+\begin{abstract}
+This note collects, with exact statements, hypotheses, statuses and dependencies, the results on quorum rankings obtained in rounds 40--42 (notes LL1--LL3, MM1--MM3, NN1--NN3, the audit notes AUDIT\_quorum, AUDIT\_LL, AUDIT\_MM, AUDIT\_NN, and briefs BRIEF32--BRIEF35). It adds no assumption and claims no new theorem, apart from one exact check, labelled as such, in Remark~\ref{rem:ex51-sixpatterns}. The audit's corrected scopes are used throughout, and every repair recorded by a referee is applied and marked. No cover of $T_1$ and no impossibility theorem for quorum covers has been obtained. Section~\ref{sec:scope} says exactly what is and is not excluded.
+\end{abstract}
+
+\tableofcontents
+
+\section*{Conventions on status}
+\addcontentsline{toc}{section}{Conventions on status}
+\begin{itemize}[leftmargin=*]
+\item \textbf{PROVED}: a complete argument exists in the cited note. The status line names the author note and any referee. ``Refereed'' means re-derived line by line by an independent referee note. ``Audit-reviewed'' means a focused audit reading, which the audit itself says is \emph{not} a complete referee pass.
+\item \textbf{PROVED modulo imports}: the proof imports results whose own status is stated.
+\item \textbf{CHECKED}: exact rational or symbolic computation by a named script whose recorded output ends with \texttt{ALL CHECKS PASSED} (verified for this note on 19 October 2026).
+\item \textbf{CONJECTURE}: no proof.
+\end{itemize}
+Theorem environments carry no names. Sources and labels appear in the status line after each result. A plain-English remark follows each result. ``Repair'' marks a correction a referee or the audit made to the author's statement; the statements below already include these repairs.
+
+Source key. \src{AQ} = AUDIT\_quorum; \src{ALL} = AUDIT\_LL; \src{AMM} = AUDIT\_MM; \src{ANN} = AUDIT\_NN. LL$k$, MM$k$, NN$k$ are the round notes. Imported barriers: \src{FF2} Theorem~4.1 (refereed in GG3, with the Cor.~4.3 repair; import chain D1, BB2 Thm~6.1, M3.7--3.8, each refereed once); \src{HH1} Proposition~1 (dominance without transitivity).
+
+%======================================================================
+\section{Setting and axioms}\label{sec:setting}
+
+\subsection{Problems, models, advice, the target}
+There are three worlds, $\Omega=\{1,2,3\}$ (some foundational results hold for any finite $\Omega$ with $|\Omega|\ge2$; this is said where it matters). $\Delta$ is the probability simplex with vertices $e_i$, $\Di$ its relative interior, $\supp p\coloneqq\{i:p_i>0\}$. $\mu$ is the standard Gaussian measure on $\R^3$: finite and atomless, with the null sets of Lebesgue measure.
+
+A \emph{model} is a measurable set $D\subseteq\R^3$ of accepted gambles modulo null sets. Each pair $\{f,-f\}$ is indexed by its member in $H\coloneqq\{f_1>0\}$, and the model's \emph{advice} $a_D(f)$ on it is $+$ (accept $f$ only), $-$ (accept $-f$ only), $0$ (silence) or $\times$ (both). At world $i$ the background rank order is
+\[
+\text{good}\prec\text{silence}\prec\text{bad}\prec\text{contradiction},
+\]
+where accepting $f$ is good iff $f_i>0$. A gamble is \emph{mixed} if it has coordinates of both signs. Coordinate planes are null and are ignored.
+
+For a credal set $K\subseteq\Delta$ (nonempty, closed, convex) put
+\[
+P_K(g)\coloneqq\min_{m\in K}m\cdot g,\qquad D_K\coloneqq\{g:P_K(g)>0\}\cup\{g\ge0:g\ne0\}.
+\]
+A model is \emph{coherent} if it agrees a.e.\ with some $D_K$. $K\mapsto D_K$ is injective modulo null sets. It is continuous from the Hausdorff metric to the measure metric $\varrho(X,Y)\coloneqq\mu(X\sd Y)$ (\src{LL1} Lemma~4.2a, refereed \src{MM3}~\S2.1), so coherent models form a compact set in measure.
+
+The target is $T_1\coloneqq(1-\varepsilon)u+\varepsilon\Delta$, with $u$ the uniform prior and $\varepsilon\in(0,1)$. Put $c_0\coloneqq(1-\varepsilon)/3$, $\kappa\coloneqq(1+2\varepsilon)/(1-\varepsilon)$ and $v_k\coloneqq c_0\one+\varepsilon e_k$. The facets of $D_{T_1}$ are $F_k\coloneqq\{h:v_k\cdot h=0,\ v_j\cdot h\ge0\ (j\ne k)\}$, and the corner rays are $r_{12}=(-1,-1,\kappa+1)$, $r_{23}=(\kappa+1,-1,-1)$, $r_{31}=(-1,\kappa+1,-1)$. On the \emph{min-cell} $M_k\coloneqq\{g:g_k<g_j,\ j\ne k\}$ one has $P_{T_1}(g)=v_k\cdot g$.
+
+$W_i$ denotes the \emph{world-$i$ best} evaluable model, which gives the pointwise best world-$i$ advice in the advice range. On the full domain $W_i=D_{\{e_i\}}$ a.e.
+
+\subsection{Decomposable domains and (LF)}
+A \emph{decomposable domain} is a class $\M$ of models closed under splicing ($(X\cap A)\cup(Y\setminus A)\in\M$ for $A=-A$ measurable) and under convergence in measure. Equivalently there is a measurable \emph{advice range} $f\mapsto A(f)\subseteq\{+,0,-,\times\}$, nonempty a.e., with $\M=\{D:a_D(f)\in A(f)\text{ a.e.}\}$ (write-up Remark~2.1). The \emph{full domain} has $A\equiv\{+,0,-,\times\}$. The term ``menu domain'' in \src{ALL} means a decomposable domain (\src{MM3}~\S1.6, repair~1).
+
+\textbf{(LF) at $D$.} There is an open $N\supseteq\partial D\setminus\{0\}$ such that, for a.e.\ pair with an orientation $h\in N$, the advice range contains both ``accept $h$'' and silence. On the full domain (LF) holds trivially. Under (LF) at $T_1$, $W_1\ne W_2$ (\src{LL2} Lemma~5.0, refereed \src{MM3}~\S2.2).
+
+\subsection{Rankings as reflexive relations, and the axioms}
+In this note a \emph{ranking} $L$ consists of a decomposable domain $\M_L$ and a \emph{reflexive} relation $\preceq_i$ on $\M_L$ at each world. Transitivity is \emph{not} assumed. Write $X\prec_iY$ when $X\preceq_iY$ and not $Y\preceq_iX$; $X\sim_iY$ when both hold; and $X\approx Y$ when $X\sim_iY$ at every world. $Y$ \emph{dominates} $X$ if $Y\preceq_iX$ at every world and $Y\prec_jX$ at some world. $\C_L$ is the set of coherent models in $\M_L$ that no member of $\M_L$ dominates. $C$ is \emph{competitive on} $S\subseteq\Omega$ if every $X\in\M_L$ has some $i\in S$ with $C\preceq_iX$.
+
+\begin{description}[leftmargin=1.5em,style=unboxed,font=\normalfont\bfseries]
+\item[Reflexivity.] $X\preceq_iX$ for all $X$ and $i$.
+\item[Strict (G).] If $X$ gives world-$i$ advice at least as good as $Y$ a.e., then $X\preceq_iY$; if moreover it is strictly better on a non-null set, then $X\prec_iY$.
+\item[(IB).] For measurable $A=-A$ and measurable $F,G\subseteq A^c$: $(D\cap A)\cup F\preceq_i(E\cap A)\cup F$ iff $(D\cap A)\cup G\preceq_i(E\cap A)\cup G$.
+\item[(TC).] $A\preceq_iB\preceq_iC$ implies not $C\prec_iA$ (three-model no-reversal; \src{BRIEF28}). Longer strict cycles are allowed. The stronger finite-chain condition (FC), $A_0\preceq_i\cdots\preceq_iA_k\Rightarrow\neg(A_k\prec_iA_0)$, is \emph{not} imposed, and it fails in the class studied here (Theorem~\ref{thm:nakamura}).
+\item[(LA).] $\C_L\ne\varnothing$.
+\item[(S).] There is a map $p\mapsto C_p\in\C_L$ on $\Delta$ with $C_p$ competitive on $\supp p$ and $\{p:C_p\preceq_iX\}$ closed for every $i$ and every $X\in\M_L$.
+\item[Direct (C).] If $X\approx C$ for some $C\in\C_L$, then $X\in\C_L$.
+\item[(LF) at the target.] As above.
+\end{description}
+
+\begin{definition}\label{def:cover}
+A \emph{cover of $T_1$ under \TC} is a ranking with reflexive world relations satisfying strict (G), (IB), \TC, (LA), (S) and direct (C), with $D_{T_1}\in\C_L$ and (LF) at $D_{T_1}$.
+\end{definition}
+
+The KKM theorem of the write-up (Theorem~2.1) is stated for preorders and is not used. Its replacement for arbitrary relations is the following.
+
+\begin{proposition}\label{prop:hh1}
+Let $\Omega$ be finite and let each $\preceq_i$ be an arbitrary binary relation on $\M_L$. Assume (LA) and (S). Then:
+\begin{enumerate}[label=(\alph*)]
+\item every $m\in\M_L$ is weakly dominated by some selected $C_p\in\C_L$;
+\item every undominated $m$ satisfies $m\approx C_p$ for some selected $C_p$;
+\item under direct (C) as well, the undominated models are exactly $\C_L$, and every $m\notin\C_L$ is dominated by a selected member of $\C_L$.
+\end{enumerate}
+\end{proposition}
+\status{PROVED (\src{HH1} Prop.~1(a)--(c)), via KKM on the closed sets $\{p:C_p\preceq_im\}$. Neither (FC) nor \TC\ is used.}
+\inwords{The dominance conclusion of the programme survives the loss of transitivity, model by model.}
+
+\subsection{Additive judges}
+At world $i$ there are $n$ \emph{judges} $v\in J_i$, $|J_i|=n$. Each has a measurable penalty $\ell_{iv}(h,a)$, $a\in A(h)$. It is \emph{strictly guiding}, meaning strictly increasing in world-$i$ rank on $A(h)$ for a.e.\ $h$, and it has an \emph{integrable envelope} $|\ell_{iv}|\le g$ with $\int g\,d\mu<\infty$. Put
+\[
+L_{iv}(X)\coloneqq\int\ell_{iv}(h,a_X(h))\,d\mu,\qquad
+d_{iv}(X,Y)\coloneqq\int\bigl|\ell_{iv}(h,a_Y(h))-\ell_{iv}(h,a_X(h))\bigr|\,d\mu .
+\]
+For a selection $p\mapsto C_p$ and a model $X$ write
+\[
+\Delta_{iv}(p,X)\coloneqq L_{iv}(X)-L_{iv}(C_p),\qquad d_{iv}(p,X)\coloneqq d_{iv}(C_p,X).
+\]
+\textbf{Facts used everywhere.} (i) For a.e.\ $h$ and $a\ne b$ in $A(h)$, the local changes $\ell_{iv}(h,b)-\ell_{iv}(h,a)$ are nonzero, and their sign does not depend on $v$. So $d_{iv}(X,Y)>0$ for every judge whenever $X\ne Y$ (\src{LL2}~\S1). (ii) Write $I_v$, $W_v$ for the improved and worsened $\ell_{iv}$-masses of a record $C\to X$. Then $L_{iv}(X)-L_{iv}(C)=W_v-I_v$ and $d_{iv}=W_v+I_v$ (\src{LL3}~\S1).
+
+\textbf{Switch values.} For an oriented gamble $g$ off the coordinate planes put
+\[
+\sigma_{iv}(g)\coloneqq\ell_{iv}(\text{pair of }g,\text{silence})-\ell_{iv}(\text{pair of }g,\text{accept }g\text{ only}).
+\]
+It has the strict sign of $g_i$. Conversely, every bounded measurable family $\sigma_{iv}$ with $\operatorname{sgn}\sigma_{iv}(g)=\operatorname{sgn}g_i$ a.e.\ is the switch family of strictly guiding integrable judges (\src{MM1}~\S1.1, refereed \src{NN3}~\S1.1). On a pair with advice range $\{+,0,-\}$ the write-up's chart vectors are $c=\sigma(g)$, $c'=\sigma(-g)$ and $d=c-c'$.
+
+%======================================================================
+\section{Quorum rankings}\label{sec:quorum}
+
+\begin{definition}\label{def:quorum}
+Fix at each world $i$ judges $(\ell_{iv})_{v\in J_i}$ as above, a monotone family $\W_i$ of \emph{winning coalitions} of $J_i$ with $\varnothing\notin\W_i$, and \emph{margin functions} $\psi_{iv}:[0,\infty)\to[0,\infty)$ with $\psi_{iv}(0)=0$ and $\psi_{iv}(s)>0$ for $s>0$. Judge $(i,v)$ \emph{supports} $X\,R_i\,Y$ if
+\[
+L_{iv}(Y)-L_{iv}(X)\ \ge\ \psi_{iv}\bigl(d_{iv}(X,Y)\bigr),
+\]
+and the world accepts $X\preceq_iY$ iff its supporters form a winning coalition.
+\begin{itemize}[leftmargin=*]
+\item \emph{Quota}: $\W_i=\{S:|S|\ge q\}$, written ``$q$-of-$n$''. The \emph{blocking size} is $b\coloneqq n-q+1$. A \emph{weighted} game accepts when the supporters' weight is at least $\tau>0$.
+\item \emph{Fixed-margin rule}: $\psi_{iv}(s)=\eta_{iv}s$ with $\eta_{iv}\in(0,1)$. This is the original proposal of \src{AQ}, with $n=4$, $q=3$, a common $\eta$.
+\item \emph{$\psi$-rule}: one common continuous nondecreasing $\psi$ with $\psi(0)=0$ and $0<\psi(s)\le s$ for $s>0$.
+\end{itemize}
+The \emph{Nakamura number} $\nu(\W)$ is the least number of winning coalitions with empty intersection, or $\infty$ if some judge belongs to every winning coalition. $\W$ is \emph{proper} if no two winning coalitions are disjoint.
+\end{definition}
+
+\begin{definition}\label{def:QS}
+Let $p\mapsto C_p$ be a selection of coherent models. A \emph{branch} at $p$ is $F=\bigsqcup_{i\in\supp p}F_i$ with $F_i\subseteq J_i$ and $|F_i|=b$. There are $\binom nb^{|\supp p|}$ branches: $216$ at full support for $(4,3)$, and $42\,875$ for $(7,5)$. The \emph{strict quorum sign condition} at $p$ is
+\begin{center}
+\QS$_p$:\quad \parbox[t]{0.8\textwidth}{for every evaluable $X\ne C_p$ there is $i\in\supp p$ with at least $q$ judges $v\in J_i$ having $\Delta_{iv}(p,X)>0$.}
+\end{center}
+\QS\ means \QS$_p$ at every $p\in\Delta$. For a branch $F$ the \emph{protection condition} is
+\begin{center}
+\NT:\quad \parbox[t]{0.8\textwidth}{if $X$ is evaluable and $\Delta_{iv}(p,X)\le0$ for all $(i,v)\in F$, then $X=C_p$ a.e.}
+\end{center}
+\end{definition}
+
+\inwords{\QS\ asks that every rival of a selected model is beaten strictly, by a quorum, at some active world. No margin is specified. The world and the quorum may change with the rival.}
+
+%======================================================================
+\section{Foundations}\label{sec:foundations}
+
+\begin{lemma}\label{lem:elementary}
+Consider a quorum ranking with quota $q$ (or a monotone family $\W$) at each world.
+\begin{enumerate}[label=(\alph*)]
+\item It is reflexive and satisfies (IB). Every comparison depends only on the record, so it is invariant under null modifications.
+\item If $\psi_{iv}(s)\le s$, strict (G) holds.
+\item A judge never supports both $X\,R_i\,Y$ and $Y\,R_i\,X$ for $X\ne Y$. Hence, if $\W_i$ is proper (for quotas, $2q>n$), there are no nontrivial ties: $X\sim_iY$ implies $X=Y$ a.e.
+\item A judge supporting an edge between distinct models strictly lowers its own loss along it. Hence, if $3q>2n$ (more generally $\nu(\W_i)\ge4$), \TC\ holds. Indeed there is no cycle of acceptances $X\,R\,Y\,R\,Z\,R\,X$ among distinct models.
+\item For the fixed-margin rule, each judge's support relation is a partial order modulo null sets (per-judge transitivity, by the triangle inequality for $d_{iv}$).
+\item If $p\mapsto C_p$ is continuous in measure and every $\psi_{iv}$ is continuous, then every section $\{p:C_p\preceq_iX\}$ is closed, for every model $X$, including at points where $C_p=X$ and for non-injective selections.
+\item Under properness, direct (C) holds, and a coherent selection competitive on $\supp p$ consists of undominated models. So (LA) holds and $C_p\in\C_L$.
+\end{enumerate}
+\end{lemma}
+\status{PROVED. Fixed-margin rule: \src{AQ} properties 1--7, verified in \src{LL3}~\S2.1 (A1--A7). $\psi$-rule: \src{MM3}~\S1.4 and \src{LL2} Prop.~8.2. Refereed in \src{MM3}~\S1.4. Hypotheses actually used (\src{MM3}~\S0): $2q>n$ for ties, (C) and admissibility; $3q>2n$ for \TC; $\psi(s)\le s$ for strict (G); continuity of $\psi$ for closed sections.}
+\deps{Fact~(i) of \S1.4 (strict guidance); integrable envelopes (for (f)).}
+\inwords{Quorum rankings have every structural axiom for free. What a cover needs beyond them is a coherent selection through $T_1$, continuous in measure, that is competitive. For the $\psi$-rule, Theorem~\ref{thm:lifting} reduces this to \QS.}
+
+\begin{theorem}\label{thm:nakamura}
+Let $\W$ be a monotone family of winning coalitions at one world with $\varnothing\notin\W$, and let $\nu=\nu(\W)$. Use the fixed-margin rule with arbitrary margins $\eta_v\in(0,1)$. ``For some judges'' means for some strictly guiding integrable judges at this world.
+\begin{enumerate}[label=(\alph*)]
+\item Nontrivial ties occur for some judges $\iff$ $\W$ is not proper $\iff$ $\nu=2$.
+\item \TC\ holds for all judges $\iff$ $\nu\ge4$.
+\item For $k\ge2$, a cycle of acceptances $A_0\,R\,A_1\,R\cdots R\,A_{k-1}\,R\,A_0$ with consecutive models distinct occurs for some judges $\iff$ $k\ge\nu$. If $\W$ is proper, the cycle can be taken strict (no reverse edge accepted) $\iff$ $k\ge\nu$.
+\item $\nu=\infty$ (a veto judge) $\iff$ no acceptance cycle ever occurs. Then the veto judge's loss endorses every accepted comparison.
+\item For quotas, $\nu=\lceil n/(n-q)\rceil$ if $q<n$ and $\nu=\infty$ if $q=n$. So: proper $\iff2q>n$; \TC\ $\iff3q>2n$; strict $k$-cycles $\iff k\ge\lceil n/(n-q)\rceil$ (with $2q>n$). For weighted games, $k\tau>(k-1)W$ implies $\nu\ge k+1$, where $W$ is the total weight.
+\end{enumerate}
+\emph{Transfer to $\psi$-rules.} The ``$\Leftarrow$'' directions of no-ties and of \TC, and the ``$\Rightarrow$'' direction of the cycle statement, hold for every $\psi>0$ on $(0,\infty)$. The realisation directions hold whenever $\psi(s)\le cs$ on some $(0,s_1]$ with $c<1$.
+\end{theorem}
+\status{PROVED (\src{LL3} Thm.~A). Refereed \src{MM3}~\S3.3 with one \textbf{repair} to the realisation in (b). The judges lying in exactly one $S_j$ must receive cell masses $(m_X,m_Y,m_Z)=(1,1/r,1)$, $(1/r,1,1/r)$ and $(1/r,1/r,1)$ for $S_1$, $S_2$, $S_3$ respectively ($r=(1-\eta)/(1+\eta)$), so that the supporters of $X\,R\,Z$ are exactly $S_1\cap S_2$. Transfer to $\psi$-rules: PROVED (\src{MM3}~\S3.5, author \src{MM3}, not separately refereed). Realisations CHECKED (\file{ll3py/foundations.out}, brute force $n\le8$; \file{mm3py/mm3_check.out} Part~2).}
+\deps{Lemma~\ref{lem:elementary}(c)--(e); Nakamura (1979).}
+\inwords{The voting game alone decides which cycles can occur. For $(4,3)$ and for $(7,5)$, $\nu=4$: there are no strict $3$-cycles (so \TC\ holds), but strict $4$-cycles exist. That is the normative cost of the class, and it is why (FC) fails there.}
+
+\begin{remark}\label{rem:aq-certificate}
+The audit's five-model example (\src{AQ}) accepts $A_0\,R\,A_1\,R\,A_2\,R\,A_3\,R\,A_4\,R\,A_0$ strictly at one world, although $A_4$ strictly improves $A_0$. So no strictly positive finitely additive error weight endorses its first four edges. CHECKED (\src{LL3}~\S2.4). \src{LL3} also found two strict $4$-cycles, $(A_0,\dots,A_3)$ and $(A_1,\dots,A_4)$, which \src{AQ} did not report. The models are arbitrary, not coherent or selected.
+\end{remark}
+
+\begin{proposition}\label{prop:A8}
+Let every world have a proper game, and let a ranking have (LA) and (S) with $D_{T_1}\in\C_L$. Then $D_{T_1}=C_{p_0}$ for some $p_0$. In particular hypothesis (H1) of \src{FF2} Theorem~4.1, ``$T_1$ is selected'', holds for every quorum cover whose selection is continuous in measure.
+\end{proposition}
+\status{PROVED (\src{LL3} Prop.~A8). \textbf{Not refereed} (\src{MM3}~\S3.4 declined).}
+\deps{Proposition~\ref{prop:hh1}(b); Lemma~\ref{lem:elementary}(c).}
+\inwords{In a quorum cover the target is not merely tied with a selected model; it is selected. So barriers whose hypothesis is ``$T_1$ selected'' apply verbatim.}
+
+\begin{remark}\label{rem:eta0}
+Margin zero does not work. With $\eta=0$, $n=4$, $q=3$, \TC\ can fail: a Condorcet profile with one indifferent judge gives an explicit example (\src{LL1} Prop.~6.1; PROVED, CHECKED \file{ll1py/tc_eta0.out}). With $\eta=0$, $q=n$ (unanimity), every accepted comparison is endorsed by one judge's field, and \src{FF2} Cor.~4.3 excludes covers with selections continuous in measure (PROVED modulo the \src{FF2} import chain).
+\end{remark}
+
+%======================================================================
+\section{The fixed-margin exclusion}\label{sec:fixed}
+
+\begin{lemma}\label{lem:swap}
+Work on the full domain. Let $C$ be a model, $a\ne b$ advices, $A\coloneqq\{a_C=a\}$ and $B\coloneqq\{a_C=b\}$, and let $\delta^{ab}(h)\coloneqq(\ell_{iv}(h,b)-\ell_{iv}(h,a))_{i,v}$. Suppose some $y$ with all entries nonzero lies in the essential range of $\delta^{ab}$ on $A$ and on $B$. Then for any margins $\eta_{iv}\in(0,1)$ there is a model $X\ne C$ with
+\[
+\Delta_{iv}(C,X)<\eta_{iv}\,d_{iv}(C,X)\quad\text{for every judge at every world.}
+\]
+So, under any winning families, $C$ is competitive on no nonempty set of worlds.
+\end{lemma}
+\status{PROVED (\src{LL1} Lemma~2.1; approximate-continuity form \src{LL2} Prop.~6.1). Refereed \src{MM3}~\S\S2.1--2.2. On decomposable domains the same holds with swaps between problems of equal advice-range label (\src{LL1}~\S3 remark).}
+\deps{Atomlessness of $\mu$; strict guidance.}
+\inwords{Move equal tiny masses across a boundary of $C$ in opposite directions. Every judge sees the two changes cancel to first order, while its gross change $d$ grows linearly. So any margin proportional to $d$ fails for every judge at once, however heterogeneous the judges are.}
+
+\begin{lemma}\label{lem:gap}
+Let $\eta_i\ge\eta>0$ at every world and $\kappa_\eta\coloneqq(1+\eta)/(1-\eta)$. Let $C$ and $C'$ be distorted-Bayes at weights $\alpha,\alpha'\ge0$, meaning that for a.e.\ $h$ and every $b\in A(h)$
+\[
+\textstyle\sum\alpha_{iv}\bigl[\Delta_{iv}(h;a_C\to b)-\eta_i|\Delta_{iv}(h;a_C\to b)|\bigr]\ge0,
+\]
+and likewise for $C'$ at $\alpha'$. If $\supp\alpha=\supp\alpha'$ and every ratio $\alpha'_{iv}/\alpha_{iv}$ lies in $(1/\kappa_\eta,\kappa_\eta)$, then $C=C'$ a.e. A version allows one world with no margin (ratios in $[1/\rho,\rho]$, $\rho=1+\eta/4$). It fails with two margin-free worlds.
+\end{lemma}
+\status{PROVED (\src{LL2} Lemmas~3.1--3.2; sharpness and the two-world failure CHECKED, \file{ll2py/gap_check.out}). Refereed \src{MM3}~\S2.2.}
+\inwords{Two models certified by nearly the same mixture of judges, with a positive margin, must coincide. This forces competitive models to be isolated.}
+
+\begin{proposition}\label{prop:countable}
+In any fixed-margin quorum system (any finite judge sets, any winning families, margins bounded below by $\eta>0$ at all worlds but at most one, possibly depending on the selected model), the models competitive on some nonempty set of worlds form a countable set modulo null sets. On the full domain this set, with the measure metric, has no connected subset with more than one point.
+\end{proposition}
+\status{PROVED. Countability: \src{LL2} Prop.~4.1 and Remark~4.2. Total disconnectedness: \src{LL1} Thm.~3.1. Both refereed \src{MM3}~\S2.}
+\deps{Lemma~\ref{lem:gap} and compactness of the weight simplex (countability); Lemma~\ref{lem:swap} (disconnectedness); \src{LL2} Lemma~2.1 (competitiveness $\Rightarrow$ distorted Bayes, by Lyapunov and separation).}
+\inwords{With a fixed relative margin there are only countably many competitive models, so no continuous path of them can join two different vertex models.}
+
+\begin{theorem}\label{thm:fixed-exclusion}
+Fix finitely many worlds ($\ge2$), finitely many integrable strictly guiding judges per world, and margins $\eta_{iv}\in(0,1)$, which may depend on the world, the judge or the selected model. Each world uses a monotone family of winning coalitions not containing $\varnothing$: a $q$-of-$n$ quota with any $1\le q\le n$, or a weighted game with any $\tau>0$. The domain is the full domain or any decomposable domain with $W_1\ne W_2$ (for instance with (LF) at $T_1$).
+\begin{enumerate}[label=(\roman*)]
+\item No selection on $\Delta$, coherent or not, that is continuous in measure has every $C_p$ competitive on $\supp p$. This holds for \emph{every} $q$.
+\item If the games are proper ($2q>n$, or $2\tau$ greater than the total weight), so that there are no nontrivial ties, then no selection with closed sections at selected models has every $C_p$ competitive on $\supp p$.
+\item (i) and (ii) extend to margin functions with $\psi_{iv}(s)\ge\eta s$ on some $(0,s_0]$ for every judge of some blocking family, at every world except at most one.
+\end{enumerate}
+Consequently, no such ranking satisfies (S), whatever the target. In particular none covers $T_1$.
+\end{theorem}
+\status{PROVED. (i): \src{LL1} Cor.~3.2 and \src{LL2} Thm.~5.1(a). (ii): \src{LL2} Thm.~5.1(b) (any decomposable domain with $W_1\ne W_2$, via Sierpi\'nski's theorem) and \src{LL1} Thm.~4.2 (full domain, coherent selections; properness suffices for Lemma~4.1 Step~4). (iii): \src{LL2} Cor.~5.2. Refereed \src{MM3}~\S2.4. \textbf{Scope repair} (\src{ALL}, \src{MM3}~\S2.4): for improper games ($2q\le n$), (ii) is \emph{not} proved. The headline ``any quorum'' is correct only for (i). (\TC\ needs $3q>2n$ in any case.)}
+\deps{Proposition~\ref{prop:countable}; Lemma~\ref{lem:elementary}(c); \src{LL2} Lemma~5.0 ($C_{e_i}=W_i$).}
+\inwords{The original proposal cannot work: a margin proportional to the gross change makes the near-neutral records at the boundary of any moving model uncomparable at every world. This is a theorem about the rule, not about the choice of judges.}
+
+\begin{proposition}\label{prop:survivors}
+\begin{enumerate}[label=(\alph*)]
+\item For margin functions $\psi_{iv}$, the hypotheses of Theorem~\ref{thm:fixed-exclusion} hold unless at least two worlds each have at least $q$ judges (weighted: weight $\ge\tau$) with $\liminf_{s\downarrow0}\psi_{iv}(s)/s=0$.
+\item Let $W_1\ne W_2$. If a coherent family, continuous in measure on $\Delta$, satisfies \QS, then $\liminf_{s\downarrow0}\delta(s)/s=0$, where $\delta$ is the separation function of Theorem~\ref{thm:lifting}. Every common $\psi$ under which the $\psi$-rule makes that family competitive satisfies $\liminf_{s\downarrow0}\psi(s)/s=0$.
+\end{enumerate}
+\end{proposition}
+\status{(a) PROVED (\src{LL2} Prop.~8.1). (b) PROVED (\src{MM3} R1, written by the referee of \src{ALL}; not separately refereed). \textbf{Scope} (\src{AMM} correction~4): (b) is a $\liminf$ statement. It does \emph{not} say that every working margin has $\psi(s)/s\to0$. A margin with $\psi(s)/s\to0$ can, however, always be \emph{chosen} (Theorem~\ref{thm:lifting}).}
+\deps{Theorem~\ref{thm:fixed-exclusion}; Theorem~\ref{thm:lifting}.}
+\inwords{Any surviving rule must let quorums win by sign, at least along a sequence of small scales. That is exactly what the next section formalises.}
+
+\begin{remark}\label{rem:relative}
+\emph{Relative margins} (support iff $\Delta_{iv}\ge\eta\max_{v'}|\Delta_{iv'}|$) escape Lemma~\ref{lem:swap}. They keep reflexivity, (IB), \TC\ (for $3q>2n$) and closed sections, and they keep strict (G) under a judge-ratio bound (\src{LL1} Prop.~6.2). Their ties are exactly the world-neutral records, so direct (C) and selected admissibility are no longer automatic. A strict-Bayes condition is \emph{sufficient} for (C) (\src{LL1} Prop.~6.4), not necessary. Competitiveness there is equivalent to finitely many virtual weak-Bayes conditions for fields $\ell_{iv}-\eta\sigma\ell_{iv'}$ (\src{LL1} Prop.~6.3), which is a different test from that of Lemma~\ref{lem:branchtest} (\src{ALL}). PROVED (\src{LL1}), refereed in part (\src{MM3} referees LL1~\S\S2--4 only). Status in the programme: secondary (\src{BRIEF33} correction~4).
+\end{remark}
+
+%======================================================================
+\section{The strict-sign lifting lemma}\label{sec:lifting}
+
+Put $D(p,X)\coloneqq\max_{i,v}d_{iv}(p,X)$. Let $b_i(p,X)$ be the $q$-th largest of the $n$ numbers $\Delta_{iv}(p,X)$, $v\in J_i$, and put
+\begin{align*}
+r(p,X)&\coloneqq\max_{i\in\supp p}b_i(p,X),\\
+\delta(a)&\coloneqq\inf\{r(p,X):\ p\in\Delta,\ D(p,X)\ge a\}\qquad(\delta(a)\coloneqq+\infty\text{ if the set is empty}).
+\end{align*}
+Then \QS$_p$ holds iff $r(p,X)>0$ for every $X\ne C_p$.
+
+\begin{theorem}\label{thm:lifting}
+\textbf{Setting.} Finitely many worlds; an atomless finite measure; a decomposable domain $\M$; at each world $n$ judges, strictly guiding on the advice range, with integrable envelope $g$; a quota with $3q>2n$; a coherent selection $p\mapsto C_p$, continuous in measure on all of $\Delta$. Put $M\coloneqq\int2g\,d\mu$ (taken $>0$).
+
+\textbf{Equivalence.} The following are equivalent.
+\begin{itemize}[leftmargin=*]
+\item \QS.
+\item (\(\Psi\)) There is a continuous nondecreasing $\psi:[0,M]\to[0,\infty)$ with $\psi(0)=0$ and $0<\psi(s)\le s/2$ on $(0,M]$ such that, under the $\psi$-rule, every $C_p$ is competitive on $\supp p$.
+\end{itemize}
+Under \QS, $\psi$ may in addition be chosen with $\psi(s)/s\to0$, or below any prescribed positive continuous cap on $(0,M]$.
+
+\textbf{Cover.} Under (\(\Psi\)) the rankings are reflexive and satisfy (IB), strict (G), \TC\ and closed sections for every $X$; they have no nontrivial ties; direct (C), (LA) and (S) hold; and every $C_p$ is undominated. Hence, if $T_1=C_{p_0}$ and (LF) holds at $T_1$ (automatic on the full domain), this is a cover of $T_1$ under \TC. (FC) can fail.
+\end{theorem}
+\status{PROVED (author: \src{ALL}). Refereed \src{MM3}~\S\S1.1--1.4 and~\S4, ``correct'', with presentational \textbf{repairs} applied here: the construction gives $\psi\le s/2$ (not merely $\psi\le s$), which is what Corollary~\ref{cor:R2} and the transfer in Theorem~\ref{thm:nakamura} need; ``menu domain'' reads ``decomposable domain''; empty feasible sets give $\delta=+\infty$; (LF) at $T_1$ is a hypothesis off the full domain.}
+\deps{Aumann--Lyapunov compactness and convexity of the attainable set; Lemma~\ref{lem:elementary}.}
+
+\begin{proof}[Proof outline (\src{MM3}~\S1.3)]
+\emph{Necessity.} For $X\ne C_p$ every $d_{iv}>0$, so each supporting vote has $\Delta_{iv}\ge\psi(d_{iv})>0$.
+
+\emph{(a) Uniform transfer.} $|d_{iv}(p_k,X)-d_{iv}(p,X)|$ and $|\Delta_{iv}(p_k,X)-\Delta_{iv}(p,X)|$ are at most $\int_{\{a_{C_{p_k}}\ne a_{C_p}\}}2g\,d\mu$, uniformly in $X$, and this tends to $0$ by continuity in measure.
+
+\emph{(b) Compactness.} At fixed $p$ the attainable set $A_p\coloneqq\{(\Delta_{iv}(p,X),d_{iv}(p,X))_{i,v}:X\in\M\}$ is the Aumann integral of a finite-valued, integrably bounded, measurable correspondence. On an atomless space it is convex and compact, and each of its points is realised by a model.
+
+\emph{(c) $\delta(a)>0$.} Otherwise take $p_k\to p$ and $X_k$ with $D\ge a$ and $r\to0$. By (a)--(b), a limit vector is attained by some $X^*$ with $D\ge a$, so $X^*\ne C_p$. \QS$_p$ gives $q$ strictly positive increments at some $i\in\supp p$. Since $i\in\supp p_k$ for large $k$, this contradicts $r(p_k,X_k)\to0$.
+
+\emph{(d) Construction.} Put $\gamma(s)\coloneqq\frac12\min(\tilde\delta(s),s)$ with $\tilde\delta\coloneqq\min(\delta,M)$, optionally also $\min$ with $s^2/M$ or with a cap. Then take $\psi(s)\coloneqq\frac1s\int_0^s\gamma$ (or the audit's dyadic interpolation). $\psi$ is continuous, nondecreasing and positive, with $\psi\le\gamma\le s/2$ and $\psi<\delta$ where $\delta$ is finite.
+
+\emph{(e) Competitiveness.} For $X\ne C_p$ some active $i$ has $q$ judges with $\Delta_{iv}\ge r(p,X)\ge\delta(D)>\psi(D)\ge\psi(d_{iv})$.
+
+The cover properties are Lemma~\ref{lem:elementary}.
+\end{proof}
+\inwords{One never has to guess a margin. If quorums beat every rival by sign, compactness gives a uniform positive advantage at every positive scale of change, and a margin can be slipped underneath. So the whole positive problem is: find fixed judges and a coherent family through $T_1$ with \QS.}
+
+\begin{corollary}\label{cor:R2}
+On the full domain, with $\psi$ continuous, $0<\psi(s)<s$ and $2q>n$: a coherent selection with closed sections that is $\psi$-competitive on $\supp p$ for every $p$ is automatically continuous in measure.
+\end{corollary}
+\status{PROVED (\src{MM3} R2, author \src{MM3}; not separately refereed). It runs \src{LL1} Lemma~4.1 with $\psi$ in place of $\eta d$, then uses compactness of coherent models.}
+\inwords{For coherent $\psi$-covers on the full domain, the continuity hypothesis in Theorem~\ref{thm:lifting} costs nothing.}
+
+\begin{remark}\label{rem:single-index}
+At a single index $p_0$, steps (b), (c) and (e) of the proof, run with $p_k\equiv p_0$, give a margin that makes $C_{p_0}$ alone competitive whenever \QS$_{p_0}$ holds (\src{MM1}~\S6; this follows from the proof above). This is used only in Section~\ref{sec:t1only}, and it is not a family.
+\end{remark}
+
+%======================================================================
+\section{Branch form, the exact test, and boundary alignment}\label{sec:branch}
+
+\begin{lemma}\label{lem:branchform}
+For every $(n,q)$ and every $p$: \QS$_p$ holds iff \NT\ holds for every branch $F$ at $p$.
+\end{lemma}
+\status{PROVED (\src{MM2} Lemma~1.1; the case $(4,3)$ is in \src{ALL}). Refereed \src{NN3}~\S2.1 and \src{MM3}~\S1.7. Uses only $|F_i|=n-q+1$.}
+\deps{None beyond Definition~\ref{def:QS}.}
+\inwords{A rival defeats \QS\ exactly when, at every active world, some blocking set of judges weakly prefers the rival. The inequalities are \emph{nonstrict}, and that matters.}
+
+\begin{lemma}\label{lem:branchtest}
+Fix $p$ and a branch $F$. Let $A_p$ be the compact convex attainable set of full vectors $(\Delta,d)$ (proof of Theorem~\ref{thm:lifting}(b)).
+\begin{enumerate}[label=(\alph*)]
+\item $F$ passes (\NT\ holds) iff $A_p\cap\{\Delta_{iv}\le0,\ (i,v)\in F\}=\{0\}$, where $0$ is the full vector. Equivalently, the maximum of $\sum_{i,v}d_{iv}$ over that compact set is $0$. This is exact, not a relaxation.
+\item \emph{Sufficient certificate.} If some $w\ge0$, $w\ne0$, supported in $F$ makes $C_p$ the \emph{unique} pointwise minimiser of $\sum_Fw_{iv}\ell_{iv}$, then $F$ passes. This is not necessary in general. The weights may depend on $p$ and on $F$, and they need not be strictly positive.
+\end{enumerate}
+\end{lemma}
+\status{PROVED (author \src{ALL}; refereed \src{MM3}~\S1.7).}
+\deps{Theorem~\ref{thm:lifting}(b); Lemma~\ref{lem:branchform}.}
+\inwords{Each branch is a single convex optimisation over models. A unique-minimiser mixture inside the branch is a convenient certificate, but it is not demanded.}
+
+\begin{lemma}\label{lem:weakbayes}
+If \QS$_p$ holds then, for every branch $F$, there is $w\ge0$, $w\ne0$, supported in $F$, with
+\[
+\WB:\qquad\textstyle\sum_{(i,v)\in F}w_{iv}\bigl[\ell_{iv}(h,b)-\ell_{iv}(h,a_{C_p}(h))\bigr]\ge0\quad\text{for a.e.\ }h\text{ and every }b\in A(h).
+\]
+This is \emph{necessary only}. It separates $A_p$ from the \emph{open} orthant, whereas \NT\ concerns the closed one.
+\end{lemma}
+\status{PROVED (\src{LL2} Lemma~2.1 and Prop.~8.3 with $\eta=0$; \src{MM1} Lemma~1.2; \src{MM2} Lemma~2.1). Refereed \src{MM3}~\S\S1.7,~2.2 and \src{NN3}~\S1.1. \textbf{Scope} (\src{BRIEF33} correction~3, \src{ALL}): necessary only.}
+\deps{Lyapunov convexity (FF2 Step~1, refereed GG3~\S8.1); decomposability.}
+\inwords{Every branch must contain a nonnegative mixture of judges for which the selected model is weakly Bayes. A weakly Bayes model can still be defeated by an exactly neutral rival.}
+
+\begin{definition}\label{def:cev}
+Fix a model $C$ and advices $a\ne b$. Let $A'\subseteq\{a_C=a\}$ and $B'\subseteq\{a_C=b\}$ be the parts where $b$, respectively $a$, lies in the advice range. The \emph{switch map} is $f^{ab}(h)\coloneqq(\ell_{iv}(h,b)-\ell_{iv}(h,a))_{i,v}$. A \emph{common essential value} of $C$ is any $y$ in the essential range of $f^{ab}$ on $A'$ and on $B'$. $N(C)$ is the set of all of them, over all types $(a,b)$. Approximate values at approximate-continuity points of $f^{ab}$ where both sides have positive upper density belong to $N(C)$ (\src{MM2}~\S1).
+\end{definition}
+
+\begin{theorem}\label{thm:alignment}
+\begin{enumerate}[label=(\alph*)]
+\item If \QS$_p$ holds, then for every branch $F$ the weight $w_F$ of Lemma~\ref{lem:weakbayes} satisfies $w_F\cdot y_F=0$ for every $y\in N(C_p)$. One weight serves every boundary type and every boundary point simultaneously. Equivalently, $\spn\{y_F:y\in N(C_p)\}$ contains no vector strictly negative on $F$.
+\item Conversely, if for some branch $F$ that span contains a vector strictly negative on $F$, an explicit multi-site swap gives an evaluable $X\ne C_p$ with $\Delta_{iv}(p,X)<0$ for all $(i,v)\in F$. So \QS$_p$ fails.
+\item If some $w\ge0$ on $F$ is strictly branch-Bayes on a measurable set $O$ (strict inequality in \WB\ for a.e.\ $h\in O$ and every $b\ne a_{C_p}(h)$), then no record supported in $O$ violates \NT.
+\end{enumerate}
+\end{theorem}
+\status{PROVED (\src{MM2} Thm.~3.1, Prop.~4.1, Prop.~4.3; independent of branch size, \src{NN1}~\S1, \src{NN2}~\S4.1). Refereed \src{NN3}~\S\S2.2,~2.4. \textbf{Repair of the reading} (\src{NN3}~\S2.4): ``the local method is exhausted by alignment'' holds only when an aligned $w_F$ is strictly signed off the boundary. Every violator of \NT\ has its change set inside the common tie set of all weak-Bayes weights of $F$; this is not an exact characterisation of the violators (\src{MM2}~\S7 (R5) as repaired).}
+\deps{Lemma~\ref{lem:weakbayes}; Gordan's alternative; atomlessness and decomposability.}
+\inwords{At each selected model, the judges' switch values on its boundary must satisfy, branch by branch, a nonnegative linear identity. If they do not, a swap of small masses across the boundary beats every judge of the branch. When the identity holds with strict signs off the boundary, no local record does better.}
+
+\begin{lemma}\label{lem:sign-dim}
+Let \QS$_p$ hold.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Sign support.)} Let $y\in N(C_p)$ with $y_{iv}\ne0$ for every $(i,v)\in F$, and let $s_i$ be the common sign of the world-$i$ entries. Then $\supp w_F$ contains a judge at a world with $s_i=+$ and one at a world with $s_i=-$. If $N(C_p)$ contains such values of three patterns, each world being the unique odd world in one of them, then $\supp w_F$ meets every world.
+\item \emph{(Dimension.)} If $q\ge3$ (equivalently $b\le n-2$) and $|\supp p|\ge2$, the annihilator $W_p$ of $\{y:y\in N(C_p)\}$ in $\R^{J_{\supp p}}$ has $\dim W_p\ge3$. At $T_1$, under the hypothesis of (a) at one point of each facet piece, $W_p\cap\R_+$ has at least $8$ extreme supports for $(4,3)$ and at least $13$ for $(7,5)$ (by counting).
+\end{enumerate}
+\end{lemma}
+\status{PROVED (\src{MM2} Lemmas~3.2--3.3; $(7,5)$ count \src{NN2}~\S4.1). Combinatorics CHECKED (\file{mm2py/branch_comb.out}). Refereed \src{NN3}~\S\S2.2--2.3 with a \textbf{repair}: (a) needs $y_{iv}\ne0$ on $F$. Common essential values are approximate limits at points of a null set, and they can have zero entries even though switch values are nonzero a.e. The support counts in (b) inherit this hypothesis.}
+\deps{Theorem~\ref{thm:alignment}(a).}
+\inwords{Alignment weights must straddle the sign pattern of what the boundary exposes, and at least three independent linear identities must hold among the judges on the boundary of each selected model.}
+
+\begin{lemma}\label{lem:vertices-edges}
+\begin{enumerate}[label=(\alph*)]
+\item \QS$_{e_i}$ forces $C_{e_i}=W_i$, and $W_i$ satisfies \QS$_{e_i}$.
+\item (Full domain.) If $p$ lies in the open edge $(e_i,e_j)$ and \QS$_p$ holds, then $C_p=D_{K_p}$ with $K_p\subseteq\co\{e_i,e_j\}$.
+\item If \QS$_p$ holds and $C_p=D_{T_1}$, then $p\in\Di$.
+\end{enumerate}
+\end{lemma}
+\status{PROVED (\src{MM1} Lemmas~1.3--1.4; \src{MM2} Lemmas~6.1--6.2). Refereed \src{NN3}~\S1.1. Valid for every $(n,q)$ (\src{NN2}~\S3).}
+\inwords{The vertices of any \QS\ family are the world-perfect models, the edges carry segment credal sets, and $T_1$ can sit only at an interior index.}
+
+%======================================================================
+\section{Non-endorsement out of coherent bases}\label{sec:certificate}
+
+Fix one world, a monotone family $\W$ with minimal winning coalitions $\W_{\min}$, and fixed margins with $r_v\coloneqq(1-\eta_v)/(1+\eta_v)$. Write $x^t_v(h)>0$ for judge $v$'s adjacent rank increments ($t=0,1,2$). A \emph{certificate} is a finite family of accepted comparisons $C^k\,R\,X^k$ with weights $\lambda_k>0$ whose signed combination of advice ranks is first-order downward at a.e.\ $h$ and nonzero on a non-null set. It defeats every strictly guiding penalty, and with error indicators it is an (M1) obstruction (write-up Def.~2.6).
+
+\begin{lemma}\label{lem:B0}
+If the base models $C^1,\dots,C^m$ of a family of accepted comparisons are pointwise ordered at the world, no certificate exists for any relation satisfying strict (G). A certificate needs two bases that \emph{cross} at the world.
+\end{lemma}
+\status{PROVED (\src{LL3} Lemma~B0). Not separately refereed.}
+\inwords{Comparisons out of a single selected model can never exhibit non-additivity; two crossing selected models are needed.}
+
+\begin{theorem}\label{thm:B1}
+\begin{enumerate}[label=(\alph*)]
+\item Suppose there are nonzero $y^S\ge0$ supported in $S$, one for each $S\in\W_{\min}$, with
+\[
+\max_{S}\textstyle\sum_vr_vy^S_vx^t_v(h)\ \le\ \min_Sy^S\cdot x^t(h)\qquad\text{for a.e.\ }h,\ t=0,1,2.\tag{E}
+\]
+Then $\ell^*(h,a_s)\coloneqq\sum_{t<s}\min_Sy^S\cdot x^t(h)$ is integrable and strictly guiding, and it endorses every accepted comparison. So the world adds up and satisfies (H3) of \src{FF2}.
+\item For quotas with $2q>n$ and a common $\eta$, (E) holds whenever $\max_vx_v\le M^*\min_vx_v$, where
+\[
+M^*\coloneqq1+\frac{2q\eta}{(n-q)(1-\eta)}\qquad(=7/5\text{ for }(4,3),\ \eta=1/16).
+\]
+\item For a polyhedral cone $K$ of allowed increment vectors, the following are equivalent: (E) on the generators of $K$; every quorum world with increments in $K$ has a common integrable strictly guiding endorser; and comparisons out of two coherent models that cross on open sets never carry a certificate. For $K=K_M\coloneqq\{x\gg0:x_v\le Mx_w\}$ these hold iff $M\le M^*$.
+\item For every $M>M^*$ and any two coherent models $A$, $B$ crossing at the world on open sets inside a bounded log-ratio region, there is a quorum world with increments in $K_M$ and $2\binom{n}{n-q}$ accepted comparisons out of $A$ and $B$ whose records sum to a pointwise improvement.
+\end{enumerate}
+\end{theorem}
+\status{PROVED (\src{LL3} Thm.~B1, Cor.~B1$'$, Thm.~B3, Cor.~B3$'$, Thm.~B2). Refereed \src{MM3}~\S3.2; arithmetic CHECKED (\file{mm3py/mm3_check.out} Part~3, 24 cases; \file{ll3py/certificate.out}, 36 cases). \textbf{Notation warning}: the symbol $M^*$ of \src{LL2} Prop.~7.1 ($\approx1.2832$ for $(4,3)$, $\eta=1/16$) is a \emph{different} threshold, that for the \emph{sum} field $\sum_v\ell_v$ to endorse. The two are consistent (\src{MM3}~\S3.2).}
+\deps{Superadditivity of a minimum of linear forms; Stiemke and Farkas alternatives.}
+\inwords{A quorum world escapes every single endorsing field exactly when its judges are spread beyond a sharp factor $M^*$. Coherence of the base models gives no protection.}
+
+\begin{proposition}\label{prop:LL3cert}
+Take $\varepsilon=3/10$, world~1, $n=4$, $q=3$, $\eta=1/16$, judge densities differing by a factor at most $2$, and the coherent plain-posterior models $A=C_{(17/50,33/100,33/100)}$, $B=C_{(33/100,17/50,33/100)}$ (where $C_p\coloneqq\{g:p\odot g\in D_{T_1}\}$). There are eight accepted comparisons, four out of $A$ and four out of $B$, each with exactly three votes, supported in two small boxes near $\partial D_{T_1}$, whose records sum to a pure improvement. So no strictly guiding field and no positive error weight endorses them all. The same holds at all three worlds, for $\varepsilon\in\{1/20,3/10,1/2\}$, and for indices within $10^{-6}$ of $u$. The world also contains a strict $4$-cycle.
+\end{proposition}
+\status{PROVED and CHECKED (\src{LL3}~\S3.5--3.6; \file{ll3py/certificate.out}, \file{geometry.out}). Re-derived by the referee with exact Lipschitz constants (\src{MM3}~\S3.1, \file{mm3py/mm3_check.out} Part~1). \textbf{Scope} (\src{BRIEF33} correction~2, \src{MM3}~\S3.1): $A$ and $B$ are coherent \emph{candidate} models. They are not shown to be selected, competitive or undominated in any completed covering system. Transfer: the certificate is accepted by a $\psi$-rule at mass scale $s$ iff $\psi(29s/4)\le3s/4$. By Proposition~\ref{prop:survivors}(b), such scales exist along a sequence for every $\psi$ that works for a \QS\ family (\src{MM3}~\S3.5).}
+\deps{Theorem~\ref{thm:B1}(d).}
+\inwords{Changing coalitions can produce comparisons that no additive score endorses, even out of two coherent models next to $T_1$. Whether such comparisons can sit inside an actual cover is the open competitiveness problem.}
+
+\begin{corollary}\label{cor:B4}
+Let a cover of $T_1$ have proper quorum worlds and a selection continuous in measure. Then at some world (E) fails for every family $(y^S)$ on a non-null set. For quotas with a common $\eta_i$, the judges there differ by more than $M^*(n,q,\eta_i)$ on a non-null set.
+\end{corollary}
+\status{PROVED modulo \src{FF2} Thm.~4.1 and its import chain (\src{LL3} Cor.~B4). \textbf{Not refereed} (\src{MM3}~\S3.4 declined).}
+\deps{Theorem~\ref{thm:B1}(a); Proposition~\ref{prop:A8}; \src{FF2} Thm.~4.1.}
+\inwords{The surviving single-field barriers only demand enough judge spread somewhere, and that is cheap.}
+
+%======================================================================
+\section{The blocking-cone collapse}\label{sec:collapse}
+
+\textbf{Abstract setting.} $V$ is a finite-dimensional real vector space, $\varphi\in V^*$, and $S$ is a finite set of worlds with $|S|\ge2$. For $i\in S$ there are vectors $a_{i1},\dots,a_{in}\in V$ with $\varphi(a_{iv})>0$. For a $b$-set $T\subseteq\{1,\dots,n\}$ put $\sigma_i^T\coloneqq\cone\{a_{iv}:v\in T\}$. The colourful hypothesis is
+\[
+(H_b)\qquad\bigcap_{i\in S}\sigma_i^{T_i}\ne\{0\}\quad\text{for every choice of }b\text{-sets }(T_i)_{i\in S}.
+\]
+For $b=n-q+1$: $3q>2n\iff n\ge3b-2\iff n-2b+2\ge b$, and $2q>n\iff n\ge2b-1$.
+
+\begin{lemma}\label{lem:depth}
+If $z\ne0$ lies in $\cone\{a_v:v\in T\}$ for every $b$-set $T$ (one world), then at least $n-2b+2$ of the $a_v$ are positive multiples of $z$.
+\end{lemma}
+\status{PROVED (\src{NN2} Lemma~2.1); CHECKED (\file{nn2py/collapse_check.out} Part~3). Audit-reviewed (\src{ANN}).}
+\inwords{A direction lying in every blocking cone of a world must be carried by many of that world's judges.}
+
+\begin{lemma}\label{lem:twocolour}
+Let $|S|=2$ (colours $a$ and $b$), $k\ge1$ with $2k\le n+1$, and suppose every $k$-cone of the first colour meets every $k$-cone of the second away from $0$. Then there is $z$ with $\varphi(z)=1$ such that at least $n-2k+2$ normalised vectors $a_v/\varphi(a_v)$ and at least $n-2k+2$ normalised vectors $b_u/\varphi(b_u)$ equal $z$. If $3k\le n+2$, $z$ is unique.
+\end{lemma}
+\status{PROVED (\src{NN1} Lemma~2.1); CHECKED (\file{nn1py/median_check.out}). Not refereed; \src{ANN} reviewed the corresponding statements.}
+\inwords{With two worlds, blocking cones of any size that always meet force a common profile carried by $2q-n$ judges at \emph{each} world. Only $2q>n$ is needed.}
+
+\begin{theorem}\label{thm:collapse}
+In the abstract setting assume $n\ge3b-2$ (for quotas: $3q>2n$) and $(H_b)$. Then there is $z\in V\setminus\{0\}$ such that:
+\begin{enumerate}[label=(\alph*)]
+\item at every $i\in S$, at least $n-2b+2\;(\ge b)$ of the $a_{iv}$ are positive multiples of $z$;
+\item $z\in\sigma_i^T$ for every $i\in S$ and every $b$-set $T$;
+\item at every world, the ray of $z$ is the only ray containing $b$ or more of the $a_{iv}$.
+\end{enumerate}
+Conversely, (b) implies $(H_b)$. For $b=2$, $n=4$, $|S|=3$ this recovers \src{MM1} Lemma~3.1 (pair-Helly rigidity: coplanar judges, doubled middle ray, common across worlds).
+\end{theorem}
+\status{PROVED (\src{NN2} Thm.~2.3; also \src{NN1} for two colours). CHECKED (\file{nn2py/collapse_check.out} Parts~1--2). Audit-reviewed: ``appears sound'' (\src{ANN}); retained, and committee-size escalation is retired (\src{BRIEF35} item~1). \src{MM1} Lemma~3.1, the case $b=2$, was refereed in \src{NN3}~\S1.3.}
+\deps{Lemma~\ref{lem:depth}; the two-family interval Helly lemma (\src{NN2} Lemma~2.2).}
+
+\begin{proof}[Proof outline]
+Normalise to $\varphi=1$ and project to a line $f$ that is injective on non-proportional pairs within each world. Each cone projects into the interval spanned by its generators. For two worlds, every interval of one family meets every interval of the other. By the two-family Helly lemma one family, say world $i$'s, has a common point. That forces the $b$-th through $(n-b+1)$-th values at world $i$ to coincide, giving $n-2b+2$ proportional vectors on a ray $z$. When $n-2b+2\ge b$ (this is exactly $3q>2n$) these contain a blocking set whose cone is the ray of $z$. $(H_b)$ then puts $z$ in every $b$-cone of every other world, and Lemma~\ref{lem:depth} finishes.
+\end{proof}
+\inwords{Whenever the branch representations of a selected model share a common linear parameter, a quorum committee of \emph{any} size satisfying \TC's inequality collapses to a single judge per world with one common profile. A larger committee buys no escape from this mechanism.}
+
+\begin{remark}\label{rem:collapse-hyp}
+The two notes state different hypotheses for the edge case $|S|=2$. \src{NN2} (Remark after Thm.~2.3) says $2q>n$ gives coincidence at \emph{one} world, with $3q>2n$ needed to propagate. \src{NN1} Lemma~\ref{lem:twocolour} gives coincidence at \emph{both} worlds under $2q>n$ alone, though without conclusion (b). These do not contradict each other: (b) is stronger than coincidence. They are recorded in \texttt{OO3\_notes.md}.
+\end{remark}
+
+%======================================================================
+\section{Edge identities and edge collapse}\label{sec:edges}
+
+\begin{theorem}\label{thm:edge-identities}
+Work on the full domain, for any $(n,q)$ with blocking size $b$. Let $p\mapsto C_p$ be a coherent selection, continuous in measure on the closed edge $[e_i,e_j]$, with \QS\ at every point of it. Use coordinates $(i,j,k)$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Sweep.} $K_p=\{(1-x)e_i+xe_j:x\in[\alpha_p,\beta_p]\}$ with $\alpha_p\le\beta_p$ continuous, equal to $0$ at $e_i$ and to $1$ at $e_j$. So every $s\in(0,1)$ equals $\beta_{p_s}$ for some $p_s$ in the open edge.
+\item \emph{Boundary plane.} On $Q_{ij}\coloneqq\{g_i>0>g_j,\ g_k\ne0\}$, $C_{p_s}$ accepts $g$ iff $(1-s)g_i+sg_j>0$. Its boundary there is the half-plane $\Pi_s$, which contains every value of the off-edge payoff $g_k$. Across $\Pi_s$ the advice changes from ``accept $g$'' to silence if $\alpha_{p_s}<s$ (type $\tau_s=c$), and to ``accept $-g$'' if $\alpha_{p_s}=s$ (type $\tau_s=d$). On the opposite half $Q_{ji}$ the boundary at $p$ is $\Pi_{\alpha_p}$, so the two halves of one plane are generally reached at different indices.
+\item \emph{Identities.} Let $N\subseteq Q_{ij}$ be the null set where some switch map ($c$ or $d$, any judge of worlds $i,j$) is not approximately continuous \emph{or has an approximate value with a zero entry}. For a.e.\ $s\in(0,1)$ the slice $N\cap\Pi_s$ is $2$-null, and for every edge branch $(F_i,F_j)$ there is $w\ge0$ with nonzero restrictions to $F_i$ and to $F_j$ such that
+\[
+\sum_{v\in F_i}w_{iv}\,|\tau_{s,iv}(g)|=\sum_{u\in F_j}w_{ju}\,|\tau_{s,ju}(g)|\qquad\text{for every }g\in\Pi_s\setminus N.\tag{EI}
+\]
+In the precise case ($\alpha_{p_s}=\beta_{p_s}=s$) the same $w$ works on both halves of the plane.
+\end{enumerate}
+\end{theorem}
+\status{PROVED (\src{MM2} Thm.~6.4 for $(4,3)$; \src{NN1} Prop.~3.1 and \src{NN2}~\S4.1 for branch size $3$; the proof is size-independent). Refereed \src{NN3}~\S2.7 with a \textbf{null-set repair}: $N$ must include the approximate values with a zero entry, which is needed to conclude that $w$ is nonzero on both $F_i$ and $F_j$. \textbf{Scope} (\src{AMM} correction~5): the identity holds for a.e.\ plane and a.e.\ point on it, with type $c$ or $d$ fixed per plane by whether the edge model is imprecise or precise. The weight $w=w(s,F)$ may vary with $s$, so no single field across planes is identified.}
+\deps{Lemma~\ref{lem:vertices-edges}(a),(b); Theorem~\ref{thm:alignment}(a); Hausdorff continuity of $p\mapsto K_p$ (\src{LL1} Lemma~4.2a and injectivity); Fubini.}
+\inwords{Every \QS\ family has the same edge boundaries: fixed planes that contain the whole third-world direction. So on almost every such plane the two edge worlds' judges must balance identically, whatever the third world's payoff. This is a condition on the judges alone.}
+
+\begin{theorem}\label{thm:edge-collapse}
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(At one edge index; any decomposable domain.)} Let $2q>n$, let $p$ be in the open edge $(e_i,e_j)$ with \QS$_p$, and let $N^*\subseteq N(C_p)$ be the set of common essential values whose entries at worlds $i$ and $j$ are all nonzero. Suppose $N^*\ne\varnothing$. Then every $y\in N^*$ has opposite signs at the two worlds. Moreover there are $Z_i\subseteq J_i$ and $Z_j\subseteq J_j$ with $|Z_i|,|Z_j|\ge2q-n$, constants $\lambda_v>0$, and $\zeta:N^*\to\R\setminus\{0\}$ such that $y_{iv}=\lambda_v\zeta(y)$ ($v\in Z_i$) and $y_{ju}=-\lambda_u\zeta(y)$ ($u\in Z_j$).
+\item \emph{(Plane by plane; full domain.)} Let $3q>2n$, with the hypotheses of Theorem~\ref{thm:edge-identities}. For a.e.\ $s$ there are a $2$-null $N_s\subseteq\Pi_s$, a function $z_s:\Pi_s\setminus N_s\to(0,\infty)$, sets $I_s\subseteq J_i$ and $I'_s\subseteq J_j$ with at least $n-2b+2=2q-n\;(\ge b)$ elements, and constants $\gamma_v(s)>0$ with
+\[
+|\tau_{s,iv}|=\gamma_v(s)z_s\ (v\in I_s),\qquad|\tau_{s,ju}|=\gamma_u(s)z_s\ (u\in I'_s)\qquad\text{on }\Pi_s\setminus N_s.
+\]
+Moreover $z_s$ is a nonnegative combination of the $|\tau_{s,iv}|$ over every $b$-set of either world.
+\end{enumerate}
+\end{theorem}
+\status{(a) PROVED (\src{NN1} Thm.~3.2, Cor.~3.3), with the restriction to $N^*$ added here. \src{NN1} asserts that every entry of a common essential value is nonzero ``by strict guidance''. \src{NN3}~\S2.2 shows that this is not automatic, and \src{NN1}'s Step~1 and its choice of $\psi$ as evaluation at $y^0$ need it. The restricted statement is what \src{NN1}'s proof establishes. Not refereed. (b) PROVED (\src{NN2} Thm.~4.1; its null set already excludes zero approximate values). Not refereed; audit-reviewed in scope (\src{ANN}).}
+\deps{(a): Lemma~\ref{lem:twocolour}; Theorem~\ref{thm:alignment}(a). (b): Theorem~\ref{thm:edge-identities}; Theorem~\ref{thm:collapse} with $S=\{i,j\}$ and $\varphi=$ evaluation at a point of $\Pi_s\setminus N_s$.}
+\inwords{On edges a quorum committee acts as a single judge, plane by plane. For every quota satisfying \TC's inequality the coincident set contains a whole blocking set, so enlarging the committee never helps on edges.}
+
+\begin{corollary}\label{cor:edge-exclusions}
+Work on the full domain, and let $U\subseteq Q_{ij}$ be open with all $c$ and $d$ switch maps continuous on $U$.
+\begin{enumerate}[label=(\alph*)]
+\item \emph{(Within-world; $3q>2n$.)} Suppose that for $\tau\in\{c,d\}$ and every $b$-set $T\subseteq J_i$ (or every $b$-set $T\subseteq J_j$) some $v,w\in T$ have $|\tau_{iv}|/|\tau_{iw}|$ non-constant on every segment in $U$ parallel to the $g_k$-axis. Then no coherent selection continuous in measure on $\Delta$ satisfies \QS, through $T_1$ or not.
+\item \emph{(Cross-world; any $(n,q)$.)} Suppose that for each $\tau\in\{c,d\}$ and all $v\in J_i$, $u\in J_j$, the ratio $|\tau_{iv}|/|\tau_{ju}|$ is strictly increasing in $g_k$ on $U$. The same conclusion holds.
+\end{enumerate}
+\end{corollary}
+\status{(a) PROVED (\src{NN2} Cor.~4.2); not refereed. (b) PROVED (\src{MM2} Cor.~6.5, Lemma~6.3; CHECKED \file{mm2py/edge_ratio.out}); refereed \src{NN3}~\S2.7.}
+\deps{Theorem~\ref{thm:edge-collapse}(b) (for (a)); Theorem~\ref{thm:edge-identities} (for (b)).}
+\inwords{Generic smooth judges fail on the edges already: near some edge, every blocking set must contain judges whose relative weights are unaffected by the third world's payoff along each edge plane.}
+
+\begin{observation}\label{obs:planewise}
+Plane-wise proportionality does not give global proportionality. With $\ell_{iw}\coloneqq\rho(h_j/h_i)\,\ell_{iv}$ on $Q_{ij}$ ($\rho$ measurable, non-constant, valued in $[1,2]$) and $\ell_{iw}\coloneqq\ell_{iv}$ elsewhere, the two judges are proportional with a constant ratio on each plane $\Pi_s$, but not on $Q_{ij}$. A branch mixture is then a single field reweighted by a function of $h$ that depends on $p$ through the weights. So \src{FF2} Theorem~4.1, which needs one field fixed in $p$, receives no input. Moreover the ratios \emph{and the identity of the proportional judges} may vary between planes.
+\end{observation}
+\status{PROVED (\src{NN2} Obs.~5.1). Emphasised by \src{ANN} and \src{BRIEF35} item~4: no open-and-closed propagation principle is established outside the min-cell case (Section~\ref{sec:mincell}).}
+\inwords{Edge collapse is a family of local facts, one per plane. It is not yet a global fixed field, and turning it into one is an unproved step.}
+
+%======================================================================
+\section{Exclusions of judge classes}\label{sec:exclusions}
+
+Throughout this section, ``no \QS\ family through $T_1$'' means: no coherent selection, continuous in measure on all of $\Delta$, with $D_{T_1}=C_{p_0}$ for some $p_0$, satisfies \QS.
+
+\subsection{Proportional blocking sets}
+\begin{proposition}\label{prop:proportional}
+Work on the full domain. Suppose every world $i$ has $b$ judges whose switch values are positively proportional with constant ratios for a.e.\ oriented $g$, equivalently whose penalty differences among $\{+,0,-\}$ are. Then there is no \QS\ family through $T_1$.
+\end{proposition}
+\status{PROVED modulo \src{FF2} Thm.~4.1 Steps~2--6 and their import chain (D1, BB2 Thm.~6.1, M3.7--3.8, each refereed once; GG3 records \src{FF2} Thm.~4.1 as correct modulo this chain). Author \src{MM1} Prop.~3.2 (pairs, $(4,3)$), restated for blocking sets in \src{NN2}~\S3. Refereed \src{NN3}~\S1.4, which checked the interface with \src{FF2} but did not re-referee the imports. \textbf{Repair/strengthening} (\src{NN3}~\S1.4, \src{NN2}): proportionality is needed only on $\{+,0,-\}$, not at $\times$. \textbf{Scope}: the proportionality must be \emph{global}. Proportionality on pinned cells, at jets of one point, or plane by plane (Observation~\ref{obs:planewise}) does not feed this argument.}
+\deps{Lemma~\ref{lem:weakbayes} in the proportional branch; \src{FF2} Thm.~4.1 (weak Bayes for one fixed field $\Rightarrow$ contradiction); Proposition~\ref{prop:A8} is not needed, since \QS\ families through $T_1$ select $T_1$ by hypothesis.}
+\inwords{If every world contains a blocking set of judges that agree up to scale everywhere, the quorum behaves like one additive field, and the single-field barrier applies. So some world must have no proportional blocking set.}
+
+\subsection{Cellwise-linear and min-cell judges}\label{sec:mincell}
+A judge is \emph{cellwise linear on an open cone $N$} for a finite fan $\mathcal A$ of open polyhedral cells if $\sigma_{iv}(g)=\kappa_{iv}(Q)\,g_i$ on $Q\cap N$, with constants $\kappa_{iv}(Q)>0$. For $C=D_K$ a cell $Q$ is \emph{pinned} if $\partial D_K\cap Q\cap N$ contains a relatively open two-dimensional piece. $P(C)$ is the set of pinned cells.
+
+\begin{theorem}\label{thm:cellwise}
+Let $3q>2n$. Let $C=D_K$ with $K\subseteq\Di$ two-dimensional and $\partial D_K\setminus\{0\}\subseteq N$, the judges cellwise linear on $N$, and $C$ weak Bayes for a branch mixture in all $\binom nb^3$ branches. Then:
+\begin{enumerate}[label=(\alph*)]
+\item at each world at least $n-2b+2\;(\ge b)$ of the vectors $\kappa_{iv}|_{P(C)}$ are positively proportional to one $z_i\in\R^{P(C)}_{>0}$, and its ray is the only ray carrying $b$ or more of them;
+\item there are $\lambda\in\R^3_{>0}$ and $d\in\R^{P(C)}_{>0}$ with $n^Q_id_Q=\lambda_iz_i(Q)$ for all $Q\in P(C)$ and all $i$, where $n^Q\in K$ is the normal of $\partial D_K$ in $Q$.
+\end{enumerate}
+So on its pinned cells $C$ is the Bayes model of the single cellwise-linear field formed by the coincident judges.
+\end{theorem}
+\status{PROVED. $(4,3)$: \src{MM1} Thm.~4.1, refereed \src{NN3}~\S1.5. General $3q>2n$: \src{NN2} Cor.~3.1 (and \src{NN1} Cor.~4.2 for $(7,5)$); not refereed; the collapse step is audit-reviewed.}
+\deps{Lemma~\ref{lem:weakbayes}; Theorem~\ref{thm:collapse} with generators $A_i^{-1}\kappa_{iv}|_{P(C)}$, $A_i=\operatorname{diag}(n^Q_i)$.}
+\inwords{In cellwise-linear designs, the heterogeneity of the committee is invisible on every cell that the selected boundary pins.}
+
+\begin{theorem}\label{thm:mincell}
+Let $3q>2n$. Suppose every judge is cellwise linear on the three min-cells $M_1,M_2,M_3$ on some open cone $N\supseteq\partial D_{T_1}\setminus\{0\}$, and is an arbitrary strictly guiding integrable judge off $N$. Then there is no \QS\ family through $T_1$. Indeed the per-branch weak-Bayes condition of Lemma~\ref{lem:weakbayes} already fails. The same holds when every switch value has the form $m(g)\kappa_{iv}(M_k)g_i$ with $m$ bounded, even and positive a.e.\ and common to all judges (for instance $C^\infty$ and flat).
+\end{theorem}
+\status{PROVED, self-contained (no \src{FF2} import). $(4,3)$: \src{MM1} Thm.~4.2, refereed \src{NN3}~\S1.5. General $3q>2n$: \src{NN2} Cor.~3.2 and \src{NN1} Cor.~4.3 (not refereed; the step they change is the use of Theorem~\ref{thm:collapse}(c) to make $z_i$ depend on the judges only). Common-factor extension: \src{NN3} Lemma~B.1 (a common even factor is a change of measure $\mu\mapsto m\mu$; PROVED, not refereed). \textbf{Scope} (\src{AMM} correction~3): this is the exact form $\sigma_{iv}=\kappa_{iv}(M_k)g_i$ on the three fixed min-cells near $\partial D_{T_1}$. It does \emph{not} exclude general piecewise-linear (finite-fan) judges. Shapes: the triangle shape of nearby selected models is \emph{derived} in Step~1 from weak Bayes and the min-cell form, so shape-changing families are excluded in this class (\src{NN3}~\S1.5).}
+\deps{Theorem~\ref{thm:cellwise}; Lemma~\ref{lem:vertices-edges}(a),(c); Hausdorff/measure equivalence for coherent models.}
+\begin{proof}[Proof outline]
+Near $T_1$ every selected model weak Bayes in one branch is a triangle $\{m\ge c\}$ (Step~1). Weak Bayes in all branches makes it the triangle model of the field of coincident judges, whose rays $z_i$ depend on the judges only. That triangle is unique (Step~3). So $E\coloneqq\{p:C_p=T_1\}$ is closed, nonempty and open in $\Delta$; hence $E=\Delta$, contradicting $C_{e_1}=W_1$.
+\end{proof}
+\inwords{The class that contains $T_1$'s own canonical field cannot be extended from $T_1$ to any family: $T_1$ is isolated in it. This is the only proved open-and-closed (propagation) argument in the quorum work.}
+
+\begin{remark}\label{rem:fans}
+For cellwise-linear judges on a general finite fan with $N\supseteq\partial D_{T_1}\setminus\{0\}$ and \QS\ at an interior $p_0$ with $C_{p_0}=T_1$: for $p$ near $p_0$, on every cell pinned by $T_1$, $\partial C_p$ is the boundary plane of the plain posterior $C_{\mu(p)}=\{g:\mu(p)\odot g\in D_{T_1}\}$ (\src{MM1} Cor.~4.3, refereed \src{NN3}; \src{NN2} Cor.~3.3 for $3q>2n$). Whether general fans fail globally is \textbf{open}.
+\end{remark}
+
+\begin{remark}\label{rem:NN3-edges}
+For $(4,3)$, if every switch value is $m(g)\kappa_{iv}(M_k)g_i$ on the edge regions $Q_{ij}$ and their antipodes, $T_1$ is weak Bayes in all $216$ branches, and the family is continuous on the closed edges, then the edge identities (EI) fail: type $c$ identically, type $d$ by a contradiction between two corners. So this class dies on the edges alone (\src{NN3}~\S4.1 item~3; PROVED, CHECKED \file{nn3py/flat_design_check.out} Parts~2--3; not refereed).
+\end{remark}
+
+\subsection{Analytic judges}
+\begin{proposition}\label{prop:analytic}
+Let $C=C_p=D_K$ with $K$ two-dimensional, and let $x_0$ lie on a corner ray of $D_K$, where facets with normals $n_1\ne n_2$ in $K$ meet. Let $F$ be a branch at $p$.
+\begin{enumerate}[label=(\alph*)]
+\item If the $\sigma_{iv}$, $(i,v)\in F$, are real-analytic near $x_0$, no mixture of $F$ \emph{strictly} certifies $C$. If a mixture $\alpha$ makes $C$ \emph{weak} Bayes, then $\sum\alpha\sigma\equiv0$ near $x_0$.
+\item If the $\sigma_{iv}$, $(i,v)\in F$, are $C^\infty$ on a ball $B$ around $x_0$ (with $B\cap(-B)=\varnothing$, inside the (LF) neighbourhood), then every $\beta\in\R^F$ with $\beta\cdot\sigma_F\ge0$ on $B\cap D_K$ and $\le0$ on $B\setminus\cl D_K$ makes $\beta\cdot\sigma_F$ flat at $x_0$.
+\item If on $B$ one has $\sigma_{iv}=m\,a_{iv}$ for $(i,v)\in F$, with $m$ measurable, bounded, positive a.e.\ and common to the judges of $F$, and each $a_{iv}$ real-analytic on $B$, then \NT\ fails, so \QS$_p$ fails. No certificate, strict or weak, is involved.
+\end{enumerate}
+\end{proposition}
+\begin{corollary}\label{cor:A2}
+If \QS$_p$ holds and $C_p$ has a corner point $x_0$ as above, then some active world has at least $q$ judges that are not real-analytic at $x_0$. For $T_1$ this holds at every point of all three corner rays, for every family through $T_1$, however its other members are shaped. For $(7,5)$: at least $5$ of $7$.
+\end{corollary}
+\status{(a) PROVED (\src{MM1} Prop.~2.1); refereed \src{NN3}~\S1.2, ``correct as stated''. (b), (c) and Corollary~\ref{cor:A2}: PROVED (\src{NN3} Prop.~A, Cor.~A.2), written by the referee of \src{MM1}; not separately refereed. \textbf{Scope} (\src{AMM} correction~2, \src{BRIEF35} item~5): (a) concerns real-analytic, not smooth, switch values, and its exclusion is for strict certificates. (c) closes the weak/strict gap only for analytic and common-factor-times-analytic branches. It does \emph{not} exclude smooth flat judges in general. The smooth function $h(x)h(y)-h(-x)-h(-y)$, with $h(t)=e^{-1/t^2}$ for $t>0$ and $0$ otherwise, strictly certifies a wedge (\src{AMM}; \src{NN3}~\S4.2). Corner rays are \emph{not} assumed to persist along families: the corollary concerns the corner points of the model in question, such as $T_1$ itself.}
+\deps{Lemma~\ref{lem:weakbayes}; Lemma~\ref{lem:branchform}; Lyapunov; Taylor expansion at $x_0$.}
+\inwords{Analytic judges cannot defend a kink of a selected model. At $T_1$'s corners, therefore, a quorum of judges must be non-analytic. Smoothness alone is not ruled out, since flat functions can carry the corner sign pattern.}
+
+\begin{remark}\label{rem:flat}
+\emph{Smooth flat designs.} The design $S$ of \src{NN3}~\S4.1, with switch values $M(g)\kappa_{iv}(M_k)g_i$ where $M$ is a $C^\infty$ factor flat on the walls, is $C^\infty$ and flat at $T_1$'s corners. It certifies $T_1$ strictly in all $216$ branches, so Proposition~\ref{prop:analytic} does not apply to it. It is nevertheless excluded, by Theorem~\ref{thm:mincell} (common-factor clause) and independently by Remark~\ref{rem:NN3-edges}. Designs whose flatness differs between the judges of a branch (\src{NN3}~\S4.2) are \textbf{open}. The proved constraints on them are Proposition~\ref{prop:analytic}(b), Corollary~\ref{cor:A2}, Theorem~\ref{thm:alignment}, Lemma~\ref{lem:sign-dim} (repaired), Proposition~\ref{prop:generic}, Theorem~\ref{thm:separable}, the edge identities, and the exact test.
+\end{remark}
+
+\subsection{World-separable judges}
+\begin{theorem}\label{thm:separable}
+Work on the full domain, or on a decomposable domain with (LF) at $T_1$. Suppose there are an open $N\supseteq\partial D_{T_1}\setminus\{0\}$, a continuous $\theta:N\to(0,\infty)$, and functions $\varphi_{iv}$ on $\R\setminus\{0\}$, continuous on each half-line with $\operatorname{sgn}\varphi_{iv}(t)=\operatorname{sgn}t$, such that $\sigma_{iv}(g)=\theta(g)\varphi_{iv}(g_i)$ on $N$ off the coordinate planes. Then $T_1$ is a pointwise weak Bayes model of no nonzero nonnegative combination of the judges. Hence \WB\ fails at $T_1$ for every branch, and there is no \QS\ family through $T_1$, for any $(n,q)$.
+\end{theorem}
+\status{PROVED (\src{MM2} Thm.~5.1, Lemma~5.2); algebra CHECKED (\file{mm2py/t1_separable.out}, six values of $\varepsilon$). Refereed \src{NN3}~\S2.6. The extension to all non-singleton polygonal interior $K$ is \textbf{CONJECTURE} (\src{MM2} 5.3).}
+\deps{Theorem~\ref{thm:alignment}(a) at $T_1$ (weak Bayes only); a local Pexider equation on each facet piece; slope matching across facets (uses $\varepsilon>0$).}
+\inwords{Judges that score acceptance near $T_1$'s boundary by a function of their own world's payoff alone, up to a common factor, can never produce $T_1$'s three differently sloped facets.}
+
+\subsection{Generic judges at \texorpdfstring{$T_1$}{T1}}
+\begin{proposition}\label{prop:generic}
+Let $T_1=C_{p^*}$, on the full domain or a decomposable domain with (LF) at $T_1$. If for some branch $F$ the accept/silence switch values at approximate-continuity points of $\partial D_{T_1}\setminus\{0\}$ span a subspace of $\R^F$ containing a strictly negative vector (in particular, if they span $\R^F$), then \QS$_{p^*}$ fails.
+\end{proposition}
+\status{PROVED (\src{MM2} Cor.~4.2); refereed \src{NN3}~\S2.5 (zero entries do no harm here). Explicit instance: twelve heterogeneous polynomial judges $c_{iv}(g)=g_i(1+A_{iv}g_1^2+B_{iv}g_2^2+C_{iv}g_3^2)$, $\varepsilon=3/10$, with all $216$ branches of rank $6$ and exact defeating combinations; CHECKED (\file{mm2py/generic_t1.out}).}
+\deps{Theorem~\ref{thm:alignment}(b).}
+\inwords{Judges whose boundary values are linearly rich enough defeat themselves at $T_1$: heterogeneity must be invisible on every selected boundary.}
+
+\subsection{Rank two with relation space of dimension at most one}
+\begin{proposition}\label{prop:rank2}
+Suppose each world's switch values lie, on all of $\R^3\setminus\{0\}$, in a two-dimensional space $V_i=\spn(b_{i1},b_{i2})$ of continuous functions. For an interior selected $C=D_K$ with $K\subseteq\Di$ two-dimensional, let $R(C)\coloneqq\{(w_1,w_2,w_3)\in V_1\times V_2\times V_3:\sum_iw_i=0\text{ on }\partial C\setminus\{0\}\}$.
+\begin{enumerate}[label=(\alph*)]
+\item If \QS$_p$ holds with $C=C_p$ interior, every branch has $(u_i)\in R(C)$ with $u_i\in\cone(\sigma_{iF_i})$ and $u_i\ne0$ at every world.
+\item If $\dim R(C)\le1$ at some such $p$, there is no \QS\ family through $T_1$ (full domain).
+\end{enumerate}
+\end{proposition}
+\status{(a) PROVED (\src{MM1} Prop.~5.1(a)); refereed \src{NN3}~\S1.6. (b) PROVED modulo Proposition~\ref{prop:proportional} (\src{MM1} Prop.~5.1(b); \src{NN2} Cor.~3.4 for $3q>2n$), refereed \src{NN3}~\S1.6 with a \textbf{one-line repair}: the 1D Helly step gives proportional switch values as functions on all oriented $g$, i.e.\ proportionality on $\{+,0,-\}$, which suffices by Proposition~\ref{prop:proportional}'s strengthening. \src{MM1}'s ``hence globally'' for all advices including $\times$ was not justified and is not needed. \textbf{Scope} (\src{AMM} correction~1): rank-two worlds are \emph{not} excluded. Only $\dim R(C)\le1$ at one interior selected model is. The remark after \src{MM1} Prop.~5.1 (relation space effectively $\ge3$) is explicitly \emph{not} a theorem, and it uses the plain-posterior sweep, an assumed family.}
+\deps{Lemma~\ref{lem:weakbayes}; Lemma~\ref{lem:depth} or the 1D Helly step; Proposition~\ref{prop:proportional}.}
+\inwords{In rank-two designs, a selected boundary that admits only one linear relation among the worlds' switch values forces proportional judges, and hence the single-field barrier.}
+
+\subsection{Interior collapse under balancing normalisations}
+\begin{theorem}\label{thm:B-collapse}
+Let $(n,q)=(7,5)$. At an interior $p$ with \QS$_p$, put $N\coloneqq N(C_p)$, $V_i\coloneqq\spn\{x_{iv}\}\subseteq\R^N$ with $x_{iv}(y)\coloneqq y_{iv}$, $\Sigma\coloneqq V_1+V_2+V_3$, and $R\coloneqq\{(r_i)\in\prod V_i:\sum r_i=0\}$. Assume:
+\begin{itemize}[leftmargin=*]
+\item[(B)] there are $\psi_i\in V_i^*$ with $\psi_i(x_{iv})>0$ for all $v$, such that $(\theta_1\psi_1,\theta_2\psi_2,\theta_3\psi_3)\in R^\perp$ whenever $\theta_1+\theta_2+\theta_3=0$.
+\end{itemize}
+Then at each world at least $2q-n=3$ of the normalised $x_{iv}/\psi_i(x_{iv})$ coincide with a common $z_i$, and $z_1+z_2+z_3=0$ on $N$.
+\end{theorem}
+\status{PROVED (\src{NN1} Thm.~4.1); not refereed. At an edge index (B) holds automatically, which gives Theorem~\ref{thm:edge-collapse}(a) again.}
+\deps{Theorem~\ref{thm:alignment}(a); order statistics as in Lemma~\ref{lem:twocolour}.}
+\inwords{If each world's boundary data can be rescaled independently while keeping the three-world balance, the committee again collapses to one aligned field. An escape requires (B) to fail at every interior index.}
+
+%======================================================================
+\section{The \texorpdfstring{$T_1$}{T1}-only certificate and its isolation}\label{sec:t1only}
+
+\begin{proposition}\label{prop:t1only}
+Let $\kappa^*_i\coloneqq(c_0+\varepsilon\delta_{ik})_{k=1,2,3}$ (so $\kappa^*_i(k)=(v_k)_i$), $\tau_i\coloneqq e_{i+1}-e_{i+2}$, $\tau'_i\coloneqq e_i-\frac12(e_{i+1}+e_{i+2})$ (indices mod $3$), and $0<\delta<c_0$. Let all judges be cellwise linear on the min-cells on all of $\R^3$: $\sigma_{iv}(g)=\kappa_{iv}(k)\,g_i$ on $M_k$.
+\begin{enumerate}[label=(\alph*)]
+\item $(n,q)=(4,3)$, judges $\kappa^*_i,\ \kappa^*_i+\delta\tau_i,\ \kappa^*_i-\delta\tau_i,\ 2\kappa^*_i$ at world $i$.
+\item $(n,q)=(7,5)$, judges $\kappa^*_i,2\kappa^*_i,3\kappa^*_i,\kappa^*_i\pm\delta\tau_i,\kappa^*_i\pm\delta\tau'_i$ at world $i$; no two of the four off-ray judges are proportional.
+\end{enumerate}
+In both cases every blocking cone at world $i$ contains $\kappa^*_i$. So every branch has a mixture with $\sum\alpha\sigma=P_{T_1}$, and $T_1$ is \emph{strictly} certified in all $216$ (resp.\ $42\,875$) branches. Hence \QS$_{p_0}$ holds at any interior $p_0$ with $C_{p_0}=T_1$, against every measurable rival. By Remark~\ref{rem:single-index} a positive margin makes $T_1$ alone competitive. But by Theorem~\ref{thm:mincell} no \QS\ family through $T_1$ exists with these judges.
+\end{proposition}
+\status{(a) PROVED and CHECKED (\src{MM1} Thm.~4.2 Part~A, $\delta=c_0/2$; \file{mm1py/mincell_check.out} for $\varepsilon\in\{1/10,3/10,1/2\}$; every $\varepsilon$ by the pair structure, \src{NN3}~\S4.1). (b) PROVED (\src{NN2} Remark~3.5). The cone statement: every $b$-set either contains a multiple of $\kappa^*_i$ or contains an antipodal pair $\kappa^*_i\pm x$. The whole-space min-cell choice makes $P_{T_1}=v_k\cdot g$ hold on all of $M_k$, which strictness uses. Further variants: non-cellwise judges proportional on $\partial D_{T_1}$ (\src{NN1}~\S5 Remark), and the smooth flat design $S$ (Remark~\ref{rem:flat}). \textbf{Isolation}: this field lies in a class proved locally isolated (\src{AMM}, \src{BRIEF34} item~7), so perturbing it is not a route.}
+\deps{\src{MM1} Lemma~1.1(b) (sign form: $\operatorname{sgn}\sum\alpha\sigma=\operatorname{sgn}P_K$ suffices); Lemma~\ref{lem:branchtest}(b); Theorem~\ref{thm:mincell}.}
+\inwords{One coherent model, $T_1$ itself, can be defended exactly against every rival by heterogeneous quorums. The heterogeneity is invisible on $T_1$'s boundary, and the design cannot be moved: no neighbouring model in the class passes.}
+
+\begin{remark}\label{rem:hierarchy}
+\emph{Construction hierarchy} (\src{BRIEF35}, \src{ANN}):
+(a) compatible boundary data (alignment at finitely many points);
+(b) \emph{one} coherent model with exact \QS;
+(c) a \emph{nonconstant} family through $T_1$ with exact \QS\ against every measurable rival on a parameter neighbourhood;
+(d) a full family on $\Delta$.
+Level (b) is achieved (Proposition~\ref{prop:t1only}). Levels (c) and (d) are not. NN1 Example~5.1 and NN2 Proposition~6.1 (Section~\ref{sec:sumform}) are level-(a) data.
+\end{remark}
+
+%======================================================================
+\section{The open sum-form question}\label{sec:sumform}
+
+At an interior $p$, Theorem~\ref{thm:alignment}(a) gives, for every branch $F$, with $u_i\coloneqq\sum_{v\in F_i}w_{iv}\sigma_{iv}$ (approximate values on $\partial C_p$),
+\[
+u_1+u_2+u_3=0\qquad\text{at every common essential boundary point.}\tag{SF}
+\]
+This is a \emph{sum} relation, not a common point of cones. It reduces to the intersection form of Theorem~\ref{thm:collapse} on edges (two worlds), in the cellwise-linear classes (shared parameter $d$), and when $R(C)$ is a line. \textbf{Scope} (\src{ANN}, \src{BRIEF35} item~2): (SF) is the \emph{general} three-world case, not a narrow gap. Converting it to intersection form is a substantial unproved step.
+
+\begin{example}\label{ex:NN1-51}
+Let $N$ consist of two boundary points with patterns $A=(+,-,+)$ and $B=(+,+,-)$, so that a judge's restriction is a vector in $\R^2$. Take
+\begin{itemize}[leftmargin=*,nosep]
+\item world~1: $(10,10),(10,11),(11,10),(10,12),(12,10),(11,12),(12,11)$;
+\item world~2: $(-26,7),(-26,8),(-25,7),(-27,7),(-26,6),(-25,8),(-27,6)$;
+\item world~3: $(7,-26),(8,-26),(7,-25),(7,-27),(6,-26),(8,-25),(6,-27)$.
+\end{itemize}
+Then every vector has the strict sign of its world at $A$ and at $B$, and no two of the $21$ are proportional. Every one of the $343$ transversals $(a,b,c)$ satisfies $\det(b,c)a+\det(c,a)b+\det(a,b)c=0$ with three positive coefficients, so all $42\,875$ branches have a strictly positive relation using all three worlds. Every two-world branch ($3\times1225$) has none.
+\end{example}
+\status{CHECKED (\src{NN1} Example~5.1; \file{nn1py/escape_check.out}). \textbf{Scope} (\src{ANN}, \src{BRIEF35} item~3): weak data at level~(a). Alignment at two points is far weaker than \QS\ against every measurable rival even at one model. Hypothesis (B) fails here, as Theorem~\ref{thm:B-collapse} requires.}
+\inwords{Three-generator cones \emph{can} meet in genuinely varying directions, but only through the third world, and only as boundary data.}
+
+\begin{remark}\label{rem:ex51-sixpatterns}
+The columns of Example~\ref{ex:NN1-51}, used as fixed columns $\sigma_{iv}(g)=\langle a_{iv},\beta(g)\rangle$, realise all six mixed sign patterns: for each mixed $s$ there is $\beta_s\in\mathbb Z^2$ with $\operatorname{sgn}\langle a_{iv},\beta_s\rangle=s_i$ for all $(i,v)$. For example $\beta=(1,0)$ realises $(+,-,+)$ and $\beta=(-49,59)$ realises $(+,+,-)$. No pure pattern is realised. CHECKED for this note (\file{oo3py/ex51_patterns.py} $\to$ \file{ex51_patterns.out}, exact integers). Hence Proposition~\ref{prop:rank2fail} applies to every fixed-column realisation of these data on a neighbourhood of $\partial D_{T_1}\setminus\{0\}$: none carries $T_1$ or any model near it. This is the proved content behind the audit's remark that the example's ``simplest realisation'' fails the exact test (\src{ANN}). The audit names no specific realisation, and this identification is OO3's.
+\end{remark}
+
+\begin{proposition}\label{prop:sumform-escape}
+Let $d_1=(1,-2)$, $d_2=(2,1)$, $d_3=(-2,1)$, and $a_{iv}\coloneqq d_i+\frac k{20}d_i^\perp$ for $k=-3,\dots,3$, where $(x,y)^\perp\coloneqq(-y,x)$. Then no two $a_{iv}$ at one world are proportional. Every transversal is positively dependent with all weights positive, so each of the $42\,875$ branches has $w\ge0$, nonzero at all three worlds, with $\sum_Fw_{iv}a_{iv}=0$. All six mixed patterns are realised by some $\beta_s$, and no pure pattern is. With $\sigma_{iv}(g)\coloneqq\langle a_{iv},\beta(g)\rangle$ for a measurable $\beta(g)$ in the pattern cone of $g$, the judges are strictly guiding on $N$, and every branch satisfies $\sum_Fw\sigma\equiv0$ on $N$, with no two judges proportional.
+\end{proposition}
+\status{CHECKED (\src{NN2} Prop.~6.1; \file{nn2py/sumform_escape.out}); the consequence is PROVED from the checked facts. Not refereed; audit-reviewed (\src{ANN}).}
+\inwords{The sum-form analogue of the collapse theorem is false: (SF) in every branch does not force proportional blocking sets.}
+
+\begin{lemma}\label{lem:zerosum}
+Let $E_1,\dots,E_m$ be disjoint non-null sets of oriented gambles accepted by $C$, with silence available on each, and $\sigma$ bounded on each. If $\sum_k\theta_kx_k=0$ for some $\theta\ge0$, $\theta\ne0$, where $x_k\coloneqq\int_{E_k}\sigma\,d\mu$, then there is a non-null $E\subseteq\bigcup E_k$ with $\int_E\sigma=0$. Silencing $C$ on $E$ gives a rival $X\ne C$ with every increment exactly $0$, so \QS\ fails at every $p$ with $C_p=C$.
+\end{lemma}
+\begin{proposition}\label{prop:rank2fail}
+Let $N$ be an open set of mixed gambles, $a_{iv}\in\R^2$ \emph{any} fixed vectors, and $\beta:N\to\R^2$ measurable with $\langle a_{iv},\beta(g)\rangle=\sigma_{iv}(g)$ a.e.\ on $N$. If $C$ accepts, for each of the six mixed patterns, a non-null set of $g\in N$ of that pattern with silence available, then \QS\ fails at every $p$ with $C_p=C$. This applies to $T_1$ and to every $D_K$ with $K$ Hausdorff-close to $T_1$ whenever $N$ contains a neighbourhood of $\partial D_{T_1}\setminus\{0\}$.
+\end{proposition}
+\status{Lemma~\ref{lem:zerosum} and Proposition~\ref{prop:rank2fail}: PROVED (\src{NN2} Lemma~6.2, Prop.~6.3); not refereed; audit-reviewed (\src{ANN}). The rank-$k$ analogue ($\sigma=C\beta$, $\beta\in\R^k$) holds whenever the accepted integrals positively span $\R^k$, which need not happen for $k\ge3$. So the proposition does \textbf{not} extend automatically beyond rank two.}
+\deps{Lyapunov; the fact that six disjoint open pattern cones in $\R^2$ cannot all avoid one line.}
+\inwords{In rank two, every weak certificate vanishes identically near $T_1$, and an exactly neutral rival then exists. Alignment passed, the exact test failed: this is the weak/strict gap made concrete.}
+
+\paragraph{The remaining target.} (\src{NN2}~\S6.4.) Find $3n$ strictly guiding integrable judges and a coherent selection continuous in measure through $T_1$ (with $W_i$ at the vertices and edge segments on the edges) such that:
+\begin{enumerate}[label=(O\arabic*),leftmargin=*]
+\item the edge identities (EI) hold, hence Theorem~\ref{thm:edge-collapse}(b) plane by plane;
+\item at every interior selected model, every branch satisfies (SF);
+\item the exact test \NT\ holds at every $p$; in particular no zero-sum record exists, and where a weak certificate vanishes the second-order records must also be blocked;
+\item the interior boundary data are \emph{not} in common-parameter form (otherwise Theorem~\ref{thm:collapse} with Proposition~\ref{prop:proportional}, or the argument of Theorem~\ref{thm:mincell}, applies).
+\end{enumerate}
+Propositions~\ref{prop:sumform-escape} and~\ref{prop:rank2fail} show that (O2) and (O4) are compatible, and that rank two is too small for (O3).
+
+\begin{conjecture}\label{conj:NN2}
+Along a continuous family through $T_1$, (O3) forces the interior boundary data, branch by branch, into common-parameter form, and hence into collapse by Theorem~\ref{thm:collapse}.
+\end{conjecture}
+\status{CONJECTURE (\src{NN2} 6.4). Evidence: rank two forces vanishing certificates and then zero-sum records; the common parameter is automatic in the cellwise-linear classes and on edges.}
+
+\begin{conjecture}\label{conj:NN1}
+Either the forced edge structure (Theorem~\ref{thm:edge-collapse}) and the interior requirement (failure of (B) with transversal-type alignment with slack) are compatible along a continuous family, or the edge foliations force (B) at interior indices sufficiently close to every edge.
+\end{conjecture}
+\status{CONJECTURE (\src{NN1} 6.1). This is a dichotomy, not a prediction. Even its second branch would not by itself give a global exclusion through $T_1$ (\src{ANN}): proportionality near the boundary of $\Delta$ does not exclude a different interior mechanism around $T_1$ without an open-and-closed principle, which is established only in the min-cell class.}
+\inwords{Everything turns on whether exact protection along a moving family forces the three-world sum relation into the shared-parameter form where the collapse theorem bites. Neither a proof nor a counter-construction exists.}
+
+%======================================================================
+\section{Scope: what is and is not excluded}\label{sec:scope}
+
+\paragraph{Excluded (with the stated statuses).}
+\begin{itemize}[leftmargin=*]
+\item The fixed relative margin (and any margin linear at small scale on a blocking family at two or more worlds): (S) fails for every target. For continuous selections this holds for every quota; for closed sections, only for proper games (Theorem~\ref{thm:fixed-exclusion}).
+\item For the $\psi$-rule with $3q>2n$, \QS\ families through $T_1$ with:
+ proportional blocking sets at every world (Proposition~\ref{prop:proportional}, modulo \src{FF2} imports);
+ min-cell cellwise-linear judges, also with a common even factor (Theorem~\ref{thm:mincell}, self-contained);
+ world-separable judges (Theorem~\ref{thm:separable});
+ boundary switch values whose span at $T_1$ contains a vector strictly negative on some branch (Proposition~\ref{prop:generic});
+ global rank-two structure with $\dim R(C)\le1$ at some interior selected model (Proposition~\ref{prop:rank2});
+ judges failing the within-world or cross-world edge conditions (Corollary~\ref{cor:edge-exclusions});
+ an analytic (or common-factor-times-analytic) blocking set at some corner point of a selected model (Proposition~\ref{prop:analytic}(c));
+ fixed-column rank-two data near $T_1$ (Proposition~\ref{prop:rank2fail}).
+\end{itemize}
+
+\paragraph{Not excluded.}
+\begin{itemize}[leftmargin=*]
+\item General piecewise-linear (finite-fan) judges, globally (Remark~\ref{rem:fans}).
+\item Smooth judges in general, in particular flat designs whose flatness differs between the judges of a branch (Remark~\ref{rem:flat}).
+\item Rank-two worlds with $\dim R(C)\ge2$ at every interior selected model, and sum-form data of rank $\ge3$ (Section~\ref{sec:sumform}).
+\item Interior mechanisms around $T_1$ in which selected credal sets change shape, for instance rounding their corners immediately away from $T_1$. Persistent moving triangular corners are \emph{not} implied by \QS. They are derived only inside the min-cell class (Theorem~\ref{thm:mincell}) and assumed only in the plain-posterior analyses (\src{MM1} Cor.~2.2, \src{LL3}~\S3.5), which are construction choices.
+\item Plane-wise edge proportionality with plane-dependent ratios and judges (Observation~\ref{obs:planewise}). No global rigidity (fixed-field) lemma converting it into an exclusion has been proved.
+\item The relative-margin class (Remark~\ref{rem:relative}), whose admissibility and (C) are unresolved.
+\item Weighted or general simple games beyond quotas in the lifting and collapse results: Theorem~\ref{thm:lifting}, Theorem~\ref{thm:collapse} and Section~\ref{sec:exclusions} are stated for quotas.
+\item Selections that are not continuous in measure, on decomposable domains other than the full domain. On the full domain, continuity is automatic for coherent $\psi$-covers (Corollary~\ref{cor:R2}).
+\end{itemize}
+
+\paragraph{What a complete exclusion of quorum systems would and would not settle.} Even a proof that no finite quorum system (any $n$, any $q$ with $3q>2n$, any judges, any coherent selection continuous in measure, any decomposable domain with (LF) at $T_1$) covers $T_1$ would \emph{not} settle the general \TC\ ordinal question (\src{ANN}, \src{BRIEF35} item~6). Quorum rankings are one representation class, built from finitely many additive statistics by overlapping coalitions. It genuinely escapes common endorsement (Theorem~\ref{thm:B1}, Proposition~\ref{prop:LL3cert}), but it is not the class of all reflexive relations satisfying strict (G), (IB), \TC\ and (S). Conversely, a \QS\ family through $T_1$ would give a cover under \TC\ by Theorem~\ref{thm:lifting}, at the cost of strict $4$-cycles (Theorem~\ref{thm:nakamura}). The present evidence supports ``several restricted representation geometries fail, for understood reasons'', not ``the answer is close''.
+
+%======================================================================
+\section{Dependencies and status summary}\label{sec:deps}
+
+{\small
+\begin{longtable}{>{\raggedright}p{0.16\textwidth}>{\raggedright}p{0.25\textwidth}>{\raggedright}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.23\textwidth}}
+\toprule
+Result & Source & Depends on & Status / referee \\
+\midrule
+\endhead
+Prop.~\ref{prop:hh1} & HH1 Prop.~1 & KKM & PROVED \\
+Lem.~\ref{lem:elementary} & AQ; LL3 A1--A7; MM3 \S1.4; LL2 8.2 & strict guidance & PROVED; ref.\ MM3 \\
+Thm.~\ref{thm:nakamura} & LL3 Thm.~A & Lem.~\ref{lem:elementary} & PROVED, CHECKED; ref.\ MM3 (repair (b)) \\
+Prop.~\ref{prop:A8} & LL3 A8 & Prop.~\ref{prop:hh1}, Lem.~\ref{lem:elementary} & PROVED; not refereed \\
+Lem.~\ref{lem:swap} & LL1 2.1; LL2 6.1 & atomlessness & PROVED; ref.\ MM3 \\
+Lem.~\ref{lem:gap} & LL2 3.1--3.2 & --- & PROVED, CHECKED; ref.\ MM3 \\
+Prop.~\ref{prop:countable} & LL2 4.1; LL1 3.1 & Lem.~\ref{lem:gap}, \ref{lem:swap} & PROVED; ref.\ MM3 \\
+Thm.~\ref{thm:fixed-exclusion} & LL1 3.2, 4.2; LL2 5.1, 5.2 & Prop.~\ref{prop:countable} & PROVED; ref.\ MM3 (scope (ii)) \\
+Prop.~\ref{prop:survivors} & LL2 8.1; MM3 R1 & Thm.~\ref{thm:fixed-exclusion}, \ref{thm:lifting} & PROVED; (b) by MM3 only \\
+Thm.~\ref{thm:lifting} & ALL & Aumann--Lyapunov, Lem.~\ref{lem:elementary} & PROVED; ref.\ MM3 (repairs) \\
+Cor.~\ref{cor:R2} & MM3 R2 & LL1 4.1, 4.2a & PROVED; MM3 only \\
+Lem.~\ref{lem:branchform} & MM2 1.1 & --- & PROVED; ref.\ NN3, MM3 \\
+Lem.~\ref{lem:branchtest} & ALL & Thm.~\ref{thm:lifting}(b) & PROVED; ref.\ MM3 \\
+Lem.~\ref{lem:weakbayes} & LL2 2.1/8.3; MM1 1.2; MM2 2.1 & Lyapunov & PROVED; ref.\ MM3, NN3 (necessary only) \\
+Thm.~\ref{thm:alignment} & MM2 3.1, 4.1, 4.3 & Lem.~\ref{lem:weakbayes} & PROVED; ref.\ NN3 (reading repaired) \\
+Lem.~\ref{lem:sign-dim} & MM2 3.2--3.3; NN2 \S4.1 & Thm.~\ref{thm:alignment} & PROVED; ref.\ NN3 (repair: $y_{iv}\ne0$) \\
+Lem.~\ref{lem:vertices-edges} & MM1 1.3--1.4; MM2 6.1--6.2 & --- & PROVED; ref.\ NN3 \\
+Lem.~\ref{lem:B0} & LL3 B0 & strict (G) & PROVED; not refereed \\
+Thm.~\ref{thm:B1} & LL3 B1--B3 & Stiemke, Farkas & PROVED, CHECKED; ref.\ MM3 \\
+Prop.~\ref{prop:LL3cert} & LL3 \S3.5 & Thm.~\ref{thm:B1}(d) & CHECKED; ref.\ MM3 (candidates only) \\
+Cor.~\ref{cor:B4} & LL3 B4 & Prop.~\ref{prop:A8}; FF2 4.1 & PROVED mod.\ FF2; not refereed \\
+Lem.~\ref{lem:depth} & NN2 2.1 & --- & PROVED, CHECKED; audit-reviewed \\
+Lem.~\ref{lem:twocolour} & NN1 2.1 & --- & PROVED, CHECKED; not refereed \\
+Thm.~\ref{thm:collapse} & NN2 2.3 (MM1 3.1 for $b=2$) & Lem.~\ref{lem:depth} & PROVED, CHECKED; audit-reviewed; $b=2$ ref.\ NN3 \\
+Thm.~\ref{thm:edge-identities} & MM2 6.4; NN1 3.1 & Lem.~\ref{lem:vertices-edges}, Thm.~\ref{thm:alignment} & PROVED; ref.\ NN3 (null-set repair) \\
+Thm.~\ref{thm:edge-collapse} & NN1 3.2; NN2 4.1 & Lem.~\ref{lem:twocolour}; Thm.~\ref{thm:collapse}, \ref{thm:edge-identities} & PROVED; not refereed; (a) restricted to $N^*$ \\
+Cor.~\ref{cor:edge-exclusions} & NN2 4.2; MM2 6.5 & Thm.~\ref{thm:edge-collapse}, \ref{thm:edge-identities} & PROVED; (b) ref.\ NN3 \\
+Obs.~\ref{obs:planewise} & NN2 5.1 & --- & PROVED \\
+Prop.~\ref{prop:proportional} & MM1 3.2; NN2 \S3 & Lem.~\ref{lem:weakbayes}; FF2 4.1 & PROVED mod.\ FF2 chain; ref.\ NN3 \\
+Thm.~\ref{thm:cellwise} & MM1 4.1; NN2 3.1; NN1 4.2 & Thm.~\ref{thm:collapse} & PROVED; $(4,3)$ ref.\ NN3 \\
+Thm.~\ref{thm:mincell} & MM1 4.2; NN2 3.2; NN1 4.3; NN3 B.1 & Thm.~\ref{thm:cellwise}; Lem.~\ref{lem:vertices-edges} & PROVED, self-contained; $(4,3)$ ref.\ NN3 \\
+Prop.~\ref{prop:analytic} & MM1 2.1; NN3 Prop.~A & Lem.~\ref{lem:weakbayes}, \ref{lem:branchform} & (a) ref.\ NN3; (b),(c) NN3 only \\
+Cor.~\ref{cor:A2} & NN3 A.2 & Prop.~\ref{prop:analytic}(c) & PROVED; NN3 only \\
+Thm.~\ref{thm:separable} & MM2 5.1 & Thm.~\ref{thm:alignment} & PROVED, CHECKED; ref.\ NN3 \\
+Prop.~\ref{prop:generic} & MM2 4.2 & Thm.~\ref{thm:alignment}(b) & PROVED, CHECKED; ref.\ NN3 \\
+Prop.~\ref{prop:rank2} & MM1 5.1; NN2 3.4 & Prop.~\ref{prop:proportional} & PROVED; ref.\ NN3 (repair) \\
+Thm.~\ref{thm:B-collapse} & NN1 4.1 & Thm.~\ref{thm:alignment} & PROVED; not refereed \\
+Prop.~\ref{prop:t1only} & MM1 4.2 Part~A; NN2 3.5 & Thm.~\ref{thm:mincell} & PROVED, CHECKED \\
+Ex.~\ref{ex:NN1-51} & NN1 5.1 & --- & CHECKED \\
+Rem.~\ref{rem:ex51-sixpatterns} & OO3 & Prop.~\ref{prop:rank2fail} & CHECKED (new) \\
+Prop.~\ref{prop:sumform-escape} & NN2 6.1 & --- & CHECKED \\
+Lem.~\ref{lem:zerosum}, Prop.~\ref{prop:rank2fail} & NN2 6.2--6.3 & Lyapunov & PROVED; not refereed \\
+Conj.~\ref{conj:NN2}, \ref{conj:NN1} & NN2 6.4; NN1 6.1 & --- & CONJECTURE \\
+\bottomrule
+\end{longtable}
+}
+
+\paragraph{Referee record.} \src{MM3} refereed \src{ALL}'s lifting lemma and exact test, \src{LL1}~\S\S2--4, \src{LL2}~\S\S2--6, and \src{LL3} Thm.~A, B1--B3 and the certificate. \src{NN3} refereed \src{MM1} and \src{MM2}. \src{ANN} gave a focused, explicitly incomplete, review of \src{NN2}~\S2 and \S\S5--6, of the corresponding \src{NN1} statements, and of \src{NN3}. No note has refereed \src{NN1} or \src{NN2} line by line, nor \src{MM3}'s own observations R1--R3, nor \src{NN3}'s Prop.~A, Cor.~A.2 and Lemma~B.1.
+
+\end{document}

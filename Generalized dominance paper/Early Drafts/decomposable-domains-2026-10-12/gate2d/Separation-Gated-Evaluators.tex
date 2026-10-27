@@ -1,0 +1,557 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Dscr}{\mathcal D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\on}{\mathrm{on}}
+\newcommand{\off}{\mathrm{off}}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+\newcommand{\essinf}{\operatorname*{ess\,inf}}
+\newcommand{\status}[1]{\par\noindent\emph{Status:} #1\par}
+\title{Separation-Gated Evaluators in Two Worlds}
+\author{}\date{20 October 2026}
+\begin{document}\maketitle
+
+\noindent
+This note answers the mechanism-design question left open by the five-region
+construction (\emph{Disagreement-Selected Evaluators}, 20 October). There,
+evaluators chosen from the disagreement produced genuinely non-additive
+comparisons with strict (G), (IB) and (TC), but (S) failed: some rivals were
+defended at no world. Following audit's recommendation, the construction below
+is designed around (S) from the start.
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+\item \emph{Construction} (Definition~\ref{def:rule}). Each world compares two
+models only when their disagreement is \emph{separated}: in a fixed priority
+order of rank steps, every rank step that the second model adds (a loss for that
+world) comes no later than every rank step that it removes (a gain). Inside this
+gate a record-based verdict decides. Every other mixed disagreement is left
+incomparable.
+\item \emph{Main result} (Theorem~\ref{thm:main}). For any continuous monotone
+family of interval models through the target, and any continuous verdict with
+two sign conditions and a covering condition, the system satisfies reflexivity,
+strict (G), (IB), (TC) (in fact it has no cycles at all), (LA), (S) with every
+selected model undominated, direct (C), and (LF) and (SC) on the full
+four-advice domain. Every non-selected model is dominated by a selected one.
+\item \emph{A non-additive instance} (Proposition~\ref{prop:instance}). The
+author's two-measure rule (Proposition~1 of the design memo), in rank-step form
+and in its ``sticky'' direction (an added rank step costs twice what a removed
+one gains), violates (TC) on its own but satisfies every axiom once it is gated,
+at both worlds. No integrable strictly guiding field, and no finitely additive
+weight positive on non-null sets, endorses the comparisons of either world out
+of selected models; the failure already occurs near almost every selected
+boundary point (a dense set of indices).
+\item \emph{What carries the result, and why two worlds are special}
+(Section~\ref{sec:three}). The gate gives (TC) for free; (S) survives the gate
+because, in two worlds, the selected models are threshold sets of the priority
+order. In three worlds a gate of this strong form makes (S) fail at every
+interior index whose selected model is a threshold set at no world
+(Proposition~\ref{prop:three}); that this happens for every selection with a
+two-dimensional image is CONJECTURE. So the two-world laboratory does not
+discriminate between verdicts; the three-world question is where the content is.
+\end{enumerate}
+
+\section{Setting}\label{sec:setting}
+
+Two worlds. Problems are pairs $\{g,-g\}$, $g\in\R^2\setminus\{0\}$, with the
+normalized Gaussian measure $\mu$ on representatives. A problem is
+\emph{unanimous} if $g_1,g_2$ have the same sign and \emph{mixed} otherwise; a
+mixed problem has a representative $g=r(1-t,-t)$ with $r>0$, $t\in(0,1)$. The
+law of $t$ under $\mu$ has a positive density, so level sets of $t$ are null.
+A model is a measurable advice map (accept $g$, silence, accept $-g$, accept
+both), modulo null sets; the domain is the full four-advice domain. At world
+$i$ the advice at a problem has the rank $r_i\in\{0,1,2,3\}$ (good, silent,
+bad, contradictory). On a mixed problem accepting $g=r(1-t,-t)$ is good at
+world~$1$ and bad at world~$2$.
+
+For $m=(m_1,1-m_1)$, $m\cdot g=r(m_1-t)$. Hence the coherent model with credal
+set $\{m:m_1\in[a,b]\}$, written $\Dscr_{[a,b]}$, accepts $g$ on $\{t<a\}$, is
+silent on $\{a\le t\le b\}$, accepts $-g$ on $\{t>b\}$, and is correct on
+unanimous problems.
+
+\paragraph{The selected family.} Let $l,u\colon[0,1]\to[0,1]$ be continuous and
+strictly increasing with $l\le u$, $l(0)=u(0)=0$ and $l(1)=u(1)=1$. Index the
+simplex by $p=p_1\in[0,1]$ and put $C_p\coloneqq\Dscr_{[l(p),u(p)]}$. Then
+$C_1=D_1$ and $C_0=D_2$, the ideal models. For audit's target
+$K^*=\{m_1\in[\frac13,\frac23]\}$ one may take, for instance,
+$l(p)=\frac23p$, $u(p)=\frac43p$ on $[0,\frac12]$ and
+$l(p)=\frac13+\frac43(p-\frac12)$, $u(p)=\frac23+\frac23(p-\frac12)$ on
+$[\frac12,1]$; then $C_{1/2}=\Dscr_{K^*}$. Since $l,u$ are continuous and level
+sets of $t$ are null, $\mu(C_p\,\triangle\,C_q)\to0$ as $q\to p$, where
+$\triangle$ is taken over the set where the advice differs.
+
+\paragraph{Rank steps and keys.} For world $i$ let
+$I\coloneqq\{(g,j):g\text{ a problem},\ j\in\{1,2,3\}\}$ with the measure
+$\mu\otimes$counting, and for a model $X$ put
+\[
+ U_i(X)\coloneqq\{(g,j)\in I:r_i(g,X)\ge j\},
+\]
+the set of \emph{world-$i$ rank steps} of $X$. A pointwise weak world-$i$
+worsening from $X$ to $Y$ is exactly $U_i(X)\subseteq U_i(Y)$. For a pair
+$(X,Y)$ put
+\[
+ T^\on_i(X,Y)\coloneqq U_i(Y)\setminus U_i(X),\qquad
+ T^\off_i(X,Y)\coloneqq U_i(X)\setminus U_i(Y):
+\]
+the steps that $Y$ adds (world-$i$ losses in passing from $X$ to $Y$) and the
+steps that $Y$ removes (world-$i$ gains). Both are determined by the advice of
+$X$ and $Y$ on the set where they differ.
+
+Fix a measurable $\tau\colon\{\text{problems}\}\to(0,1)$ with null level sets
+(for instance a strictly monotone function of the angle of $g$). Define the
+\emph{keys}
+\[
+ k_1(g,1)\coloneqq l^{-1}(t),\quad k_1(g,2)\coloneqq u^{-1}(t),\qquad
+ k_2(g,1)\coloneqq 1-u^{-1}(t),\quad k_2(g,2)\coloneqq 1-l^{-1}(t)
+\]
+for mixed $g$, and $k_i(g,j)\coloneqq-1-\tau(g)$ in all other cases ($j=3$, or
+$g$ unanimous). Every level set of $k_i$ is null.
+
+\begin{lemma}\label{lem:threshold}
+For every $p\in[0,1]$, up to null sets,
+$U_1(C_p)=\{k_1\ge p\}$ and $U_2(C_p)=\{k_2\ge1-p\}$.
+\end{lemma}
+\begin{proof}
+On a mixed problem, $r_1(g,C_p)$ is $0$ on $\{t<l(p)\}$, $1$ on
+$\{l(p)\le t\le u(p)\}$ and $2$ on $\{t>u(p)\}$. So $(g,1)\in U_1(C_p)$ iff
+$t\ge l(p)$ iff $k_1(g,1)\ge p$, and $(g,2)\in U_1(C_p)$ iff $t>u(p)$ iff
+$k_1(g,2)>p$; steps with $j=3$ and steps at unanimous problems never belong to
+$U_1(C_p)$, and their keys are negative. World~2 is the same with
+$r_2(g,C_p)$ equal to $2,1,0$ on the three bands.
+\end{proof}
+
+So, in the priority order given by the key, every selected model is a
+\emph{threshold set}: its world-$i$ steps are exactly the steps of high key.
+
+\section{The gated rule}\label{sec:rule}
+
+\begin{definition}\label{def:rule}
+A pair $(X,Y)$ is \emph{$i$-separated} if $T^\on_i(X,Y)$ is non-null and
+\[
+ \esssup_{T^\on_i(X,Y)}k_i\ \le\ \essinf_{T^\off_i(X,Y)}k_i
+\]
+(vacuous if $T^\off_i$ is null). Let $\Phi_1,\Phi_2$ be real functions of
+pairs of models that depend only on the advice of the two models on the set
+where they differ. Define
+\[
+ X\preceq_iY\quad:\Longleftrightarrow\quad X=Y,\ \text{or}\ T^\off_i(X,Y)
+ \text{ is null},\ \text{or}\ \bigl[(X,Y)\text{ is $i$-separated and }
+ \Phi_i(X,Y)\ge0\bigr].
+\]
+\end{definition}
+
+The three clauses are: identity, guidance (a pointwise weak worsening at world
+$i$ is accepted), and the gate with its verdict. A mixed pair that fails the
+gate is incomparable at world $i$ in both directions.
+
+\paragraph{Conditions on the verdicts.} For every model $X$:
+\begin{enumerate}[label=(V\arabic*),leftmargin=*,itemsep=2pt]
+\item (continuity) $p\mapsto\Phi_i(C_p,X)$ is continuous on $[0,1]$;
+\item (signs) $\Phi_i(C_p,X)<0$ whenever $T^\on_i(C_p,X)$ is null and
+$T^\off_i(C_p,X)$ is non-null; $\Phi_i(C_p,X)\ge0$ whenever
+$T^\off_i(C_p,X)$ is null;
+\item (covering) for every $p\in(0,1)$, $\Phi_1(C_p,X)\ge0$ or
+$\Phi_2(C_p,X)\ge0$.
+\end{enumerate}
+(V2) concerns only how the verdict extends to pure comparisons; the rule
+itself never consults $\Phi_i$ on them.
+
+\begin{lemma}\label{lem:acyclic}
+Fix $i$. There is no cycle $X_0\preceq_iX_1\preceq_i\dots\preceq_iX_m=X_0$ with
+$X_j\ne X_{j+1}$ for some $j$. In particular $\preceq_i$ satisfies (TC),
+finite-chain consistency, and antisymmetry.
+\end{lemma}
+\begin{proof}
+Call a step $X_j\to X_{j+1}$ nontrivial if $X_j\ne X_{j+1}$. For a nontrivial
+accepted step, $T^\on_j\coloneqq T^\on_i(X_j,X_{j+1})$ is non-null: under the
+guidance clause because $U_i(X_j)\subsetneq U_i(X_{j+1})$ (strictly, as the
+models differ and the ranks determine the advice at each world), and under the
+gate by definition. Since level sets of $k_i$ are null and $T^\on_j$ is non-null,
+\[
+ \beta_j\coloneqq\essinf_{T^\on_j}k_i<\esssup_{T^\on_j}k_i\le
+ \essinf_{T^\off_j}k_i\eqqcolon\gamma_j ,
+\]
+with $\gamma_j=+\infty$ if $T^\off_j$ is null. Let $\beta^*\coloneqq\min_j\beta_j$
+over nontrivial steps, attained at $j^*$, and $\gamma\coloneqq\min_j\gamma_j$;
+then $\gamma>\beta^*$, because $\gamma_j>\beta_j\ge\beta^*$ for every $j$. Put
+$W\coloneqq\{\beta^*<k_i<\gamma\}$. No step removes a step of $W$, so
+$U_i(X_j)\cap W$ is nondecreasing in $j$. Step $j^*$ adds the set
+$T^\on_{j^*}\cap W$, which is non-null because $\essinf_{T^\on_{j^*}}k_i=\beta^*<\gamma$
+and the level set $\{k_i=\beta^*\}$ is null. Hence
+$U_i(X_0)\cap W\subsetneq U_i(X_m)\cap W$ up to a non-null set, contrary to
+$X_m=X_0$.
+\end{proof}
+
+\begin{lemma}\label{lem:sep}
+Let $p\in[0,1]$ and let $X$ be any model. If $T^\on_i(C_p,X)$ is non-null,
+then $(C_p,X)$ is $i$-separated, for $i=1,2$.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:threshold}, $T^\on_1(C_p,X)\subseteq I\setminus U_1(C_p)
+\subseteq\{k_1\le p\}$ and $T^\off_1(C_p,X)\subseteq U_1(C_p)\subseteq\{k_1\ge
+p\}$, up to null sets. World~2 is the same with the threshold $1-p$.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Assume (V1)--(V3). On the full four-advice domain the system
+$(\preceq_1,\preceq_2)$ with the selection $p\mapsto C_p$ satisfies:
+reflexivity; strict (G); (IB); (TC), and indeed the absence of cycles of
+Lemma~\ref{lem:acyclic}; (S): every $C_p$ is coherent and undominated,
+competitive on $\supp p$, and every section $A_i(X)\coloneqq\{p:C_p\preceq_iX\}$
+is closed; (LA); direct (C). The domain satisfies (LF) and (SC). Every model
+other than the $C_p$ is strictly dominated at both worlds by some $C_q$.
+\end{theorem}
+\begin{proof}
+\emph{Reflexivity} is the first clause. \emph{(IB).} The sets $T^\on_i$,
+$T^\off_i$, the gate and $\Phi_i$ depend only on the advice of the two models
+on the set where they differ. \emph{Strict (G).} If $Y$ is a pointwise weak
+world-$i$ improvement of $X$, then $T^\off_i(Y,X)=U_i(Y)\setminus U_i(X)$ is
+null and $Y\preceq_iX$. If the improvement is strict on a non-null set, then
+$T^\on_i(X,Y)$ is null and $T^\off_i(X,Y)$ is non-null, so no clause gives
+$X\preceq_iY$. \emph{(TC)} is Lemma~\ref{lem:acyclic}.
+
+\emph{The sections.} Fix $X$ and $p$, and write $T^\on,T^\off$ for the sets of
+$(C_p,X)$ at world $i$. We claim that $C_p\preceq_iX$ iff $\Phi_i(C_p,X)\ge0$.
+If $X=C_p$, both hold ((V2) with both sets null gives $\Phi_i\ge0$). If
+$T^\off$ is null, both hold, by guidance and (V2). If $T^\on$ is null and
+$T^\off$ is non-null, both fail, by strict (G) and (V2). Otherwise
+$(C_p,X)$ is $i$-separated (Lemma~\ref{lem:sep}) and the gate clause applies,
+which is the claim. So $A_i(X)=\{p:\Phi_i(C_p,X)\ge0\}$, which is closed
+by (V1).
+
+\emph{Competitiveness.} For $p\in(0,1)$ use (V3) and the claim. At $p=1$,
+$U_1(C_1)=U_1(D_1)$ is null, so $T^\off_1$ is null and $C_1\preceq_1X$; at
+$p=0$ the same holds at world~2.
+
+\emph{No model is weakly better than a selected one at both worlds.} Suppose
+$X\preceq_1C_p$ and $X\preceq_2C_p$. At world~1, $T^\on_1(X,C_p)\subseteq
+U_1(C_p)\subseteq\{k_1\ge p\}$ and $T^\off_1(X,C_p)\subseteq I\setminus
+U_1(C_p)\subseteq\{k_1\le p\}$. Separation would put a non-null set of keys
+$\ge p$ (essentially, $>p$) below a set of keys $\le p$, which is impossible
+unless $T^\off_1$ is null. So $X\preceq_1C_p$ forces $U_1(X)\subseteq U_1(C_p)$,
+and likewise $U_2(X)\subseteq U_2(C_p)$: $X$ is pointwise weakly better than
+$C_p$ at both worlds. On a mixed problem the rank pairs $(r_1,r_2)$ of the four
+advices are $(0,2),(1,1),(2,0),(3,3)$, so no advice is weakly better at both
+worlds than a different regular advice; on unanimous problems $C_p$ has ranks
+$(0,0)$. Hence $X=C_p$. This gives undominatedness of every $C_p$, hence (LA).
+Direct (C) holds for every model, because each world is antisymmetric
+(Lemma~\ref{lem:acyclic}): a tie at a single world already forces equality.
+
+\emph{Domination of the rest.} For any $X$, $A_1(X)\ni1$ and $A_2(X)\ni0$ are
+closed and cover $[0,1]$, so they meet at some $q$: $C_q\preceq_1X$ and
+$C_q\preceq_2X$. If $X\ne C_q$, then, since $C_q\preceq_iX$, antisymmetry
+(Lemma~\ref{lem:acyclic}) excludes $X\preceq_iC_q$ at either world, so $C_q$
+strictly dominates $X$ at both worlds. So the coherent undominated models are
+exactly the $C_p$.
+
+\emph{Domain.} The full domain contains every measurable model, hence every
+local variant (LF) and every splice (SC).
+\end{proof}
+
+\status{PROVED; confirmed by one independent referee
+(\texttt{REFEREE\_gate2d.md}), whose two wording repairs are incorporated.
+CHECKED on finite cell models with exact arithmetic, for the instance of
+Section~\ref{sec:instance}, by two independent implementations. The referee's
+checker covers 75 configurations (three families, including one with a precise
+band $l=u$, five cell layouts, five seeds, up to $1024$ models). It verifies
+full acyclicity of each world, competitiveness at every critical index against
+every model, the section identity, strict (G), and that no selected model is
+dominated; there are no failures, and a deliberately invalid family is caught.
+Without the gate the same verdict gives $730{,}964$ violations of (TC) on 256
+models. Finite cells have atoms, so these checks test the combinatorics, not
+closedness; in particular the meeting point used for ``domination of the
+rest'' can be missing in finite cells. Scripts: \texttt{gate2d/}.}
+
+\begin{remark}\label{rem:roles}
+\emph{Division of labour.} (TC) comes from the gate alone, whatever the
+verdict: every accepted comparison adds world-$i$ steps before it removes any
+in the priority order, and a cycle would have to remove what it adds at the
+bottom of its window. (S) comes from the threshold property of
+Lemma~\ref{lem:threshold}: every disagreement with a selected model passes the
+gate at both worlds, so each world's verdict applies to every such
+disagreement. The verdicts are constrained only by continuity, two sign
+conditions and covering. The construction never accepts a comparison that fails the gate,
+which is how incomparability organizes the coexistence of the non-additive
+comparisons.
+\end{remark}
+
+\section{A non-additive instance}\label{sec:instance}
+
+Let $\nu\coloneqq\mu\otimes$counting on $I$, a finite measure. For a pair
+$(X,Y)$ let $\on_i\coloneqq\nu(T^\on_i(X,Y))$ and
+$\off_i\coloneqq\nu(T^\off_i(X,Y))$, and put
+\[
+ \Phi_i\coloneqq2\,\on_i-\off_i\qquad(i=1,2).
+\]
+At each world a newly added rank step costs twice what removing one gains:
+this is the author's two-measure rule (design memo, \S7, Proposition~1), with
+rank steps in place of error sets and $\mu^+=2\mu^-$, the ``sticky''
+direction, which on its own violates (TC) (design memo, \S7).
+
+\begin{proposition}\label{prop:instance}
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=2pt]
+\item $\Phi_1,\Phi_2$ satisfy (V1)--(V3), so Theorem~\ref{thm:main} applies.
+Both worlds accept every comparison out of a selected model that the additive
+ranking with weight $\nu$ accepts, and more.
+\item No integrable $f>0$ a.e.\ on $I$ endorses the world-1 comparisons out of
+selected models, that is, satisfies
+$C_p\preceq_1X\Rightarrow\int_{U_1(C_p)}f\,d\nu\le\int_{U_1(X)}f\,d\nu$ for all
+$p$ and $X$. The same holds at world~2, and for finitely additive weights
+positive on non-null sets. More precisely, for a.e.\ mixed problem $g_0$ the
+endorsement already fails for records supported in every neighbourhood of
+$g_0$, out of the selected model whose boundary passes through $g_0$. For a
+\emph{fixed} boundary point this can fail: some positive field endorses all
+records localised near one given boundary point.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) (V1): $\mu(C_p\triangle C_q)\to0$ as $q\to p$, and the sets $T^\on_i$,
+$T^\off_i$ of $(C_q,X)$ change by at most three times the set where $C_q$ and
+$C_p$ differ, so $\on_i,\off_i$ are continuous in $q$.
+(V2): if $T^\on_i$ is null and $T^\off_i$ non-null, $\Phi_i=-\off_i<0$; if
+$T^\off_i$ is null, $\Phi_i=2\on_i\ge0$.
+(V3): on a mixed problem, a change between two regular advices moves the
+world-1 rank by $\delta$ and the world-2 rank by $-\delta$, so it contributes
+$|\delta|$ steps to $T^\on_1$ and to $T^\off_2$, or to $T^\off_1$ and to
+$T^\on_2$. Every other change of advice out of a selected model (into
+contradiction, or on a unanimous problem, where $C_p$ is correct) adds steps
+at both worlds and removes none, since $C_p$ is never contradictory. Writing
+$a$ and $b$ for the masses of world-1 added and removed steps of the first
+kind, and $c_1,c_2\ge0$ for the masses of world-1 and world-2 steps of the
+second kind,
+\[
+ \Phi_1=2(a+c_1)-b,\qquad\Phi_2=2(b+c_2)-a,\qquad\Phi_1+\Phi_2=a+b+2c_1+2c_2\ge0 .
+\]
+The claim after (a) holds because $2x-y\ge x-y$ for $x\ge0$.
+
+(b) Suppose $f$ endorses at world~1. For a mixed problem write $(t,s)$ for
+$t$ and the log-radius; in these coordinates $\mu$ has a positive continuous
+density $\varrho$. By the Lebesgue differentiation theorem, a.e.\ point
+$g_0=(t_0,s_0)$ is a Lebesgue point of $f(\cdot,1)$ with respect to squares
+centred at $g_0$, with $f(g_0,1)>0$; fix such a point and
+$p\coloneqq l^{-1}(t_0)$; suppose first $l(p)=t_0<u(p)$. For small $\epsilon>0$ let
+$Q_\epsilon\coloneqq\{t_0-\epsilon<t<t_0,\ |s-s_0|<\epsilon\}$ and choose
+$R_\epsilon\subseteq\{t_0<t<t_0+3\epsilon,\ |s-s_0|<\epsilon\}$ with
+$\mu(R_\epsilon)=2\mu(Q_\epsilon)$, possible for small $\epsilon$ by continuity
+of $\varrho$. Both sets lie in the square of side $6\epsilon$ centred at $g_0$
+and occupy a fraction of it bounded below. Let $X_\epsilon$ be $C_p$ made
+silent on $Q_\epsilon$ (where $C_p$ accepts $g$) and accepting $g$ on
+$R_\epsilon$ (where $C_p$ is silent). Then
+$T^\on_1(C_p,X_\epsilon)=Q_\epsilon\times\{1\}$ and
+$T^\off_1(C_p,X_\epsilon)=R_\epsilon\times\{1\}$, so
+$\Phi_1=2\mu(Q_\epsilon)-\mu(R_\epsilon)=0$ and $C_p\preceq_1X_\epsilon$
+(Lemma~\ref{lem:sep}). Endorsement gives
+$\int_{R_\epsilon}f(\cdot,1)\,d\mu\le\int_{Q_\epsilon}f(\cdot,1)\,d\mu$. At a
+Lebesgue point the averages of $f(\cdot,1)$ over $Q_\epsilon$ and $R_\epsilon$
+tend to $f(g_0,1)$, so the left side is $(2+o(1))f(g_0,1)\mu(Q_\epsilon)$ and
+the right side is $(1+o(1))f(g_0,1)\mu(Q_\epsilon)$, a contradiction. At
+world~2 use the boundary $t=u(p)$: let $X'_\epsilon$ be $C_p$ made silent on a
+set just above $u(p)$ (where $C_p$ accepts $-g$; world-2 rank $0\to1$, an
+added step) and accepting $-g$ on a set of twice the mass just below $u(p)$
+(silence in $C_p$; world-2 rank $1\to0$, a removed step). Then $\Phi_2=0$,
+$C_p\preceq_2X'_\epsilon$, and the same estimate contradicts endorsement.
+
+If $l(p)=u(p)=t_0$, there is no band: $C_p$ accepts $g$ below $t_0$ (world-1
+rank $0$) and $-g$ above (rank $2$). Fix a common Lebesgue point of
+$f(\cdot,1)$ and $f(\cdot,2)$. Let $X$ be $C_p$ made silent on $Q_\epsilon$
+below $t_0$ (adds $(g,1)$ steps, mass $m$) and accepting $g$ on a set
+$R_\epsilon$ above $t_0$ with $\mu(R_\epsilon)=\mu(Q_\epsilon)$ (removes $(g,1)$
+and $(g,2)$ steps, mass $2m$). Then $\Phi_1=2m-2m=0$, so $C_p\preceq_1X$, and
+endorsement requires $\int_{R_\epsilon}(f(\cdot,1)+f(\cdot,2))\,d\mu\le
+\int_{Q_\epsilon}f(\cdot,1)\,d\mu$; in the limit $f(g_0,2)\le0$, a
+contradiction. World~2 is symmetric.
+
+\emph{Finitely additive weights.} Let $\pi$ be a bounded charge on $I$,
+vanishing on null sets and positive on non-null sets, and write
+$\pi=\rho\,\nu+\pi_p$ (Yosida--Hewitt), with $\pi_p$ purely finitely additive
+and carried, for every $\eta>0$, by a set $Z$ with $\nu(Z)<\eta$. Positivity
+forces $\rho>0$ a.e.: if $\rho=0$ on a non-null $A$, take a carrier $Z$ with
+$\nu(Z)<\nu(A)$; then $\pi(A\setminus Z)=0$ with $A\setminus Z$ non-null. In
+the constructions above, choose a carrier $Z_\epsilon$ of $\pi_p$ whose mass is
+a small fraction of the square, and replace $Q_\epsilon$, $R_\epsilon$ by
+$Q_\epsilon\setminus Z_\epsilon$ and by a subset of $R_\epsilon\setminus
+Z_\epsilon$ with the required mass ratio. These sets still occupy a fraction of
+the square bounded below, $\pi_p$ vanishes on them, and the Lebesgue-point
+estimate for $\rho$ gives the same contradiction.
+
+\emph{A fixed boundary point.} Fix $p$ with $l(p)<u(p)$, $t_0=l(p)$, and near
+$g_0$ put $f(g,1)=1$ for $t>t_0$, $f(g,1)=11$ for $t<t_0$, and
+$f(g,2)=f(g,3)=11$. For a record out of $C_p$ supported near $g_0$ and away
+from $\{t=u(p)\}$, the removed steps are $(g,1)$ steps above $t_0$, where $f=1$,
+and every added step has $f=11$; acceptance gives $\off_1\le2\on_1$, hence
+$\int_{T^\off_1}f=\off_1\le11\,\on_1=\int_{T^\on_1}f$. So the non-endorsement is
+a property of almost every boundary point, not of each one.
+\end{proof}
+
+\noindent Fields that vanish on some non-null set can endorse: for example
+$f=1$ on steps with $j=3$ and $f=0$ elsewhere, since selected models have no
+such steps. The restriction to $f>0$ a.e.\ is the relevant one.
+
+\status{PROVED; confirmed by one referee with three repairs, all
+incorporated (the case $l(p)=u(p)$, finitely additive weights, and ``almost
+every'' in place of ``any'' boundary point). Part (b) is the FF2-type
+non-endorsement property, now inside a system satisfying every axiom. Since
+$l^{-1}$ need not preserve null sets, ``a.e.\ $t_0$'' yields a dense set of
+indices $p$, in particular indices arbitrarily close to the target.}
+
+\begin{remark}\label{rem:compare}
+\emph{Relation to earlier rules.}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item Proposition~1 failed because comparisons $X\preceq Y\preceq Z$ with
+$Z$ a strict improvement of $X$ could be strung together (design memo, \S7: $X$
+with errors on $Q\cup R$, $Y$ on $P\cup R$, $Z$ on $Q$). The first step adds
+steps on $P$ and removes them on $Q$; the second adds on $Q$ and removes on
+$P\cup R$. Both pass the gate only if the keys of $P$ lie below those of $Q$
+and the keys of $Q$ below those of $P$, which is impossible for non-null sets.
+\item Neither world is complete, and neither adds up
+(Proposition~\ref{prop:instance}(b), including finitely additive weights).
+Neither accepted set is a convex cone of records: two gated records whose keys
+are interleaved (adds on $Q_1$, removes on $R_1$, adds on $Q_2$, removes on
+$R_2$, with $Q_1<R_1<Q_2<R_2$ in key) have a sum that fails the gate.
+\item \emph{Leading charges} (PROVED, with the write-up's definition transposed
+to rank steps: $\pi(B\setminus A)>\pi(A\setminus B)$ forces $A\le_iB$, and
+$A\le_iB$ forces $\pi(A)\le\pi(B)$). Neither world has a nonzero leading charge.
+If $\pi\ne0$, pick a non-null $S$ inside one kind of step (fixed $j$, mixed or
+unanimous problems) with $\pi(S)>0$, and $c$ with $S\cap\{k<c\}$ and
+$S\cap\{k>c\}$ non-null. Split off a non-null $D\subseteq S\cap\{k<c\}$ with
+$\pi(D)<\pi(S)/2$, and put $P\coloneqq S\setminus D$. Let $X$ and $Y$ agree
+except that $X$ has world-$i$ rank $j-1$ on the problems under $P$ and $j$ on
+those under $D$, and $Y$ the reverse. Then $T^\on=P$, $T^\off=D$ and
+$\pi(P)>\pi(D)$, so the first property demands $X\preceq_iY$; but $P$ has keys
+above those of $D$, the gate fails, and $X\not\preceq_iY$. This rests only on
+incompleteness, so it makes the comparison with the 15 October status note
+weaker than it looks. That note recorded that no world in a cover was known
+which is incomplete, fails to add up, is not CP-a, has no leading charge, and
+has certificates that are not point-localised. The worlds here meet the first
+four conditions, in two worlds only; the last has not been checked. A non-strict
+purely finitely additive $\{0,1\}$-valued charge concentrated at the bottom of
+the key order does satisfy the second property: it is the leading criterion of
+the lexicographic order in the next item.
+\item Each world is contained in the lexicographic order with a
+\emph{continuum} of keys, low keys first: $X$ is strictly better than $Y$ when
+some $\{k<c\}$ meets $T^\on_i(X,Y)$ in a non-null set and $T^\off_i(X,Y)$ in a
+null set. It is not lexicographic over countably many additive criteria, but
+only for the trivial reason that such orders are complete and these worlds are
+not. Whether the write-up's lexicographic exclusions apply to sub-relations of
+a lexicographic order has not been examined.
+\item Any verdicts meeting (V1)--(V3) work, including verdicts selected from
+the disagreement in the sense of the five-region construction, provided they
+are continuous along the family. Exact patterns of the five-region kind can
+be added to the accepted comparisons of a world without affecting
+Theorem~\ref{thm:main}, provided they (1) pass the gate, (2) respect (IB), that
+is, are closed under changes off the difference set, and (3) add, for each
+model $X$, a closed set of indices to $A_i(X)$. (TC) is then unaffected by
+Lemma~\ref{lem:acyclic}, and undominatedness is unaffected because no gated
+comparison into a selected model exists.
+\end{itemize}
+\end{remark}
+
+\section{Why two worlds are special}\label{sec:three}
+
+The two-world laboratory has been solved too cheaply to discriminate between
+verdicts: the gate makes (TC) automatic and nesting makes (S) automatic. The
+next proposition locates exactly what fails with three worlds.
+
+Let $n=3$, let the domain be the full four-advice domain, and suppose world $i$
+uses a gate of the form in Definition~\ref{def:rule} for some key function
+$k_i$ on its rank steps with null level sets: it accepts only identity,
+guidance, and $i$-separated pairs. Call $(a,b)$ a \emph{crossed pair for $C$ at
+world $i$} if $a\subseteq I\setminus U_i(C)$ and $b\subseteq U_i(C)$ are
+non-null and $\esssup_bk_i<\essinf_ak_i$: a step that $C$ lacks has higher key
+than a step that $C$ has.
+
+\begin{proposition}\label{prop:three}
+Let $p$ be an interior index. Suppose that for each $i\in\{1,2,3\}$ there is a
+crossed pair $(a_i,b_i)$ for $C_p$ at world $i$, such that the six sets of
+problems underlying $a_1,b_1,a_2,b_2,a_3,b_3$ are pairwise disjoint. Then $C_p$
+is not competitive on $\{1,2,3\}$.
+\end{proposition}
+\begin{proof}
+Let $X$ be $C_p$ with contradictory advice on the problems under
+$a_1,a_2,a_3$ and with the advice of $D_i$ on the problems under $b_i$. At
+world $i$, contradiction has rank $3$, so $T^\on_i(C_p,X)\supseteq a_i$; the
+advice of $D_i$ has world-$i$ rank $0$, so $T^\off_i(C_p,X)\supseteq b_i$.
+Hence $\esssup_{T^\on_i}k_i\ge\essinf_{a_i}k_i>\esssup_{b_i}k_i\ge
+\essinf_{T^\off_i}k_i$: the pair fails the gate at world $i$. It is not a
+guidance pair, because $T^\off_i$ is non-null, and $X\ne C_p$. So
+$C_p\not\preceq_iX$ for $i=1,2,3$.
+\end{proof}
+
+\status{PROVED; confirmed by the referee.}
+
+The disjointness hypothesis is no restriction: non-null subsets of a crossed
+pair still cross, and $\mu$ is atomless, so any three crossed pairs, one per
+world, can be shrunk onto pairwise disjoint sets of problems. Also, ``no
+crossed pair at world $i$'' is equivalent to ``$U_i(C)$ is a threshold set
+$\{k_i\ge c\}$ up to null sets''. So under a strong gate every interior selected
+model must be a threshold set at some world. The threshold sets of one key
+order are nested, so the interior selected models that are world-$i$ threshold
+sets form a chain under pointwise world-$i$ dominance. For precise models
+$\Dscr_{\{p\}}$ and $\Dscr_{\{q\}}$, pointwise weak world-1 dominance holds
+only if $p$ lies on the segment from $q$ to $e_1$ (or conversely), so such a
+chain is one-dimensional. A selection through an interior imprecise target
+whose image is genuinely two-dimensional cannot be covered by three such
+chains. (CONJECTURE: nothing proved here shows that (S) forces a
+two-dimensional image. A selection whose interior image lies in three chains,
+for instance in a tripod, is not excluded here; the earlier result that the
+selected profile cannot factor continuously through a tree bears on the tripod,
+but its hypotheses have not been checked against this setting.)
+
+\begin{remark}\label{rem:triangle}
+\emph{What a weaker gate must respect in three worlds.} Drop the gate and let
+world $i$ judge two-point swaps by a scale-free rule: accept ``add steps on a
+small set at $x$ (mass $m_x$), remove steps on a small set at $y$ (mass
+$m_y$)'' iff $m_x\ge\rho(x,y)\,m_y$. Take three locations $a,b,c$ and suppose
+the selected models' world-$i$ step sets cross cyclically in \emph{both}
+orientations: some selected model has $b$ but not $a$, one has $c$ but not
+$b$, one has $a$ but not $c$, and likewise with the orientation reversed. This
+needs non-nested step sets, so it cannot occur in two worlds; it occurs for
+precise families in three. By (IB) the swaps then act on three local models
+$W_1,W_2,W_3$ (steps on $\{b,c\}$, $\{c,a\}$, $\{a,b\}$, the same elsewhere),
+and every swap between them is judged by $\rho$ because its local advice
+matches a selected model. Write $P_f=\rho(a,b)\rho(b,c)\rho(c,a)$ and
+$P_r=\rho(a,c)\rho(c,b)\rho(b,a)$. (TC) forces $P_f\ge1$ and $P_r\ge1$.
+\emph{Proof} (supplied by the referee). If $P_f<1$, the forward links
+$W_1\preceq W_2\preceq W_3\preceq W_1$ hold on a non-empty open set of mass
+ratios. To avoid a violation every reverse link must hold on all of it, which
+gives $\rho(a,c)\le\rho(a,b)\rho(b,c)$ and its two rotations, hence $P_r\le
+P_f^2<1$. Symmetrically $P_f\le P_r^2$, so $P_r\le P_r^4$, which is impossible
+for $0<P_r<1$. With $\rho\equiv\frac12$ (the sticky rule) and masses
+$(m_a,m_b,m_c)=(1,2,3)$ the violation is explicit: $W_1\preceq W_2\preceq
+W_3\preceq W_1$ and $W_1\not\preceq W_3$. \emph{Consequence.} The sticky
+direction cannot sit in two-point swaps around such triangles. Non-additive
+spreads in the other direction ($\rho\ge1$, for instance $\rho\equiv2$) are
+triangle-safe, but every swap whose mass ratio lies in
+$(\rho(y,x)^{-1},\rho(x,y))$ is then accepted in neither direction at world
+$i$, and must be defended at another world.
+\end{remark}
+
+\status{PROVED under the double-crossing hypothesis (argument supplied by the referee; one reader). That precise families in three worlds are doubly crossing is CHECKED by a half-plane construction, not written out.}
+
+\paragraph{Next steps.}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item Three worlds. A fixed linear priority order per world fails at every
+interior index whose selected model is a threshold set at no world
+(Proposition~\ref{prop:three}); that this rules out fixed orders altogether is
+CONJECTURE. Sticky verdicts on two-point swaps around
+doubly crossing triples are excluded (Remark~\ref{rem:triangle}). Two relaxations remain to be designed and
+screened: (a) priority orders chosen from the disagreement itself, with (TC)
+checked directly rather than inherited from one lexicographic order; (b)
+envelopes with a bid--ask spread on swaps, with the non-additivity in cycles
+of length at least four and the spread zones defended at another world. A
+cyclic key order with short arcs gives (TC) for local records (three arcs of
+less than a third of the circle never cover it), but it rejects every record
+spread around the circle, so on its own it cannot supply (S).
+\item Screen both against FF2 Thm~4.1, S3 and S9 before any proving round.
+\end{enumerate}
+
+\end{document}

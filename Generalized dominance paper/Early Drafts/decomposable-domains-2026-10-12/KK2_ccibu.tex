@@ -1,0 +1,274 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Di}{\Delta^{\circ}}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\A}{\mathcal A}
+\newcommand{\Rr}{\mathcal R}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\dH}{d_{\mathrm H}}
+\DeclareMathOperator*{\argmin}{argmin}
+\newcommand{\first}{\operatorname{first}}
+
+\title{Closed choice from interior Bayes uniqueness in three worlds:\\ a complete proof}
+\author{KK2}
+\date{18 October 2026}
+
+\begin{document}
+\maketitle
+
+\noindent This section replaces the proof sketch of Theorem~\ref{thm:ccibu} in the write-up. All boundary steps are written out. The theorem needs no hypothesis beyond those stated. Section~\ref{sec:uses} records where each hypothesis, and each property of the domain, is used.
+
+\section{Statement}\label{sec:statement}
+
+\paragraph{Conventions.} There are $n=3$ worlds. $\mu$ is the standard Gaussian measure on $\R^3$. It is a finite, nonatomic measure with the null sets of Lebesgue measure, and $E$ is null iff $-E$ is null. Pairs are indexed by $H\coloneqq\{f:f_1>0\}$. The advice of a model $X$ on $g\in H$ is $a_X(g)\in\{+,0,-,\times\}$. Fix the order $+,0,-,\times$ of the four kinds of advice. For a nonempty set $S$ of kinds of advice, $\first(S)$ is its first member in this order.
+
+Let $\M$ be a decomposable domain with advice range $A$ (write-up, remark on advice ranges, \texttt{rem:advicerange}). Thus $A$ is measurable and nonempty-valued, and
+\begin{equation}\label{eq:D}\tag{D}
+\M=\{X\text{ measurable}:\ a_X(g)\in A(g)\text{ for a.e.\ }g\in H\}.
+\end{equation}
+More generally, for a measurable correspondence $A'$ with $\varnothing\ne A'(g)\subseteq A(g)$ for a.e.\ $g$, put $\M[A']\coloneqq\{X\in\M:a_X(g)\in A'(g)\text{ a.e.}\}$. The additive ranking has measurable penalties $\ell(g,a)=(\ell_1,\ell_2,\ell_3)(g,a)$, defined for $a\in A(g)$. Its integrable envelope is $E\in L^1(\mu)$, with $|\ell_i(g,a)|\le E(g)$. Put
+\[
+L(X)\coloneqq\int_H\ell(g,a_X(g))\,d\mu(g)\in\R^3,\qquad \Rr\coloneqq\{L(X):X\in\M\}.
+\]
+For $v\in\R^3$ of any signs, put $A'_v(g)\coloneqq\argmin_{a\in A'(g)}v\cdot\ell(g,a)$. For $w\in\Delta$, $A_w$ is the pointwise $w$-Bayes correspondence. A model is \emph{$w$-Bayes} if it minimises $w\cdot L$ on $\M$.
+
+\paragraph{Hypotheses.}
+\begin{itemize}[leftmargin=*]
+\item[(G)] For a.e.\ $g$ and each $i$, $\ell_i(g,\cdot)$ is strictly increasing in world-$i$ rank on $A(g)$.
+\item[(BU)] For every $w\in\Di$, the minimiser of $w\cdot L$ on $\M$ is unique modulo null sets and is coherent.
+\end{itemize}
+
+\begin{theorem}\label{thm:ccibu}
+Let $n=3$, let $\M$ be a decomposable domain, and let $L$ be an additive ranking on $\M$ with an integrable envelope that satisfies \textup{(G)} and \textup{(BU)}. Then $L$ satisfies \textup{(LA)}, \textup{(S)} and \textup{(C)}. Every undominated model is coherent, and is the only model with its loss profile, modulo null sets. Moreover, $\C_L$ is the set of all undominated models and equals $\{C_p:p\in\Delta\}$ for the selection constructed in Section~\ref{sec:selection}.
+\end{theorem}
+
+\section{Standard facts, with proofs}\label{sec:facts}
+
+\begin{lemma}\label{lem:pointwise}
+\begin{enumerate}[leftmargin=*,label=\textup{(\alph*)}]
+\item Let $s:H\to\{+,0,-,\times\}$ be measurable, with $s(g)\in A(g)$ for a.e.\ $g$. Put
+\[
+X_s\coloneqq\{f\in H:s(f)\in\{+,\times\}\}\cup\{-f:f\in H,\ s(f)\in\{-,\times\}\}.
+\]
+Then $X_s\in\M$ and $a_{X_s}=s$. Conversely, $X=X_{a_X}$ for every $X\in\M$, modulo null sets.
+\item Let $A'$ be as above and $v\in\R^3$. Then $A'_v$ is measurable and nonempty-valued. A model $X\in\M[A']$ minimises $v\cdot L$ over $\M[A']$ iff $a_X(g)\in A'_v(g)$ for a.e.\ $g$. Thus $\argmin_{\M[A']}v\cdot L=\M[A'_v]\ne\varnothing$, and $L(\M[A'_v])=\argmin_{L(\M[A'])}v\cdot y$.
+\item If $X,Y$ are models with $a_X\ne a_Y$ on a non-null subset of $H$, then $\mu(X\sd Y)>0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is \eqref{eq:D}. The coordinate hyperplane $\{f_1=0\}$ is null.
+
+(b) For each $a$, $\{g:a\in A'_v(g)\}$ is a finite Boolean combination of the measurable sets $\{a\in A'(g)\}$, $\{b\in A'(g)\}$ and $\{v\cdot\ell(g,a)\le v\cdot\ell(g,b)\}$. So $A'_v$ is measurable, and $s^*\coloneqq\first(A'_v)$ is a measurable selection. By (a), $X^*\coloneqq X_{s^*}\in\M[A']$. For $X\in\M[A']$, put $\varphi(g)\coloneqq v\cdot\ell(g,a_X(g))-v\cdot\ell(g,s^*(g))$. Then $\varphi\ge0$ a.e., $|\varphi|\le2\|v\|_1E$ is integrable, and $v\cdot L(X)-v\cdot L(X^*)=\int\varphi\,d\mu$. Hence $v\cdot L(X)\ge v\cdot L(X^*)$. Equality holds iff $\varphi=0$ a.e., that is, iff $a_X\in A'_v$ a.e. The last identity follows by applying $L$.
+
+(c) Let $G\subseteq H$ be non-null with $a_X\ne a_Y$ on $G$. Each $g\in G$ has $g\in X\sd Y$ or $-g\in X\sd Y$. So $G\cap(X\sd Y)$ or $G\cap-(X\sd Y)$ is non-null. In the second case $-(G\cap-(X\sd Y))\subseteq X\sd Y$ is non-null, because null sets are symmetric.
+\end{proof}
+
+\begin{lemma}\label{lem:R}
+$\Rr$ is compact and convex.
+\end{lemma}
+
+\begin{proof}
+Extend $\ell(g,a)\coloneqq0$ for $a\notin A(g)$. Then $\ell_i(\cdot,a)\in L^1(\mu|_H)$ for each $i$ and $a$. Let $\Theta$ be the set of $\theta=(\theta(\cdot,a))_a\in L^\infty(\mu|_H)^4$ such that $\theta(\cdot,a)\ge0$, $\sum_a\theta(\cdot,a)=1$, and $\theta(g,a)=0$ for a.e.\ $g$ with $a\notin A(g)$. Each condition is weak-* closed, so $\Theta$ is convex and weak-* compact by Banach--Alaoglu. The map $T(\theta)\coloneqq\sum_a\int\theta(g,a)\ell(g,a)\,d\mu$ is weak-* continuous and affine. Hence $T(\Theta)$ is compact and convex.
+
+For each $X\in\M$, the indicator $\theta_X(g,a)\coloneqq 1[a_X(g)=a]$ lies in $\Theta$, and $T(\theta_X)=L(X)$. So $\Rr\subseteq T(\Theta)$.
+
+Conversely, let $y\in T(\Theta)$. The set $\Theta_y\coloneqq\Theta\cap T^{-1}(y)$ is nonempty, convex and weak-* compact. By Krein--Milman it has an extreme point $\theta^*$. Suppose $\theta^*$ is not $\{0,1\}$-valued a.e. Then for some $a\ne b$ and some $j\in\mathbb N$, the set $G\coloneqq\{g:\theta^*(g,a)>1/j,\ \theta^*(g,b)>1/j\}$ is non-null; there are countably many choices. Since $\mu$ is nonatomic, partition $G$ into non-null measurable sets $G_1,\dots,G_4$. The four vectors $u_k\coloneqq\int_{G_k}(\ell(g,a)-\ell(g,b))\,d\mu\in\R^3$ are linearly dependent, so $\sum_kc_ku_k=0$ for some $c\ne0$, scaled so that $\max_k|c_k|=1/j$. Put $\phi\coloneqq\sum_kc_k1_{G_k}$. Then $\theta^\pm\coloneqq\theta^*\pm\phi\,(\delta_a-\delta_b)$ both lie in $\Theta_y$: they are nonnegative because $|\phi|\le1/j<\theta^*(\cdot,a),\theta^*(\cdot,b)$ on $G$; they vanish where $\theta^*$ does, so off $A$; and $T(\theta^\pm)=y\pm\sum_kc_ku_k=y$. They are distinct, and average to $\theta^*$, which is a contradiction. Hence $\theta^*(g,\cdot)=\delta_{s(g)}$ for a measurable selection $s$ of $A$. By Lemma~\ref{lem:pointwise}(a), $X_s\in\M$ and $L(X_s)=y$. So $T(\Theta)\subseteq\Rr$.
+\end{proof}
+
+\noindent The last paragraph is the bang-bang form of Lyapunov's theorem (cf.\ Aumann, \emph{J.\ Math.\ Anal.\ Appl.}\ 12, 1965, Thms.~1, 3). It is the only place where nonatomicity of $\mu$ is used.
+
+\begin{lemma}\label{lem:cohclosed}
+If $X_m$ are coherent and $\mu(X_m\sd X)\to0$, then $X$ is coherent.
+\end{lemma}
+
+\begin{proof}
+Write $X_m=D_{K_m}$ a.e. By the Blaschke selection theorem, the nonempty compact convex subsets of $\Delta$ form a compact space under $\dH$. Pass to a subsequence with $K_m\to K$. For every $g$, $|P_{K_m}(g)-P_K(g)|\le\|g\|_2\,\dH(K_m,K)$.
+
+For any credal set $K'$, $D_{K'}=\{P_{K'}>0\}$ up to a null set. Suppose $P_{K'}(g)=0$, attained at $m\in K'$. Then $P_{K'}(g-t\one)\le m\cdot g-t<0$ for $t>0$. So $\{P_{K'}=0\}$ lies in the boundary of the closed convex set $\{P_{K'}\ge0\}$, which is Lebesgue-null. Also, $\{g\ge0,g\ne0,P_{K'}(g)\le0\}$ lies in the union of the coordinate planes.
+
+Hence, outside a null set, $1_{D_{K_m}}(g)\to1_{D_K}(g)$ at every $g$ with $P_K(g)\ne0$, that is, a.e. Since $\mu$ is finite, dominated convergence gives $\mu(D_{K_m}\sd D_K)\to0$. Therefore $\mu(X\sd D_K)=0$.
+\end{proof}
+
+\begin{lemma}\label{lem:support}
+If $x\in\Rr$ is undominated in $\Rr$ (no $y\in\Rr$ has $y\le x$, $y\ne x$), then some $w\in\Delta$ has $w\cdot x=\min_{y\in\Rr}w\cdot y$.
+\end{lemma}
+
+\begin{proof}
+$\Rr^+\coloneqq\Rr+[0,\infty)^3$ is convex by Lemma~\ref{lem:R}. If $x\in\operatorname{int}\Rr^+$, then $x-t\one\ge y$ for some $t>0$ and $y\in\Rr$, so $y$ dominates $x$. Hence $x\in\partial\Rr^+$. A supporting hyperplane gives $w\ne0$ with $w\cdot z\ge w\cdot x$ on $\Rr^+$. Since $\Rr^+$ is stable under adding $[0,\infty)^3$, $w\ge0$. Normalise.
+\end{proof}
+
+\section{Boundary weightings: lexicographic minimisers}\label{sec:lex}
+
+\begin{lemma}\label{lem:BUpoint}
+Under \textup{(BU)}, for every $w\in\Di$, $A_w(g)$ is a singleton for a.e.\ $g$.
+\end{lemma}
+
+\begin{proof}
+Suppose not. Then the measurable set $G\coloneqq\{|A_w|\ge2\}$ is non-null. Take $s_1\coloneqq\first(A_w)$, and let $s_2\coloneqq\first(A_w\setminus\{s_1\})$ on $G$ and $s_2\coloneqq s_1$ off $G$. By Lemma~\ref{lem:pointwise}(b), $X_{s_1}$ and $X_{s_2}$ are $w$-Bayes. By Lemma~\ref{lem:pointwise}(c), they differ on a non-null set. This contradicts (BU).
+\end{proof}
+
+\begin{lemma}\label{lem:lex}
+Assume \textup{(BU)}. Let $v^0,v^1,v^2\in\R^3$ and $\bar s>0$ be such that
+\[
+w(s)\coloneqq v^0+s\,v^1+s^2v^2\in(0,\infty)^3\qquad(0<s<\bar s).
+\]
+Put $A^0\coloneqq A$ and $A^{k+1}\coloneqq(A^k)_{v^k}$ for $k=0,1,2$. Then:
+\begin{enumerate}[leftmargin=*,label=\textup{(\alph*)}]
+\item for a.e.\ $g$, $A^3(g)$ is a singleton $\{\lambda(g)\}$;
+\item $X^\lambda\coloneqq X_\lambda$ is coherent: it is the limit in measure of the $w(s_m)$-Bayes models for every sequence $s_m\downarrow0$;
+\item $\M[A^3]=\{X^\lambda\}$. In words, $X^\lambda$ is the only model that minimises $v^0\cdot L$ on $\M$, then $v^1\cdot L$ among those minimisers, then $v^2\cdot L$ among those.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\emph{Pointwise persistence.} Fix $g$ and $a,b\in A(g)$, and put $\delta_k\coloneqq v^k\cdot(\ell(g,a)-\ell(g,b))$. Then $w(s)\cdot(\ell(g,a)-\ell(g,b))=\delta_0+s\delta_1+s^2\delta_2$. For small $s>0$ this has the sign of the first nonzero $\delta_k$, and it vanishes identically if all $\delta_k$ vanish.
+
+If $a\in A^3(g)$ and $b\notin A^3(g)$, let $k$ be least with $b\notin A^{k+1}(g)$. Both $a,b$ lie in $A^k(g)$, so $\delta_0=\dots=\delta_{k-1}=0$, and $\delta_k<0$. If $a,b\in A^3(g)$, all $\delta_k=0$. There are finitely many pairs, so some $\sigma(g)>0$ satisfies
+\begin{equation}\label{eq:persist}
+\argmin_{a\in A(g)}w(s)\cdot\ell(g,a)=A^3(g)\qquad(0<s<\sigma(g)).
+\end{equation}
+
+(a) Let $G\coloneqq\{|A^3|\ge2\}$. For $1/m<\bar s$, let $G_m\coloneqq\{g\in G:A^3(g)\subseteq\argmin_{A(g)}w(1/m)\cdot\ell(g,\cdot)\}$. These sets are measurable. By \eqref{eq:persist}, every $g\in G$ lies in $G_m$ for all $m>1/\sigma(g)$. If $G$ were non-null, some $G_m$ with $1/m<\bar s$ would be non-null. On $G_m$, $A_{w'}(g)$ would have at least two members, where $w'\coloneqq w(1/m)/\|w(1/m)\|_1\in\Di$ has the same pointwise minimisers. This contradicts Lemma~\ref{lem:BUpoint}.
+
+(b) Let $s_m\downarrow0$ with $s_m<\bar s$. Let $B_m$ be the unique, coherent $w(s_m)$-Bayes model given by (BU) after normalising. By Lemma~\ref{lem:pointwise}(b), outside one null set $N$, $a_{B_m}(g)\in\argmin_{A(g)}w(s_m)\cdot\ell(g,\cdot)$ for all $m$. For $g\notin N$ with $A^3(g)=\{\lambda(g)\}$, \eqref{eq:persist} gives $a_{B_m}(g)=\lambda(g)$ once $s_m<\sigma(g)$. Thus $1_{B_m}\to1_{X^\lambda}$ a.e., and $\mu(B_m\sd X^\lambda)\to0$ by dominated convergence. Lemma~\ref{lem:cohclosed} applies.
+
+(c) Apply Lemma~\ref{lem:pointwise}(b) three times, and then use (a).
+\end{proof}
+
+\begin{lemma}\label{lem:vertex}
+Under \textup{(G)} and \textup{(BU)}, for each $i$ there is a unique minimiser $V_i$ of $L_i$ on $\M$, and it is coherent.
+\end{lemma}
+
+\begin{proof}
+For a.e.\ $g$, $g_i\ne0$, so world-$i$ rank is a strict total order on the four kinds of advice. By (G), $\ell_i(g,\cdot)$ is then injective on $A(g)$, and $A_{e_i}(g)$ is a singleton. By Lemma~\ref{lem:pointwise}(b), $\M[A_{e_i}]$ is the set of minimisers, and it has one member $V_i$. Apply Lemma~\ref{lem:lex} with $(v^0,v^1,v^2)=(e_i,\one,0)$, so $w(s)=e_i+s\one$. Since $A^1=A_{e_i}$ is already a singleton, $A^3=A^1$ and $X^\lambda=V_i$, which is coherent.
+\end{proof}
+
+\begin{lemma}\label{lem:efficient}
+Assume \textup{(G)} and \textup{(BU)}. Every undominated $x\in\Rr$ has exactly one realising model $X\in\M$, modulo null sets, and $X$ is coherent.
+\end{lemma}
+
+\begin{proof}
+It suffices to find $v^0,v^1,v^2$ as in Lemma~\ref{lem:lex} such that, with $F^0\coloneqq\Rr$ and $F^{k+1}\coloneqq\argmin_{y\in F^k}v^k\cdot y$, we have $x\in F^3$. Indeed, Lemma~\ref{lem:pointwise}(b) gives $F^k=L(\M[A^k])$ by induction. A model $X$ with $L(X)=x$ lies in $\M[A^k]$ and attains $\min_{\M[A^k]}v^k\cdot L$, so it lies in $\M[A^{k+1}]$. Hence $X\in\M[A^3]=\{X^\lambda\}$, which is coherent by Lemma~\ref{lem:lex}.
+
+Let $w$ be given by Lemma~\ref{lem:support}. Since $n=3$, $w$ is interior, or a vertex, or has exactly one zero coordinate.
+
+\emph{Case 1: $w\in\Di$.} Take $(w,0,0)$ with $\bar s=\infty$. Then $x\in F^1=F^2=F^3$.
+
+\emph{Case 2: $w=e_i$.} By Lemma~\ref{lem:vertex}, $F^1=\{L(V_i)\}$, so $x=L(V_i)$. Take $(e_i,\one,0)$.
+
+\emph{Case 3: one zero coordinate.} Relabel the worlds so that $w=(w_1,w_2,0)$ with $w_1,w_2>0$. Let $F\coloneqq F^1=\argmin_{\Rr}w\cdot y$ and $\beta\coloneqq\min_{\Rr}w\cdot y$. Then $F$ is a compact convex face of $\Rr$, and on $F$, $y_2=(\beta-w_1y_1)/w_2$. Let $J\coloneqq\{y_1:y\in F\}=[t_-,t_+]$ and
+\[
+h(t)\coloneqq\min\{y_3:y\in F,\ y_1=t\}\qquad(t\in J).
+\]
+The minimum is attained because the fibre is compact and nonempty. $h$ is convex because $F$ is. Moreover $x_3=h(x_1)$: otherwise some $y\in F$ has $y_1=x_1$ (so $y_2=x_2$) and $y_3<x_3$, and it dominates $x$.
+
+\emph{(3a) $t_-<x_1<t_+$.} A finite convex function on $[t_-,t_+]$ has a finite subgradient at every interior point. For $r<x_1<u$ in $J$, the quotients $(h(x_1)-h(r))/(x_1-r)$ are nondecreasing in $r$ and bounded above by $(h(u)-h(x_1))/(u-x_1)$. So $\lambda\coloneqq\sup_{r<x_1}(h(x_1)-h(r))/(x_1-r)$ is finite, and $h(t)\ge h(x_1)+\lambda(t-x_1)$ on $J$. For $y\in F$, $y_3\ge h(y_1)\ge x_3+\lambda(y_1-x_1)$. So $x$ minimises $v\cdot y$ over $F$, with $v\coloneqq(-\lambda,0,1)$. Take $(w,v,0)$. Then $w(s)=(w_1-\lambda s,\,w_2,\,s)>0$ for $0<s<\bar s\coloneqq w_1/(1+|\lambda|)$, and $x\in F^2=F^3$.
+
+\emph{(3b) $x_1=t_-$} (this includes $t_-=t_+$). Take $(w,e_1,e_3)$, so $w(s)=(w_1+s,\,w_2,\,s^2)>0$ for all $s>0$. Then $F^2=\{y\in F:y_1=t_-\}\ni x$ and $F^3=\{y\in F^2:y_3=h(t_-)\}\ni x$.
+
+\emph{(3c) $x_1=t_+>t_-$.} On $F$, $y_2$ is a strictly decreasing affine function of $y_1$, so $\argmin_Fy_2=\{y\in F:y_1=t_+\}$. Take $(w,e_2,e_3)$, so $w(s)=(w_1,\,w_2+s,\,s^2)>0$. Then $x\in F^2$ and $x\in F^3$, since $x_3=h(t_+)$.
+\end{proof}
+
+\begin{remark}\label{rem:boundary}
+These are the boundary steps of the earlier sketch.
+\begin{enumerate}[leftmargin=*,label=(\roman*)]
+\item \emph{Subgradients.} A finite subgradient is used only at interior points of $J$, where one always exists. At an endpoint, $h$ may have none (for instance $h(t)=-\sqrt{t-t_-}$ near $t_-$). There the supporting line of the projected face may be vertical. A direction $v$ with $v_3=0$ would keep $w+sv$ on the boundary of $\Delta$. Cases (3b) and (3c) avoid this with the second-level weight $e_1$ or $e_2$ and a third-level weight $s^2e_3$ that makes $w(s)$ interior. At a vertex of $\Delta$ no subgradient is needed (Lemma~\ref{lem:vertex}).
+\item \emph{Uniqueness and coherence of directional minimisers.} No uniqueness of $w$-Bayes models at a boundary $w$ is asserted or used. $\M[A_w]$ may contain many models, incoherent ones included. What is unique is the \emph{lexicographic} minimiser of Lemma~\ref{lem:lex}. Its uniqueness comes from (BU) at the interior weights $w(s)$: a pointwise tie would persist, by \eqref{eq:persist}. Its coherence comes from convergence in measure of the interior Bayes models, by \eqref{eq:persist} and Lemma~\ref{lem:cohclosed}.
+\item Cases (3b) and (3c) do not use (G). (G) enters only through Lemma~\ref{lem:vertex}.
+\end{enumerate}
+\end{remark}
+
+\section{A closed competitive selection}\label{sec:selection}
+
+Fix $a_i<\min_{y\in\Rr}y_i$; these exist by Lemma~\ref{lem:R}. For $p\in\Delta$ put
+\[
+Q_p(y)\coloneqq\sum_{i=1}^3p_i(y_i-a_i)^2,\qquad M_p\coloneqq\argmin_{y\in\Rr}Q_p(y).
+\]
+Since $y_i-a_i>0$ on $\Rr$, the map $Q_p$ is monotone there. For $y,z\in\Rr$ with $y\le z$, we have $Q_p(y)\le Q_p(z)$, with strict inequality if $y_i<z_i$ for every $i\in\supp p$.
+
+\begin{lemma}\label{lem:select}
+Assume \textup{(G)} and \textup{(BU)}. For each $p\in\Delta$ define $x(p)$ as follows.
+\begin{enumerate}[leftmargin=*,label=\textup{(\roman*)}]
+\item If $p\in\Di$, then $M_p$ is a single point, and $x(p)$ is that point.
+\item If $\supp p=\{i,j\}$ and $k$ is the omitted world, then $(y_i,y_j)$ is constant on $M_p$, and $x(p)$ is the unique point of $\argmin_{y\in M_p}y_k$.
+\item If $p=e_i$, then $M_p=\{L(V_i)\}$, and $x(p)\coloneqq L(V_i)$.
+\end{enumerate}
+Each $x(p)$ is undominated in $\Rr$, and no $y\in\Rr$ has $y_i<x_i(p)$ for every $i\in\supp p$.
+\end{lemma}
+
+\begin{proof}
+(i) $Q_p$ is strictly convex on $\R^3$, and $\Rr$ is compact and convex. (ii) If $y,y'\in M_p$ differ in $(y_i,y_j)$, then strict convexity of $Q_p$ in these two coordinates gives $Q_p(\tfrac12(y+y'))<\min_\Rr Q_p$, with $\tfrac12(y+y')\in\Rr$, which is impossible. $M_p$ is compact and nonempty, and the points of $\argmin_{M_p}y_k$ agree in all three coordinates. (iii) On $\Rr$, $Q_{e_i}$ is an increasing function of $y_i$, so $M_{e_i}=\argmin_\Rr y_i=L(\argmin_\M L_i)=\{L(V_i)\}$ by Lemma~\ref{lem:vertex}.
+
+If $y\in\Rr$ and $y\le x(p)$, then $Q_p(y)\le Q_p(x(p))$, so $y\in M_p$. In cases (i) and (iii), $y=x(p)$. In case (ii), $(y_i,y_j)=(x_i(p),x_j(p))$ and $y_k\le x_k(p)=\min_{M_p}y_k$, so $y=x(p)$. Finally, $y_i<x_i(p)$ on $\supp p$ would give $Q_p(y)<Q_p(x(p))$.
+\end{proof}
+
+\begin{lemma}\label{lem:lsc}
+Under the assumptions of Lemma~\ref{lem:select}, each coordinate $p\mapsto x_i(p)$ is lower semicontinuous on $\Delta$. Equivalently, every cluster point $z$ of $x(p_m)$, for $p_m\to p$, satisfies $z\ge x(p)$.
+\end{lemma}
+
+\begin{proof}
+Let $p_m\to p$, and let $x(p_m)\to z$ along a subsequence. Such subsequences exist by compactness, and $z\in\Rr$. For every $y\in\Rr$, $Q_{p_m}(x(p_m))\le Q_{p_m}(y)$. Since $(q,y)\mapsto Q_q(y)$ is continuous, $Q_p(z)\le Q_p(y)$, so $z\in M_p$. If $p\in\Di$ or $p$ is a vertex, $M_p$ is a single point and $z=x(p)$. If $\supp p=\{i,j\}$, then $z_i=x_i(p)$, $z_j=x_j(p)$, and $z_k\ge\min_{M_p}y_k=x_k(p)$. Given $i$, choose the subsequence so that $x_i(p_m)\to\liminf_mx_i(p_m)$. Then $\liminf_mx_i(p_m)=z_i\ge x_i(p)$.
+\end{proof}
+
+\noindent The secondary minimisation in (ii) is what makes lower semicontinuity hold at edge indices. Cluster points approaching from the interior lie in $M_p$, agree with $x(p)$ on $\supp p$, and can only be worse in the omitted coordinate. The map $p\mapsto x(p)$ need not be continuous.
+
+\section{Proof of the theorem}\label{sec:proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:ccibu}]
+For $p\in\Delta$, let $C_p$ be the unique model with $L(C_p)=x(p)$ (Lemmas~\ref{lem:select} and~\ref{lem:efficient}). It is coherent by Lemma~\ref{lem:efficient}. It is undominated, because domination in the ranking means $L(Y)\le L(C_p)$ with $L(Y)\ne L(C_p)$, which Lemma~\ref{lem:select} excludes. So $C_p\in\C_L$, and (LA) holds.
+
+\emph{Competitiveness.} The world orders are complete. So $C_p$ fails to be competitive on $\supp p$ iff some $X$ has $L_i(X)<L_i(C_p)$ for every $i\in\supp p$, which Lemma~\ref{lem:select} excludes.
+
+\emph{Closed sections.} For $X\in\M$ and each $i$, $\{p:C_p\preceq_iX\}=\{p:x_i(p)\le L_i(X)\}$, a sublevel set of a lower semicontinuous function (Lemma~\ref{lem:lsc}). So it is closed, and (S) holds.
+
+\emph{(C), and the remaining claims.} If $X$ is undominated, then $L(X)$ is undominated in $\Rr$. By Lemma~\ref{lem:efficient}, $X$ is coherent and is the only model with profile $L(X)$. In particular, a model tied at every world with some $C\in\C_L$ equals $C$, which gives (C). Every undominated model is coherent, so it lies in $\C_L$. By the KKM theorem (write-up, \texttt{thm:kkm}), it is tied with some $C_p$, and hence equals $C_p$.
+\end{proof}
+
+\begin{remark}\label{rem:reindex}
+Every interior Bayes model is selected. If $X$ is $w$-Bayes with $w\in\Di$, put $x\coloneqq L(X)$ and $p_i\propto w_i/(x_i-a_i)$. Then $p\in\Di$ and $\nabla Q_p(x)$ is a positive multiple of $w$. By convexity of $Q_p$ and of $\Rr$, $x$ minimises $Q_p$, so $C_p=X$. The selection index generally differs from the Bayes weight.
+\end{remark}
+
+\section{Where the hypotheses are used}\label{sec:uses}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.33\textwidth}p{0.6\textwidth}@{}}
+\toprule
+Hypothesis or property & Used in\\
+\midrule
+\eqref{eq:D}: $\M$ is all models with advice in $A$ (from splice closure and closure in measure; write-up, \texttt{rem:advicerange}) & Lemma~\ref{lem:pointwise} (evaluability of measurable selections; pointwise Bayes characterisation, which needs splicing a minimiser in on a set); Lemma~\ref{lem:R} (the pure selection $X_s$ is evaluable); Lemma~\ref{lem:lex} ($X^\lambda\in\M$; subdomains $\M[A^k]$)\\
+Nonatomicity of $\mu$ & Lemma~\ref{lem:R} only (bang-bang/Lyapunov step: convexity and closedness of $\Rr$)\\
+Convexity of $\Rr$ & Lemma~\ref{lem:support} (supporting weight); Lemma~\ref{lem:efficient} Case~3 (convexity of $h$); Lemma~\ref{lem:select} (uniqueness of $x(p)$; $(y_i,y_j)$ constant on $M_p$); Remark~\ref{rem:reindex}\\
+Compactness of $\Rr$ & existence of $a_i$, of $\min Q_p$, and of $h$; cluster points in Lemma~\ref{lem:lsc}\\
+Integrable envelope & finiteness of $L$; Lemma~\ref{lem:pointwise}(b); weak-* continuity of $T$ in Lemma~\ref{lem:R}\\
+$\mu$ finite, Lebesgue null sets, symmetric null sets & Lemma~\ref{lem:cohclosed} (boundaries of convex cones are null; dominated convergence); Lemma~\ref{lem:lex}(b); Lemma~\ref{lem:pointwise}(c)\\
+(BU) & Lemmas~\ref{lem:BUpoint} and~\ref{lem:lex}; Case~1 of Lemma~\ref{lem:efficient}\\
+(G) & Lemma~\ref{lem:vertex} only, hence Case~2 of Lemma~\ref{lem:efficient} and the vertex indices of Lemmas~\ref{lem:select} and~\ref{lem:lsc}\\
+$n=3$ & Lemma~\ref{lem:efficient}: a boundary weight is a vertex or omits exactly one world, so the efficient part of a face is the graph of a convex function of one variable. Lemma~\ref{lem:select}(ii): at an edge index exactly one coordinate is free, so the secondary minimiser exists and gives lower semicontinuity\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Not used: (LF); any property of the target; that coherent models never give contradictory advice; the indexing of pairs (any measurable, measure-preserving re-indexing, for example by majority orientation, leaves the statement and the proof unchanged).
+
+\begin{remark}\label{rem:ngeq4}
+Two steps use $n=3$: the case list of Lemma~\ref{lem:efficient} (a boundary weight omits at most one world, so the efficient part of a face is the graph of a convex function of one variable), and the tie-break of Lemma~\ref{lem:select}(ii) (one free coordinate). With two omitted worlds the free part of $M_p$ is a two-dimensional convex set, which need not have a coordinatewise least element, so (ii) has no direct analogue. No claim is made for $n\ge4$.
+\end{remark}
+
+\end{document}

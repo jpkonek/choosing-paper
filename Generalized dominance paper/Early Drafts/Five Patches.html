@@ -1,0 +1,336 @@
+<title>Five Patches</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:wght@500;600&display=swap">
+<style>
+/* Layout: one reading column of figures and their captions, a verdict panel first, a check table last. */
+:root{
+  --bg:#f5f6f8; --panel:#ffffff; --fg:#1a222d; --muted:#586374; --line:#d3d9e1;
+  --w1:#1d6c75;       /* accept g: good at world 1 */
+  --w2:#674d9c;       /* accept -g: good at world 2 */
+  --sil:#e1e5ea;      /* silence */
+  --up:#2c7a4c; --down:#b13b3b;
+  --w1soft:#d6ecee; --w2soft:#e6def4;
+  --f-display:"Spectral", Georgia, "Times New Roman", serif;
+  --f-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#12161c; --panel:#1a2029; --fg:#e5e9ee; --muted:#9ba5b3; --line:#2f3845;
+  --w1:#58b6c0; --w2:#a98fe2; --sil:#353e4b; --up:#62c58e; --down:#e27474;
+  --w1soft:#1d3a3e; --w2soft:#2e2643; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#12161c; --panel:#1a2029; --fg:#e5e9ee; --muted:#9ba5b3; --line:#2f3845;
+  --w1:#58b6c0; --w2:#a98fe2; --sil:#353e4b; --up:#62c58e; --down:#e27474;
+  --w1soft:#1d3a3e; --w2soft:#2e2643; color-scheme:dark }
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+main{max-width:860px;margin:0 auto;padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:40px}
+h1,h2{font-family:var(--f-display);font-weight:600;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:2.3rem}
+h2{font-size:1.45rem}
+p{margin:0;max-width:66ch}
+.lede{color:var(--muted);font-size:1.05rem}
+section{display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.verdict{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.verdict strong{font-weight:600}
+.verdict ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;max-width:66ch}
+figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:520px}
+.fig svg.small{max-width:360px;min-width:280px;margin:0 auto}
+figcaption{color:var(--muted);font-size:.92rem;max-width:70ch}
+code,.m{font-family:var(--f-mono);font-size:.88em}
+.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+tr:last-child td{border-bottom:0}
+td.cell{text-align:center;font-family:var(--f-mono);white-space:nowrap}
+.gain{color:var(--up);font-weight:500}
+.loss{color:var(--down);font-weight:500}
+.dash{color:var(--muted)}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:.72rem;padding:1px 7px;border-radius:3px;border:1px solid var(--line);white-space:nowrap}
+.tag.ok{color:var(--up);border-color:var(--up)}
+.tag.prf{color:var(--w1);border-color:var(--w1)}
+.tag.no{color:var(--down);border-color:var(--down)}
+.key{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.85rem;color:var(--muted)}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:6px}
+</style>
+
+<main>
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div class="eyebrow">Two worlds · coherent interval models · checked 19 October 2026</div>
+    <h1>Five Patches</h1>
+    <p class="lede">Audit's two-world example of non-additive defences, drawn out and checked. The question: does it show, simply and concretely, what it means to generate non-additive comparisons without any global pricing system, and to use incomparability to organise their coexistence and the worlds' defence duties?</p>
+  </header>
+
+  <section class="verdict" aria-labelledby="v">
+    <div class="eyebrow" id="v">Verdict</div>
+    <p><strong>Yes, as an illustration.</strong> Every mathematical claim in the example checks out, once the notation slip audit itself corrected is fixed. Two of the three ideas are shown cleanly; the third only partly.</p>
+    <ul>
+      <li><strong>Non-additive comparisons without prices:</strong> shown. Four licensed comparisons out of two coherent models admit no positive additive prices, and the reason is visible in one line.</li>
+      <li><strong>Incomparability organises coexistence:</strong> shown, and more sharply than audit stated it. Any three of the four licences <em>do</em> have prices. Only all four together don't. Leaving chained comparisons unranked is exactly what keeps the four from colliding.</li>
+      <li><strong>Collective defence duties:</strong> only partly. The example shows the two worlds dividing four specific rivals between them. It does not show a full system: most rivals still have no defender.</li>
+    </ul>
+    <p>The licences are written down by hand. So the example shows what the sought comparisons look like. It does not supply a rule that generates them, which audit names as the missing first component.</p>
+  </section>
+
+  <section aria-labelledby="s1">
+    <div class="eyebrow">1 · The setting</div>
+    <h2 id="s1">Two worlds, two coherent models, five patches</h2>
+    <p>A gamble pays <span class="m">g₁</span> in world 1 and <span class="m">g₂</span> in world 2. The example uses only gambles of the form <span class="m">g = (1−t, −t)</span>, which win in world 1 and lose in world 2. Under probability <span class="m">p</span> for world 1, such a gamble is worth <span class="m">p − t</span>. A coherent model built from an interval <span class="m">[l, u]</span> of values of <span class="m">p</span>:</p>
+    <ul style="margin:0;padding-left:1.2em;max-width:66ch">
+      <li>accepts <span class="m">g</span> when <span class="m">t &lt; l</span>;</li>
+      <li>accepts <span class="m">−g</span> when <span class="m">t &gt; u</span>;</li>
+      <li>is silent in between.</li>
+    </ul>
+    <figure>
+      <div class="fig">
+        <svg class="small" viewBox="0 0 320 300" role="img" aria-label="The mixed quadrant of the gamble plane. The gambles (1−t, −t) lie on a segment from (1,0) to (0,−1), and the five patches a to e sit along it at t equal to 0.30, 0.35, 0.65, 0.70 and 0.72.">
+          <defs><marker id="ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--muted)">
+            <line x1="40" y1="40" x2="300" y2="40" marker-end="url(#ax)"/>
+            <line x1="40" y1="40" x2="40" y2="295" marker-end="url(#ax)"/>
+          </g>
+          <text x="296" y="30" font-size="12" text-anchor="end" fill="currentColor" style="color:var(--muted)">world-1 payoff →</text>
+          <text x="48" y="292" font-size="12" fill="currentColor" style="color:var(--muted)">world-2 payoff ↓ (negative)</text>
+          <line x1="280" y1="40" x2="40" y2="280" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" style="color:var(--muted)"/>
+          <text x="282" y="58" font-size="11" fill="currentColor">t = 0</text>
+          <text x="52" y="270" font-size="11" fill="currentColor">t = 1</text>
+          <!-- A silent on t in [1/4,3/4]: from (220,100) to (100,220); B silent on [2/5,3/5]: (184,136) to (136,184) -->
+          <line x1="220" y1="100" x2="100" y2="220" stroke="var(--sil)" stroke-width="16" stroke-linecap="butt" opacity="0.9"/>
+          <g fill="var(--fg)">
+            <circle cx="208" cy="112" r="4"/><circle cx="196" cy="124" r="4"/>
+            <circle cx="124" cy="196" r="4"/><circle cx="112" cy="208" r="4"/><circle cx="107.2" cy="212.8" r="4"/>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--fg)">
+            <text x="216" y="110">a</text><text x="204" y="122">b</text>
+            <text x="132" y="194">c</text><text x="120" y="206">d</text><text x="92" y="228">e</text>
+          </g>
+          <text x="228" y="132" font-size="11" fill="currentColor" style="color:var(--muted)">grey band: where A is silent</text>
+        </svg>
+      </div>
+      <figcaption>Figure 1. Every gamble in the example lies on one segment of the mixed quadrant: good in world 1, bad in world 2. The five patches are small wedges of gambles around five values of <span class="m">t</span>. Each has positive measure, so the null-set convention is respected.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 720 250" role="img" aria-label="Advice of A, the interval one quarter to three quarters, and B, two fifths to three fifths, along t from 0 to 1. A is silent on all five patches. B accepts g on a and b and accepts minus g on c, d and e.">
+          <g font-size="12" fill="currentColor">
+            <text x="10" y="74" font-weight="600">A</text><text x="24" y="74" style="color:var(--muted)">[¼, ¾]</text>
+            <text x="10" y="134" font-weight="600">B</text><text x="24" y="134" style="color:var(--muted)">[⅖, ⅗]</text>
+          </g>
+          <!-- x = 90 + 600 t -->
+          <rect x="90" y="56" width="150" height="26" fill="var(--w1soft)" stroke="var(--w1)"/>
+          <rect x="240" y="56" width="300" height="26" fill="var(--sil)" stroke="var(--line)"/>
+          <rect x="540" y="56" width="150" height="26" fill="var(--w2soft)" stroke="var(--w2)"/>
+          <rect x="90" y="116" width="240" height="26" fill="var(--w1soft)" stroke="var(--w1)"/>
+          <rect x="330" y="116" width="120" height="26" fill="var(--sil)" stroke="var(--line)"/>
+          <rect x="450" y="116" width="240" height="26" fill="var(--w2soft)" stroke="var(--w2)"/>
+          <g font-size="11" text-anchor="middle">
+            <text x="165" y="73" fill="var(--w1)">accepts g</text><text x="390" y="73" fill="currentColor">silent</text><text x="615" y="73" fill="var(--w2)">accepts −g</text>
+            <text x="210" y="133" fill="var(--w1)">accepts g</text><text x="390" y="133" fill="currentColor">silent</text><text x="570" y="133" fill="var(--w2)">accepts −g</text>
+          </g>
+          <!-- patches at t=.30 .35 .65 .70 .72 -> x 270 300 480 510 522 -->
+          <g stroke="var(--fg)" stroke-width="1.4" stroke-dasharray="3 3">
+            <line x1="270" y1="44" x2="270" y2="176"/><line x1="300" y1="44" x2="300" y2="176"/>
+            <line x1="480" y1="44" x2="480" y2="176"/><line x1="510" y1="44" x2="510" y2="176"/><line x1="522" y1="44" x2="522" y2="176"/>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="13" text-anchor="middle" fill="var(--fg)">
+            <text x="270" y="38">a</text><text x="300" y="38">b</text><text x="480" y="38">c</text><text x="507" y="38">d</text><text x="526" y="38">e</text>
+          </g>
+          <line x1="90" y1="196" x2="690" y2="196" stroke="currentColor" style="color:var(--muted)"/>
+          <g font-size="11" text-anchor="middle" fill="currentColor" style="color:var(--muted)">
+            <line x1="90" y1="192" x2="90" y2="200" stroke="currentColor"/><text x="90" y="216">0</text>
+            <line x1="240" y1="192" x2="240" y2="200" stroke="currentColor"/><text x="240" y="216">¼</text>
+            <line x1="330" y1="192" x2="330" y2="200" stroke="currentColor"/><text x="330" y="216">⅖</text>
+            <line x1="450" y1="192" x2="450" y2="200" stroke="currentColor"/><text x="450" y="216">⅗</text>
+            <line x1="540" y1="192" x2="540" y2="200" stroke="currentColor"/><text x="540" y="216">¾</text>
+            <line x1="690" y1="192" x2="690" y2="200" stroke="currentColor"/><text x="690" y="216">1</text>
+            <text x="390" y="240">t  (the gamble is g = (1−t, −t))</text>
+          </g>
+        </svg>
+      </div>
+      <div class="key"><span><span class="sw" style="background:var(--w1soft);border:1px solid var(--w1)"></span>accepts g: good advice at world 1, bad at world 2</span><span><span class="sw" style="background:var(--sil)"></span>silent</span><span><span class="sw" style="background:var(--w2soft);border:1px solid var(--w2)"></span>accepts −g: bad at world 1, good at world 2</span></div>
+      <figcaption>Figure 2. A (wide interval) is silent on all five patches. B (narrow interval) gives good world-1 advice on a and b, and bad world-1 advice on c, d and e. The two models are nested: B makes every recommendation A makes, and more. Checked exactly, with each patch taken as <span class="m">t ± 1/100</span>.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s2">
+    <div class="eyebrow">2 · The licences</div>
+    <h2 id="s2">Four comparisons world 1 accepts outright</h2>
+    <p>Each row is a rival that changes the base model on a few patches and agrees with it everywhere else. World 1 declares the base no worse than the rival. These are whole-pattern licences: no prices justify them, and combining two rows is not automatically licensed.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Licence</th><th>Base</th><th>Rival</th><th style="text-align:center">a</th><th style="text-align:center">b</th><th style="text-align:center">c</th><th style="text-align:center">d</th><th style="text-align:center">e</th><th>World-1 judgement</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>A</td><td class="m">A ∪ a ∪ (−c)</td><td class="cell gain">silent→good</td><td class="cell dash">·</td><td class="cell loss">silent→bad</td><td class="cell dash">·</td><td class="cell dash">·</td><td>avoiding bad advice on c outweighs gaining good advice on a</td></tr>
+          <tr><td>2</td><td>B</td><td class="m">B ∖ (b ∪ −c)</td><td class="cell dash">·</td><td class="cell loss">good→silent</td><td class="cell gain">bad→silent</td><td class="cell dash">·</td><td class="cell dash">·</td><td>keeping good advice on b outweighs dropping bad advice on c</td></tr>
+          <tr><td>3</td><td>A</td><td class="m">A ∪ b ∪ (−d)</td><td class="cell dash">·</td><td class="cell gain">silent→good</td><td class="cell dash">·</td><td class="cell loss">silent→bad</td><td class="cell dash">·</td><td>avoiding bad advice on d outweighs gaining good advice on b</td></tr>
+          <tr><td>4</td><td>B</td><td class="m">B ∖ (a ∪ −d ∪ −e)</td><td class="cell loss">good→silent</td><td class="cell dash">·</td><td class="cell dash">·</td><td class="cell gain">bad→silent</td><td class="cell gain">bad→silent</td><td>keeping good advice on a outweighs dropping bad advice on d and e</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figcaption>Table 1. Green marks where the rival improves on the base at world 1, red where it gets worse. At world 2 every change has the opposite effect. Each change is one step of the advice ladder. Row 1 corrects audit's first table: the rival is <span class="m">A ∪ a ∪ (−c)</span>. Taking <span class="m">A ∪ a ∪ c</span> would be a pure improvement at world 1, which world 1 could never reject.</figcaption>
+  </section>
+
+  <section aria-labelledby="s3">
+    <div class="eyebrow">3 · Why no prices work</div>
+    <h2 id="s3">The error goes once round a loop, and a little leaks out</h2>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 560 320" role="img" aria-label="A loop a to c to b to d and back to a. Each licence moves an error one step round the loop. Licence 4 also removes the error on e. Positive prices would need w_c ≥ w_a, w_b ≥ w_c, w_d ≥ w_b and w_a ≥ w_d + w_e, which is impossible.">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="16" text-anchor="middle">
+            <circle cx="170" cy="80" r="24" fill="var(--panel)" stroke="var(--fg)" stroke-width="1.5"/><text x="170" y="86" fill="var(--fg)">a</text>
+            <circle cx="430" cy="80" r="24" fill="var(--panel)" stroke="var(--fg)" stroke-width="1.5"/><text x="430" y="86" fill="var(--fg)">c</text>
+            <circle cx="430" cy="240" r="24" fill="var(--panel)" stroke="var(--fg)" stroke-width="1.5"/><text x="430" y="246" fill="var(--fg)">b</text>
+            <circle cx="170" cy="240" r="24" fill="var(--panel)" stroke="var(--fg)" stroke-width="1.5"/><text x="170" y="246" fill="var(--fg)">d</text>
+            <circle cx="50" cy="160" r="22" fill="var(--panel)" stroke="var(--up)" stroke-width="1.5"/><text x="50" y="166" fill="var(--up)">e</text>
+          </g>
+          <g stroke="currentColor" stroke-width="1.6" fill="none" style="color:var(--fg)">
+            <line x1="196" y1="80" x2="402" y2="80" marker-end="url(#ar)"/>
+            <line x1="430" y1="106" x2="430" y2="212" marker-end="url(#ar)"/>
+            <line x1="404" y1="240" x2="198" y2="240" marker-end="url(#ar)"/>
+            <line x1="170" y1="214" x2="170" y2="108" marker-end="url(#ar)"/>
+          </g>
+          <line x1="72" y1="160" x2="158" y2="160" stroke="var(--up)" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <g font-size="12" fill="currentColor">
+            <text x="300" y="68" text-anchor="middle" font-weight="600">licence 1</text>
+            <text x="300" y="100" text-anchor="middle" font-family="IBM Plex Mono, monospace">w_c ≥ w_a</text>
+            <text x="444" y="156" font-weight="600">licence 2</text>
+            <text x="444" y="174" font-family="IBM Plex Mono, monospace">w_b ≥ w_c</text>
+            <text x="300" y="228" text-anchor="middle" font-weight="600">licence 3</text>
+            <text x="300" y="262" text-anchor="middle" font-family="IBM Plex Mono, monospace">w_d ≥ w_b</text>
+            <text x="186" y="152" font-weight="600">licence 4</text>
+            <text x="186" y="170" font-family="IBM Plex Mono, monospace">w_a ≥ w_d + w_e</text>
+            <text x="50" y="200" text-anchor="middle" fill="var(--up)">error on e</text>
+            <text x="50" y="215" text-anchor="middle" fill="var(--up)">removed</text>
+          </g>
+          <text x="280" y="305" font-size="12" text-anchor="middle" fill="currentColor" style="color:var(--muted)">Chaining the four: w_a ≥ w_d + w_e ≥ w_b + w_e ≥ w_c + w_e ≥ w_a + w_e, impossible when w_e &gt; 0.</text>
+        </svg>
+      </div>
+      <figcaption>Figure 3. Read each licence as "the base's error is no worse than the rival's". Licence 1 moves an error from a to c, licence 2 from c to b, licence 3 from b to d, and licence 4 from d back to a, while also removing the error on e. Additive prices would have to rise weakly round the loop and then fall by the price of e. Equivalently, adding the four changes cancels everything on a to d and leaves a pure improvement on e. Since the cancellation is problem by problem, prices that vary within a patch fail too.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s4">
+    <div class="eyebrow">4 · How incomparability makes room</div>
+    <h2 id="s4">Every three licences can be priced; all four cannot</h2>
+    <p>This is where incomparability does its work. Choose any three of the four licences: some positive prices endorse them strictly. Only the full set has no prices. A ranking that installed every chained comparison would run the four licences end to end and conclude that a model is no worse than a strict improvement of itself. Leaving those chains unranked avoids that. The three-model no-reversal condition only forbids short loops, and no short loop exists.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Licences kept</th><th>Prices that endorse all three strictly (w_a, w_b, w_c, w_d, w_e)</th></tr></thead>
+        <tbody>
+          <tr><td>1, 2, 3</td><td class="m">1, 3, 2, 4, 1</td></tr>
+          <tr><td>2, 3, 4</td><td class="m">5, 2, 1, 3, 1</td></tr>
+          <tr><td>1, 3, 4</td><td class="m">4, 1, 5, 2, 1</td></tr>
+          <tr><td>1, 2, 4</td><td class="m">3, 5, 4, 1, 1</td></tr>
+          <tr><td>1, 2, 3, 4</td><td><span class="tag no">none exist</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 820 230" role="img" aria-label="A chain of five models joined by the four licences, each no worse than the next. The last model is a strict improvement of the first, so the shortest strict loop has five steps.">
+          <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" fill="currentColor" style="color:var(--muted)">
+            <text x="20" y="28" text-anchor="start">patch:</text>
+          </g>
+          <!-- five models, cells 22 wide at x0+ (0..4)*24, y=40 -->
+          <g id="models" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle">
+            <!-- model 1: s g s s b -->
+            <g transform="translate(20,40)">
+              <rect x="0" y="0" width="22" height="22" fill="var(--sil)"/><rect x="24" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="48" y="0" width="22" height="22" fill="var(--sil)"/><rect x="72" y="0" width="22" height="22" fill="var(--sil)"/><rect x="96" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/>
+              <g fill="var(--fg)"><text x="11" y="15">s</text><text x="35" y="15">g</text><text x="59" y="15">s</text><text x="83" y="15">s</text><text x="107" y="15">b</text></g>
+              <g fill="var(--muted)"><text x="11" y="-6">a</text><text x="35" y="-6">b</text><text x="59" y="-6">c</text><text x="83" y="-6">d</text><text x="107" y="-6">e</text></g>
+            </g>
+            <!-- model 2: g g b s b -->
+            <g transform="translate(185,40)">
+              <rect x="0" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="24" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="48" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/><rect x="72" y="0" width="22" height="22" fill="var(--sil)"/><rect x="96" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/>
+              <g fill="var(--fg)"><text x="11" y="15">g</text><text x="35" y="15">g</text><text x="59" y="15">b</text><text x="83" y="15">s</text><text x="107" y="15">b</text></g>
+            </g>
+            <!-- model 3: g s s s b -->
+            <g transform="translate(350,40)">
+              <rect x="0" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="24" y="0" width="22" height="22" fill="var(--sil)"/><rect x="48" y="0" width="22" height="22" fill="var(--sil)"/><rect x="72" y="0" width="22" height="22" fill="var(--sil)"/><rect x="96" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/>
+              <g fill="var(--fg)"><text x="11" y="15">g</text><text x="35" y="15">s</text><text x="59" y="15">s</text><text x="83" y="15">s</text><text x="107" y="15">b</text></g>
+            </g>
+            <!-- model 4: g g s b b -->
+            <g transform="translate(515,40)">
+              <rect x="0" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="24" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="48" y="0" width="22" height="22" fill="var(--sil)"/><rect x="72" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/><rect x="96" y="0" width="22" height="22" fill="var(--w2soft)" stroke="var(--w2)"/>
+              <g fill="var(--fg)"><text x="11" y="15">g</text><text x="35" y="15">g</text><text x="59" y="15">s</text><text x="83" y="15">b</text><text x="107" y="15">b</text></g>
+            </g>
+            <!-- model 5: s g s s s -->
+            <g transform="translate(680,40)">
+              <rect x="0" y="0" width="22" height="22" fill="var(--sil)"/><rect x="24" y="0" width="22" height="22" fill="var(--w1soft)" stroke="var(--w1)"/><rect x="48" y="0" width="22" height="22" fill="var(--sil)"/><rect x="72" y="0" width="22" height="22" fill="var(--sil)"/><rect x="96" y="0" width="22" height="22" fill="var(--sil)"/>
+              <g fill="var(--fg)"><text x="11" y="15">s</text><text x="35" y="15">g</text><text x="59" y="15">s</text><text x="83" y="15">s</text><text x="107" y="15">s</text></g>
+            </g>
+          </g>
+          <g stroke="currentColor" stroke-width="1.5" fill="none" style="color:var(--fg)">
+            <line x1="142" y1="51" x2="181" y2="51" marker-end="url(#ar2)"/>
+            <line x1="307" y1="51" x2="346" y2="51" marker-end="url(#ar2)"/>
+            <line x1="472" y1="51" x2="511" y2="51" marker-end="url(#ar2)"/>
+            <line x1="637" y1="51" x2="676" y2="51" marker-end="url(#ar2)"/>
+          </g>
+          <g font-size="11" text-anchor="middle" fill="currentColor">
+            <text x="162" y="86">lic. 1</text><text x="327" y="86">lic. 2</text><text x="492" y="86">lic. 3</text><text x="657" y="86">lic. 4</text>
+          </g>
+          <path d="M 739 70 C 739 170, 79 170, 79 70" fill="none" stroke="var(--up)" stroke-width="1.6" stroke-dasharray="6 4" marker-end="url(#ar2)" style="color:var(--up)"/>
+          <text x="409" y="160" font-size="12" text-anchor="middle" fill="var(--up)">last model is strictly better than the first (it improves e and changes nothing else)</text>
+          <text x="409" y="200" font-size="12" text-anchor="middle" fill="currentColor" style="color:var(--muted)">→ means "no worse than, at world 1". The shortest strict loop has five steps; the no-reversal condition forbids only three.</text>
+        </svg>
+      </div>
+      <figcaption>Figure 4. The four licences chained on concrete five-patch models: g = good at world 1, s = silent, b = bad at world 1. This loop is the price of the example. It is allowed under the three-model no-reversal condition. A ranking that installed every chain, as transitivity requires, could not contain it.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s5">
+    <div class="eyebrow">5 · Who defends what</div>
+    <h2 id="s5">The worlds split the rivals, and many are left over</h2>
+    <p>World 2 makes only guidance comparisons. Each of the four licensed rivals improves world 2 on one patch and worsens it on another, so world 2 leaves them unranked, and world 1 alone defends against them. A one-sided rival goes the other way. For example, A with good advice added on a is better at world 1 and worse at world 2, so world 2 defends A against it.</p>
+    <figure>
+      <div class="fig">
+        <svg viewBox="0 0 720 150" role="img" aria-label="Of the 1023 rivals that differ from A only on the five patches: 568 have no defender, 213 are defended by world 1 only, 211 by world 2 only, and 31 by both.">
+          <!-- scale: 1023 -> 640px, x0=40 -->
+          <g font-size="12">
+            <rect x="40" y="40" width="355.4" height="34" fill="var(--sil)" stroke="var(--line)"/>
+            <rect x="395.4" y="40" width="133.3" height="34" fill="var(--w1soft)" stroke="var(--w1)"/>
+            <rect x="528.7" y="40" width="132.0" height="34" fill="var(--w2soft)" stroke="var(--w2)"/>
+            <rect x="660.7" y="40" width="19.4" height="34" fill="var(--fg)" opacity="0.35"/>
+            <text x="217.7" y="62" text-anchor="middle" fill="var(--fg)" font-weight="600">568 · no defender</text>
+            <text x="462" y="62" text-anchor="middle" fill="var(--w1)">213 · world 1</text>
+            <text x="594.7" y="62" text-anchor="middle" fill="var(--w2)">211 · world 2</text>
+            <text x="670.4" y="96" text-anchor="middle" fill="currentColor" style="color:var(--muted)">31 · both</text>
+            <text x="40" y="28" fill="currentColor" style="color:var(--muted)">Rivals of A that differ only on the five patches (1,023, contradictory advice included)</text>
+            <text x="40" y="126" fill="currentColor" style="color:var(--muted)">World 1: guidance plus the four licences. World 2: guidance only. Counts exact.</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>Figure 5. The division of labour is real but incomplete. More than half the rivals of A that live on these five patches have no defender in either world. The licences settle four of them. The remaining problem is to choose further comparisons so that every rival of every selected model is answered, with closed sections and still no short reversals. The example makes that problem visible; it does not solve it.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s6">
+    <div class="eyebrow">6 · Check list</div>
+    <h2 id="s6">What was verified</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Claim</th><th>Status</th><th>How</th></tr></thead>
+        <tbody>
+          <tr><td>A is silent on all five patches; B accepts g on a, b and −g on c, d, e</td><td><span class="tag ok">CHECKED</span></td><td>Exact rational arithmetic, each patch taken as t ± 1/100</td></tr>
+          <tr><td>No positive additive prices endorse the four licences, even with prices varying inside patches</td><td><span class="tag prf">PROVED</span></td><td>The four changes cancel problem by problem except for an improvement on e (Figure 3)</td></tr>
+          <tr><td>Independence: each verdict depends only on what changes</td><td><span class="tag prf">PROVED</span></td><td>By construction: licences are defined by their change records</td></tr>
+          <tr><td>Strict guidance; no ties between distinct models</td><td><span class="tag ok">CHECKED</span></td><td>Every pair among the 1,024 five-patch models, with all four kinds of advice</td></tr>
+          <tr><td>No three-model reversal at world 1</td><td><span class="tag ok">CHECKED</span> <span class="tag prf">PROVED</span></td><td>Exhaustive over all chains of the 1,024 models. In general: any closed loop of three steps uses at most three licences, and those have strictly endorsing prices (§4). The same argument covers equal-measure sub-patches</td></tr>
+          <tr><td>The shortest strict loop has five steps</td><td><span class="tag ok">CHECKED</span></td><td>Search over loops of length 2 to 5 (Figure 4)</td></tr>
+          <tr><td>World 2 leaves all four licensed rivals unranked; world 1 alone defends</td><td><span class="tag ok">CHECKED</span></td><td>Direct evaluation</td></tr>
+          <tr><td>A and B are undominated in the two relations</td><td><span class="tag ok">CHECKED</span></td><td>Over all rivals on the five patches. Off the patches only guidance applies, and no pointwise change beats a coherent model at both worlds</td></tr>
+          <tr><td>Every rival of every selected model has a defender; closed sections</td><td><span class="tag no">NOT SHOWN</span></td><td>Audit says so too; 568 of A's five-patch rivals are undefended (Figure 5)</td></tr>
+          <tr><td>A rule that generates such licences, not stipulated ones</td><td><span class="tag no">NOT SHOWN</span></td><td>The "source" component audit names as still missing</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem">Scope: the exact checks treat each patch as a single block of problems and allow all four kinds of advice on it. The general statements rely on the short price argument in §4, not on the enumeration.</p>
+  </section>
+</main>

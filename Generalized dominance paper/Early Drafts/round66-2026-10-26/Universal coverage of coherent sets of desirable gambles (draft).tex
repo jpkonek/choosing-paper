@@ -1,0 +1,1995 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\SR}{\mathcal{S}}
+\newcommand{\Acc}{\mathrm{Acc}}
+\newcommand{\hull}{\operatorname{hull}}
+\newcommand{\Rp}{\R^n_{+}}
+\newcommand{\Rpp}{\inter\R^n_{+}}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\rbd}{rbd}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\inter}{int}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{Universal coverage of coherent sets of desirable gambles}
+\author{Jason Konek}
+\date{Draft, 26 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Fix a one-sided domain $U=D_{K'}$ of gambles. A model is a set of gambles in $U$, and a
+ranking assigns to each world a reflexive relation on models. We define a ranking by a
+single rule. At world $\omega$, a model $X$ does at least as well as a model $Y$ if the
+change from $Y$ to $X$ is guided by the truth at $\omega$, or if the change strictly
+improves the Brier score at $\omega$ and cannot be applied to any coherent model. The
+second condition has an explicit form: the gambles that the change adds meet, in positive
+measure, the smallest coherent model containing the gambles that it removes. The ranking is
+strictly guided by the truth, compares models only where they differ, satisfies
+finite-chain consistency and disjoint additivity, and has no nontrivial ties. No coherent
+model has a weak dominator other than itself, and a model dominates another exactly when
+the change between them is safe and improves the Brier score at every world. The main
+geometric result is that every incoherent model $X$ is improved in Brier score, by a
+positive margin at every world, by a coherent model $N$ whose additions are implied by its
+removals: the smallest coherent model containing $X\setminus N$ is the smallest coherent
+model containing $X$, and it contains $N$. The proof optimises within this coherent hull by
+a minimax argument and then shrinks the optimiser; a contraction argument shows that the
+shrinking preserves the hull. Consequently the undominated models are exactly the coherent
+models on $U$, and every incoherent model is strictly dominated by a coherent one. With
+finitely many worlds, the ranking covers exactly the full-dimensional credal sets $K$ with
+$K'\subseteq\relint K$, which are all the credal sets that any ranking covers on $U$;
+every coherent model on $U$ is undominated, including $D_K$ for lower-dimensional $K$, and
+what such $K$ lack on a one-sided domain is local freedom. The results extend to any set
+of worlds and any separable, norm-closed space of bounded gambles containing the
+constants, given a measure on gambles with a finite first moment, null indifference
+boundaries and full support; Lyapunov's theorem is replaced by a relaxation used only
+inside the proof. There the ranking is again a universal cover on $U$, the covered credal
+sets are characterised by a positivity condition, contamination models $(1-\varepsilon)
+\{p\}+\varepsilon S$ with $\varepsilon>0$ on $C(\Omega)$ are covered, and, when the space
+of gambles is infinite-dimensional, precise and finitely generated targets are not covered
+on any one-sided domain. We isolate the argument as an abstract construction lemma. The
+ranking refers to coherence in its definition: it represents the coherent models as the
+undominated ones, and does not derive coherence from accuracy considerations specified
+independently of coherence.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+A model is a set of gambles, the gambles it accepts. A ranking compares models at each
+world. A ranking \emph{covers} a credal set $K$ if it is guided by the truth, compares
+models only where they differ, makes every undominated model coherent, is closed under
+ties with undominated coherent models, makes every incoherent model dominated by a coherent
+undominated one, accepts $D_K$ as a model and leaves it undominated, and lives on a domain
+that leaves $D_K$ free to vary near its boundary (Definition~\ref{def:cover} lists the
+exact requirements). The relations are required to be reflexive and to satisfy
+the acyclicity condition (TC) below; transitivity and completeness are not required.
+
+This note shows that, on a fixed one-sided domain $U=D_{K'}$, a single ranking makes the
+undominated models exactly the coherent models on $U$ (Theorem~\ref{thm:main}). The
+ranking has one rule (Definition~\ref{def:SI}). At world $i$ it accepts a comparison of
+$X$ over $Y$ if the change from $Y$ to $X$ is guided by the truth at $i$, or if the change
+strictly improves the Brier score at $i$ and is \emph{safe}: it cannot be applied to any
+coherent model. Every accepted nontrivial comparison strictly improves one real score at
+its world, which gives acyclicity at once (Proposition~\ref{prop:structure}). A change out
+of a coherent model can always be applied to that model, so it is accepted only as
+guidance, and guidance alone cannot weakly dominate a coherent model; this protects every
+coherent model (Corollary~\ref{cor:protect}). What remains is to show that every
+incoherent model is improved, at every world, by a safe change to a coherent model.
+
+This is Theorem~\ref{thm:H}, and its proof has two steps. Let $X$ be incoherent, and let
+$\hull(X)$ be the smallest coherent model containing $X$. First, a minimax argument over
+the Brier moments of the subsets of $\hull(X)$ yields a coherent model $N_0\subseteq
+\hull(X)$ that improves on $X$ by a positive margin at every world. Second, $N_0$ is
+shrunk slightly, to a coherent model $N$, so that the gambles $X\setminus N$ that the
+change from $X$ to $N$ removes still generate all of $\hull(X)$:
+\[
+  \hull(X\setminus N)=\hull(X)\supseteq N .
+\]
+This identity is proved by a contraction argument (Lemma~\ref{lem:contraction} and
+Proposition~\ref{prop:shrink}). It says that every gamble the change adds is already
+implied, by coherence, by the gambles the change removes: a coherent model that accepts
+the removed gambles accepts the added ones too. So the change cannot be applied to any
+coherent model, and the ranking accepts it, strictly, at every world.
+Section~\ref{sec:abstract} separates this argument into an abstract construction lemma and
+the geometric repair theorem.
+
+Section~\ref{sec:infinite} extends the results to an arbitrary set of worlds $\Omega$ and a
+separable, norm-closed space $E$ of bounded gambles containing the constants. The measure
+now lives on $E$; it needs a finite first moment, null indifference boundaries and, for
+the coverage results, full support, and Lemma~\ref{lem:measure} constructs one. Lyapunov's theorem is replaced by a relaxation:
+acceptance sets are temporarily allowed to accept gambles with a weight between $0$ and
+$1$, the minimax theorem is applied to the relaxed choices, and uniqueness of the optimal
+choice returns an ordinary model (Theorem~\ref{thm:Hinf}). The contraction argument is
+unchanged. The safe-improvement ranking again makes the undominated models exactly the
+coherent ones (Theorem~\ref{thm:inf-main}) and is a universal cover on $U$; the covered
+credal sets are characterised by a positivity condition that replaces ``full-dimensional
+with $K'$ in the relative interior'' (Theorem~\ref{thm:inf-cover}). Contamination models
+with $\varepsilon>0$ on $C(\Omega)$ are covered (Proposition~\ref{prop:contamination}),
+while, when $E$ is infinite-dimensional, precise and finitely generated targets are not
+covered on any one-sided domain. Section~\ref{sec:scope} records the scope
+of the results.
+
+\section{Setting and framework}\label{sec:framework}
+
+\subsection{Gambles, credal sets and the measure}
+
+Let $\Omega=\{1,\dots,n\}$ with $n\ge2$. A \emph{gamble} is a vector $h\in\R^n$; $h_i$ is
+its payoff at world $i$. Write $e_1,\dots,e_n$ for the standard basis, $\one\coloneqq
+(1,\dots,1)$, $\Delta\coloneqq\{m\in\Rp:\one\cdot m=1\}$ for the simplex and
+$\aff\Delta\coloneqq\{m:\one\cdot m=1\}$. For $C\subseteq\aff\Delta$, $\relint C$ is the interior
+of $C$ relative to $\aff\Delta$ and $\rbd C\coloneqq C\setminus\relint C$. A
+\emph{credal set} is a nonempty closed convex subset of $\Delta$; it is
+\emph{full-dimensional} if $\relint K\neq\emptyset$. For $S\subseteq\R^n$, $\cone S$ is
+the set of finite non-negative combinations of points of $S$, with $\cone\emptyset=\{0\}$.
+We write $x\gg0$ if $x\in\Rpp$, that is, if every coordinate of $x$ is positive.
+
+For $S\subseteq\Delta$ define
+\[
+  D_S\coloneqq\{h\in\R^n: q\cdot h>0\text{ for all }q\in S\},\qquad
+  C_S\coloneqq\{h\in\R^n: q\cdot h\ge0\text{ for all }q\in S\},
+\]
+with $D_\emptyset=C_\emptyset\coloneqq\R^n$, and, for nonempty compact $S$,
+$P_S(h)\coloneqq\min_{q\in S}q\cdot h$. Note that $D_\Delta=\Rpp$.
+
+\begin{itemize}
+  \item[(M)] $\mu$ is a finite Borel measure on $\R^n$ with the same null sets as Lebesgue
+  measure, and $\int|h|\,d\mu(h)<\infty$.
+\end{itemize}
+Throughout, $\mu$ satisfies (M). Equalities and inclusions between sets of gambles hold
+\emph{almost everywhere} (a.e.) if they hold up to a $\mu$-null set. Every hyperplane and
+every sphere is null, a nonempty open set is never null, and $\mu$ is non-atomic. For
+measurable $X$ put
+\[
+  m(X)\coloneqq\int_Xh\,d\mu(h)\in\R^n,\qquad m_i(X)\coloneqq\int_Xh_i\,d\mu(h).
+\]
+For measurable $E$, $E_d$ denotes the set of Lebesgue density points of $E$. By the
+Lebesgue density theorem $E\setminus E_d$ is null, and by (M), $\mu(E\cap V)>0$ for every
+open ball $V$ centred at a point of $E_d$.
+
+\begin{lemma}\label{lem:D}
+Let $S,S_1,S_2\subseteq\Delta$ be nonempty and compact.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_S$ is an open convex cone containing $\Rpp$, and $D_S\cap(-D_S)=\emptyset$.
+  Moreover $D_S=D_{\conv S}$ and $D_{S_1}\cap D_{S_2}=D_{S_1\cup S_2}$.
+  \item $P_S(h+t\one)=P_S(h)+t$ for $t\in\R$. The boundary $\partial D_S$ is contained in
+  $\{P_S=0\}$, and $\{P_S=0\}$ is null.
+  \item If $S_1,S_2$ are convex and $D_{S_1}\subseteq D_{S_2}$, then $S_2\subseteq S_1$.
+  \item If $O$ is open and $O\subseteq D_S$ a.e., then $O\subseteq D_S$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $|P_S(h)-P_S(h')|\le\max_j|h_j-h'_j|$ because $S\subseteq\Delta$, so $D_S=\{P_S>0\}$
+is open. Convexity, the cone property and $\Rpp\subseteq D_S$ are immediate, and $q\cdot
+h>0$, $q\cdot(-h)>0$ cannot both hold. A linear function has the same minimum over $S$
+and over $\conv S$. The last identity is the definition.
+(b) The identity holds because $q\cdot\one=1$ for $q\in\Delta$. If $P_S(h)<0$ then $h$
+has a neighbourhood outside $D_S$; if $P_S(h)=0$ then $h+t\one\in D_S$ for $t>0$ and
+$h\notin D_S$. So $\partial D_S\subseteq\{P_S=0\}$. Write $h=y+t\one$ with $y\in
+\one^\perp$, a linear change of coordinates. Then $\{P_S=0\}=\{y-P_S(y)\one:y\in
+\one^\perp\}$ meets each line $y+\R\one$ in one point, so it is Lebesgue-null by Fubini's
+theorem, and $\mu$-null by (M).
+(c) Suppose $k\in S_2\setminus S_1$. Strict separation of $k$ from $S_1$ gives $g\in\R^n$
+and $c\in\R$ with $g\cdot q>c>g\cdot k$ for all $q\in S_1$. Put $h\coloneqq g-c\one$. Then
+$q\cdot h>0$ on $S_1$ and $k\cdot h<0$, so $h\in D_{S_1}\setminus D_{S_2}$.
+(d) The open set $O\cap\{P_S<0\}$ is null, hence empty. If $h\in O$, then $h-\varepsilon
+\one\in O$ for some $\varepsilon>0$, so $P_S(h)-\varepsilon\ge0$ by (b), and $h\in D_S$.
+\end{proof}
+
+\subsection{Models, coherence and the coherent hull}
+
+A \emph{domain} is a measurable set $U\subseteq\R^n$. The \emph{models} on $U$ are the
+measurable sets $X\subseteq U$, identified when they agree a.e.; their class is $\M_U$.
+A model $X$ \emph{accepts} $h$ if $h\in X$. At world $i$, accepting $h$ is \emph{correct}
+if $h_i>0$ and \emph{wrong} if $h_i<0$. A model $X$ is \emph{coherent} if $X=D_Q$ a.e.\
+for some credal set $Q$. If $D_{Q_1}=D_{Q_2}$ a.e., Lemma~\ref{lem:D}(d) gives $D_{Q_1}=
+D_{Q_2}$, and Lemma~\ref{lem:D}(c) gives $Q_1=Q_2$; so $Q$ is unique. We call $U$
+\emph{one-sided} if $U\cap(-U)$ is null. This usage differs from that of \cite{KCM},
+where ``one-sided'' means $U\cap(-U)=\emptyset$ and ``essentially one-sided'' means that
+$U\cap(-U)$ contains no non-null set of gambles with a positive and a negative coordinate;
+our condition lies between the two.
+
+\smallskip\noindent\textbf{Standing assumption.} Except where a general domain is
+mentioned explicitly, $K'\subseteq\Delta$ is nonempty, compact and convex, and
+$U\coloneqq D_{K'}$. By Lemma~\ref{lem:D}(a), $U$ is open, $U\supseteq\Rpp$ and $U\cap
+(-U)=\emptyset$; moreover $U$ contains no $h$ with $h\le0$, since $k\cdot h\le0$ for
+$k\in K'$.
+
+\smallskip
+Let $\CC_U$ be the class of coherent models on $U$. If $Q$ is a credal set with
+$K'\subseteq Q$, then $D_Q\subseteq D_{K'}=U$, so $D_Q\in\CC_U$. Conversely, if $D_Q
+\subseteq U$ a.e., then $D_Q\subseteq D_{K'}$ by Lemma~\ref{lem:D}(d), and $K'\subseteq
+Q$ by Lemma~\ref{lem:D}(c). Hence
+\[
+  \CC_U=\{D_Q: Q\text{ a credal set with }K'\subseteq Q\}.
+\]
+Every coherent model contains $\Rpp$. For measurable $B\subseteq U$ put
+\[
+  Q_B\coloneqq\{q\in\Delta: q\cdot h\ge0\text{ for $\mu$-a.e.\ }h\in B\},\qquad
+  \hull(B)\coloneqq D_{Q_B}.
+\]
+If $B$ is null, then $Q_B=\Delta$ and $\hull(B)=\Rpp$.
+
+\begin{lemma}\label{lem:hull}
+Let $B\subseteq U$ be measurable.
+\begin{enumerate}[label=(\alph*)]
+  \item $Q_B$ is a credal set and $K'\subseteq Q_B$. Hence $\hull(B)\in\CC_U$.
+  \item $B\subseteq\hull(B)$ a.e.
+  \item For a credal set $Q$ with $K'\subseteq Q$, the following are equivalent:
+  $B\subseteq D_Q$ a.e.; $Q\subseteq Q_B$; $\hull(B)\subseteq D_Q$. So $\hull(B)$ is the
+  smallest coherent model containing $B$ a.e.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $K'\subseteq Q_B$ because $k\cdot h>0$ on $U$ for $k\in K'$. Convexity is clear. Let
+$q_k\in Q_B$ converge to $q$. If $q\cdot h<0$ then $q_k\cdot h<0$ for all large $k$, so
+$B\cap\{q\cdot h<0\}\subseteq\bigcup_kB\cap\{q_k\cdot h<0\}$, which is null. So $Q_B$ is
+closed. Since $Q_B\supseteq K'$, $\hull(B)\in\CC_U$.
+(b) $B\setminus D_{Q_B}\subseteq\{P_{Q_B}=0\}\cup\bigcup_{q\in Q_B}\{q\cdot h<0\}$. The
+first set is null by Lemma~\ref{lem:D}(b). The open sets $\{q\cdot h<0\}$ have a countable
+subcover $\{q_k\cdot h<0\}$ (Lindel\"of), and each $B\cap\{q_k\cdot h<0\}$ is null.
+(c) If $B\subseteq D_Q$ a.e., every $q\in Q$ has $q\cdot h>0$ for a.e.\ $h\in B$, so
+$Q\subseteq Q_B$. If $Q\subseteq Q_B$, then $D_{Q_B}\subseteq D_Q$ by definition. If
+$\hull(B)\subseteq D_Q$, then $B\subseteq D_Q$ a.e.\ by (b).
+\end{proof}
+
+\subsection{Rankings and dominance}
+
+A \emph{ranking} on $\M_U$ is a family $(\preceq_i)_{i\in\Omega}$ of binary relations on
+$\M_U$. Lower is better: $X\preceq_iY$ says that $X$ does at least as well as $Y$ at
+world $i$. We write $X\prec_iY$ if $X\preceq_iY$ and not $Y\preceq_iX$; $X$ and $Y$ are
+\emph{tied} at $i$ if $X\preceq_iY$ and $Y\preceq_iX$, and \emph{incomparable} at $i$ if
+neither holds. We assume throughout that each $\preceq_i$ is reflexive, that a.e.-equal
+models are tied, and
+\begin{itemize}
+  \item[(TC)] if $A\preceq_iB$ and $B\preceq_iC$, then not $C\prec_iA$.
+\end{itemize}
+Transitivity and completeness are not assumed. We also consider the stronger condition
+\begin{itemize}
+  \item[(FCC)] \emph{Finite-chain consistency.} If $A_0\preceq_iA_1\preceq_i\dots
+  \preceq_iA_k$, then not $A_k\prec_iA_0$.
+\end{itemize}
+(TC) is the case $k=2$ of (FCC).
+
+\begin{definition}\label{def:dom}
+Let $X,Y\in\M_U$. $Y$ \emph{weakly dominates} $X$ if $Y\preceq_iX$ for every $i$. $Y$
+\emph{dominates} $X$ if $Y$ weakly dominates $X$ and $Y\prec_iX$ for some $i$. $Y$
+\emph{strictly dominates} $X$ if $Y\prec_iX$ for every $i$. $X$ is \emph{undominated} if
+no model dominates it. We write $\UU$ for the undominated models, $\CC$ for the coherent
+models and $\CC^\ast\coloneqq\CC\cap\UU$.
+\end{definition}
+
+The \emph{Brier loss} of $X\in\M_U$ at world $i$ is the $|h_i|$-weighted measure of its
+wrong acceptances and of its silences on correct gambles:
+\[
+  \beta_i(X)\coloneqq\int_{X\cap\{h_i<0\}}|h_i|\,d\mu
+  +\int_{(U\setminus X)\cap\{h_i>0\}}|h_i|\,d\mu=c_i-m_i(X),\qquad
+  c_i\coloneqq\int_{U\cap\{h_i>0\}}h_i\,d\mu .
+\]
+The \emph{Brier ranking} is $X\preceq^{\mathrm B}_iY$ iff $\beta_i(X)\le\beta_i(Y)$, that
+is, iff $m_i(X)\ge m_i(Y)$. $Y$ \emph{uniformly dominates} $X$ in Brier loss if there is
+$\varepsilon>0$ with $\beta_i(Y)+\varepsilon\le\beta_i(X)$ for every $i$, that is, if
+$m(Y)-m(X)\gg0$.
+
+\subsection{Requirements}
+
+\begin{itemize}
+  \item[(G)] \emph{Strict guidance.} If $X\setminus Y\subseteq\{h_i>0\}$ a.e.,
+  $Y\setminus X\subseteq\{h_i<0\}$ a.e., and $X\triangle Y$ is not null, then
+  $X\prec_iY$.
+  \item[(IB)] \emph{Independence.} Let $S$ be measurable and $X,Y,X',Y'\in\M_U$ with
+  $X\setminus S=Y\setminus S$, $X'\setminus S=Y'\setminus S$, $X\cap S=X'\cap S$ and
+  $Y\cap S=Y'\cap S$, all a.e. Then $X\preceq_iY$ if and only if $X'\preceq_iY'$.
+  \item[(GC)] \emph{Global coherence.} Every undominated model is coherent.
+  \item[(C)] \emph{Direct closure under ties.} A model that is tied at every world with a
+  member of $\CC^\ast$ belongs to $\CC^\ast$.
+  \item[(ID)] \emph{Incoherent-model dominance.} Every incoherent model is dominated by a
+  member of $\CC^\ast$.
+  \item[(LF)] \emph{Local freedom at $D_K$.} There is an open set $N\supseteq\partial
+  D_K\setminus\{0\}$ such that every measurable $X$ with $X\triangle D_K\subseteq N$ a.e.\
+  belongs to $\M_U$, that is, satisfies $X\subseteq U$ a.e.
+  \item[(W)] Every model is weakly dominated by a member of $\CC^\ast$.
+\end{itemize}
+We also consider
+\begin{itemize}
+  \item[(Add)] \emph{Disjoint additivity.} If $X\preceq_iY$ and $Y\preceq_iZ$, and
+  $(X\triangle Y)\cap(Y\triangle Z)$ is null, then $X\preceq_iZ$.
+\end{itemize}
+(Add) is the case of transitivity in which the two steps change disjoint sets of gambles.
+
+\begin{definition}\label{def:cover}
+Let $K$ be a credal set and $U$ a domain. A ranking on $\M_U$ \emph{covers} $K$ if:
+\begin{enumerate}[label=(\roman*)]
+  \item it satisfies (G) and (IB);
+  \item it satisfies (GC);
+  \item it satisfies (C);
+  \item $D_K\in\M_U$ and $D_K$ is undominated;
+  \item it satisfies (ID);
+  \item (LF) holds at $D_K$.
+\end{enumerate}
+\end{definition}
+
+(W) and (Add) are not part of the definition; the ranking constructed below satisfies
+both.
+
+\begin{lemma}\label{lem:LF}
+Let $K$ be a credal set.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_K\in\M_U$ if and only if $K'\subseteq K$.
+  \item If $K$ is full-dimensional and $K'\subseteq K$, then (LF) holds at $D_K$ if and
+  only if $K'\subseteq\relint K$.
+  \item Let $V$ be any one-sided domain. If $K$ is not full-dimensional, then (LF) fails
+  at $D_K$ for $\M_V$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) This is the description of $\CC_U$ above.
+
+(b) First let $h\in C_K\setminus\{0\}$ and $x\in\relint K$. If $x\cdot h=0$, then for
+every $d$ with $\one\cdot d=0$ and small $t>0$ both $x\pm td$ lie in $K$, so $\pm t\,d
+\cdot h\ge0$ and $d\cdot h=0$. Then $h=c\one$ for some $c$, and $c=x\cdot h=0$, a
+contradiction. So $x\cdot h>0$.
+
+Suppose $K'\subseteq\relint K$. Then $D_K\subseteq U$. Each $h\in\partial D_K\setminus
+\{0\}$ lies in $C_K\setminus\{0\}$, so $k\cdot h>0$ for $k\in K'$ by the previous
+paragraph, that is, $h\in U$. Take $N\coloneqq U$, which is open. If $X\triangle D_K
+\subseteq U$ a.e., then $X\subseteq D_K\cup U=U$ a.e.
+
+Conversely, suppose (LF) holds with the open set $N$, and $x\in K'\cap\rbd K$. Since
+$x\notin\relint K$, which is the relative interior of $K$ in the sense of convex analysis
+because $K$ is full-dimensional, there is a nontrivial supporting hyperplane to $K$
+through $x$ \cite[Thm.~11.6]{Rockafellar}: some $g\in\R^n$ has $g\cdot k\ge g\cdot x$ for
+all $k\in K$, with strict inequality for some $k\in K$. Put $h\coloneqq g-(g\cdot x)\one$.
+Then $k\cdot h\ge0$ on $K$, $x\cdot h=0$ and $h\ne0$. So $h\in C_K\setminus D_K$, and
+$h+t\one\in D_K$ for $t>0$; hence $h\in\partial D_K\setminus\{0\}\subseteq N$. The model
+$D_K\cup N$ satisfies $(D_K\cup N)\triangle D_K\subseteq N$, so it belongs to $\M_U$;
+thus $N\subseteq U$ a.e., and $N\subseteq U$ by Lemma~\ref{lem:D}(d). But $x\cdot h=0$
+with $x\in K'$, so $h\notin U$, a contradiction.
+
+(c) The linear span of $K$ has dimension at most $n-1$, so some $h\ne0$ has $k\cdot h=0$
+for all $k\in K$. Then $\pm h\in C_K\setminus D_K$ and $\pm h+t\one\in D_K$ for $t>0$, so
+$\pm h\in\partial D_K\setminus\{0\}$. If (LF) held with the open set $N$, then, as in (b),
+$N\subseteq V$ a.e.; choose $\rho>0$ with $\operatorname{Ball}(\pm h,\rho)\subseteq N$,
+where $\operatorname{Ball}(h,\rho)$ is the open ball of radius $\rho$ about $h$. Then
+$\operatorname{Ball}(h,\rho)\subseteq V$ a.e.\ and $\operatorname{Ball}(h,\rho)=
+-\operatorname{Ball}(-h,\rho)\subseteq-V$ a.e., because Lebesgue-null sets are symmetric;
+so the non-null ball $\operatorname{Ball}(h,\rho)$ is contained
+in $V\cap(-V)$ a.e., which contradicts one-sidedness.
+\end{proof}
+
+\section{The safe-improvement ranking}\label{sec:ranking}
+
+\subsection{Records and safety}
+
+A \emph{record} is an ordered pair $r=(A,B)$ of disjoint measurable subsets of $U$, with
+records identified when their components agree a.e. The record of a pair of models is
+\[
+  r(X,Y)\coloneqq(X\setminus Y,\;Y\setminus X).
+\]
+It describes the change from $Y$ to $X$: the change adds $A$ and removes $B$. The record
+$r$ is \emph{null} if $A$ and $B$ are null; $r(X,Y)$ is null if and only if $X=Y$ a.e.
+The \emph{support} of $r$ is $A\cup B$, and its \emph{moment} is $m(r)\coloneqq
+m(A)-m(B)$, so that
+\[
+  m_i(r(X,Y))=m_i(X)-m_i(Y)=\beta_i(Y)-\beta_i(X).
+\]
+For records $r_1=(A_1,B_1)$ and $r_2=(A_2,B_2)$ whose supports meet in a null set, put
+$r_1\sqcup r_2\coloneqq(A_1\cup A_2,B_1\cup B_2)$; then $m(r_1\sqcup r_2)=m(r_1)+m(r_2)$.
+
+A record $r=(A,B)$ \emph{applies to} a model $Z$ if $B\subseteq Z$ a.e.\ and $A\cap Z$ is
+null: the change it describes can be carried out on $Z$. A record is \emph{safe} if it
+applies to no coherent model on $U$.
+
+\begin{lemma}\label{lem:record}
+\begin{enumerate}[label=(\alph*)]
+  \item A record $r$ applies to $Z\in\M_U$ if and only if $r=r(Y,Z)$ for some
+  $Y\in\M_U$. In particular $r(Y,C)$ is not safe for any $Y\in\M_U$ and $C\in\CC_U$.
+  \item If $X,Y,Z\in\M_U$ and $(X\triangle Y)\cap(Y\triangle Z)$ is null, then the
+  supports of $r(X,Y)$ and $r(Y,Z)$ meet in a null set and $r(X,Z)=r(X,Y)\sqcup r(Y,Z)$.
+  \item Let $\Acc$ be a set of records containing the null record, and define $X\preceq Y$
+  iff $r(X,Y)\in\Acc$. Then $\preceq$ is reflexive, ties a.e.-equal models and satisfies
+  (IB).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Let $r=(A,B)$ apply to $Z$, and put $Y\coloneqq(Z\setminus B)\cup A\in\M_U$. Then
+$Y\setminus Z=A\setminus Z=A$ a.e., because $A\cap Z$ is null, and $Z\setminus Y=(Z\cap
+B)\setminus A=B$ a.e., because $B\subseteq Z$ a.e.\ and $A\cap B=\emptyset$. So
+$r(Y,Z)=r$. Conversely, $r(Y,Z)=(Y\setminus Z,Z\setminus Y)$ applies to $Z$ by
+definition.
+
+(b) The supports are $X\triangle Y$ and $Y\triangle Z$. Outside the null set $(X\triangle
+Y)\cap(Y\triangle Z)$, every $h$ lies outside $X\triangle Y$ or outside $Y\triangle Z$.
+In the first case $h\in X\iff h\in Y$, so $h\notin X\setminus Y$, and $h\in X\setminus Z$
+iff $h\in Y\setminus Z$. In the second case $h\in Y\iff h\in Z$, so $h\notin Y\setminus
+Z$, and $h\in X\setminus Z$ iff $h\in X\setminus Y$. In both cases $\one_{X\setminus Z}(h)
+=\one_{X\setminus Y}(h)+\one_{Y\setminus Z}(h)$, and the same argument gives
+$\one_{Z\setminus X}(h)=\one_{Y\setminus X}(h)+\one_{Z\setminus Y}(h)$.
+
+(c) If $X=Y$ a.e., then $r(X,Y)$ and $r(Y,X)$ are null. For (IB), the hypotheses give
+$X\triangle Y\subseteq S$ a.e., so $X\setminus Y=(X\cap S)\setminus(Y\cap S)=(X'\cap S)
+\setminus(Y'\cap S)=X'\setminus Y'$ a.e., and likewise $Y\setminus X=Y'\setminus X'$
+a.e. So $r(X,Y)=r(X',Y')$.
+\end{proof}
+
+\begin{lemma}\label{lem:safe}
+Let $r=(A,B)$ be a record.
+\begin{enumerate}[label=(\alph*)]
+  \item $r$ is safe if and only if $\mu\bigl(A\cap\hull(B)\bigr)>0$.
+  \item The null record is not safe. If $B$ is null, then $r$ is safe if and only if
+  $\mu(A\cap\Rpp)>0$.
+  \item If $r_1$ is safe and the supports of $r_1$ and $r_2$ meet in a null set, then
+  $r_1\sqcup r_2$ is safe.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $A\cap\hull(B)$ is null, then $r$ applies to $\hull(B)$, which is a coherent model
+on $U$ containing $B$ a.e.\ (Lemma~\ref{lem:hull}(a),(b)); so $r$ is not safe.
+Conversely, if $r$ applies to a coherent model $D_Q\in\CC_U$, then $B\subseteq D_Q$ a.e.,
+so $\hull(B)\subseteq D_Q$ by Lemma~\ref{lem:hull}(c), and $A\cap\hull(B)\subseteq A\cap
+D_Q$ is null.
+
+(b) If $A$ is null, so is $A\cap\hull(B)$. If $B$ is null, then $\hull(B)=\Rpp$.
+
+(c) Write $r_k=(A_k,B_k)$. If $r_1\sqcup r_2$ applied to a model $Z$, then $B_1\subseteq
+B_1\cup B_2\subseteq Z$ a.e.\ and $A_1\cap Z\subseteq(A_1\cup A_2)\cap Z$ is null, so
+$r_1$ would apply to $Z$.
+\end{proof}
+
+By (a), safety of $r(X,Y)$ says that some of the gambles the change from $Y$ to $X$ adds
+are required, by coherence, of the gambles it removes. Part~(c) says that safety cannot be
+lost by adjoining a further, disjoint change.
+
+\subsection{The ranking}
+
+For $i\in\Omega$ let
+\[
+  G_i\coloneqq\{r=(A,B): A\subseteq\{h_i>0\}\text{ and }B\subseteq\{h_i<0\}\text{
+  a.e.}\}
+\]
+be the set of records that are \emph{guidance at $i$}: the change adds only gambles that
+are correct at $i$ and removes only gambles that are wrong at $i$. The null record is
+guidance at every world.
+
+\begin{definition}\label{def:SI}
+The \emph{safe-improvement ranking} on $\M_U$ is given by
+\[
+  \Acc_i\coloneqq G_i\cup\{r: r\text{ is safe and }m_i(r)>0\},\qquad
+  X\preceq_iY\iff r(X,Y)\in\Acc_i .
+\]
+\end{definition}
+
+In words: at world $i$, $X$ does at least as well as $Y$ if the change from $Y$ to $X$ is
+guidance at $i$, or if it is safe and strictly reduces the Brier loss at $i$. No
+lexicographic tie-breaking, aggregation across worlds or designated world is involved:
+whether a comparison is accepted at $i$ depends only on its record, through guidance at
+$i$, the Brier increment $m_i$ and the world-independent safety test.
+
+\begin{lemma}\label{lem:increment}
+\begin{enumerate}[label=(\alph*)]
+  \item If $r=(A,B)\in G_i$, then $m_i(r)=\int_A|h_i|\,d\mu+\int_B|h_i|\,d\mu\ge0$, with
+  equality if and only if $r$ is null.
+  \item If $r\in\Acc_i$, then $m_i(r)\ge0$, with equality if and only if $r$ is null.
+  \item A record lies in $G_i$ for every $i$ if and only if it is a.e.\ of the form
+  $(A,\emptyset)$ with $A\subseteq\Rpp$. Every non-null such record is safe.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) The formula holds because $h_i>0$ a.e.\ on $A$ and $h_i<0$ a.e.\ on $B$. The integral
+vanishes iff $A\cup B\subseteq\{h_i=0\}$ a.e., and this hyperplane is null by (M).
+(b) Records in $G_i$ are covered by (a); the others have $m_i(r)>0$ and are non-null.
+(c) If $r=(A,B)\in G_i$ for every $i$, then $A\subseteq\bigcap_i\{h_i>0\}=\Rpp$ a.e.\
+and $B\subseteq\{h:h_i<0\text{ for all }i\}$ a.e. By the standing assumption $U$
+contains no $h\le0$, so $B$ is null. The converse is clear. If $A\subseteq\Rpp$ is
+non-null, then $\mu(A\cap\Rpp)>0$, and $(A,\emptyset)$ is safe by
+Lemma~\ref{lem:safe}(b).
+\end{proof}
+
+\begin{proposition}\label{prop:structure}
+Consider the safe-improvement ranking on $\M_U$.
+\begin{enumerate}[label=(\alph*)]
+  \item Each $\preceq_i$ is reflexive, ties a.e.-equal models and satisfies (IB).
+  \item If $X\preceq_iY$, then $m_i(X)\ge m_i(Y)$, with strict inequality unless $X=Y$
+  a.e. Consequently two models are tied at $i$ only if they are a.e.\ equal, and
+  $X\prec_iY$ if and only if $X\preceq_iY$ and $X\ne Y$ a.e. Each $\preceq_i$ is contained
+  in the Brier ranking $\preceq^{\mathrm B}_i$, and each $\prec_i$ in its strict part.
+  \item (G) holds.
+  \item (FCC) holds, and hence (TC). More strongly, if $A_0\preceq_iA_1\preceq_i\dots
+  \preceq_iA_k\preceq_iA_0$, then $A_0,\dots,A_k$ are a.e.\ equal.
+  \item (Add) holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) The null record lies in $G_i\subseteq\Acc_i$; apply Lemma~\ref{lem:record}(c).
+
+(b) $m_i(X)-m_i(Y)=m_i(r(X,Y))$, and $r(X,Y)$ is null iff $X=Y$ a.e.; apply
+Lemma~\ref{lem:increment}(b). If $X\preceq_iY$ and $Y\preceq_iX$ with $X\ne Y$ a.e., then
+$m_i(X)>m_i(Y)>m_i(X)$, which is impossible. By (a), a.e.-equal models are tied, so
+$X\prec_iY$ iff $X\preceq_iY$ and $X\ne Y$ a.e.
+
+(c) If the hypotheses of (G) hold, then $r(X,Y)\in G_i\subseteq\Acc_i$ and $X\ne Y$
+a.e.; by (b), $X\prec_iY$.
+
+(d) By (b), a chain $A_0\preceq_i\dots\preceq_iA_k$ gives $m_i(A_0)\ge m_i(A_k)$. If
+$A_k\prec_iA_0$, then $A_k\ne A_0$ a.e.\ and (b) gives $m_i(A_k)>m_i(A_0)$, a
+contradiction. For a cycle, (b) gives $m_i(A_0)\ge m_i(A_1)\ge\dots\ge m_i(A_k)\ge
+m_i(A_0)$, so all these inequalities are equalities, and each step relates a.e.-equal
+models by (b).
+
+(e) Let $X\preceq_iY$ and $Y\preceq_iZ$ with $(X\triangle Y)\cap(Y\triangle Z)$ null, and
+put $r_1\coloneqq r(X,Y)$, $r_2\coloneqq r(Y,Z)$. By Lemma~\ref{lem:record}(b),
+$r(X,Z)=r_1\sqcup r_2$. If $r_1,r_2\in G_i$, then $r_1\sqcup r_2\in G_i$, because
+$A_1\cup A_2\subseteq\{h_i>0\}$ and $B_1\cup B_2\subseteq\{h_i<0\}$ a.e. Otherwise one of
+them, say $r_k$, lies in $\Acc_i\setminus G_i$; then $r_k$ is safe and $m_i(r_k)>0$. By
+Lemma~\ref{lem:safe}(c), $r_1\sqcup r_2$ is safe, and by Lemma~\ref{lem:increment}(b)
+the other record has non-negative increment, so $m_i(r_1\sqcup r_2)=m_i(r_1)+m_i(r_2)>0$.
+In both cases $r(X,Z)\in\Acc_i$, that is, $X\preceq_iZ$.
+\end{proof}
+
+\begin{proposition}\label{prop:dominance}
+Consider the safe-improvement ranking on $\M_U$, and let $X,Y\in\M_U$. The following are
+equivalent.
+\begin{enumerate}[label=(\roman*)]
+  \item $Y$ weakly dominates $X$, and $Y\ne X$ a.e.
+  \item $Y$ dominates $X$.
+  \item $Y$ strictly dominates $X$.
+  \item $r(Y,X)$ is safe and $m(Y)-m(X)\gg0$; that is, the change from $X$ to $Y$ is safe
+  and $Y$ uniformly dominates $X$ in Brier loss.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(iii)$\Rightarrow$(ii) is immediate. (ii)$\Rightarrow$(i): if $Y\prec_jX$ for some $j$,
+then $X$ and $Y$ are not tied at $j$, so $Y\ne X$ a.e.
+
+(i)$\Rightarrow$(iv): put $r\coloneqq r(Y,X)$, which is non-null and lies in $\Acc_i$ for
+every $i$. By Proposition~\ref{prop:structure}(b), $m_i(Y)>m_i(X)$ for every $i$. If $r$
+were not safe, it would lie in $G_i$ for every $i$, by the definition of $\Acc_i$; but
+then it would be safe by Lemma~\ref{lem:increment}(c), since it is non-null.
+
+(iv)$\Rightarrow$(iii): $r(Y,X)$ is safe with $m_i(r(Y,X))>0$, so $Y\preceq_iX$ for every
+$i$. Since $m(Y)\ne m(X)$, $Y\ne X$ a.e., and Proposition~\ref{prop:structure}(b) gives
+$Y\prec_iX$ for every $i$.
+\end{proof}
+
+In particular, dominance in this ranking is never merely weak at some world: whenever a
+model dominates another, it improves its Brier score at every world, by a safe change.
+
+\begin{corollary}\label{cor:protect}
+Consider the safe-improvement ranking on $\M_U$. Every coherent model on $U$ has no weak
+dominator other than itself; in particular it is undominated. A model tied with a coherent
+model at some world equals it a.e.
+\end{corollary}
+
+\begin{proof}
+Let $C\in\CC_U$ and let $Y$ weakly dominate $C$. The record $r(Y,C)=(Y\setminus C,
+C\setminus Y)$ applies to $C$, so it is not safe (Lemma~\ref{lem:record}(a)); since it is
+accepted at every world, it lies in $G_i$ for every $i$. Hence $Y\setminus C\subseteq
+\Rpp$ a.e., and $\Rpp\subseteq C$ a.e.\ because $C$ is coherent; so $Y\setminus C$ is
+null. Also $C\setminus Y\subseteq\{h:h_i<0\text{ for all }i\}$ a.e., and no coherent model
+contains such a gamble, since $q\cdot h<0$ for $q\in\Delta$; so $C\setminus Y$ is null.
+Thus $Y=C$ a.e. A dominator of $C$ would be a weak dominator different from $C$. The last
+claim is Proposition~\ref{prop:structure}(b).
+\end{proof}
+
+The proof uses only that every coherent model contains $\Rpp$ and that no coherent model
+contains a gamble $h$ with $h_i<0$ for all $i$.
+
+The mechanism of protection is this. A change out of a coherent model $C$ applies to
+$C$, so it is never safe, and the ranking accepts it only where it is guidance. A change
+that is guidance at every world only adds gambles that are positive at every world, and
+these every coherent model already accepts.
+
+\subsection{A geometric form of the safety test}
+
+The safety test of Lemma~\ref{lem:safe}(a) has a finite geometric form.
+
+\begin{lemma}\label{lem:hullformula}
+For measurable $B\subseteq U$,
+\[
+  \hull(B)=\cone(B_d)+\Rpp .
+\]
+\end{lemma}
+
+\begin{proof}
+First, if $q\in Q_B$ and $b\in B_d$, then $q\cdot b\ge0$: otherwise an open ball $V$
+around $b$ lies in $\{q\cdot h<0\}$, and $\mu(B\cap V)>0$ contradicts $q\in Q_B$.
+Conversely, if $q\in\Delta$ and $q\cdot b\ge0$ for all $b\in B_d$, then $q\in Q_B$,
+because a.e.\ point of $B$ lies in $B_d$.
+
+Put $W\coloneqq\cone(B_d)+\Rpp$, a nonempty open convex set. If $a=\sum_jt_jb_j+p$
+with $b_j\in B_d$, $t_j\ge0$ and $p\gg0$, then every $q\in Q_B$ has $q\cdot a\ge
+q\cdot p>0$; so $a\in D_{Q_B}$. Now let $a\notin W$. Separating $a$ from $W$ gives
+$q\ne0$ with $q\cdot a\le q\cdot w$ for all $w\in W$. Then $q\ge0$, since otherwise
+$w=\one+se_i$ with $q_i<0$ makes $q\cdot w\to-\infty$ as $s\to\infty$. For $b\in B_d$
+and $s,t>0$, $sb+t\one\in W$; letting $t\to0$ gives $q\cdot a\le s\,q\cdot b$ for all
+$s>0$, so $q\cdot b\ge0$ (let $s\to\infty$); and $t\one\in W$ gives $q\cdot a\le0$. Then
+$\hat q\coloneqq q/(\one\cdot q)\in\Delta$ is non-negative on $B_d$, so $\hat q\in Q_B$,
+and $\hat q\cdot a\le0$; hence $a\notin D_{Q_B}$.
+\end{proof}
+
+\begin{corollary}\label{cor:witness}
+A record $(A,B)$ is safe if and only if there are $a\in A_d$, points $b_1,\dots,b_k\in
+B_d$ with $0\le k\le n$, and $t_j\ge0$, such that $a-\sum_{j=1}^kt_jb_j\gg0$.
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:safe}(a) it suffices to characterise $\mu(A\cap\hull(B))>0$.
+$\hull(B)$ is open. If $a\in A_d$ lies in $\hull(B)$, a ball around $a$ lies in
+$\hull(B)$ and meets $A$ in positive measure. Conversely, if $\mu(A\cap\hull(B))>0$,
+some $a\in A_d$ lies in $\hull(B)$, since $A\setminus A_d$ is null. By
+Lemma~\ref{lem:hullformula}, $a=\sum_jt_jb_j+p$ with $b_j\in B_d$, $t_j\ge0$
+and $p\gg0$, and by the conic form of Carath\'eodory's theorem the sum can be rewritten
+with at most $n$ linearly independent $b_j$.
+\end{proof}
+
+So a change is safe exactly when it adds some gamble $a$ that dominates a non-negative
+combination of finitely many gambles that it removes.
+
+\section{Improvement within the coherent hull}\label{sec:H}
+
+For a model $X\in\M_U$ write
+\[
+  G\coloneqq\hull(X)=D_{Q_X},\qquad P\coloneqq P_{Q_X},\qquad
+  Q_\tau\coloneqq(1-\tau)Q_X+\tau\Delta\quad(0<\tau<1).
+\]
+$Q_\tau$ is a compact convex subset of $\Delta$, and
+\begin{equation}\label{eq:Ptau}
+  P_{Q_\tau}(h)=(1-\tau)P(h)+\tau\min_ih_i .
+\end{equation}
+By Lemma~\ref{lem:hull}(b), $X\subseteq G$ a.e., so $P>0$ a.e.\ on $X$.
+
+\subsection{The hull-preserving shrink}
+
+\begin{lemma}\label{lem:contraction}
+Let $X\in\M_U$, $c\ge0$ and $q\in\Delta$. If $q\cdot x\ge-c\,P(x)$ for $\mu$-a.e.\ $x\in
+X$, then $q\in Q_X$.
+\end{lemma}
+
+\begin{proof}
+For $q'\in Q_X$ put $T(q')\coloneqq(q+cq')/(1+c)\in\Delta$. For a.e.\ $x\in X$,
+$(q+cq')\cdot x\ge q\cdot x+c\,P(x)\ge0$, so $T(q')\in Q_X$. Thus $T$ maps $Q_X$ into
+itself, and it is a contraction with ratio $c/(1+c)<1$ and fixed point $q$. For any
+$q'\in Q_X$ (which is nonempty), $T^k(q')\to q$, and $Q_X$ is closed
+(Lemma~\ref{lem:hull}(a)); so $q\in Q_X$.
+\end{proof}
+
+In words: repeatedly mixing $q$ with members of the closed credal set $Q_X$ stays in
+$Q_X$ and converges to $q$, so $q$ lies in $Q_X$.
+
+\begin{proposition}\label{prop:shrink}
+Let $X\in\M_U$ and $0<\tau<1$, and let $N\subseteq D_{Q_\tau}$ be measurable. Then
+\[
+  Q_{X\setminus N}=Q_X\qquad\text{and}\qquad\hull(X\setminus N)=\hull(X).
+\]
+If moreover $N\subseteq\hull(X)$ and $\mu(N\setminus X)>0$, then $N\in\M_U$ and the record
+$r(N,X)$ is safe.
+\end{proposition}
+
+\begin{proof}
+$Q_X\subseteq Q_{X\setminus N}$ trivially. Let $q\in Q_{X\setminus N}$ and $c\coloneqq
+(1-\tau)/\tau$. If $x\in X\cap N$, then $P_{Q_\tau}(x)>0$, so by \eqref{eq:Ptau}
+$\min_ix_i>-c\,P(x)$, and $q\cdot x\ge\min_ix_i>-c\,P(x)$ because $q\in\Delta$. For
+a.e.\ $x\in X\setminus N$, $q\cdot x\ge0$ and $P(x)\ge0$, so $q\cdot x\ge-c\,P(x)$.
+Lemma~\ref{lem:contraction} gives $q\in Q_X$.
+
+If $N\subseteq\hull(X)$, then $N\subseteq U$ by Lemma~\ref{lem:hull}(a), and
+$N\setminus X\subseteq\hull(X)=\hull(X\setminus N)$. So $\mu\bigl((N\setminus X)\cap
+\hull(X\setminus N)\bigr)=\mu(N\setminus X)>0$, and $r(N,X)=(N\setminus X,X\setminus N)$
+is safe by Lemma~\ref{lem:safe}(a).
+\end{proof}
+
+The identity $\hull(X\setminus N)=\hull(X)$ says that the gambles of $X$ outside $N$ still
+generate, under coherence, everything that $X$ generates. For the change from $X$ to a
+coherent $N\subseteq\hull(X)$ this gives more than safety: \emph{every} gamble the change
+adds is implied by the gambles it removes. A coherent model that accepts what the change
+removes contains $\hull(X\setminus N)\supseteq N$, so it already accepts what the change
+adds, and the change cannot be applied to it.
+
+\subsection{The repair theorem}
+
+\begin{theorem}\label{thm:H}
+Let $X\in\M_U$ be incoherent. Then there is $N\in\CC_U$ such that
+\begin{enumerate}[label=(\roman*)]
+  \item $m(N)-m(X)\gg0$;
+  \item $N\subseteq\hull(X)$ and $\hull(X\setminus N)=\hull(X)$;
+  \item $\mu(N\setminus X)>0$.
+\end{enumerate}
+In particular the record $r(N,X)$ is safe, and $\mu\bigl((N\setminus X)\cap
+\hull(X\setminus N)\bigr)=\mu(N\setminus X)>0$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: a strict improvement inside the hull.} Let $\M_G\coloneqq\{m(Y):Y
+\subseteq G\text{ measurable}\}$. The vector measure $Y\mapsto\int_Yh\,d\mu$ on the
+measurable subsets of $G$ is finite, by the first-moment condition in (M), and
+non-atomic, since $\mu$ is non-atomic (Section~\ref{sec:framework}). By Lyapunov's theorem
+\cite{Lyapunov,Lindenstrauss}, $\M_G$ is compact and convex. Since $X\subseteq G$ a.e.,
+$x\coloneqq m(X)\in\M_G$.
+
+For $\lambda\in\Delta$ and measurable $Y\subseteq G$,
+\[
+  \lambda\cdot m(Y)=\int_Y\lambda\cdot h\,d\mu\le\int_{G\cap\{\lambda\cdot h>0\}}
+  \lambda\cdot h\,d\mu ,
+\]
+with equality if and only if $Y=G\cap\{\lambda\cdot h>0\}$ a.e., because the hyperplane
+$\{\lambda\cdot h=0\}$ is null by (M). The maximiser is coherent: by
+Lemma~\ref{lem:D}(a),
+\[
+  G\cap\{\lambda\cdot h>0\}=D_{Q_X\cup\{\lambda\}}=D_{\conv(Q_X\cup\{\lambda\})},
+\]
+and $\conv(Q_X\cup\{\lambda\})$ is a credal set containing $K'$.
+
+The function $f(\lambda,z)\coloneqq\lambda\cdot(z-x)$ is bilinear and continuous on the
+product of the compact convex sets $\Delta$ and $\M_G$. By the minimax theorem
+\cite{Sion},
+\[
+  v\coloneqq\max_{z\in\M_G}\min_{\lambda\in\Delta}f(\lambda,z)
+  =\min_{\lambda\in\Delta}\max_{z\in\M_G}f(\lambda,z),
+\]
+and both optima are attained, at $z^\ast$ and $\lambda^\ast$ say. Note that
+$\min_{\lambda\in\Delta}f(\lambda,z)=\min_i(z_i-x_i)$.
+
+Suppose $v\le0$. Then $\max_{z\in\M_G}\lambda^\ast\cdot z\le\lambda^\ast\cdot x$, so $X$
+maximises $\lambda^\ast\cdot m(Y)$ over measurable $Y\subseteq G$, and $X=G\cap
+\{\lambda^\ast\cdot h>0\}$ a.e. Then $X$ is coherent, a contradiction. Hence $v>0$.
+
+Since $f(\lambda^\ast,z^\ast)\le\max_zf(\lambda^\ast,z)=v$ and $f(\lambda^\ast,z^\ast)
+\ge\min_\lambda f(\lambda,z^\ast)=v$, the point $z^\ast$ maximises $\lambda^\ast\cdot z$
+over $\M_G$. Writing $z^\ast=m(Y^\ast)$, uniqueness of the maximiser gives
+$Y^\ast=N_0$ a.e., where
+\[
+  N_0\coloneqq G\cap\{\lambda^\ast\cdot h>0\}\in\CC_U,\qquad
+  m(N_0)-m(X)=z^\ast-x\ge v\one\gg0 .
+\]
+
+\emph{Step 2: the gain is non-null; a uniform shrink.} Suppose $N_0\setminus X$ were
+null. Then $m(N_0)-m(X)=-m(X\setminus N_0)$, and for $k\in K'$ (which is nonempty by the
+standing assumption) we would have $k\cdot(m(N_0)-m(X))=-\int_{X\setminus N_0}k\cdot
+h\,d\mu\le0$, since $k\cdot h>0$ on $U$. This contradicts $m(N_0)-m(X)\gg0$ and
+$k\in\Delta$. So $\mu(N_0\setminus X)>0$.
+
+For $0<\tau<1$ put $N_\tau\coloneqq N_0\cap D_{Q_\tau}$. By Lemma~\ref{lem:D}(a),
+$N_\tau=D_{\conv(Q_X\cup\{\lambda^\ast\}\cup Q_\tau)}$, and this credal set contains $K'$;
+so $N_\tau\in\CC_U$. Every $h\in N_0$ lies in $G$, so $P(h)>0$, and by \eqref{eq:Ptau}
+$h\in D_{Q_\tau}$ for all small $\tau$. Hence $\one_{N_\tau}\to\one_{N_0}$
+pointwise as $\tau\to0$, and dominated convergence, with dominating functions $|h|$ and
+$1$, gives $m(N_\tau)\to m(N_0)$ and $\mu(N_0\setminus N_\tau)\to0$. Fix $\tau$ so small
+that $m(N_\tau)-m(X)\gg0$ and $\mu(N_0\setminus N_\tau)<\mu(N_0\setminus X)$, and put
+$N\coloneqq N_\tau$. Then (i) holds, and $\mu(N\setminus X)\ge\mu(N_0\setminus X)-
+\mu(N_0\setminus N)>0$, which is (iii).
+
+\emph{Step 3: the hull of what is removed.} Since $N\subseteq D_{Q_\tau}$,
+Proposition~\ref{prop:shrink} gives $\hull(X\setminus N)=\hull(X)$, and $N\subseteq
+N_0\subseteq G=\hull(X)$. This proves (ii), and the last assertions follow from
+Proposition~\ref{prop:shrink}.
+\end{proof}
+
+\begin{remark}\label{rem:H}
+\begin{enumerate}[label=(\alph*)]
+  \item The proof uses no regularity of $X$, no pointedness of $\cl\hull(X)$, and no
+  condition on the dimension of $K'$; nor does it use $K'\subseteq\relint\Delta$. It uses
+  $K'\neq\emptyset$ throughout, since $Q_X\supseteq K'$ makes $\hull(X)$ and the maximisers
+  coherent models on $U$ and makes Lemma~\ref{lem:contraction} applicable, and in Step 2
+  through an element $k\in K'$. It uses (M) in Steps 1 and 2 and, through
+  Lemma~\ref{lem:hull}(b), in Step 3.
+  \item The defender is explicit: $N=\hull(X)\cap\{\lambda^\ast\cdot h>0\}\cap
+  D_{(1-\tau)Q_X+\tau\Delta}$, where $\lambda^\ast$ minimises the convex function
+  $\lambda\mapsto\max_{z\in\M_G}\lambda\cdot z-\lambda\cdot m(X)$ over $\Delta$, and
+  $\tau>0$ is small. Every density point $a$ of $N\setminus X$ lies in $N$: a density
+  point of $N\setminus X$ is a density point of $N$; a point outside $\cl N$ is not one;
+  and if $a\in\partial N$, a supporting half-space of the convex set $N$ at $a$ contains
+  $N$, so $N$ fills at most half of every ball around $a$. Hence $a\in N\subseteq
+  \hull(X\setminus N)$, and by Lemma~\ref{lem:hullformula} and Carath\'eodory's theorem,
+  as in Corollary~\ref{cor:witness}, $a-\sum_{j=1}^kt_jb_j\gg0$ for some $k\le n$,
+  $b_j\in(X\setminus N)_d$ and $t_j\ge0$.
+  \item The proof does not show that the record $r(N_0,X)$ produced by Step 1 is safe. The
+  shrink in Step 2 is what guarantees, through Proposition~\ref{prop:shrink}, that the
+  additions are implied by the removals.
+  \item Step 1 applied with $G$ replaced by $U$ (which is coherent) shows that every
+  $X\in\M_U$ that is not a.e.\ of the form $U\cap\{\pi\cdot h>0\}$, $\pi\in\Delta$, is
+  uniformly dominated in Brier loss by a model of that form.
+\end{enumerate}
+\end{remark}
+
+\section{Universal coverage}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+Let $K'\subseteq\Delta$ be nonempty, compact and convex, put $U\coloneqq D_{K'}$, and
+consider the safe-improvement ranking on $\M_U$.
+\begin{enumerate}[label=(\alph*)]
+  \item Each $\preceq_i$ is reflexive, ties a.e.-equal models, and satisfies (G), (IB),
+  (TC), (FCC) and (Add). Every nontrivial comparison is a strict Brier improvement at its
+  world: if $X\preceq_iY$ and $X\ne Y$ a.e., then $m_i(X)>m_i(Y)$. There are no ties
+  between models that differ on a non-null set.
+  \item The undominated models are exactly the coherent models on $U$:
+  $\UU=\CC^\ast=\CC_U$. No coherent model has a weak dominator other than itself.
+  \item Every incoherent $X\in\M_U$ is strictly dominated by a coherent undominated model
+  $N$, which moreover uniformly dominates $X$ in Brier loss, satisfies $N\subseteq
+  \hull(X)=\hull(X\setminus N)$, and adds a non-null set of gambles to $X$.
+  \item (GC), (ID) and (W) hold, and (C) holds in the strong form: a model tied at some
+  world with a coherent model equals it.
+  \item Let $K$ be a credal set. The ranking covers $K$ if and only if $K$ is
+  full-dimensional and $K'\subseteq\relint K$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is Proposition~\ref{prop:structure}.
+
+(c) Theorem~\ref{thm:H} gives $N\in\CC_U$ with $m(N)-m(X)\gg0$, $N\subseteq\hull(X)=
+\hull(X\setminus N)$, $\mu(N\setminus X)>0$, and $r(N,X)$ safe. By
+Proposition~\ref{prop:dominance}, $N$ strictly dominates $X$. $N$ is undominated by
+Corollary~\ref{cor:protect}.
+
+(b) By Corollary~\ref{cor:protect}, every member of $\CC_U$ is undominated and has no
+weak dominator other than itself. By (c), every incoherent model is dominated. So
+$\UU=\CC_U$, and $\CC^\ast=\CC\cap\UU=\CC_U$.
+
+(d) (GC) holds because $\UU=\CC_U$. (ID) is (c). (C): by (a), a model tied with $N$ at
+some world equals $N$ a.e. (W): a coherent model weakly dominates itself, and an
+incoherent model is strictly, hence weakly, dominated by a member of $\CC^\ast$, by (c).
+
+(e) Requirements (i), (ii), (iii) and (v) of Definition~\ref{def:cover} hold by (a) and
+(d). By Lemma~\ref{lem:LF}(a), $D_K\in\M_U$ if and only if $K'\subseteq K$, and then
+$D_K\in\CC_U$ is undominated by (b). So the ranking covers $K$ if and only if
+$K'\subseteq K$ and (LF) holds at $D_K$. If $K$ is not full-dimensional, (LF) fails by
+Lemma~\ref{lem:LF}(c), since $U$ is one-sided. If $K$ is full-dimensional and
+$K'\subseteq K$, (LF) holds if and only if $K'\subseteq\relint K$, by
+Lemma~\ref{lem:LF}(b).
+\end{proof}
+
+By Proposition~\ref{prop:dominance}, a coherent model dominates an incoherent $X$ only if
+it improves on $X$ at every world by a safe change. So, by Proposition~\ref{prop:dominance}
+and Corollary~\ref{cor:protect}, (ID) for the safe-improvement ranking is equivalent to the
+existence, for every incoherent $X$, of a coherent $N$ with $m(N)-m(X)\gg0$ and $r(N,X)$
+safe. Theorem~\ref{thm:H} gives more, namely the hull invariance in (ii).
+
+Since $\relint K\ne\emptyset$ exactly when $K$ is full-dimensional, the condition in (e)
+can be written as $K'\subseteq\relint K$. It forces $K'\subseteq\relint\Delta$; if $K'$
+meets the relative boundary of $\Delta$, no credal set is covered, although (a)--(d)
+still hold.
+
+\begin{definition}\label{def:universal}
+Let $V$ be a domain. A credal set $K$ is \emph{coverable on $V$} if some ranking on $\M_V$
+covers $K$. A ranking on $\M_V$ is a \emph{universal cover on $V$} if it covers every
+credal set that is coverable on $V$.
+\end{definition}
+
+\begin{corollary}\label{cor:universal}
+Let $K$ be a credal set. The safe-improvement ranking on $\M_U$ covers $K$ if and only if
+$K$ is coverable on $U$. Hence it is a universal cover on $U$.
+\end{corollary}
+
+\begin{proof}
+If some ranking on $\M_U$ covers $K$, then $D_K\in\M_U$ and (LF) holds at $D_K$. So
+$K'\subseteq K$ by Lemma~\ref{lem:LF}(a), $K$ is full-dimensional by
+Lemma~\ref{lem:LF}(c), and $K'\subseteq\relint K$ by Lemma~\ref{lem:LF}(b). Now apply
+Theorem~\ref{thm:main}(e). The converse is trivial.
+\end{proof}
+
+\begin{corollary}\label{cor:every}
+Let $K$ be a full-dimensional credal set, and let $K'\subseteq\relint K$ be nonempty,
+compact and convex; for instance $K'=\{k_0\}$ with $k_0\in\relint K$. Then the
+safe-improvement ranking on $\M_{D_{K'}}$ covers $K$. In particular every
+full-dimensional credal set is covered by some ranking on some domain. The same ranking
+covers every full-dimensional credal set whose relative interior contains $K'$.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main}(e).
+\end{proof}
+
+\subsection{Lower-dimensional credal sets}
+
+\begin{proposition}\label{prop:lowdim}
+Let $K$ be a credal set that is not full-dimensional.
+\begin{enumerate}[label=(\alph*)]
+  \item If $K'\subseteq K$, then $D_K$ is a coherent model on $U$, and in the
+  safe-improvement ranking on $\M_U$ it is undominated and has no weak dominator other
+  than itself.
+  \item For every one-sided domain $V$, (LF) fails at $D_K$ for $\M_V$. Hence no ranking
+  on $\M_V$ covers $K$; in particular the safe-improvement ranking on $\M_U$ does not
+  cover $K$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $D_K\in\CC_U$ by Lemma~\ref{lem:LF}(a); apply Theorem~\ref{thm:main}(b).
+(b) Lemma~\ref{lem:LF}(c), and requirement (vi) of Definition~\ref{def:cover}.
+\end{proof}
+
+So the ranking does not discriminate against lower-dimensional credal sets: every
+coherent model on $U$, of whatever dimension, is undominated. Lower-dimensional coherent
+models on $U$ exist if and only if $K'$ is itself not full-dimensional: every credal set
+containing a full-dimensional $K'$ is full-dimensional, and if $K'$ is not, then
+$D_{K'}=U$ is one. For instance, if $K'=\{k_0\}$, every credal set $K$ containing $k_0$,
+of any dimension, yields an undominated model $D_K$. For a lower-dimensional $K$ with
+$K'\subseteq K$, requirements (i)--(v) of Definition~\ref{def:cover} hold, and exactly
+requirement (vi), local freedom, fails: the boundary of $D_K$ contains a pair $\pm h$ of
+nonzero gambles, and no domain that contains neighbourhoods of both can be one-sided. If
+$K'\not\subseteq K$, then $D_K$ is not a model on $U$, and requirement (iv) fails as
+well.
+
+The failure of (LF) persists on every domain $V$ for which $V\cap(-V)$ contains no
+non-null set of gambles with a positive and a negative coordinate
+\cite[Prop.~2.10]{KCM}. Lower-dimensional targets therefore require domains that are not
+one-sided, and on such domains some of them are covered by other rankings; for instance,
+on the full domain the Brier ranking covers every precise model $\{p\}$ with
+$p\in\relint\Delta$ \cite[Cor.~5.9]{KCM}. This note does not address whether the
+safe-improvement construction yields a universal cover on domains that are not one-sided.
+Definition~\ref{def:SI} makes sense on any domain, but Step 2 of the proof of
+Theorem~\ref{thm:H} uses an element of $K'$, and on such domains $Q_X$ may be empty.
+
+\section{An abstract construction lemma}\label{sec:abstract}
+
+The argument of Sections~\ref{sec:ranking}--\ref{sec:main} separates into a construction
+lemma that uses no geometry and a repair theorem (Theorem~\ref{thm:H}) that supplies its
+one substantive hypothesis. The lemma is a construction theorem, not a proposed condition
+on rankings: it says how to build a ranking with the dominance properties once safe repairs
+are known to exist.
+
+\smallskip\noindent\textbf{Setting.} Let $\Omega$ be a nonempty set of worlds, of any
+cardinality; let $\M$ be a set of models and $\CC\subseteq\M$ a class of models called
+coherent. Let $\mathcal R$ be a set, the \emph{records}, with a map $r:\M\times\M\to
+\mathcal R$ and an element $0\in\mathcal R$ such that $r(X,Y)=0$ if and only if $X=Y$.
+For each $\omega\in\Omega$ let $\sigma_\omega:\M\to\R$ be a score (higher is better) and
+$d_\omega:\mathcal R\to\R$ a function with
+\[
+  d_\omega(r(X,Y))=\sigma_\omega(X)-\sigma_\omega(Y)\qquad(X,Y\in\M),
+\]
+and let $\mathcal G_\omega\subseteq\mathcal R$, the records that are \emph{guidance at
+$\omega$}. Finally let $\mathcal T\subseteq\M^3$ be a set of triples, called
+\emph{non-overlapping}. A record $\rho$ is \emph{safe} if $\rho\ne r(Y,C)$ for all
+$Y\in\M$ and $C\in\CC$. Define
+\[
+  X\preceq_\omega Y\iff r(X,Y)\in\mathcal G_\omega,\ \text{or $r(X,Y)$ is safe and }
+  d_\omega(r(X,Y))>0 .
+\]
+Consider the hypotheses:
+\begin{itemize}
+  \item[(A1)] For every $\omega$, $0\in\mathcal G_\omega$, and $d_\omega(\rho)>0$ for every
+  $\rho\in\mathcal G_\omega\setminus\{0\}$.
+  \item[(A2)] If $C\in\CC$, $Y\in\M$ and $r(Y,C)\in\mathcal G_\omega$ for every $\omega$,
+  then $Y=C$.
+  \item[(A3)] For every $X\in\M\setminus\CC$ there is $N\in\CC$ such that $r(N,X)$ is safe
+  and $\sigma_\omega(N)>\sigma_\omega(X)$ for every $\omega$.
+  \item[(A4)] For every $(X,Y,Z)\in\mathcal T$ and every $\omega$: if $r(X,Y),r(Y,Z)\in
+  \mathcal G_\omega$, then $r(X,Z)\in\mathcal G_\omega$; and if $r(X,Y)$ or $r(Y,Z)$ is
+  safe, then $r(X,Z)$ is safe.
+  \item[(A5)] Every record $\rho\ne0$ with $\rho\in\mathcal G_\omega$ for every $\omega$
+  is safe.
+\end{itemize}
+(A1) says that guidance strictly improves the score of its own world; (A2) that guidance
+alone cannot weakly dominate a coherent model nontrivially; (A3) that every incoherent
+model has a coherent repair that improves its score at every world by a safe change; and
+(A4) that guidance composes over non-overlapping steps and that safety cannot be lost by
+adjoining a further non-overlapping step; (A5) is used only for a converse. Safety is
+defined here through the record map: a record is unsafe exactly when it describes a change
+out of some coherent model. Upward closure of safety is not derived from this definition
+but assumed in (A4); in the application it holds because every record that applies to a
+model is the record of a change out of it (Lemma~\ref{lem:record}(a)).
+
+\begin{lemma}\label{lem:abstract}
+In the setting above, with weak dominance, dominance and strict dominance defined as in
+Definition~\ref{def:dom}:
+\begin{enumerate}[label=(\alph*)]
+  \item Assume (A1). Each $\preceq_\omega$ is reflexive and depends on $(X,Y)$ only through
+  $r(X,Y)$. If $X\preceq_\omega Y$ and $X\ne Y$, then $\sigma_\omega(X)>\sigma_\omega(Y)$;
+  hence $X$ and $Y$ are tied at $\omega$ only if $X=Y$, and $\preceq_\omega$ satisfies
+  (FCC) and (TC). If $r(X,Y)\in\mathcal G_\omega\setminus\{0\}$, then $X\prec_\omega Y$.
+  \item Assume (A1) and (A2). No $C\in\CC$ has a weak dominator other than itself; in
+  particular every coherent model is undominated.
+  \item Assume (A1) and (A3). Every $X\in\M\setminus\CC$ is strictly dominated by some
+  $N\in\CC$.
+  \item Assume (A1)--(A3). The undominated models are exactly the coherent models; every
+  model is weakly dominated by an undominated coherent model; and a model tied at some
+  world with a coherent model equals it.
+  \item Assume (A1) and (A4). If $(X,Y,Z)\in\mathcal T$, $X\preceq_\omega Y$ and
+  $Y\preceq_\omega Z$, then $X\preceq_\omega Z$.
+  \item Assume (A1) and (A5). If $N$ weakly dominates $X$ and $N\ne X$, then $r(N,X)$ is
+  safe and $\sigma_\omega(N)>\sigma_\omega(X)$ for every $\omega$. Hence, under (A1) and
+  (A5), (A3) holds if and only if every model outside $\CC$ is dominated by a member of
+  $\CC$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Reflexivity holds because $r(X,X)=0\in\mathcal G_\omega$. If $X\preceq_\omega Y$ and
+$X\ne Y$, then $\rho\coloneqq r(X,Y)\ne0$ is accepted either as guidance, and then
+$d_\omega(\rho)>0$ by (A1), or as a safe record with $d_\omega(\rho)>0$; in both cases
+$\sigma_\omega(X)-\sigma_\omega(Y)=d_\omega(\rho)>0$. A tie between $X\ne Y$ would give
+$\sigma_\omega(X)>\sigma_\omega(Y)>\sigma_\omega(X)$. A chain $A_0\preceq_\omega\dots
+\preceq_\omega A_k$ gives $\sigma_\omega(A_0)\ge\sigma_\omega(A_k)$, while $A_k
+\prec_\omega A_0$ would give $A_k\ne A_0$ (by reflexivity) and so $\sigma_\omega(A_k)>
+\sigma_\omega(A_0)$; this proves (FCC), and (TC) is its case $k=2$. If $r(X,Y)\in
+\mathcal G_\omega\setminus\{0\}$, then $X\preceq_\omega Y$ and $X\ne Y$, so they are not
+tied and $X\prec_\omega Y$.
+
+(b) Let $Y$ weakly dominate $C\in\CC$, and put $\rho\coloneqq r(Y,C)$. By definition
+$\rho$ is not safe, so $Y\preceq_\omega C$ requires $\rho\in\mathcal G_\omega$, for every
+$\omega$. By (A2), $Y=C$.
+
+(c) Take $N$ as in (A3). For every $\omega$, $r(N,X)$ is safe and $d_\omega(r(N,X))=
+\sigma_\omega(N)-\sigma_\omega(X)>0$, so $N\preceq_\omega X$; and $N\ne X$ because
+$N\in\CC$ and $X\notin\CC$. By (a), $N\prec_\omega X$.
+
+(d) By (b) and (c). For the last claim use (a).
+
+(e) If $r(X,Y),r(Y,Z)\in\mathcal G_\omega$, then $r(X,Z)\in\mathcal G_\omega$ by (A4).
+Otherwise one of $r(X,Y)$, $r(Y,Z)$ is safe with positive $d_\omega$; then $r(X,Z)$ is
+safe by (A4), and $d_\omega(r(X,Z))=\bigl(\sigma_\omega(X)-\sigma_\omega(Y)\bigr)+
+\bigl(\sigma_\omega(Y)-\sigma_\omega(Z)\bigr)>0$, because one summand is positive and the
+other is non-negative by (a).
+
+(f) $\rho\coloneqq r(N,X)\ne0$ is accepted at every $\omega$, so $\sigma_\omega(N)>
+\sigma_\omega(X)$ for every $\omega$ by (a). If $\rho$ were not safe, it would be accepted
+as guidance at every $\omega$, and (A5) would make it safe. For the equivalence: (c) gives
+one direction; conversely, if $N\in\CC$ dominates $X\notin\CC$, then $N\ne X$ and $N$
+weakly dominates $X$, so $N$ is as required in (A3).
+\end{proof}
+
+The record layer is what gives the lemma content. Without records one could let
+$X\preceq_\omega Y$ hold when $r(X,Y)\in\mathcal G_\omega$, or when $Y\notin\CC$ and
+$\sigma_\omega(X)>\sigma_\omega(Y)$. Given coherent models that improve every incoherent
+model at every world, this yields protection and dominance. But acceptance then depends on
+whether $Y$ is coherent, which is not a property of $r(X,Y)$. In the setting of
+Example~\ref{ex:tr}, with $C=U$ and $A,B$ as there, the model $C\setminus A$ is incoherent:
+if it were a.e.\ equal to some $D_Q$, then $D_Q$ would contain the open set $U\setminus\cl
+A$ (Lemma~\ref{lem:D}(d)), whose convex hull contains $A$, while $\mu(A\cap D_Q)=0$. So, at
+world 1, the record $(\emptyset,B)$ is refused from $C$ (it is not guidance there, and $C$
+is coherent) but accepted from $C\setminus A$; hence (IB) fails. Moreover $C\setminus(A\cup
+B)\preceq_1C\setminus A\preceq_1C$ by steps with the disjoint supports $B$ and $A$, while
+$C\setminus(A\cup B)\preceq_1C$ fails; hence (Add) fails. Safety is a record-level
+substitute for the condition that the change starts from an incoherent model.
+
+The hypotheses involve no topology, measure or finiteness. In the setting of
+Sections~\ref{sec:framework}--\ref{sec:main}, take $\M=\M_U$, $\CC=\CC_U$, the records of
+Section~\ref{sec:ranking} with $0$ the null record, $\sigma_i=m_i$, $d_i(r)=m_i(r)$,
+$\mathcal G_i=G_i$, and $\mathcal T$ the triples with $(X\triangle Y)\cap(Y\triangle Z)$
+null. By Lemma~\ref{lem:record}(a), safety in the abstract sense is safety in the sense of
+Section~\ref{sec:ranking}, and $\preceq_\omega$ is the safe-improvement ranking. (A1) is
+Lemma~\ref{lem:increment}(a). (A2) holds because a record $r(Y,C)$ in every $G_i$ has the
+form $(A,\emptyset)$ with $A\subseteq\Rpp\subseteq C$ (Lemma~\ref{lem:increment}(c)),
+while $A=Y\setminus C$ misses $C$; so $A$ is null and $Y=C$ a.e. (A3) is
+Theorem~\ref{thm:H}. (A4) follows from Lemma~\ref{lem:record}(b), the closure of $G_i$
+under $\sqcup$, and Lemma~\ref{lem:safe}(c). (A5) is Lemma~\ref{lem:increment}(c).
+Lemma~\ref{lem:abstract} thus yields the order-theoretic and dominance clauses of
+Theorem~\ref{thm:main}(a)--(d), apart from (IB) and the form of (G) used in
+Definition~\ref{def:cover}, which are Proposition~\ref{prop:structure}(a),(c). The
+geometric clauses of Theorem~\ref{thm:main}(c) come from Theorem~\ref{thm:H}, and uniform
+dominance in Brier loss uses the finiteness of $\Omega$.
+
+\section{Infinitely many worlds}\label{sec:infinite}
+
+This section extends Theorem~\ref{thm:H}, the safe-improvement ranking and the coverage
+results to arbitrary sets of worlds. Lyapunov's theorem is not available in infinite
+dimensions; it is replaced by a relaxation of acceptance sets that is used only inside
+the proof. The finite setting of Sections~\ref{sec:framework}--\ref{sec:main} is the
+special case $\Omega=\{1,\dots,n\}$, $E=\R^n$ (Remark~\ref{rem:finite-special}).
+
+\subsection{Gambles and states}
+
+Let $\Omega$ be a nonempty set, of any cardinality, and let $\ell^\infty(\Omega)$ be the
+space of bounded real functions on $\Omega$ with the norm $\|h\|\coloneqq\sup_\Omega|h|$
+and the pointwise order. Throughout this section $E\subseteq\ell^\infty(\Omega)$ is a
+norm-closed, \emph{separable} linear subspace with $\one\in E$; its elements are the
+\emph{gambles}. (Remark~\ref{rem:orderunit} replaces $\one$ by any order unit bounded
+below by a positive constant.) A \emph{state} is a linear functional $q:E\to\R$ that is
+positive ($q(h)\ge0$ whenever $h\ge0$) and normalised ($q(\one)=1$); $S$ is the set of
+states, with the weak-$\ast$ topology $\sigma(E^\ast,E)$. For $\omega\in\Omega$,
+$\delta_\omega(h)\coloneqq h(\omega)$ defines a state. A \emph{credal set} is a nonempty
+weak-$\ast$ closed convex subset of $S$. For a nonempty weak-$\ast$ compact $Q\subseteq S$
+put
+\[
+  P_Q(h)\coloneqq\min_{q\in Q}q(h),\qquad D_Q\coloneqq\{h\in E:P_Q(h)>0\},\qquad
+  C_Q\coloneqq\{h\in E:P_Q(h)\ge0\};
+\]
+the minimum is attained because $q\mapsto q(h)$ is weak-$\ast$ continuous.
+
+\begin{lemma}\label{lem:states}
+\begin{enumerate}[label=(\alph*)]
+  \item Every state has norm $1$. $S$ is convex, weak-$\ast$ compact and metrizable.
+  \item $P_S(h)=\inf_{\omega\in\Omega}h(\omega)$ for every $h\in E$.
+  \item Let $\hat\Omega$ be the weak-$\ast$ closure of $\{\delta_\omega:\omega\in\Omega\}$
+  in $S$, a compact metrizable space. The map $h\mapsto\hat h$, $\hat h(s)\coloneqq s(h)$,
+  is a linear isometry of $E$ into $C(\hat\Omega)$ that preserves and reflects the order
+  and maps $\one$ to $1$. Every state $q$ is of the form $q(h)=\int_{\hat\Omega}\hat
+  h\,d\pi_q$ for some regular Borel probability measure $\pi_q$ on $\hat\Omega$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) For $q\in S$ and $h\in E$, $-\|h\|\one\le h\le\|h\|\one$ gives $|q(h)|\le\|h\|$, with
+equality at $h=\one$. So $S$ lies in the unit ball of $E^\ast$, and it is weak-$\ast$
+closed, since positivity and normalisation are pointwise conditions. By the
+Banach--Alaoglu theorem it is weak-$\ast$ compact, and it is metrizable because bounded
+subsets of the dual of a separable space are weak-$\ast$ metrizable. Convexity is clear.
+
+(b) $\delta_\omega\in S$ gives $P_S(h)\le\inf_\Omega h$. Conversely $h-(\inf_\Omega
+h)\one\ge0$ lies in $E$, so $q(h)\ge\inf_\Omega h$ for every $q\in S$.
+
+(c) $\hat\Omega$ is a closed subset of the compact metrizable space $S$. Each $\hat h$ is
+continuous on $\hat\Omega$. By (a), $|\hat h|\le\|h\|$ on $S$, and $\hat h(\delta_\omega)=
+h(\omega)$; so $\sup_{\hat\Omega}|\hat h|=\|h\|$. If $h\ge0$, then $\hat h\ge0$ on $S$;
+if $\hat h\ge0$ on $\hat\Omega$, then $h(\omega)=\hat h(\delta_\omega)\ge0$. Let $q\in S$.
+On the subspace $\hat E\coloneqq\{\hat h:h\in E\}$ of $C(\hat\Omega)$ put $L(\hat h)
+\coloneqq q(h)$, which is well defined because $h\mapsto\hat h$ is injective. Since
+$(\sup_\Omega h)\one-h\ge0$, $L(\hat h)\le\sup_\Omega h=\max_{\hat\Omega}\hat h$. The
+Hahn--Banach theorem extends $L$ to a linear functional on $C(\hat\Omega)$ dominated by
+the sublinear functional $f\mapsto\max_{\hat\Omega}f$. The extension is positive, since
+$f\ge0$ gives $-L(f)=L(-f)\le\max(-f)\le0$, and $L(1)=q(\one)=1$ because $1=\hat\one\in
+\hat E$. The Riesz representation theorem gives $\pi_q$.
+\end{proof}
+
+So, whatever $\Omega$ is, the states are countably additive probabilities on the
+compact metrizable space $\hat\Omega$, though in general not on $\Omega$, and the
+representing measure need not be unique. If $\Omega$ is a compact metric space and $E=C(\Omega)$,
+then the states are exactly the regular Borel probability measures on $\Omega$, by the Riesz
+representation theorem.
+
+\begin{lemma}\label{lem:envelopes}
+Let $Q,Q_1,Q_2$ be credal sets.
+\begin{enumerate}[label=(\alph*)]
+  \item $P_Q$ is $1$-Lipschitz, concave and positively homogeneous, so $D_Q$ is a
+  norm-open convex cone and $C_Q$ is norm-closed. $D_S\subseteq D_Q$, $D_Q\cap(-D_Q)=
+  \emptyset$, and $D_{Q_1}\cap D_{Q_2}=D_{\conv(Q_1\cup Q_2)}$, where $\conv(Q_1\cup Q_2)$
+  is a credal set.
+  \item $P_Q(h+t\one)=P_Q(h)+t$. The norm boundary $\partial D_Q$ is contained in
+  $\{P_Q=0\}$, and $\cl D_Q\subseteq C_Q$.
+  \item For $0\le\tau\le1$, $(1-\tau)Q+\tau S$ is a credal set, and
+  $P_{(1-\tau)Q+\tau S}=(1-\tau)P_Q+\tau P_S$.
+  \item If $D_{Q_1}\subseteq D_{Q_2}$, then $Q_2\subseteq Q_1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Each $q\in Q$ has norm $1$, so $|P_Q(h)-P_Q(h')|\le\|h-h'\|$; a minimum of linear
+functions is concave and positively homogeneous. If $h\in D_S$ then $q(h)\ge P_S(h)>0$
+for all $q\in Q\subseteq S$. A linear functional has the same minimum over $Q_1\cup Q_2$
+and over its convex hull, which is weak-$\ast$ compact as a continuous image of
+$Q_1\times Q_2\times[0,1]$.
+(b) The identity holds because $q(\one)=1$. If $P_Q(h)<0$ or $P_Q(h)>0$, a neighbourhood
+of $h$ lies outside $D_Q$ or inside it, by (a). $C_Q$ is closed and contains $D_Q$.
+(c) The set is a continuous image of $Q\times S$, hence compact, and it is convex. The
+minimum of $(1-\tau)q+\tau s$ over the product is the sum of the minima.
+(d) Suppose $k\in Q_2\setminus Q_1$. The continuous linear functionals on $(E^\ast,
+\sigma(E^\ast,E))$ are the evaluations at elements of $E$, so strict separation of $k$
+from the compact convex set $Q_1$ gives $g\in E$ and $c\in\R$ with $q(g)>c>k(g)$ for all
+$q\in Q_1$. Put $h\coloneqq g-c\one$. Then $P_{Q_1}(h)>0$, because the minimum over $Q_1$
+is attained, while $k(h)<0$. So $h\in D_{Q_1}\setminus D_{Q_2}$.
+\end{proof}
+
+\subsection{The measure}
+
+Let $\mu$ be a finite Borel measure on $(E,\|\cdot\|)$. We use three conditions.
+\begin{itemize}
+  \item[(M1)] $\int\|h\|\,d\mu(h)<\infty$.
+  \item[(M2)] $\mu\{P_Q=0\}=0$ for every credal set $Q$.
+  \item[(M3)] $\mu$ has full support: every nonempty norm-open set has positive measure.
+\end{itemize}
+(M2) applies in particular to $Q=\{q\}$ for a state $q$, where $\{P_Q=0\}=\{q(h)=0\}$; to
+$Q=\{\delta_\omega\}$, where it says that $\{h(\omega)=0\}$ is null; and to $Q=S$, where
+it says that the gambles $h$ with $\inf_\Omega h=0$ form a null set. Equalities and
+inclusions between sets of gambles hold a.e.\ if they hold up to a $\mu$-null set.
+
+\begin{lemma}\label{lem:measure}
+Let $\omega_0\in\Omega$ and $E_0\coloneqq\{g\in E:g(\omega_0)=0\}$. Let $\nu$ be a Borel
+probability measure on $E_0$ with full support and $\int\|g\|\,d\nu<\infty$; for instance
+$\nu=\sum_kw_k\delta_{g_k}$, where $(g_k)$ is a dense sequence in $E_0$ and $w_k>0$,
+$\sum_kw_k=1$, $\sum_kw_k(1+\|g_k\|)<\infty$. Let $\lambda$ be a Borel probability measure
+on $\R$ with full support, no atoms and $\int|t|\,d\lambda<\infty$; for instance the
+standard normal distribution. Let $\mu$ be the image of $\nu\otimes\lambda$ under
+$\Phi(g,t)\coloneqq g+t\one$. Then $\mu$ is a Borel probability measure on $E$ satisfying
+(M1), (M2) and (M3). Moreover $\mu\{P_Q=0\}=0$ for every nonempty weak-$\ast$ compact
+$Q\subseteq S$.
+\end{lemma}
+
+\begin{proof}
+$E_0$ is a closed subspace of the separable space $E$, so it is separable, and dense
+sequences exist. $\Phi:E_0\times\R\to E$ is linear and continuous, and it is bijective
+with continuous inverse $h\mapsto(h-h(\omega_0)\one,h(\omega_0))$; so it is a linear
+homeomorphism. Since $E_0$ and $\R$ are separable metric spaces, the Borel
+$\sigma$-algebra of $E_0\times\R$ is the product $\sigma$-algebra, so $\mu$ is a Borel
+probability measure on $E$.
+
+(M1): $\int\|h\|\,d\mu=\iint\|g+t\one\|\,d\nu\,d\lambda\le\int\|g\|\,d\nu+\int|t|\,
+d\lambda<\infty$. For the atomic example, $\int\|g\|\,d\nu=\sum_kw_k\|g_k\|<\infty$, and
+$\nu$ has full support because every nonempty open subset of $E_0$ contains some $g_k$.
+
+(M3): if $W\subseteq E$ is nonempty and open, then $\Phi^{-1}(W)$ is nonempty and open,
+so it contains a product $V\times I$ of nonempty open sets, and $\mu(W)\ge\nu(V)\lambda(I)
+>0$.
+
+(M2): let $Q\subseteq S$ be nonempty and weak-$\ast$ compact. $P_Q$ is continuous, and
+$P_Q(g+t\one)=P_Q(g)+t$. So $\Phi^{-1}\{P_Q=0\}=\{(g,t):t=-P_Q(g)\}$, and by Fubini's
+theorem $\mu\{P_Q=0\}=\int\lambda(\{-P_Q(g)\})\,d\nu(g)=0$, since $\lambda$ has no atoms.
+\end{proof}
+
+With the atomic $\nu$, $\mu$ is carried by the countably many lines $g_k+\R\one$. This is
+admissible; but it shows that the null sets of $\mu$ are a substantive choice
+(Section~\ref{sec:scope}).
+
+\smallskip\noindent\textbf{Where the conditions are used.} (M1) is used for the Bochner
+integrals below and for dominated convergence. (M2) is used for the uniqueness of
+maximisers and for the hull lemma (with $Q=\{q\}$ and $Q=Q_B$), for strict guidance (with
+$Q=\{\delta_\omega\}$) and for protection (with $Q=S$). (M3) is used only to identify
+models: to show that the credal set of a coherent model is unique, that a coherent model
+lies in $U$ exactly when its credal set contains $K'$, that $U$ is one-sided in the sense
+of Section~\ref{subsec:inf-LF}, and to characterise local freedom.
+The existence of the defender in Theorem~\ref{thm:Hinf} and the protection of coherent
+models do not use (M3).
+
+\smallskip
+The condition $\mu\{P_S=0\}=0$ in (M2) cannot be dropped: without it, guidance alone can
+strictly dominate a coherent model.
+
+\begin{example}\label{ex:PS}
+Let $\Omega=(0,1]$ and $E\coloneqq\{a+b\,\omega:a,b\in\R\}$, a two-dimensional subspace of
+$\ell^\infty(\Omega)$ containing $\one$. Every state has the form $q_s(a+b\,\omega)=a+bs$
+with $s\in[0,1]$ (positivity applied to $\omega$ and $\one-\omega$), and $P_S(a+b\,\omega)
+=\min(a,a+b)$. The state $q_0$ is not an evaluation. Let $K'\coloneqq\{q_{1/2}\}$, so that
+$U=\{a+b/2>0\}$, and $Q\coloneqq\{q_s:0\le s\le\tfrac12\}$, so that $C\coloneqq D_Q=\{a>0,
+\ a+b/2>0\}$ is a coherent model on $U$. Let $\mu$ be the sum of a standard Gaussian
+distribution on the coefficients $(a,b)$ and the distribution of $(0,\beta)$ with $\beta$
+exponentially distributed. Then $\mu$ is finite, has full support and satisfies (M1), but
+the ray $R\coloneqq\{a=0,\ b>0\}$ has $\mu(R)=1$ and lies in $\{P_S=0\}$. $R\subseteq U$
+and $R\cap C=\emptyset$. Every $h=b\,\omega\in R$ is positive at every world, so the record
+$(R,\emptyset)$ is guidance at every $\omega\in\Omega$ and non-null, and $m_\omega(R)=
+\int_Rh(\omega)\,d\mu>0$. With the definitions of Section~\ref{subsec:inf-ranking},
+$C\cup R\preceq_\omega C$ for every $\omega$, while $C\preceq_\omega C\cup R$ fails, because
+the record $(\emptyset,R)$ is not guidance at $\omega$ and has negative increment. So the
+model $C\cup R$ strictly dominates the coherent model $C$ at every world. Note that
+$C\cup R$ is a convex cone that excludes $0$ and contains every $h$ with
+$\inf_\Omega h>0$.
+\end{example}
+
+\subsection{Models and coherence}
+
+Fix a credal set $K'$ and put $U\coloneqq D_{K'}$, a norm-open convex cone with
+$U\cap(-U)=\emptyset$, containing no $h$ with $\sup_\Omega h\le0$. Models on $U$ are the
+Borel sets $X\subseteq U$, identified when they agree a.e.; their class is $\M_U$. All the
+sets $D_Q$ are norm-open by Lemma~\ref{lem:envelopes}(a), hence Borel; so are the sets
+$\hull(X)$, $N_0$ and $N_\tau$ below. A model $X$ is \emph{coherent} if $X=D_Q$ a.e.\ for
+a credal set $Q$. Put
+\[
+  \CC_U\coloneqq\{D_Q:Q\text{ a credal set with }K'\subseteq Q\}\subseteq\M_U .
+\]
+For a Borel set $B\subseteq U$ let
+\[
+  Q_B\coloneqq\{q\in S:q(h)\ge0\text{ for $\mu$-a.e.\ }h\in B\},\qquad\hull(B)\coloneqq
+  D_{Q_B}.
+\]
+If $B$ is null, then $Q_B=S$ and $\hull(B)=D_S$.
+
+\begin{lemma}\label{lem:inf-hull}
+Assume (M2), and let $B\subseteq U$ be Borel.
+\begin{enumerate}[label=(\alph*)]
+  \item $Q_B$ is a credal set containing $K'$; so $\hull(B)\in\CC_U$.
+  \item $P_{Q_B}\ge0$ a.e.\ on $B$, and $B\subseteq\hull(B)$ a.e.
+  \item For every credal set $Q$ the following are equivalent: $B\subseteq D_Q$ a.e.;
+  $Q\subseteq Q_B$; $\hull(B)\subseteq D_Q$. So $\hull(B)$ is the smallest set of the form
+  $D_Q$ containing $B$ a.e.
+  \item Assume also (M3). If $O$ is norm-open and $O\subseteq D_Q$ a.e., then $O\subseteq
+  D_Q$. Consequently $D_Q\subseteq U$ a.e.\ if and only if $K'\subseteq Q$; $D_{Q_1}=
+  D_{Q_2}$ a.e.\ only if $Q_1=Q_2$; and $\CC_U$ is the class of coherent models on $U$,
+  each with a unique credal set.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $K'\subseteq Q_B$ because $k(h)>0$ on $U$ for $k\in K'$, and $Q_B$ is convex. Since
+$S$ is metrizable, closedness can be tested along sequences. Let $q_j\in Q_B$ converge
+weak-$\ast$ to $q$. If $q(h)<0$, then $q_j(h)<0$ for some $j$; so $B\cap\{q<0\}\subseteq
+\bigcup_jB\cap\{q_j<0\}$, which is null, and $q\in Q_B$.
+(b) $Q_B$ is a compact metrizable space, so it has a dense sequence $(q_j)$. Off a null
+set, every $h\in B$ satisfies $q_j(h)\ge0$ for all $j$, and then $q(h)\ge0$ for all
+$q\in Q_B$, by weak-$\ast$ continuity of $q\mapsto q(h)$; that is, $P_{Q_B}(h)\ge0$. The
+set $\{P_{Q_B}=0\}$ is null by (M2), so $B\subseteq D_{Q_B}$ a.e.
+(c) If $B\subseteq D_Q$ a.e., each $q\in Q$ is positive a.e.\ on $B$, so $Q\subseteq Q_B$.
+If $Q\subseteq Q_B$, then $P_{Q_B}\le P_Q$ and $D_{Q_B}\subseteq D_Q$. If $\hull(B)
+\subseteq D_Q$, then $B\subseteq D_Q$ a.e.\ by (b).
+(d) The set $O\cap\{P_Q<0\}$ is open and null, hence empty by (M3). If $h\in O$, then
+$h-\eta\one\in O$ for some $\eta>0$, so $P_Q(h)-\eta\ge0$ and $h\in D_Q$. If $D_Q
+\subseteq U$ a.e., then $D_Q\subseteq U=D_{K'}$, and Lemma~\ref{lem:envelopes}(d) gives
+$K'\subseteq Q$; conversely, $K'\subseteq Q$ gives $P_Q\le P_{K'}$, so $D_Q\subseteq U$. If $D_{Q_1}=D_{Q_2}$
+a.e., the first claim gives $D_{Q_1}=D_{Q_2}$, and Lemma~\ref{lem:envelopes}(d) gives
+$Q_1=Q_2$.
+\end{proof}
+
+Records, their application to models, the operation $\sqcup$ and safety are defined as in
+Section~\ref{sec:ranking}, with Borel subsets of $U$ in place of measurable subsets of
+$U\subseteq\R^n$: a record is \emph{safe} if it applies to no member of $\CC_U$.
+Lemma~\ref{lem:record} and Lemma~\ref{lem:safe}(c) are set-theoretic and hold verbatim.
+
+\begin{lemma}\label{lem:inf-safe}
+Assume (M2), and let $r=(A,B)$ be a record. The following are equivalent: (i) $r$ is
+safe; (ii) $r$ applies to no set $D_Q$ with $Q$ a credal set; (iii)
+$\mu(A\cap\hull(B))>0$. If $B$ is null, $r$ is safe if and only if $\mu(A\cap D_S)>0$.
+\end{lemma}
+
+\begin{proof}
+(ii)$\Rightarrow$(i) is trivial. (i)$\Rightarrow$(iii): if $A\cap\hull(B)$ is null, then
+$r$ applies to $\hull(B)\in\CC_U$, by Lemma~\ref{lem:inf-hull}(a),(b).
+(iii)$\Rightarrow$(ii): if $r$ applies to $D_Q$, then $B\subseteq D_Q$ a.e., so
+$\hull(B)\subseteq D_Q$ by Lemma~\ref{lem:inf-hull}(c), and $A\cap\hull(B)$ is null. The
+last claim holds because $\hull(B)=D_S$ when $B$ is null.
+\end{proof}
+
+\subsection{The repair theorem}
+
+By (M1), and because $E$ is separable, the identity map of $E$ is Bochner integrable with
+respect to $\mu$. For a Borel set $Y\subseteq E$ put $m(Y)\coloneqq\int_Yh\,d\mu(h)\in E$.
+Bounded linear functionals commute with the Bochner integral, so $q(m(Y))=\int_Yq(h)\,
+d\mu$ for $q\in S$, and in particular $m(Y)(\omega)=\int_Yh(\omega)\,d\mu$; also $\|m(Y)
+\|\le\int_Y\|h\|\,d\mu$.
+
+\begin{theorem}\label{thm:Hinf}
+Assume (M1) and (M2). Let $X\in\M_U$ with $X\notin\CC_U$. Then there is $N\in\CC_U$ such
+that
+\begin{enumerate}[label=(\roman*)]
+  \item $\inf_{q\in S}q\bigl(m(N)-m(X)\bigr)>0$; in particular $\inf_{\omega\in\Omega}
+  \bigl(m(N)(\omega)-m(X)(\omega)\bigr)>0$;
+  \item $N\subseteq\hull(X)$ and $\hull(X\setminus N)=\hull(X)$;
+  \item $\mu(N\setminus X)>0$.
+\end{enumerate}
+In particular the record $r(N,X)$ is safe.
+\end{theorem}
+
+The margin in (i) holds at every state, not merely at every world; by
+Lemma~\ref{lem:states}(b) the two infima in (i) are equal.
+
+\begin{proof}
+\emph{Step A: the hull.} Put $G\coloneqq\hull(X)=D_{Q_X}$ and $P\coloneqq P_{Q_X}$. By
+Lemma~\ref{lem:inf-hull}(a),(b), $Q_X$ is a credal set containing $K'$, $G\in\CC_U$, $P\ge0$
+a.e.\ on $X$, and $X\subseteq G$ a.e.
+
+\emph{Step B: relaxed choices and the minimax theorem.} Since $\mu$ is finite,
+$L^\infty(\mu)$ is the dual of $L^1(\mu)$. The set $F_G\coloneqq\{f\in L^\infty(\mu):0\le
+f\le\one_G\text{ a.e.}\}$ is convex, bounded and weak-$\ast$ closed (it is cut out by the
+conditions $\int f\varphi\,d\mu\ge0$ and $\int(\one_G-f)\varphi\,d\mu\ge0$ for $0\le
+\varphi\in L^1(\mu)$), hence weak-$\ast$ compact. Define $T:F_G\to E$ by $T(f)\coloneqq\int
+f(h)\,h\,d\mu(h)$, so that $T(\one_Y)=m(Y)$ for Borel $Y\subseteq G$. $T$ is
+weak-$\ast$-to-norm continuous: the identity map lies in $L^1(\mu;E)$, so there are simple
+functions $s_n=\sum_ie_{n,i}\one_{E_{n,i}}$ with $\int\|h-s_n(h)\|\,d\mu<1/n$; the maps
+$T_n(f)\coloneqq\sum_ie_{n,i}\int_{E_{n,i}}f\,d\mu$ are weak-$\ast$-to-norm continuous,
+and $\|T(f)-T_n(f)\|\le\|f\|_\infty/n\le1/n$ on $F_G$, so $T$ is a uniform limit of
+continuous maps. Hence $Z_G\coloneqq T(F_G)$ is norm-compact and convex. By Step A,
+$\one_X\in F_G$, so $x\coloneqq m(X)\in Z_G$. (We do not claim that $\{m(Y):Y\subseteq G\}$
+is convex; relaxation is a device of the proof, and the defender will be an ordinary
+model.)
+
+For $q\in S$ and $f\in F_G$, $q(T(f))=\int f(h)q(h)\,d\mu\le\int_{G\cap\{q>0\}}q(h)\,d\mu$,
+with equality if and only if $f=1$ a.e.\ on $G\cap\{q>0\}$ and $f=0$ a.e.\ on $G\cap\{q<0\}$,
+that is, since $\{q=0\}$ is null by (M2), if and only if $f=\one_{G\cap\{q>0\}}$ a.e. The
+maximiser is a member of $\CC_U$: $G\cap\{q>0\}=D_{\conv(Q_X\cup\{q\})}$ by
+Lemma~\ref{lem:envelopes}(a), and this credal set contains $K'$.
+
+Consider $\Phi(q,z)\coloneqq q(z-x)$ on $S\times Z_G$. $S$ is a compact convex subset of
+the locally convex space $(E^\ast,\sigma(E^\ast,E))$ and $Z_G$ a compact convex subset of
+$(E,\|\cdot\|)$. $\Phi$ is affine in each variable, weak-$\ast$ continuous in $q$ for fixed
+$z$, and norm-continuous in $z$ for fixed $q$. By Sion's minimax theorem \cite{Sion},
+\[
+  v\coloneqq\sup_{z\in Z_G}\min_{q\in S}\Phi(q,z)=\min_{q\in S}\sup_{z\in Z_G}\Phi(q,z).
+\]
+Both optima are attained: $z\mapsto\min_S\Phi(q,z)=\inf_\Omega(z-x)$ is $1$-Lipschitz on
+the compact set $Z_G$, so it attains its maximum at some $z^\ast$; and $q\mapsto\max_{Z_G}
+\Phi(q,z)$ is weak-$\ast$ lower semicontinuous, as a supremum of continuous functions, so
+it attains its minimum on $S$ at some $q^\ast$.
+
+Since $x\in Z_G$, $v\ge\min_S\Phi(q,x)=0$. If $v=0$, then $q^\ast(z)\le q^\ast(x)$ for
+all $z\in Z_G$, so $\one_X$ maximises $f\mapsto q^\ast(T(f))$ over $F_G$, and $X=G\cap
+\{q^\ast>0\}$ a.e.; then $X\in\CC_U$, a contradiction. Hence $v>0$.
+
+Moreover $v=\min_S\Phi(\cdot,z^\ast)\le\Phi(q^\ast,z^\ast)\le\max_{Z_G}\Phi(q^\ast,\cdot)=
+v$, so $z^\ast$ maximises $q^\ast$ over $Z_G$. Write $z^\ast=T(f^\ast)$. Then $f^\ast$
+maximises $f\mapsto q^\ast(T(f))$, so $f^\ast=\one_{N_0}$ a.e., where
+\[
+  N_0\coloneqq G\cap\{q^\ast>0\}\in\CC_U,
+\]
+and $z^\ast=m(N_0)$. Consequently $q(m(N_0)-m(X))\ge\min_S\Phi(\cdot,z^\ast)=v$ for every
+$q\in S$, and in particular $m(N_0)(\omega)-m(X)(\omega)\ge v$ for every $\omega\in\Omega$.
+
+\emph{Step C: the shrink.} For $0<\tau<1$ let $Q_\tau\coloneqq(1-\tau)Q_X+\tau S$, a
+credal set with $P_{Q_\tau}=(1-\tau)P+\tau P_S$ (Lemma~\ref{lem:envelopes}(c)), and put
+$N_\tau\coloneqq N_0\cap D_{Q_\tau}=D_{\conv(Q_X\cup\{q^\ast\}\cup Q_\tau)}\in\CC_U$.
+Since $P\ge P_S$, $P_{Q_\tau}=P-\tau(P-P_S)$ does not increase with $\tau$; and each
+$h\in N_0$ has $P(h)>0$, hence lies in $D_{Q_\tau}$ for all small $\tau$. So $N_\tau$
+increases to $N_0$ as $\tau$ decreases to $0$, and, by dominated convergence with
+dominating functions $1$ and $\|h\|$ (M1), $\mu(N_0\setminus N_\tau)\to0$ and $\|m(N_0)-
+m(N_\tau)\|\le\int_{N_0\setminus N_\tau}\|h\|\,d\mu\to0$.
+
+The gained set is non-null. If $N_0\setminus X$ were null, then for $k\in K'$ we would
+have $k(m(N_0)-m(X))=-\int_{X\setminus N_0}k(h)\,d\mu\le0$, since $k(h)>0$ on $U$; this
+contradicts $k(m(N_0)-m(X))\ge v>0$. Fix $\tau$ with $\|m(N_0)-m(N_\tau)\|\le v/2$ and
+$\mu(N_0\setminus N_\tau)<\mu(N_0\setminus X)$, and put $N\coloneqq N_\tau$. Since states
+have norm $1$, $q(m(N)-m(X))\ge v-v/2=v/2$ for every $q\in S$, which is (i); and
+$\mu(N\setminus X)\ge\mu(N_0\setminus X)-\mu(N_0\setminus N)>0$, which is (iii).
+
+\emph{Step D: hull invariance.} We first show: if $q\in S$, $c\ge0$ and $q(h)\ge-c\,P(h)$
+for a.e.\ $h\in X$, then $q\in Q_X$. For $q'\in Q_X$ put $T'(q')\coloneqq(q+cq')/(1+c)\in
+S$. For a.e.\ $h\in X$, $(q+cq')(h)\ge q(h)+c\,P(h)\ge0$, so $T'$ maps $Q_X$ into itself.
+Its iterates satisfy $T'^k(q')-q=(c/(1+c))^k(q'-q)$, so they converge to $q$ in the norm
+of $E^\ast$, hence weak-$\ast$; and $Q_X$ is nonempty and weak-$\ast$ closed (Step A).
+So $q\in Q_X$.
+
+Now let $q\in Q_{X\setminus N}$ and $c\coloneqq(1-\tau)/\tau$. For $h\in X\cap N$,
+$P_{Q_\tau}(h)>0$ gives $P_S(h)>-c\,P(h)$, and $q(h)\ge P_S(h)$. For a.e.\ $h\in
+X\setminus N$, $q(h)\ge0$, and $P(h)\ge0$ by Step A, so $q(h)\ge-c\,P(h)$. Hence $q\in
+Q_X$. Since $Q_X\subseteq Q_{X\setminus N}$ trivially, $Q_{X\setminus N}=Q_X$ and
+$\hull(X\setminus N)=\hull(X)=G\supseteq N_0\supseteq N$. This is (ii). Finally
+$\mu\bigl((N\setminus X)\cap\hull(X\setminus N)\bigr)=\mu(N\setminus X)>0$, so $r(N,X)$
+is safe by Lemma~\ref{lem:inf-safe}.
+\end{proof}
+
+\subsection{The ranking}\label{subsec:inf-ranking}
+
+For $X\in\M_U$ and $\omega\in\Omega$ put $m_\omega(X)\coloneqq m(X)(\omega)=\int_X
+h(\omega)\,d\mu$, finite by (M1), and $m_\omega(r)\coloneqq m_\omega(A)-m_\omega(B)$ for a
+record $r=(A,B)$. A ranking is a family $(\preceq_\omega)_{\omega\in\Omega}$ of relations
+on $\M_U$; dominance, the conditions (TC), (FCC), (Add) and the requirements (G), (IB),
+(GC), (C), (ID), (W) are defined as in Section~\ref{sec:framework}, with $h(\omega)$ in
+place of $h_i$ and $\omega\in\Omega$ in place of $i$. The record $(A,B)$ is
+\emph{guidance at $\omega$} if $A\subseteq\{h(\omega)>0\}$ and $B\subseteq\{h(\omega)<0\}$
+a.e.; $G_\omega$ is the set of such records. The \emph{safe-improvement ranking} on $\M_U$
+is
+\[
+  X\preceq_\omega Y\iff r(X,Y)\in G_\omega\cup\{r:r\text{ is safe and }m_\omega(r)>0\}.
+\]
+
+\begin{lemma}\label{lem:normingE}
+Assume (M2).
+\begin{enumerate}[label=(\alph*)]
+  \item If $r\in G_\omega$, then $m_\omega(r)\ge0$, with equality if and only if $r$ is
+  null.
+  \item There is a countable set $\Omega_0\subseteq\Omega$ with $\inf_{\Omega_0}h=
+  \inf_\Omega h$ and $\sup_{\Omega_0}h=\sup_\Omega h$ for every $h\in E$.
+  \item Let $\Omega'\subseteq\Omega$ satisfy $\inf_{\Omega'}h=\inf_\Omega h$ for every
+  $h\in E$. A record that is guidance at every $\omega\in\Omega'$ is a.e.\ of the form
+  $(A,\emptyset)$ with $A\subseteq D_S$; it is then guidance at every $\omega\in\Omega$,
+  and, if it is non-null, it is safe.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $m_\omega(r)=\int_A|h(\omega)|\,d\mu+\int_B|h(\omega)|\,d\mu$, which vanishes only if
+$A\cup B\subseteq\{h(\omega)=0\}$ a.e.; this set is null by (M2) with $Q=\{\delta_\omega
+\}$.
+(b) Let $(h_j)$ be dense in $E$, and choose $\omega_{j,l}$ with $h_j(\omega_{j,l})<\inf_\Omega
+h_j+1/l$. Let $\Omega_1\coloneqq\{\omega_{j,l}\}$. If $\|h-h_j\|<\eta$, then $\inf_{\Omega_1}
+h\le\inf_{\Omega_1}h_j+\eta\le\inf_\Omega h_j+\eta\le\inf_\Omega h+2\eta$; so
+$\inf_{\Omega_1}h=\inf_\Omega h$. Applying the same construction to $(-h_j)$ gives a
+countable $\Omega_2$ for suprema; put $\Omega_0\coloneqq\Omega_1\cup\Omega_2$.
+(c) Let $(A,B)$ be guidance at every $\omega\in\Omega'$. Since $-h\in E$ for $h\in E$,
+also $\sup_{\Omega'}h=\sup_\Omega h$. Choosing the points $\omega_{j,l}$ of (b) within
+$\Omega'$ gives a countable $\Omega''\subseteq\Omega'$ with $\inf_{\Omega''}h=\inf_\Omega h$
+and $\sup_{\Omega''}h=\sup_\Omega h$ for all $h\in E$. Off a countable union of
+null sets, every $h\in A$ has $h>0$ on $\Omega''$, so $P_S(h)=\inf_\Omega h\ge0$; removing
+the null set $\{P_S=0\}$ (M2), $A\subseteq D_S$ a.e. Likewise every $h\in B$ off a null set
+has $\sup_\Omega h\le0$, so $k(h)\le0$ for $k\in K'$, and $h\notin U$; so $B$ is null.
+Every $h\in D_S$ satisfies $h(\omega)\ge\inf_\Omega h>0$ for all $\omega$, so the record is
+guidance at every world. If $A$ is non-null, the record is safe by
+Lemma~\ref{lem:inf-safe}, since $\mu(A\cap D_S)=\mu(A)>0$.
+\end{proof}
+
+Part (c) is the only place where the size of $\Omega$ interacts with null sets. Strict
+guidance at a single world needs only (a). Example~\ref{ex:PS} shows that the null set
+$\{P_S=0\}$ in (c) is essential.
+
+\begin{theorem}\label{thm:inf-main}
+Assume (M1) and (M2), and consider the safe-improvement ranking on $\M_U$.
+\begin{enumerate}[label=(\alph*)]
+  \item Each $\preceq_\omega$ is reflexive, ties a.e.-equal models, and satisfies (G),
+  (IB), (TC), (FCC) and (Add). If $X\preceq_\omega Y$ and $X\ne Y$ a.e., then
+  $m_\omega(X)>m_\omega(Y)$; so there are no ties between models that differ on a
+  non-null set.
+  \item For $X,Y\in\M_U$, the following are equivalent: $Y$ weakly dominates $X$ and $Y\ne
+  X$ a.e.; $Y$ dominates $X$; $Y$ strictly dominates $X$; $r(Y,X)$ is safe and
+  $m_\omega(Y)>m_\omega(X)$ for every $\omega\in\Omega$.
+  \item No member of $\CC_U$ has a weak dominator other than itself.
+  \item Every $X\in\M_U\setminus\CC_U$ is strictly dominated by some $N\in\CC_U$ with
+  $\inf_{q\in S}q(m(N)-m(X))>0$, $N\subseteq\hull(X)=\hull(X\setminus N)$ and
+  $\mu(N\setminus X)>0$.
+  \item The undominated models are exactly the members of $\CC_U$, and (GC), (ID), (W)
+  and (C) hold, the last in the strong form: a model tied at some world with a member of
+  $\CC_U$ equals it. If (M3) holds, $\CC_U$ is the class of all coherent models on $U$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Apply Lemma~\ref{lem:abstract} with $\M=\M_U$, $\CC=\CC_U$, world set $\Omega$,
+$\sigma_\omega=m_\omega$, $d_\omega(r)=m_\omega(r)$, $\mathcal G_\omega=G_\omega$, and
+$\mathcal T$ the triples with $(X\triangle Y)\cap(Y\triangle Z)$ null. By
+Lemma~\ref{lem:record}(a), the abstract notion of safety is the present one. (A1) is
+Lemma~\ref{lem:normingE}(a). (A2): if $r(Y,C)=(Y\setminus C,C\setminus Y)$ is guidance at
+every world and $C\in\CC_U$, Lemma~\ref{lem:normingE}(c) with $\Omega'=\Omega$ shows that
+$C\setminus Y$ is null and $Y\setminus C\subseteq D_S\subseteq C$ a.e.; since $Y\setminus C$
+misses $C$, it is null. (A3) is Theorem~\ref{thm:Hinf}. (A4) follows from
+Lemma~\ref{lem:record}(b), the closure of $G_\omega$ under $\sqcup$, and
+Lemma~\ref{lem:safe}(c). (A5) is Lemma~\ref{lem:normingE}(c). Lemma~\ref{lem:abstract}(a)
+gives (a), apart from (IB), which is Lemma~\ref{lem:record}(c), and (G), which follows from
+Lemma~\ref{lem:abstract}(a) because a non-null record satisfying the hypotheses of (G) lies
+in $G_\omega\setminus\{0\}$. Lemma~\ref{lem:abstract}(e) gives (Add). (b) follows from
+Lemma~\ref{lem:abstract}(a),(f) as in the proof of Proposition~\ref{prop:dominance}. (c)
+and (d) are Lemma~\ref{lem:abstract}(b),(c) together with Theorem~\ref{thm:Hinf}. For (e),
+Lemma~\ref{lem:abstract}(d) gives the undominated set and strong (C); (GC) holds because
+members of $\CC_U$ are coherent; an incoherent model is not in $\CC_U$, so (d) gives (ID);
+(W) follows from (c) and (d). The last claim is Lemma~\ref{lem:inf-hull}(d).
+\end{proof}
+
+\smallskip\noindent\textbf{Worlds and norming sets.} Let $\Omega_0$ be as in
+Lemma~\ref{lem:normingE}(b). The same rule with world set $\Omega_0$ defines a different
+dominance relation. For example, let $\Omega=[0,1]$, $E=\operatorname{span}\{\one,\omega,
+\omega^2\}\cong\R^3$, $K'$ the Lebesgue mean, $\mu$ the standard Gaussian distribution of
+the coefficients, $\Omega_0$ any countable norming set, and $\omega^\ast\in[0,1]\setminus
+\Omega_0$. For a small ball $V\subseteq U\setminus\cl D_S$, Lyapunov's theorem shows that
+$\{m(A_1)-m(V\setminus A_1):A_1\subseteq V\}=\{\int_Vf h\,d\mu:-1\le f\le1\}$, a convex
+symmetric set whose support function $\lambda\mapsto\int_V|\lambda(h)|\,d\mu$ is positive,
+so it contains a ball about $0$. Adjoining to $A_1$ a small ball $A_0\subseteq D_S$ disjoint
+from $V$ therefore gives a record $r=(A_0\cup A_1,V\setminus A_1)$ with $m(r)=\beta(\omega-
+\omega^\ast)^2$ for small $\beta>0$, which is safe by Lemma~\ref{lem:inf-safe} because
+$A_0\subseteq D_S\subseteq\hull(V\setminus A_1)$. The models $Y\coloneqq A_0\cup A_1$ and
+$X\coloneqq V\setminus A_1$ have $r(Y,X)=r$; so $Y$ strictly dominates $X$ with world set
+$\Omega_0$, but not with world set $\Omega$, since $m_{\omega^\ast}(r)=0$ and $r$ is
+non-null, so $r$ is not accepted at $\omega^\ast$ (Lemma~\ref{lem:normingE}(a)). The
+undominated set is nevertheless the same. Indeed Lemma~\ref{lem:abstract}
+applies verbatim with world set $\Omega_0$: (A2) and (A5) hold by
+Lemma~\ref{lem:normingE}(c) with $\Omega'=\Omega_0$, and (A3) holds because the margin of
+Theorem~\ref{thm:Hinf} is positive at every world. So the undominated models are again
+exactly the members of $\CC_U$, and the same holds for every world set $\Omega'$ with
+$\Omega_0\subseteq\Omega'\subseteq\Omega$.
+
+\begin{remark}\label{rem:finite-special}
+The finite setting is the special case $\Omega=\{1,\dots,n\}$, $E=\R^n$: the states are
+the points of $\Delta$, the credal sets agree, and a measure satisfying (M) satisfies (M1),
+(M2) (Lemma~\ref{lem:D}(b)) and (M3). Theorem~\ref{thm:Hinf} then gives
+Theorem~\ref{thm:H} without Lyapunov's theorem and with any finite Borel measure satisfying
+(M1) and (M2), including measures carried by countably many lines $g_k+\R\one$, which are
+singular with respect to Lebesgue measure (Lemma~\ref{lem:measure} with $E=\R^n$).
+\end{remark}
+
+\begin{remark}\label{rem:orderunit}
+The assumption $\one\in E$ can be replaced by: $E$ contains some $e$ with $\inf_\Omega e>
+0$. States are then the positive functionals with $q(e)=1$. The map $h\mapsto h/e$ is a
+linear bijection of $E$ onto $\tilde E\coloneqq\{h/e:h\in E\}$, bounded with bounded
+inverse, so $\tilde E$ is a closed separable subspace of $\ell^\infty(\Omega)$ containing
+$\one$. It preserves the sign of every gamble at every world, so it preserves guidance;
+$q\mapsto\tilde q$, $\tilde q(h/e)\coloneqq q(h)$, maps states to states and gives
+$P_{\tilde Q}(h/e)=P_Q(h)$, so it preserves the sets $D_Q$, (M1)--(M3) for the image
+measure, safety and $\CC_U$; and $m_\omega(r)=e(\omega)\tilde m_\omega(\tilde r)$ with
+$e(\omega)>0$, so it preserves the ranking. All results of this section transfer, with
+margin $(\inf_\Omega e)\tilde v$ in place of $\tilde v$. Some condition of this kind is
+needed: if $h(\omega_1)=0$ for every $h\in E$ at some world $\omega_1$, then no comparison at
+$\omega_1$ is strict under the rule above, so no model is dominated, and any coherence
+notion that some model fails to satisfy violates (GC). Whether a strictly positive gamble
+without a positive lower bound suffices (for example $E=c_0$ with $e(n)=1/n$) is open; the
+uniform conclusion of Theorem~\ref{thm:Hinf}(i) is impossible there, since every element of
+$c_0$ has infimum at most $0$.
+\end{remark}
+
+\subsection{Local freedom}\label{subsec:inf-LF}
+
+In this setting, (LF) at $D_K$ is read with the norm topology: there is a norm-open
+$N\supseteq\partial D_K\setminus\{0\}$, where $\partial$ is the norm boundary, such that
+every Borel $X$ with $X\triangle D_K\subseteq N$ a.e.\ satisfies $X\subseteq U$ a.e. We
+call a domain $V\subseteq E$ \emph{one-sided} if there is no nonempty norm-open $O$ with
+$O\subseteq V$ a.e.\ and $-O\subseteq V$ a.e. This notion depends only on the a.e.-class
+of $V$. In finite dimensions with (M) it is implied by the definition of
+Section~\ref{sec:framework}, because Lebesgue-null sets are symmetric: if $O\subseteq V$ and
+$-O\subseteq V$ a.e., then $O\subseteq V\cap(-V)$ a.e. It is strictly weaker: if $F$ is a
+closed, symmetric, nowhere dense set of positive Lebesgue measure, then $V\coloneqq\Rpp\cup
+F$ is not one-sided in the sense of Section~\ref{sec:framework}, but no nonempty open $O$
+has $O\subseteq V$ and $-O\subseteq V$ a.e.: since $F$ is closed and nowhere dense, the
+open set $O\setminus\cl\Rpp$ would contain a non-null open set outside $V$ unless it is
+empty, so $O\subseteq\cl\Rpp$, likewise $-O\subseteq\cl\Rpp$, and $O\subseteq\{0\}$. So Theorem~\ref{thm:inf-cover}(c) extends Lemma~\ref{lem:LF}(c). The
+definition of Section~\ref{sec:framework} cannot be used here, because it is not invariant
+under a.e.\ modification of $V$ when the null sets of $\mu$ are not symmetric: for $\mu$ as
+in Lemma~\ref{lem:measure} with atomic $\nu$, chosen so that no $-g_k$ is a $g_j$, the union
+$L$ of the lines $g_k+\R\one$ satisfies $L\cap(-L)=\emptyset$, so $L$ is one-sided in the
+sense of Section~\ref{sec:framework}, yet $L$ is a.e.\ equal to $E$. Under (M3),
+$U=D_{K'}$ is one-sided: if $O\subseteq U$ a.e.\ and $-O\subseteq U$ a.e., then
+Lemma~\ref{lem:inf-hull}(d) gives $O\subseteq U\cap(-U)=\emptyset$. For a credal set $K$
+put $K_\perp\coloneqq\{h\in E:k(h)=0\text{ for all }k\in K\}$.
+
+\begin{proposition}\label{prop:inf-LF}
+Assume (M2) and (M3), and let $K$ be a credal set. Then $D_K\in\M_U$ and (LF) holds at
+$D_K$ if and only if $K'\subseteq K$ and every $k\in K'$ satisfies $k(h)>0$ for all $h\in
+C_K\setminus\{0\}$.
+\end{proposition}
+
+\begin{proof}
+Suppose the condition holds. Then $D_K\subseteq D_{K'}=U$. By
+Lemma~\ref{lem:envelopes}(b), $\partial D_K\subseteq\cl D_K\subseteq C_K$, so each $h\in
+\partial D_K\setminus\{0\}$ has $k(h)>0$ for every $k\in K'$, hence $P_{K'}(h)>0$ because
+the minimum over $K'$ is attained; that is, $h\in U$. Take $N\coloneqq U$. If $X\triangle
+D_K\subseteq U$ a.e., then $X\subseteq D_K\cup U=U$ a.e.
+
+Conversely, suppose $D_K\in\M_U$ and (LF) holds with the open set $N$. By
+Lemma~\ref{lem:inf-hull}(d), $K'\subseteq K$. The model $D_K\cup N$ satisfies $(D_K\cup N)
+\triangle D_K\subseteq N$, so $N\subseteq U$ a.e., and $N\subseteq U$ by
+Lemma~\ref{lem:inf-hull}(d). Let $k\in K'$ and $h\in C_K\setminus\{0\}$ with $k(h)=0$.
+Then $0\le P_K(h)\le k(h)=0$, so $h\notin D_K$ while $h+t\one\in D_K$ for $t>0$; hence $h\in
+\partial D_K\setminus\{0\}\subseteq N\subseteq U$, contradicting $k(h)=0$.
+\end{proof}
+
+In finite dimensions the condition of Proposition~\ref{prop:inf-LF} holds exactly when $K$
+is full-dimensional and $K'\subseteq\relint K$, by Lemma~\ref{lem:LF}. In infinite
+dimensions ``full-dimensional'' and ``relative interior'' are not the right notions: in
+the contamination example below, when $\Omega$ is infinite, $p$ is not an algebraic
+relative interior point of $K$, yet the condition holds. (For $k=(1-\varepsilon)p+
+\varepsilon s\in K$, $p+t(p-k)=(1-\varepsilon)p+\varepsilon((1+t)p-ts)$ lies in $K$ only if
+$s\le\frac{1+t}tp$. If $p\{x\}=0$ for some $x$, take $s=\delta_x$; otherwise $\Omega$ is
+countable with atoms $p\{x_n\}\to0$, and $s=\sum_k2^{-k}\delta_{x_{n_k}}$ with $p\{x_{n_k}\}
+\le4^{-k}$ is not bounded by any multiple of $p$.)
+
+\begin{theorem}\label{thm:inf-cover}
+Assume (M1)--(M3), and let $K$ be a credal set.
+\begin{enumerate}[label=(\alph*)]
+  \item The safe-improvement ranking on $\M_U$ covers $K$ if and only if $K'\subseteq K$
+  and every $k\in K'$ is strictly positive on $C_K\setminus\{0\}$. Every ranking on $\M_U$
+  that covers $K$ requires this condition. So the safe-improvement ranking is a universal
+  cover on $U$.
+  \item If $K_\perp=\{0\}$, then $K$ is covered on some domain of the form $D_{K'}$, namely
+  with $K'=\{k_0\}$, $k_0\coloneqq\sum_j2^{-j}k_j$ for a weak-$\ast$ dense sequence
+  $(k_j)_{j\ge1}$ in $K$.
+  \item If $K_\perp\ne\{0\}$, then (LF) fails at $D_K$ on every one-sided domain, so no
+  ranking on any one-sided domain covers $K$. If $E$ is infinite-dimensional, this applies
+  to every $K$ that is the convex hull of finitely many states, and in particular to every
+  precise $K=\{p\}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) By Theorem~\ref{thm:inf-main}, requirements (i), (ii), (iii) and (v) of
+Definition~\ref{def:cover} hold; $D_K\in\M_U$ iff $K'\subseteq K$, by
+Lemma~\ref{lem:inf-hull}(d), and then $D_K\in\CC_U$ is undominated. Requirement (vi) and
+$D_K\in\M_U$ are characterised by Proposition~\ref{prop:inf-LF}, whatever the ranking.
+
+(b) $K$ is a compact metrizable space, so a dense sequence exists. The partial sums
+$s_J\coloneqq\sum_{j\le J}2^{-j}k_j$ converge in norm, and $s_J/(1-2^{-J})\in K$; since $K$
+is weak-$\ast$ closed, hence norm-closed, $k_0\in K$. Let $h\in C_K$ with $k_0(h)=0$. Each
+$k_j(h)\ge0$, so $k_j(h)=0$ for all $j$, and by density $k(h)=0$ for all $k\in K$; so $h\in
+K_\perp=\{0\}$. Now apply (a) with $K'=\{k_0\}$.
+
+(c) Let $0\ne h\in K_\perp$. Then $P_K(\pm h)=0$ and $\pm h+t\one\in D_K$ for $t>0$, so
+$\pm h\in\partial D_K\setminus\{0\}$. If (LF) held on a domain $V$ with the open set $N$,
+then, as in the proof of Proposition~\ref{prop:inf-LF}, $N\subseteq V$ a.e.; choose $\rho>0$
+with $O\coloneqq\operatorname{Ball}(h,\rho)\subseteq N$ and $-O=\operatorname{Ball}(-h,
+\rho)\subseteq N$. Then $O\subseteq V$ a.e.\ and $-O\subseteq V$ a.e., so $V$ is not
+one-sided. If $K=\conv\{k_1,\dots,k_m\}$, then $K_\perp=\bigcap_i\ker k_i$ has codimension
+at most $m$, so it is nonzero when $E$ is infinite-dimensional.
+\end{proof}
+
+Local freedom here is the literal condition, with a norm-open neighbourhood. In finite
+dimensions it is automatically uniform; on $E=C(\Omega)$ with $\Omega$ infinite the uniform
+version fails (Proposition~\ref{prop:tube}), although in other infinite-dimensional spaces
+it can hold. Say that (LF) holds \emph{uniformly} at $D_K$ on $U$ if there is $\delta>0$ such
+that the open ball of radius $\delta\|h\|$ about every $h\in\partial D_K\setminus\{0\}$
+lies in $U$.
+
+\begin{proposition}\label{prop:tube}
+Let $\Omega$ be an infinite compact metric space, $E=C(\Omega)$, and $K'\subseteq K$
+credal sets. Then (LF) does not hold uniformly at $D_K$ on $U=D_{K'}$.
+\end{proposition}
+
+\begin{proof}
+Fix $k\in K'$, a regular Borel probability measure on $\Omega$. Since $\Omega$ is infinite
+and metric, it contains infinitely many pairwise disjoint nonempty open sets $V_j$, and
+$\sum_jk(V_j)\le1$, so $k(V_j)\to0$. By Urysohn's lemma there are continuous $b_j:\Omega
+\to[0,1]$ vanishing outside $V_j$ with $\max b_j=1$; then $k(b_j)\le k(V_j)$. Put $h_j
+\coloneqq b_j-P_K(b_j)\one$. Since $0=P_S(b_j)\le P_K(b_j)\le k(b_j)$, we have $P_K(h_j)=0$,
+$\|h_j\|\ge1-k(b_j)$, and $h_j\ne0$ because $b_j$ is not constant. So $h_j\notin D_K$,
+while $h_j+t\one\in D_K$ for $t>0$; hence $h_j\in\partial D_K\setminus\{0\}$. The gamble $h_j-k(h_j)\one$ is not in $U$, since $k$ vanishes on it,
+and its distance from $h_j$ is $k(h_j)\le k(b_j)$. For any $\delta>0$ and large $j$,
+$k(b_j)<\delta(1-k(b_j))\le\delta\|h_j\|$, so the ball of radius $\delta\|h_j\|$ about
+$h_j$ is not contained in $U$.
+\end{proof}
+
+\subsection{Contamination targets}
+
+Let $\Omega$ be a compact metric space and $E=C(\Omega)$, which is separable and contains
+$\one$; the states are the regular Borel probability measures on $\Omega$, and $P_S(h)=
+\min_\Omega h$. Let $p$ be a Borel probability measure on $\Omega$, $0<\varepsilon\le1$,
+and
+\[
+  K\coloneqq(1-\varepsilon)\{p\}+\varepsilon S,\qquad P_K(h)=(1-\varepsilon)p(h)+
+  \varepsilon\min_\Omega h ,
+\]
+a credal set by Lemma~\ref{lem:envelopes}(c).
+
+\begin{proposition}\label{prop:contamination}
+Let $\mu$ satisfy (M1)--(M3), for instance as in Lemma~\ref{lem:measure}.
+\begin{enumerate}[label=(\alph*)]
+  \item If $p$ has full support, then the safe-improvement ranking on $\M_U$ with
+  $U\coloneqq D_{\{p\}}=\{h:p(h)>0\}$ covers $K$. Here $D_K$ is undominated by
+  protection (Theorem~\ref{thm:inf-main}(c)), and (LF) holds in the literal form with
+  $N=U$.
+  \item If $p$ does not have full support, then (LF) fails at $D_K$ on $D_{\{p\}}$.
+  \item For every $p$, let $r$ be a Borel probability measure on $\Omega$ with full support
+  and $k'\coloneqq(1-\varepsilon)p+\varepsilon r$. Then $k'\in K$, and the safe-improvement
+  ranking on $\M_{D_{\{k'\}}}$ covers $K$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) $p=(1-\varepsilon)p+\varepsilon p\in K$. Let $h\in C_K\setminus\{0\}$. Since $\min h\le
+p(h)$, $p(h)\ge(1-\varepsilon)p(h)+\varepsilon\min h=P_K(h)\ge0$. If $p(h)=0$, then
+$\varepsilon\min h\ge0$, so $h\ge0$; a nonnegative continuous function with $p(h)=0$
+vanishes on the support of $p$, which is $\Omega$, so $h=0$, a contradiction. So $p(h)>0$,
+and Theorem~\ref{thm:inf-cover}(a) applies with $K'=\{p\}$; its proof, through
+Proposition~\ref{prop:inf-LF}, uses $N=U$.
+
+(b) The open set $\Omega\setminus\operatorname{supp}p$ is nonempty, and by Urysohn's lemma
+it carries a continuous $h\ge0$, $h\ne0$, vanishing on the nonempty set $\operatorname{supp}
+p$. Then $p(h)=0$ and $\min h=0$, so $h\in C_K\setminus\{0\}$ with $p(h)=0$;
+Proposition~\ref{prop:inf-LF} shows that (LF) fails.
+
+(c) $k'\in K$ because $r\in S$. Let $g\in C_K\setminus\{0\}$. Then $k'(g)=P_K(g)+
+\varepsilon(r(g)-\min g)\ge\varepsilon(r(g)-\min g)\ge0$. If $k'(g)=0$, then $r(g-\min
+g)=0$; since $g-\min g\ge0$ is continuous and $r$ has full support, $g$ is constant, $g=c
+\one$, and $c=k'(g)=0$, a contradiction. So $k'$ is strictly positive on $C_K\setminus
+\{0\}$, and Theorem~\ref{thm:inf-cover}(a) applies.
+\end{proof}
+
+By Theorem~\ref{thm:inf-cover}(c), the precise target $\{p\}$ ($\varepsilon=0$) is not
+covered on any one-sided domain when $\Omega$ is infinite, while every contamination
+target with $\varepsilon>0$ is covered on a suitable one-sided domain.
+
+\subsection{Coherent sets of desirable gambles}
+
+Call $D\subseteq E$ a \emph{coherent set of desirable gambles} if it is a convex cone,
+$0\notin D$, and $D$ contains every $h$ with $\inf_\Omega h>0$.
+
+\begin{proposition}\label{prop:cdg}
+Assume (M2). For every coherent set of desirable gambles $D$, the set $Q_D\coloneqq\{q\in S:
+q\ge0\text{ on }D\}$ is a credal set and $D_{Q_D}\subseteq D\subseteq C_{Q_D}$. So $D$ is
+measurable for the completion of $\mu$, and $D=D_{Q_D}$ a.e.
+\end{proposition}
+
+\begin{proof}
+(1) $D\supseteq D_S$, which is open and contains $\one$; so the interior $\inter D$ is a
+nonempty open convex cone not containing $0$, and $D\subseteq\cl\inter D$, since a convex set
+with nonempty interior lies in the closure of its interior.
+
+(2) Let $\psi\in E^\ast$ be nonzero and nonnegative on $D$. For $h\ge0$ and $t>0$,
+$h+t\one\in D_S\subseteq D$, so $\psi(h)\ge-t\psi(\one)$; hence $\psi$ is positive. Then
+$|\psi(h)|\le\|h\|\psi(\one)$, so $\psi(\one)>0$, and $\psi/\psi(\one)\in Q_D$. So the
+nonzero functionals nonnegative on $D$ are exactly the positive multiples of members of
+$Q_D$.
+
+(3) By the Hahn--Banach theorem there is $\varphi\in E^\ast$ with $\varphi>0$ on $\inter D$.
+By (1), $\varphi\ge0$ on $D$, so $\varphi/\varphi(\one)\in Q_D$ by (2), and $Q_D\ne
+\emptyset$. $Q_D$ is weak-$\ast$ closed and convex, so it is a credal set.
+
+(4) By (2) and the bipolar theorem, $\cl D=C_{Q_D}$. Hence $D\subseteq C_{Q_D}$, and
+$D_{Q_D}\subseteq\inter C_{Q_D}=\inter\cl D=\inter D\subseteq D$, where $\inter\cl D=
+\inter D$ because $D$ is convex with nonempty interior.
+
+(5) $D_{Q_D}$ is open, and $D\setminus D_{Q_D}\subseteq C_{Q_D}\setminus D_{Q_D}=\{P_{Q_D}
+=0\}$, which is null by (M2). So $D$ differs from a Borel set by a subset of a null set.
+\end{proof}
+
+So, modulo $\mu$-null sets, the coherent models are exactly the coherent sets of desirable
+gambles: boundary choices, including those that accept gambles $h$ with $\inf_\Omega h=0$,
+are invisible. The same holds in the finite setting, with the same proof. In
+Example~\ref{ex:PS}, where (M2) fails, the coherent set of desirable gambles $C\cup R$
+differs from every $D_Q$ on a non-null set: if $q_0\in Q$, then $D_Q$ misses $R$; otherwise
+$Q\subseteq\{q_s:s\ge s_1\}$ for some $s_1>0$, and $D_Q$ contains the nonempty open set
+$\{a<0,\ a+bs_1>0\}$, which misses $C\cup R\subseteq\{a\ge0\}$.
+
+\section{Further properties of the ranking}\label{sec:further}
+
+\subsection{Transitivity}
+
+Transitivity,
+\begin{itemize}
+  \item[(Tr)] if $X\preceq_iY$ and $Y\preceq_iZ$, then $X\preceq_iZ$,
+\end{itemize}
+implies (Add), but the safe-improvement ranking does not satisfy it in general.
+
+\begin{example}\label{ex:tr}
+Let $n=2$, $K'\coloneqq\{(\tfrac12,\tfrac12)\}$, so that $U=\{h:h_1+h_2>0\}$, and let
+$\mu$ be any measure satisfying (M). The model $C\coloneqq U=D_{K'}$ is coherent. Let
+$V_a,V_b,V_c$ be the open balls of radius $\tfrac1{10}$ about $a\coloneqq(-1,3)$,
+$b\coloneqq(-2,3)$ and $c\coloneqq(1,1)$. They are pairwise disjoint and contained in $U$;
+moreover $h_1\in(-1.1,-0.9)$ on $V_a$, $h_1<-1.9$ on $V_b$, and $h_1\in(0.9,1.1)$ on $V_c$.
+Put $\delta\coloneqq\min\{\mu(V_a),\mu(V_b),\mu(V_c)\}>0$. Since spheres are null, the
+measure of a ball about a fixed centre is continuous in its radius, so there are
+concentric balls $A\subseteq V_a$, $B_-\subseteq V_b$ and $B_+\subseteq V_c$ with
+$\mu(A)=\delta/2$, $\mu(B_-)=\delta$ and $\mu(B_+)=\delta/4$. Put $B\coloneqq B_-\cup B_+$
+and
+\[
+  Y\coloneqq C\setminus A,\qquad X\coloneqq C\setminus B .
+\]
+\begin{itemize}
+  \item $r(Y,C)=(\emptyset,A)$, and $A\subseteq\{h_1<0\}$, so $r(Y,C)\in G_1$ and
+  $Y\preceq_1C$.
+  \item $r(X,Y)=(A,B)$. First, $A\subseteq\hull(B)$. Let $q\in Q_B$. Since $B_-$ is not
+  null, some $b'\in B_-$ has $q\cdot b'\ge0$. For $a'\in A$, the vector $a'-\tfrac35b'$
+  has first coordinate greater than $-1.1+\tfrac35\cdot1.9=0.04$ and second coordinate
+  greater than $2.9-\tfrac35\cdot3.1=1.04$, so $a'-\tfrac35b'\gg0$ and $q\cdot a'>
+  \tfrac35\,q\cdot b'\ge0$. So $A\subseteq D_{Q_B}=\hull(B)$, and $(A,B)$ is safe by
+  Lemma~\ref{lem:safe}(a). Second, $m_1(A)>-1.1\cdot\tfrac\delta2=-0.55\,\delta$ and
+  $m_1(B)<-1.9\,\delta+1.1\cdot\tfrac\delta4=-1.625\,\delta$, so $m_1(r(X,Y))>0$. Hence
+  $X\preceq_1Y$.
+  \item $r(X,C)=(\emptyset,B)$ applies to $C$, so it is not safe; and it is not in $G_1$,
+  since $B_+\subseteq\{h_1>0\}$ is not null. Hence not $X\preceq_1C$.
+\end{itemize}
+So (Tr) fails at world 1, although $m_1(X)-m_1(C)=-m_1(B)>0$. The two steps overlap on
+$A$, so (Add) does not apply. Also $r(C,X)=(B,\emptyset)$ has $m_1<0$ and is not in $G_1$,
+so $X$ and $C$ are incomparable at world 1.
+\end{example}
+
+The example shows the mechanism of protection at work. Removing $B$ from the coherent
+model $C$ improves the Brier score at world 1, but the change is not guidance there, and it
+applies to $C$; so it is not accepted at world 1. The same change, split into a safe step
+and a guided step, is accepted step by step.
+
+\subsection{Relation to the Brier ranking}
+
+By Proposition~\ref{prop:structure}(b), at each world the safe-improvement ranking is
+contained in the Brier ranking, and its nontrivial comparisons are strict Brier
+improvements. It is far from complete. Every coherent model on $U$ is undominated in it,
+while by Remark~\ref{rem:H}(d) every coherent model on $U$ that is not a.e.\ of the form
+$U\cap\{\pi\cdot h>0\}$, $\pi\in\Delta$, is uniformly dominated in Brier loss by a model of
+that form. By Proposition~\ref{prop:dominance}, a model dominates another in the
+safe-improvement ranking exactly when it uniformly dominates it in Brier loss by a safe
+change.
+
+One can also define a lexicographic variant of the ranking, using the score
+$(m_i,\sum_jm_j)$ at world $i$; we do not use it.
+
+\section{Scope and limits}\label{sec:scope}
+
+\subsection{Universality is relative to a fixed domain}
+
+Theorem~\ref{thm:main} provides one ranking for each domain $U=D_{K'}$. That ranking makes
+every coherent model on $U$ undominated and covers exactly the full-dimensional credal
+sets whose relative interiors contain $K'$, which are all the credal sets coverable on $U$
+(Corollary~\ref{cor:universal}). For any ranking on $\M_{D_{K'}}$, a cover of a
+full-dimensional $K$ requires $K'\subseteq\relint K$ (Lemma~\ref{lem:LF}(a),(b)); so two
+full-dimensional credal sets with disjoint relative interiors are not covered on a common
+domain of this form. Lower-dimensional credal sets are covered on no one-sided domain,
+although their coherent models are undominated whenever they are models on $U$
+(Proposition~\ref{prop:lowdim}). Sections~\ref{sec:framework}--\ref{sec:main} concern
+finitely many worlds and a measure satisfying (M); Lemma~\ref{lem:abstract} and
+Section~\ref{sec:infinite} allow any set of worlds. In Section~\ref{sec:infinite} the same
+holds with the condition of Theorem~\ref{thm:inf-cover}(a) in place of ``full-dimensional
+with $K'\subseteq\relint K$'': every credal set $K$ with $K_\perp=\{0\}$ is covered on some
+domain $D_{K'}$, and no credal set with $K_\perp\ne\{0\}$ is covered on any domain that is
+one-sided in the sense of Section~\ref{subsec:inf-LF}.
+
+\subsection{Coherence enters the definition of the ranking}
+
+Whether the safe-improvement ranking accepts a comparison that is not guidance depends on
+whether the record of the comparison applies to some coherent model. The definition of the
+ranking therefore refers to the class of coherent models. The protection of coherent
+models (Corollary~\ref{cor:protect}) follows from this definition together with the fact
+that guidance alone cannot weakly dominate a coherent model. The dominance of incoherent
+models does not follow from the definition: it requires that every incoherent model has a
+safe repair that improves its Brier score at every world, which is
+Theorem~\ref{thm:H}. Whether a comparison is accepted at world $i$ depends only on its
+record, through guidance at $i$, the Brier increment at $i$, and the safety test, which is
+the same at every world.
+
+\subsection{Infinitely many worlds}
+
+The following limits apply to Section~\ref{sec:infinite}.
+\begin{itemize}
+  \item \emph{Separability is essential.} With $\one\in E$, the state space is
+  weak-$\ast$ metrizable exactly when $E$ is separable (if $S$ is metrizable, $C(\hat
+  \Omega)$ is separable, and $E$ embeds isometrically in it by Lemma~\ref{lem:states}(c)),
+  and the proofs use metrizability and a countable norming set. On a nonseparable normed space there is no finite Borel measure
+  with full support: for some $\eta>0$ there is an uncountable family of points at mutual
+  distance at least $\eta$, and the disjoint balls of radius $\eta/2$ about them would all
+  need positive measure. In particular $E=\ell^\infty(\Omega)$ with $\Omega$ infinite, and
+  $E=C(\Omega)$ with $\Omega$ compact but not metrizable, lie outside
+  Section~\ref{sec:infinite}; their separable subspaces containing $\one$ lie inside it.
+  \item \emph{The constants.} The constant $\one$ can be replaced by any gamble bounded
+  below by a positive constant (Remark~\ref{rem:orderunit}). Some condition of this kind is
+  needed: a world at which every gamble pays $0$ makes every model undominated. Whether a
+  strictly positive gamble without a positive lower bound suffices, as for $c_0$ with
+  $e(n)=1/n$, is open.
+  \item \emph{The null boundary $\{P_S=0\}$.} Condition (M2) for $Q=S$ makes the gambles
+  with $\inf_\Omega h=0$ negligible. Without it, guidance alone can strictly dominate a
+  coherent model (Example~\ref{ex:PS}). The same condition makes boundary choices of
+  coherent sets of desirable gambles invisible (Proposition~\ref{prop:cdg}).
+  \item \emph{Dependence on $\mu$.} The coherent models are determined by their credal
+  sets, whatever full-support $\mu$ is used (Lemma~\ref{lem:inf-hull}(d)). But models are
+  classes modulo $\mu$-null sets, so which models are incoherent, and hence the ranking,
+  depends on $\mu$, and admissible measures can be mutually singular. For instance, if
+  $\mu$ and $\mu'$ are built as in Lemma~\ref{lem:measure} from dense sequences $(g_k)$ and
+  $(g'_k)$ in $E_0$ with no common term, they are carried by disjoint unions of lines
+  $g_k+\R\one$ and $g'_k+\R\one$. If $L'$ is the union of the lines $g'_k+\R\one$, then
+  for a credal set $Q\supseteq K'$, $D_Q\setminus L'$ is coherent for $\mu$ (it equals $D_Q$ a.e.) but is $\mu'$-null, and so
+  incoherent for $\mu'$, since every coherent model contains the nonempty open set $D_S$.
+  \item \emph{Local freedom is literal, not uniform.} (LF) is the condition of
+  Section~\ref{sec:framework} with a norm-open neighbourhood. Its uniform version, which
+  is automatic in finite dimensions, fails for every target on $C(\Omega)$ with $\Omega$
+  infinite (Proposition~\ref{prop:tube}).
+  \item \emph{States and countable additivity.} States are positive normalised linear
+  functionals on $E$. They need not be countably additive on $\Omega$, but every state is
+  given by a countably additive regular Borel probability on the compact metrizable space
+  $\hat\Omega$ of Lemma~\ref{lem:states}(c). For $E=C(\Omega)$ with $\Omega$ compact
+  metric, $\hat\Omega$ can be identified with $\Omega$.
+  \item \emph{Coherent models.} Modulo $\mu$-null sets, the coherent models $D_Q$ are
+  exactly the coherent sets of desirable gambles (Proposition~\ref{prop:cdg}).
+\end{itemize}
+
+\subsection{Representation and justification}
+
+Theorems~\ref{thm:main} and~\ref{thm:inf-main} show that the coherent models on $U$ can be represented as the
+undominated models of a ranking satisfying (G), (IB), (TC), (FCC) and (Add), with every
+incoherent model strictly dominated by a coherent one and every dominance relation a Brier
+improvement at every world, uniform when $\Omega$ is finite; the repair $N$ of
+Theorem~\ref{thm:Hinf} improves uniformly in every case. It does not derive coherence from accuracy considerations that
+are specified independently of coherence, since the ranking's definition refers to
+coherence through the safety test.
+
+\begin{thebibliography}{9}
+
+\bibitem{KCM}
+J.~Konek and C.~Campbell-Moore.
+\newblock Covering coherent sets of desirable gambles.
+\newblock Draft, 2026.
+
+\bibitem{Lindenstrauss}
+J.~Lindenstrauss.
+\newblock A short proof of {L}iapounoff's convexity theorem.
+\newblock \emph{Journal of Mathematics and Mechanics}, 15:971--972, 1966.
+
+\bibitem{Lyapunov}
+A.~Lyapunov.
+\newblock Sur les fonctions-vecteurs compl\`etement additives.
+\newblock \emph{Izvestiya Akademii Nauk SSSR, Seriya Matematicheskaya}, 4:465--478,
+1940.
+
+\bibitem{Rockafellar}
+R.~T. Rockafellar.
+\newblock \emph{Convex Analysis}.
+\newblock Princeton University Press, 1970.
+
+\bibitem{Sion}
+M.~Sion.
+\newblock On general minimax theorems.
+\newblock \emph{Pacific Journal of Mathematics}, 8:171--176, 1958.
+
+\end{thebibliography}
+
+\end{document}

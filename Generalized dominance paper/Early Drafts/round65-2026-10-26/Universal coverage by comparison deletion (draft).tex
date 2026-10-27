@@ -1,0 +1,1030 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\CD}{\mathrm{CD}}
+\newcommand{\Br}{\mathrm{Br}}
+\newcommand{\Acc}{\mathrm{Acc}}
+\newcommand{\Del}{\mathrm{Del}}
+\newcommand{\hull}{\operatorname{hull}}
+\newcommand{\Rp}{\R^n_{+}}
+\newcommand{\Rpp}{\inter\R^n_{+}}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\relint}{relint}
+\DeclareMathOperator{\rbd}{rbd}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\inter}{int}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{Universal coverage by comparison deletion}
+\author{Jason Konek}
+\date{Draft, 26 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Fix finitely many worlds and a one-sided domain $U=D_{K'}$ of gambles. A model is a set
+of gambles in $U$. A ranking assigns to each world a reflexive relation on models; it is
+required to be strictly guided by the truth, to compare models only where they differ,
+and to satisfy a weak acyclicity condition, but not to be transitive or complete.
+Starting from the Brier order, we delete, at a single world, each comparison whose record
+(the pair of sets on which the two models differ) would let some model weakly dominate a
+coherent model, together with the reverse comparison at that world when the two models
+tie in Brier score there. Deletions are made by record, so they apply in every context;
+nothing else is deleted. The resulting ranking
+satisfies the requirements and finite-chain consistency, and no coherent model has a weak
+dominator other than itself. Whether its undominated models are exactly the coherent ones
+reduces to a geometric condition on the moment map, which we prove: every incoherent model
+$X$ is improved in Brier score, by a positive margin at every world, by a coherent model
+$N$ such that $N\setminus X$ lies in the smallest coherent model containing $X\setminus
+N$. Consequently every incoherent model is strictly dominated by a coherent undominated
+model, and the ranking covers exactly the full-dimensional credal sets $K$ with
+$K'\subseteq\relint K$. These are all the credal sets that any ranking covers on $U$, so
+the ranking is a universal cover on $U$; and every full-dimensional credal set is covered
+on some domain. The ranking is defined by reference to coherence, need not be transitive,
+and can violate disjoint additivity. A lexicographic variant satisfies disjoint
+additivity and is also a universal cover on $U$, so disjoint additivity does not by
+itself block universal coverage. We state these limits precisely.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+A model is a set of gambles, the gambles it accepts. A ranking compares models at each
+world; a ranking \emph{covers} a credal set $K$ if it is guided by the truth,
+compares models only where they differ, makes every undominated model coherent, makes
+every incoherent model dominated by a coherent undominated one, leaves $D_K$
+undominated, and lives on a domain that leaves $D_K$ free to vary near its boundary
+(Definition~\ref{def:cover}). The relations are required to be reflexive and to satisfy
+the acyclicity condition (TC) below; transitivity and completeness are not required.
+
+This note shows that, on a fixed one-sided domain $U=D_{K'}$, a single ranking makes the
+undominated models exactly the coherent models on $U$
+(Theorem~\ref{thm:main}). The ranking is obtained from the Brier order by deleting
+comparisons. The deletion is arranged so that each world's relation remains a
+sub-relation of the Brier order that is symmetric on Brier ties; this gives the
+acyclicity condition at once (Lemma~\ref{lem:deletion}), and it makes every coherent
+model immune to weak dominance (Theorem~\ref{thm:reduction}). Whether every incoherent
+model is then dominated by a coherent one is equivalent to a geometric condition (H) on
+the moment map and the coherent hull (Corollary~\ref{cor:H}). Theorem~\ref{thm:H} proves
+(H). Section~\ref{sec:scope} records the scope of the result and its limits.
+
+\section{Setting and framework}\label{sec:framework}
+
+\subsection{Gambles, credal sets and the measure}
+
+Let $\Omega=\{1,\dots,n\}$ with $n\ge2$. A \emph{gamble} is a vector $h\in\R^n$; $h_i$ is
+its payoff at world $i$. Write $e_1,\dots,e_n$ for the standard basis, $\one\coloneqq
+(1,\dots,1)$, $\Delta\coloneqq\{m\in\Rp:\one\cdot m=1\}$ for the simplex and
+$\aff\Delta=\{m:\one\cdot m=1\}$. For $C\subseteq\aff\Delta$, $\relint C$ is the interior
+of $C$ relative to $\aff\Delta$ and $\rbd C\coloneqq C\setminus\relint C$. A compact
+convex $K\subseteq\Delta$ is \emph{full-dimensional} if $\relint K\neq\emptyset$. A
+\emph{credal set} is a nonempty closed convex subset of $\Delta$. For $S\subseteq\R^n$,
+$\cone S$ is the set of finite non-negative combinations of points of $S$, with
+$\cone\emptyset=\{0\}$. We write $x\gg0$ if $x\in\Rpp$, that is, if every coordinate of
+$x$ is positive.
+
+For $S\subseteq\Delta$ define
+\[
+  D_S\coloneqq\{h\in\R^n: q\cdot h>0\text{ for all }q\in S\},\qquad
+  C_S\coloneqq\{h\in\R^n: q\cdot h\ge0\text{ for all }q\in S\},
+\]
+with $D_\emptyset=C_\emptyset\coloneqq\R^n$, and, for nonempty compact $S$,
+$P_S(h)\coloneqq\min_{q\in S}q\cdot h$.
+
+\begin{itemize}
+  \item[(M)] $\mu$ is a finite Borel measure on $\R^n$ with the same null sets as Lebesgue
+  measure, and $\int|h|\,d\mu(h)<\infty$.
+\end{itemize}
+Throughout, $\mu$ satisfies (M). Equalities and inclusions between sets of gambles hold
+\emph{almost everywhere} (a.e.)
+if they hold up to a $\mu$-null set. Every hyperplane is null, and a nonempty open set is
+never null. For measurable $X$ put
+\[
+  m(X)\coloneqq\int_Xh\,d\mu(h)\in\R^n,\qquad m_i(X)\coloneqq\int_Xh_i\,d\mu(h).
+\]
+For measurable $E$, $E_d$ denotes the set of Lebesgue density points of $E$. By the
+Lebesgue density theorem $E\setminus E_d$ is null, and by (M), $\mu(E\cap V)>0$ for
+every open ball $V$ centred at a point of $E_d$.
+
+\begin{lemma}\label{lem:D}
+Let $S,S_1,S_2\subseteq\Delta$ be nonempty and compact.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_S$ is an open convex cone containing $\Rpp$, and $D_S\cap(-D_S)=\emptyset$.
+  Moreover $D_S=D_{\conv S}$ and $D_{S_1}\cap D_{S_2}=D_{S_1\cup S_2}$.
+  \item $P_S(h+t\one)=P_S(h)+t$ for $t\in\R$. The boundary $\partial D_S$ is contained in
+  $\{P_S=0\}$, and $\{P_S=0\}$ is null.
+  \item If $S_1,S_2$ are convex and $D_{S_1}\subseteq D_{S_2}$, then $S_2\subseteq S_1$.
+  \item If $O$ is open and $O\subseteq D_S$ a.e., then $O\subseteq D_S$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $|P_S(h)-P_S(h')|\le\max_j|h_j-h'_j|$ because $S\subseteq\Delta$, so $D_S=\{P_S>0\}$
+is open. Convexity, the cone property and $\Rpp\subseteq D_S$ are immediate, and $q\cdot
+h>0$, $q\cdot(-h)>0$ cannot both hold. A linear function has the same minimum over $S$
+and over $\conv S$. The last identity is the definition.
+(b) The identity holds because $q\cdot\one=1$ for $q\in\Delta$. If $P_S(h)<0$ then $h$
+has a neighbourhood outside $D_S$; if $P_S(h)=0$ then $h+t\one\in D_S$ for $t>0$ and
+$h\notin D_S$. So $\partial D_S\subseteq\{P_S=0\}$. Write $h=y+t\one$ with $y\in
+\one^\perp$, a linear change of coordinates. Then $\{P_S=0\}=\{y-P_S(y)\one:y\in
+\one^\perp\}$ meets each line $y+\R\one$ in one point, so it is Lebesgue-null by Fubini's
+theorem, and $\mu$-null by (M).
+(c) Suppose $k\in S_2\setminus S_1$. Strict separation of $k$ from $S_1$ gives $g\in\R^n$
+and $c\in\R$ with $g\cdot q>c>g\cdot k$ for all $q\in S_1$. Put $h\coloneqq g-c\one$. Then
+$q\cdot h>0$ on $S_1$ and $k\cdot h<0$, so $h\in D_{S_1}\setminus D_{S_2}$.
+(d) The open set $O\cap\{P_S<0\}$ is null, hence empty. If $h\in O$, then $h-\varepsilon
+\one\in O$ for some $\varepsilon>0$, so $P_S(h)-\varepsilon\ge0$ by (b), and $h\in D_S$.
+\end{proof}
+
+\subsection{Models, coherence and the coherent hull}
+
+A \emph{domain} is a measurable set $U\subseteq\R^n$. The \emph{models} on $U$ are the
+measurable sets $X\subseteq U$, identified when they agree a.e.; their class is $\M_U$.
+A model $X$ \emph{accepts} $h$ if $h\in X$. At world $i$, accepting $h$ is \emph{correct}
+if $h_i>0$ and \emph{wrong} if $h_i<0$. A model $X$ is \emph{coherent} if $X=D_Q$ a.e.\
+for some credal set $Q$. If $D_{Q_1}=D_{Q_2}$ a.e., Lemma~\ref{lem:D}(d) gives $D_{Q_1}=
+D_{Q_2}$, and Lemma~\ref{lem:D}(c) gives $Q_1=Q_2$; so $Q$ is unique. We call $U$
+\emph{one-sided} if $U\cap(-U)$ is null. This usage differs from that of
+\cite{KCM}, where ``one-sided'' means $U\cap(-U)=\emptyset$ and ``essentially one-sided''
+means that $U\cap(-U)$ contains no non-null set of gambles with a positive and a negative
+coordinate; our condition lies between the two.
+
+\smallskip\noindent\textbf{Standing assumption.} Except where a general domain is
+mentioned explicitly, $K'\subseteq\Delta$ is nonempty, compact and convex, and
+$U\coloneqq D_{K'}$. By Lemma~\ref{lem:D}(a), $U$ is open, $U\supseteq\Rpp$ and $U\cap
+(-U)=\emptyset$; moreover $U$ contains no $h$ with $h\le0$, since $k\cdot h\le0$ for
+$k\in K'$.
+
+\smallskip
+Let $\CC_U$ be the class of coherent models on $U$. If $Q$ is a credal set with
+$K'\subseteq Q$, then $D_Q\subseteq D_{K'}=U$, so $D_Q\in\CC_U$. Conversely, if $D_Q
+\subseteq U$ a.e., then $D_Q\subseteq D_{K'}$ by Lemma~\ref{lem:D}(d), and $K'\subseteq
+Q$ by Lemma~\ref{lem:D}(c). Hence
+\[
+  \CC_U=\{D_Q: Q\text{ a credal set with }K'\subseteq Q\}.
+\]
+Every coherent model contains $\Rpp$. For measurable $B\subseteq U$ put
+\[
+  Q_B\coloneqq\{q\in\Delta: q\cdot h\ge0\text{ for $\mu$-a.e.\ }h\in B\},\qquad
+  \hull(B)\coloneqq D_{Q_B}.
+\]
+
+\begin{lemma}\label{lem:hull}
+Let $B\subseteq U$ be measurable.
+\begin{enumerate}[label=(\alph*)]
+  \item $Q_B$ is a credal set and $K'\subseteq Q_B$. Hence $\hull(B)\in\CC_U$.
+  \item $B\subseteq\hull(B)$ a.e.
+  \item For a credal set $Q$ with $K'\subseteq Q$, the following are equivalent:
+  $B\subseteq D_Q$ a.e.; $Q\subseteq Q_B$; $\hull(B)\subseteq D_Q$. So $\hull(B)$ is the
+  smallest coherent model containing $B$ a.e.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $K'\subseteq Q_B$ because $k\cdot h>0$ on $U$ for $k\in K'$. Convexity is clear. Let
+$q_k\in Q_B$ converge to $q$. If $q\cdot h<0$ then $q_k\cdot h<0$ for all large $k$, so
+$B\cap\{q\cdot h<0\}\subseteq\bigcup_kB\cap\{q_k\cdot h<0\}$, which is null. So $Q_B$ is
+closed. Since $Q_B\supseteq K'$, $\hull(B)\in\CC_U$.
+(b) $B\setminus D_{Q_B}\subseteq\{P_{Q_B}=0\}\cup\bigcup_{q\in Q_B}\{q\cdot h<0\}$. The
+first set is null by Lemma~\ref{lem:D}(b). The open sets $\{q\cdot h<0\}$ have a countable
+subcover $\{q_k\cdot h<0\}$ (Lindel\"of), and each $B\cap\{q_k\cdot h<0\}$ is null.
+(c) If $B\subseteq D_Q$ a.e., every $q\in Q$ has $q\cdot h>0$ for a.e.\ $h\in B$, so
+$Q\subseteq Q_B$. If $Q\subseteq Q_B$, then $D_{Q_B}\subseteq D_Q$ by definition. If
+$\hull(B)\subseteq D_Q$, then $B\subseteq D_Q$ a.e.\ by (b).
+\end{proof}
+
+\subsection{Rankings and dominance}
+
+A \emph{ranking} on $\M_U$ is a family $(\preceq_i)_{i\in\Omega}$ of binary relations on
+$\M_U$. Lower is better: $X\preceq_iY$ says that $X$ does at least as well as $Y$ at
+world $i$. We write $X\prec_iY$ if $X\preceq_iY$ and not $Y\preceq_iX$; $X$ and $Y$ are
+\emph{tied} at $i$ if $X\preceq_iY$ and $Y\preceq_iX$, and \emph{incomparable} at $i$ if
+neither holds. We assume throughout that each $\preceq_i$ is reflexive, that a.e.-equal
+models are tied, and
+\begin{itemize}
+  \item[(TC)] if $A\preceq_iB$ and $B\preceq_iC$, then not $C\prec_iA$.
+\end{itemize}
+Transitivity and completeness are not assumed. We also consider the stronger condition
+\begin{itemize}
+  \item[(FCC)] \emph{Finite-chain consistency.} If $A_0\preceq_iA_1\preceq_i\dots
+  \preceq_iA_k$, then not $A_k\prec_iA_0$.
+\end{itemize}
+(TC) is the case $k=2$ of (FCC).
+
+\begin{definition}\label{def:dom}
+Let $X,Y\in\M_U$. $Y$ \emph{weakly dominates} $X$ if $Y\preceq_iX$ for every $i$. $Y$
+\emph{dominates} $X$ if $Y$ weakly dominates $X$ and $Y\prec_iX$ for some $i$. $Y$
+\emph{strictly dominates} $X$ if $Y\prec_iX$ for every $i$. $X$ is \emph{undominated} if
+no model dominates it. We write $\UU$ for the undominated models, $\CC$ for the coherent
+models and $\CC^\ast\coloneqq\CC\cap\UU$.
+\end{definition}
+
+If $Y$ weakly dominates $X$ but does not dominate it, then $X$ and $Y$ are tied at every
+world; this uses only the definition of $\prec_i$.
+
+The \emph{Brier loss} of $X\in\M_U$ at world $i$ is the $|h_i|$-weighted measure of its
+wrong acceptances and of its silences on correct gambles:
+\[
+  \beta_i(X)\coloneqq\int_{X\cap\{h_i<0\}}|h_i|\,d\mu
+  +\int_{(U\setminus X)\cap\{h_i>0\}}|h_i|\,d\mu=c_i-m_i(X),\qquad
+  c_i\coloneqq\int_{U\cap\{h_i>0\}}h_i\,d\mu .
+\]
+The \emph{Brier ranking} is $X\preceq^{\mathrm B}_iY$ iff $\beta_i(X)\le\beta_i(Y)$, that
+is, iff $m_i(X)\ge m_i(Y)$. $Y$ \emph{uniformly dominates} $X$ in Brier loss if there is
+$\varepsilon>0$ with $\beta_i(Y)+\varepsilon\le\beta_i(X)$ for every $i$, that is, if
+$m(Y)-m(X)\gg0$.
+
+\subsection{Requirements}
+
+\begin{itemize}
+  \item[(G)] \emph{Strict guidance.} If $X\setminus Y\subseteq\{h_i>0\}$ a.e.,
+  $Y\setminus X\subseteq\{h_i<0\}$ a.e., and $X\triangle Y$ is not null, then
+  $X\prec_iY$.
+  \item[(IB)] \emph{Independence.} Let $S$ be measurable and $X,Y,X',Y'\in\M_U$ with
+  $X\setminus S=Y\setminus S$, $X'\setminus S=Y'\setminus S$, $X\cap S=X'\cap S$ and
+  $Y\cap S=Y'\cap S$, all a.e. Then $X\preceq_iY$ if and only if $X'\preceq_iY'$.
+  \item[(GC)] \emph{Global coherence.} Every undominated model is coherent.
+  \item[(C)] \emph{Direct closure under ties.} A model that is tied at every world with a
+  member of $\CC^\ast$ belongs to $\CC^\ast$.
+  \item[(ID)] \emph{Incoherent-model dominance.} Every incoherent model is dominated by a
+  member of $\CC^\ast$.
+  \item[(LF)] \emph{Local freedom at $D_K$.} There is an open set $N\supseteq\partial
+  D_K\setminus\{0\}$ such that every measurable $X$ with $X\triangle D_K\subseteq N$ a.e.\
+  belongs to $\M_U$, that is, satisfies $X\subseteq U$ a.e.
+  \item[(W)] Every model is weakly dominated by a member of $\CC^\ast$.
+\end{itemize}
+
+\begin{definition}\label{def:cover}
+Let $K$ be a credal set and $U$ a domain. A ranking on $\M_U$ \emph{covers} $K$ if:
+\begin{enumerate}[label=(\roman*)]
+  \item it satisfies (G) and (IB);
+  \item it satisfies (GC);
+  \item it satisfies (C);
+  \item $D_K\in\M_U$ and $D_K$ is undominated;
+  \item it satisfies (ID);
+  \item (LF) holds at $D_K$.
+\end{enumerate}
+\end{definition}
+
+(W) is not part of the definition; the ranking constructed below satisfies it.
+
+\begin{lemma}\label{lem:LF}
+Let $K$ be a credal set.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_K\in\M_U$ if and only if $K'\subseteq K$.
+  \item If $K$ is full-dimensional and $K'\subseteq K$, then (LF) holds at $D_K$ if and
+  only if $K'\subseteq\relint K$.
+  \item Let $V$ be any one-sided domain. If $K$ is not full-dimensional, then (LF) fails
+  at $D_K$ for $\M_V$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) This is the description of $\CC_U$ above.
+
+(b) First let $h\in C_K\setminus\{0\}$ and $x\in\relint K$. If $x\cdot h=0$, then for
+every $d$ with $\one\cdot d=0$ and small $t>0$ both $x\pm td$ lie in $K$, so $\pm t\,d
+\cdot h\ge0$ and $d\cdot h=0$. Then $h=c\one$ for some $c$, and $c=x\cdot h=0$, a
+contradiction. So $x\cdot h>0$.
+
+Suppose $K'\subseteq\relint K$. Then $D_K\subseteq U$. Each $h\in\partial D_K\setminus
+\{0\}$ lies in $C_K\setminus\{0\}$, so $k\cdot h>0$ for $k\in K'$ by the previous
+paragraph, that is, $h\in U$. Take $N\coloneqq U$, which is open. If $X\triangle D_K
+\subseteq U$ a.e., then $X\subseteq D_K\cup U=U$ a.e.
+
+Conversely, suppose (LF) holds with the open set $N$, and $x\in K'\cap\rbd K$. Since
+$x\notin\relint K$, which is the relative interior of $K$ in the sense of convex analysis
+because $K$ is full-dimensional, there is a nontrivial supporting hyperplane to $K$
+through $x$ \cite[Thm.~11.6]{Rockafellar}: some $g\in\R^n$ has $g\cdot k\ge g\cdot x$ for
+all $k\in K$, with strict inequality for some $k\in K$. Put $h\coloneqq g-(g\cdot x)\one$.
+Then $k\cdot h\ge0$ on $K$, $x\cdot h=0$ and $h\ne0$. So $h\in C_K\setminus D_K$, and
+$h+t\one\in D_K$ for $t>0$; hence $h\in\partial D_K\setminus\{0\}\subseteq N$. The model
+$D_K\cup N$ satisfies $(D_K\cup N)\triangle D_K\subseteq N$, so it belongs to $\M_U$;
+thus $N\subseteq U$ a.e., and $N\subseteq U$ by Lemma~\ref{lem:D}(d). But $x\cdot h=0$
+with $x\in K'$, so $h\notin U$, a contradiction.
+
+(c) The linear span of $K$ has dimension at most $n-1$, so some $h\ne0$ has $k\cdot h=0$
+for all $k\in K$. Then $\pm h\in C_K\setminus D_K$ and $\pm h+t\one\in D_K$ for $t>0$, so
+$\pm h\in\partial D_K\setminus\{0\}$. If (LF) held with the open set $N$, then, as in (b),
+$N\subseteq V$ a.e.; choose $r>0$ with $B(\pm h,r)\subseteq N$. Then $B(h,r)\subseteq V$
+a.e.\ and $B(h,r)=-B(-h,r)\subseteq-V$ a.e., so the non-null ball $B(h,r)$ is contained
+in $V\cap(-V)$ a.e., which contradicts one-sidedness.
+\end{proof}
+
+\section{The deletion construction}\label{sec:deletion}
+
+\subsection{Records}
+
+A \emph{record} is an ordered pair $r=(A,B)$ of disjoint measurable subsets of $U$, with
+records identified when their components agree a.e. The record of a pair of models is
+\[
+  r(X,Y)\coloneqq(X\setminus Y,\;Y\setminus X).
+\]
+It reads: $X$ accepts $A$ where $Y$ accepts $B$. The \emph{inverse} of $r=(A,B)$ is
+$r^{-1}\coloneqq(B,A)$, so $r(Y,X)=r(X,Y)^{-1}$. The record $r$ is \emph{null} if $A$
+and $B$ are null, and its \emph{moment} is $m(r)\coloneqq m(A)-m(B)$; thus $m(r(X,Y))=
+m(X)-m(Y)$. A record $r=(A,B)$ \emph{attacks} a model $Z$ if $B\subseteq Z$ a.e.\ and
+$A\cap Z$ is null. Then $Z\oplus r\coloneqq(Z\setminus B)\cup A$ satisfies $r(Z\oplus r,
+Z)=r$: the record $r(N,X)$ attacks $Z$ exactly when the change that turns $X$ into $N$
+can be applied to $Z$. In particular $r(Y,Z)$ attacks $Z$ for all $Y,Z\in\M_U$.
+
+\begin{lemma}\label{lem:record}
+Let $\Acc$ be a set of records containing the null record, and define $X\preceq Y$ iff
+$r(X,Y)\in\Acc$. Then $\preceq$ is reflexive, ties a.e.-equal models and satisfies (IB).
+\end{lemma}
+
+\begin{proof}
+If $X=Y$ a.e., then $r(X,Y)$ and $r(Y,X)$ are null. For (IB), the hypotheses give
+$X\triangle Y\subseteq S$ a.e., so $X\setminus Y=(X\cap S)\setminus(Y\cap S)=(X'\cap S)
+\setminus(Y'\cap S)=X'\setminus Y'$ a.e., and likewise $Y\setminus X=Y'\setminus X'$
+a.e. So $r(X,Y)=r(X',Y')$.
+\end{proof}
+
+\subsection{The deletion lemma}
+
+\begin{lemma}\label{lem:deletion}
+Let $\preceq$ be a relation on a set $\M$, let $(T,\le)$ be a totally ordered set, and
+let $\varphi:\M\to T$ satisfy
+\begin{enumerate}[label=(\alph*)]
+  \item if $X\preceq Y$ then $\varphi(X)\le\varphi(Y)$;
+  \item if $X\preceq Y$ and $\varphi(X)=\varphi(Y)$, then $Y\preceq X$.
+\end{enumerate}
+Then $\preceq$ satisfies (FCC), and in particular (TC).
+\end{lemma}
+
+\begin{proof}
+If $X\prec Y$, then $\varphi(X)<\varphi(Y)$: otherwise $\varphi(X)=\varphi(Y)$ by (a), and
+(b) gives $Y\preceq X$. Let $A_0\preceq A_1\preceq\dots\preceq A_k$. By (a),
+$\varphi(A_0)\le\varphi(A_k)$, so $A_k\prec A_0$, which would need $\varphi(A_k)<
+\varphi(A_0)$, is impossible.
+\end{proof}
+
+In words: a relation contained in the weak order of a score with values in a totally
+ordered set, and symmetric on the
+ties of that score, satisfies (FCC). Deleting comparisons from a score order, while
+keeping the deletions symmetric on score ties, therefore never breaks (TC).
+
+\subsection{Comparison-deleted Brier rankings}
+
+Fix a family $\NN\subseteq\CC_U$ of coherent models. Put
+\begin{align*}
+  \Br_i&\coloneqq\{r: m_i(r)\ge0\},\\
+  G_i&\coloneqq\{r=(A,B): A\subseteq\{h_i>0\}\text{ and }B\subseteq\{h_i<0\}\text{
+  a.e.}\},\\
+  \RR(\NN)&\coloneqq\{r\text{ non-null}: m(r)\in\Rp\text{ and $r$ attacks some member of
+  }\NN\}.
+\end{align*}
+$\Br_i$ is the set of records accepted by the Brier ranking at world $i$, and $G_i$ is
+the set of records that (G) concerns. For $r\in\RR(\NN)$, the \emph{deletion world}
+$i(r)$ is the least $i$ with $m_i(r)>0$ and $r\notin G_i$ if there is such an $i$, and
+otherwise the least $i$ with $r\notin G_i$.
+
+The deletion world exists. Suppose $r=(A,B)\in\RR(\NN)$ lies in $G_i$ for every $i$. Then
+$A\subseteq\Rpp$ a.e.\ and $B\subseteq\{h:h_i<0\text{ for all }i\}$ a.e. Since $U$
+contains no such $h$,
+$B$ is null. Since $r$ attacks some $D_Q\in\NN$ and $D_Q\supseteq\Rpp$, $A=A\cap D_Q$
+a.e.\ is null. So $r$ is null, a contradiction.
+
+\begin{definition}\label{def:CD}
+The \emph{comparison-deleted Brier ranking} $\CD(\NN)$ on $\M_U$ is given by
+\begin{align*}
+  \Del_i&\coloneqq\{r\in\RR(\NN): i(r)=i\}\cup\{r^{-1}: r\in\RR(\NN),\ i(r)=i,\
+  m_i(r)=0\},\\
+  \Acc_i&\coloneqq\Br_i\setminus\Del_i,\qquad
+  X\preceq_iY\iff r(X,Y)\in\Acc_i .
+\end{align*}
+\end{definition}
+
+Each deletion depends only on the record, so it applies in every context. For
+$N\in\NN$ and a model $Y\ne N$ with $m(Y)\ge m(N)$ coordinatewise, the record
+$r(Y,N)$ attacks $N$, so it belongs to $\RR(\NN)$, and the comparison $Y\preceq_iN$ is
+removed at the world $i=i(r(Y,N))$; if $m_i(Y)=m_i(N)$ there, the reverse comparison is
+removed too. At that world $Y$ and $N$ become incomparable. No other comparison is
+removed, and records in $G_i$ are never removed at world $i$
+(Theorem~\ref{thm:reduction}(a)).
+
+\section{The reduction theorem}\label{sec:reduction}
+
+For $X\in\M_U$ and $N\in\NN$ consider the condition
+\begin{itemize}
+  \item[($\star$)] $m(N)\ge m(X)$ coordinatewise, $m(N)\ne m(X)$, and $r(N,X)$ attacks
+  no member of $\NN$.
+\end{itemize}
+
+\begin{theorem}\label{thm:reduction}
+Let $\NN\subseteq\CC_U$, and consider $\CD(\NN)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Each $\preceq_i$ is reflexive, ties a.e.-equal models, and satisfies (G), (IB),
+  (FCC) and (TC). Moreover $X\preceq_iY$ implies $m_i(X)\ge m_i(Y)$, and if in addition
+  $m_i(X)=m_i(Y)$ then $Y\preceq_iX$.
+  \item No member of $\NN$ has a weak dominator other than itself. In particular every
+  member of $\NN$ is undominated, and a model tied at every world with a member of $\NN$
+  equals it.
+  \item If $X\in\M_U$ and $N\in\NN$ satisfy ($\star$), then $N$ dominates $X$. If moreover
+  $m(N)-m(X)\gg0$, then $N$ strictly dominates $X$.
+  \item If $N\in\NN$ dominates $X\in\M_U$, then $X$ and $N$ satisfy ($\star$).
+  \item The following are equivalent: (1) every $X\in\M_U\setminus\NN$ satisfies
+  ($\star$) with some $N\in\NN$; (2) every model outside $\NN$ is dominated by a member of
+  $\NN$. If they hold, then $\UU=\CC^\ast=\NN$, and $\CD(\NN)$ satisfies (GC), (C) in the
+  strong form of (b), (ID) and (W).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) The null record lies in $\Br_i$. It is not in $\RR(\NN)$, whose members are
+non-null, and it is not the inverse of a member of $\RR(\NN)$. So it lies in $\Acc_i$,
+and Lemma~\ref{lem:record} gives reflexivity, ties of a.e.-equal models and (IB).
+
+\emph{(G).} Let $r=(A,B)\in G_i$ be non-null. Since $\{h_i=0\}$ is null,
+$m_i(r)=\int_A|h_i|\,d\mu+\int_B|h_i|\,d\mu>0$, so $r\in\Br_i$ and $r^{-1}\notin\Br_i$.
+The record $r$ is not deleted at $i$: it is not a member of $\RR(\NN)$ with deletion
+world $i$, because $r\notin G_{i(r)}$ for every $r\in\RR(\NN)$; and it is not an inverse
+$s^{-1}$ with $m_i(s)=0$, because $m_i(r)\ne0$. So $r\in\Acc_i$ and $r^{-1}\notin
+\Acc_i$; that is, $X\prec_iY$ whenever $r(X,Y)=r$.
+
+\emph{Brier compatibility.} $\Acc_i\subseteq\Br_i$, and $m_i(r(X,Y))=m_i(X)-m_i(Y)$.
+
+\emph{Tie symmetry.} Let $r\in\Acc_i$ with $m_i(r)=0$, and suppose $r^{-1}\notin
+\Acc_i$. Since $m_i(r^{-1})=0$, $r^{-1}\in\Br_i$, so $r^{-1}\in\Del_i$. If $r^{-1}\in
+\RR(\NN)$ with $i(r^{-1})=i$, then, as $m_i(r^{-1})=0$, its inverse $r$ lies in $\Del_i$.
+If $r^{-1}=s^{-1}$ with $s\in\RR(\NN)$ and $i(s)=i$, then $s=r$ and $r\in\Del_i$. Both
+contradict $r\in\Acc_i$.
+
+\emph{(FCC) and (TC).} Apply Lemma~\ref{lem:deletion} with $\varphi\coloneqq-m_i$, that
+is, with the Brier loss $\beta_i$ up to a constant.
+
+(b) Let $Y$ weakly dominate $N\in\NN$ with $Y\ne N$ a.e., and put $r\coloneqq r(Y,N)$.
+Then $r\in\Acc_i\subseteq\Br_i$ for every $i$, so $m(r)\in\Rp$; $r$ is non-null; and $r$
+attacks $N$. Hence $r\in\RR(\NN)$ and $r\in\Del_{i(r)}$, contradicting $r\in
+\Acc_{i(r)}$. A model tied at every world with $N$ weakly dominates $N$, so it equals $N$
+a.e.
+
+(c) Let $d\coloneqq r(N,X)$. Then $d\in\Br_i$ for every $i$. It is not in $\RR(\NN)$,
+since it attacks no member of $\NN$. It is not deleted as an inverse: that would need
+$d^{-1}=r(X,N)\in\RR(\NN)$, hence $m(X)\ge m(N)$, hence $m(X)=m(N)$, which is excluded. So
+$d\in\Acc_i$ and $N\preceq_iX$ for every $i$. For a world $j$ with $m_j(N)>m_j(X)$,
+$r(X,N)\notin\Br_j$, so not $X\preceq_jN$, and $N\prec_jX$. If $m(N)-m(X)\gg0$, this
+holds at every $j$.
+
+(d) Let $d\coloneqq r(N,X)$. Since $N\preceq_iX$ for every $i$, $d\in\Br_i$ for every
+$i$, so $m(N)\ge m(X)$. Since $N$ dominates $X$, $N\ne X$ a.e., so $d$ is non-null. If $d$
+attacked a member of $\NN$, then $d\in\RR(\NN)$ and $d\in\Del_{i(d)}$, contradicting
+$d\in\Acc_{i(d)}$. If $m(N)=m(X)$, then $m_i(d)=0$ for every $i$, and tie symmetry gives
+$X\preceq_iN$ for every $i$, so $N$ would not dominate $X$.
+
+(e) (1)$\Rightarrow$(2) is (c), and (2)$\Rightarrow$(1) is (d). Assume (2). By (b),
+$\NN\subseteq\UU$, and by (2), $\UU\subseteq\NN$; since $\NN\subseteq\CC$,
+$\UU=\CC^\ast=\NN$. (GC) follows. (C) holds because a model tied at every world with a
+member of $\NN$ equals it, by (b). An incoherent model is not in $\NN$, so (2) gives (ID).
+For (W): a member of $\NN$ weakly dominates itself, and every other model is dominated by
+a member of $\NN$.
+\end{proof}
+
+We now take $\NN=\CC_U$, all coherent models on $U$, and translate ($\star$) into a
+condition on the coherent hull.
+
+\begin{itemize}
+  \item[(H)] Every incoherent $X\in\M_U$ has a coherent $N\in\M_U$ with $m(N)\ge m(X)$
+  coordinatewise, $m(N)\ne m(X)$, and $\mu\bigl((N\setminus X)\cap\hull(X\setminus N)
+  \bigr)>0$.
+\end{itemize}
+
+\begin{corollary}\label{cor:H}
+Let $X\in\M_U$ and $N\in\CC_U$. The record $r(N,X)$ attacks some coherent model if and only
+if $(N\setminus X)\cap\hull(X\setminus N)$ is null. Consequently $\CD(\CC_U)$ satisfies
+(ID) if and only if (H) holds; and if (H) holds, all conclusions of
+Theorem~\ref{thm:reduction}(e) hold for $\NN=\CC_U$.
+\end{corollary}
+
+\begin{proof}
+Write $A\coloneqq N\setminus X$ and $B\coloneqq X\setminus N$. If $A\cap\hull(B)$ is
+null, then $r(N,X)=(A,B)$ attacks $\hull(B)$, which is a coherent model containing $B$
+a.e.\ (Lemma~\ref{lem:hull}(a),(b)). Conversely, if $(A,B)$ attacks a coherent model
+$D_Q$, then $B\subseteq D_Q$ a.e., so $\hull(B)\subseteq D_Q$ by
+Lemma~\ref{lem:hull}(c), and $A\cap\hull(B)\subseteq A\cap D_Q$ is null.
+
+So, for $\NN=\CC_U$, condition ($\star$) for $X$ and $N$ is exactly the condition on $N$
+in (H). If (ID) holds, every incoherent $X$ is dominated by a member of $\CC^\ast\subseteq
+\CC_U$, and Theorem~\ref{thm:reduction}(d) gives ($\star$), hence (H) at $X$. If (H)
+holds, condition (1) of Theorem~\ref{thm:reduction}(e) holds, because the models outside
+$\CC_U$ are the incoherent ones.
+\end{proof}
+
+The hull condition in (H) has a finite geometric form.
+
+\begin{lemma}\label{lem:hullformula}
+For measurable $B\subseteq U$,
+\[
+  \hull(B)=\cone(B_d)+\Rpp .
+\]
+\end{lemma}
+
+\begin{proof}
+First, if $q\in Q_B$ and $b\in B_d$, then $q\cdot b\ge0$: otherwise an open ball $V$
+around $b$ lies in $\{q\cdot h<0\}$, and $\mu(B\cap V)>0$ contradicts $q\in Q_B$.
+Conversely, if $q\in\Delta$ and $q\cdot b\ge0$ for all $b\in B_d$, then $q\in Q_B$,
+because a.e.\ point of $B$ lies in $B_d$.
+
+Put $E\coloneqq\cone(B_d)+\Rpp$, a nonempty open convex set. If $a=\sum_j\lambda_jb_j+p$
+with $b_j\in B_d$, $\lambda_j\ge0$ and $p\gg0$, then every $q\in Q_B$ has $q\cdot a\ge
+q\cdot p>0$; so $a\in D_{Q_B}$. Now let $a\notin E$. Separating $a$ from $E$ gives
+$q\ne0$ with $q\cdot a\le q\cdot e$ for all $e\in E$. Then $q\ge0$, since otherwise
+$e=\one+se_i$ with $q_i<0$ makes $q\cdot e\to-\infty$ as $s\to\infty$. For $b\in B_d$
+and $s,t>0$, $sb+t\one\in E$; letting $t\to0$ gives $q\cdot a\le s\,q\cdot b$ for all
+$s>0$, so $q\cdot b\ge0$ (let $s\to\infty$); and $t\one\in E$ gives $q\cdot a\le0$. Then $\hat q\coloneqq
+q/(\one\cdot q)\in\Delta$ is non-negative on $B_d$, so $\hat q\in Q_B$, and $\hat q\cdot
+a\le0$; hence $a\notin D_{Q_B}$.
+\end{proof}
+
+\begin{corollary}\label{cor:witness}
+Let $A,B\subseteq U$ be measurable. Then $\mu(A\cap\hull(B))>0$ if and only if there are
+$a\in A_d$, points $b_1,\dots,b_r\in B_d$ with $0\le r\le n$, and $\lambda_j\ge0$, such
+that $a-\sum_{j=1}^r\lambda_jb_j\gg0$.
+\end{corollary}
+
+\begin{proof}
+$\hull(B)$ is open. If $a\in A_d$ lies in $\hull(B)$, a ball around $a$ lies in
+$\hull(B)$ and meets $A$ in positive measure. Conversely, if $\mu(A\cap\hull(B))>0$,
+some $a\in A_d$ lies in $\hull(B)$, since $A\setminus A_d$ is null. By
+Lemma~\ref{lem:hullformula}, $a=\sum_j\lambda_jb_j+p$ with $b_j\in B_d$, $\lambda_j\ge0$
+and $p\gg0$, and by the conic form of Carath\'eodory's theorem the sum can be rewritten
+with at most $n$ linearly independent $b_j$.
+\end{proof}
+
+So (H) asks for a coherent Brier improvement $N$ of $X$ that adds some gamble $a$ which
+coherence already requires of finitely many gambles that $N$ removes from $X$.
+
+\section{The geometric condition}\label{sec:H}
+
+For a model $X\in\M_U$ write
+\[
+  G\coloneqq\hull(X)=D_{Q_X},\qquad P\coloneqq P_{Q_X},\qquad
+  Q_\tau\coloneqq(1-\tau)Q_X+\tau\Delta\quad(0<\tau<1).
+\]
+$Q_\tau$ is a compact convex subset of $\Delta$, and
+\begin{equation}\label{eq:Ptau}
+  P_{Q_\tau}(h)=(1-\tau)P(h)+\tau\min_ih_i .
+\end{equation}
+By Lemma~\ref{lem:hull}(b), $X\subseteq G$ a.e., so $P>0$ a.e.\ on $X$.
+
+\begin{lemma}\label{lem:contraction}
+Let $X\in\M_U$, $c\ge0$ and $q\in\Delta$. If $q\cdot x\ge-c\,P(x)$ for $\mu$-a.e.\ $x\in
+X$, then $q\in Q_X$.
+\end{lemma}
+
+\begin{proof}
+For $q'\in Q_X$ put $T(q')\coloneqq(q+cq')/(1+c)\in\Delta$. For a.e.\ $x\in X$,
+$(q+cq')\cdot x\ge q\cdot x+c\,P(x)\ge0$, so $T(q')\in Q_X$. Thus $T$ maps $Q_X$ into
+itself, and it is a contraction with ratio $c/(1+c)<1$ and fixed point $q$. For any
+$q'\in Q_X$ (which is nonempty), $T^k(q')\to q$, and $Q_X$ is closed
+(Lemma~\ref{lem:hull}(a)); so $q\in Q_X$.
+\end{proof}
+
+\begin{corollary}\label{cor:shrink}
+Let $X\in\M_U$ and $0<\tau<1$. For every measurable $N\subseteq D_{Q_\tau}$,
+\[
+  Q_{X\setminus N}=Q_X\qquad\text{and}\qquad\hull(X\setminus N)=\hull(X).
+\]
+\end{corollary}
+
+\begin{proof}
+$Q_X\subseteq Q_{X\setminus N}$ trivially. Let $q\in Q_{X\setminus N}$ and $c\coloneqq
+(1-\tau)/\tau$. If $x\in X\cap N$, then $P_{Q_\tau}(x)>0$, so by \eqref{eq:Ptau}
+$\min_ix_i>-c\,P(x)$, and $q\cdot x\ge\min_ix_i>-c\,P(x)$ because $q\in\Delta$. For
+a.e.\ $x\in X\setminus N$, $q\cdot x\ge0$ and $P(x)\ge0$, so $q\cdot x\ge-c\,P(x)$.
+Lemma~\ref{lem:contraction} gives $q\in Q_X$.
+\end{proof}
+
+\begin{theorem}\label{thm:H}
+Let $X\in\M_U$ be incoherent. Then there is $N\in\CC_U$ such that
+\begin{enumerate}[label=(\roman*)]
+  \item $m(N)-m(X)\gg0$, and
+  \item $N\subseteq\hull(X\setminus N)$ and $\mu(N\setminus X)>0$.
+\end{enumerate}
+In particular $\mu\bigl((N\setminus X)\cap\hull(X\setminus N)\bigr)=\mu(N\setminus X)
+>0$, and (H) holds.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: a strict improvement inside the hull.} Let $\M_G\coloneqq\{m(Y):Y
+\subseteq G\text{ measurable}\}$. The vector measure $Y\mapsto\int_Yh\,d\mu$ on the
+measurable subsets of $G$ is finite, by the first-moment condition in (M), and
+non-atomic, since $\mu$ vanishes on hyperplanes and is therefore non-atomic. By Lyapunov's theorem
+\cite{Lyapunov,Lindenstrauss}, $\M_G$ is compact and convex. Since $X\subseteq G$ a.e.,
+$x\coloneqq m(X)\in\M_G$.
+
+For $\lambda\in\Delta$ and measurable $Y\subseteq G$,
+\[
+  \lambda\cdot m(Y)=\int_Y\lambda\cdot h\,d\mu\le\int_{G\cap\{\lambda\cdot h>0\}}
+  \lambda\cdot h\,d\mu ,
+\]
+with equality if and only if $Y=G\cap\{\lambda\cdot h>0\}$ a.e., because the hyperplane
+$\{\lambda\cdot h=0\}$ is null. The maximiser is coherent: by Lemma~\ref{lem:D}(a),
+\[
+  G\cap\{\lambda\cdot h>0\}=D_{Q_X\cup\{\lambda\}}=D_{\conv(Q_X\cup\{\lambda\})},
+\]
+and $\conv(Q_X\cup\{\lambda\})$ is a credal set containing $K'$.
+
+The function $f(\lambda,z)\coloneqq\lambda\cdot(z-x)$ is bilinear on the product of the
+compact convex sets $\Delta$ and $\M_G$. By the minimax theorem \cite{Sion},
+\[
+  v\coloneqq\max_{z\in\M_G}\min_{\lambda\in\Delta}f(\lambda,z)
+  =\min_{\lambda\in\Delta}\max_{z\in\M_G}f(\lambda,z),
+\]
+and both optima are attained, at $z^\ast$ and $\lambda^\ast$ say. Note that
+$\min_{\lambda\in\Delta}f(\lambda,z)=\min_i(z_i-x_i)$.
+
+Suppose $v\le0$. Then $\max_{z\in\M_G}\lambda^\ast\cdot z\le\lambda^\ast\cdot x$, so $X$
+maximises $\lambda^\ast\cdot m(Y)$ over measurable $Y\subseteq G$, and $X=G\cap
+\{\lambda^\ast\cdot h>0\}$ a.e. Then $X$ is coherent, a contradiction. Hence $v>0$.
+
+Since $f(\lambda^\ast,z^\ast)\le\max_zf(\lambda^\ast,z)=v$ and $f(\lambda^\ast,z^\ast)
+\ge\min_\lambda f(\lambda,z^\ast)=v$, the point $z^\ast$ maximises $\lambda^\ast\cdot z$
+over $\M_G$. Writing $z^\ast=m(Y^\ast)$, uniqueness of the maximiser gives
+$Y^\ast=N_0$ a.e., where
+\[
+  N_0\coloneqq G\cap\{\lambda^\ast\cdot h>0\}\in\CC_U,\qquad
+  m(N_0)-m(X)=z^\ast-x\ge v\one\gg0 .
+\]
+
+\emph{Step 2: the gain is non-null; a uniform shrink.} Suppose $N_0\setminus X$ were
+null. Then $m(N_0)-m(X)=-m(X\setminus N_0)$, and for $k\in K'$ we would have
+$k\cdot(m(N_0)-m(X))=-\int_{X\setminus N_0}k\cdot h\,d\mu\le0$, since $k\cdot h>0$ on
+$U$. This contradicts $m(N_0)-m(X)\gg0$ and $k\in\Delta$. So $\mu(N_0\setminus X)>0$.
+
+For $0<\tau<1$ put $N_\tau\coloneqq N_0\cap D_{Q_\tau}$. By Lemma~\ref{lem:D}(a),
+$N_\tau=D_{\conv(Q_X\cup\{\lambda^\ast\}\cup Q_\tau)}$, and this credal set contains $K'$;
+so $N_\tau\in\CC_U$. Every $h\in N_0$ lies in $G$, so $P(h)>0$, and by \eqref{eq:Ptau}
+$h\in D_{Q_\tau}$ for all small $\tau$. Hence $\mathbf 1_{N_\tau}\to\mathbf 1_{N_0}$
+pointwise as $\tau\to0$, and dominated convergence, with dominating functions $|h|$ and
+$1$, gives $m(N_\tau)\to m(N_0)$ and $\mu(N_0\setminus N_\tau)\to0$. Fix $\tau$ so small
+that $m(N_\tau)-m(X)\gg0$ and $\mu(N_0\setminus N_\tau)<\mu(N_0\setminus X)$, and put
+$N\coloneqq N_\tau$. Then (i) holds, and $\mu(N\setminus X)\ge\mu(N_0\setminus X)-
+\mu(N_0\setminus N)>0$.
+
+\emph{Step 3: the hull of what is removed.} Since $N\subseteq D_{Q_\tau}$,
+Corollary~\ref{cor:shrink} gives $\hull(X\setminus N)=\hull(X)=G\supseteq N_0\supseteq
+N$. This proves (ii), and $(N\setminus X)\cap\hull(X\setminus N)=N\setminus X$.
+\end{proof}
+
+\begin{remark}\label{rem:H}
+\begin{enumerate}[label=(\alph*)]
+  \item The proof uses no regularity of $X$, no pointedness of $\cl\hull(X)$, and no
+  condition on the dimension of $K'$; nor does it use $K'\subseteq\relint\Delta$.
+  \item The defender is explicit: $N=\hull(X)\cap\{\lambda^\ast\cdot h>0\}\cap
+  D_{(1-\tau)Q_X+\tau\Delta}$, where $\lambda^\ast$ minimises the convex function
+  $\lambda\mapsto\max_{z\in\M_G}\lambda\cdot z-\lambda\cdot m(X)$ over $\Delta$, and
+  $\tau>0$ is small. Every density point $a$ of $N\setminus X$ lies in $N$: a density
+  point of $N\setminus X$ is a density point of $N$; a point outside $\cl N$ is not one;
+  and if $a\in\partial N$, a supporting half-space of the convex set $N$ at $a$ contains
+  $N$, so $N$ fills at most half of every ball around $a$. Hence $a\in N\subseteq
+  \hull(X\setminus N)$, and by Lemma~\ref{lem:hullformula} and Carath\'eodory's theorem,
+  as in Corollary~\ref{cor:witness}, $a-\sum_{j=1}^r\lambda_jb_j\gg0$ for some $r\le n$,
+  $b_j\in(X\setminus N)_d$ and $\lambda_j\ge0$.
+  \item Step 1 applied with $G$ replaced by $U$ (which is coherent) shows that every
+  $X\in\M_U$ that is not a.e.\ of the form $U\cap\{\pi\cdot h>0\}$, $\pi\in\Delta$, is
+  uniformly dominated in Brier loss by a model of that form.
+\end{enumerate}
+\end{remark}
+
+\section{Universal coverage}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+Let $K'\subseteq\Delta$ be nonempty, compact and convex, put $U\coloneqq
+D_{K'}$, and consider the ranking $\CD(\CC_U)$ on $\M_U$.
+\begin{enumerate}[label=(\alph*)]
+  \item Each $\preceq_i$ is reflexive, ties a.e.-equal models, and satisfies (G), (IB),
+  (TC) and (FCC). Each $\preceq_i$ is a sub-relation of the Brier ranking
+  $\preceq^{\mathrm B}_i$ that is symmetric on Brier ties: $X\preceq_iY$ implies
+  $m_i(X)\ge m_i(Y)$, and then $Y\preceq_iX$ if $m_i(X)=m_i(Y)$.
+  \item The undominated models are exactly the coherent models on $U$:
+  $\UU=\CC^\ast=\CC_U$. No coherent model has a weak dominator other than itself.
+  \item Every incoherent $X\in\M_U$ is strictly dominated by a coherent undominated model
+  $N$, which moreover uniformly dominates $X$ in Brier loss: $m(N)-m(X)\gg0$.
+  \item (GC), (ID) and (W) hold, and (C) holds in the strong form: a model tied at every
+  world with a coherent model equals it.
+  \item Let $K$ be a credal set. $\CD(\CC_U)$ covers $K$ if and only if $K$ is
+  full-dimensional and $K'\subseteq\relint K$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is Theorem~\ref{thm:reduction}(a). (b) and (d): by Theorem~\ref{thm:H}, (H) holds,
+so Corollary~\ref{cor:H} and Theorem~\ref{thm:reduction}(b),(e) apply with $\NN=\CC_U$.
+(c): Theorem~\ref{thm:H} gives $N\in\CC_U$ with $m(N)-m(X)\gg0$ and $\mu((N\setminus X)
+\cap\hull(X\setminus N))>0$. By Corollary~\ref{cor:H}, $r(N,X)$ attacks no coherent
+model, so ($\star$) holds, and Theorem~\ref{thm:reduction}(c) shows that $N$ strictly
+dominates $X$. $N$ is undominated by (b).
+
+(e) Requirements (i), (ii), (iii) and (v) of Definition~\ref{def:cover} hold by (a) and
+(d). By Lemma~\ref{lem:LF}(a), $D_K\in\M_U$ if and only if $K'\subseteq K$, and then
+$D_K$ is coherent, hence undominated by (b). So $\CD(\CC_U)$ covers $K$ if and only if
+$K'\subseteq K$ and (LF) holds at $D_K$. If $K$ is not full-dimensional, (LF) fails by
+Lemma~\ref{lem:LF}(c), since $U$ is one-sided. If $K$ is full-dimensional and
+$K'\subseteq K$, (LF) holds if and only if $K'\subseteq\relint K$, by
+Lemma~\ref{lem:LF}(b).
+\end{proof}
+
+Since $\relint K\ne\emptyset$ exactly when $K$ is full-dimensional, the condition in (e)
+can be written as $K'\subseteq\relint K$. It forces $K'\subseteq\relint\Delta$; if $K'$
+meets the relative boundary of $\Delta$, no credal set is covered, although (a)--(d) still
+hold.
+
+\begin{definition}\label{def:universal}
+Let $V$ be a domain. A credal set $K$ is \emph{coverable on $V$} if some ranking on $\M_V$
+covers $K$. A ranking on $\M_V$ is a \emph{universal cover on $V$} if it covers every
+credal set that is coverable on $V$.
+\end{definition}
+
+\begin{corollary}\label{cor:universal}
+Let $K$ be a credal set. $\CD(\CC_U)$ covers $K$ if and only if $K$ is coverable on $U$.
+Hence $\CD(\CC_U)$ is a universal cover on $U$.
+\end{corollary}
+
+\begin{proof}
+If some ranking on $\M_U$ covers $K$, then $D_K\in\M_U$ and (LF) holds at $D_K$. So
+$K'\subseteq K$ by Lemma~\ref{lem:LF}(a), $K$ is full-dimensional by
+Lemma~\ref{lem:LF}(c), and $K'\subseteq\relint K$ by Lemma~\ref{lem:LF}(b). Now apply
+Theorem~\ref{thm:main}(e). The converse is trivial.
+\end{proof}
+
+\begin{corollary}\label{cor:every}
+Let $K$ be a full-dimensional credal set, and let $K'\subseteq\relint K$ be nonempty,
+compact and convex; for instance $K'=\{k_0\}$ with $k_0\in\relint K$. Then
+$\CD(\CC_{D_{K'}})$ covers $K$. In particular every full-dimensional credal set is
+covered by some ranking on some domain. The same ranking covers every full-dimensional
+credal set whose relative interior contains $K'$.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main}(e).
+\end{proof}
+
+\begin{proposition}\label{prop:lowdim}
+Let $K$ be a credal set that is not full-dimensional, and let $V$ be a one-sided domain.
+Then no ranking on $\M_V$ covers $K$.
+\end{proposition}
+
+\begin{proof}
+(LF) fails at $D_K$ by Lemma~\ref{lem:LF}(c).
+\end{proof}
+
+The same conclusion holds on every domain $V$ for which $V\cap(-V)$ contains no non-null
+set of gambles with a positive and a negative coordinate
+\cite[Prop.~2.10]{KCM}. Lower-dimensional targets therefore require domains that are
+not one-sided, and on such domains some of them are covered by other rankings; for
+instance, on the full domain the Brier ranking covers every precise model $\{p\}$ with
+$p\in\relint\Delta$ \cite[Cor.~5.9]{KCM}. Whether the analogue of
+Theorem~\ref{thm:main} holds on domains that are not one-sided is open. The construction of
+Section~\ref{sec:deletion} still makes sense there, since a coherent model contains no
+$h\le0$; but $Q_B$ may then be empty, and Step 2 of the proof of Theorem~\ref{thm:H} uses
+an element of $K'$.
+
+\section{Scope and limits}\label{sec:scope}
+
+\subsection{Universality is relative to a fixed domain}
+
+Theorem~\ref{thm:main} provides one ranking for each domain $U=D_{K'}$. That ranking makes
+every coherent model on $U$ undominated and covers exactly the full-dimensional credal
+sets whose relative interiors contain $K'$. For any ranking on $\M_{D_{K'}}$, a cover of
+a full-dimensional $K$ requires $K'\subseteq\relint K$ (Lemma~\ref{lem:LF}(a),(b)); so two
+full-dimensional credal sets with disjoint relative interiors are not covered on a common
+domain of this form. Lower-dimensional credal sets are covered on no one-sided domain
+(Proposition~\ref{prop:lowdim}).
+
+\subsection{Coherence enters the definition of the ranking}
+
+Whether $\CD(\CC_U)$ compares two models at world $i$ depends on whether the record of the
+comparison attacks a coherent model. The definition of the ranking therefore refers to
+the class of coherent models. Theorem~\ref{thm:main} shows that the coherent models on $U$ can be
+represented as the undominated models of a ranking satisfying (G), (IB), (TC) and (FCC), with every incoherent model strictly dominated. It does not derive coherence
+from accuracy considerations that are specified independently of coherence. The
+dominance part of the theorem does not follow from the definition: by
+Corollary~\ref{cor:H}, (ID) for $\CD(\CC_U)$ is equivalent to (H), which is
+Theorem~\ref{thm:H}. Whether a comparison is deleted at world $i$ also depends on the
+moments of the record at the other worlds, through $\RR(\CC_U)$ and the choice of $i(r)$.
+
+\subsection{Transitivity and disjoint additivity}
+
+Consider the following conditions at world $i$.
+\begin{itemize}
+  \item[(Tr)] \emph{Transitivity.} If $X\preceq_iY$ and $Y\preceq_iZ$, then $X\preceq_iZ$.
+  \item[(Add)] \emph{Disjoint additivity.} If $X\preceq_iY$ and $Y\preceq_iZ$, and
+  $(X\triangle Y)\cap(Y\triangle Z)$ is null, then $X\preceq_iZ$.
+\end{itemize}
+(Tr) implies (Add). For records $r_1=(A_1,B_1)$ and $r_2=(A_2,B_2)$ whose supports
+$A_1\cup B_1$ and $A_2\cup B_2$ are disjoint, put $r_1\sqcup r_2\coloneqq(A_1\cup A_2,
+B_1\cup B_2)$. If $(X\triangle Y)\cap(Y\triangle Z)$ is null, then $r(X,Z)=r(X,Y)\sqcup
+r(Y,Z)$: a gamble in $X\triangle Y$ is not in $Y\triangle Z$, so it lies in $Z$ exactly
+when it lies in $Y$, and symmetrically. So, for a relation given by a set $\Acc_i$ of
+records, (Add) holds whenever $\Acc_i$ is closed under $\sqcup$.
+
+The ranking $\CD(\CC_U)$ satisfies neither (Tr) nor (Add) in general
+(Example~\ref{ex:add}). This is a property of that ranking, not of universal coverage:
+Proposition~\ref{prop:lex} gives a deletion ranking that satisfies (Add) and (FCC), has
+the properties (b)--(e) of Theorem~\ref{thm:main}, and is a universal cover on $U$.
+
+\begin{example}\label{ex:add}
+Let $n=3$ and let $\mu$ have density $e^{-|h|_1}$, which satisfies (M). Put
+\[
+  v_1\coloneqq\bigl(\tfrac15,\tfrac25,\tfrac25\bigr),\quad
+  v_2\coloneqq\bigl(\tfrac25,\tfrac15,\tfrac25\bigr),\quad
+  v_3\coloneqq\bigl(\tfrac25,\tfrac25,\tfrac15\bigr),\quad
+  u\coloneqq\tfrac13\one,
+\]
+$K\coloneqq\conv\{v_1,v_2,v_3\}$, $K'\coloneqq\tfrac12(K+u)$ and $U\coloneqq D_{K'}$. Let
+$N\coloneqq D_Q$ with $Q\coloneqq\conv\{\tfrac{20}{23}v_k+\tfrac3{23}u:k=1,2,3\}$. Then
+$K'\subseteq Q\subseteq K$, so $D_K\subseteq N$ and $N,D_K\in\CC_U$. Put
+$D\coloneqq N\setminus D_K$, $w\coloneqq(76,-43,157)$,
+\[
+  S_1\coloneqq D\cap\bigl(\{v_2\cdot h<0\}\cup\{v_1\cdot h<0<v_2\cdot h,\ w\cdot h>0\}
+  \bigr),\qquad S_2\coloneqq D\setminus S_1 .
+\]
+Exact computation of the cone moments in rational arithmetic gives
+\begin{align*}
+  m(D)&=\tfrac{68269}{2370816}\,\one,\\
+  m(S_1)&=\Bigl(\tfrac{1691077}{59270400},\ \tfrac{122655769}{2963520000},\
+  -\tfrac{58937269}{2963520000}\Bigr)\approx(0.02853,\ 0.04139,\ -0.01989),\\
+  m(S_2)&=\Bigl(\tfrac{163}{617400},\ -\tfrac{37319519}{2963520000},\
+  \tfrac{16030391}{329280000}\Bigr)\approx(0.00026,\ -0.01259,\ 0.04868),
+\end{align*}
+and $\mu(N\cap\{v_2\cdot h<0,\ h_1<0\})=\tfrac{1853}{70560}>0$. Consider the models
+\[
+  Y_0\coloneqq D_K,\qquad Y_1\coloneqq D_K\cup S_2,\qquad Y_2\coloneqq N=D_K\cup S_1\cup
+  S_2 ,
+\]
+and any family $\NN\subseteq\CC_U$ with $D_K\in\NN$, for instance $\NN=\CC_U$.
+\begin{itemize}
+  \item $r(Y_2,Y_1)=(S_1,\emptyset)$ has $m_1>0$, so it lies in $\Br_1$. It is not in
+  $\RR(\NN)$, since $m_3(S_1)<0$, and it is not the inverse of a member of $\RR(\NN)$,
+  since $m_1(S_1)>0$. So $Y_2\preceq_1Y_1$.
+  \item In the same way, using $m_1(S_2)>0$ and $m_2(S_2)<0$, $Y_1\preceq_1Y_0$.
+  \item $r(Y_2,Y_0)=(D,\emptyset)$ has $m(D)\gg0$ and attacks $D_K\in\NN$, so it lies in
+  $\RR(\NN)$. It is not in $G_1$, since $D\supseteq N\cap\{v_2\cdot h<0\}$ meets
+  $\{h_1<0\}$ in positive measure. So $i((D,\emptyset))=1$, and not $Y_2\preceq_1Y_0$.
+\end{itemize}
+Thus (Tr) fails at world 1, and since $(Y_2\triangle Y_1)\cap(Y_1\triangle Y_0)=S_1\cap
+S_2=\emptyset$, so does (Add). Also $r(Y_0,Y_2)=(\emptyset,D)\notin\Br_1$, so $Y_0$ and
+$Y_2$ are incomparable at world 1, consistently with (FCC).
+\end{example}
+
+The following deletion ranking satisfies (Add). Let $\NN\subseteq\CC_U$ be nonempty, and let $\mathrm{NA}$ be the set of records that
+attack no member of $\NN$; the null record attacks every model, so it is not in
+$\mathrm{NA}$. For a record $r$ put $L_i(r)\coloneqq\bigl(m_i(r),\sum_jm_j(r)\bigr)\in
+\R^2$, and order $\R^2$ lexicographically: $(a,b)\ge_{\mathrm{lex}}(a',b')$ if $a>a'$,
+or $a=a'$ and $b\ge b'$; $>_{\mathrm{lex}}$ is its strict part. Define the ranking $\mathrm{LD}(\NN)$ on $\M_U$ by
+$X\preceq_iY$ iff $r(X,Y)\in\Acc^{\mathrm{lex}}_i$, where
+\[
+  \Acc^{\mathrm{lex}}_i\coloneqq G_i\cup\{r\in\mathrm{NA}:L_i(r)>_{\mathrm{lex}}0\}
+  \cup\{r\in\mathrm{NA}:r^{-1}\in\mathrm{NA},\ L_i(r)=0\}.
+\]
+World $i$ compares by its Brier score, breaking ties by the total Brier score, but it
+accepts a record that attacks a member of $\NN$ only if the record is in $G_i$.
+
+\begin{proposition}\label{prop:lex}
+Let $\NN\subseteq\CC_U$ be nonempty, and consider $\mathrm{LD}(\NN)$.
+\begin{enumerate}[label=(\alph*)]
+  \item each $\preceq_i$ is reflexive, ties a.e.-equal models, and satisfies (G), (IB),
+  (FCC), (TC) and (Add); and $X\preceq_iY$ implies $m_i(X)\ge m_i(Y)$;
+  \item no member of $\NN$ has a weak dominator other than itself;
+  \item for $X\in\M_U$ and $N\in\NN$, $N$ dominates $X$ if and only if ($\star$) holds,
+  and then $N$ strictly dominates $X$;
+  \item for $\NN=\CC_U$, $\mathrm{LD}(\CC_U)$ satisfies (ID) if and only if (H) holds.
+  Hence, by Theorem~\ref{thm:H}, its undominated models are exactly the coherent models on
+  $U$, every incoherent model is strictly dominated by one of them, (GC), (C) in the
+  strong form, (ID) and (W) hold, and $\mathrm{LD}(\CC_U)$ covers a credal set $K$ if
+  and only if $K$ is full-dimensional and $K'\subseteq\relint K$. So $\mathrm{LD}(\CC_U)$
+  is a universal cover on $U$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\emph{A fact.} If $r_1\sqcup r_2$ attacks $Z$, then $r_1$ and $r_2$ attack $Z$, since
+$B_k\subseteq B_1\cup B_2$ and $A_k\subseteq A_1\cup A_2$. Hence if $r_1\in\mathrm{NA}$
+then $r_1\sqcup s\in\mathrm{NA}$ for every $s$ whose support is disjoint from that of
+$r_1$.
+
+(a) The null record lies in $G_i$, so Lemma~\ref{lem:record} gives reflexivity, ties of
+a.e.-equal models and (IB). A non-null record in $G_i$ has $m_i>0$, as in the proof of
+Theorem~\ref{thm:reduction}(a). Its inverse has $L_i<_{\mathrm{lex}}0$ and is not in
+$G_i$ (it would have to be null), so it is not accepted; this gives (G). Put
+$\Phi_i(X)\coloneqq(m_i(X),\sum_jm_j(X))$, so that $L_i(r(X,Y))=\Phi_i(X)-\Phi_i(Y)$.
+Every accepted record has $L_i\ge_{\mathrm{lex}}0$. An accepted record with $L_i=0$ is
+null or lies in the third set, which is closed under inverses; so its inverse is
+accepted. Lemma~\ref{lem:deletion}, applied with $\varphi\coloneqq-\Phi_i$ and $T=\R^2$
+ordered by $\ge_{\mathrm{lex}}$ (so that $X\preceq_iY$ implies $-\Phi_i(X)\le_{\mathrm{lex}}
+-\Phi_i(Y)$), gives (FCC) and (TC). The implication $X\preceq_iY
+\Rightarrow m_i(X)\ge m_i(Y)$ holds because $L_i(r)\ge_{\mathrm{lex}}0$ forces
+$m_i(r)\ge0$.
+
+\emph{(Add).} By the discussion above it suffices that $\Acc^{\mathrm{lex}}_i$ is closed
+under $\sqcup$. Let $r_1,r_2$ be accepted with disjoint supports. If both lie in $G_i$, so
+does $r_1\sqcup r_2$. Otherwise one of them, say $r_1$, is a non-null member of
+$\mathrm{NA}$, and $r_1\sqcup r_2\in\mathrm{NA}$ by the fact. $L_i$ is additive, so
+$L_i(r_1\sqcup r_2)=L_i(r_1)+L_i(r_2)\ge_{\mathrm{lex}}0$. If the sum is
+$>_{\mathrm{lex}}0$, the union is accepted. If it is $0$, both terms are $0$, because
+$\R^2$ with the lexicographic order is an ordered group. Then $r_1$ lies in the third
+set, so $r_1^{-1}\in\mathrm{NA}$, and $(r_1\sqcup r_2)^{-1}=r_1^{-1}\sqcup r_2^{-1}\in
+\mathrm{NA}$ by the fact. So the union lies in the third set.
+
+(b) Let $Y$ weakly dominate $N\in\NN$. The record $r(Y,N)$ attacks $N$, so it is not in
+$\mathrm{NA}$, and being accepted at every world it lies in $G_i$ for every $i$. Then
+$Y\setminus N\subseteq\Rpp$ a.e.\ and $N\setminus Y\subseteq\{h:h_i<0\text{ for all
+}i\}$ a.e. The latter set misses $U$, and $\Rpp\subseteq N$; so $Y=N$ a.e.
+
+(c) Let $r\coloneqq r(N,X)$. Suppose ($\star$). Then $r\in\mathrm{NA}$, $m(r)\in\Rp$
+and $\sum_jm_j(r)>0$, so $L_i(r)>_{\mathrm{lex}}0$ for every $i$, and $r$ is accepted at
+every world. The record $r^{-1}$ is non-null, has $L_i<_{\mathrm{lex}}0$, and so is
+neither in $G_i$ nor in the other two sets. So $N\prec_iX$ for every $i$. Conversely, let
+$N$ dominate $X$; then $r$ is non-null and accepted at every world. If $r\notin
+\mathrm{NA}$, then $r\in G_i$ for every $i$, so $r=(A,\emptyset)$ a.e.\ with $A\subseteq
+\Rpp$ non-null; such a record attacks no coherent model, since every coherent model
+contains $\Rpp$, contradicting $r\notin\mathrm{NA}$. So $r\in\mathrm{NA}$, and
+$L_i(r)\ge_{\mathrm{lex}}0$ gives $m(N)\ge m(X)$. If $m(N)=m(X)$, then $L_i(r)=0$ for
+every $i$, $r$ is not in $G_i$, so $r$ lies in the third set at every world; then
+$r^{-1}$ is accepted at every world, and $N$ does not dominate $X$. So ($\star$) holds.
+
+(d) By Corollary~\ref{cor:H}, for $\NN=\CC_U$ condition ($\star$) for $X$ and $N$ is the
+condition on $N$ in (H). If (ID) holds, (c) gives (H). If (H) holds, (c) shows that every
+incoherent model is strictly dominated by a member of $\CC_U$, and the remaining claims
+follow from (b) and (c) exactly as in the proofs of Theorem~\ref{thm:reduction}(e) and
+Theorem~\ref{thm:main}(e). (H) holds by Theorem~\ref{thm:H}. The universal-cover claim
+then follows as in Corollary~\ref{cor:universal}.
+\end{proof}
+
+The equivalence in (d) concerns $\mathrm{LD}(\CC_U)$ only; it does not say that every
+ranking satisfying (Add) and covering some $K$ yields (H). We do not claim that
+$\mathrm{LD}(\CC_U)$ is transitive.
+
+\subsection{Relation to the Brier ranking}
+
+By Theorem~\ref{thm:main}(a), every comparison made by $\CD(\CC_U)$ at world $i$ is made
+by the Brier ranking at world $i$, and every strict comparison is strict for the Brier
+ranking; $\CD(\CC_U)$ is obtained from the Brier ranking by deleting comparisons. It is
+not complete. In Example~\ref{ex:add}, the coherent model $N$ uniformly dominates the
+coherent model $D_K$ in Brier loss, since $m(N)-m(D_K)=m(D)\gg0$, while both are
+undominated in $\CD(\CC_U)$. More generally, by Remark~\ref{rem:H}(c), every coherent
+model on $U$ that is not a.e.\ of the form $U\cap\{\pi\cdot h>0\}$ is uniformly dominated
+in Brier loss by a model of that form, and is undominated in $\CD(\CC_U)$ by
+Theorem~\ref{thm:main}(b).
+
+\begin{thebibliography}{9}
+
+\bibitem{KCM}
+J.~Konek and C.~Campbell-Moore.
+\newblock Covering coherent sets of desirable gambles.
+\newblock Draft, 2026.
+
+\bibitem{Lindenstrauss}
+J.~Lindenstrauss.
+\newblock A short proof of {L}iapounoff's convexity theorem.
+\newblock \emph{Journal of Mathematics and Mechanics}, 15:971--972, 1966.
+
+\bibitem{Lyapunov}
+A.~Lyapunov.
+\newblock Sur les fonctions-vecteurs compl\`etement additives.
+\newblock \emph{Izvestiya Akademii Nauk SSSR, Seriya Matematicheskaya}, 4:465--478,
+1940.
+
+\bibitem{Rockafellar}
+R.~T. Rockafellar.
+\newblock \emph{Convex Analysis}.
+\newblock Princeton University Press, 1970.
+
+\bibitem{Sion}
+M.~Sion.
+\newblock On general minimax theorems.
+\newblock \emph{Pacific Journal of Mathematics}, 8:171--176, 1958.
+
+\end{thebibliography}
+
+\end{document}
