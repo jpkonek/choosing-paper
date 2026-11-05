@@ -1,0 +1,480 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and accuracy for sets of desirable gambles},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\I}{\mathcal I}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\Lmu}{L_\mu}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\conv}{conv}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and accuracy for sets of desirable gambles}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}[Gambles]\label{def:gambles}
+Let $\Omega$ be a nonempty set of \emph{worlds}, of any cardinality. Let $\ell^\infty(\Omega)$ be the space of bounded real functions on $\Omega$, with the norm $\|h\|\coloneqq\sup_{\omega\in\Omega}|h(\omega)|$ and the pointwise order. Write $\one$ for the constant function $1$, and $g\gneq0$ if $g\ge0$ and $g\ne0$. Fix a norm-closed, separable linear subspace $E\subseteq\ell^\infty(\Omega)$ containing $\one$. Its elements are \emph{gambles}. For $h\in E$ and $r>0$, $B(h,r)\coloneqq\{g\in E:\|g-h\|<r\}$. The choice $E=\ell^\infty(\Omega)$ is permitted for finite $\Omega$ and excluded for infinite $\Omega$, when $\ell^\infty(\Omega)$ is nonseparable.
+\end{definition}
+
+\begin{definition}[Coherent sets of desirable gambles]\label{def:coherence}
+A set $D\subseteq E$ is a \emph{coherent set of desirable gambles} if
+(D1) $0\notin D$;
+(D2) $g\in D$ whenever $g\gneq0$;
+(D3) $\lambda g\in D$ whenever $g\in D$ and $\lambda>0$;
+(D4) $g+h\in D$ whenever $g,h\in D$.
+\end{definition}
+
+\begin{definition}[States and credal sets]\label{def:states}
+A \emph{state} is a linear functional $q:E\to\R$ that is positive ($q(h)\ge0$ whenever $h\ge0$) and normalised ($q(\one)=1$). $S$ is the set of states, with the weak-$\ast$ topology, the coarsest topology making $q\mapsto q(h)$ continuous for every $h\in E$. For each world $\omega$, $\delta_\omega(h)\coloneqq h(\omega)$ defines a state. A \emph{credal set} is a nonempty, weak-$\ast$ closed, convex set $Q\subseteq S$. For a credal set $Q$ and $h\in E$ put
+\[
+P_Q(h)\coloneqq\min_{q\in Q}q(h),\qquad D^\circ_Q\coloneqq\{h:P_Q(h)>0\},\qquad C_Q\coloneqq\{h:P_Q(h)\ge0\},
+\]
+\[
+D_Q\coloneqq D^\circ_Q\cup\{g:g\gneq0\};
+\]
+the minimum exists by Lemma~\ref{lem:states}(a). For a state $q$, $\{q>0\}\coloneqq\{g\in E:q(g)>0\}$, similarly $\{q<0\}$ and $\{q=0\}$, and $q^+(g)\coloneqq\max(q(g),0)$. For credal sets $Q_1,Q_2$, $\conv(Q_1\cup Q_2)$ is the convex hull, and for $0\le\tau\le1$, $(1-\tau)Q+\tau S\coloneqq\{(1-\tau)q+\tau s:q\in Q,\ s\in S\}$.
+\end{definition}
+
+\begin{lemma}\label{lem:states}
+Let $Q,Q_1,Q_2$ be credal sets.
+\begin{enumerate}[label=(\alph*)]
+\item $|q(h)|\le\|h\|$ for every $q\in S$ and $h\in E$. $S$ is convex, weak-$\ast$ compact and metrizable. Every credal set is compact, and the minimum defining $P_Q$ is attained.
+\item For every $h\in E$, $\min_{q\in S}q(h)=\inf_\Omega h$ and $\max_{q\in S}q(h)=\sup_\Omega h$.
+\item $P_Q$ is $1$-Lipschitz, superadditive, positively homogeneous and monotone, and $P_Q(h+t\one)=P_Q(h)+t$ for $t\in\R$. So $D^\circ_Q$ is an open convex cone and $C_Q$ is closed. If $Q_1\subseteq Q_2$, then $P_{Q_1}\ge P_{Q_2}$; in particular $P_Q\ge P_S$. The set $\conv(Q_1\cup Q_2)$ is a credal set, and $P_{\conv(Q_1\cup Q_2)}=\min(P_{Q_1},P_{Q_2})$.
+\item For $0\le\tau\le1$, $(1-\tau)Q+\tau S$ is a credal set, and $P_{(1-\tau)Q+\tau S}=(1-\tau)P_Q+\tau P_S$.
+\item There is a nonempty countable set $\Omega_0\subseteq\Omega$ with $\inf_{\Omega_0}h=\inf_\Omega h$ for every $h\in E$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) From $-\|h\|\one\le h\le\|h\|\one$, positivity and normalisation give $|q(h)|\le\|h\|$. So $S$ lies in the closed unit ball of the dual $E^\ast$; it is weak-$\ast$ closed, since positivity and normalisation are preserved under pointwise limits; so it is weak-$\ast$ compact by the Banach--Alaoglu theorem~\cite[Theorem~3.15]{Rudin}. Convexity is clear. Let $(e_n)$ be dense in the unit ball of $E$, and put $d(q,r)\coloneqq\sum_n2^{-n}|q(e_n)-r(e_n)|$. If $d(q,r)=0$, then $q=r$ on a dense subset of the unit ball, hence on $E$ by continuity; so $d$ is a metric. The series converges uniformly on $S\times S$ and each term is weak-$\ast$ continuous, so the identity from $S$ with the weak-$\ast$ topology to $(S,d)$ is a continuous bijection from a compact space onto a Hausdorff space, hence a homeomorphism. A credal set is a closed subset of $S$, hence compact, and $q\mapsto q(h)$ is continuous, so its minimum over a credal set is attained.
+
+(b) Since $h-(\inf_\Omega h)\one\ge0$, every state has $q(h)\ge\inf_\Omega h$, while $\inf_\omega\delta_\omega(h)=\inf_\Omega h$; as the minimum over $S$ is attained, it equals $\inf_\Omega h$. Apply this to $-h$ for the maximum.
+
+(c) The bound in (a) makes each $q\mapsto q(h)$ a $1$-Lipschitz function of $h$, so their minimum is $1$-Lipschitz. A minimum of linear functions is superadditive and positively homogeneous; it is monotone because states are positive; and $q(\one)=1$ gives the translation rule. Hence $D^\circ_Q$ is open, and $P_Q(g+h)\ge P_Q(g)+P_Q(h)$ and $P_Q(\lambda h)=\lambda P_Q(h)$ make it a convex cone; $C_Q$ is closed by continuity. A minimum over a smaller set is larger. The map $(q_1,q_2,\lambda)\mapsto(1-\lambda)q_1+\lambda q_2$ is continuous from $Q_1\times Q_2\times[0,1]$ to $S$, and its image is $\conv(Q_1\cup Q_2)$, since $Q_1$ and $Q_2$ are convex; so this set is compact, hence closed, and it is convex and nonempty. Since $(1-\lambda)q_1(h)+\lambda q_2(h)\ge\min(P_{Q_1}(h),P_{Q_2}(h))$, and $\conv(Q_1\cup Q_2)\supseteq Q_1\cup Q_2$, its minimum is $\min(P_{Q_1},P_{Q_2})$.
+
+(d) The set is the image of $Q\times S$ under the continuous map $(q,s)\mapsto(1-\tau)q+\tau s$, so it is compact, and it is convex and nonempty. The minimum of $(1-\tau)q(h)+\tau s(h)$ over $q\in Q$ and $s\in S$ is $(1-\tau)P_Q(h)+\tau P_S(h)$.
+
+(e) Let $(u_j)$ be dense in $E$. For all $j,l\ge1$ choose $\omega_{j,l}$ with $u_j(\omega_{j,l})<\inf_\Omega u_j+1/l$, and let $\Omega_0$ be the set of these worlds. If $\|h-u_j\|<\eta$, then $\inf_{\Omega_0}h\le\inf_{\Omega_0}u_j+\eta=\inf_\Omega u_j+\eta\le\inf_\Omega h+2\eta$; and $\inf_{\Omega_0}h\ge\inf_\Omega h$ always.
+\end{proof}
+
+\begin{lemma}\label{lem:DQ}
+Let $Q,Q_1,Q_2$ be credal sets.
+\begin{enumerate}[label=(\alph*)]
+\item $D_Q$ is a coherent set of desirable gambles and a Borel set, $D^\circ_Q\subseteq D_Q\subseteq C_Q$, and $D_Q\setminus D^\circ_Q\subseteq\{P_Q=0\}$. Every $q\in Q$ is nonnegative on $D_Q$.
+\item If $Q_1\subseteq Q_2$, then $D_{Q_2}\subseteq D_{Q_1}$.
+\item $D_{Q_1}\cap D_{Q_2}=D_{\conv(Q_1\cup Q_2)}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) If $g\gneq0$, then $P_Q(g)\ge P_Q(0)=0$ by monotonicity; so $D_Q\subseteq C_Q$, every $q\in Q$ satisfies $q\ge P_Q\ge0$ on $D_Q$, and $D_Q\setminus D^\circ_Q\subseteq C_Q\setminus D^\circ_Q=\{P_Q=0\}$. (D1): $P_Q(0)=0$, and $0\gneq0$ fails. (D2) holds by definition. (D3): $P_Q$ is positively homogeneous, and $\lambda g\gneq0$ whenever $g\gneq0$ and $\lambda>0$. (D4): let $g,h\in D_Q$. If $g,h\gneq0$, then $g+h\ge0$, and $g+h=0$ would give $0\le g=-h\le0$; so $g+h\gneq0$. Otherwise one of them, say $g$, lies in $D^\circ_Q$, while $P_Q(h)\ge0$; superadditivity gives $P_Q(g+h)>0$. The set $\{g:g\ge0\}=\bigcap_\omega\{g:g(\omega)\ge0\}$ is closed, so $\{g:g\gneq0\}$ is Borel, and $D^\circ_Q$ is open; so $D_Q$ is Borel.
+(b) and (c) follow from Lemma~\ref{lem:states}(c), by taking the union of each side of $D^\circ_{Q_2}\subseteq D^\circ_{Q_1}$ and of $D^\circ_{Q_1}\cap D^\circ_{Q_2}=D^\circ_{\conv(Q_1\cup Q_2)}$ with $\{g:g\gneq0\}$.
+\end{proof}
+
+\begin{definition}[Measure conditions]\label{def:measure}
+Throughout, $\mu$ is a fixed finite Borel measure on $(E,\|\cdot\|)$, and the same letter denotes its completion. A set is \emph{null} if it is measurable for the completion and has measure $0$; a statement holds \emph{almost everywhere} (a.e.) if it holds outside a null set. The conditions on $\mu$ are:
+\begin{itemize}[leftmargin=3em]
+\item[(M1)] $\int\|g\|\,d\mu(g)<\infty$. The stakes have finite average size.
+\item[(M2)] $\mu\{g:P_Q(g)=0\}=0$ for every credal set $Q$. Every credal set has an indifference boundary of measure zero.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Models and almost coherence]\label{def:models}
+A \emph{model} is a set $X\subseteq E$ that is measurable for the completion of $\mu$. Sets $X,Y$ are \emph{equal a.e.} if $X\triangle Y$ is null. Models equal a.e.\ are identified, and $X\ne Y$ means that $X$ and $Y$ are not equal a.e. $\M$ is the set of models. A model $X$ is \emph{almost coherent} if $X=D$ a.e.\ for some coherent set of desirable gambles $D$ (Definition~\ref{def:coherence}), and \emph{incoherent} otherwise. $\C\subseteq\M$ is the class of almost coherent models.
+\end{definition}
+
+\begin{lemma}\label{lem:identify}
+\begin{enumerate}[label=(\alph*)]
+\item Let $D$ be a coherent set of desirable gambles, and $K_D\coloneqq\{q\in S:q(h)\ge0\text{ for every }h\in D\}$. Then $K_D$ is a credal set and $D_{K_D}\subseteq D\subseteq C_{K_D}$.
+\item Assume (M2). Every coherent set of desirable gambles $D$ is a model, and $D=D_{K_D}$ a.e. A model is almost coherent if and only if it is equal a.e.\ to $D_Q$ for some credal set $Q$. For every credal set $Q$, $D_Q=D^\circ_Q$ a.e.
+\item Assume (M2). For every credal set $P$ and every state $q$, $D_P\cap\{q>0\}=D_{\conv(P\cup\{q\})}$ a.e.; in particular $D_P\cap\{q>0\}$ is an almost coherent model.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) By (D2) and Lemma~\ref{lem:states}(b), $D^\circ_S=\{h:\inf_\Omega h>0\}\subseteq D$. Put $V\coloneqq D+D^\circ_S$. By (D4), $V\subseteq D$; $V$ is open, as a union of translates of the open set $D^\circ_S$; $V$ is a convex cone, as a sum of convex cones; and $D^\circ_S\subseteq V$, since $e=e/2+e/2$ with $e/2\in D\cap D^\circ_S$. Let $h\notin D$. Then $h\notin V$, and the Hahn--Banach separation theorem for the open convex set $V$~\cite[Theorem~3.4]{Rudin} gives a continuous linear $\varphi$ and $c\in\R$ with $\varphi(v)>c\ge\varphi(h)$ for every $v\in V$. As $\lambda v\in V$ for $\lambda>0$, letting $\lambda\to0$ and $\lambda\to\infty$ gives $c\le0$ and $\varphi\ge0$ on $V$. For $g\ge0$ and $t>0$, $g+t\one\in D^\circ_S\subseteq V$, so $\varphi(g)\ge-t\varphi(\one)$; hence $\varphi$ is positive. Since $\varphi(v)>\varphi(h)$ for $v\in V$, $\varphi\ne0$; positivity gives $|\varphi(g)|\le\|g\|\varphi(\one)$, so $\varphi(\one)>0$. Put $q\coloneqq\varphi/\varphi(\one)\in S$. For $u\in D$ and $t>0$, $u+t\one\in V$, so $q(u)\ge-t$; hence $q\in K_D$, and $q(h)\le0$. Applied to $h\coloneqq0$, which is not in $D$ by (D1), this shows $K_D\ne\varnothing$. $K_D$ is weak-$\ast$ closed and convex, so it is a credal set. For $h\notin D$, $P_{K_D}(h)\le q(h)\le0$, so $D^\circ_{K_D}\subseteq D$, and $D_{K_D}\subseteq D$ by (D2). Finally $D\subseteq C_{K_D}$ by the definition of $K_D$.
+
+(b) By (a) and Lemma~\ref{lem:DQ}(a), $D\setminus D_{K_D}\subseteq C_{K_D}\setminus D^\circ_{K_D}=\{P_{K_D}=0\}$, a Borel null set. So $D$ is the union of the Borel set $D_{K_D}$ and a subset of a null set; it is a model, and $D=D_{K_D}$ a.e. Hence an almost coherent model is equal a.e.\ to some $D_Q$; conversely each $D_Q$ is coherent by Lemma~\ref{lem:DQ}(a). Also $D_Q\setminus D^\circ_Q\subseteq\{P_Q=0\}$ is null.
+
+(c) $\{q\}$ is a credal set with $P_{\{q\}}=q$, so $D_{\{q\}}=\{q>0\}\cup\{g:g\gneq0\}$. By Lemma~\ref{lem:DQ}(c), $D_P\cap D_{\{q\}}=D_{\conv(P\cup\{q\})}$. This set contains $D_P\cap\{q>0\}$, and their difference lies in $\{g\gneq0\}\setminus\{q>0\}\subseteq\{q=0\}$, which is null by (M2). Then (b) applies.
+\end{proof}
+
+\begin{definition}[Payoff vector]\label{def:payoff}
+Assume (M1). As $E$ is separable, the identity map of $E$ is Bochner integrable with respect to $\mu$~\cite{DiestelUhl}. For a model $X$ put
+\[
+m(X)\coloneqq\int_Xg\,d\mu(g)\in E .
+\]
+Bounded linear functionals commute with the Bochner integral, so $q(m(X))=\int_Xq(g)\,d\mu(g)$ for every $q\in S$; in particular $m(X)(\omega)=\int_Xg(\omega)\,d\mu(g)$. Moreover $\|\int f\,d\mu\|\le\int\|f\|\,d\mu$ for Bochner integrable $f$, $m(X)$ depends only on $X$ up to null sets, and $m(X\cup Y)=m(X)+m(Y)$ when $X\cap Y$ is null.
+\end{definition}
+
+\begin{definition}[Supporting states and hull]\label{def:hull}
+For a model $B$, the \emph{supporting states} are $Q_B\coloneqq\{q\in S:q(g)\ge0\text{ for a.e.\ }g\in B\}$. $B$ is \emph{consistent} if $Q_B\ne\varnothing$, and \emph{inconsistent} otherwise. The \emph{hull} of $B$ is $H(B)\coloneqq D_{Q_B}$ if $B$ is consistent, and $H(B)\coloneqq E$ otherwise.
+\end{definition}
+
+\begin{lemma}\label{lem:hull}
+Let $B,B'$ be models.
+\begin{enumerate}[label=(\alph*)]
+\item $Q_B$ is weak-$\ast$ closed and convex, so it is a credal set if $B$ is consistent. It depends only on $B$ up to null sets. If $B\subseteq B'$ a.e., then $Q_{B'}\subseteq Q_B$.
+\item If $B$ is consistent, then $P_{Q_B}\ge0$ a.e.\ on $B$. Under (M2), $B\subseteq H(B)$ a.e.
+\item Let $Q$ be a credal set. If $B\subseteq D_Q$ a.e., then $Q\subseteq Q_B$ and $H(B)\subseteq D_Q$.
+\item If $B\subseteq B'$ a.e., then $H(B)\subseteq H(B')$.
+\item $H(B)$ is a Borel set, and it depends only on $B$ up to null sets.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $q\in Q_B$ means that $B\cap\{q<0\}$ is null; this depends only on the class of $B$. If $q_1,q_2\in Q_B$ and $0\le\lambda\le1$, then $B\cap\{(1-\lambda)q_1+\lambda q_2<0\}\subseteq(B\cap\{q_1<0\})\cup(B\cap\{q_2<0\})$. As $S$ is metrizable, closedness may be tested along sequences: if $q_j\in Q_B$ converge to $q$, then $q(g)<0$ implies $q_j(g)<0$ for large $j$, so $B\cap\{q<0\}\subseteq\bigcup_jB\cap\{q_j<0\}$, which is null. If $B\subseteq B'$ a.e.\ and $q\in Q_{B'}$, then $B\cap\{q<0\}\subseteq(B\setminus B')\cup(B'\cap\{q<0\})$ is null.
+
+(b) $Q_B$ is a compact metric space, so it has a dense sequence $(q_j)$. Outside the null set $\bigcup_jB\cap\{q_j<0\}$, every $g\in B$ has $q_j(g)\ge0$ for all $j$, hence $q(g)\ge0$ for all $q\in Q_B$ by continuity of $q\mapsto q(g)$; that is, $P_{Q_B}(g)\ge0$. Under (M2), $\{P_{Q_B}=0\}$ is null, so $B\subseteq D^\circ_{Q_B}\subseteq H(B)$ a.e. If $B$ is inconsistent, $H(B)=E$.
+
+(c) Every $q\in Q$ is nonnegative on $D_Q$ (Lemma~\ref{lem:DQ}(a)), so $B\cap\{q<0\}\subseteq B\setminus D_Q$ is null, and $q\in Q_B$. So $B$ is consistent, and $H(B)=D_{Q_B}\subseteq D_Q$ by Lemma~\ref{lem:DQ}(b).
+
+(d) If $B'$ is inconsistent, $H(B')=E$. Otherwise $\varnothing\ne Q_{B'}\subseteq Q_B$ by (a), and $H(B)=D_{Q_B}\subseteq D_{Q_{B'}}=H(B')$ by Lemma~\ref{lem:DQ}(b).
+
+(e) By (a) and Lemma~\ref{lem:DQ}(a).
+\end{proof}
+
+\begin{lemma}\label{lem:contraction}
+Let $Z$ be a consistent model and $\underline P_Z\coloneqq P_{Q_Z}$. If $q\in S$, $a\ge0$ and $q(g)\ge-a\,\underline P_Z(g)$ for a.e.\ $g\in Z$, then $q\in Q_Z$.
+\end{lemma}
+\begin{proof}
+For $q'\in Q_Z$ put $\Psi(q')\coloneqq(q+aq')/(1+a)$, a state. Since $q'\ge\underline P_Z$, for a.e.\ $g\in Z$ we have $(q+aq')(g)\ge q(g)+a\underline P_Z(g)\ge0$; so $\Psi$ maps $Q_Z$ into itself. Since $\Psi(q')-q=\frac a{1+a}(q'-q)$, the iterates satisfy $\Psi^k(q')-q=\bigl(\frac a{1+a}\bigr)^k(q'-q)$, whose norm is at most $2\bigl(\frac a{1+a}\bigr)^k$. So $\Psi^k(q')\to q$ in norm, hence weak-$\ast$. As $Q_Z$ is nonempty and closed, $q\in Q_Z$.
+\end{proof}
+
+\begin{lemma}\label{lem:trim}
+Let $Z$ be a consistent model, $0<\tau<1$ and $Q_\tau\coloneqq(1-\tau)Q_Z+\tau S$. For every model $N\subseteq D_{Q_\tau}$ a.e., $Q_{Z\setminus N}=Q_Z$ and $H(Z\setminus N)=H(Z)$.
+\end{lemma}
+\begin{proof}
+$Q_Z\subseteq Q_{Z\setminus N}$ by Lemma~\ref{lem:hull}(a). Let $q\in Q_{Z\setminus N}$, put $a\coloneqq(1-\tau)/\tau$, and write $\underline P_Z\coloneqq P_{Q_Z}$. Let $g\in Z\cap D_{Q_\tau}$. If $g\in D^\circ_{Q_\tau}$, then $(1-\tau)\underline P_Z(g)+\tau P_S(g)>0$ by Lemma~\ref{lem:states}(d), so $q(g)\ge P_S(g)>-a\underline P_Z(g)$. Otherwise $g\gneq0$, so $q(g)\ge0$ and $\underline P_Z(g)\ge0$, and $q(g)\ge-a\underline P_Z(g)$. For a.e.\ $g\in Z\setminus N$, $q(g)\ge0$ and $\underline P_Z(g)\ge0$ by Lemma~\ref{lem:hull}(b), so again $q(g)\ge-a\underline P_Z(g)$. As $Z\subseteq(Z\cap D_{Q_\tau})\cup(Z\setminus N)\cup(N\setminus D_{Q_\tau})$ and the last set is null, $q(g)\ge-a\underline P_Z(g)$ for a.e.\ $g\in Z$. Lemma~\ref{lem:contraction} gives $q\in Q_Z$. The hulls agree by definition.
+\end{proof}
+
+\section{The ranking}\label{sec:ranking}
+
+\begin{definition}[Rankings and dominance]\label{def:rankings}
+A \emph{ranking} $L$ assigns to each world $\omega$ a binary relation $\succeq_\omega$ on $\M$; $Y\succeq_\omega X$ reads ``$Y$ is at least as good as $X$ at $\omega$''. Every ranking considered here evaluates every model. $Y\succ_\omega X$ means $Y\succeq_\omega X$ and not $X\succeq_\omega Y$; $X$ and $Y$ are \emph{tied at $\omega$} if $X\succeq_\omega Y$ and $Y\succeq_\omega X$. $Y$ \emph{weakly dominates} $X$ if $Y\succeq_\omega X$ at every world; $X$ and $Y$ are \emph{tied at every world} if each weakly dominates the other; $Y$ \emph{dominates} $X$ if $Y$ weakly dominates $X$ and they are not tied at every world. $X$ is \emph{undominated} if no model dominates it. $\U_L$ is the set of undominated models, and $\C_L\coloneqq\C\cap\U_L$. In the notation of~\cite{LDG}, $\M_L=\M$, the coherent class is $\C$, and $Y\preceq_\omega X$ means $Y\succeq_\omega X$ here.
+\end{definition}
+
+\begin{definition}[Changes and guidance]\label{def:change}
+The \emph{change from $X$ to $Y$} adds $A\coloneqq Y\setminus X$ and removes $B\coloneqq X\setminus Y$. It is \emph{guided at} the world $\omega$ if $A\subseteq\{g:g(\omega)>0\}$ a.e.\ and $B\subseteq\{g:g(\omega)<0\}$ a.e., and \emph{guided at every world} if it is guided at each $\omega\in\Omega$.
+\end{definition}
+
+\begin{definition}[The ranking $\Lmu$]\label{def:ranking}
+Assume (M1). The ranking $\Lmu$ is defined by: $Y\succeq_\omega X$ if and only if $X=Y$ a.e., or both
+\[
+m(Y)(\omega)>m(X)(\omega)\quad\text{and}\quad\bigl[\text{the change from $X$ to $Y$ is guided at $\omega$, or }A\subseteq H(B)\text{ a.e.}\bigr],
+\]
+where $A\coloneqq Y\setminus X$ and $B\coloneqq X\setminus Y$.
+\end{definition}
+
+\begin{definition}[Structural properties]\label{def:properties}
+A ranking satisfies:
+\begin{itemize}[leftmargin=*]
+\item \emph{reflexivity} if $X\succeq_\omega X$ for every $X$ and $\omega$; every model is at least as good as itself;
+\item \emph{world-by-world guidance} if $Y\succ_\omega X$ whenever $X\ne Y$ and the change from $X$ to $Y$ is guided at $\omega$; a non-null change guided at a world makes the model strictly better there;
+\item \emph{independence} if, whenever the changes from $X$ to $Y$ and from $X'$ to $Y'$ have $Y\setminus X=Y'\setminus X'$ a.e.\ and $X\setminus Y=X'\setminus Y'$ a.e., then $Y\succeq_\omega X$ if and only if $Y'\succeq_\omega X'$, for every $\omega$; the verdict on a change depends only on what it adds and removes, whatever else the models contain;
+\item \emph{finite-chain consistency} if there are no $\omega$, $k\ge1$ and models $X_0,\dots,X_k$ with $X_{i-1}\succeq_\omega X_i$ for $1\le i\le k$ and $X_k\succ_\omega X_0$; no chain of comparisons ends in a strict reversal;
+\item the \emph{three-model condition} if this holds for $k=2$; if $X\succeq_\omega Y\succeq_\omega Z$, then $Z\succ_\omega X$ fails;
+\item \emph{tie substitution} if $Z$ tied with $X$ at $\omega$ and $Y\succeq_\omega Z$ imply $Y\succeq_\omega X$; a model at least as good as $Z$ is at least as good as every model tied with $Z$.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:guided}
+Let the change adding $A$ and removing $B$ be guided at every world. Then $A\subseteq\{g:g\gneq0\}$ a.e.\ and $B\subseteq\{g:-g\gneq0\}$ a.e. Every almost coherent model $K$ satisfies $A\subseteq K$ a.e., and $B\cap K$ is null.
+\end{lemma}
+\begin{proof}
+Let $\Omega_0$ be as in Lemma~\ref{lem:states}(e). Outside the countable union of the null sets $A\cap\{g(\omega)\le0\}$ and $B\cap\{g(\omega)\ge0\}$, $\omega\in\Omega_0$, every $g\in A$ has $g(\omega)>0$ for all $\omega\in\Omega_0$, so $g\ne0$ and $\inf_\Omega g=\inf_{\Omega_0}g\ge0$, that is, $g\gneq0$; likewise every $g\in B$ has $-g\gneq0$. Let $K=D$ a.e., with $D$ coherent. By (D2), $\{g\gneq0\}\subseteq D$, so $A\setminus K\subseteq(A\setminus\{g\gneq0\})\cup(D\setminus K)$ is null. If $g\in D$ and $-g\gneq0$, then $-g\in D$ by (D2) and $0\in D$ by (D4), contradicting (D1); so $B\cap K\subseteq(B\setminus\{-g\gneq0\})\cup(K\setminus D)$ is null.
+\end{proof}
+
+\begin{proposition}\label{prop:elementary}
+Assume (M1). Then:
+\begin{enumerate}[label=(\alph*)]
+\item whether $Y\succeq_\omega X$ holds under $\Lmu$ depends only on $Y\setminus X$ and $X\setminus Y$ up to null sets; so $\succeq_\omega$ is a relation on $\M$, every model is evaluable, and $\Lmu$ satisfies independence;
+\item $\Lmu$ is reflexive;
+\item if $Y\succeq_\omega X$ and $X\ne Y$, then $m(Y)(\omega)>m(X)(\omega)$; distinct models are never tied at any world, and $Y\succ_\omega X$ if and only if $Y\succeq_\omega X$ and $Y\ne X$;
+\item $\Lmu$ satisfies world-by-world guidance;
+\item $\Lmu$ satisfies finite-chain consistency, hence the three-model condition;
+\item $\Lmu$ satisfies tie substitution.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) $X=Y$ a.e.\ if and only if $A\cup B$ is null. Since $Y$ is the disjoint union of $X\cap Y$ and $A$, and $X$ that of $X\cap Y$ and $B$, $m(Y)-m(X)=m(A)-m(B)$. Guidance at $\omega$ depends on $A$ and $B$ up to null sets, and so does the clause $A\subseteq H(B)$ a.e., by Lemma~\ref{lem:hull}(e). Replacing $X$ or $Y$ by a set equal a.e.\ changes $A$ and $B$ only by null sets.
+(b) $X=X$ a.e.
+(c) The only clause accepting a comparison between distinct models requires $m(Y)(\omega)>m(X)(\omega)$. If $X\ne Y$ were tied at $\omega$, then $m(Y)(\omega)>m(X)(\omega)>m(Y)(\omega)$. If $Y\succeq_\omega X$ and $Y\ne X$, then $X\succeq_\omega Y$ fails, so $Y\succ_\omega X$; if $Y=X$, then $X\succeq_\omega Y$ by (b).
+(d) Let $X\ne Y$, with the change guided at $\omega$. Then $A$ and $B$ are disjoint and
+\[
+m(Y)(\omega)-m(X)(\omega)=\int_Ag(\omega)\,d\mu(g)-\int_Bg(\omega)\,d\mu(g)=\int_{A\cup B}|g(\omega)|\,d\mu(g)>0,
+\]
+since the integrand is positive a.e.\ on the non-null set $A\cup B$. The guidance clause holds, so $Y\succeq_\omega X$, and $Y\succ_\omega X$ by (c).
+(e) Suppose $X_{i-1}\succeq_\omega X_i$ for $1\le i\le k$ and $X_k\succ_\omega X_0$. By (c), and since $m$ depends only on classes, $m(X_{i-1})(\omega)\ge m(X_i)(\omega)$ for each $i$. By (c), $X_k\ne X_0$ and $m(X_k)(\omega)>m(X_0)(\omega)\ge m(X_k)(\omega)$, which is impossible.
+(f) If $Z$ and $X$ are tied at $\omega$, then $Z=X$ by (c), so $Y\succeq_\omega Z$ is $Y\succeq_\omega X$.
+\end{proof}
+
+\section{Almost coherent models are undominated}\label{sec:admissibility}
+
+\begin{proposition}\label{prop:admissible}
+Assume (M1) and (M2). Every almost coherent model is undominated under $\Lmu$. Hence $\C_{\Lmu}=\C$.
+\end{proposition}
+\begin{proof}
+Let $K$ be almost coherent. By Lemma~\ref{lem:identify}(b) we may take $K=D_Q$ for a credal set $Q$. Suppose $Y$ dominates $K$. Then $Y\ne K$, since equal models are tied at every world by reflexivity. Put $A\coloneqq Y\setminus K$ and $B\coloneqq K\setminus Y$. At every $\omega$, $Y\succeq_\omega K$ and $Y\ne K$ give $m(Y)(\omega)>m(K)(\omega)$, and either the change is guided at $\omega$ or $A\subseteq H(B)$ a.e. The second alternative does not depend on $\omega$.
+
+\emph{Case 1: $A\subseteq H(B)$ a.e.} Since $B\subseteq K=D_Q$, Lemma~\ref{lem:hull}(c) gives $H(B)\subseteq D_Q=K$. So $A\subseteq K$ a.e.; as $A\cap K=\varnothing$, $A$ is null. Then $m(Y)-m(K)=-m(B)$, so $m(B)(\omega)<0$ at every world, and $B$ is not null. Take $q\in Q$. By Lemma~\ref{lem:DQ}(a), $q\ge0$ on $D_Q\supseteq B$, and $\{q=0\}$ is null by (M2) applied to $\{q\}$; so $q>0$ a.e.\ on $B$, and $q(m(B))=\int_Bq\,d\mu>0$. But $m(B)\le0$ pointwise and $q$ is positive, so $q(m(B))\le0$, a contradiction.
+
+\emph{Case 2: otherwise.} Then the change is guided at every world. By Lemma~\ref{lem:guided}, $A\subseteq K$ a.e.\ and $B\cap K$ is null. As $A\cap K=\varnothing$ and $B\subseteq K$, both are null, so $Y=K$, a contradiction.
+
+Finally $\C_{\Lmu}=\C\cap\U_{\Lmu}=\C$.
+\end{proof}
+
+\section{Fixed assignments}\label{sec:assignments}
+
+\begin{definition}[Finite lists of inequalities]\label{def:lists}
+Fix a norm-dense sequence $(h_k)_{k\ge1}$ in $E$. A \emph{finite list} is a finite sequence $\ell=((k_1,a_1),\dots,(k_n,a_n))$, $n\ge0$, of pairs of a positive integer $k_i$ and a rational $a_i$; each pair is an \emph{inequality} of $\ell$. Put
+\[
+P(\ell)\coloneqq\{q\in S:q(h_{k_i})\ge a_i\text{ for }1\le i\le n\},
+\]
+so that the empty list gives $S$. The finite lists $\ell$ with $P(\ell)\ne\varnothing$ form a countable set containing the empty list; enumerate them, with repetitions allowed, as $\ell_1,\ell_2,\dots$, and put $P_j\coloneqq P(\ell_j)$. Each $P_j$ is a credal set. An inequality $(k,a)$ has a \emph{strict margin on} a credal set $Q$ if $P_Q(h_k)>a$.
+\end{definition}
+
+\begin{lemma}\label{lem:approx}
+Let $Q$ be a credal set. There are indices $j_1,j_2,\dots$ such that:
+\begin{enumerate}[label=(\alph*)]
+\item $P_{j_{n+1}}\subseteq P_{j_n}$ for every $n$, and $\bigcap_nP_{j_n}=Q$;
+\item every inequality of $\ell_{j_n}$ has a strict margin on $Q$;
+\item for each $n$ there is $\lambda_n\in(0,1)$ with $(1-\lambda_n)Q+\lambda_nS\subseteq P_{j_n}$;
+\item $D_{P_{j_n}}\subseteq D_{P_{j_{n+1}}}\subseteq D_Q$ for every $n$, and $\bigcup_nD_{P_{j_n}}=D_Q$. Under (M1),
+\[\int_{D_Q\setminus D_{P_{j_n}}}\|g\|\,d\mu(g)\to0\qquad(n\to\infty).\]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{Separating inequalities.} Let $r\in S\setminus Q$. The space $E^\ast$ with the weak-$\ast$ topology is locally convex, and its continuous linear functionals are the evaluations $\psi\mapsto\psi(h)$, $h\in E$~\cite[Theorem~3.10]{Rudin}. Separating the compact convex set $Q$ from the closed convex set $\{r\}$~\cite[Theorem~3.4]{Rudin} gives $h\in E$ with $r(h)<P_Q(h)$. Put $\eta\coloneqq(P_Q(h)-r(h))/3$ and choose $k$ with $\|h_k-h\|<\eta$. States have norm $1$ and $P_Q$ is $1$-Lipschitz, so $r(h_k)<r(h)+\eta$ and $P_Q(h_k)>P_Q(h)-\eta$; hence $r(h_k)<P_Q(h_k)-\eta$. Choose a rational $a$ with $r(h_k)<a<P_Q(h_k)$. The inequality $(k,a)$ has a strict margin on $Q$, and $W_r\coloneqq\{s\in S:s(h_k)<a\}$ is a weak-$\ast$ open set containing $r$.
+
+\emph{The lists.} Let $d$ be a metric for $S$ (Lemma~\ref{lem:states}(a)) and $U_n\coloneqq\{s\in S:\min_{q\in Q}d(s,q)<1/n\}$. These sets are open, and $\bigcap_nU_n=Q$ as $Q$ is closed. The compact set $S\setminus U_n$ is covered by the sets $W_r$, $r\in S\setminus U_n$, so by finitely many of them; let $\ell'_n$ be the list of their inequalities (empty if $S\setminus U_n=\varnothing$). Let $\ell^{(n)}$ be the concatenation $\ell'_1\ell'_2\cdots\ell'_n$. Each inequality of $\ell^{(n)}$ has a strict margin on $Q$, so $Q\subseteq P(\ell^{(n)})$; in particular $P(\ell^{(n)})\ne\varnothing$, and $\ell^{(n)}=\ell_{j_n}$ for some index $j_n$. This is (b). As the lists extend one another, $P_{j_{n+1}}\subseteq P_{j_n}$. If $s\notin U_i$ for some $i\le n$, then $s\in W_r$ for an inequality $(k,a)$ of $\ell'_i$, so $s(h_k)<a$ and $s\notin P_{j_n}$; hence $P_{j_n}\subseteq U_n$. So $Q\subseteq\bigcap_nP_{j_n}\subseteq\bigcap_nU_n=Q$, which is (a).
+
+(c) Let $\ell_{j_n}=((k_i,a_i))_{i\le N}$. If $N=0$, take $\lambda_n\coloneqq1/2$. Otherwise put $\varepsilon_i\coloneqq P_Q(h_{k_i})-a_i>0$ and $\lambda_n\coloneqq\min\bigl\{\tfrac12,\ \min_i\varepsilon_i/(2\|h_{k_i}\|+1)\bigr\}$. For $q\in Q$ and $s\in S$,
+\[
+\bigl((1-\lambda_n)q+\lambda_ns\bigr)(h_{k_i})=q(h_{k_i})+\lambda_n\bigl(s(h_{k_i})-q(h_{k_i})\bigr)\ge a_i+\varepsilon_i-2\lambda_n\|h_{k_i}\|>a_i .
+\]
+
+(d) The inclusions $Q\subseteq P_{j_{n+1}}\subseteq P_{j_n}$ and Lemma~\ref{lem:DQ}(b) give the first claim. Every $g\gneq0$ lies in each $D_{P_{j_n}}$. Let $P_Q(g)>0$, and suppose that each $P_{j_n}$ contains some $s_n$ with $s_n(g)\le0$. As $S$ is compact and metrizable, a subsequence converges to some $s$. For each $m$, $s_n\in P_{j_m}$ for $n\ge m$, and $P_{j_m}$ is closed, so $s\in P_{j_m}$; hence $s\in Q$ by (a), and $s(g)\le0$, contradicting $P_Q(g)>0$. So $g\in D^\circ_{P_{j_n}}$ for some $n$, and $\bigcup_nD_{P_{j_n}}=D_Q$. Under (M1), $\one_{D_Q\setminus D_{P_{j_n}}}\|g\|$ decreases pointwise to $0$ and is dominated by $\|g\|$, so the integrals tend to $0$ by dominated convergence.
+\end{proof}
+
+\begin{definition}[The fixed assignments]\label{def:assignments}
+Fix a world $\omega_0$. For every index $j$ and state $q$ put
+\[
+b^j_q\coloneqq D_{P_j}\cap\{q>0\}.
+\]
+For every finite $G\subseteq\Omega$ put $F(G)\coloneqq G$ if $G\ne\varnothing$ and $F(\varnothing)\coloneqq\{\omega_0\}$. For a finite nonempty $F\subseteq\Omega$, $\Delta_F$ is the set of probability mass functions $p=(p_\omega)_{\omega\in F}$ on $F$, with the Euclidean topology, $\supp p\coloneqq\{\omega:p_\omega>0\}$, and $t_F:\Delta_F\to S$ is $t_F(p)\coloneqq\sum_{\omega\in F}p_\omega\delta_\omega$. These data are fixed independently of the rival model.
+\end{definition}
+
+\begin{lemma}\label{lem:assigned}
+Assume (M1) and (M2), and fix an index $j$.
+\begin{enumerate}[label=(\alph*)]
+\item Each $b^j_q$ is an almost coherent model, and it is undominated under $\Lmu$.
+\item $q(m(b^j_q))=\int_{D_{P_j}}q^+\,d\mu$ for every $q\in S$.
+\item The map $q\mapsto m(b^j_q)$ is continuous from $S$, with the weak-$\ast$ topology, to $E$, with the norm.
+\item Each $t_F$ is continuous.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $D_{P_j}$ is Borel (Lemma~\ref{lem:DQ}(a)) and $\{q>0\}$ is open, so $b^j_q$ is a model. It is almost coherent by Lemma~\ref{lem:identify}(c), and undominated by Proposition~\ref{prop:admissible}.
+(b) $q(m(b^j_q))=\int_{D_{P_j}\cap\{q>0\}}q(g)\,d\mu(g)$, and $q^+=q\,\one_{\{q>0\}}$.
+(c) As $S$ is metrizable, it suffices to consider $q_n\to q$. Then
+\[
+\bigl\|m(b^j_{q_n})-m(b^j_q)\bigr\|\le\int_{D_{P_j}}\bigl|\one_{\{q_n>0\}}(g)-\one_{\{q>0\}}(g)\bigr|\,\|g\|\,d\mu(g).
+\]
+For $g\notin\{q=0\}$, $q_n(g)\to q(g)\ne0$, so the indicators agree for large $n$; $\{q=0\}$ is null by (M2) applied to $\{q\}$. The integrand is dominated by $\|g\|$, which is integrable by (M1), so the right side tends to $0$.
+(d) $t_F(p)$ is a convex combination of states, hence a state, and $p\mapsto t_F(p)(h)=\sum_{\omega\in F}p_\omega h(\omega)$ is continuous for each $h$; the weak-$\ast$ topology is the coarsest making these maps continuous.
+\end{proof}
+
+\section{Selection and dominance}\label{sec:selection}
+
+{\color{red}
+\begin{definition}[Countable selection {\cite{LDG}}]\label{def:selection}
+Let $L$ be a ranking and $\I\subseteq\M$. $L$ satisfies \emph{countable selection on $\I$} if, for each $j\in\mathbb N=\{1,2,\ldots\}$, there are a nonempty compact space $\Theta_j$, models $b^j_\theta$ indexed by $\theta\in\Theta_j$ (the \emph{assigned models}), and, for each finite $G\subseteq\Omega$, a nonempty finite $F_j(G)\supseteq G$ and a map $t_{j,G}:\Delta_{F_j(G)}\to\Theta_j$, such that for every $x\in\I$ there exist an index $j$ and closed sets $K_\omega(x)\subseteq\Theta_j$, $\omega\in\Omega$, and $A^G_\omega(x)\subseteq\Delta_{F_j(G)}$, for finite $G\subseteq\Omega$ and $\omega\in F_j(G)$, satisfying, for every such $G$ and $\omega$:
+\begin{enumerate}[label=\textbf{(W\arabic*)},leftmargin=3.2em]
+\item \emph{Comparison}: $b^j_\theta\succeq_\omega x$ whenever $\theta\in K_\omega(x)$. The assigned model performs at least as well as $x$ at that world.
+\item \emph{Compatibility}: $t_{j,G}(A^G_\omega(x))\subseteq K_\omega(x)$. The fixed maps carry these probabilities to such assigned models.
+\item \emph{Support coverage}: every $p\in\Delta_{F_j(G)}$ lies in $A^G_\omega(x)$ for some $\omega\in\supp p$. Every probability has such a comparison at a world to which it gives positive probability.
+\end{enumerate}
+The spaces, assigned models and maps are fixed independently of $x$; only $j$ and the closed sets may depend on $x$.
+\end{definition}
+
+\begin{theorem}[Countable selection {\cite{LDG}}]\label{thm:LDGgeneral} Let $L$ satisfy countable selection on $\I$, and let $x\in\I$, with index $j$ and closed sets satisfying (W1)--(W3). Then $\bigcap_{\omega\in\Omega}K_\omega(x)\ne\varnothing$, and $b^j_\theta$ weakly dominates $x$ for every $\theta$ in this intersection. If no such $b^j_\theta$ is tied with $x$ at every world, every such $b^j_\theta$ dominates $x$.
+\end{theorem}
+}
+
+\begin{definition}[LDG assumptions {\cite{LDG}}]\label{def:argument}
+Let $\Lf$ be a family of rankings. A model is \emph{irrational} if every $L\in\Lf$ has a model dominating it, and \emph{rationally permissible} if it is undominated under some $L\in\Lf$. Every ranking here evaluates all of $\M$. The LDG assumptions are:
+\begin{itemize}[leftmargin=3.4em,labelsep=0.5em]
+\item[\textbf{(E)}] Every model is evaluable by some $L\in\Lf$. Every model is assessed.
+\item[\textbf{(A)}] Every $C\in\C$ belongs to $\C_L$ for some $L\in\Lf$. Each almost coherent model survives at least one ranking.
+\begingroup\color{red}\item[\textbf{(S)}] Each $L\in\Lf$ satisfies countable selection on $\M\setminus\C$. One fixed countable family of assignments handles all incoherent models.
+\item[\textbf{(T)}] For each $L\in\Lf$, the assigned models in (S) can be chosen so that none of them is tied at every world with an incoherent model. No incoherent model performs exactly as well as an assigned model at every world.
+\endgroup
+\end{itemize}
+{\color{red}Conditions (S) and (T) apply to an individual ranking by taking $\Lf=\{L\}$.}
+\end{definition}
+
+\begin{theorem}[The LDG dominance argument {\cite{LDG}}]\label{thm:LDGargument}
+\begin{enumerate}[label=(\alph*)]
+\item If a ranking $L$ satisfies {\color{red}(S)} and {\color{red}(T)}, every incoherent model is dominated under $L$, and $\U_L=\C_L$. If, in addition, every assigned model lies in $\C_L$, every incoherent model is dominated under $L$ by a member of $\C_L$.
+\item If $\Lf$ satisfies (A), {\color{red}(S)} and {\color{red}(T)}, the rationally permissible models are exactly the almost coherent ones, and the irrational models exactly the incoherent ones.
+\item If $\Lf$ satisfies (E), {\color{red}(S)} and {\color{red}(T)}, every incoherent model is dominated under at least one ranking in $\Lf$.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lem:gap}
+Assume (M1) and (M2). For every incoherent model $X$ there are a consistent model $Z\subseteq X$ and $\gamma>0$ such that
+\[
+\int_{H(Z)}q^+\,d\mu-q\bigl(m(X)\bigr)\ge\gamma\qquad\text{for every }q\in S.
+\]
+\end{lemma}
+\begin{proof}
+\emph{$X$ consistent.} Put $Z\coloneqq X$ and $G\coloneqq H(X)=D_{Q_X}$. By Lemma~\ref{lem:hull}(b), $X\subseteq G$ a.e., so, for every $q\in S$,
+\[
+\varphi(q)\coloneqq\int_Gq^+\,d\mu-q(m(X))=\int_{G\setminus X}q^+\,d\mu+\int_X(q^+-q)\,d\mu\ge0 .
+\]
+If $\varphi(q)=0$, then $q\le0$ a.e.\ on $G\setminus X$ and $q\ge0$ a.e.\ on $X$; as $\{q=0\}$ is null by (M2), $X=G\cap\{q>0\}$ a.e. But $G\cap\{q>0\}$ is almost coherent by Lemma~\ref{lem:identify}(c), while $X$ is not. So $\varphi>0$ on $S$. If $q_n\to q$, then $q_n(g)\to q(g)$ for every $g$, and $|q_n(g)|\le\|g\|$, which is integrable by (M1); dominated convergence gives $\varphi(q_n)\to\varphi(q)$. As $S$ is compact and metrizable, $\varphi$ attains a minimum $\gamma>0$.
+
+\emph{$X$ inconsistent.} Put $f(q)\coloneqq\int_X\min(q(g),0)\,d\mu(g)$. As above, $f$ is continuous on $S$, by dominated convergence with bound $\|g\|$. Also $f(q)=0$ exactly when $X\cap\{q<0\}$ is null, that is, when $q\in Q_X=\varnothing$; so $f<0$ on $S$. Let $q_0$ maximise $f$ on the compact set $S$, and put $\beta\coloneqq-f(q_0)>0$,
+\[
+Z\coloneqq X\cap\{q_0>0\},\qquad X^-\coloneqq X\cap\{q_0<0\}.
+\]
+$X\cap\{q_0=0\}$ is null by (M2), so $m(X)=m(Z)+m(X^-)$; and $q_0(m(X^-))=\int_{X^-}q_0\,d\mu=f(q_0)=-\beta$.
+
+\emph{The derivative toward a world.} Fix $\omega$ and put $q_t\coloneqq(1-t)q_0+t\delta_\omega\in S$ for $0<t\le1$. Then $q_t(g)=q_0(g)+t(g(\omega)-q_0(g))$. Since $s\mapsto\min(s,0)$ is $1$-Lipschitz,
+\[
+\Bigl|\frac{\min(q_t(g),0)-\min(q_0(g),0)}t\Bigr|\le|g(\omega)-q_0(g)|\le2\|g\| .
+\]
+As $t\downarrow0$, the quotient tends to $g(\omega)-q_0(g)$ if $q_0(g)<0$ and to $0$ if $q_0(g)>0$, being eventually equal to these values. The exceptional set $\{q_0=0\}$ is null and the same for every $\omega$. By dominated convergence along any sequence $t_n\downarrow0$, using (M1),
+\[
+\lim_n\frac{f(q_{t_n})-f(q_0)}{t_n}=\int_{X^-}\bigl(g(\omega)-q_0(g)\bigr)\,d\mu(g)=m(X^-)(\omega)-q_0(m(X^-)).
+\]
+Maximality of $q_0$ makes every quotient nonpositive, so $m(X^-)(\omega)\le q_0(m(X^-))=-\beta$, for every world $\omega$.
+
+\emph{The gap.} $q_0>0$ on $Z$, so $q_0\in Q_Z$ and $Z$ is consistent; $Z\subseteq H(Z)$ a.e.\ by Lemma~\ref{lem:hull}(b). For every $q\in S$, $\int_{H(Z)}q^+\,d\mu\ge\int_Zq^+\,d\mu\ge q(m(Z))$, and $m(X^-)\le-\beta\one$ gives $q(m(X^-))\le-\beta$. Hence
+\[
+\int_{H(Z)}q^+\,d\mu-q(m(X))\ge q(m(Z))-q(m(Z))-q(m(X^-))\ge\beta .
+\]
+Take $\gamma\coloneqq\beta$.
+\end{proof}
+
+\begin{lemma}\label{lem:choice}
+Assume (M1) and (M2). Let $X$ be incoherent, and let $Z$ and $\gamma$ be as in Lemma~\ref{lem:gap}. There is an index $j$ such that, for every $q\in S$, with $b_q\coloneqq b^j_q$:
+\begin{enumerate}[label=(\alph*)]
+\item the change from $X$ to $b_q$, which adds $A_q\coloneqq b_q\setminus X$ and removes $B_q\coloneqq X\setminus b_q$, satisfies $A_q\subseteq H(B_q)$;
+\item $q\bigl(m(b_q)-m(X)\bigr)>\gamma/2$;
+\item for every world $\omega$, $b_q\succeq_\omega X$ if and only if $b_q=X$ a.e.\ or $m(b_q)(\omega)>m(X)(\omega)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Put $Q\coloneqq Q_Z$, a credal set, and $G\coloneqq H(Z)=D_Q$. Apply Lemma~\ref{lem:approx} to $Q$, and choose $n$ with
+\[
+e\coloneqq\int_{G\setminus D_{P_{j_n}}}\|g\|\,d\mu(g)<\gamma/2 .
+\]
+Put $j\coloneqq j_n$, $P\coloneqq P_j$ and $\lambda\coloneqq\lambda_n$. Then $(1-\lambda)Q+\lambda S\subseteq P$, so $D_P\subseteq D_{(1-\lambda)Q+\lambda S}$ by Lemma~\ref{lem:DQ}(b), and Lemma~\ref{lem:trim}, with $N\coloneqq D_P$, gives $H(Z\setminus D_P)=H(Z)=G$. Also $D_P\subseteq D_Q=G$, as $Q\subseteq P$.
+
+(a) Since $b_q\subseteq D_P$ and $Z\subseteq X$, we have $Z\setminus D_P\subseteq X\setminus D_P\subseteq X\setminus b_q$. By Lemma~\ref{lem:hull}(d),
+\[
+A_q\subseteq b_q\subseteq D_P\subseteq G=H(Z\setminus D_P)\subseteq H(X\setminus D_P)\subseteq H(X\setminus b_q)=H(B_q).
+\]
+(b) By Lemma~\ref{lem:assigned}(b), $D_P\subseteq G$ and $q^+(g)\le\|g\|$,
+\[
+q(m(b_q))=\int_{D_P}q^+\,d\mu\ge\int_Gq^+\,d\mu-\int_{G\setminus D_P}\|g\|\,d\mu\ge q(m(X))+\gamma-e,
+\]
+and $\gamma-e>\gamma/2$.
+(c) This is Definition~\ref{def:ranking} together with (a).
+\end{proof}
+
+\begin{lemma}\label{lem:witnesses}
+Under the hypotheses of Lemma~\ref{lem:choice}, with its index $j$, put $\kappa\coloneqq\gamma/2$,
+\[
+K_\omega(X)\coloneqq\bigl\{q\in S:m(b^j_q)(\omega)-m(X)(\omega)\ge \kappa\bigr\}\qquad(\omega\in\Omega),
+\]
+and $A^G_\omega(X)\coloneqq t_{F(G)}^{-1}(K_\omega(X))$ for finite $G\subseteq\Omega$ and $\omega\in F(G)$. With $\Theta_j\coloneqq S$, $F_j(G)\coloneqq F(G)$ and $t_{j,G}\coloneqq t_{F(G)}$, {\color{red}these closed sets satisfy (W1)--(W3) for $X$ at $j$.} Every $q\in\bigcap_\omega K_\omega(X)$ satisfies $m(b^j_q)(\omega)\ge m(X)(\omega)+\kappa$ at every world.
+\end{lemma}
+\begin{proof}
+\emph{Closedness.} By Lemma~\ref{lem:assigned}(c) and $|x(\omega)|\le\|x\|$, $q\mapsto m(b^j_q)(\omega)$ is continuous on $S$; so $K_\omega(X)$ is closed. $A^G_\omega(X)$ is closed by Lemma~\ref{lem:assigned}(d).
+
+\emph{(W1).} If $q\in K_\omega(X)$, then $m(b^j_q)(\omega)>m(X)(\omega)$, so $b^j_q\succeq_\omega X$ by Lemma~\ref{lem:choice}(c).
+
+\emph{(W2)} holds by construction.
+
+\emph{(W3).} Let $G$ be finite, $F\coloneqq F(G)$, $p\in\Delta_F$ and $q\coloneqq t_F(p)$. Then $q(x)=\sum_{\omega\in\supp p}p_\omega x(\omega)$ for $x\in E$, and Lemma~\ref{lem:choice}(b) gives
+\[
+\sum_{\omega\in\supp p}p_\omega\bigl[m(b^j_q)(\omega)-m(X)(\omega)\bigr]>\kappa=\sum_{\omega\in\supp p}p_\omega\,\kappa .
+\]
+So some $\omega\in\supp p$ has $m(b^j_q)(\omega)-m(X)(\omega)>\kappa$, that is, $q\in K_\omega(X)$ and $p\in A^G_\omega(X)$.
+
+{\color{red}\emph{The margin.} If $q\in\bigcap_\omega K_\omega(X)$, then $m(b^j_q)(\omega)\ge m(X)(\omega)+\kappa$ at every world by definition of the sets $K_\omega(X)$.}
+\end{proof}
+
+\begin{theorem}[Verification of the LDG axioms and dominance]\label{thm:main}
+Let $\mu$ be any finite Borel measure on $E$ satisfying (M1) and (M2). Then:
+\begin{enumerate}[label=(\alph*)]
+\item $\Lmu$ evaluates every model, and satisfies reflexivity, world-by-world guidance, independence, finite-chain consistency, the three-model condition and tie substitution; distinct models are tied at no world;
+\item the singleton family $\{\Lmu\}$ satisfies \textbf{(E)} and \textbf{(A)}: every model is evaluable and every almost coherent model is undominated under $\Lmu$;
+\item $\Lmu$ satisfies \textbf{{\color{red}(S)}} and \textbf{{\color{red}(T)}} with the fixed assignments of Definition~\ref{def:assignments}; every assigned model lies in $\C_{\Lmu}$;
+\item every incoherent model $X$ is dominated under $\Lmu$ by an almost coherent undominated model $N$ with $\inf_{\omega\in\Omega}\bigl(m(N)(\omega)-m(X)(\omega)\bigr)>0$;
+\item the undominated models are exactly the almost coherent models: $\U_{\Lmu}=\C_{\Lmu}=\C$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) is Proposition~\ref{prop:elementary}. For (b), Proposition~\ref{prop:elementary}(a) gives (E), and Proposition~\ref{prop:admissible} gives (A).
+
+(c) Take $\Theta_j\coloneqq S$, which is compact by Lemma~\ref{lem:states}(a), the models $b^j_q$, the sets $F_j(G)\coloneqq F(G)$, which are nonempty, finite and contain $G$, and the maps $t_{j,G}\coloneqq t_{F(G)}$. These data are fixed independently of every model. Each $b^j_q$ lies in $\C_{\Lmu}$ by Lemma~\ref{lem:assigned}(a). {\color{red}For each incoherent $X$, Lemma~\ref{lem:choice} supplies an index $j$, and Lemma~\ref{lem:witnesses} supplies closed sets satisfying (W1)--(W3) for $X$ at $j$. This gives (S). For (T): each assigned model is almost coherent and each incoherent model is not, so they are distinct models, and by Proposition~\ref{prop:elementary}(c) distinct models are tied at no world.}
+
+(d) By (c) and Theorem~\ref{thm:LDGgeneral}, $\bigcap_\omega K_\omega(X)\ne\varnothing$ and, for each $q$ in it, $N\coloneqq b^j_q$ dominates $X$. By Lemma~\ref{lem:witnesses}, $m(N)(\omega)-m(X)(\omega)\ge\kappa>0$ at every world. $N$ is almost coherent and undominated by Lemma~\ref{lem:assigned}(a).
+
+(e) By (b) and (d), and $\C_{\Lmu}=\C\cap\U_{\Lmu}$; Theorem~\ref{thm:LDGargument}(a) gives $\U_{\Lmu}=\C_{\Lmu}$ from (c) alone.
+\end{proof}
+
+\begin{corollary}[The LDG conclusion]\label{cor:argument}
+Assume (M1) and (M2). Let $\Lf$ be a family of full-domain rankings satisfying (A), {\color{red}(S)} and {\color{red}(T)}. Then $\Lf$ also satisfies (E), $\U_L=\C_L$ for every $L\in\Lf$, and the rationally permissible models are exactly the almost coherent ones, while the irrational models are exactly the incoherent ones. Every incoherent model is dominated under every $L\in\Lf$; {\color{red}if that ranking's assigned models lie in $\C_L$, its dominator can be chosen in $\C_L$.}
+
+For any family satisfying {\color{red}(S)} and {\color{red}(T)}, inclusion of $\Lmu$ suffices for (A) and (E). In particular, the class of full-domain rankings satisfying world-by-world guidance, independence, {\color{red}(S)} and {\color{red}(T)} is nonempty and satisfies all four LDG assumptions.
+\end{corollary}
+\begin{proof}
+Since $D_S\in\C$, (A) implies $\Lf\ne\varnothing$; full evaluability therefore gives (E). The classification and dominators follow from Theorem~\ref{thm:LDGargument}(a)--(b). If $\Lmu\in\Lf$, Theorem~\ref{thm:main}(b) gives (A) and (E). The last class contains $\Lmu$ by Theorem~\ref{thm:main}(a)--(c).
+\end{proof}
+
+\section{Suitable measures}\label{sec:measures}
+
+\begin{lemma}\label{lem:measures}
+\begin{enumerate}[label=(\alph*)]
+\item There is an atomless Borel probability measure on $E$ with full support satisfying (M1) and (M2).
+\item If $\mu$ has full support and $Q\ne Q'$ are credal sets, then $D_Q\ne D_{Q'}$ (that is, they are not equal a.e.).
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $(f_k)_{k\ge1}$ be norm-dense in $E$, put $w_k\coloneqq c\,2^{-k}/(1+\|f_k\|)$ with $c>0$ chosen so that $\sum_kw_k=1$, and let $T$ be a standard normal random variable, which has a strictly positive continuous density and $\mathbb E|T|<\infty$. Let $\nu_k$ be the law of $f_k+T\one$, the image of the law of $T$ under the continuous map $t\mapsto f_k+t\one$, and $\mu\coloneqq\sum_kw_k\nu_k$, a Borel probability measure.
+(M1): $\int\|g\|\,d\nu_k\le\|f_k\|+\mathbb E|T|$, and $\sum_kw_k(\|f_k\|+\mathbb E|T|)\le c\sum_k2^{-k}+\mathbb E|T|<\infty$.
+(M2): by Lemma~\ref{lem:states}(c), $P_Q(f_k+t\one)=P_Q(f_k)+t$, so $\nu_k\{P_Q=0\}=\Pr(T=-P_Q(f_k))=0$ for every credal set $Q$ and every $k$.
+Atomless: for $g\in E$, $\nu_k\{g\}\le\Pr\bigl(T=g(\omega_0)-f_k(\omega_0)\bigr)=0$.
+Full support: a nonempty open set contains a ball $B(g,r)$; choose $k$ with $\|f_k-g\|<r/2$; then $|T|<r/2$ implies $f_k+T\one\in B(g,r)$, so $\mu(B(g,r))\ge w_k\Pr(|T|<r/2)>0$.
+
+(b) After exchanging $Q$ and $Q'$ if necessary, some $q'\in Q'$ is not in $Q$. As in the proof of Lemma~\ref{lem:approx}, there is $h\in E$ with $q'(h)<P_Q(h)$. Put $c\coloneqq(q'(h)+P_Q(h))/2$ and $g\coloneqq h-c\one$; then $q'(g)<0<P_Q(g)$. The set $W\coloneqq\{f:P_Q(f)>0,\ q'(f)<0\}$ is open and contains $g$, so $\mu(W)>0$. Now $W\subseteq D^\circ_Q\subseteq D_Q$, and $W\cap D_{Q'}=\varnothing$, since $q'\ge0$ on $D_{Q'}$ by Lemma~\ref{lem:DQ}(a). So $D_Q\setminus D_{Q'}$ is not null.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{DiestelUhl} J.~Diestel and J.~J. Uhl. \emph{Vector Measures}. American Mathematical Society, 1977.
+\bibitem{LDG} J.~Konek. Coherence and dominance under general rankings. Manuscript, 2026.
+\bibitem{Rudin} W.~Rudin. \emph{Functional Analysis}, 2nd edition. McGraw-Hill, New York, 1991.
+\end{thebibliography}
+\end{document}

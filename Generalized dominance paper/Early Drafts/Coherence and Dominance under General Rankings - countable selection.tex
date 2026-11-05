@@ -1,0 +1,304 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\I}{\mathcal I}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\supp}{\operatorname{supp}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Dominance Generalised}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}[Rankings]\label{def:rankings}
+Let $\Omega$ be a nonempty set of \emph{worlds} and $\M$ a nonempty set of \emph{models}. A \emph{ranking} $L$ consists of a nonempty set $\M_L\subseteq\M$, whose members are the models \emph{evaluable} by $L$, and, for each world $\omega$, a binary relation $\preceq_\omega$ on $\M_L$. We read $m\preceq_\omega m'$ as: $m$ performs at least as well as $m'$ at $\omega$. Models $m$ and $m'$ are \emph{tied at $\omega$} if $m\preceq_\omega m'$ and $m'\preceq_\omega m$. Write $m\prec_\omega m'$ if $m\preceq_\omega m'$ and $m'\not\preceq_\omega m$. No additional property of these binary relations is assumed. For a fixed ranking $L$, ``model'' means a member of $\M_L$.
+\end{definition}
+
+\begin{definition}[Dominance]\label{def:dominance}
+Fix a ranking $L$ and models $c,m\in\M_L$.
+\begin{itemize}[leftmargin=*]
+\item $c$ \emph{weakly dominates} $m$ if $c\preceq_\omega m$ at every world.
+\item $m$ and $c$ are \emph{tied at every world} if each weakly dominates the other.
+\item $c$ \emph{dominates} $m$ if $(\forall\omega\in\Omega)\ c\preceq_\omega m$ and $(\exists\omega\in\Omega)\ m\not\preceq_\omega c$.
+\end{itemize}
+A model is \emph{undominated} if no model dominates it. $\U_L$ is the set of undominated models.
+\end{definition}
+
+\begin{definition}[Probabilities]\label{def:priors}
+{A topological space is \emph{compact} if every cover by open sets has a finite subcover. A subset is \emph{closed} if its complement is open. A map between topological spaces is \emph{continuous} if the inverse image of each open set is open.}
+
+For a finite nonempty $F\subseteq\Omega$, put $\Delta_F\coloneqq\{p\in[0,1]^F:\sum_{\omega\in F}p_\omega=1\}$, with the Euclidean topology. Its elements are probability mass functions (pmfs) on $F$. The support of a pmf $p$ is $\supp p\coloneqq\{\omega\in F:p_\omega>0\}$. For $\omega\in F$, let $\delta_\omega\in\Delta_F$ have coordinate $1$ at $\omega$ and $0$ elsewhere.
+
+{$\Delta$ is the set of \emph{finitely additive probabilities} on $\Omega$: functions $p:2^\Omega\to[0,1]$ with $p(\Omega)=1$ and $p(A\cup B)=p(A)+p(B)$ whenever $A\cap B=\varnothing$. It carries the coarsest topology making $p\mapsto p(A)$ continuous for every $A\subseteq\Omega$. For $p\in\Delta$, put $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega\in\Omega:p_\omega>0\}$; $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Each pmf $p\in\Delta_F$ is identified with the probability $A\mapsto\sum_{\omega\in A\cap F}p_\omega$ in $\Delta$; so $\delta_\omega$ also denotes the probability with $\delta_\omega(A)=1$ if $\omega\in A$ and $0$ otherwise.
+
+For $p\in\Delta$ and a bounded function $h:\Omega\to\mathbb R$, the expectation $E_ph$ is defined as follows. If $h=\sum_{i=1}^na_i\mathbf 1_{A_i}$ for a partition $A_1,\dots,A_n$ of $\Omega$, then $E_ph\coloneqq\sum_{i=1}^na_ip(A_i)$. In general, $E_ph\coloneqq\lim_kE_ph_k$ for any sequence of such functions $h_k$ with $\sup_\Omega|h_k-h|\to0$.}
+\end{definition}
+
+
+\begin{lemma}\label{lem:probabilities}
+\leavevmode
+\begin{enumerate}[label=(\alph*)]
+\item $\Delta$ is compact.
+\item For every finite nonempty $F\subseteq\Omega$, the identification of $\Delta_F$ with a subset of $\Delta$ is continuous and injective, and preserves supports. Its image is $\{p\in\Delta:p(F)=1\}$. So the finitely supported probabilities are exactly the identified pmfs. If $\Omega$ is finite, the identification is a homeomorphism of $\Delta_\Omega$ onto $\Delta$.
+\item For every bounded $h:\Omega\to\mathbb R$, $E_ph$ is well defined, $\inf_\Omega h\le E_ph\le\sup_\Omega h$, and $p\mapsto E_ph$ is continuous on $\Delta$. The map $h\mapsto E_ph$ is linear. If $p(F)=1$ for a finite $F$, then $E_ph=\sum_{\omega\in F}p_\omega h(\omega)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) The topology of $\Delta$ is the one it inherits from the product space $[0,1]^{2^\Omega}$, which is compact by Tychonoff's theorem. $\Delta$ is the intersection of the sets $\{p:p(\Omega)=1\}$ and $\{p:p(A\cup B)-p(A)-p(B)=0\}$, for disjoint $A,B\subseteq\Omega$. Each is closed, as the inverse image of a point under a continuous function. A closed subset of a compact space is compact.
+
+(b) Each value $\sum_{\omega\in A\cap F}p_\omega$ is a continuous function of $p\in\Delta_F$, so the map is continuous. It preserves each $p_\omega$, $\omega\in F$, and gives mass $0$ to every other world, so it is injective and preserves supports; its values give $F$ probability $1$. Conversely, let $p\in\Delta$ with $p(F)=1$. Additivity makes $p$ monotone, so for $A\subseteq\Omega$, $p(A\setminus F)\le p(\Omega\setminus F)=1-p(F)=0$. Hence $p(A)=p(A\cap F)=\sum_{\omega\in A\cap F}p_\omega$, by additivity. So $p$ is the image of $(p_\omega)_{\omega\in F}\in\Delta_F$. If $\Omega$ is finite, every $p\in\Delta$ has $p(\Omega)=1$, so the map from $\Delta_\Omega$ is onto. Its inverse $p\mapsto(p_\omega)_{\omega\in\Omega}$ is continuous.
+
+(c) For functions of the form $h=\sum_ia_i\mathbf 1_{A_i}$, passing to a common refinement of two partitions and using additivity shows that $E_ph$ does not depend on the partition. On these functions, $E_p$ is linear and monotone, and $E_p\mathbf 1=1$. Hence $|E_ph-E_ph'|\le\sup_\Omega|h-h'|$. For bounded $h$, the functions $h_k\coloneqq\lfloor kh\rfloor/k$ take finitely many values and satisfy $\sup_\Omega|h_k-h|\le1/k$. For any sequence $h_k$ as in Definition~\ref{def:priors}, $(E_ph_k)$ is therefore a Cauchy sequence, and its limit does not depend on the sequence. The bounds, linearity and monotonicity pass to the limit. For $h=\sum_ia_i\mathbf 1_{A_i}$, $p\mapsto E_ph$ is a finite combination of the continuous maps $p\mapsto p(A_i)$. For bounded $h$, $|E_ph-E_ph_k|\le\sup_\Omega|h-h_k|$ for every $p$, so $p\mapsto E_ph$ is a uniform limit of continuous functions, hence continuous. If $p(F)=1$, then $p(A)=\sum_{\omega\in A\cap F}p_\omega$ by (b), which gives the last formula for $h=\sum_ia_i\mathbf 1_{A_i}$, and then for bounded $h$ by taking limits.
+\end{proof}
+
+
+\begin{definition}[Coherent models]\label{def:coherence-property}
+A class $\C\subseteq\M$ of \emph{coherent} models is fixed in advance, independently of the rankings. Models not in $\C$ are \emph{incoherent}. For a ranking $L$, the \emph{undominated coherent models} of $L$ are
+\[
+\C_L\coloneqq\{c\in\C\cap\M_L:\ \text{no } m\in\M_L \text{ dominates } c\}=\C\cap\U_L.
+\]
+\end{definition}
+
+\begin{definition}[Closure under ties]\label{def:tie-closure}
+Fix a ranking $L$. A set $\mathcal A\subseteq\M_L$ is \emph{closed under ties} if
+\[
+\forall a\in\mathcal A\ \forall m\in\M_L:\quad
+\bigl[(\forall\omega\in\Omega)\ (a\preceq_\omega m\ {\text{and}}\ m\preceq_\omega a)\bigr]\ \Longrightarrow\ m\in\mathcal A.
+\] A ranking $L$ is \emph{closed under ties} if $\C_L$ is.
+\end{definition}
+
+\section{Selection by a countable family of assignments}\label{sec:general}
+
+\begin{lemma}[Knaster--Kuratowski--Mazurkiewicz {\cite{KKM1929}}]\label{lem:kkm}
+Let $F$ be finite and nonempty, and let $(A_\omega)_{\omega\in F}$ be closed subsets of $\Delta_F$ such that every $p\in\Delta_F$ lies in $A_\omega$ for some $\omega\in\supp p$. Then $\bigcap_{\omega\in F}A_\omega\ne\varnothing$.
+\end{lemma}
+\begin{proof}
+The hypothesis at $\delta_\omega$ gives $\delta_\omega\in A_\omega$. Define
+\[
+d_\omega(p)=\min_{q\in A_\omega}\|p-q\|,\qquad
+s(p)=\sum_{\omega\in F}d_\omega(p),\qquad
+\Phi(p)_\omega=\frac{p_\omega+d_\omega(p)}{1+s(p)}.
+\]
+The nonempty $A_\omega$ are compact; their distance functions are continuous. Thus $\Phi:\Delta_F\to\Delta_F$ is continuous. At a Brouwer fixed point $p$, $p_\omega s(p)=d_\omega(p)$ for every $\omega$. Choose $\omega$ with $p_\omega>0$ and $p\in A_\omega$. Then $d_\omega(p)=0$, hence $s(p)=0$ and $p\in\bigcap_{\omega\in F}A_\omega$.
+\end{proof}
+
+\begin{definition}[Countable selection]\label{def:selection}\label{def:family}
+Let $\Omega$ be any nonempty set, $L$ a ranking and $\I\subseteq\M_L$. Then $L$ satisfies \emph{countable selection on $\I$} if there are models $c^j_p\in\M_L$, for $j\in\mathbb N$ and $p\in\Delta$, such that for every $x\in\I$ there exist an index $j\in\mathbb N$ and closed sets $A_\omega(x)\subseteq\Delta$, $\omega\in\Omega$, satisfying
+\begin{align}
+&\forall\omega\in\Omega\ \forall p\in A_\omega(x):\ c^j_p\preceq_\omega x;\tag{F1}\label{eq:f-comparison}\\
+&\forall p\in\Delta\text{ finitely supported}\ \exists\omega\in\Omega:\ p_\omega>0\ \text{and}\ p\in A_\omega(x).\tag{F2}\label{eq:f-support}
+\end{align}
+The models $c^j_p$ are the \emph{assigned models}. They are chosen before $x$; only $j$ and the sets $A_\omega(x)$ may depend on $x$. \emph{Single-assignment selection} is the same condition with $\mathbb N$ replaced by $\{1\}$.
+\end{definition}
+\begin{theorem}\label{thm:general}
+Let $\Omega$ be any nonempty set and $L$ any ranking. Let models $c^j_p$ be as in Definition~\ref{def:selection}, let $x\in\M_L$, and let an index $j$ and closed sets $A_\omega(x)\subseteq\Delta$ satisfy (F1) and (F2). Then $\bigcap_{\omega\in\Omega}A_\omega(x)\ne\varnothing$, and $c^j_p$ weakly dominates $x$ for every $p$ in this intersection. If no such $c^j_p$ is tied with $x$ at every world, every such $c^j_p$ dominates $x$.
+\end{theorem}
+\begin{proof}
+Let $G\subseteq\Omega$ be finite and nonempty, and let $\iota:\Delta_G\to\Delta$ be the identification of Lemma~\ref{lem:probabilities}(b). The sets $B_\omega\coloneqq\iota^{-1}(A_\omega(x))$, $\omega\in G$, are closed in $\Delta_G$, since $\iota$ is continuous. Let $q\in\Delta_G$. Then $\iota(q)$ is finitely supported, so by (F2) some world $\omega$ has $\iota(q)_\omega>0$ and $\iota(q)\in A_\omega(x)$. Since $\iota$ preserves supports, $\omega\in\supp q\subseteq G$ and $q\in B_\omega$. By Lemma~\ref{lem:kkm}, some $q_G$ lies in every $B_\omega$, $\omega\in G$, so $\iota(q_G)\in\bigcap_{\omega\in G}A_\omega(x)$. Taking $G\coloneqq\{\omega_1,\dots,\omega_k\}$ for arbitrary worlds $\omega_1,\dots,\omega_k$ shows that every finite subfamily of the closed sets $A_\omega(x)$, $\omega\in\Omega$, has nonempty intersection. It follows that $\bigcap_{\omega\in\Omega}A_\omega(x)\ne\varnothing$. Otherwise the open sets $\Delta\setminus A_\omega(x)$, $\omega\in\Omega$, would cover $\Delta$, which is compact by Lemma~\ref{lem:probabilities}(a). Finitely many of them, $\Delta\setminus A_{\omega_1}(x),\dots,\Delta\setminus A_{\omega_k}(x)$, would then cover $\Delta$, so that $A_{\omega_1}(x)\cap\dots\cap A_{\omega_k}(x)=\varnothing$, a contradiction.
+
+For every $p$ in the intersection, (F1) gives $c^j_p\preceq_\omega x$ at every world, so $c^j_p$ weakly dominates $x$. If, moreover, $c^j_p$ and $x$ are not tied at every world, $c^j_p$ dominates $x$.
+\end{proof}
+
+\begin{lemma}\label{lem:no-tie}
+Fix assigned models as in Definition~\ref{def:selection}. Let $x\in\M_L$, and let an index $j$ and closed sets $A_\omega(x)\subseteq\Delta$, $\omega\in\Omega$, satisfy (F1) and (F2). Consider the condition
+\begin{equation}
+\forall p\in\bigcap_{\omega\in\Omega}A_\omega(x)\ \exists\omega\in\Omega:\quad x\not\preceq_\omega c^j_p.\tag{F3}\label{eq:f-notie}
+\end{equation}
+\begin{enumerate}[label=(\alph*)]
+\item If (F3) holds, then $\bigcap_{\omega\in\Omega}A_\omega(x)\ne\varnothing$, and $c^j_p$ dominates $x$ for every $p$ in this intersection.
+\item If no assigned model is tied at every world with $x$, then (F3) holds.
+\item If the comparisons in (F1) are strict, that is, $x\not\preceq_\omega c^j_p$ whenever $\omega\in\Omega$ and $p\in A_\omega(x)$, then (F3) holds.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+By Theorem~\ref{thm:general}, the intersection is nonempty, and $c^j_p$ weakly dominates $x$ for every $p$ in it. (a) By (F3), $x$ does not weakly dominate $c^j_p$. So the two are not tied at every world, and $c^j_p$ dominates $x$. (b) At a common point $p$, $c^j_p$ weakly dominates $x$, and the two are not tied at every world; so $x$ does not weakly dominate $c^j_p$. This is (F3). (c) Let $p$ be a common point and $\omega$ any world. Then $p\in A_\omega(x)$, so $x\not\preceq_\omega c^j_p$. This is (F3), at every world.
+\end{proof}
+
+\begin{lemma}\label{lem:tie-sufficient}
+If every assigned model lies in $\C_L$ and $\C_L$ is closed under ties, then no assigned model is tied at every world with a model outside $\C_L$, in particular with an incoherent model.
+\end{lemma}
+\begin{proof}
+If an assigned model $c\in\C_L$ were tied at every world with $x$, closure under ties would give $x\in\C_L$. Incoherent models are not in $\C_L\subseteq\C$.
+\end{proof}
+
+\begin{proposition}[Countably many dominators]\label{prop:comparison}
+Let $\I\subseteq\M_L$. If a sequence $(d_j)_{j\in\mathbb N}$ satisfies
+\[
+\forall x\in\I\ \exists j\in\mathbb N:\quad d_j\text{ dominates }x,
+\]
+then $L$ satisfies countable selection on $\I$ with (F3). One may take $c^j_p=d_j$ for every $p\in\Delta$.
+\end{proposition}
+\begin{proof}
+For $x$ choose $j$ as in the hypothesis and put $A_\omega(x)=\Delta$ for every $\omega$. These sets are closed. Dominance gives (F1) and (F3). A finitely supported probability has a positive coordinate, so (F2) holds.
+\end{proof}
+
+\begin{corollary}[Open sets of strict dominators]\label{cor:robust-selection}
+Let $d$ be a metric on $\M_L$ such that $(\M_L,d)$ is separable, and let $\I\subseteq\M_L$. Suppose
+\[
+\forall x\in\I\ \exists z\in\M_L\ \exists\delta>0\ \forall y\in\M_L:
+\quad d(y,z)<\delta\ \Longrightarrow\ (\forall\omega\in\Omega)\ y\prec_\omega x.
+\]
+For any fixed dense sequence $(d_j)$ in $\M_L$, the models $c^j_p=d_j$ satisfy countable selection on $\I$ with (F3).
+\end{corollary}
+\begin{proof}
+For each $x$, its nonempty open ball $B_d(z,\delta)$ contains some $d_j$. That $d_j$ strictly improves $x$ at every world. Apply Proposition~\ref{prop:comparison}.
+\end{proof}
+
+\section{The dominance argument}\label{sec:conclusion}
+
+\begin{definition}[Dominance principle]\label{def:permissibility}
+Let $\Lf$ be a family of rankings. For $m\in\M$, define:
+\begin{align*}
+m\text{ is irrational}&\quad\Longleftrightarrow\quad (\forall L\in\Lf)\bigl[m\in\M_L\Rightarrow m\notin\U_L\bigr];\\
+m\text{ is rationally permissible}&\quad\Longleftrightarrow\quad (\exists L\in\Lf)\ m\in\U_L.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Assumptions on the rankings]\label{def:argument-assumptions}
+{Conditions (S) and (T)} are conditions on a single ranking $L$; the family $\Lf$ satisfies them if every $L\in\Lf$ does. The dominance argument uses the following conditions.
+\begin{itemize}[leftmargin=3.4em,labelsep=0.5em]
+\item[\textbf{(E)}] \emph{Evaluability}: $\M=\bigcup_{L\in\Lf}\M_L$. No model escapes assessment.
+\item[\textbf{(A)}] \emph{Coherent admissibility}: $\C=\bigcup_{L\in\Lf}\C_L$. Each coherent model is undominated under at least one ranking that evaluates it.
+\item[\textbf{{(S)}}] \emph{Countable selection}: $L$ satisfies countable selection on $\M_L\setminus\C$ (Definition~\ref{def:selection}). {The assigned models} are fixed before the incoherent model is considered.
+{\item[\textbf{(T)}] \emph{Exclusion of ties at common points}: the assigned models in (S) can be chosen so that every incoherent model $x\in\M_L$ has an index $j$ and closed sets $A_\omega(x)$ satisfying (F1), (F2) and \eqref{eq:f-notie}. At every common point of these sets, $x$ does not perform at least as well as the assigned model at every world.}
+\end{itemize}
+{By Lemma~\ref{lem:no-tie}(b), (T) holds if the assigned models in (S) can be chosen so that none of them is tied at every world with an incoherent model in $\M_L$. By Lemma~\ref{lem:no-tie}(c), (T) holds if the closed sets in (S) can be chosen so that the comparisons in (F1) are strict. (T) constrains only the assigned models at common points of the sets $A_\omega(x)$, which are the models that Theorem~\ref{thm:general} produces.}
+\end{definition}
+
+\begin{theorem}[The dominance argument]\label{thm:argument}
+Let $\Lf$ be a family of rankings.
+\begin{enumerate}[label=(\alph*)]
+\item If a ranking $L$ satisfies {(S)} and {(T)}, then every incoherent model in $\M_L$ is dominated under $L$ by an assigned model, and $\U_L=\C_L$.
+\item If $\Lf$ satisfies {(S)} and {(T)}, every incoherent model is irrational.
+\item If $\Lf$ satisfies (A), every coherent model is rationally permissible.
+\item If $\Lf$ satisfies (A), {(S)} and {(T)}, the rationally permissible models are exactly the coherent ones, and the irrational models exactly the incoherent ones.
+\item If $\Lf$ satisfies (E), {(S)} and {(T)}, every incoherent model is dominated under at least one ranking in $\Lf$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\leavevmode
+\begin{enumerate}[label=\arabic*.,leftmargin=*]
+\item Let $L$ satisfy {(S)} and {(T)}, and let $x\in\M_L$ be incoherent. {By (S) and (T), $x$ has an index $j$ and closed sets satisfying (F1), (F2) and \eqref{eq:f-notie}. By Lemma~\ref{lem:no-tie}(a), $x$ is dominated by an assigned model $c^j_p$.} Now let $m\in\U_L$. Then $m$ is not dominated, so it is not incoherent, and $m\in\C\cap\U_L=\C_L$. Conversely $\C_L\subseteq\U_L$ by definition. This is (a).
+\item By (a), every incoherent model is dominated under every ranking in $\Lf$ that evaluates it; that is, it is irrational. This is (b).
+\item By (A), each coherent model $c$ belongs to $\C_L$ for some $L\in\Lf$. Then $L$ evaluates $c$ and leaves it undominated, so $c$ is rationally permissible. This is (c).
+\item By (b), (c) and Definition~\ref{def:permissibility}, no incoherent model is rationally permissible and no coherent model is irrational. Every model is coherent or incoherent, so (d) follows.
+\item By (E), each incoherent model is evaluated by some $L\in\Lf$, and by (a) it is dominated under $L$. This is (e).\qedhere
+\end{enumerate}
+\end{proof}
+
+\section{Applications to accuracy}\label{sec:short-applications}
+For a loss $L:\M_L\times\Omega\to[0,\infty]$, put $m\preceq_\omega m'$ exactly when $L(m,\omega)\le L(m',\omega)$. For finite $\Omega$, put $E_pL(m,\cdot)=\sum_{\omega\in\Omega}p_\omega L(m,\omega)$, with $0\cdot\infty=0$. A \emph{Bayes model for $p$} is a model $c$ such that $E_pL(c,\cdot)\le E_pL(m,\cdot)$ for every $m\in\M_L$. A function $f$ into $[0,\infty]$ is \emph{lower semicontinuous} if $\{z:f(z)\le a\}$ is closed for every real $a$.
+
+
+\begin{lemma}\label{lem:loss-selection}
+Let $L$ be given by a loss on $\M_L$. Let $p\mapsto c_p$ be a map from $\Delta$ into $\C_L$ such that $p\mapsto L(c_p,\omega)$ is lower semicontinuous, as a map into $[0,\infty]$, at every world. Suppose that, for every $m\in\M_L$ and every finitely supported $p\in\Delta$, some world $\omega$ with $p_\omega>0$ has $L(c_p,\omega)\le L(m,\omega)$. If $\C_L$ is closed under ties, then $L$ satisfies (S) and (T) with a single assignment, every model not in $\C_L$ is dominated by some $c_p$, and $\U_L=\C_L$.
+\end{lemma}
+\begin{proof}
+Put $c^j_p\coloneqq c_p$ for every $j$ and $p\in\Delta$. This is a single assignment with every assigned model in $\C_L\subseteq\M_L$. For a model $m$ put $A_\omega(m)\coloneqq\{p\in\Delta:L(c_p,\omega)\le L(m,\omega)\}$, which is closed by lower semicontinuity (and equals $\Delta$ when $L(m,\omega)=\infty$). For every $m\in\M_L$, (F1) holds by definition, and (F2) is the displayed hypothesis. By Lemma~\ref{lem:tie-sufficient}, no assigned model is tied at every world with a model outside $\C_L$, so \eqref{eq:f-notie} holds for every such model by Lemma~\ref{lem:no-tie}(b). This gives (S) and (T). Theorem~\ref{thm:general} and Lemma~\ref{lem:no-tie} give a dominating $c_p$ for every model not in $\C_L$, and Theorem~\ref{thm:argument}(a) gives $\U_L=\C_L$.
+\end{proof}
+
+
+\subsection{Proper scores}
+\begin{proposition}[Proper losses; {\cite{Predd2009,Pettigrew2022}}]\label{prop:short-proper}
+Let $\Omega$ be finite and let $p\mapsto c_p$ map $\Delta$ onto $\C\subseteq\M_L$. Suppose each $c_p$ is the unique Bayes model for $p$, and $p\mapsto L(c_p,\omega)$ is lower semicontinuous at every world. Then the undominated models are exactly the coherent models, and every other model is dominated by a coherent one.
+\end{proposition}
+\begin{proof}
+If $\M_L$ is a singleton, the conclusion is immediate. Otherwise uniqueness makes each Bayes expected loss finite: if the minimum were infinite, every model would attain it. {A weak dominator of $c_p$ is also Bayes for $p$, hence equals $c_p$; in particular, so is any model tied with $c_p$ at every world. Thus $\C_L=\C$ and $\C_L$ is closed under ties. Bayes optimality gives, for each $m$, a world in $\supp p$ where $L(c_p,\omega)\le L(m,\omega)$: strict improvement throughout the support would strictly reduce the finite expected loss. Apply Lemma~\ref{lem:loss-selection} with the given map $p\mapsto c_p$; every $p\in\Delta$ is finitely supported, since $\Omega$ is finite.}
+\end{proof}
+\subsection{Probabilism on arbitrary domains}
+Let $\M_L=[0,1]^{2^\Omega}$, with the product topology, and let {$\C\coloneqq\Delta$, the finitely additive probabilities on $\Omega$ (Definition~\ref{def:priors}); the topology of $\Delta$ is the one it inherits from $\M_L$. For $q\in\Delta$ and $f:\Omega\to[0,\infty]$,} define $E_qf=\sup_{k\in\mathbb N}E_q(f\wedge k)$. Equivalently this is $\sup\{E_qh:0\le h\le f,\ h\text{ bounded}\}$. For $0<a<1$ and $p,q\in\Delta$,
+\[
+E_{ap+(1-a)q}f=aE_pf+(1-a)E_qf;
+\qquad p(F)=1,\ F\text{ finite}\ \Longrightarrow\ E_pf=\sum_{\omega\in F}p_\omega f(\omega).
+\]
+Both identities follow by applying Lemma~\ref{lem:probabilities}(c) to $f\wedge k$ and taking increasing limits; $0\cdot\infty=0$. Call $L$ \emph{quasi-strictly proper} if
+\[
+E_qL(q,\cdot)\le E_qL(m,\cdot)\quad(q\in\C,\ m\in\M_L),
+\]
+strictly whenever $m\notin\C$.
+\begin{proposition}[Arbitrary domains; {\cite{Nielsen2023}}]\label{prop:short-infinite}
+If $L$ is quasi-strictly proper and each $q\mapsto L(q,\omega)$ is lower semicontinuous, the undominated models are exactly the finitely additive probabilities, and every other model is dominated by one.
+\end{proposition}
+\begin{proof}
+First suppose $m$ dominates $q\in\C$, strictly improving at $w$. Quasi-strict propriety gives $E_qL(m)=E_qL(q)<\infty$; finiteness follows by comparison with any incoherent credence. Put $q_n=(1-1/n)q+\delta_w/n$. Propriety at $q_n$ and $q$ gives
+\[
+\tfrac1nL(q_n,w)+(1-\tfrac1n)E_qL(q)
+\le E_{q_n}L(q_n)\le E_{q_n}L(m)
+=\tfrac1nL(m,w)+(1-\tfrac1n)E_qL(q).
+\]
+Hence $L(q_n,w)\le L(m,w)$, contradicting lower semicontinuity at $q$. So $\C_L=\C$. Quasi-strict propriety excludes an incoherent model tied with a probability, since their $q$-expected losses would be equal. {Thus $\C_L$ is closed under ties.
+
+Apply Lemma~\ref{lem:loss-selection} with $c_q\coloneqq q$ for $q\in\Delta$. Let $p\in\Delta$ be finitely supported, with $p(F)=1$ for a finite $F$. By the preceding truncation identity, $E_pf=\sum_{\omega\in F}p_\omega f(\omega)$ for every $f:\Omega\to[0,\infty]$, with $0\cdot\infty=0$. Quasi-strict propriety makes $E_pL(p)$ finite, so the Bayes inequality gives, for every model $m$, some world $\omega$ with $p_\omega>0$ and $L(p,\omega)\le L(m,\omega)$. Apply Lemma~\ref{lem:loss-selection}.}
+\end{proof}
+\subsection{Conditional updating}
+Let $\Omega$ be finite and let $E_1,\ldots,E_k$ be nonempty pairwise disjoint subsets with union $\Omega$. The models are strategies $(c,a_1,\ldots,a_k)\in([0,1]^{2^\Omega})^{k+1}$, specifying current credences and credences to adopt on learning each cell. Call it coherent when all these credences are probabilities,
+\[
+a_j(E_j)=1,\qquad c(A\cap E_j)=c(E_j)a_j(A)\quad\text{for every }A,j.
+\]
+Thus even a plan for a probability-zero cell must be probabilistic and concentrate on that cell. Let $J$ be a finite loss for credence functions on $2^\Omega$, strictly proper in the sense that each probability uniquely minimises its own expected loss, and lower semicontinuous on probabilities at every world, and assess strategies by
+\[
+L((c,a),\omega)=\alpha J(c,\omega)+\beta J(a_j,\omega)
+\quad(\omega\in E_j),\qquad \alpha,\beta>0.
+\]
+\begin{proposition}[Conditional updating; {\cite{Briggs2020,Nielsen2021}}]\label{prop:short-updating}
+The undominated strategies are exactly the coherent ones, and every incoherent strategy is dominated by a coherent one.
+\end{proposition}
+\begin{proof}
+A weak dominator of a coherent strategy first minimises its $c$-expected loss, forcing its current credences to equal $c$ by strict propriety. Cancelling that common loss and taking expectations under each $a_j$ forces every conditional report to equal $a_j$. {Thus $\C_L=\C$, and $\C_L$ is closed under ties, since a strategy tied with a coherent one weakly dominates it.}
+
+For selection, put $\eta=1/(2k)$ and fix $u_j\in\Delta$ with $u_j(E_j)=1$ for each $j$. Given $p\in\Delta$, set
+\[
+r_j=\frac{p|_{E_j}+(\eta-p(E_j))_+u_j}{\max\{p(E_j),\eta\}},\qquad
+\lambda_j=\frac{(p(E_j)-\eta)_+}{\sum_i(p(E_i)-\eta)_+},\qquad
+q=\sum_j\lambda_jr_j,
+\]
+where $x_+=\max\{x,0\}$ and $p|_{E_j}(\omega)=p_\omega$ for $\omega\in E_j$, and $0$ otherwise. The denominator defining $\lambda_j$ is positive, since otherwise $1=\sum_jp(E_j)\le k\eta=1/2$. These define a continuous coherent strategy $(q,r_1,\ldots,r_k)$, Bayes for $q$, with $\supp q\subseteq\supp p$. Its Bayes inequality therefore gives, for every model $m$, a world $\omega\in\supp p$ with $L((q,r_1,\ldots,r_k),\omega)\le L(m,\omega)$. Its losses are lower semicontinuous in $p$, being sums of compositions of the lower semicontinuous $J$ with continuous probability maps. {Apply Lemma~\ref{lem:loss-selection} with $c_p\coloneqq(q,r_1,\ldots,r_k)$.}
+\end{proof}
+\subsection{Why coherent admissibility is insufficient}
+\begin{example}\label{ex:ties}
+For two worlds, take $\M_L=[0,1]^2$, $\C=\Delta$ and
+\[
+L_1(x)=(1-x_1+x_2)^2,\qquad L_2(x)=(1+x_1-x_2)^2.
+\]
+Writing $d=x_1-x_2$, every $x$ is tied with the probability $((1+d)/2,(1-d)/2)$; distinct profiles are incomparable. Thus no model is dominated. Here $E_pL(x)=p_1(1-d)^2+p_2(1+d)^2$ is minimised at $d=p_1-p_2$. {Thus $c_p=p$ is Bayes for $p$, and, as in the proof of Lemma~\ref{lem:loss-selection}, continuous losses verify {(S)} with a single assignment. Evaluability and coherent admissibility hold, since no model is dominated. But every incoherent $x$ is tied with a probability and undominated, so {(T)} fails for every countable family of assignments, by Theorem~\ref{thm:argument}(a).}
+\end{example}
+
+
+\subsection{Chance dominance}\label{sec:chance}
+Pettigrew~\cite[Chapter~10]{Pettigrew2016} compares expected rather than actual accuracy. Let $W$ be finite, $\mathcal K\subseteq\Delta_W$ nonempty, and $\Theta=\overline{\operatorname{conv}\mathcal K}$, the Euclidean closure of the finite convex combinations of elements of $\mathcal K$. The members of $\mathcal K$ represent possible chances conditional on the agent's evidence. Let $\M_L=[0,1]^{\mathcal F}$ for a set of events $\mathcal F\subseteq2^W$, identify each probability $q$ with the vector $(q(A))_{A\in\mathcal F}$, and let $\C$ be the credences induced by $\Theta$. Suppose $I:\M_L\times W\to[0,\infty)$ is finite, each probability uniquely minimises its own expected loss, and $\theta\mapsto I(\theta,w)$ is lower semicontinuous. Index comparisons by $q\in\mathcal K$, putting $c\preceq_q d$ exactly when $E_qI(c)\le E_qI(d)$.
+\begin{proposition}\label{prop:short-chance}
+The undominated credences are exactly $\C$, and every other credence is dominated by a member of $\C$.
+\end{proposition}
+\begin{proof}
+If $m$ weakly dominates $\theta\in\Theta$, the affine continuous function $q\mapsto E_qI(m)-E_qI(\theta)$ is nonpositive on $\mathcal K$, hence on $\Theta$. At $q=\theta$, unique Bayes optimality forces $m=\theta$ as credence functions. {Thus $\C_L=\C$, and $\C_L$ is closed under ties, since a tied model weakly dominates.
+
+Apply Lemma~\ref{lem:loss-selection} with the chance functions $q\in\mathcal K$ as worlds, so that $\Delta$ is the set of finitely additive probabilities on $\mathcal K$, and with loss $E_qI$. For $p\in\Delta$, let $\bar p\in\mathbb R^W$ have coordinates $\bar p(w)\coloneqq E_p[q\mapsto q(w)]$, and put $c_p\coloneqq\bar p$. By Lemma~\ref{lem:probabilities}(c), $p\mapsto\bar p$ is continuous. Moreover $\bar p\in\Theta$. Otherwise, separating the point $\bar p$ from the closed convex set $\Theta$ gives $a\in\mathbb R^W$ with $\sum_wa_w\bar p(w)>\sup_{\theta\in\Theta}\sum_wa_w\theta(w)$. But by linearity and the upper bound in Lemma~\ref{lem:probabilities}(c), $\sum_wa_w\bar p(w)=E_p[q\mapsto\sum_wa_wq(w)]\le\sup_{q\in\mathcal K}\sum_wa_wq(w)$, a contradiction. So $c_p\in\C=\C_L$. For each $q\in\mathcal K$, the loss $p\mapsto E_qI(c_p)$ is lower semicontinuous, since it is a finite nonnegative combination of the lower semicontinuous functions $\theta\mapsto I(\theta,w)$ composed with the continuous map $p\mapsto\bar p$. If $p$ is finitely supported, with $p(F)=1$ for a finite $F\subseteq\mathcal K$, then $\bar p=\sum_{q\in F}p_qq$ by Lemma~\ref{lem:probabilities}(c), and
+\[
+\sum_{q\in F}p_qE_qI(c)=E_{\bar p}I(c)
+\]
+for every credence $c$. So Bayes optimality of $\bar p$ supplies, for every $m$, some $q$ with $p_q>0$ and $E_qI(c_p)\le E_qI(m)$.}
+\end{proof}
+\bibliographystyle{plain}
+\bibliography{ldg-references}
+\end{document}

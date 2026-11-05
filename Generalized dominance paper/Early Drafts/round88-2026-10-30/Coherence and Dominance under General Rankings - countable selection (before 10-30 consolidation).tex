@@ -1,0 +1,341 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\I}{\mathcal I}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\supp}{\operatorname{supp}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Dominance Generalised}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+
+Dominance arguments are commonly used to justify the claim that some axioms or other are requirements of rationality. For example, De~Finetti argued that an agent's forecasts or estimates of bounded random variables ought to be probabilistic expectations \cite[\S1.6, \S3.3]{deFinetti1974}. This is necessary and sufficient for any finite collection of those estimates to avoid uniform dominance when evaluated using a loss function known as the Brier score. A finite set of estimates is uniformly dominated if there is some alternative set of forecasts/estimates that is guaranteed to get a smaller penalty (according to the loss function). Dominance seems to indicate a structural defect along whatever dimension of evaluation the loss function tracks. If the Brier score tracks a dimension of evaluation that is of cardinal importance to rationality, then forecasts/estimates that are dominated are plausibly rationally impermissible. Hence non-probabilistic estimates are rationally impermissible. Probabilistic estimates, in contrast, are rationally permissible (or at least they pass every test the dominance argument considers).
+
+
+A number of authors have provided dominance arguments for coherence norms like probabilism~\cite{Joyce2009,Predd2009,SSK2009,Pettigrew2022,Nielsen2023}, norms governing updating like conditionalization~\cite{Briggs2020,Nielsen2021}, and deference norms like the Principal Principle~\cite[Chapter~10]{Pettigrew2016}. As elegant and insightful as these arguments are, they also muddle together some things that we really ought to keep distinct.
+
+
+
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}[Rankings]\label{def:rankings}
+Let $\Omega$ be a nonempty set of \emph{worlds} and $\M$ a nonempty set of \emph{models}. A \emph{ranking} $L$ consists of a nonempty set $\M_L\subseteq\M$, whose members are the models \emph{evaluable} by $L$, and, for each world $\omega$, a binary relation $\preceq_\omega$ on $\M_L$. We read $m\preceq_\omega m'$ as: $m$ performs at least as well as $m'$ at $\omega$. Models $m$ and $m'$ are \emph{tied at $\omega$} if $m\preceq_\omega m'$ and $m'\preceq_\omega m$. No property of the relations is assumed: they need not be reflexive, transitive, complete or continuous in any sense. For a fixed ranking $L$, ``model'' means a member of $\M_L$.
+\end{definition}
+
+\begin{definition}[Dominance]\label{def:dominance}
+Fix a ranking.
+\begin{itemize}[leftmargin=*]
+\item $c$ \emph{weakly dominates} $m$ if $c\preceq_\omega m$ at every world.
+\item $m$ and $c$ are \emph{tied at every world} if each weakly dominates the other.
+\item $c$ \emph{dominates} $m$ if $c$ weakly dominates $m$ and they are not tied at every world.
+\end{itemize}
+A model is \emph{undominated} if no model dominates it. $\U_L$ is the set of undominated models.
+\end{definition}
+
+\begin{definition}[Probability mass functions]\label{def:priors}
+For a finite nonempty $F\subseteq\Omega$, let $\Delta_F$ be the set of probability mass functions (pmfs) on $F$, $p=(p_\omega)_{\omega\in F}$, with the Euclidean topology. The support of a pmf $p$ is $\supp p\coloneqq\{\omega:p_\omega>0\}$. Let $\delta_\omega$ be the point mass at $\omega$. When $\Omega$ is finite, $\Delta\coloneqq\Delta_\Omega$.
+\end{definition}
+
+\begin{definition}[Coherent models]\label{def:coherence-property}
+A class $\C\subseteq\M$ of \emph{coherent} models is fixed in advance, independently of the rankings. Models not in $\C$ are \emph{incoherent}. For a ranking $L$, the \emph{undominated coherent models} of $L$ are
+\[
+\C_L\coloneqq\{c\in\C\cap\M_L:\ \text{no } m\in\M_L \text{ dominates } c\}=\C\cap\U_L.
+\]
+\end{definition}
+
+\begin{definition}[Closure under ties]\label{def:tie-closure}
+A set $\mathcal A$ of models is \emph{closed under ties} if every model tied at every world with a member of $\mathcal A$ belongs to $\mathcal A$. A ranking $L$ is \emph{closed under ties} if $\C_L$ is.
+\end{definition}
+
+\begin{definition}[Evaluability and coherent admissibility]\label{def:family-assumptions}
+Let $\Lf$ be a family of rankings.
+\begin{itemize}[leftmargin=*]
+\item \emph{Evaluability}: every model in $\M$ is evaluable by some ranking in $\Lf$.
+\item \emph{Coherent admissibility}: every coherent model belongs to $\C_L$ for some $L\in\Lf$.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:ties}
+Let a model $a$ weakly dominate a model $m$. Then $a$ dominates $m$ if and only if $m$ does not weakly dominate $a$.
+\begin{enumerate}[label=(\alph*)]
+\item If $m$ is undominated, then $m$ and $a$ are tied at every world.
+\item If $L$ is closed under ties, $a\in\C_L$ and $m\notin\C_L$, then $a$ dominates $m$.
+\item More generally, if $\mathcal A$ is closed under ties, $a\in\mathcal A$ and $m\notin\mathcal A$, then $a$ dominates $m$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+The first claim is the definition of dominance. (a) Otherwise $a$ would dominate $m$. (c) Since $m\notin\mathcal A$, $m$ is not tied at every world with $a$. (b) This is (c) with $\mathcal A\coloneqq\C_L$.
+\end{proof}
+
+\section{Selection by a countable family of assignments}\label{sec:general}
+
+\begin{lemma}[Knaster--Kuratowski--Mazurkiewicz {\cite{KKM}}]\label{lem:kkm}
+Let $F$ be finite and nonempty, and let $(A_\omega)_{\omega\in F}$ be closed subsets of $\Delta_F$ such that every $p\in\Delta_F$ lies in $A_\omega$ for some $\omega\in\supp p$. Then $\bigcap_{\omega\in F}A_\omega\ne\varnothing$.
+\end{lemma}
+\begin{proof}
+Each $A_\omega$ is nonempty, since by hypothesis we always have
+\[
+\delta_\omega\in\bigcup_{\omega^\prime\in\supp \delta_\omega}A_{\omega^\prime}=A_\omega.
+\]
+Let $d_\omega(p)\coloneqq\min_{q\in A_\omega}\lVert p-q \rVert$ and $s(p)\coloneqq\sum_{\omega\in F} d_\omega(p)$. The map $\Phi(p)_\omega\coloneqq(p_\omega+d_\omega(p))/(1+s(p))$ is continuous. Moreover, $\Phi$ maps each $p\in\Delta_F$ to some point in $\Delta_F$ (since each coordinate $\Phi(p)_\omega$ of $\Phi(p)$ is nonnegative and these coordinates sum to 1). Brouwer's fixed-point theorem then guarantees that there is some $p\in\Delta_F$ with $\Phi(p)=p$. This holds just in case $p_\omega\cdot s(p)=d_\omega(p)$ for all $\omega\in F$. By assumption, there is some $\omega\in\supp p$ with $p\in A_\omega$. Choose some such $\omega$. Then $d_\omega(p)=0$, so $p_\omega\cdot s(p)=0$. Since $p_\omega>0$, $s(p)=0$ and hence $p\in\bigcap_{\omega\in F}A_\omega$.
+\end{proof}
+
+\subsection{Definitions}
+
+\begin{definition}[Countable family of assignments]\label{def:family}
+A space is \emph{compact} if every open cover has a finite subcover; no separation property is required. Let $L$ be a ranking. A \emph{countable family of assignments} for $L$ consists of the following data, for each positive integer $j$:
+\begin{enumerate}[label=(\roman*)]
+\item a compact space $\Theta_j$ of \emph{parameters};
+\item for each $\theta\in\Theta_j$, an \emph{assigned model} $b^j_\theta$, which is required to belong to $\M_L$;
+\item for every finite set $G\subseteq\Omega$, including $G=\varnothing$, a nonempty finite set $F_j(G)\supseteq G$ of worlds and a map $t_{j,G}:\Delta_{F_j(G)}\to\Theta_j$.
+\end{enumerate}
+For $G=\varnothing$ one may take $F_j(\varnothing)\coloneqq\{\omega_0\}$ for a fixed world $\omega_0$; nonemptiness is needed so that $\Delta_{F_j(G)}$ is nonempty. The maps $t_{j,G}$ need not be continuous, and the assigned models need not be coherent or undominated. Finitely many assignments are included by repetition. A family with $\Theta_j=\Theta_1$, $b^j=b^1$, $F_j=F_1$ and $t_{j,G}=t_{1,G}$ for every $j$ and $G$ is a \emph{single assignment}.
+\end{definition}
+
+\begin{definition}[Witnesses]\label{def:witnesses}
+Fix a countable family of assignments for $L$, a model $x$ and an index $j$. \emph{Witnesses for $x$ at $j$} are closed sets $K_\omega(x)\subseteq\Theta_j$, one for each world $\omega\in\Omega$, and closed sets $A^G_\omega(x)\subseteq\Delta_{F_j(G)}$, one for each finite $G\subseteq\Omega$ and each $\omega\in F_j(G)$, such that:
+\begin{enumerate}[label=\textbf{(W\arabic*)},leftmargin=3.2em]
+\item \emph{Comparison}: $b^j_\theta\preceq_\omega x$ for every $\omega\in\Omega$ and every $\theta\in K_\omega(x)$. At a witnessing parameter, the assigned model performs at least as well as $x$ at that world.
+\item \emph{Compatibility}: $t_{j,G}\bigl(A^G_\omega(x)\bigr)\subseteq K_\omega(x)$ for every finite $G\subseteq\Omega$ and every $\omega\in F_j(G)$. The fixed maps preserve the witnessing comparisons.
+\item \emph{Support coverage}: for every finite $G\subseteq\Omega$ and every $p\in\Delta_{F_j(G)}$, there is some $\omega\in\supp p$ with $p\in A^G_\omega(x)$. Every pmf has a witnessing comparison at a world to which it gives positive probability.
+\end{enumerate}
+The witnesses \emph{exclude ties} if, for every $\theta\in\bigcap_{\omega\in\Omega}K_\omega(x)$, the models $b^j_\theta$ and $x$ are not tied at every world.
+\end{definition}
+
+\begin{definition}[Countable selection]\label{def:selection}
+Let $L$ be a ranking and $\I\subseteq\M_L$. Then $L$ satisfies \emph{countable selection on $\I$} if there is a countable family of assignments for $L$ such that every $x\in\I$ has witnesses at some index $j$. It satisfies countable selection on $\I$ \emph{with exclusion of ties} if, moreover, the index and witnesses for each $x\in\I$ can be chosen so that the witnesses exclude ties. It satisfies \emph{single-assignment selection on $\I$} if the family can be taken to be a single assignment.
+\end{definition}
+
+\subsection{The theorems}
+
+\begin{theorem}[Countable selection]\label{thm:general}
+Let $\Omega$ be any nonempty set and $L$ any ranking. Fix a countable family of assignments for $L$, and let $x\in\M_L$ have witnesses at index $j$. Then $\bigcap_{\omega\in\Omega}K_\omega(x)\ne\varnothing$, and for every $\theta$ in this intersection $b^j_\theta$ weakly dominates $x$. If the witnesses exclude ties, every such $b^j_\theta$ dominates $x$.
+\end{theorem}
+\begin{proof}
+Let $G\subseteq\Omega$ be finite and put $F\coloneqq F_j(G)$. By (W3), the closed sets $A^G_\omega(x)$, $\omega\in F$, satisfy the hypothesis of Lemma~\ref{lem:kkm}. So some $p_G$ lies in all of them. By (W2), $t_{j,G}(p_G)\in K_\omega(x)$ for every $\omega\in F$, and in particular for every $\omega\in G$, since $G\subseteq F$. Taking $G\coloneqq\{\omega_1,\dots,\omega_k\}$ for arbitrary worlds $\omega_1,\dots,\omega_k$ shows that every finite subfamily of the closed sets $K_\omega(x)$, $\omega\in\Omega$, has nonempty intersection. It follows that $\bigcap_{\omega\in\Omega}K_\omega(x)\ne\varnothing$. Otherwise the open sets $\Theta_j\setminus K_\omega(x)$, $\omega\in\Omega$, would cover $\Theta_j$. By compactness, finitely many of them, $\Theta_j\setminus K_{\omega_1}(x),\dots,\Theta_j\setminus K_{\omega_k}(x)$, would cover $\Theta_j$. But then $K_{\omega_1}(x)\cap\dots\cap K_{\omega_k}(x)=\varnothing$, a contradiction.
+
+Let $\theta\in\bigcap_{\omega\in\Omega}K_\omega(x)$. By (W1), $b^j_\theta\preceq_\omega x$ at every world, so $b^j_\theta$ weakly dominates $x$. If the witnesses exclude ties, $b^j_\theta$ and $x$ are not tied at every world, so $b^j_\theta$ dominates $x$.
+\end{proof}
+
+\begin{corollary}\label{cor:inverse}
+Let a countable family of assignments for $L$ have every map $t_{j,G}$ continuous. Let $x$ be a model, $j$ an index, and $K_\omega(x)\subseteq\Theta_j$, $\omega\in\Omega$, closed sets satisfying (W1), such that for every finite $G\subseteq\Omega$ and every $p\in\Delta_{F_j(G)}$ there is some $\omega\in\supp p$ with $t_{j,G}(p)\in K_\omega(x)$. Then $K_\omega(x)$ and $A^G_\omega(x)\coloneqq t_{j,G}^{-1}(K_\omega(x))$ are witnesses for $x$ at $j$.
+\end{corollary}
+\begin{proof}
+The sets $A^G_\omega(x)$ are closed by continuity, (W2) holds by construction, and (W3) is the displayed hypothesis.
+\end{proof}
+
+\begin{corollary}\label{cor:finite}
+Let $\Omega$ be finite and $\I\subseteq\M_L$. Suppose that for each positive integer $j$ and each pmf $p\in\Delta$ there is an assigned model $c^j_p\in\M_L$, not necessarily coherent or undominated, and that for every $x\in\I$ there are an index $j$ and closed sets $A_\omega(x)\subseteq\Delta$, $\omega\in\Omega$, such that:
+\begin{enumerate}[label=(\roman*)]
+\item $c^j_p\preceq_\omega x$ for every $\omega$ and every $p\in A_\omega(x)$;
+\item every $p\in\Delta$ lies in $A_\omega(x)$ for some $\omega\in\supp p$.
+\end{enumerate}
+Then, for every $x\in\I$ and its index $j$, $\bigcap_\omega A_\omega(x)\ne\varnothing$, and $c^j_p$ weakly dominates $x$ for each $p$ in this intersection. If no such $c^j_p$ is tied at every world with $x$, then $x$ is dominated.
+\end{corollary}
+\begin{proof}
+Take $\Theta_j\coloneqq\Delta$, which is compact, $b^j_p\coloneqq c^j_p$, $F_j(G)\coloneqq\Omega$ and $t_{j,G}$ the identity, for every finite $G$. Put $K_\omega(x)\coloneqq A_\omega(x)$ and $A^G_\omega(x)\coloneqq A_\omega(x)$. Then (i) is (W1), (W2) is trivial and (ii) is (W3). Apply Theorem~\ref{thm:general}.
+\end{proof}
+
+\begin{lemma}\label{lem:tie-sufficient}
+Let a countable family of assignments for $L$ have every assigned model in $\C_L$, and let $\C_L$ be closed under ties. Then, for every model $x\notin\C_L$, and in particular every incoherent model, any witnesses for $x$ at any index exclude ties.
+\end{lemma}
+\begin{proof}
+If $b^j_\theta\in\C_L$ were tied at every world with $x$, closure under ties would give $x\in\C_L$. Incoherent models are not in $\C_L\subseteq\C$.
+\end{proof}
+
+\begin{corollary}\label{cor:coherent-assigned}
+Let $L$ satisfy countable selection on $\I\subseteq\M_L$ with a family whose assigned models all lie in $\C_L$.
+\begin{enumerate}[label=(\alph*)]
+\item If the witnesses for each $x\in\I\setminus\C_L$ can be chosen to exclude ties, every $x\in\I\setminus\C_L$ is dominated by a member of $\C_L$.
+\item If $\C_L$ is closed under ties, every $x\in\I\setminus\C_L$ is dominated by a member of $\C_L$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+(a) Theorem~\ref{thm:general} gives a dominating assigned model, which lies in $\C_L$. (b) By Lemma~\ref{lem:tie-sufficient}, (a) applies.
+\end{proof}
+
+\section{The dominance argument}\label{sec:conclusion}
+
+\begin{definition}[Dominance principle]\label{def:permissibility}
+Let $\Lf$ be a family of rankings. A model is \emph{irrational} if, under every ranking in $\Lf$ that evaluates it, some model dominates it. A model is \emph{rationally permissible} if it is undominated under some ranking in $\Lf$ that evaluates it.
+\end{definition}
+
+\begin{lemma}\label{lem:complement}
+A model is irrational if and only if it is not rationally permissible. Under evaluability, an irrational model is dominated under at least one ranking in $\Lf$.
+\end{lemma}
+\begin{proof}
+A model fails to be irrational exactly when some ranking in $\Lf$ that evaluates it leaves it undominated, which is rational permissibility. For the second sentence, by evaluability some $L\in\Lf$ evaluates an irrational model, and irrationality gives a dominator under that $L$.
+\end{proof}
+
+\begin{definition}[Assumptions on the rankings]\label{def:argument-assumptions}
+Conditions (S$_\sigma$) and (T$_\sigma$) are conditions on a single ranking $L$; the family $\Lf$ satisfies them if every $L\in\Lf$ does. The dominance argument uses the following conditions.
+\begin{itemize}[leftmargin=3.4em,labelsep=0.5em]
+\item[\textbf{(E)}] \emph{Evaluability}: every model in $\M$ is evaluable by some ranking in $\Lf$. No model escapes assessment.
+\item[\textbf{(A)}] \emph{Coherent admissibility}: every coherent model belongs to $\C_L$ for some $L\in\Lf$. Each coherent model is undominated under at least one ranking that evaluates it.
+\item[\textbf{(S$_\sigma$)}] \emph{Countable selection}: $L$ satisfies countable selection on $\M_L\setminus\C$ (Definition~\ref{def:selection}). For each ranking, one countable family of assignments, fixed in advance, supplies witnesses against every incoherent model it evaluates.
+\item[\textbf{(T$_\sigma$)}] \emph{Exclusion of ties}: the family in (S$_\sigma$) can be chosen so that, in addition, the index and witnesses for each incoherent $x\in\M_L$ exclude ties; that is, $L$ satisfies countable selection on $\M_L\setminus\C$ with exclusion of ties (Definition~\ref{def:selection}). No assigned model at a point common to all the witnessing sets for $x$ is tied with $x$ at every world.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[The dominance argument]\label{thm:argument}
+Let $\Lf$ be a family of rankings.
+\begin{enumerate}[label=(\alph*)]
+\item If a ranking $L$ satisfies (S$_\sigma$) and (T$_\sigma$), then every incoherent model in $\M_L$ is dominated under $L$ by an assigned model, and $\U_L=\C_L$.
+\item If $\Lf$ satisfies (S$_\sigma$) and (T$_\sigma$), every incoherent model is irrational.
+\item If $\Lf$ satisfies (A), every coherent model is rationally permissible.
+\item If $\Lf$ satisfies (A), (S$_\sigma$) and (T$_\sigma$), the rationally permissible models are exactly the coherent ones, and the irrational models exactly the incoherent ones.
+\item If $\Lf$ satisfies (E), (S$_\sigma$) and (T$_\sigma$), every incoherent model is dominated under at least one ranking in $\Lf$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\leavevmode
+\begin{enumerate}[label=\arabic*.,leftmargin=*]
+\item Let $L$ satisfy (S$_\sigma$) and (T$_\sigma$), and let $x\in\M_L$ be incoherent. By (S$_\sigma$) and (T$_\sigma$), $x$ has witnesses at some index $j$ that exclude ties. By Theorem~\ref{thm:general}, $x$ is dominated by an assigned model $b^j_\theta$. Now let $m\in\U_L$. Then $m$ is not dominated, so it is not incoherent, and $m\in\C\cap\U_L=\C_L$. Conversely $\C_L\subseteq\U_L$ by definition. This is (a).
+\item By (a), every incoherent model is dominated under every ranking in $\Lf$ that evaluates it; that is, it is irrational. This is (b).
+\item By (A), each coherent model $c$ belongs to $\C_L$ for some $L\in\Lf$. Then $L$ evaluates $c$ and leaves it undominated, so $c$ is rationally permissible. This is (c).
+\item By (b), (c) and Lemma~\ref{lem:complement}, no incoherent model is rationally permissible and no coherent model is irrational. Every model is coherent or incoherent, so (d) follows.
+\item By (E), each incoherent model is evaluated by some $L\in\Lf$, and by (a) it is dominated under $L$. This is (e).\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}[Coherent dominators]\label{cor:coherent-dominators}
+Let a ranking $L$ satisfy countable selection on $\M_L\setminus\C$ with a family whose assigned models all lie in $\C_L$. If the witnesses for this family can be chosen to exclude ties, or if $L$ is closed under ties, then every incoherent model in $\M_L$ is dominated by a member of $\C_L$, and $\U_L=\C_L$. Consequently, if every $L\in\Lf$ is of this kind, parts (b)--(e) of Theorem~\ref{thm:argument} hold under their stated hypotheses on (A) and (E), and the dominators in (e) may be taken in $\C_L$.
+\end{corollary}
+\begin{proof}
+If $L$ is closed under ties, Lemma~\ref{lem:tie-sufficient} gives (T$_\sigma$). Corollary~\ref{cor:coherent-assigned}(a), with $\I\coloneqq\M_L\setminus\C$, gives the dominators in $\C_L$, and Theorem~\ref{thm:argument}(a) gives $\U_L=\C_L$. The rest is Theorem~\ref{thm:argument}.
+\end{proof}
+
+\section{Countable selection and a single assignment}\label{sec:scope}
+
+\begin{proposition}\label{prop:comparison}
+Let $\I\subseteq\M_L$.
+\begin{enumerate}[label=(\alph*)]
+\item Single-assignment selection on $\I$ implies countable selection on $\I$, with exclusion of ties if the original witnesses exclude ties.
+\item If a countable set $\{d_j:j\ge1\}\subseteq\M_L$ dominates every member of $\I$, then $L$ satisfies countable selection on $\I$ with exclusion of ties.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) Repeat the assignment. (b) For each $j$ take a one-point space $\Theta_j$, assign $d_j$, and let every $t_{j,G}$ be constant. If $d_j$ dominates $x$, take $K_\omega(x)=\Theta_j$ and $A^G_\omega(x)=\Delta_{F_j(G)}$ for every $G$ and $\omega$. These witnesses exclude ties.
+\end{proof}
+
+\begin{example}\label{ex:two-pairs}
+Let $\Omega\coloneqq\{\omega\}$ and $\M\coloneqq\{c_1,x_1,c_2,x_2\}$, four distinct models, with $\C\coloneqq\{c_1,c_2\}$. Let $L$ evaluate every model, with $\preceq_\omega$ consisting of $m\preceq_\omega m$ for every $m$, together with $c_1\preceq_\omega x_1$ and $c_2\preceq_\omega x_2$. Each $c_i$ is undominated, ties occur only between a model and itself, and so $\C_L=\{c_1,c_2\}$ is closed under ties. Countable selection on $\{x_1,x_2\}$ with exclusion of ties holds with two assignments: $\Theta_i$ a single point $\theta$, $b^i_\theta\coloneqq c_i$, $F_i(G)\coloneqq\Omega$, and, for $x_i$, index $i$ with $K_\omega(x_i)\coloneqq\Theta_i$ and $A^G_\omega(x_i)\coloneqq\Delta_\Omega$. Single-assignment selection on $\{x_1,x_2\}$ fails. For $G\coloneqq\Omega$, the map $t_{1,G}$ sends the only pmf $\delta_\omega$ to one parameter $\theta_0$. By (W3) and (W2), $\theta_0\in K_\omega(x_1)\cap K_\omega(x_2)$, so by (W1) $b^1_{\theta_0}\preceq_\omega x_1$ and $b^1_{\theta_0}\preceq_\omega x_2$. But no model is at least as good as both $x_1$ and $x_2$. So countable selection is strictly weaker than single-assignment selection, even on the incoherent models and with every assigned model in $\C_L$.
+\end{example}
+
+\begin{example}\label{ex:uncountable}
+Let $\Omega\coloneqq\{\omega\}$, let $T$ be uncountable, and let $\M\coloneqq\{c_t,x_t:t\in T\}$, all distinct, with $\C\coloneqq\{c_t:t\in T\}$. Let $L$ evaluate every model, with $\preceq_\omega$ consisting of $m\preceq_\omega m$ for every $m$, together with $c_t\preceq_\omega x_t$ for every $t$. Each $x_t$ is dominated by $c_t$. Countable selection on $\{x_t:t\in T\}$ fails. Given any countable family of assignments, let $\theta_j\coloneqq t_{j,\Omega}(\delta_\omega)$. As in Example~\ref{ex:two-pairs}, if $x_t$ has witnesses at index $j$, then $b^j_{\theta_j}\preceq_\omega x_t$, so $b^j_{\theta_j}\in\{c_t,x_t\}$. This determines $t$, so each index serves at most one $x_t$, and countably many indices serve only countably many. So dominance of every incoherent model does not imply countable selection.
+\end{example}
+
+
+
+\section{Applications to accuracy}\label{sec:short-applications}
+For a loss $L:\M_L\times\Omega\to[0,\infty]$, put $m\preceq_\omega m'$ exactly when $L(m,\omega)\le L(m',\omega)$. A \emph{Bayes model for $p$} minimises expected loss, with $0\cdot\infty=0$. The conclusions below concern dominance as defined here: improvement at some world, without worsening at any. Improvement at every world is a stronger conclusion.
+
+\subsection{Proper scores}
+\begin{proposition}\label{prop:short-proper}
+Let $\Omega$ be finite and let $p\mapsto c_p$ map $\Delta$ onto $\C\subseteq\M_L$. Suppose each $c_p$ is the unique Bayes model for $p$, and $p\mapsto L(c_p,\omega)$ is lower semicontinuous at every world. Then the undominated models are exactly the coherent models, and every other model is dominated by a coherent one.
+\end{proposition}
+\begin{proof}
+Unless $\M_L$ is a singleton, uniqueness makes each Bayes expected loss finite. A weak dominator of $c_p$ is also Bayes for $p$, hence equals $c_p$. Thus $\C_L=\C$ and (T) holds. Bayes optimality gives, for each $m$, a world in $\supp p$ where $L(c_p,\omega)\le L(m,\omega)$: strict improvement throughout the support would strictly reduce the finite expected loss. Lower semicontinuity makes each comparison set closed (the whole simplex when $L(m,\omega)=\infty$). Hence (S) holds by Corollary~\ref{cor:closed-choice}; Corollary~\ref{cor:coherent-assigned}(c) gives the conclusion.
+\end{proof}
+Taking $c_p=p$ gives probabilism. This includes strictly proper scores that are not additive, as in Pettigrew~\cite{Pettigrew2022}, and permits infinite losses. It also applies to finitely many event forecasts on arbitrary $\Omega$: replace worlds by their finitely many truth-value vectors $v_w$ and put $c_p=\sum_wp_wv_w$. These are exactly the coherent forecasts. Continuous, strictly proper component scores give the unique Bayes forecasts, recovering the ordinary-dominance consequence of Predd et al.~\cite{Predd2009}. Those results also establish stronger forms of dominance. For merely proper scores, uniqueness can fail: incoherent forecasts can share coherent loss profiles and remain undominated~\cite{SSK2009}. This is precisely the distinction made by closure under ties.
+
+\subsection{Probabilism on arbitrary domains}
+Let $\M_L=[0,1]^{2^\Omega}$ and let $\C$ be the finitely additive probabilities on all subsets of $\Omega$, with the topology of pointwise convergence. For $f\ge0$, define $E_qf=\sup\{E_qh:0\le h\le f,\ h\text{ bounded}\}$. Call $L$ \emph{quasi-strictly proper} if
+\[
+E_qL(q,\cdot)\le E_qL(m,\cdot)\quad(q\in\C,\ m\in\M_L),
+\]
+strictly whenever $m\notin\C$.
+\begin{proposition}\label{prop:short-infinite}
+If $L$ is quasi-strictly proper and each $q\mapsto L(q,\omega)$ is lower semicontinuous, the undominated models are exactly the finitely additive probabilities, and every other model is dominated by one.
+\end{proposition}
+\begin{proof}
+First suppose $m$ dominates $q\in\C$, strictly improving at $w$. Quasi-strict propriety gives $E_qL(m)=E_qL(q)<\infty$; finiteness follows by comparison with any incoherent credence. Put $q_n=(1-1/n)q+\delta_w/n$. Propriety at $q_n$ and $q$ gives
+\[
+\tfrac1nL(q_n,w)+(1-\tfrac1n)E_qL(q)
+\le E_{q_n}L(q_n)\le E_{q_n}L(m)
+=\tfrac1nL(m,w)+(1-\tfrac1n)E_qL(q).
+\]
+Hence $L(q_n,w)\le L(m,w)$, contradicting lower semicontinuity at $q$. So $\C_L=\C$. Quasi-strict propriety excludes an incoherent model tied with a probability, since their $q$-expected losses would be equal. Thus (T) holds.
+
+For (S), use Theorem~\ref{thm:local} with $\Theta=\C$, compact as a closed subset of $[0,1]^{2^\Omega}$, $c_q=q$, and the closed sets $K_\omega(m)=\{q:L(q,\omega)\le L(m,\omega)\}$. For every finite nonempty $F$, take the continuous embedding $\theta_F(p)=p$ and $A^F_\omega(m)=\theta_F^{-1}(K_\omega(m))$. Quasi-strict propriety makes $E_pL(p)$ finite, so the Bayes inequality ensures $p\in A^F_\omega(m)$ for some $\omega\in\supp p$. These choices verify both local conditions. Corollary~\ref{cor:coherent-assigned}(c) completes the proof.
+\end{proof}
+Nielsen~\cite{Nielsen2023} assumes continuity of $q\mapsto E_pL(q)$ for every probability $p$, together with local boundedness of coherent loss profiles, and obtains improvement at every world. The proposition requires only worldwise lower semicontinuity and drops boundedness, but concludes ordinary dominance. It does not claim Nielsen's stronger conclusion under weaker hypotheses.
+
+\subsection{Conditional updating}
+Let $\Omega$ be finite and $E_1,\ldots,E_k$ a partition into nonempty cells. A strategy $(c,a_1,\ldots,a_k)$ specifies current credences and credences to adopt on learning each cell. Call it coherent when all these credences are probabilities,
+\[
+a_j(E_j)=1,\qquad c(A\cap E_j)=c(E_j)a_j(A)\quad\text{for every }A,j.
+\]
+Thus even a plan for a probability-zero cell must be probabilistic and concentrate on that cell. Let $J$ be a finite loss for credence functions on $2^\Omega$, strictly proper in the sense that each probability uniquely minimises its own expected loss, and lower semicontinuous on probabilities at every world, and assess strategies by
+\[
+L((c,a),\omega)=\alpha J(c,\omega)+\beta J(a_j,\omega)
+\quad(\omega\in E_j),\qquad \alpha,\beta>0.
+\]
+\begin{proposition}\label{prop:short-updating}
+The undominated strategies are exactly the coherent ones, and every incoherent strategy is dominated by a coherent one.
+\end{proposition}
+\begin{proof}
+A weak dominator of a coherent strategy first minimises its $c$-expected loss, forcing its current credences to equal $c$ by strict propriety. Cancelling that common loss and taking expectations under each $a_j$ forces every conditional report to equal $a_j$. Thus $\C_L=\C$ and (T) holds.
+
+For selection, put $\eta=1/(2k)$ and fix a probability $u_j$ on each cell. Given $p\in\Delta$, set
+\[
+r_j=\frac{p|_{E_j}+(\eta-p(E_j))_+u_j}{\max\{p(E_j),\eta\}},\qquad
+\lambda_j=\frac{(p(E_j)-\eta)_+}{\sum_i(p(E_i)-\eta)_+},\qquad
+q=\sum_j\lambda_jr_j,
+\]
+where $x_+=\max\{x,0\}$. These define a continuous coherent strategy $(q,r_1,\ldots,r_k)$, Bayes for $q$, with $\supp q\subseteq\supp p$. Its Bayes inequality therefore supplies a defending world in $\supp p$ against each rival. Its losses are lower semicontinuous in $p$, being sums of compositions of the lower semicontinuous $J$ with continuous probability maps. Thus (S) holds by Corollary~\ref{cor:closed-choice}, with every selected strategy in $\C_L$; Corollary~\ref{cor:coherent-assigned}(c) gives the conclusion.
+\end{proof}
+The selected strategy need not be Bayes for the indexing prior $p$: a Bayes prior supported within $\supp p$ suffices. This avoids discontinuity of conditional probabilities at null cells. The result extends the finite-valued setting of Nielsen~\cite{Nielsen2021} beyond additive, extensional, continuous scores. It also isolates the null-cell issue in Briggs and Pettigrew~\cite{Briggs2020}: merely conditionalizing on positive-probability cells does not ensure undominatedness. Invalid plans on null cells can be dominated without improvement at every world. Finiteness of $J$ matters: logarithmic losses can make such plans tied with coherent strategies, violating closure under ties.
+
+\subsection{Why coherent admissibility is insufficient}
+Joyce's~\cite{Joyce2009} truth-directedness requires loss to decrease whenever every coordinate of a credence moves towards its truth value, with at least one strict improvement. Together with continuity, symmetry and coherent admissibility, this still does not ensure dominance of incoherent credences. For two worlds, take $\M_L=[0,1]^2$, $\C=\Delta$ and
+\[
+L_1(x)=(1-x_1+x_2)^2,\qquad L_2(x)=(1+x_1-x_2)^2.
+\]
+These losses have all four properties. Writing $d=x_1-x_2$, every $x$ is tied with the probability $((1+d)/2,(1-d)/2)$; distinct profiles are incomparable. Thus no model is dominated. Here $E_pL(x)=p_1(1-d)^2+p_2(1+d)^2$ is minimised at $d=p_1-p_2$. Thus $c_p=p$ is Bayes for $p$, and continuous losses verify (S). But every incoherent $x$ is tied with a probability, so (T) fails. Coherent admissibility alone cannot exclude incoherent models that perform exactly as well as coherent ones.
+
+
+\subsection{Chance dominance}\label{sec:chance}
+Pettigrew~\cite[Chapter~10]{Pettigrew2016} compares expected rather than actual accuracy. Let $W$ be finite, $\mathcal K\subseteq\Delta_W$ nonempty, and $\Theta=\operatorname{cl}\operatorname{conv}\mathcal K$. The members of $\mathcal K$ represent possible chances conditional on the agent's evidence. Let $\M_L=[0,1]^{\mathcal F}$ for an agenda $\mathcal F\subseteq2^W$, identify each probability with its induced credences, and let $\C$ be the credences induced by $\Theta$. Suppose $I:\M_L\times W\to[0,\infty)$ is finite, each probability uniquely minimises its own expected loss, and $\theta\mapsto I(\theta,w)$ is lower semicontinuous. Index comparisons by $q\in\mathcal K$, putting $c\preceq_q d$ exactly when $E_qI(c)\le E_qI(d)$.
+\begin{proposition}\label{prop:short-chance}
+The undominated credences are exactly $\C$, and every other credence is dominated by a member of $\C$.
+\end{proposition}
+\begin{proof}
+If $m$ weakly dominates $\theta\in\Theta$, the affine continuous function $q\mapsto E_qI(m)-E_qI(\theta)$ is nonpositive on $\mathcal K$, hence on $\Theta$. At $q=\theta$, unique Bayes optimality forces $m=\theta$ as credence functions. Thus $\C_L=\C$ and (T) holds.
+
+For (S), use Theorem~\ref{thm:local} with compact parameter space $\Theta$, selected credence $c_\theta=\theta$, and closed sets $K_q(m)=\{\theta:E_qI(\theta)\le E_qI(m)\}$. For each finite nonempty $F\subseteq\mathcal K$, set $\theta_F(p)=\sum_{q\in F}p_qq$ and $A^F_q(m)=\theta_F^{-1}(K_q(m))$. These sets are closed, and
+\[
+\sum_{q\in F}p_qE_qI(c)=E_{\theta_F(p)}I(c).
+\]
+Bayes optimality of $c_{\theta_F(p)}$ therefore supplies a comparison at some $q\in\supp p$. The local conditions hold, and Corollary~\ref{cor:coherent-assigned}(c) applies.
+\end{proof}
+The chance set $\mathcal K$ may be infinite; neither additivity nor a Bregman representation is required. Pettigrew's Theorem~10.1.1 gives the stronger conclusion of improvement under every possible chance function, with an additional condition on the dominator's assessment of itself. Our conclusion is ordinary chance dominance by an undominated credence. Either argument requires a normative principle concerning chance dominance, not actual-loss dominance.
+
+
+\bibliographystyle{plain}
+\bibliography{ldg-references}
+\end{document}

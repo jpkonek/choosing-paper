@@ -1,0 +1,70 @@
+% Insert before the bibliography of the Short paper.
+% Add the entries in Applications-bibliography.tex to its bibliography.
+\section{Applications to accuracy}\label{sec:short-applications}
+For a loss $L:\M_L\times\Omega\to[0,\infty]$, put $m\preceq_\omega m'$ exactly when $L(m,\omega)\le L(m',\omega)$. A \emph{Bayes model for $p$} minimises expected loss, with $0\cdot\infty=0$. The conclusions below concern dominance as defined here: improvement at some world, without worsening at any. Improvement at every world is a stronger conclusion.
+
+\subsection{Proper scores}
+\begin{proposition}\label{prop:short-proper}
+Let $\Omega$ be finite, $\C=\Delta\subseteq\M_L$, and suppose each $p\in\Delta$ is the unique Bayes model for $p$. If $p\mapsto L(p,\omega)$ is lower semicontinuous for every world, then the undominated models are exactly the probabilities, and every other model is dominated by a probability.
+\end{proposition}
+\begin{proof}
+A weak dominator of $p$ is also Bayes for $p$, hence equals $p$. Thus probabilities are undominated and no other model is tied with one. Bayes optimality gives, for each $m$, a world in $\supp p$ where $L(p,\omega)\le L(m,\omega)$; lower semicontinuity makes these comparison sets closed. Apply Corollaries~\ref{cor:closed-choice} and~\ref{cor:coherent-assigned}.
+\end{proof}
+This includes strictly proper scores that are not additive, as in Pettigrew~\cite{Pettigrew}, and permits infinite losses. It also applies to finitely many event forecasts on arbitrary $\Omega$: replace worlds by their finitely many truth-value patterns and assign each prior its vector of event probabilities. Continuous, strictly proper component scores give the unique Bayes forecasts, recovering the ordinary-dominance consequence of Predd et al.~\cite{Predd}. Those results also establish stronger forms of dominance. For merely proper scores, uniqueness can fail: incoherent forecasts can share coherent loss profiles and remain undominated~\cite{SSK09}. This is precisely the distinction made by closure under ties.
+
+\subsection{Probabilism on arbitrary domains}
+Let $\M_L=[0,1]^{2^\Omega}$ and let $\C$ be the finitely additive probabilities on all subsets of $\Omega$, with the topology of pointwise convergence. For $f\ge0$, define $E_qf=\sup\{E_qh:0\le h\le f,\ h\text{ bounded}\}$. Call $L$ \emph{quasi-strictly proper} if
+\[
+E_qL(q,\cdot)\le E_qL(m,\cdot)\quad(q\in\C,\ m\in\M_L),
+\]
+strictly whenever $m\notin\C$.
+\begin{proposition}\label{prop:short-infinite}
+If $L$ is quasi-strictly proper and each $q\mapsto L(q,\omega)$ is lower semicontinuous, the undominated models are exactly the finitely additive probabilities, and every other model is dominated by one.
+\end{proposition}
+\begin{proof}
+First suppose $m$ dominates $q\in\C$, strictly improving at $w$. Quasi-strict propriety gives $E_qL(m)=E_qL(q)<\infty$; finiteness follows by comparison with any incoherent credence. Put $q_n=(1-1/n)q+\delta_w/n$. Propriety at $q_n$ and $q$ gives
+\[
+\tfrac1nL(q_n,w)+(1-\tfrac1n)E_qL(q)
+\le E_{q_n}L(q_n)\le E_{q_n}L(m)
+=\tfrac1nL(m,w)+(1-\tfrac1n)E_qL(q).
+\]
+Hence $L(q_n,w)\le L(m,w)$, contradicting lower semicontinuity at $q$. So probabilities are undominated. Quasi-strict propriety also excludes an incoherent model tied with a probability.
+
+Apply Theorem~\ref{thm:local} with the compact space $\Theta=\C$, $c_q=q$, $K_\omega(m)=\{q:L(q,\omega)\le L(m,\omega)\}$, and $\theta_F(p)=p$. The finite-support Bayes inequalities supply condition~2(b), and lower semicontinuity supplies closedness. Corollary~\ref{cor:coherent-assigned} completes the proof.
+\end{proof}
+Nielsen~\cite{Nielsen} assumes continuity of $q\mapsto E_pL(q)$ for every probability $p$, together with local boundedness of coherent loss profiles, and obtains improvement at every world. The proposition requires only worldwise lower semicontinuity and drops boundedness, but concludes ordinary dominance. It does not claim Nielsen's stronger conclusion under weaker hypotheses.
+
+\emph{Chance dominance.} Pettigrew's~\cite[Chapter~10]{Pettigrew2016} chance-dominance argument compares expected rather than actual accuracy. It fits the present framework by indexing comparisons by the possible chance functions, conditional on the agent's evidence, and putting $c\preceq_q d$ exactly when $E_qL(c,\cdot)\le E_qL(d,\cdot)$. For finitely many such functions and probability weights $\alpha_j$, $\sum_j\alpha_j E_{q_j}L(c,\cdot)=E_{\sum_j\alpha_jq_j}L(c,\cdot)$: Bayes selection therefore reduces to selection under mixtures of the possible chances. Our theorems apply when the corresponding selection and closure hypotheses hold. This requires a normative principle concerning chance dominance, not actual-loss dominance. Pettigrew's argument additionally requires improvement under every possible chance function; ordinary dominance as established here does not by itself supply that stronger conclusion.
+
+\subsection{Conditional updating}
+Let $\Omega$ be finite and $E_1,\ldots,E_k$ a partition into nonempty cells. A strategy $(c,a_1,\ldots,a_k)$ specifies current credences and credences to adopt on learning each cell. Call it coherent when all these credences are probabilities,
+\[
+a_j(E_j)=1,\qquad c(A\cap E_j)=c(E_j)a_j(A)\quad\text{for every }A,j.
+\]
+Thus even a plan for a probability-zero cell must be probabilistic and concentrate on that cell. Let $J$ be a finite loss for credence functions on $2^\Omega$, strictly proper in the sense that each probability uniquely minimises its own expected loss, and lower semicontinuous on probabilities at every world, and assess strategies by
+\[
+L((c,a),\omega)=\alpha J(c,\omega)+\beta J(a_j,\omega)
+\quad(\omega\in E_j),\qquad \alpha,\beta>0.
+\]
+\begin{proposition}\label{prop:short-updating}
+The undominated strategies are exactly the coherent ones, and every incoherent strategy is dominated by a coherent one.
+\end{proposition}
+\begin{proof}
+A weak dominator of a coherent strategy first minimises its $c$-expected loss, forcing its current credences to equal $c$ by strict propriety. Cancelling that common loss and taking expectations under each $a_j$ forces every conditional report to equal $a_j$. So coherent strategies are undominated and closed under ties.
+
+For selection, put $\eta=1/(2k)$ and fix a probability $u_j$ on each cell. Given $p\in\Delta$, set
+\[
+r_j=\frac{p|_{E_j}+(\eta-p(E_j))_+u_j}{\max\{p(E_j),\eta\}},\qquad
+\lambda_j=\frac{(p(E_j)-\eta)_+}{\sum_i(p(E_i)-\eta)_+},\qquad
+q=\sum_j\lambda_jr_j,
+\]
+where $x_+=\max\{x,0\}$. These define a continuous coherent strategy $(q,r_1,\ldots,r_k)$, Bayes for $q$, with $\supp q\subseteq\supp p$. Its Bayes inequality therefore supplies a defending world in $\supp p$ against each rival. Its losses are lower semicontinuous, so Corollary~\ref{cor:closed-choice} applies.
+\end{proof}
+The selected strategy need not be Bayes for the indexing prior $p$: a Bayes prior supported within $\supp p$ suffices. This avoids discontinuity of conditional probabilities at null cells. The result extends the finite-valued setting of Nielsen~\cite{Nielsen21} beyond additive, extensional, continuous scores. It also isolates the null-cell issue in Briggs and Pettigrew~\cite{BP20}: merely conditionalizing on positive-probability cells does not ensure undominatedness. Invalid plans on null cells can be dominated without improvement at every world. Finiteness of $J$ matters: logarithmic losses can make such plans tied with coherent strategies, violating closure under ties.
+
+\subsection{Why coherent admissibility is insufficient}
+Joyce's~\cite{Joyce} truth-directedness requires loss to decrease whenever every coordinate of a credence moves towards its truth value, with at least one strict improvement. Together with continuity, symmetry and coherent admissibility, this still does not ensure dominance of incoherent credences. For two worlds, take $\M_L=[0,1]^2$, $\C=\Delta$ and
+\[
+L_1(x)=(1-x_1+x_2)^2,\qquad L_2(x)=(1+x_1-x_2)^2.
+\]
+These losses have all four properties. Writing $d=x_1-x_2$, every $x$ is tied with the probability $((1+d)/2,(1-d)/2)$; distinct profiles are incomparable. Thus no model is dominated. Here selection holds with $c_p=p$, but closure under ties fails. Coherent admissibility alone cannot exclude incoherent models that perform exactly as well as coherent ones.

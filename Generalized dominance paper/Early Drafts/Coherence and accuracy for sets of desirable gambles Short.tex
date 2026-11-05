@@ -1,0 +1,339 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and accuracy for sets of desirable gambles},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Epp}{E_{++}}
+\newcommand{\Lf}{\mathfrak L}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\cl}{cl}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and accuracy for sets of desirable gambles}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}[Gambles]\label{def:gambles}
+Let $\Omega$ be a nonempty set of worlds. Fix a norm-closed, separable linear subspace
+$E\subseteq\ell^\infty(\Omega)$ containing the constant gamble $\one$. Its elements are
+\emph{gambles}, ordered pointwise and equipped with the norm
+$\|f\|=\sup_{\omega\in\Omega}|f(\omega)|$. Write $f\gneq0$ for $f\ge0$ with $f\ne0$, and put
+\[
+  \Epp=\{f\in E:\inf_\Omega f>0\}.
+\]
+Write $B(f,r)$ for the open norm ball and $\cl D$ for the norm closure of $D$.
+Set addition and positive scaling are pointwise: $D+D'=\{f+g:f\in D,\ g\in D'\}$ and
+$D/c=\{f/c:f\in D\}$ for $c>0$. A \emph{convex cone} is closed under addition and positive scaling.
+\end{definition}
+
+The usual gamble space is $\ell^\infty(\Omega)$, the space of all bounded real maps on
+$\Omega$. Here $E$ must have a countable norm-dense subset and contain every uniform limit
+of its elements. For finite $\Omega$ we may take all of $\ell^\infty(\Omega)$; for infinite
+$\Omega$ that space is nonseparable and is excluded. For example, the theorem permits
+$E=C(\Omega)$ when $\Omega$ is compact metrizable, but then excludes bounded discontinuous gambles.
+
+\begin{definition}[Coherent sets of desirable gambles]\label{def:coherence}
+A set $D\subseteq E$ is \emph{coherent} if
+\begin{itemize}[leftmargin=3em]
+\item[(D1)] $0\notin D$;
+\item[(D2)] $f\in D$ whenever $f\gneq0$;
+\item[(D3)] $\lambda f\in D$ whenever $f\in D$ and $\lambda>0$;
+\item[(D4)] $f+g\in D$ whenever $f,g\in D$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[States and credal sets]\label{def:states}
+A \emph{state} is a linear functional $q:E\to\R$ that is positive ($q(h)\ge0$ whenever $h\ge0$) and normalised ($q(\one)=1$). $S$ is the set of states, with the weak-$\ast$ topology, the coarsest topology making $q\mapsto q(h)$ continuous for every $h\in E$. For each world $\omega$, $\delta_\omega(h)\coloneqq h(\omega)$ is a state. A \emph{credal set} is a nonempty, weak-$\ast$ closed, convex set $Q\subseteq S$. For a credal set $Q$ and $h\in E$, put $P_Q(h)\coloneqq\min_{q\in Q}q(h)$; the minimum exists by Lemma~\ref{lem:states}(a).
+
+\end{definition}
+
+\begin{definition}[Measure conditions]\label{def:measure}
+Throughout, $\mu$ is a finite Borel measure on $(E,\|\cdot\|)$, and the same letter denotes its completion. A set is \emph{null} if it is measurable for the completion and has measure $0$; a statement holds \emph{almost everywhere} (a.e.) if it holds outside a null set. The set $A_\mu\coloneqq\{h\in E:\mu\{h\}>0\}$ of \emph{atoms} is countable, since $\mu$ is finite. The \emph{diffuse part} is $\mu_c(B)\coloneqq\mu(B\setminus A_\mu)$; $\mu$ is \emph{atomless} if $A_\mu=\varnothing$. We consider the following conditions on $\mu$; each result states which of them it assumes.
+\begin{itemize}[leftmargin=3em]
+\item[(M1)] \emph{Finite first moment}: $\int\|h\|\,d\mu(h)<\infty$.
+\item[(M2)] \emph{Null indifference boundaries}: $\mu\{h:P_Q(h)=0\}=0$ for every credal set $Q$.
+\item[(M3)] \emph{Full support of the diffuse part}: $\mu_c(U)>0$ for every nonempty open $U\subseteq E$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Models and support]\label{def:models}
+A \emph{model} is a set $X\subseteq E$ that is measurable for the completion of $\mu$. Sets $X,Y\subseteq E$ are \emph{equal a.e.} if $X\triangle Y$ is null. Models equal a.e.\ are identified, and $X\ne Y$ means that $X$ and $Y$ are not equal a.e. A model $X$ is \emph{almost coherent (relative to $\mu$)} if $X=D$ a.e.\ for some coherent set of desirable gambles $D$, and \emph{incoherent} otherwise. Thus ``incoherent'' here means not almost coherent; coherence of a set itself always means Definition~\ref{def:coherence}. The \emph{diffuse support} of $X$ is
+\[
+\supp X\coloneqq\{h\in E:\mu_c(X\cap B(h,r))>0\text{ for every }r>0\}.
+\]
+\end{definition}
+
+\begin{definition}[Rankings and dominance]\label{def:rankings}
+A \emph{ranking} assigns to each world $\omega$ a binary relation $\succeq_\omega$ on models; $X\succeq_\omega Y$ reads ``$X$ is at least as good as $Y$ at $\omega$''. Every ranking evaluates all models. We write $X\succ_\omega Y$ if $X\succeq_\omega Y$ and not $Y\succeq_\omega X$, and $X\sim_\omega Y$ (\emph{tied at $\omega$}) if $X\succeq_\omega Y$ and $Y\succeq_\omega X$. Fix a ranking.
+\begin{itemize}[leftmargin=*]
+\item $Y$ \emph{weakly dominates} $X$ if $Y\succeq_\omega X$ at every world.
+\item $X$ and $Y$ are \emph{tied at every world} if each weakly dominates the other.
+\item $Y$ \emph{dominates} $X$ if $Y$ weakly dominates $X$ and they are not tied at every world; equivalently, $Y\succeq_\omega X$ at every world and $Y\succ_\omega X$ at some world.
+\item $X$ is \emph{undominated}, or \emph{admissible}, if no model dominates it.
+\end{itemize}
+\end{definition}
+
+\section{Axioms}\label{sec:axioms}
+
+\begin{definition}[Changes, guidance and consolidation]\label{def:change}
+Let $X$ and $Y$ be models. The \emph{change from $X$ to $Y$} adds $A\coloneqq Y\setminus X$ and removes $B\coloneqq X\setminus Y$. It is \emph{guided at} the world $\omega$ if $A\subseteq\{h:h(\omega)>0\}$ a.e.\ and $B\subseteq\{h:h(\omega)<0\}$ a.e., and \emph{guided at every world} if it is guided at each $\omega\in\Omega$.
+
+Let $c\in\{1,2\}$ and $t,\kappa>0$, and let $G_1,G_2,G_3$ be pairwise disjoint models with
+\[
+\mu(G_1)=\mu(G_2)=t,\qquad\mu(G_3)=ct,
+\]
+and
+\[
+z(\omega)\ge\frac{x(\omega)+y(\omega)}c+\kappa
+\]
+for every $x\in G_1$, $y\in G_2$, $z\in G_3$ and $\omega\in\Omega$. The inequality concerns the sets $G_1,G_2,G_3$ themselves, not only their classes up to null sets. If $X$ is a model with $G_1\cup G_2\subseteq X$ a.e.\ and $X\cap G_3$ null, the \emph{consolidation} of $X$ by $(G_1,G_2,G_3)$ is
+\[
+X'\coloneqq\bigl(X\setminus(G_1\cup G_2)\bigr)\cup G_3 .
+\]
+The change from $X$ to $X'$ adds $G_3$ and removes $G_1\cup G_2$, up to null sets.
+\end{definition}
+
+\begin{definition}[Axioms]\label{def:axioms}
+A ranking may satisfy the following axioms, in which $X,Y,Z$ range over models and $\omega$ over worlds.
+\begin{itemize}[leftmargin=3em]
+\item[(A1)] \emph{Guidance.} If $X\ne Y$ and the change from $X$ to $Y$ is guided at every world, then $Y\succ_\omega X$ for every $\omega$.
+
+A non-null change guided at each world makes the model strictly better at each world.
+\item[(A2)] \emph{Three-model condition.} There are no $\omega$, $X$, $Y$, $Z$ with $X\succeq_\omega Y$, $Y\succeq_\omega Z$ and $Z\succ_\omega X$.
+
+If $X$ is at least as good as $Y$, and $Y$ at least as good as $Z$, at a world, then $Z$ is not strictly better than $X$ there.
+\item[(A3)] \emph{Transitivity through ties.} If $Z\sim_\omega X$ and $Y\succeq_\omega Z$, then $Y\succeq_\omega X$.
+
+A model at least as good as $Z$ at a world is at least as good there as every model tied with $Z$ there.
+\item[(A4)] \emph{Consolidation.} Every consolidation $X'$ of a model $X$ satisfies $X'\succeq_\omega X$ for every $\omega$.
+
+Replacing two accepted parts by a uniformly better sum ($c=1$) or twice the mass of uniformly better averages ($c=2$) never makes the model worse at any world.
+\end{itemize}
+\end{definition}
+
+\section{Incoherent models are dominated}\label{sec:dominance}
+
+\begin{theorem}[Incoherent models are dominated]\label{thm:dominance}
+Assume (M2) and (M3). Under every ranking satisfying (A1)--(A4), every incoherent model is dominated.
+\end{theorem}
+
+\subsection{Preliminaries}
+
+\begin{lemma}[States and separation]\label{lem:states}
+\begin{enumerate}[label=(\alph*)]
+\item $S$ is weak-$\ast$ compact. For every credal set $Q$, the minimum defining $P_Q$ is attained, $|P_Q(h)-P_Q(h')|\le\|h-h'\|$, and $P_Q(h+t\one)=P_Q(h)+t$ for $t\in\R$. For every $h\in E$, $\min_{q\in S}q(h)=\inf_\Omega h$ and $\max_{q\in S}q(h)=\sup_\Omega h$.
+\item Let $V\subseteq E$ be an open convex cone with $0\notin V$ and $\Epp\subseteq V$. Then $K\coloneqq\{q\in S:q(v)\ge0\text{ for all }v\in V\}$ is a credal set, $V=\{h:P_K(h)>0\}$, and $\cl V\subseteq\{h:P_K(h)\ge0\}$.
+\item There is a countable set $\Omega_0\subseteq\Omega$ with $\inf_{\Omega_0}h=\inf_\Omega h$ for every $h\in E$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Positivity and normalisation give $|q(h)|\le\|h\|$ for every state $q$.
+Thus $S$ is a weak-$\ast$ closed subset of the dual unit ball, hence compact by
+Banach--Alaoglu~\cite{Rudin}. Each credal set is compact, so its minimum is attained.
+The norm bound and $q(\one)=1$ give the Lipschitz and translation properties.
+Finally, positivity gives $q(h)\ge\inf_\Omega h$, while the evaluation states
+$\delta_\omega$ approach this bound. Apply the same argument to $-h$ for the maximum.
+
+
+(b) Let $h\notin V$. By the Hahn--Banach separation theorem~\cite{Rudin} there is a continuous linear $\psi\ne0$ with $\psi(h)<\psi(v)$ for every $v\in V$. As $V$ is a cone, letting $v$ run over $\lambda v$ with $\lambda\to0$ and $\lambda\to\infty$ gives $\psi(h)\le0$ and $\psi\ge0$ on $V$. For $g\ge0$ and $t>0$, $g+t\one\in\Epp\subseteq V$, so $\psi(g)\ge-t\psi(\one)$; hence $\psi$ is positive. Then $|\psi(g)|\le\|g\|\psi(\one)$ for every $g$, so $\psi(\one)>0$, and $q\coloneqq\psi/\psi(\one)\in K$ has $q(h)\le0$. Taking $h\coloneqq0$ shows $K\ne\varnothing$; $K$ is weak-$\ast$ closed and convex, so it is a credal set. For general $h\notin V$, $P_K(h)\le q(h)\le0$. Conversely, for $v\in V$, openness gives $\varepsilon>0$ with $v-\varepsilon\one\in V$, so every $q\in K$ has $q(v)\ge\varepsilon$, and $P_K(v)\ge\varepsilon>0$. Thus $V=\{P_K>0\}$, and $\cl V\subseteq\{P_K\ge0\}$ as $P_K$ is continuous.
+
+(c) Let $(h_j)$ be dense in $E$. For all $j,l\ge1$ choose $\omega_{j,l}$ with $h_j(\omega_{j,l})<\inf_\Omega h_j+1/l$, and let $\Omega_0$ consist of these worlds. If $\|h-h_j\|<\eta$, then $\inf_{\Omega_0}h\le\inf_{\Omega_0}h_j+\eta=\inf_\Omega h_j+\eta\le\inf_\Omega h+2\eta$; and $\inf_{\Omega_0}h\ge\inf_\Omega h$.
+\end{proof}
+
+\begin{lemma}[Measure and support]\label{lem:measurefacts}
+\begin{enumerate}[label=(\alph*)]
+\item If $B$ is a model and $0\le t\le\mu_c(B)$, there is a Borel set $G\subseteq B\setminus A_\mu$ with $\mu(G)=t$.
+\item For every model $X$, $\mu_c(X\setminus\supp X)=0$. If $X\subseteq Y$ a.e., then $\supp X\subseteq\supp Y$.
+\item Assume (M2). Then $A_\mu\subseteq\Epp\cup(-\Epp)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Remove the point atoms from a Borel subset of $B$ of full measure. The restriction of $\mu$ to the resulting Borel set is atomless: on a separable metric space any measure-theoretic atom contains a point atom. Indeed, a countable cover by balls of radius $1/n$ supplies a ball containing almost all of an atom for each $n$; their intersection has full measure in the atom and contains at most one point. Sierpi\'nski's theorem~\cite{Sierpinski} now gives a Borel subset of mass $t$.
+
+(b) Each $h\notin\supp X$ is the centre of an open ball $B_h$ with $\mu_c(X\cap B_h)=0$. These balls cover $E\setminus\supp X$; as $E$ is a separable metric space, countably many of them do. So $\mu_c(X\setminus\supp X)=0$. If $X\subseteq Y$ a.e., then $\mu_c(X\cap B)\le\mu_c(Y\cap B)$ for every ball $B$.
+
+(c) Let $a\in A_\mu$ with $\inf_\Omega a\le0\le\sup_\Omega a$. By Lemma~\ref{lem:states}(a) there are states $q_1,q_2$ with $q_1(a)\le0\le q_2(a)$, and by continuity some $q=(1-\lambda)q_1+\lambda q_2$ has $q(a)=0$. Then $\{q\}$ is a credal set and $\mu\{P_{\{q\}}=0\}\ge\mu\{a\}>0$, contradicting (M2). So $\inf_\Omega a>0$ or $\sup_\Omega a<0$.
+\end{proof}
+
+\subsection{Admissibility and consolidation}
+
+\begin{lemma}[Consolidation preserves admissibility]\label{lem:consolidation}
+Let a ranking satisfy (A2)--(A4), and let $X$ be undominated. Then every consolidation $X'$ of $X$ is tied with $X$ at every world and is undominated.
+\end{lemma}
+\begin{proof}
+By (A4), $X'$ weakly dominates $X$. If $X$ did not weakly dominate $X'$, then $X'$ would dominate $X$; so they are tied at every world. Suppose $Y$ dominates $X'$, and let $\omega_0$ be a world with $Y\succ_{\omega_0}X'$. Since $X'\sim_\omega X$ and $Y\succeq_\omega X'$ at every $\omega$, (A3) gives $Y\succeq_\omega X$ at every $\omega$. If $X\succeq_{\omega_0}Y$, then $X'\succeq_{\omega_0}X$, $X\succeq_{\omega_0}Y$ and $Y\succ_{\omega_0}X'$, which (A2) excludes. So $Y\succ_{\omega_0}X$, and $Y$ dominates $X$, a contradiction.
+\end{proof}
+
+\begin{lemma}[Guidance and upward closure]\label{lem:necessary}
+Assume (M3), and let a ranking satisfy (A1)--(A4). Every undominated model $X$ satisfies:
+\begin{enumerate}[label=(\roman*)]
+\item $\Epp\setminus X$ and $X\cap(-\Epp)$ are null;
+\item there are no $x\in\supp X$ and $z\in\supp(E\setminus X)$ with $z-x\in\Epp$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(i) Let $X$ be any model and $Y\coloneqq(X\cup\Epp)\setminus(-\Epp)$. As $\Epp\cap(-\Epp)=\varnothing$, the change from $X$ to $Y$ adds $\Epp\setminus X$ and removes $X\cap(-\Epp)$. Every added gamble is positive at every world and every removed gamble negative at every world, so the change is guided at every world. If $X$ violates (i), then $Y\ne X$, and (A1) gives $Y\succ_\omega X$ at every $\omega$; so $Y$ dominates $X$.
+
+(ii) Let $X$ be undominated, so that it satisfies (i), and suppose $x\in\supp X$ and $z\in\supp(E\setminus X)$ have $z-x\in\Epp$. Put $4\delta\coloneqq\inf_\Omega(z-x)>0$, $d\coloneqq(z-x)/2$ and $\rho\coloneqq\delta/2$. For $x'\in B(x,\rho)$, $y'\in B(d,\rho)$ and $z'\in B(z,\rho)$,
+\[
+\inf_\Omega(z'-x'-y')\ge\inf_\Omega(z-x-d)-3\rho=\inf_\Omega d-3\rho=\tfrac12\delta,
+\]
+and $\inf_\Omega y'\ge2\delta-\rho>0$, so $B(d,\rho)\subseteq\Epp$. Now $\mu_c(X\cap B(x,\rho))>0$ as $x\in\supp X$; $\mu_c(X\cap B(d,\rho))=\mu_c(B(d,\rho))>0$ by (i) and (M3); and $\mu_c(B(z,\rho)\setminus X)>0$ as $z\in\supp(E\setminus X)$. Choose
+\[
+0<t<\min\bigl\{\mu_c(X\cap B(x,\rho)),\ \tfrac12\mu_c(B(d,\rho)),\ \mu_c(B(z,\rho)\setminus X)\bigr\}.
+\]
+By Lemma~\ref{lem:measurefacts}(a) there are Borel sets $G_1\subseteq(X\cap B(x,\rho))\setminus A_\mu$, then $G_2\subseteq(X\cap B(d,\rho))\setminus(G_1\cup A_\mu)$, which has $\mu_c$-measure greater than $t$, and $G_3\subseteq B(z,\rho)\setminus(X\cup A_\mu)$, each of $\mu$-measure $t$. They are pairwise disjoint, $G_1\cup G_2\subseteq X$ and $G_3\cap X=\varnothing$; with $c\coloneqq1$ and $\kappa\coloneqq\delta/2$, they define a consolidation $X'$ of $X$. Since $X'\cap G_2=\varnothing$ and $G_2\subseteq\Epp$ has measure $t>0$, $X'$ violates (i). But $X'$ is undominated by Lemma~\ref{lem:consolidation}, so it satisfies (i).
+\end{proof}
+
+\subsection{Identifying the undominated models}
+
+\begin{lemma}[Almost coherence from sums and midpoints]\label{lem:identify}
+Assume (M3). Let $X$ be a model satisfying (i) and (ii) of Lemma~\ref{lem:necessary}, and put $V\coloneqq\supp X+\Epp$.
+\begin{enumerate}[label=(\alph*)]
+\item $V$ is open, $\mu_c(V\setminus X)=0$, $\mu_c(X\setminus\cl V)=0$, and $\cl V+\Epp\subseteq V$.
+\item $\Epp\subseteq V$, and $V$ contains no $h$ with $\sup_\Omega h\le0$.
+\item Assume (M2) in addition. If $V+V\subseteq V$ and $(V+V)/2\subseteq V$, then $X$ is almost coherent.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $V=\bigcup_{x\in\supp X}(x+\Epp)$ is open, as $\Epp$ is. Suppose $\mu_c(V\setminus X)>0$. By Lemma~\ref{lem:measurefacts}(b) some $z\in V\setminus X$ lies in $\supp(V\setminus X)\subseteq\supp(E\setminus X)$, and $z-x\in\Epp$ for some $x\in\supp X$, contradicting (ii). Next, for $x\in\supp X$, $x+t\one\in V$ for every $t>0$, so $\supp X\subseteq\cl V$, and $\mu_c(X\setminus\cl V)=0$ by Lemma~\ref{lem:measurefacts}(b). Finally, $V+\Epp\subseteq V$, as $\Epp+\Epp\subseteq\Epp$. Let $w\in\cl V$, $d\in\Epp$ and $v_n\in V$ with $v_n\to w$. Since $\Epp$ is open, $w-v_n+d\in\Epp$ for large $n$, and $w+d=v_n+(w-v_n+d)\in V$.
+
+(b) Let $d\in\Epp$. For small $r>0$, $B(d,r)\subseteq\Epp$, so $\mu_c(X\cap B(d,r))=\mu_c(B(d,r))>0$ by (i) and (M3). Hence $\Epp\subseteq\supp X$, and $d=(d-t\one)+t\one\in V$ for small $t>0$. Suppose $v\in V$ and $\sup_\Omega v\le0$. As $V$ is open, $v-t\one\in V\cap(-\Epp)$ for some $t>0$, so $V\cap(-\Epp)$ is a nonempty open set. By (M3) it has positive $\mu_c$-measure; but $\mu_c(V\setminus X)=0$ by (a), and $X\cap(-\Epp)$ is null by (i).
+
+(c) \emph{$V$ is convex.} Let $v,w\in V$. Closure under midpoints gives $(1-\lambda)v+\lambda w\in V$ for every dyadic rational $\lambda\in(0,1)$. For $\lambda\in(0,1)$, put $p\coloneqq(1-\lambda)v+\lambda w$, choose $r>0$ with $B(v,r)\subseteq V$ and a dyadic rational $\lambda'\in(0,1)$ with $|\lambda-\lambda'|\,\|w-v\|<r(1-\lambda')$, and put $v'\coloneqq(p-\lambda'w)/(1-\lambda')$. Then $v'-v=(\lambda-\lambda')(w-v)/(1-\lambda')$, so $v'\in V$ and $p=(1-\lambda')v'+\lambda'w\in V$.
+
+\emph{$V$ is a convex cone.} Let $v\in V$ and $0<\lambda<1$. Choose $\eta>0$ with $v-\eta\one\in V$, and put $\varepsilon\coloneqq\lambda\eta/(1-\lambda)$. Then $\varepsilon\one\in V$ by (b), and $\lambda v=\lambda(v-\eta\one)+(1-\lambda)\varepsilon\one\in V$. Closure under sums gives $2^kv\in V$ for $k\ge1$; writing $\lambda\ge1$ as $2^k\lambda'$ with $0<\lambda'\le1$ gives $\lambda v\in V$ for every $\lambda>0$.
+
+\emph{Identification.} By (b), $0\notin V$ and $\Epp\subseteq V$. By Lemma~\ref{lem:states}(b) there is a credal set $K$ with $V=\{P_K>0\}$ and $\cl V\setminus V\subseteq\{P_K=0\}$, which is null by (M2). By (a),
+\[
+\mu_c(X\triangle V)\le\mu_c(V\setminus X)+\mu_c(X\setminus\cl V)+\mu(\cl V\setminus V)=0 .
+\]
+\emph{Atoms.} By Lemma~\ref{lem:measurefacts}(c), each atom $a$ lies in $\Epp$ or in $-\Epp$. If $a\in\Epp$, then $a\in V$ by (b), and $a\in X$, as $\Epp\setminus X$ is null. If $a\in-\Epp$, then $a\notin V$ by (b), and $a\notin X$, as $X\cap(-\Epp)$ is null. So $\mu(X\triangle V)=\mu_c(X\triangle V)=0$.
+
+\emph{Coherence.} Put $D\coloneqq V\cup\{g:g\gneq0\}$. (D1) and (D2) hold by (b), and (D3) as $V$ is a cone. For (D4), $V+V\subseteq V$; the sum of two nonzero nonnegative gambles is one; and for $v\in V$ and $g\gneq0$, choose $\varepsilon>0$ with $v-\varepsilon\one\in V$, so $v+g=(v-\varepsilon\one)+(g+\varepsilon\one)\in V+\Epp\subseteq V$. So $D$ is a coherent set of desirable gambles. Each $g\gneq0$ is the limit of $g+t\one\in V$ as $t\to0$, so $D\setminus V\subseteq\cl V\setminus V$, which is null. Hence $X=V=D$ a.e., and $X$ is almost coherent.
+\end{proof}
+
+\begin{lemma}[Failure of closure permits consolidation]\label{lem:gap}
+Assume (M3). Let $X$ satisfy (i) and (ii) of Lemma~\ref{lem:necessary}, and put
+$V=\supp X+\Epp$. Let $c\in\{1,2\}$ and $v_1,v_2\in V$ with $(v_1+v_2)/c\notin V$. Then some consolidation of $X$ violates (ii) of Lemma~\ref{lem:necessary}.
+\end{lemma}
+\begin{proof}
+\emph{Parameters.} Put $s\coloneqq(v_1+v_2)/c$. Choose $\eta>0$ with $B(v_i,2\eta)\subseteq V$ for $i=1,2$, and put $r\coloneqq\eta/8$, $v_i'\coloneqq v_i-\eta\one$ and $z_0\coloneqq s-(\eta/c)\one$.
+
+\emph{Three balls.} $B(v_i',r)\subseteq B(v_i,2\eta)\subseteq V$, so $\mu_c(B(v_i',r)\setminus X)=0$ by Lemma~\ref{lem:identify}(a). For $z\in B(z_0,r)$, $\inf_\Omega(s-z)\ge\eta/c-r>0$, so $s-z\in\Epp$. If such a $z$ lay in $\cl V$, then $s=z+(s-z)\in\cl V+\Epp\subseteq V$ by Lemma~\ref{lem:identify}(a), which is false. So $B(z_0,r)\cap\cl V=\varnothing$, and $\mu_c(B(z_0,r)\cap X)=0$ by Lemma~\ref{lem:identify}(a).
+
+\emph{Margin.} Since $z_0-(v_1'+v_2')/c=(\eta/c)\one$, every $x\in B(v_1',r)$, $y\in B(v_2',r)$ and $z\in B(z_0,r)$ satisfy
+\[
+\inf_\Omega\Bigl(z-\frac{x+y}c\Bigr)\ge\frac\eta c-r-\frac{2r}c\ge\frac\eta4 .
+\]
+
+\emph{A ball below $B(v_1',r)$.} Put $J_0\coloneqq B(v_1'-3r\one,r)\subseteq B(v_1,2\eta)\subseteq V$, so $\mu_c(J_0\setminus X)=0$. For $x\in B(v_1',r)$ and $w\in J_0$, $\inf_\Omega(x-w)>3r-2r>0$, so $x-w\in\Epp$; in particular $J_0\cap B(v_1',r)=\varnothing$.
+
+\emph{The consolidation.} By (M3) the balls $B(v_1',r)$, $B(v_2',r)$, $B(z_0,r)$ and $J_0$ have positive $\mu_c$-measure. Choose
+\[
+0<t<\min\bigl\{\mu_c(B(v_1',r)),\ \tfrac12\mu_c(B(v_2',r)),\ \tfrac1c\mu_c(B(z_0,r)),\ \tfrac12\mu_c(J_0)\bigr\}.
+\]
+By Lemma~\ref{lem:measurefacts}(a) there are Borel sets $G_1\subseteq(X\cap B(v_1',r))\setminus A_\mu$ and $G_2\subseteq(X\cap B(v_2',r))\setminus(G_1\cup A_\mu)$ of $\mu$-measure $t$, and $G_3\subseteq B(z_0,r)\setminus(X\cup A_\mu)$ of $\mu$-measure $ct$. They are pairwise disjoint, $G_1\cup G_2\subseteq X$ and $G_3\cap X=\varnothing$; with $\kappa\coloneqq\eta/4$, they define a consolidation $X'\coloneqq(X\setminus(G_1\cup G_2))\cup G_3$ of $X$.
+
+\emph{$X'$ violates (ii).} Put $J\coloneqq(J_0\cap X)\setminus G_2$. Then $\mu_c(J)\ge\mu_c(J_0)-t>0$. Since $J_0\cap G_1=\varnothing$, $J\subseteq X'$. By Lemma~\ref{lem:measurefacts}(b), some $w\in J$ lies in $\supp J\subseteq\supp X'$, and, as $\mu_c(G_1)=t>0$, some $x\in G_1$ lies in $\supp G_1$. Since $G_1\cap X'=\varnothing$, $\supp G_1\subseteq\supp(E\setminus X')$. Finally $x-w\in\Epp$, as $x\in B(v_1',r)$ and $w\in J_0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:dominance}]
+Suppose $X$ is incoherent and undominated. By Lemma~\ref{lem:necessary}, $X$ satisfies (i) and (ii). Put $V\coloneqq\supp X+\Epp$. By Lemma~\ref{lem:identify}(c), there are $c\in\{1,2\}$ and $v_1,v_2\in V$ with $(v_1+v_2)/c\notin V$. By Lemma~\ref{lem:gap}, some consolidation $X'$ of $X$ violates (ii). By Lemma~\ref{lem:consolidation}, $X'$ is undominated, so it satisfies (ii) by Lemma~\ref{lem:necessary}. This is a contradiction.
+\end{proof}
+
+\section{Consistency and the dominance argument}\label{sec:consistency}
+
+\begin{definition}[A ranking satisfying the axioms]\label{def:integral}
+Assume (M1). For a model $X$ and a world $\omega$, put
+\[
+s_\omega(X)\coloneqq\int_Xh(\omega)\,d\mu(h).
+\]
+A change \emph{is available to} a model $Z$ if it removes only gambles in $Z$ and adds only gambles outside $Z$, up to null sets: $B\subseteq Z$ a.e.\ and $A\cap Z$ is null. Define $Y\succeq_\omega X$ if and only if the change from $X$ to $Y$
+\begin{enumerate}[label=(\roman*)]
+\item is guided at $\omega$, or
+\item is available to no almost coherent model, and $s_\omega(Y)>s_\omega(X)$.
+\end{enumerate}
+\end{definition}
+
+The integral is finite, since $|h(\omega)|\le\|h\|$ and $h\mapsto h(\omega)$ is continuous. It depends on $X$ only up to null sets, and $s_\omega(Y)-s_\omega(X)=s_\omega(Y\setminus X)-s_\omega(X\setminus Y)$. Guidance and availability depend only on the added and removed sets up to null sets. So $\succeq_\omega$ is a relation on models.
+
+\begin{proposition}[Consistency with almost-coherent admissibility]\label{prop:consistent}
+Assume (M1). The ranking of Definition~\ref{def:integral} satisfies (A1)--(A4), and every almost coherent model is undominated under it.
+\end{proposition}
+\begin{proof}
+\emph{Strict score increase.} Let $Y\succeq_\omega X$ with $Y\ne X$, and let the change from $X$ to $Y$ add $A$ and remove $B$. If it is guided at $\omega$, then
+\[
+s_\omega(Y)-s_\omega(X)=\int_A|h(\omega)|\,d\mu(h)+\int_B|h(\omega)|\,d\mu(h)>0,
+\]
+since the integrand is positive a.e.\ on the non-null set $A\cup B$. Otherwise $s_\omega(Y)>s_\omega(X)$ by clause (ii). Hence distinct models are never tied at $\omega$, every comparison $Y\succeq_\omega X$ gives $s_\omega(Y)\ge s_\omega(X)$, and the change between equal models is null, hence guided, so equal models are tied.
+
+\emph{(A1)--(A3).} Suppose $X\succeq_\omega Y$, $Y\succeq_\omega Z$ and $Z\succ_\omega X$. Then $Z\ne X$, and Strict score increase gives $s_\omega(Z)>s_\omega(X)\ge s_\omega(Y)\ge s_\omega(Z)$. For (A3), $Z\sim_\omega X$ forces $Z=X$ by strict score increase, so $Y\succeq_\omega Z$ is $Y\succeq_\omega X$.
+
+If $X\ne Y$ and the change from $X$ to $Y$ is guided at every world, then $Y\succeq_\omega X$ by clause (i), and $X\succeq_\omega Y$ fails by strict score increase.
+
+\emph{(A4).} Let $X'$ be the consolidation of $X$ by $(G_1,G_2,G_3)$, with $c$, $t$ and $\kappa$ as in Definition~\ref{def:change}. The change from $X$ to $X'$ adds $G_3$ and removes $G_1\cup G_2$, up to null sets. Suppose it were available to an almost coherent model $Z$, with $Z=D$ a.e.\ for a coherent set of desirable gambles $D$. Then $G_1\cap D$ is non-null, since $G_1\setminus D\subseteq(G_1\setminus Z)\cup(Z\triangle D)$ is null and $\mu(G_1)>0$; so some $x\in G_1$ lies in $D$, and likewise some $y\in G_2$. By (D3) and (D4), $(x+y)/c\in D$. For each $z\in G_3$, $z-(x+y)/c\ge\kappa\one$, so it lies in $D$ by (D2), and $z\in D$ by (D4). Thus $G_3\subseteq D$, so $G_3\cap Z$ is not null, a contradiction. So no almost coherent model could make the change. Fix $\omega$. Integrating the consolidation inequality against the product of the probability measures
+$\mu|_{G_1}/t$, $\mu|_{G_2}/t$ and $\mu|_{G_3}/(ct)$ gives
+\[
+ \frac{s_\omega(G_3)}{ct}\ge
+ \frac{s_\omega(G_1)+s_\omega(G_2)}{ct}+\kappa.
+\]
+Thus $s_\omega(X')-s_\omega(X)\ge ct\kappa>0$, and clause (ii) accepts the consolidation.
+
+
+\emph{Almost-coherent admissibility.} Let $C$ be an almost coherent model, $C=D$ a.e.\ for a coherent set of desirable gambles $D$, and suppose $Y$ dominates $C$. The change from $C$ to $Y$ adds $A\coloneqq Y\setminus C$ and removes $B\coloneqq C\setminus Y$; it is available to $C$, so clause (ii) never applies, and the change is guided at every world. Let $\Omega_0$ be as in Lemma~\ref{lem:states}(c). Outside the countable union of the null sets $A\cap\{h(\omega)\le0\}$ and $B\cap\{h(\omega)\ge0\}$, $\omega\in\Omega_0$, every $h\in A$ has $h\ne0$ and $\inf_\Omega h=\inf_{\Omega_0}h\ge0$, so $h\gneq0$; and likewise every $h\in B$ has $-h\gneq0$. By (D2), $h\gneq0$ implies $h\in D$; and if $-h\gneq0$, then $h\notin D$, since otherwise $0=h+(-h)\in D$ by (D2) and (D4), contradicting (D1). So $A\setminus D$ and $B\cap D$ are null. As $A\cap C=\varnothing$ and $B\subseteq C$, with $C=D$ a.e., $A$ and $B$ are null. So $Y=C$, and they are tied at every world by reflexivity, contradicting dominance.
+\end{proof}
+
+\begin{lemma}[Existence of suitable measures]\label{lem:measure}
+There is an atomless finite Borel measure $\mu$ satisfying (M1), (M2), (M3) and $\mu(-B)=\mu(B)$ for every Borel $B$.
+\end{lemma}
+\begin{proof}
+Fix $\omega_0\in\Omega$ and put $E_0=\{g:g(\omega_0)=0\}$. Choose a dense sequence
+$(g_k)$ in $E_0$ and positive weights with $\sum_k w_k=1$ and $\sum_k w_k\|g_k\|<\infty$.
+Then $\nu=\sum_k(w_k/2)(\delta_{g_k}+\delta_{-g_k})$ is a symmetric probability measure
+with full support on $E_0$ and finite first moment. Let $\lambda$ be the standard normal
+law, and push $\nu\otimes\lambda$ forward under the homeomorphism
+$\Phi(g,u)=g+u\one$ from $E_0\times\R$ onto $E$. The resulting Borel probability measure
+$\mu$ is symmetric and has full support. It is atomless, since each singleton has a
+singleton vertical section and $\lambda$ has no atoms; hence (M3) holds.
+The bound $\|g+u\one\|\le\|g\|+|u|$ gives (M1). Finally,
+$P_Q(g+u\one)=P_Q(g)+u$ by Lemma~\ref{lem:states}(a), so Fubini's theorem gives
+$\mu\{P_Q=0\}=\int\lambda\{-P_Q(g)\}\,d\nu(g)=0$, proving (M2).
+\end{proof}
+
+\begin{definition}[Dominance principle]\label{def:principle}
+Following~\cite{LDG}, for a family $\Lf$ of rankings, a model is \emph{irrational} if, under every ranking in $\Lf$, some model dominates it, and \emph{rationally permissible} if it is undominated under some ranking in $\Lf$.
+\end{definition}
+
+\begin{corollary}[The LDG conclusion]\label{cor:ldg}
+Fix a measure satisfying (M2) and (M3). Let $\Lf$ be a nonempty family of rankings, each satisfying (A1)--(A4), and suppose that each almost coherent model is undominated under at least one ranking in $\Lf$. Then the rationally permissible models are exactly the almost coherent models, and the irrational models are exactly the incoherent models. If the measure also satisfies (M1), every family of rankings satisfying (A1)--(A4) that contains the ranking of Definition~\ref{def:integral} meets this hypothesis; such measures exist.
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:dominance} makes every incoherent model irrational; the admissibility premise makes every almost coherent model permissible. These verdicts are complementary. Proposition~\ref{prop:consistent} and Lemma~\ref{lem:measure} give the existence claims.
+\end{proof}
+
+The conclusion concerns almost coherence, not literal coherence. Under (M2), $\{0\}$ is
+null, so a coherent set $D$ and $D\cup\{0\}$ represent the same model, although the latter
+violates (D1). An argument for literal coherence must distinguish such null modifications;
+the present rankings cannot do so.
+
+\begin{thebibliography}{9}
+\bibitem{LDG} J.~Konek. Coherence and dominance under general rankings. Manuscript, 2026.
+\bibitem{Rudin} W.~Rudin. \emph{Functional Analysis}, 2nd edition. McGraw-Hill, New York, 1991.
+\bibitem{Sierpinski} W.~Sierpi\'nski. Sur les fonctions d'ensemble additives et continues. \emph{Fund. Math.} 3 (1922) 240--246.
+\end{thebibliography}
+\end{document}
