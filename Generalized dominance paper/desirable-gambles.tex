@@ -1,0 +1,393 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xr-hyper,needspace}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\externaldocument[GR-]{general-rankings}
+\hypersetup{pdftitle={Coherence and Dominance for Desirable Gambles}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newenvironment{axiom}[1]{\par\medskip\noindent\textbf{Axiom #1.}\ \itshape}{\par\medskip}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\K}{\mathfrak K}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\bd}{\partial}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\cor}{\mathrm{cor}}
+\newcommand{\sil}{\mathrm{sil}}
+\newcommand{\wro}{\mathrm{wro}}
+\newcommand{\con}{\mathrm{con}}
+\newcommand{\Lrep}{L_{\mathrm{rep}}}
+\newcommand{\prep}{\preceq^{\mathrm{rep}}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and Dominance for Desirable Gambles}
+\author{Jason Konek}
+\date{}
+
+\begin{document}
+\maketitle
+
+% Abstract reserved for the author.
+
+\section{Setting}\label{sec:setting}
+
+Rankings, dominance, finitely additive probabilities, selection data and rational permissibility are as in \cite{KonekGR}. The general results used are the selection theorem (Theorem~\ref{GR-thm:selection}), Lemma~\ref{GR-lem:S3}, Lemma~\ref{GR-lem:prob} and the complete-class theorem (Theorem~\ref{GR-thm:complete-class}) of that paper. In particular $\Delta$ is the compact space of finitely additive probabilities on $\Omega$, $p_\omega\coloneqq p(\{\omega\})$, and $E_pg$ is the expectation of a bounded function $g$; $p\mapsto E_pg$ is continuous, $g\mapsto E_pg$ is linear and monotone with $|E_pg|\le\sup_\Omega|g|$, and $E_pg=\sum_{\omega\in F}p_\omega g(\omega)$ if $p(F)=1$ for a finite $F$.
+
+\begin{definition}[Worlds and gambles]\label{def:gambles}
+Let $\Omega$ be a nonempty set. Let $E$ be a closed linear subspace of the space of bounded real functions on $\Omega$, with the norm $\|g\|\coloneqq\sup_{\omega}|g(\omega)|$, such that $E$ is separable and the constant function $\one$ belongs to $E$. Elements of $E$ are \emph{gambles}. Write $g\ge h$ if $g(\omega)\ge h(\omega)$ for every $\omega$, and
+\[
+E_+\coloneqq\{g\in E:g\ge0\},\qquad E_{++}\coloneqq\{g\in E:\inf_\Omega g>0\},\qquad E_{--}\coloneqq-E_{++}.
+\]
+$B(c,r)\coloneqq\{g:\|g-c\|<r\}$. For $A\subseteq E$, $-A\coloneqq\{-g:g\in A\}$, and $A$ is \emph{symmetric} if $A=-A$.
+\end{definition}
+
+If $\Omega$ is finite, $E=\R^\Omega$ is an instance. $E_{++}$ is open, $E_+$ is closed, and $\interior E_+=E_{++}$ (if $g\in E_+$ and $\inf g=0$ then $g-\tau\one\notin E_+$ for every $\tau>0$), so $\bd E_+=E_+\setminus E_{++}$.
+
+\begin{definition}[Binary problems and responses]\label{def:responses}
+A set $X\subseteq E$ of desirable gambles guides binary choices as follows. For a binary problem between options $a$ and $b$, let $f\coloneqq a-b$. Then:
+\begin{center}
+\begin{tabular}{cc|l}
+$f\in X$ & $-f\in X$ & guidance on $\{a,b\}$\\\hline
+yes & no & $a$ alone is recommended\\
+no & yes & $b$ alone is recommended\\
+no & no & silence: both options remain available\\
+yes & yes & confusion: neither option remains available
+\end{tabular}
+\end{center}
+This applies to every problem whose options differ by $f$; the problem $\{f,-f\}$ has difference $2f$ and is not singled out. Silence and confusion are not acts and are assigned no return. The \emph{problem class} of $f$ is $[f]\coloneqq\{f,-f\}$; the guidance on every problem with difference $\pm f$ depends only on $X\cap[f]$.
+
+For $\omega\in\Omega$ and $f$ with $f(\omega)\ne0$, let $f^\omega$ be the member of $[f]$ with $f^\omega(\omega)>0$. The \emph{response} of $X$ to $[f]$ at $\omega$ is
+\[
+\rho_\omega(X,f)\coloneqq
+\begin{cases}
+\cor&\text{if }f^\omega\in X,\ -f^\omega\notin X\quad\text{(the option better at $\omega$ alone is recommended)},\\
+\sil&\text{if }f^\omega\notin X,\ -f^\omega\notin X,\\
+\wro&\text{if }f^\omega\notin X,\ -f^\omega\in X\quad\text{(the option worse at $\omega$ alone is recommended)},\\
+\con&\text{if }f^\omega\in X,\ -f^\omega\in X.
+\end{cases}
+\]
+$\rho_\omega(X,f)=\rho_\omega(X,-f)$, and at each $\omega$ the response determines $X\cap[f]$.
+\end{definition}
+
+\Needspace{10\baselineskip}
+\begin{definition}[Measure]\label{def:measure}
+$\mu$ is a Borel measure on $E$ satisfying:
+\begin{enumerate}[label=(M\arabic*)]
+\item $\mu$ is finite, symmetric ($\mu(-A)=\mu(A)$), and has no atoms;
+\item $\int\|g\|\,d\mu(g)<\infty$;
+\item $\mu(\bd R)=0$ for every closed convex $R\subseteq E$ with $E_+\subseteq R$, $R+E_+\subseteq R$ and $R\cap E_{--}=\varnothing$.
+\end{enumerate}
+``Measurable'' refers to the completion of $\mu$, and ``null'' means $\mu$-measure zero.
+\end{definition}
+
+\begin{lemma}\label{lem:integral}
+Under (M1)--(M2), for every measurable $A\subseteq E$ the Bochner integral $\int_Ag\,d\mu$ belongs to $E$, and
+\[
+\ell\Bigl(\int_Ag\,d\mu\Bigr)=\int_A\ell(g)\,d\mu
+\]
+for every continuous linear functional $\ell$ on $E$, including evaluations and the restrictions of $E_p$, $p\in\Delta$.
+\end{lemma}
+\begin{proof}
+The identity on the separable Banach space $E$ is strongly measurable. Its norm is integrable by (M2), so it is Bochner integrable on $A$. Continuous linear functionals commute with the integral, first for simple functions and then by approximation in the integral of the norm.
+\end{proof}
+
+\emph{Frequencies of problem classes.} Put $\mathcal Q\coloneqq\{[f]:f\ne0\}$, let $q:E\setminus\{0\}\to\mathcal Q$ map $f$ to $[f]$, and equip $\mathcal Q$ with the sigma-algebra $\{B\subseteq\mathcal Q:q^{-1}(B)\text{ is measurable}\}$. The frequency measure is $\nu\coloneqq\frac12q_*(\mu|_{E\setminus\{0\}})$; Lemma~\ref{lem:hyperplane} gives $\mu(\{0\})=0$. If $G$ is measurable with $G\cap(-G)=\varnothing$, then $\nu(q(G))=\frac12\mu(G\cup-G)=\mu(G)$. The added and the withdrawn sets of a replacement (Definition~\ref{def:replacement}) contain at most one member of each class, up to null sets, so their $\mu$-masses are the frequencies of the classes they meet.
+
+\begin{lemma}\label{lem:hyperplane}
+Assume (M3). For every $\omega$, $\{g:g(\omega)=0\}$ is null.
+\end{lemma}
+\begin{proof}
+$R\coloneqq\{g:g(\omega)\ge0\}$ is closed and convex, contains $E_+$, satisfies $R+E_+\subseteq R$ and misses $E_{--}$. Evaluation at $\omega$ is a continuous linear functional with value $1$ at $\one$, so $\interior R=\{g:g(\omega)>0\}$ and $\bd R=\{g:g(\omega)=0\}$, which is null by (M3).
+\end{proof}
+
+\begin{lemma}\label{lem:detecting}
+There is a countable $\Omega_0\subseteq\Omega$ with $\sup_{\Omega_0}g=\sup_\Omega g$ for every $g\in E$.
+\end{lemma}
+\begin{proof}
+Let $(v_j)$ be dense in $E$. For $j,k\in\N$ choose $\omega_{j,k}$ with $v_j(\omega_{j,k})>\sup_\Omega v_j-1/k$, and let $\Omega_0\coloneqq\{\omega_{j,k}:j,k\in\N\}$. Given $g$ and $\varepsilon>0$, choose $j$ with $\|g-v_j\|<\varepsilon$ and $k$ with $1/k<\varepsilon$. Then $\sup_{\Omega_0}g\ge g(\omega_{j,k})>v_j(\omega_{j,k})-\varepsilon>\sup_\Omega v_j-2\varepsilon\ge\sup_\Omega g-3\varepsilon$.
+\end{proof}
+
+\begin{proposition}\label{prop:existence-measure}
+There is a measure satisfying (M1)--(M3) and giving positive mass to every open ball.
+\end{proposition}
+\begin{proof}
+Let $(v_j)$ be dense in $E$ and $a_j\coloneqq c_02^{-j}/(1+\|v_j\|)$ with $c_0$ such that $\sum_ja_j=1$. Let $J,\sigma,\zeta$ be independent with $\Pr(J=j)=a_j$, $\Pr(\sigma=\pm1)=\frac12$, and $\zeta$ real with a continuous, everywhere positive, even density $\phi$ with $\int|z|\phi(z)\,dz<\infty$. Let $\mu$ be the law of $\xi\coloneqq\sigma v_J+\zeta\one$. Then $\mu=\sum_{j,s}\frac{a_j}2\mu_{j,s}$ with $\mu_{j,s}$ the law of $sv_j+\zeta\one$, $s=\pm1$.
+(M1) $(J,-\sigma,-\zeta)$ has the law of $(J,\sigma,\zeta)$, so $\mu$ is symmetric. For fixed $(j,s)$ and $h$, $sv_j+z\one=h$ for at most one $z$, so $\mu$ has no point masses; a finite Borel measure on a separable metric space without point masses has no atoms.
+(M2) $\int\|g\|\,d\mu\le\sum_ja_j\|v_j\|+\int|z|\phi(z)\,dz<\infty$.
+\emph{Balls.} Given $c$ and $r>0$, choose $j$ with $\|v_j-c\|<r/2$; then $\mu(B(c,r))\ge\Pr(J=j,\sigma=1,|\zeta|<r/2)>0$.
+(M3) For $R$ as in (M3) and $v\in E$, $T_v\coloneqq\{z:v+z\one\in R\}$ is closed, contains $(\|v\|,\infty)$, misses $(-\infty,-\|v\|)$ and is upward closed, so $T_v=[\alpha(v),\infty)$. If $z>\alpha(v)$ and $\|u\|<z-\alpha(v)$ then $v+z\one+u\ge v+\alpha(v)\one$, so $v+z\one\in\interior R$; if $z<\alpha(v)$ then $v+z\one\notin R$. So $\{z:v+z\one\in\bd R\}\subseteq\{\alpha(v)\}$ and $\mu_{j,s}(\bd R)=0$.
+\end{proof}
+
+\begin{definition}[Models]\label{def:models}
+A \emph{model} is a measurable $X\subseteq E$, two models being identified when their symmetric difference is null. $\M$ is the set of models. Inclusions and equalities between models and sets of gambles are understood up to null sets. For a model $X$:
+\[
+U(X)\coloneqq\{g\in X:-g\notin X\},\quad K(X)\coloneqq\{g\in X:-g\in X\},\quad S(X)\coloneqq\{g:g,-g\notin X\}.
+\]
+For $g\in U(X)$ every problem with difference $g$ has a unique recommendation; $S(X)$ and $K(X)$ are symmetric and collect the silent and the confused classes. For models $X,Y$ the set of \emph{changed classes} is $P(X,Y)\coloneqq(X\triangle Y)\cup-(X\triangle Y)$. For symmetric measurable $A$, $X$ and $X'$ \emph{agree on $A$} if $(X\triangle X')\cap A$ is null. For measurable $A$, $R_A\coloneqq\{h:\mu(A\cap B(h,s))>0\text{ for every }s>0\}$ is the \emph{support} of $A$; it is closed, and $\mu(A\setminus R_A)=0$, since $E\setminus R_A$ is a union of members $B$ of a countable base with $\mu(A\cap B)=0$.
+\end{definition}
+
+\begin{lemma}[Splitting]\label{lem:split}
+Assume (M1). Let $A$ be measurable.
+\begin{enumerate}[label=(\alph*)]
+\item For every $s\in[0,\mu(A)]$ there is a measurable $A'\subseteq A$ with $\mu(A')=s$.
+\item If $A_1,\dots,A_k$ are measurable and $m_1,\dots,m_k>0$ with $\sum_lm_l\le\min_l\mu(A_l)$, there are pairwise disjoint measurable $B_l\subseteq A_l$ with $\mu(B_l)=m_l$.
+\item There are measurable sets $A(s)$, $0\le s\le\mu(A)$, with $A(0)=\varnothing$, $A(\mu(A))=A$, $A(s)\subseteq A(s')$ for $s\le s'$, and $\mu(A(s))=s$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) is Sierpi\'nski's theorem for atomless measures \cite{Sierpinski1922}. (b) Choose $B_1,\dots,B_k$ in turn: $\mu(A_l\setminus(B_1\cup\dots\cup B_{l-1}))\ge\mu(A_l)-\sum_{l'<l}m_{l'}\ge m_l$, and (a) gives $B_l$. (c) Put $a\coloneqq\mu(A)$ and $D_j\coloneqq\{ia2^{-j}:0\le i\le2^j\}$. Set $A(0)=\varnothing$, $A(a)=A$. If $A$ is defined and increasing on $D_j$, and $d<d'$ are consecutive in $D_j$, use (a) to choose $A''\subseteq A(d')\setminus A(d)$ of measure $(d'-d)/2$ and put $A((d+d')/2)\coloneqq A(d)\cup A''$. This gives an increasing family on $D\coloneqq\bigcup_jD_j$ with $\mu(A(d))=d$. For $s\notin D$ put $A(s)\coloneqq\bigcup_{d\in D,\,d<s}A(d)$; the family is increasing, and continuity from below gives $\mu(A(s))=s$.
+\end{proof}
+
+\begin{lemma}[Positive functionals]\label{lem:extension}
+If $\ell$ is a linear functional on $E$ with $\ell(g)\ge0$ for $g\in E_+$ and $\ell(\one)=1$, there is $p\in\Delta$ with $E_pg=\ell(g)$ for every $g\in E$.
+\end{lemma}
+\begin{proof}
+For $g\in E$, $(\sup g)\one-g\in E_+$, so $\ell(g)\le\sup g$. By the Hahn--Banach theorem, $\ell$ extends to a linear $L$ on the space of bounded functions with $L(g)\le\sup g$; then $L(g)=-L(-g)\ge\inf g$, so $L$ is positive with $L(\one)=1$. Put $p(A)\coloneqq L(\one_A)$; then $p\in\Delta$, $E_p=L$ on simple functions, and $|L(g)-L(g')|\le\|g-g'\|$ gives $E_p=L$ on bounded functions.
+\end{proof}
+
+\begin{definition}[Coherence]\label{def:coherence}
+$D\subseteq E$ is \emph{coherent} if (C1) $E_+\setminus\{0\}\subseteq D$; (C2) $g\notin D$ whenever $g\le0$; (C3) $\lambda g\in D$ whenever $g\in D$, $\lambda>0$; (C4) $g+h\in D$ whenever $g,h\in D$. A model $X$ is \emph{almost coherent} if $X\triangle D$ is null for some coherent $D$. $\C$ is the set of almost coherent models.
+\end{definition}
+
+\begin{lemma}\label{lem:measurable}
+Under (M1)--(M3), every coherent set is measurable.
+\end{lemma}
+\begin{proof}
+Let $D$ be coherent. It is convex and closed under multiplication by positive scalars, and contains the open set $E_{++}$. Thus the interior of $\cl D$ equals the interior of $D$, and $D$ differs from $\cl D$ only within $\bd(\cl D)$. $\cl D$ is closed and convex, contains $E_+$, satisfies $\cl D+E_+\subseteq\cl D$, and misses the open set $E_{--}$; so $\bd(\cl D)$ is null by (M3).
+\end{proof}
+
+\section{Axioms}\label{sec:axioms}
+
+A ranking in this paper is a ranking in the sense of \cite[Definition~\ref{GR-def:ranking}]{KonekGR} with $\M_L=\M$: $Y\preceq_\omega X$ reads ``$Y$ is at least as good as $X$ at world $\omega$'', and $\prec_\omega$ is its asymmetric part. Put
+\begin{gather*}
+\mathcal W\coloneqq\{(\sil,\cor),(\wro,\cor),(\wro,\sil),(\con,\cor),(\con,\sil),(\con,\wro)\},\\
+\mathcal S\coloneqq\mathcal W\setminus\{(\con,\wro)\}.
+\end{gather*}
+A pair $(b,a)$, read ``from $b$ to $a$'', is a \emph{weak Guidance transition} if it lies in $\mathcal W$ and a \emph{strict Guidance transition} if it lies in $\mathcal S$. These are the moves up the order $\cor>\sil>\wro\ge\con$, with the move from confused to wrong counted as weak only.
+
+\begin{axiom}{G (Guidance)}
+For all $X,Y\in\M$ and $\omega\in\Omega$:
+\textup{(i)} if for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$, $(\rho_\omega(X,g),\rho_\omega(Y,g))$ is a weak Guidance transition, then $Y\preceq_\omega X$;
+\textup{(ii)} if moreover $\mu(P(X,Y))>0$ and for almost every such $g$ the transition is a strict Guidance transition, then $Y\prec_\omega X$.
+\end{axiom}
+\noindent A change that, at a world, moves every changed response up the order correct, silent, wrong, confused is at least as good there, and strictly better if, in addition, no response moves only from confused to wrong. This applies to changes on many problem classes at once, provided every changed response improves.
+
+\begin{axiom}{I (Independence)}
+For all $X,Y,X',Y'\in\M$: if $P(X,Y)=P(X',Y')\eqqcolon P$, $X$ and $X'$ agree on $P$, and $Y$ and $Y'$ agree on $P$, then for every $\omega$, $Y\preceq_\omega X\iff Y'\preceq_\omega X'$ and $X\preceq_\omega Y\iff X'\preceq_\omega Y'$.
+\end{axiom}
+\noindent The comparison at a world depends only on which problem classes are changed and on both models' responses to them. Both judgments of a changed class belong to the change; an unchanged opposite judgment is not cancelled.
+
+\begin{definition}[Replacements]\label{def:replacement}
+$(X,Y)$ is a \emph{replacement} if $A\coloneqq Y\setminus X\subseteq S(X)$, $A\cap(-A)$ is null, and $W\coloneqq X\setminus Y\subseteq U(X)$. It \emph{adds} $A$ and \emph{withdraws} $W$: unique recommendations are introduced on the classes of $A$, which were silent, and withdrawn on the classes of $W$; no other response changes. Its \emph{added frequency} is $\mu(A)$ and its \emph{withdrawn total} is the gamble $b\coloneqq\int_Wg\,d\mu(g)$, so that $b(\omega)=\int_Wg(\omega)\,d\mu(g)$.
+\end{definition}
+
+\begin{axiom}{Rep (Replacement)}
+Let $(X,Y)$ be a replacement adding $A$ and withdrawing $W$, with withdrawn total $b$, let $\omega\in\Omega$ and $\varepsilon>0$. If either
+\begin{enumerate}[label=(\alph*)]
+\item $\mu(A)>0$ and $\mu(A)\,h(\omega)\ge b(\omega)+\varepsilon$ for almost every $h\in A$, or
+\item $\mu(A)=0$ and $b(\omega)\le-\varepsilon$,
+\end{enumerate}
+then $Y\prec_\omega X$.
+\end{axiom}
+\noindent At a given world, replacing some unique recommendations by unique recommendations on previously silent problems is strictly better there if every newly recommended judgment, weighted by the total frequency of the additions, has a larger advantage at that world than the withdrawn recommendations have in total; when nothing is added, the withdrawn recommendations must have a negative total advantage at that world. This is a comparison across problems at a single world. It is not a consequence of Guidance on single problems. It does not treat silence as an act or assign it a return; it compares the advice withdrawn with the advice introduced, at their frequencies.
+
+\begin{definition}\label{def:class}
+$\K$ is the class of rankings on $\M$ satisfying Axioms G, I and Rep.
+\end{definition}
+
+\section{Compatible probabilities}\label{sec:compatible}
+
+\begin{definition}\label{def:compatible}
+For a model $X$, the probabilities \emph{compatible with $X$} are
+\[
+\Pi_X\coloneqq\{p\in\Delta:E_pf\ge0\text{ for every }f\in R_{U(X)}\}.
+\]
+$\Pi_X$ is closed in $\Delta$, hence compact. If $\Pi_X\ne\varnothing$, put $D_X\coloneqq\{g\in E:\min_{p\in\Pi_X}E_pg>0\}$ and $R_X\coloneqq\{g\in E:E_pg\ge0\ \forall p\in\Pi_X\}$.
+\end{definition}
+
+\begin{lemma}\label{lem:DX}
+Assume (M1)--(M3) and let $\Pi_X\ne\varnothing$. Then $R_X$ is a closed convex cone with $E_+\subseteq R_X$, $R_X+E_+\subseteq R_X$ and $R_X\cap E_{--}=\varnothing$; $\interior R_X=D_X$; and $U(X)\subseteq D_X$ almost everywhere. Moreover $D_X+E_+\subseteq D_X$, no $g\le0$ lies in $D_X$, $E_{++}\subseteq D_X$, and if $B$ is measurable with $\mu(B)>0$ and $B\subseteq D_X$ almost everywhere, then $\int_Bg\,d\mu\in D_X$.
+\end{lemma}
+\begin{proof}
+The properties of $R_X$ follow from monotonicity of each $E_p$ and $E_p\one=1$. $g\mapsto\min_{\Pi_X}E_pg$ is $1$-Lipschitz, so $D_X$ is open, and $D_X\subseteq R_X$; conversely if $g\in\interior R_X$ then $g-\varepsilon\one\in R_X$ for some $\varepsilon>0$, so $E_pg\ge\varepsilon$ on $\Pi_X$. By (M3), $\bd R_X$ is null. By definition $R_{U(X)}\subseteq R_X$, and $\mu(U(X)\setminus R_{U(X)})=0$; so $U(X)\subseteq\interior R_X=D_X$ almost everywhere. The next three properties follow from monotonicity of $E_p$ and $E_pg\ge\inf g$. Finally, $p\mapsto E_p\int_Bg\,d\mu=\int_BE_pg\,d\mu$ is continuous and positive on $\Pi_X$, the integrand being positive almost everywhere on $B$; so its minimum over the compact set $\Pi_X$ is positive.
+\end{proof}
+
+\begin{lemma}[Coherent models]\label{lem:coherent}
+Assume (M1)--(M3) and let $T\in\C$. Then $K(T)$ is null; there is no $Z\in\M$ such that $\mu(P(T,Z))>0$ and, for every $\omega$ and almost every $g\in P(T,Z)$ with $g(\omega)\ne0$, $(\rho_\omega(T,g),\rho_\omega(Z,g))$ is a strict Guidance transition; $\Pi_T\ne\varnothing$; and $T=D_T$ almost everywhere.
+\end{lemma}
+\begin{proof}
+Let $D$ be coherent with $T\triangle D$ null. By (C2) and (C4), $g$ and $-g$ are not both in $D$, so $K(T)$ is null and $U(T)=D$ almost everywhere.
+
+\emph{No change improving every response at every world.} Suppose $Z$ is such a model, and let $\Omega_0$ be as in Lemma~\ref{lem:detecting}. For $w\in\Omega_0$ let $N_w$ be the null set of $g\in P(T,Z)$ with $g(w)=0$ or a non-strict transition at $w$, and let $N\coloneqq\bigcup_{w\in\Omega_0}N_w\cup(T\triangle D)\cup-(T\triangle D)\cup\{0\}$, a null set. Choose $g\in P(T,Z)\setminus N$. Then $T\cap[g]=D\cap[g]$, and the response of $T$ to $[g]$ makes a strict transition at every $w\in\Omega_0$. If $D\cap[g]=\{g'\}$, then $g'\not\le0$ by (C2), so $\sup_\Omega g'>0$, hence $g'(w)>0$ for some $w\in\Omega_0$ by Lemma~\ref{lem:detecting}, and $\rho_w(T,g)=\cor$, from which no strict transition starts. If $D\cap[g]=\varnothing$, then by (C1) neither $g$ nor $-g$ is in $E_+$, so by Lemma~\ref{lem:detecting} there are $w_1,w_2\in\Omega_0$ with $g(w_1)>0>g(w_2)$, and $T$ is silent on $[g]$. If $Z\cap[g]=\{g\}$, $\rho_{w_2}(Z,g)=\wro$; if $Z\cap[g]=\{-g\}$, $\rho_{w_1}(Z,g)=\wro$; if $Z\cap[g]=[g]$, $\rho_{w_1}(Z,g)=\con$. Neither $(\sil,\wro)$ nor $(\sil,\con)$ is strict. Both cases are contradictory.
+
+\emph{$\Pi_T\ne\varnothing$.} By (C3) and (C4), $D$ is convex and closed under multiplication by positive scalars, and by (C2) it is disjoint from the open convex cone $E_{--}$. By the Hahn--Banach separation theorem there are a nonzero continuous linear $\ell$ and $c\in\R$ with $\ell(y)<c\le\ell(g)$ for $y\in E_{--}$ and $g\in D$. Scaling $y\to0$ in $E_{--}$ gives $c\ge0$; scaling $g\to0$ in $D$ gives $c\le0$; so $\ell\ge0$ on $D$. For $g\in E_+$ and $\tau>0$, $g+\tau\one\in E_{++}\subseteq D$, so $\ell(g)\ge-\tau\ell(\one)$, and $\ell\ge0$ on $E_+$. Since $-\|g\|\one\le g\le\|g\|\one$, $|\ell(g)|\le\|g\|\ell(\one)$, so $\ell(\one)>0$; normalise $\ell(\one)=1$. Lemma~\ref{lem:extension} gives $p\in\Delta$ with $E_p=\ell$ on $E$. Every point of $R_{U(T)}$ is a limit of points of $D$, since every ball about it meets $U(T)\cap D$ in positive measure; $\ell$ is continuous, so $E_pf\ge0$ on $R_{U(T)}$, and $p\in\Pi_T$.
+
+\emph{$T=D_T$ almost everywhere.} By Lemma~\ref{lem:DX}, $T=U(T)\subseteq D_T$ almost everywhere. Conversely let $h\in D_T$ and suppose $h\notin D$. Then $h$ is not in the nonempty open convex set $\interior D$ (which contains $E_{++}$), and the Hahn--Banach theorem gives a nonzero continuous linear $\ell$ with $\ell(y)>\ell(h)$ for every $y\in\interior D$. A convex set with nonempty interior lies in the closure of its interior, so $\ell(g)\ge\ell(h)$ for every $g\in D$. By positive scaling, $\ell\ge0$ on $D$ and $\ell(h)\le0$. As before $\ell$ is positive with $\ell(\one)>0$; normalising, Lemma~\ref{lem:extension} gives $p\in\Pi_T$ with $E_ph=\ell(h)\le0$, contradicting $h\in D_T$. So $D_T\subseteq D$, and $D_T\subseteq T$ almost everywhere.
+\end{proof}
+
+\begin{lemma}[Silent advice favoured by every compatible probability]\label{lem:silent}
+Assume (M1)--(M3). Let $X\notin\C$ with $K(X)$ null and $\Pi_X\ne\varnothing$. Then $\mu(S(X)\cap D_X)>0$.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:DX}, $X=U(X)\subseteq D_X$ almost everywhere. If $\mu(D_X\setminus X)=0$, then $X=D_X$ almost everywhere. But $D_X\cup(E_+\setminus\{0\})$ is coherent: (C1) and (C3) are clear; (C2) holds since $E_pg\le0$ for $g\le0$; (C4) holds since $\min_{\Pi_X}E_p(g+g')\ge\min_{\Pi_X}E_pg+\min_{\Pi_X}E_pg'$ and $E_pe\ge0$ for $e\in E_+$. It differs from $D_X$ only within $E_+\setminus E_{++}=\bd E_+$, which is null by (M3) applied to $R=E_+$. So $X$ would be almost coherent. Hence $\mu(D_X\setminus X)>0$. Finally $D_X\setminus X\subseteq S(X)$ almost everywhere: if $g\in D_X$ and $-g\in X$, then almost surely $-g\in D_X$ too, which would give $E_pg>0$ and $E_p(-g)>0$ for $p\in\Pi_X$.
+\end{proof}
+
+\section{Dominance}\label{sec:dominance}
+
+\begin{definition}[Allocations]\label{def:allocations}
+Let $X\in\M$. A \emph{family of withdrawal sets} for $X$ consists of $N\ge0$ gambles $f_1,\dots,f_N$, a radius $r>0$, a mass $M>0$, pairwise disjoint measurable $F_k\subseteq U(X)\cap B(f_k,r)$ with $\mu(F_k)=M$, and families $F_k(s)$, $0\le s\le M$, as in Lemma~\ref{lem:split}(c). For $w\in[0,1]^N$ put $G(w)\coloneqq\bigcup_kF_k(w_kM)$, $b(w)\coloneqq\int_{G(w)}g\,d\mu\in E$ and $\tilde b(w)\coloneqq M\sum_kw_kf_k$. The \emph{additions} are either a measurable $A\subseteq S(X)\cap B(h,r)$ with $\mu(A)=m>0$ and $r<\|h\|$, or $A=\varnothing$, in which case $m\coloneqq0$. Put $Y_w\coloneqq(X\setminus G(w))\cup A$ and
+\[
+\theta(w)\coloneqq
+\begin{cases}
+m(h-r\one)-b(w),&m>0,\\
+-b(w),&A=\varnothing,
+\end{cases}
+\qquad\theta(w)\in E.
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:allocations}
+In the situation of Definition~\ref{def:allocations}:
+\begin{enumerate}[label=(\alph*)]
+\item for every $w$, $(X,Y_w)$ is a replacement adding $A$ and withdrawing $G(w)$, with withdrawn total $b(w)$;
+\item $w\mapsto b(w)$ is continuous into $E$, and $\|b(w)-\tilde b(w)\|\le rMN$;
+\item if $\theta(w)(\omega)\ge\delta>0$, then the hypothesis of Axiom Rep at $\omega$ holds for $(X,Y_w)$ with $\varepsilon=\delta$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $A\subseteq S(X)$ and $G(w)\subseteq U(X)$ are disjoint, $A\cap(-A)=\varnothing$ because either $A=\varnothing$ or $A\subseteq B(h,r)$ with $r<\|h\|$, and $Y_w\setminus X=A$, $X\setminus Y_w=G(w)$. (b) If $N=0$, $[0,1]^0$ is a singleton and $b=\tilde b=0$. If $N\ge1$, $\|b(w)-b(w')\|\le(\max_k\|f_k\|+r)M\sum_k|w_k-w'_k|$, and $\|\int_{F_k(s)}g\,d\mu-sf_k\|\le rs$. (c) If $m>0$, every $h'\in A$ has $\|h'-h\|<r$, so $mh'(\omega)\ge m(h(\omega)-r)=\theta(w)(\omega)+b(w)(\omega)\ge b(w)(\omega)+\delta$. If $m=0$, then $A=\varnothing$ and $b(w)(\omega)=-\theta(w)(\omega)\le-\delta$.
+\end{proof}
+
+For $\eta>0$ and $p\in\Delta$ define
+\[
+w_k(p)\coloneqq\min\Bigl\{1,\max\Bigl\{0,-\frac{M\,E_pf_k}{2\eta}\Bigr\}\Bigr\}\qquad(k=1,\dots,N).
+\]
+It is the unique minimiser over $[0,1]^N$ of $\Psi_p(w)\coloneqq E_p\tilde b(w)+\eta\sum_kw_k^2=\sum_k(Mw_kE_pf_k+\eta w_k^2)$, a sum of strictly convex one-variable quadratics, and it is continuous on $\Delta$ because each $p\mapsto E_pf_k$ is.
+
+\begin{theorem}[Coverage]\label{thm:coverage}
+Assume (M1)--(M3). Let $X\notin\C$ with $K(X)$ null. Then there are a family of withdrawal sets, additions $A$, $\eta>0$ and $\delta>0$ such that $E_p\theta(w(p))\ge2\delta$ for every $p\in\Delta$. In particular, for every finitely supported $p$ some $\omega$ with $p_\omega>0$ has $\theta(w(p))(\omega)\ge2\delta$.
+\end{theorem}
+\begin{proof}
+\emph{Case I: $\Pi_X=\varnothing$.} Every $p\in\Delta$ has some $f\in R_{U(X)}$ with $E_pf<0$, a condition open in $p$. By compactness of $\Delta$ there are $f_1,\dots,f_N\in R_{U(X)}$ and $\kappa>0$ with $\max_k(-E_pf_k)\ge\kappa$ for every $p$. Take $A=\varnothing$, $r\coloneqq\kappa/(4N)$, $M\coloneqq\min_k\mu(U(X)\cap B(f_k,r))/N>0$, pieces $F_k$ by Lemma~\ref{lem:split}(b), and $\eta\coloneqq M\kappa/4$. For $p$ and $k$ attaining the maximum, $E_p\tilde b(w(p))\le\Psi_p(w(p))\le\Psi_p(e_k)=ME_pf_k+\eta\le-M\kappa+\eta$, where $e_k$ is the $k$th unit allocation. By monotonicity of $E_p$ and Lemma~\ref{lem:allocations}(b), $E_p\theta(w(p))=-E_pb(w(p))\ge M\kappa-\eta-rMN\ge M\kappa/2$. Put $\delta\coloneqq M\kappa/4$.
+
+\emph{Case II: $\Pi_X\ne\varnothing$.} By Lemma~\ref{lem:silent}, choose $h\in S(X)\cap D_X\cap R_{S(X)\cap D_X}$, and put $3\beta\coloneqq\min_{p\in\Pi_X}E_ph>0$. Let $O\coloneqq\{p\in\Delta:E_ph>\beta\}$, open, and $Q\coloneqq\Delta\setminus O$, a compact set disjoint from $\Pi_X$.
+
+\emph{Subcase $Q=\varnothing$.} Take $N=0$ (no withdrawals; $M$ and $\eta$ play no role, say $M=\eta=1$), $r\coloneqq\min\{\beta/2,\|h\|/2\}$, and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m>0$. Then $E_p\theta=m(E_ph-r)\ge m\beta/2$ for every $p$; put $\delta\coloneqq m\beta/4$.
+
+\emph{Subcase $Q\ne\varnothing$.} Every $p\in Q$ lies outside $\Pi_X$, so has some $f\in R_{U(X)}$ with $E_pf<0$; by compactness there are $f_1,\dots,f_N\in R_{U(X)}$ and $\kappa>0$ with $\max_k(-E_pf_k)\ge\kappa$ for $p\in Q$. Put $\gamma\coloneqq\kappa/(4(\|h\|+1))$ and fix $r$ with
+\[
+r\le\min\Bigl\{1,\ \frac\beta2,\ \frac{\kappa}{4N},\ \frac{\gamma\beta}{4N}\Bigr\},\qquad r<\|h\|.
+\]
+Then put $M\coloneqq\min\{\min_k\mu(U(X)\cap B(f_k,r))/N,\ \mu(S(X)\cap D_X\cap B(h,r))/\gamma\}>0$, $m\coloneqq\gamma M$ and $\eta\coloneqq M\kappa/4$, and choose $F_k$ and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m$ by Lemma~\ref{lem:split}. Note $rMN\le\gamma M\beta/4=m\beta/4$ and $rMN\le M\kappa/4$. By monotonicity of $E_p$, $E_pb(w)\le E_p\tilde b(w)+rMN$ and $E_p(h-r\one)=E_ph-r$.
+For $p\in O$: $E_p\tilde b(w(p))\le\Psi_p(w(p))\le\Psi_p(0)=0$, so
+\[
+E_p\theta(w(p))\ge m(E_ph-r)-rMN\ge m\beta/2-m\beta/4=m\beta/4.
+\]
+For $p\in Q$, with $k$ attaining $\max_k(-E_pf_k)$: $E_p\tilde b(w(p))\le\Psi_p(e_k)\le-M\kappa+\eta$, so
+\[
+E_p\theta(w(p))\ge-m(\|h\|+r)+M\kappa-\eta-rMN\ge-\tfrac{M\kappa}4+M\kappa-\tfrac{M\kappa}4-\tfrac{M\kappa}4=\tfrac{M\kappa}4.
+\]
+Put $2\delta\coloneqq\min\{m\beta/4,M\kappa/4\}$.
+
+In every case $E_p\theta(w(p))\ge2\delta$ for every $p\in\Delta$. If $p(F)=1$ for a finite $F$, then $E_p\theta(w(p))=\sum_{\omega\in F}p_\omega\theta(w(p))(\omega)$ and $\sum_{\omega\in F}p_\omega=1$, so some $\omega$ with $p_\omega>0$ has $\theta(w(p))(\omega)\ge2\delta$.
+\end{proof}
+
+\begin{theorem}[Exclusion]\label{thm:exclusion}
+Assume (M1)--(M3) and let $L$ be a ranking satisfying Axioms G and Rep. For every $X\in\M\setminus\C$ there are selection data for $X$ under $L$ in the sense of \cite[Definition~\ref{GR-def:selection-data}]{KonekGR}. Consequently some model $Y$ satisfies $Y\prec_\omega X$ for every $\omega$; in particular $Y$ dominates $X$ under $L$.
+\end{theorem}
+\begin{proof}
+\emph{Confusion.} If $K(X)$ has positive measure, let $Z\coloneqq X\setminus K(X)$. Every changed response moves from confused to silent at every world, so Axiom G(ii) gives $Z\prec_\omega X$ for every $\omega$. Take $c(p)\coloneqq Z$ and $A_\omega\coloneqq\Delta$; \ref{GR-S1}--\ref{GR-S3} are immediate.
+
+\emph{Otherwise} $K(X)$ is null. Take the withdrawal sets, additions, $\eta$ and $\delta$ of Theorem~\ref{thm:coverage}, and put
+\[
+c(p)\coloneqq Y_{w(p)},\qquad A_\omega\coloneqq\{p\in\Delta:\theta(w(p))(\omega)\ge\delta\}.
+\]
+Each $A_\omega$ is closed, since $p\mapsto w(p)$ is continuous on $\Delta$ and $w\mapsto\theta(w)(\omega)$ is continuous by Lemma~\ref{lem:allocations}(b). For \ref{GR-S1}: if $p\in A_\omega$, then Lemma~\ref{lem:allocations}(a),(c) and Axiom Rep give $c(p)\prec_\omega X$. \ref{GR-S2} is Theorem~\ref{thm:coverage}. \ref{GR-S3} holds by \cite[Lemma~\ref{GR-lem:S3}(b)]{KonekGR}, since the comparisons in \ref{GR-S1} are strict. By Theorem~\ref{GR-thm:selection} of \cite{KonekGR} there is $p^*\in\bigcap_\omega A_\omega$, and $Y\coloneqq c(p^*)$ satisfies $Y\prec_\omega X$ for every $\omega$.
+\end{proof}
+
+\section{Protection and the complete-class theorem}\label{sec:protection}
+
+Assume (M1)--(M3).
+
+\begin{definition}\label{def:Phi}
+For $X\in\M$, $\omega\in\Omega$ and $g\in E$ put $\varphi_\omega(g;X)\coloneqq g(\omega)\one_{U(X)}(g)-|g(\omega)|\one_{K(X)}(g)$ and $\Phi_\omega(X)\coloneqq\int\varphi_\omega(g;X)\,d\mu(g)$, finite by (M2). Let $\rhd$ be the order $\cor\rhd\sil\rhd\wro\rhd\con$.
+\end{definition}
+
+\begin{lemma}\label{lem:Phi}
+Let $X,Y\in\M$ and $\omega\in\Omega$.
+\begin{enumerate}[label=(\alph*)]
+\item $\Phi_\omega(Y)-\Phi_\omega(X)=\frac12\int_{P(X,Y)}(v_\omega(g;Y)-v_\omega(g;X))\,d\mu$, where $v_\omega(g;X)\coloneqq\varphi_\omega(g;X)+\varphi_\omega(-g;X)$ equals $|g(\omega)|,0,-|g(\omega)|,-2|g(\omega)|$ according as $\rho_\omega(X,g)$ is $\cor,\sil,\wro,\con$.
+\item If $\mu(P(X,Y))>0$ and $\rho_\omega(Y,g)\rhd\rho_\omega(X,g)$ for almost every $g\in P(X,Y)$, then $\Phi_\omega(Y)>\Phi_\omega(X)$; if only $\rho_\omega(Y,g)\rhd\rho_\omega(X,g)$ or equality holds almost everywhere, then $\Phi_\omega(Y)\ge\Phi_\omega(X)$.
+\item If $(X,Y)$ is a replacement adding $A$ and withdrawing $W$, with withdrawn total $b$, then $\Phi_\omega(Y)-\Phi_\omega(X)=\int_Ag(\omega)\,d\mu-b(\omega)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) The integrands $\varphi_\omega(\cdot;X)$ and $\varphi_\omega(\cdot;Y)$ agree off the symmetric set $P(X,Y)$, and symmetry of $\mu$ gives $\int_P\varphi_\omega(-g;\cdot)\,d\mu=\int_P\varphi_\omega(g;\cdot)\,d\mu$. The values of $v_\omega$ follow from the definitions, as $g(\omega)\ne0$ almost everywhere (Lemma~\ref{lem:hyperplane}). (b) Each step up in $\rhd$ raises $v_\omega$ by at least $|g(\omega)|$, which is positive almost everywhere. (c) Recall $Y=(X\setminus W)\cup A$ with $A\subseteq S(X)$, $A\cap(-A)$ null and $W\subseteq U(X)$; we show $U(Y)=(U(X)\setminus W)\cup A$ and $K(Y)=K(X)$ up to null sets. If $g\in A$, then $-g\notin X$ and (almost surely) $-g\notin A$, so $g\in U(Y)$. If $g\in X\setminus W$, then $-g\in A$ is impossible (it would give $g\notin X$), so $-g\in Y$ iff $-g\in X\setminus W$; and $-g\in W$ is impossible, since then $-g\in U(X)$ would give $g\notin X$. Hence $g\in U(Y)$ iff $g\in U(X)$, and $g\in K(Y)$ iff $g\in K(X)$. Conversely $U(X)\setminus W\subseteq X\setminus W\subseteq Y$, and $K(X)\subseteq X\setminus W$ since $W\subseteq U(X)$. Then $\Phi_\omega(Y)-\Phi_\omega(X)=\int_Ag(\omega)\,d\mu-\int_Wg(\omega)\,d\mu$.
+\end{proof}
+
+\begin{definition}[The replacement ranking $\Lrep$]\label{def:Lrep}
+For $X,Y\in\M$ and $\omega\in\Omega$ let $Y\prep_\omega X$ iff either
+\begin{enumerate}[label=(L\alph*)]
+\item\label{La} for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$, $(\rho_\omega(X,g),\rho_\omega(Y,g))\in\mathcal W$; or
+\item\label{Lb} $(X,Y)$ is a replacement adding $A$ and withdrawing $W$, with withdrawn total $b$ and $m\coloneqq\mu(A)$, and
+\[
+\int_Ag(\omega)\,d\mu\ge b(\omega)\qquad\text{and}\qquad mh(\omega)\ge b(\omega)\ \text{ for almost every }h\in A .
+\]
+\end{enumerate}
+$\Lrep$ is the ranking $(\prep_\omega)_{\omega\in\Omega}$ on $\M$.
+\end{definition}
+
+When $m>0$ the second inequality of \ref{Lb} implies the first; when $m=0$ the first says $b(\omega)\le0$.
+
+\begin{theorem}\label{thm:Lrep}
+$\Lrep\in\K$. Moreover, if $T\in\C$ and $Y\prep_\omega T$ for every $\omega$, then $Y=T$; in particular every almost coherent model is undominated under $\Lrep$.
+\end{theorem}
+\begin{proof}
+\emph{Monotonicity.} If $Y\prep_\omega X$ then $\Phi_\omega(Y)\ge\Phi_\omega(X)$: under \ref{La} by Lemma~\ref{lem:Phi}(b), since every pair in $\mathcal W$ is a step up in $\rhd$; under \ref{Lb} by Lemma~\ref{lem:Phi}(c). Hence whenever $Y\prep_\omega X$ and $\Phi_\omega(Y)>\Phi_\omega(X)$, $X\not\prep_\omega Y$.
+
+\emph{G.} (i) is clause \ref{La}. Under (ii), Lemma~\ref{lem:Phi}(b) gives $\Phi_\omega(Y)>\Phi_\omega(X)$, so the comparison is strict.
+
+\emph{Rep.} Under (a) of Axiom Rep, integrating $mh(\omega)\ge b(\omega)+\varepsilon$ over $A$ and dividing by $m$ gives $\int_Ag(\omega)\,d\mu\ge b(\omega)+\varepsilon$; under (b), $\int_Ag(\omega)\,d\mu=0\ge b(\omega)+\varepsilon$. So \ref{Lb} holds and, by Lemma~\ref{lem:Phi}(c), $\Phi_\omega(Y)-\Phi_\omega(X)\ge\varepsilon>0$; the comparison is strict.
+
+\emph{I.} Let $P(X,Y)=P(X',Y')=P$ with $X'=X$ and $Y'=Y$ on $P$. Clause \ref{La} refers only to $P$ and the responses there. Off $P$, $X'=Y'$ and $X=Y$, so $Y'\setminus X'=Y\setminus X$ and $X'\setminus Y'=X\setminus Y$ up to null sets; since $P$ is symmetric, membership of these sets in $S(\cdot)$ or $U(\cdot)$ of the first model is the same for $X$ and $X'$, and the masses and integrals coincide. So \ref{Lb} holds for $(X,Y)$ iff for $(X',Y')$. Exchanging the roles of the two models gives the reverse comparisons.
+
+\emph{Protection.} Let $T\in\C$ and $Y\prep_\omega T$ for every $\omega$. By Lemma~\ref{lem:coherent}, $K(T)$ is null, $\Pi_T\ne\varnothing$ and $T=D_T$ almost everywhere. Let $\Omega_0$ be as in Lemma~\ref{lem:detecting}.
+If \ref{La} holds at every world: since $T$ is almost never confused, every pair in $\mathcal W$ starting from a response of $T$ is in $\mathcal S$. If $\mu(P(T,Y))>0$, this contradicts the second claim of Lemma~\ref{lem:coherent}. So $Y=T$.
+Otherwise $(T,Y)$ is a replacement adding $A$ and withdrawing $W$; let $m$ and $b$ be as above. At a world $\omega$ where \ref{La} holds, every $g\in W$ moves from $\cor$ or $\wro$ to $\sil$, so the move is $(\wro,\sil)$ and $g(\omega)<0$ almost everywhere on $W$; every $h\in A$ moves from $\sil$ to $\cor$ or $\wro$, so $h(\omega)>0$ almost everywhere on $A$. Hence the inequalities of \ref{Lb} hold at every world: $b(\omega)\le\int_Ag(\omega)\,d\mu$ for every $\omega$, and for every $\omega$, $mh(\omega)\ge b(\omega)$ for almost every $h\in A$. Discarding a countable union of null sets, almost every $h\in A$ satisfies $mh(w)\ge b(w)$ for every $w\in\Omega_0$; applying Lemma~\ref{lem:detecting} to $b-mh\in E$ gives $mh\ge b$ on all of $\Omega$.
+If $\mu(W)>0$, then $W\subseteq U(T)\subseteq D_T$ almost everywhere, so $b\in D_T$ by Lemma~\ref{lem:DX}. If $m>0$, almost every $h\in A$ has $mh\in b+E_+\subseteq D_T$, so $h\in D_T$; thus $A\subseteq D_T=T$ almost everywhere, while $A\subseteq S(T)$, so $m=0$, a contradiction. If $m=0$, then $b(\omega)\le0$ for every $\omega$, contradicting $b\in D_T$.
+If $\mu(W)=0$ and $m>0$, then $b=0$, and almost every $h\in A$ has $h\ge0$, hence $h\in E_{++}\subseteq D_T$ because $\bd E_+$ is null by (M3); again $A\subseteq T$ almost everywhere, a contradiction.
+So $A$ and $W$ are null, and $Y=T$. Since $T\prep_\omega T$ for every $\omega$ by \ref{La}, no model dominates $T$.
+\end{proof}
+
+\begin{theorem}[Complete class]\label{thm:main}
+Assume (M1)--(M3).
+\begin{enumerate}[label=(\alph*)]
+\item $\K$ is nonempty: $\Lrep\in\K$, and under $\Lrep$ an almost coherent model is weakly improved at every world only by itself.
+\item For every $L\in\K$, every model outside $\C$ is dominated under $L$, by a model strictly better at every world; so $\U_L\subseteq\C$.
+\item Let $\Lf\subseteq\K$ be a family such that every $T\in\C$ is undominated under some member of $\Lf$; for example $\Lf=\K$, or any $\Lf\subseteq\K$ containing $\Lrep$. Then the rationally permissible models relative to $\Lf$ are exactly the almost coherent models, and every other model is dominated under every member of $\Lf$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. (c) Apply Theorem~\ref{GR-thm:complete-class} of \cite{KonekGR} with $\C$ the almost coherent models: (X) holds by Theorem~\ref{thm:exclusion}, (A) by hypothesis (and by (a) when $\Lrep\in\Lf$), and (E) because every ranking evaluates every model and $\Lf$ is nonempty: $\C$ is nonempty (for any $p\in\Delta$, $\{g:E_pg>0\}\cup(E_+\setminus\{0\})$ is coherent), so the hypothesis supplies a member of $\Lf$.
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,799 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and accuracy for sets of desirable gambles},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\J}{\mathcal J}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\Lc}{\mathcal L}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\Err}{\mathrm{Err}}
+\newcommand{\Cor}{\mathrm{Cor}}
+\newcommand{\Cre}{\mathrm{Cre}}
+\newcommand{\ch}{\mathrm{ch}}
+\newcommand{\Ep}{E^{+}}
+\newcommand{\Em}{E^{-}}
+\newcommand{\Ez}{E^{0}}
+\newcommand{\sge}{\trianglerighteq}
+\newcommand{\sgt}{\triangleright}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\ess}{ess}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+\setlist{itemsep=0pt,topsep=2pt}
+
+\title{Coherence and accuracy for sets of desirable gambles}
+\author{Jason Konek}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\section{Setting and definitions}\label{sec:setting}
+
+\subsection{Gambles, coherence, states and credal sets}
+
+\begin{definition}[Gambles]\label{def:gambles}
+Let $\Omega$ be a nonempty set of \emph{worlds}, of any cardinality. Let $\ell^\infty(\Omega)$ be the space of bounded real functions on $\Omega$, with the norm $\|h\|\coloneqq\sup_{\omega\in\Omega}|h(\omega)|$ and the pointwise order. Write $\one$ for the constant function $1$, and $g\gneq0$ if $g\ge0$ and $g\ne0$. Fix a norm-closed, separable linear subspace $E\subseteq\ell^\infty(\Omega)$ containing $\one$. Its elements are \emph{gambles}. For $h\in E$ and $r>0$, $B(h,r)\coloneqq\{g\in E:\|g-h\|<r\}$. The choice $E=\ell^\infty(\Omega)$ is permitted for finite $\Omega$ and excluded for infinite $\Omega$, when $\ell^\infty(\Omega)$ is nonseparable. {\color{red}A gamble is a bounded payoff that depends on which world is actual.}
+\end{definition}
+
+\begin{definition}[Coherent sets of desirable gambles]\label{def:coherence}
+A set $D\subseteq E$ is a \emph{coherent set of desirable gambles} if
+(D1) $0\notin D$;
+(D2) $g\in D$ whenever $g\gneq0$;
+(D3) $\lambda g\in D$ whenever $g\in D$ and $\lambda>0$;
+(D4) $g+h\in D$ whenever $g,h\in D$.
+{\color{red}A coherent set accepts every gamble that cannot lose and can gain, never accepts the zero gamble, and is closed under positive scaling and sums.}
+\end{definition}
+
+\begin{definition}[States and credal sets]\label{def:states}
+A \emph{state} is a linear functional $q:E\to\R$ that is positive ($q(h)\ge0$ whenever $h\ge0$) and normalised ($q(\one)=1$). $S$ is the set of states, with the weak-$\ast$ topology, the coarsest topology making $q\mapsto q(h)$ continuous for every $h\in E$. For each world $\omega$, $\delta_\omega(h)\coloneqq h(\omega)$ defines a state. A \emph{credal set} is a nonempty, weak-$\ast$ closed, convex set $Q\subseteq S$. For a credal set $Q$ and $h\in E$ put
+\[
+P_Q(h)\coloneqq\min_{q\in Q}q(h),\qquad D^\circ_Q\coloneqq\{h:P_Q(h)>0\},\qquad C_Q\coloneqq\{h:P_Q(h)\ge0\},
+\]
+\[
+D_Q\coloneqq D^\circ_Q\cup\{g:g\gneq0\};
+\]
+the minimum exists by Lemma~\ref{lem:states}(a). For a state $q$, $\{q>0\}\coloneqq\{g\in E:q(g)>0\}$, similarly $\{q<0\}$ and $\{q=0\}$, and $q^+(g)\coloneqq\max(q(g),0)$. For credal sets $Q_1,Q_2$, $\conv(Q_1\cup Q_2)$ is the convex hull, and for $0\le\tau\le1$, $(1-\tau)Q+\tau S\coloneqq\{(1-\tau)q+\tau s:q\in Q,\ s\in S\}$. {\color{red}A state is an expectation; $D_Q$ collects the gambles that every member of $Q$ expects to gain, together with the gambles that cannot lose and can gain.}
+\end{definition}
+
+\begin{lemma}\label{lem:states}
+Let $Q,Q_1,Q_2$ be credal sets.
+\begin{enumerate}[label=(\alph*)]
+\item $|q(h)|\le\|h\|$ for every $q\in S$ and $h\in E$. $S$ is convex, weak-$\ast$ compact and metrizable. Every credal set is compact, and the minimum defining $P_Q$ is attained.
+\item For every $h\in E$, $\min_{q\in S}q(h)=\inf_\Omega h$ and $\max_{q\in S}q(h)=\sup_\Omega h$.
+\item $P_Q$ is $1$-Lipschitz, superadditive, positively homogeneous and monotone, and $P_Q(h+t\one)=P_Q(h)+t$ for $t\in\R$. So $D^\circ_Q$ is an open convex cone and $C_Q$ is closed. If $Q_1\subseteq Q_2$, then $P_{Q_1}\ge P_{Q_2}$; in particular $P_Q\ge P_S$. The set $\conv(Q_1\cup Q_2)$ is a credal set, and $P_{\conv(Q_1\cup Q_2)}=\min(P_{Q_1},P_{Q_2})$.
+\item For $0\le\tau\le1$, $(1-\tau)Q+\tau S$ is a credal set, and $P_{(1-\tau)Q+\tau S}=(1-\tau)P_Q+\tau P_S$.
+\item There is a nonempty countable set $\Omega_0\subseteq\Omega$ with $\inf_{\Omega_0}h=\inf_\Omega h$ for every $h\in E$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) From $-\|h\|\one\le h\le\|h\|\one$, positivity and normalisation give $|q(h)|\le\|h\|$. So $S$ lies in the closed unit ball of the dual $E^\ast$; it is weak-$\ast$ closed, since positivity and normalisation are preserved under pointwise limits; so it is weak-$\ast$ compact by the Banach--Alaoglu theorem~\cite[Theorem~3.15]{Rudin}. Convexity is clear. Let $(e_n)$ be dense in the unit ball of $E$, and put $d(q,r)\coloneqq\sum_n2^{-n}|q(e_n)-r(e_n)|$. If $d(q,r)=0$, then $q=r$ on a dense subset of the unit ball, hence on $E$ by continuity; so $d$ is a metric. The series converges uniformly on $S\times S$ and each term is weak-$\ast$ continuous, so the identity from $S$ with the weak-$\ast$ topology to $(S,d)$ is a continuous bijection from a compact space onto a Hausdorff space, hence a homeomorphism. A credal set is a closed subset of $S$, hence compact, and $q\mapsto q(h)$ is continuous, so its minimum over a credal set is attained.
+
+(b) Since $h-(\inf_\Omega h)\one\ge0$, every state has $q(h)\ge\inf_\Omega h$, while $\inf_\omega\delta_\omega(h)=\inf_\Omega h$; as the minimum over $S$ is attained, it equals $\inf_\Omega h$. Apply this to $-h$ for the maximum.
+
+(c) The bound in (a) makes each $q\mapsto q(h)$ a $1$-Lipschitz function of $h$, so their minimum is $1$-Lipschitz. A minimum of linear functions is superadditive and positively homogeneous; it is monotone because states are positive; and $q(\one)=1$ gives the translation rule. Hence $D^\circ_Q$ is open, and $P_Q(g+h)\ge P_Q(g)+P_Q(h)$ and $P_Q(\lambda h)=\lambda P_Q(h)$ make it a convex cone; $C_Q$ is closed by continuity. A minimum over a smaller set is larger. The map $(q_1,q_2,\lambda)\mapsto(1-\lambda)q_1+\lambda q_2$ is continuous from $Q_1\times Q_2\times[0,1]$ to $S$, and its image is $\conv(Q_1\cup Q_2)$, since $Q_1$ and $Q_2$ are convex; so this set is compact, hence closed, and it is convex and nonempty. Since $(1-\lambda)q_1(h)+\lambda q_2(h)\ge\min(P_{Q_1}(h),P_{Q_2}(h))$, and $\conv(Q_1\cup Q_2)\supseteq Q_1\cup Q_2$, its minimum is $\min(P_{Q_1},P_{Q_2})$.
+
+(d) The set is the image of $Q\times S$ under the continuous map $(q,s)\mapsto(1-\tau)q+\tau s$, so it is compact, and it is convex and nonempty. The minimum of $(1-\tau)q(h)+\tau s(h)$ over $q\in Q$ and $s\in S$ is $(1-\tau)P_Q(h)+\tau P_S(h)$.
+
+(e) Let $(u_j)$ be dense in $E$. For all $j,l\ge1$ choose $\omega_{j,l}$ with $u_j(\omega_{j,l})<\inf_\Omega u_j+1/l$, and let $\Omega_0$ be the set of these worlds. If $\|h-u_j\|<\eta$, then $\inf_{\Omega_0}h\le\inf_{\Omega_0}u_j+\eta=\inf_\Omega u_j+\eta\le\inf_\Omega h+2\eta$; and $\inf_{\Omega_0}h\ge\inf_\Omega h$ always.
+\end{proof}
+
+\begin{lemma}\label{lem:DQ}
+Let $Q,Q_1,Q_2$ be credal sets.
+\begin{enumerate}[label=(\alph*)]
+\item $D_Q$ is a coherent set of desirable gambles and a Borel set, $D^\circ_Q\subseteq D_Q\subseteq C_Q$, and $D_Q\setminus D^\circ_Q\subseteq\{P_Q=0\}$. Every $q\in Q$ is nonnegative on $D_Q$.
+\item If $Q_1\subseteq Q_2$, then $D_{Q_2}\subseteq D_{Q_1}$.
+\item $D_{Q_1}\cap D_{Q_2}=D_{\conv(Q_1\cup Q_2)}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) If $g\gneq0$, then $P_Q(g)\ge P_Q(0)=0$ by monotonicity; so $D_Q\subseteq C_Q$, every $q\in Q$ satisfies $q\ge P_Q\ge0$ on $D_Q$, and $D_Q\setminus D^\circ_Q\subseteq C_Q\setminus D^\circ_Q=\{P_Q=0\}$. (D1): $P_Q(0)=0$, and $0\gneq0$ fails. (D2) holds by definition. (D3): $P_Q$ is positively homogeneous, and $\lambda g\gneq0$ whenever $g\gneq0$ and $\lambda>0$. (D4): let $g,h\in D_Q$. If $g,h\gneq0$, then $g+h\ge0$, and $g+h=0$ would give $0\le g=-h\le0$; so $g+h\gneq0$. Otherwise one of them, say $g$, lies in $D^\circ_Q$, while $P_Q(h)\ge0$; superadditivity gives $P_Q(g+h)>0$. The set $\{g:g\ge0\}=\bigcap_\omega\{g:g(\omega)\ge0\}$ is closed, so $\{g:g\gneq0\}$ is Borel, and $D^\circ_Q$ is open; so $D_Q$ is Borel.
+(b) and (c) follow from Lemma~\ref{lem:states}(c), by taking the union of each side of $D^\circ_{Q_2}\subseteq D^\circ_{Q_1}$ and of $D^\circ_{Q_1}\cap D^\circ_{Q_2}=D^\circ_{\conv(Q_1\cup Q_2)}$ with $\{g:g\gneq0\}$.
+\end{proof}
+
+\subsection{Measures and models}
+
+\begin{definition}[Measure conditions]\label{def:measure}
+Throughout, $\mu$ is a fixed finite Borel measure on $(E,\|\cdot\|)$, and the same letter denotes its completion. A set is \emph{null} if it is measurable for the completion and has measure $0$; a statement holds \emph{almost everywhere} (a.e.) if it holds outside a null set. {\color{red}The set of \emph{sure losses} is $I\coloneqq\{g\in E:\sup_\Omega g<0\}$; it is open, since $\sup_\Omega g'\le\sup_\Omega g+\|g'-g\|$. A finite measure $\nu$ on the $\mu$-measurable sets is \emph{atomless} if every $\mu$-measurable $U$ with $\nu(U)>0$ contains a $\mu$-measurable $U'$ with $0<\nu(U')<\nu(U)$.} The conditions on $\mu$ are:
+\begin{itemize}[leftmargin=3.2em]
+\item[(M1)] $\int\|g\|\,d\mu(g)<\infty$. The stakes have finite average size.
+\item[(M2)] $\mu\{g:P_Q(g)=0\}=0$ for every credal set $Q$. Every credal set has an indifference boundary of measure zero.
+\begingroup\color{red}
+\item[(M3a)] $\mu$ is atomless, and $\mu(I)>0$. No set of gambles is indivisible, and the sure losses carry positive mass.
+\item[(M3b)] $\mu(G)>0$ for every nonempty open $G\subseteq E$. Every region of gambles carries positive mass.
+\endgroup
+\end{itemize}
+\end{definition}
+
+\begingroup\color{red}
+\begin{lemma}\label{lem:atomless}
+Let $\nu$ be an atomless finite measure on the $\mu$-measurable sets, and $U$ a $\mu$-measurable set.
+\begin{enumerate}[label=(\alph*)]
+\item If $\nu(U)>0$ and $\varepsilon>0$, there is a $\mu$-measurable $U'\subseteq U$ with $0<\nu(U')<\varepsilon$.
+\item For every $t\in[0,\nu(U)]$ there is a $\mu$-measurable $U'\subseteq U$ with $\nu(U')=t$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Put $U_0\coloneqq U$. Given $U_n$ with $\nu(U_n)>0$, choose $V\subseteq U_n$ with $0<\nu(V)<\nu(U_n)$; one of $V$ and $U_n\setminus V$ has $\nu$-measure in $(0,\nu(U_n)/2]$; call it $U_{n+1}$. Then $0<\nu(U_n)\le2^{-n}\nu(U)$; take $U'\coloneqq U_n$ with $2^{-n}\nu(U)<\varepsilon$.
+
+(b) Put $V_0\coloneqq\varnothing$. Given $V_n\subseteq U$ with $\nu(V_n)\le t$, let $s_n$ be the supremum of $\nu(W)$ over $\mu$-measurable $W\subseteq U\setminus V_n$ with $\nu(V_n)+\nu(W)\le t$, choose such a $W_n$ with $\nu(W_n)\ge s_n/2$, and put $V_{n+1}\coloneqq V_n\cup W_n$. Let $V\coloneqq\bigcup_nV_n$. Then $\nu(V)=\sum_n\nu(W_n)\le t$, so $s_n\le2\nu(W_n)\to0$. If $\nu(V)<t$, then $\nu(U\setminus V)\ge t-\nu(V)>0$, and (a) gives $W\subseteq U\setminus V$ with $0<\nu(W)<t-\nu(V)$. For every $n$, $W\subseteq U\setminus V_n$ and $\nu(V_n)+\nu(W)\le t$, so $s_n\ge\nu(W)>0$, which contradicts $s_n\to0$. So $\nu(V)=t$.
+\end{proof}
+\endgroup
+
+\begin{definition}[Models and almost coherence]\label{def:models}
+A \emph{model} is a set $X\subseteq E$ that is measurable for the completion of $\mu$. Sets $X,Y$ are \emph{equal a.e.} if $X\triangle Y$ is null. Models equal a.e.\ are identified, and $X\ne Y$ means that $X$ and $Y$ are not equal a.e. $\M$ is the set of models. A model $X$ is \emph{almost coherent} if $X=D$ a.e.\ for some coherent set of desirable gambles $D$ (Definition~\ref{def:coherence}), and \emph{incoherent} otherwise. $\C\subseteq\M$ is the class of almost coherent models. {\color{red}A model answers ``accept'' to each gamble it contains and ``decline'' to every other gamble, and the mass $\mu$ counts these choices.}
+\end{definition}
+
+\begin{lemma}\label{lem:identify}
+\begin{enumerate}[label=(\alph*)]
+\item Let $D$ be a coherent set of desirable gambles, and $K_D\coloneqq\{q\in S:q(h)\ge0\text{ for every }h\in D\}$. Then $K_D$ is a credal set and $D_{K_D}\subseteq D\subseteq C_{K_D}$.
+\item Assume (M2). Every coherent set of desirable gambles $D$ is a model, and $D=D_{K_D}$ a.e. A model is almost coherent if and only if it is equal a.e.\ to $D_Q$ for some credal set $Q$. For every credal set $Q$, $D_Q=D^\circ_Q$ a.e.
+\item Assume (M2). For every credal set $P$ and every state $q$, $D_P\cap\{q>0\}=D_{\conv(P\cup\{q\})}$ a.e.; in particular $D_P\cap\{q>0\}$ is an almost coherent model.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) By (D2) and Lemma~\ref{lem:states}(b), $D^\circ_S=\{h:\inf_\Omega h>0\}\subseteq D$. Put $V\coloneqq D+D^\circ_S$. By (D4), $V\subseteq D$; $V$ is open, as a union of translates of the open set $D^\circ_S$; $V$ is a convex cone, as a sum of convex cones; and $D^\circ_S\subseteq V$, since $e=e/2+e/2$ with $e/2\in D\cap D^\circ_S$. Let $h\notin D$. Then $h\notin V$, and the Hahn--Banach separation theorem for the open convex set $V$~\cite[Theorem~3.4]{Rudin} gives a continuous linear $\varphi$ and $c\in\R$ with $\varphi(v)>c\ge\varphi(h)$ for every $v\in V$. As $\lambda v\in V$ for $\lambda>0$, letting $\lambda\to0$ and $\lambda\to\infty$ gives $c\le0$ and $\varphi\ge0$ on $V$. For $g\ge0$ and $t>0$, $g+t\one\in D^\circ_S\subseteq V$, so $\varphi(g)\ge-t\varphi(\one)$; hence $\varphi$ is positive. Since $\varphi(v)>\varphi(h)$ for $v\in V$, $\varphi\ne0$; positivity gives $|\varphi(g)|\le\|g\|\varphi(\one)$, so $\varphi(\one)>0$. Put $q\coloneqq\varphi/\varphi(\one)\in S$. For $u\in D$ and $t>0$, $u+t\one\in V$, so $q(u)\ge-t$; hence $q\in K_D$, and $q(h)\le0$. Applied to $h\coloneqq0$, which is not in $D$ by (D1), this shows $K_D\ne\varnothing$. $K_D$ is weak-$\ast$ closed and convex, so it is a credal set. For $h\notin D$, $P_{K_D}(h)\le q(h)\le0$, so $D^\circ_{K_D}\subseteq D$, and $D_{K_D}\subseteq D$ by (D2). Finally $D\subseteq C_{K_D}$ by the definition of $K_D$.
+
+(b) By (a) and Lemma~\ref{lem:DQ}(a), $D\setminus D_{K_D}\subseteq C_{K_D}\setminus D^\circ_{K_D}=\{P_{K_D}=0\}$, a Borel null set. So $D$ is the union of the Borel set $D_{K_D}$ and a subset of a null set; it is a model, and $D=D_{K_D}$ a.e. Hence an almost coherent model is equal a.e.\ to some $D_Q$; conversely each $D_Q$ is coherent by Lemma~\ref{lem:DQ}(a). Also $D_Q\setminus D^\circ_Q\subseteq\{P_Q=0\}$ is null.
+
+(c) $\{q\}$ is a credal set with $P_{\{q\}}=q$, so $D_{\{q\}}=\{q>0\}\cup\{g:g\gneq0\}$. By Lemma~\ref{lem:DQ}(c), $D_P\cap D_{\{q\}}=D_{\conv(P\cup\{q\})}$. This set contains $D_P\cap\{q>0\}$, and their difference lies in $\{g\gneq0\}\setminus\{q>0\}\subseteq\{q=0\}$, which is null by (M2). Then (b) applies.
+\end{proof}
+
+\begin{definition}[Payoff vector]\label{def:payoff}
+Assume (M1). As $E$ is separable, the identity map of $E$ is Bochner integrable with respect to $\mu$~\cite{DiestelUhl}. For a model $X$ put
+\[
+m(X)\coloneqq\int_Xg\,d\mu(g)\in E .
+\]
+Bounded linear functionals commute with the Bochner integral, so $q(m(X))=\int_Xq(g)\,d\mu(g)$ for every $q\in S$; in particular $m(X)(\omega)=\int_Xg(\omega)\,d\mu(g)$. Moreover $\|\int f\,d\mu\|\le\int\|f\|\,d\mu$ for Bochner integrable $f$, $m(X)$ depends only on $X$ up to null sets, and $m(X\cup Y)=m(X)+m(Y)$ when $X\cap Y$ is null. {\color{red}$m(X)(\omega)$ is the total payoff at $\omega$ of the gambles $X$ accepts.}
+\end{definition}
+
+\begin{definition}[Supporting states and hull]\label{def:hull}
+For a model $B$, the \emph{supporting states} are $Q_B\coloneqq\{q\in S:q(g)\ge0\text{ for a.e.\ }g\in B\}$. $B$ is \emph{consistent} if $Q_B\ne\varnothing$, and \emph{inconsistent} otherwise. The \emph{hull} of $B$ is $H(B)\coloneqq D_{Q_B}$ if $B$ is consistent, and $H(B)\coloneqq E$ otherwise. {\color{red}Under (M2), $H(B)$ is the smallest set of the form $D_Q$ that contains $B$ almost everywhere (Lemma~\ref{lem:hull}(b),(c)).}
+\end{definition}
+
+\begin{lemma}\label{lem:hull}
+Let $B,B'$ be models.
+\begin{enumerate}[label=(\alph*)]
+\item $Q_B$ is weak-$\ast$ closed and convex, so it is a credal set if $B$ is consistent. It depends only on $B$ up to null sets. If $B\subseteq B'$ a.e., then $Q_{B'}\subseteq Q_B$.
+\item If $B$ is consistent, then $P_{Q_B}\ge0$ a.e.\ on $B$. Under (M2), $B\subseteq H(B)$ a.e.
+\item Let $Q$ be a credal set. If $B\subseteq D_Q$ a.e., then $Q\subseteq Q_B$ and $H(B)\subseteq D_Q$.
+\item If $B\subseteq B'$ a.e., then $H(B)\subseteq H(B')$.
+\item $H(B)$ is a Borel set, and it depends only on $B$ up to null sets.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $q\in Q_B$ means that $B\cap\{q<0\}$ is null; this depends only on the class of $B$. If $q_1,q_2\in Q_B$ and $0\le\lambda\le1$, then $B\cap\{(1-\lambda)q_1+\lambda q_2<0\}\subseteq(B\cap\{q_1<0\})\cup(B\cap\{q_2<0\})$. As $S$ is metrizable, closedness may be tested along sequences: if $q_j\in Q_B$ converge to $q$, then $q(g)<0$ implies $q_j(g)<0$ for large $j$, so $B\cap\{q<0\}\subseteq\bigcup_jB\cap\{q_j<0\}$, which is null. If $B\subseteq B'$ a.e.\ and $q\in Q_{B'}$, then $B\cap\{q<0\}\subseteq(B\setminus B')\cup(B'\cap\{q<0\})$ is null.
+
+(b) $Q_B$ is a compact metric space, so it has a dense sequence $(q_j)$. Outside the null set $\bigcup_jB\cap\{q_j<0\}$, every $g\in B$ has $q_j(g)\ge0$ for all $j$, hence $q(g)\ge0$ for all $q\in Q_B$ by continuity of $q\mapsto q(g)$; that is, $P_{Q_B}(g)\ge0$. Under (M2), $\{P_{Q_B}=0\}$ is null, so $B\subseteq D^\circ_{Q_B}\subseteq H(B)$ a.e. If $B$ is inconsistent, $H(B)=E$.
+
+(c) Every $q\in Q$ is nonnegative on $D_Q$ (Lemma~\ref{lem:DQ}(a)), so $B\cap\{q<0\}\subseteq B\setminus D_Q$ is null, and $q\in Q_B$. So $B$ is consistent, and $H(B)=D_{Q_B}\subseteq D_Q$ by Lemma~\ref{lem:DQ}(b).
+
+(d) If $B'$ is inconsistent, $H(B')=E$. Otherwise $\varnothing\ne Q_{B'}\subseteq Q_B$ by (a), and $H(B)=D_{Q_B}\subseteq D_{Q_{B'}}=H(B')$ by Lemma~\ref{lem:DQ}(b).
+
+(e) By (a) and Lemma~\ref{lem:DQ}(a).
+\end{proof}
+
+\begin{lemma}\label{lem:contraction}
+Let $Z$ be a consistent model and $\underline P_Z\coloneqq P_{Q_Z}$. If $q\in S$, $a\ge0$ and $q(g)\ge-a\,\underline P_Z(g)$ for a.e.\ $g\in Z$, then $q\in Q_Z$.
+\end{lemma}
+\begin{proof}
+For $q'\in Q_Z$ put $\Psi(q')\coloneqq(q+aq')/(1+a)$, a state. Since $q'\ge\underline P_Z$, for a.e.\ $g\in Z$ we have $(q+aq')(g)\ge q(g)+a\underline P_Z(g)\ge0$; so $\Psi$ maps $Q_Z$ into itself. Since $\Psi(q')-q=\frac a{1+a}(q'-q)$, the iterates satisfy $\Psi^k(q')-q=\bigl(\frac a{1+a}\bigr)^k(q'-q)$, whose norm is at most $2\bigl(\frac a{1+a}\bigr)^k$. So $\Psi^k(q')\to q$ in norm, hence weak-$\ast$. As $Q_Z$ is nonempty and closed, $q\in Q_Z$.
+\end{proof}
+
+\begin{lemma}\label{lem:trim}
+Let $Z$ be a consistent model, $0<\tau<1$ and $Q_\tau\coloneqq(1-\tau)Q_Z+\tau S$. For every model $N\subseteq D_{Q_\tau}$ a.e., $Q_{Z\setminus N}=Q_Z$ and $H(Z\setminus N)=H(Z)$.
+\end{lemma}
+\begin{proof}
+$Q_Z\subseteq Q_{Z\setminus N}$ by Lemma~\ref{lem:hull}(a). Let $q\in Q_{Z\setminus N}$, put $a\coloneqq(1-\tau)/\tau$, and write $\underline P_Z\coloneqq P_{Q_Z}$. Let $g\in Z\cap D_{Q_\tau}$. If $g\in D^\circ_{Q_\tau}$, then $(1-\tau)\underline P_Z(g)+\tau P_S(g)>0$ by Lemma~\ref{lem:states}(d), so $q(g)\ge P_S(g)>-a\underline P_Z(g)$. Otherwise $g\gneq0$, so $q(g)\ge0$ and $\underline P_Z(g)\ge0$, and $q(g)\ge-a\underline P_Z(g)$. For a.e.\ $g\in Z\setminus N$, $q(g)\ge0$ and $\underline P_Z(g)\ge0$ by Lemma~\ref{lem:hull}(b), so again $q(g)\ge-a\underline P_Z(g)$. As $Z\subseteq(Z\cap D_{Q_\tau})\cup(Z\setminus N)\cup(N\setminus D_{Q_\tau})$ and the last set is null, $q(g)\ge-a\underline P_Z(g)$ for a.e.\ $g\in Z$. Lemma~\ref{lem:contraction} gives $q\in Q_Z$. The hulls agree by definition.
+\end{proof}
+
+\subsection{Rankings, changes and guidance}
+
+\begin{definition}[Rankings and dominance]\label{def:rankings}
+A \emph{ranking} $L$ assigns to each world $\omega$ a binary relation $\succeq_\omega$ on $\M$; $Y\succeq_\omega X$ reads ``$Y$ is at least as good as $X$ at $\omega$''. Every ranking considered here evaluates every model. $Y\succ_\omega X$ means $Y\succeq_\omega X$ and not $X\succeq_\omega Y$; $X$ and $Y$ are \emph{tied at $\omega$} if $X\succeq_\omega Y$ and $Y\succeq_\omega X$. $Y$ \emph{weakly dominates} $X$ if $Y\succeq_\omega X$ at every world; $X$ and $Y$ are \emph{tied at every world} if each weakly dominates the other; $Y$ \emph{dominates} $X$ if $Y$ weakly dominates $X$ and they are not tied at every world. $X$ is \emph{undominated} if no model dominates it. $\U_L$ is the set of undominated models, and $\C_L\coloneqq\C\cap\U_L$. In the notation of~\cite{LDG}, $\M_L=\M$, the coherent class is $\C$, and $Y\preceq_\omega X$ means $Y\succeq_\omega X$ here. {\color{red}A ranking compares models world by world, and a model is dominated if another is at least as good at every world and strictly better at some world.}
+\end{definition}
+
+\begin{definition}[Changes and guidance]\label{def:change}
+{\color{red}For a world $\omega$ put $\Ep_\omega\coloneqq\{g:g(\omega)>0\}$, $\Em_\omega\coloneqq\{g:g(\omega)<0\}$ and $\Ez_\omega\coloneqq\{g:g(\omega)=0\}$. A \emph{change} is a pair $(A,B)$ of models with $A\cap B$ null; it \emph{adds} $A$ and \emph{removes} $B$. Changes $(A,B)$ and $(A',B')$ are identified if $A=A'$ and $B=B'$ a.e.; $(A,B)$ is \emph{non-null} if $A\cup B$ is not null, and its \emph{reverse} is $(B,A)$.} The \emph{change from $X$ to $Y$} adds $A\coloneqq Y\setminus X$ and removes $B\coloneqq X\setminus Y$. {\color{red}A pair $(X',Y')$ \emph{realises} the change $(A,B)$ if $Y'\setminus X'=A$ and $X'\setminus Y'=B$ a.e.; $(B,A)$ always does. The change \emph{applies to} a model $C$ if $B\subseteq C$ a.e.\ and $A\cap C$ is null; then $(C,(C\setminus B)\cup A)$ realises it. It \emph{drops sure losses} if $\mu(B\cap I)>0$. Under (M1), its \emph{payoff gain} at $\omega$ is $d_\omega(A,B)\coloneqq m(A)(\omega)-m(B)(\omega)$, which equals $m(Y)(\omega)-m(X)(\omega)$ for every realising pair $(X,Y)$. Given a ranking, the change is \emph{approved at $\omega$} if $Y\succeq_\omega X$ for some pair $(X,Y)$ realising it.} It is \emph{guided at} the world $\omega$ if $A\subseteq\Ep_\omega$ a.e.\ and $B\subseteq\Em_\omega$ a.e., and \emph{guided at every world} if it is guided at each $\omega\in\Omega$. {\color{red}A change newly accepts some gambles and stops accepting others; it is guided at $\omega$ if it only accepts gambles that win there and only drops gambles that lose there.}
+\end{definition}
+
+\begin{lemma}\label{lem:guided}
+{\color{red}Let $\Omega_0$ be as in Lemma~\ref{lem:states}(e), and let the change adding $A$ and removing $B$ be guided at every world of $\Omega_0$ (for instance, at every world).} Then $A\subseteq\{g:g\gneq0\}$ a.e.\ and $B\subseteq\{g:-g\gneq0\}$ a.e. Every almost coherent model $K$ satisfies $A\subseteq K$ a.e., and $B\cap K$ is null.
+\end{lemma}
+\begin{proof}
+Outside the countable union of the null sets $A\cap\{g(\omega)\le0\}$ and $B\cap\{g(\omega)\ge0\}$, $\omega\in\Omega_0$, every $g\in A$ has $g(\omega)>0$ for all $\omega\in\Omega_0$, so $g\ne0$ and $\inf_\Omega g=\inf_{\Omega_0}g\ge0$, that is, $g\gneq0$; likewise every $g\in B$ has $-g\gneq0$. Let $K=D$ a.e., with $D$ coherent. By (D2), $\{g\gneq0\}\subseteq D$, so $A\setminus K\subseteq(A\setminus\{g\gneq0\})\cup(D\setminus K)$ is null. If $g\in D$ and $-g\gneq0$, then $-g\in D$ by (D2) and $0\in D$ by (D4), contradicting (D1); so $B\cap K\subseteq(B\setminus\{-g\gneq0\})\cup(K\setminus D)$ is null.
+\end{proof}
+
+\begingroup\color{red}
+\subsection{Errors corrected and created}
+
+\begin{definition}[Errors]\label{def:errors}
+At a world $\omega$, a model $X$ makes a \emph{wrong acceptance} on each $g\in X\cap\Em_\omega$ and a \emph{wrong rejection} on each $g\in\Ep_\omega\setminus X$; the \emph{size} of either error is $|g(\omega)|$. The \emph{errors} of $X$ at $\omega$ form $\Err_\omega(X)\coloneqq(X\cap\Em_\omega)\cup(\Ep_\omega\setminus X)$. A \emph{collection of errors at $\omega$} is any model $U$: its members in $\Em_\omega$ are wrong acceptances and its members in $\Ep_\omega$ are wrong rejections. A change $(A,B)$ \emph{corrects} $\Cor_\omega(A,B)\coloneqq(A\cap\Ep_\omega)\cup(B\cap\Em_\omega)$ and \emph{creates} $\Cre_\omega(A,B)\coloneqq(A\cap\Em_\omega)\cup(B\cap\Ep_\omega)$ at $\omega$. A gamble that loses at $\omega$ is an error there if it is accepted, a gamble that wins at $\omega$ is an error there if it is declined, and a change corrects the errors it undoes and creates the errors it introduces.
+\end{definition}
+
+\begin{lemma}\label{lem:errors}
+Fix a world $\omega$.
+\begin{enumerate}[label=(\alph*)]
+\item For the change from $X$ to $Y$, $\Cor_\omega=\Err_\omega(X)\setminus\Err_\omega(Y)$ and $\Cre_\omega=\Err_\omega(Y)\setminus\Err_\omega(X)$; these two sets are disjoint.
+\item Assume (M2). Then $\Ez_\omega$ is null. For models $U,V$ with $U\cap V$ null, the change
+\[
+\ch_\omega(U,V)\coloneqq\bigl((U\cap\Ep_\omega)\cup(V\cap\Em_\omega),\ (U\cap\Em_\omega)\cup(V\cap\Ep_\omega)\bigr)
+\]
+corrects $U$ and creates $V$ at $\omega$, up to null sets, and it is the only change that does so.
+\item $\ch_\omega(U,V)$ drops sure losses if and only if $\mu(U\cap I)>0$. The change $\ch_\omega(U,\varnothing)$ is guided at $\omega$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $A\coloneqq Y\setminus X$ and $B\coloneqq X\setminus Y$. A gamble $g\in\Em_\omega$ lies in $\Err_\omega(X)\setminus\Err_\omega(Y)$ if and only if $g\in X\setminus Y=B$, and a gamble $g\in\Ep_\omega$ does if and only if $g\in Y\setminus X=A$. Exchange $X$ and $Y$ for the second identity.
+
+(b) $\Ez_\omega=\{P_{\{\delta_\omega\}}=0\}$ is null by (M2). The two components of $\ch_\omega(U,V)$ meet in a subset of $U\cap V$, which is null. Its corrected set is $(U\cap\Ep_\omega)\cup(U\cap\Em_\omega)=U\setminus\Ez_\omega$, and its created set is $V\setminus\Ez_\omega$. If a change $(A,B)$ corrects $U$ and creates $V$ a.e., then $A\cap\Ep_\omega=U\cap\Ep_\omega$, $A\cap\Em_\omega=V\cap\Em_\omega$, $B\cap\Em_\omega=U\cap\Em_\omega$ and $B\cap\Ep_\omega=V\cap\Ep_\omega$ a.e.; as $\Ez_\omega$ is null, $(A,B)=\ch_\omega(U,V)$.
+
+(c) $I\subseteq\Em_\omega$, so the removed set of $\ch_\omega(U,V)$ meets $I$ in $U\cap I$. The change $\ch_\omega(U,\varnothing)$ adds $U\cap\Ep_\omega$ and removes $U\cap\Em_\omega$.
+\end{proof}
+
+\subsection{The weighing of errors}
+
+\begin{definition}[Seriousness]\label{def:serious}
+Let $L$ be a ranking and $\omega$ a world. For models $U,V$ with $U\cap V$ null, $U$ is \emph{at least as serious as} $V$ at $\omega$, written $U\sge_\omega V$, if:
+\begin{enumerate}[label=(\roman*)]
+\item when $\mu(V\cap I)>0$: the change $\ch_\omega(V,U)$ is not approved at $\omega$;
+\item when $\mu(V\cap I)=0$: $V$ is null, or $\ch_\omega(U\cup K,V\setminus S)$ is approved at $\omega$ for every non-null model $K\subseteq I$ and every non-null model $S\subseteq V$.
+\end{enumerate}
+For arbitrary models, $U\sge_\omega V$ if $U\setminus V\sge_\omega V\setminus U$; when $U\cap V$ is null the two clauses agree, by Lemma~\ref{lem:context}(b). Write $U\sgt_\omega V$ if $U\sge_\omega V$ and not $V\sge_\omega U$, and $U\sim_\omega V$ if both hold. The relation $\sge_\omega$ is $L$'s \emph{weighing of errors} at $\omega$.
+
+It is obtained as follows. In (i), $\ch_\omega(V,U)$ corrects $V$, creates $U$ and drops sure losses (Lemma~\ref{lem:errors}(c)). In (ii), $U\cup K$ and $V\setminus S$ meet only in the null set $K\cap V\subseteq I\cap V$, and $\ch_\omega(U\cup K,V\setminus S)$ corrects $U$ together with the extra sure losses $K$, creates $V$ less its part $S$, and drops sure losses. So the weighing is read from the ranking's verdicts at $\omega$ on changes that drop a non-null set of sure losses, and from nothing else. In words: $U$ is at least as serious as $V$ if the ranking refuses to correct $V$ at the price of creating $U$, or, when $V$ contains no sure losses, if it accepts correcting $U$ together with any extra sure losses at the price of creating $V$ less any non-null part of it.
+\end{definition}
+
+\begin{lemma}\label{lem:context}
+Let $L$ be a ranking and $\omega$ a world.
+\begin{enumerate}[label=(\alph*)]
+\item The relation $\sge_\omega$ is determined by which changes that drop sure losses are approved at $\omega$. It does not depend on verdicts on any other change, or on verdicts at other worlds. If $L$ satisfies independence (Definition~\ref{def:order}), a change is approved at $\omega$ if and only if $Y\succeq_\omega X$ for every pair realising it; so $\sge_\omega$ does not depend on the models in which the changes are made.
+\item If $U=U'$ and $V=V'$ a.e., then $U\sge_\omega V$ if and only if $U'\sge_\omega V'$.
+\item If $W$ is a model disjoint from $U\cup V$, then $U\sge_\omega V$ if and only if $U\cup W\sge_\omega V\cup W$.
+\item $U\sge_\omega\varnothing$ for every model $U$, and $U\sim_\omega\varnothing$ for every null $U$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) is read off Definition~\ref{def:serious}. Under independence, the verdicts on all pairs realising one change agree.
+(b) Whether a change is approved depends only on its class, since realising pairs are defined by equalities a.e., and $\ch_\omega$ changes only by null sets when its arguments do. Whether $\mu(V\cap I)>0$ depends only on the class of $V$. In (ii), the non-null $S\subseteq V$ and the non-null $S'\subseteq V'$ correspond through $S\mapsto S\cap V'$ and $S'\mapsto S'\cap V$, with $V\setminus S=V'\setminus(S\cap V')$ a.e.
+(c) $(U\cup W)\setminus(V\cup W)=U\setminus V$ and $(V\cup W)\setminus(U\cup W)=V\setminus U$, so both sides compare the same pair of disjoint models.
+(d) $U\sge_\omega\varnothing$ is case (ii) with $V=\varnothing$. If $U$ is null, $\varnothing\sge_\omega U$ is case (ii) with $V=U$ null.
+\end{proof}
+\endgroup
+
+\begingroup\color{red}
+\section{Qualitative axioms on a ranking}\label{sec:axioms}
+
+\begin{definition}[Ordering axioms]\label{def:order}
+A ranking $L$ satisfies, at a world $\omega$:
+\begin{itemize}[leftmargin=*]
+\item \emph{reflexivity} if $X\succeq_\omega X$ for every model $X$. Every model is at least as good as itself.
+\item \emph{independence} if $Y\succeq_\omega X$ if and only if $Y'\succeq_\omega X'$, whenever $(X,Y)$ and $(X',Y')$ realise the same change. The verdict on a change depends only on what it adds and removes.
+\item \emph{strict guidance} if $Y\succ_\omega X$ whenever $X\ne Y$ and the change from $X$ to $Y$ is guided at $\omega$. Accepting more gambles that win at $\omega$, or declining more gambles that lose there, is strictly better at $\omega$.
+\item the \emph{three-model condition} if $X\succeq_\omega Y\succeq_\omega Z$ implies that $Z\succ_\omega X$ fails. No chain of two comparisons ends in a strict reversal.
+\end{itemize}
+$L$ satisfies \emph{finite-chain consistency} at $\omega$ if there are no $k\ge1$ and models $X_0,\dots,X_k$ with $X_{i-1}\succeq_\omega X_i$ for $1\le i\le k$ and $X_k\succ_\omega X_0$; this property is not assumed; it is verified for the rankings of Section~\ref{sec:existence}.
+\end{definition}
+
+\begin{definition}[Axioms on the weighing of errors]\label{def:weighing}
+A ranking satisfies, at a world $\omega$:
+\begin{itemize}[leftmargin=*]
+\item \emph{comparability of errors} if $\sge_\omega$ is complete and transitive on $\M$. Any two collections of errors can be compared for seriousness, consistently.
+\item \emph{no weightless errors} if $U\sgt_\omega\varnothing$ for every non-null model $U$. Every non-null collection of errors is more serious than none.
+\item \emph{continuity} if $V\sge_\omega\bigcup_nU_n$ whenever $U_1\subseteq U_2\subseteq\cdots$ are models with $V\sge_\omega U_n$ for every $n$. Seriousness does not jump at a limit.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Consolidation and splitting]\label{def:shape}
+Let $G_1,G_2,G_3$ be pairwise disjoint non-null models of equal mass $t\coloneqq\mu(G_i)$, and let $\kappa>0$. All inequalities below are required for every choice of $g_1\in G_1$, $g_2\in G_2$ and $g_3\in G_3$; no pairing of individual gambles is involved.
+\begin{itemize}[leftmargin=*]
+\item \emph{Consolidation} at $\omega$: if $g_3\ge g_1+g_2+\kappa\one$, the change that withdraws $G_1\cup G_2$ and introduces $G_3$ satisfies $\Cor_\omega\sge_\omega\Cre_\omega$. Here the corrected errors are the withdrawn gambles that lose at $\omega$ together with the introduced gambles that win at $\omega$, and the created errors are the withdrawn gambles that win at $\omega$ together with the introduced gambles that lose at $\omega$. If the withdrawn bets are replaced by half as many bets, each paying, at every world, more than the sum of one withdrawn bet from each half by a sure margin, then at each world the errors this corrects are together at least as serious as the errors it creates.
+\item \emph{Splitting} at $\omega$: if $g_1+g_2\ge g_3+\kappa\one$, the change that withdraws $G_3$ and introduces $G_1\cup G_2$ satisfies $\Cor_\omega\sge_\omega\Cre_\omega$. This is the consolidation change run backwards, with the inequality reversed so that the bets introduced again pay more by a sure margin. If a withdrawn set of bets is replaced by twice as many bets, any two of which, one from each half, together pay more at every world than any withdrawn bet by a sure margin, then at each world the errors this corrects are together at least as serious as the errors it creates.
+\end{itemize}
+A ranking satisfies consolidation (splitting) if it does so at every world. Neither axiom changes the set of available choices (all of $E$, with the same $\mu$), only which gambles are accepted; accepting $g$ and accepting $-g$ are separate answers to separate choices. Both say that replacing the withdrawn bets by introduced bets whose total pays more at every world by a sure margin never makes the corrected errors less serious than the created ones.
+\end{definition}
+
+The \emph{individual axioms} are reflexivity, independence, strict guidance, the three-model condition, comparability of errors, no weightless errors, continuity, consolidation and splitting, each at every world.
+
+\begin{definition}[Target admissibility and local completion]\label{def:local}
+Let $T$ be an almost coherent model, the \emph{target}.
+\begin{itemize}[leftmargin=*]
+\item For a ranking $L$, a world $\omega$ and a change $(A,B)$, the ranking $L^+(A,B,\omega)$ agrees with $L$, except that at $\omega$ it also has $Y\succeq_\omega X$ for every pair $(X,Y)$ realising $(A,B)$. It adds the comparison at the specified world in every common context required by independence.
+\item $L$ satisfies \emph{target admissibility} relative to $T$ if $T$ is undominated under $L$. The target survives the ranking.
+\item $L$ satisfies \emph{local completion} relative to $T$ if the following holds for every world $\omega$ and every change $(A,B)$ with $\Cor_\omega(A,B)\sgt_\omega\Cre_\omega(A,B)$ for $L$'s own weighing: if $L^+(A,B,\omega)$ satisfies the individual axioms and target admissibility relative to $T$, then $L$ approves $(A,B)$ at $\omega$. If adding, at the specified world and in every common context required by independence, a comparison whose corrected errors are more serious than its created errors would keep every individual axiom and keep $T$ undominated, then the ranking already contains that comparison.
+\item $\Lc(T)$ is the class of rankings that satisfy the individual axioms, target admissibility relative to $T$, and local completion relative to $T$.
+\end{itemize}
+For a nonempty set $\Pc\subseteq\C$, target admissibility and local completion relative to $\Pc$, and the class $\Lc(\Pc)$, are defined in the same way, with ``$T$ is undominated'' replaced by ``every member of $\Pc$ is undominated''; so $\Lc(T)=\Lc(\{T\})$.
+\end{definition}
+
+All conditions in Definitions~\ref{def:order}--\ref{def:local} concern a single ranking. The family-level claim concerns $\Lc\coloneqq\bigcup_{T\in\C}\Lc(T)$ and the conditions (E), (A), (S) and (T) of Definition~\ref{def:LDGassumptions}; it is Theorem~\ref{thm:main}(c).
+\endgroup
+
+\begingroup\color{red}
+\section{Representation and monetary consequences}\label{sec:representation}
+
+\begin{theorem}\label{thm:villegas}
+\emph{(Villegas~\cite{Villegas}.)} Let $\mathcal A$ be a $\sigma$-algebra of subsets of $E$, and $\succsim$ a complete and transitive relation on $\mathcal A$ such that: (i) $U\succsim\varnothing$ for every $U\in\mathcal A$, and $\varnothing\succsim E$ fails; (ii) if $U\cap W=V\cap W=\varnothing$, then $U\succsim V$ if and only if $U\cup W\succsim V\cup W$; (iii) if $U_n\uparrow U$ and $V\succsim U_n$ for every $n$, then $V\succsim U$; (iv) if $U\succ\varnothing$, some $V\subseteq U$ in $\mathcal A$ has $U\succ V\succ\varnothing$. Then there is a unique countably additive probability $w$ on $\mathcal A$ with $U\succsim V$ if and only if $w(U)\ge w(V)$.
+\end{theorem}
+
+\begin{theorem}\label{thm:repr}
+Assume (M2) and (M3a), and let a ranking satisfy comparability of errors, no weightless errors and continuity at $\omega$.
+\begin{enumerate}[label=(\alph*)]
+\item There is a unique probability $w_\omega$ on the $\mu$-measurable sets with $U\sge_\omega V$ if and only if $w_\omega(U)\ge w_\omega(V)$. It is countably additive and atomless, and it has the same null sets as $\mu$. Let $f_\omega\coloneqq dw_\omega/d\mu$, so $f_\omega>0$ a.e., and put $\psi_\omega\coloneqq f_\omega$ on $\Ep_\omega$, $\psi_\omega\coloneqq-f_\omega$ on $\Em_\omega$ and $\psi_\omega\coloneqq0$ on $\Ez_\omega$.
+\item The \emph{net weight} of a change $(A,B)$ at $\omega$ is
+\[
+n_\omega(A,B)\coloneqq w_\omega(\Cor_\omega(A,B))-w_\omega(\Cre_\omega(A,B))=\int_A\psi_\omega\,d\mu-\int_B\psi_\omega\,d\mu .
+\]
+For the change from $X$ to $Y$ it equals $w_\omega(\Err_\omega X)-w_\omega(\Err_\omega Y)$, so net weights add along chains of changes. The reverse change has the opposite net weight.
+\item A change that drops sure losses is approved at $\omega$ if and only if its net weight at $\omega$ is positive.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) Apply Theorem~\ref{thm:villegas} to the $\mu$-measurable sets and $\succsim\,\coloneqq\,\sge_\omega$. The relation is complete and transitive by comparability. (i): $U\sge_\omega\varnothing$ by Lemma~\ref{lem:context}(d); $E$ is non-null as $\mu(I)>0$, so $E\sgt_\omega\varnothing$ by no weightless errors. (ii) is Lemma~\ref{lem:context}(c). (iii) is continuity. (iv): if $U\sgt_\omega\varnothing$, then $U$ is non-null by Lemma~\ref{lem:context}(d); (M3a) gives $U'\subseteq U$ with $0<\mu(U')<\mu(U)$; $U'$ and $U\setminus U'$ are non-null, so $U'\sgt_\omega\varnothing$ and $U\setminus U'\sgt_\omega\varnothing$, and the latter gives $U\sgt_\omega U'$ by Lemma~\ref{lem:context}(c). So $w_\omega$ exists, is unique and is countably additive. By Lemma~\ref{lem:context}(d) and no weightless errors, $w_\omega(U)=0$ if and only if $U$ is null. If $w_\omega(U)>0$, then $U$ is non-null, and $U'$ as above has $0<w_\omega(U')<w_\omega(U)$; so $w_\omega$ is atomless. By the Radon--Nikodym theorem, $f_\omega$ exists, and $\{f_\omega=0\}$ is $w_\omega$-null, hence null.
+
+(b) $\Cor_\omega$ and $\Cre_\omega$ are disjoint, $w_\omega(\Cor_\omega)=\int_{A\cap\Ep_\omega}f_\omega+\int_{B\cap\Em_\omega}f_\omega$ and $w_\omega(\Cre_\omega)=\int_{A\cap\Em_\omega}f_\omega+\int_{B\cap\Ep_\omega}f_\omega$. As $\Ez_\omega$ is null (Lemma~\ref{lem:errors}(b)), the difference is $\int_A\psi_\omega-\int_B\psi_\omega$. By Lemma~\ref{lem:errors}(a), for the change from $X$ to $Y$ it is $w_\omega(\Err_\omega X\setminus\Err_\omega Y)-w_\omega(\Err_\omega Y\setminus\Err_\omega X)=w_\omega(\Err_\omega X)-w_\omega(\Err_\omega Y)$. Reversing a change exchanges $\Cor_\omega$ and $\Cre_\omega$.
+
+(c) Let $(A,B)$ drop sure losses, $U\coloneqq\Cor_\omega(A,B)$ and $V\coloneqq\Cre_\omega(A,B)$. Then $(A,B)=\ch_\omega(U,V)$ (Lemma~\ref{lem:errors}(b)) and $B\cap I\subseteq U$, so $\mu(U\cap I)>0$. Definition~\ref{def:serious}(i), applied to the pair $(V,U)$, says that $V\sge_\omega U$ holds exactly when $\ch_\omega(U,V)$ is not approved. By completeness, $(A,B)$ is approved if and only if $U\sgt_\omega V$, that is, $w_\omega(U)>w_\omega(V)$.
+\end{proof}
+
+\begin{lemma}\label{lem:reading}
+Assume (M2) and (M3a). Let $\nu$ be an atomless finite measure on the $\mu$-measurable sets with the same null sets as $\mu$. Suppose that, at $\omega$, a change that drops sure losses is approved if and only if $\nu(\Cor_\omega)>\nu(\Cre_\omega)$. Then $U\sge_\omega V$ if and only if $\nu(U)\ge\nu(V)$, for all models $U,V$. Hence comparability of errors, no weightless errors and continuity hold at $\omega$, and $w_\omega=\nu/\nu(E)$.
+\end{lemma}
+\begin{proof}
+Let $U\cap V$ be null; the general case follows, since $\nu(U\setminus V)\ge\nu(V\setminus U)$ if and only if $\nu(U)\ge\nu(V)$. If $\mu(V\cap I)>0$, then $\ch_\omega(V,U)$ drops sure losses and corrects $V$ and creates $U$ up to null sets (Lemma~\ref{lem:errors}), so it is approved if and only if $\nu(V)>\nu(U)$; hence $U\sge_\omega V$ if and only if $\nu(U)\ge\nu(V)$. Let $\mu(V\cap I)=0$. If $V$ is null, both $U\sge_\omega V$ and $\nu(U)\ge\nu(V)$ hold. Let $V$ be non-null. Each change $\ch_\omega(U\cup K,V\setminus S)$ in Definition~\ref{def:serious}(ii) drops sure losses, and is approved if and only if $\nu(U\cup K)>\nu(V\setminus S)$. If $\nu(U)\ge\nu(V)$, then $\nu(U\cup K)\ge\nu(U)\ge\nu(V)>\nu(V\setminus S)$, since $\nu(S)>0$; so $U\sge_\omega V$. If $\nu(U)<\nu(V)$, Lemma~\ref{lem:atomless}(a) gives non-null $K\subseteq I$ and $S\subseteq V$ with $\nu(K),\nu(S)<(\nu(V)-\nu(U))/2$, and then $\nu(U\cup K)\le\nu(U)+\nu(K)<\nu(V)-\nu(S)=\nu(V\setminus S)$; so $U\sge_\omega V$ fails. The three axioms follow, as $\nu$ is countably additive and positive on non-null sets; and $w_\omega=\nu/\nu(E)$ by uniqueness in Theorem~\ref{thm:repr}(a).
+\end{proof}
+
+\begin{lemma}\label{lem:auxiliary}
+Assume the hypotheses of Theorem~\ref{thm:repr}. Let $U,V$ be models with $U\cap V$ null, $V$ non-null and $\mu(V\cap I)=0$, and let $I_0\subseteq I$ be a non-null model. The following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $U\sge_\omega V$;
+\item $\ch_\omega(U\cup K,V\setminus S)$ is approved at $\omega$ for every non-null $K\subseteq I_0$ and every non-null $S\subseteq V$;
+\item for every pair of decreasing sequences of non-null models $K_n\subseteq I_0$ and $S_n\subseteq V$ with $\bigcap_nK_n$ and $\bigcap_nS_n$ null, $\ch_\omega(U\cup K_n,V\setminus S_n)$ is approved at $\omega$ for every $n$;
+\item for some such pair of sequences, $\ch_\omega(U\cup K_n,V\setminus S_n)$ is approved at $\omega$ for infinitely many $n$.
+\end{enumerate}
+Such pairs of sequences exist. So the comparison does not depend on the auxiliary sets $K$ and $S$ of Definition~\ref{def:serious}(ii): they may be confined to any non-null set of sure losses, or replaced by any vanishing sequences.
+\end{lemma}
+\begin{proof}
+Write $w\coloneqq w_\omega$. Each change involved drops sure losses, so by Theorem~\ref{thm:repr} and Lemma~\ref{lem:errors}(b) it is approved if and only if $w(U\cup K)>w(V\setminus S)$. (1)$\Rightarrow$(2): $w(U\cup K)\ge w(U)\ge w(V)>w(V\setminus S)$, as $w(S)>0$. (2)$\Rightarrow$(3) is immediate. Sequences exist (choose non-null $K_{n+1}\subseteq K_n$ with $\mu(K_{n+1})<\mu(K_n)/2$ by Lemma~\ref{lem:atomless}(a), and likewise $S_n$), so (3)$\Rightarrow$(4). (4)$\Rightarrow$(1): if $w(U)<w(V)$, then $w(K_n)\to0$ and $w(S_n)\to0$ by countable additivity, so for all large $n$, $w(U\cup K_n)\le w(U)+w(K_n)<w(V)-w(S_n)=w(V\setminus S_n)$, and the change is not approved.
+\end{proof}
+
+\begin{theorem}\label{thm:noworse}
+Assume (M2) and (M3a), and let a ranking satisfy independence, strict guidance, the three-model condition, comparability of errors, no weightless errors and continuity at $\omega$. Then no change approved at $\omega$ has negative net weight at $\omega$. Consequently:
+\begin{enumerate}[label=(\alph*)]
+\item if a change with positive net weight at $\omega$ is approved at $\omega$, then $Y\succ_\omega X$ for every pair $(X,Y)$ realising it;
+\item distinct models tied at $\omega$ differ by a change of zero net weight at $\omega$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Write $w\coloneqq w_\omega$ and $n\coloneqq n_\omega$. Let $(A,B)$ be approved at $\omega$ with $n(A,B)=-\delta<0$. By independence, $A\succeq_\omega B$, since $(B,A)$ realises $(A,B)$. Recall $I\subseteq\Em_\omega$, and that $w$ is atomless (Theorem~\ref{thm:repr}(a)), so Lemma~\ref{lem:atomless}(b) applies to $w$.
+
+\emph{Case 1: $\mu(B\cap I)>0$.} Then $(A,B)$ drops sure losses and has negative net weight, so it is not approved, by Theorem~\ref{thm:repr}(c).
+
+\emph{Case 2: $\mu(B\cap I)=0<\mu(A\cap I)$.} Choose $K\subseteq A\cap I$ with $w(K)=\min(\delta,w(A\cap I))/2$. Put $M_1\coloneqq B$, $M_2\coloneqq A$ and $M_3\coloneqq A\setminus K$. Then $M_2\succeq_\omega M_1$. The change from $M_2$ to $M_3$ removes the non-null set $K\subseteq\Em_\omega$ and adds nothing, so it is guided at $\omega$, and $M_3\succ_\omega M_2$ by strict guidance; its net weight is $w(K)$. The change from $M_3$ to $M_1$ adds $B$ and removes $A\setminus K$, which contains the non-null set $(A\cap I)\setminus K$; so it drops sure losses. Net weights around the closed chain $M_1\to M_2\to M_3\to M_1$ sum to $0$ (Theorem~\ref{thm:repr}(b)), so its net weight is $\delta-w(K)>0$, and it is approved; by independence $M_1\succeq_\omega M_3$. Now $M_2\succeq_\omega M_1\succeq_\omega M_3$ and $M_3\succ_\omega M_2$, contrary to the three-model condition.
+
+\emph{Case 3: $\mu(A\cap I)=\mu(B\cap I)=0$.} Then $J\coloneqq I\setminus(A\cup B)$ is non-null, by (M3a). Choose $K\subseteq J$ with $w(K)=\min(\delta,w(J))/2$ and $N\subseteq J\setminus K$ with $w(N)=w(K)/2$. Put $M_1\coloneqq B\cup K$, $M_2\coloneqq A\cup K$ and $M_3\coloneqq A\cup N$. The change from $M_1$ to $M_2$ is $(A,B)$, so $M_2\succeq_\omega M_1$. The change from $M_2$ to $M_3$ adds $N$, removes $K$ and has net weight $w(K)-w(N)>0$; it and its reverse both drop sure losses, so $M_3\succ_\omega M_2$ by Theorem~\ref{thm:repr}(c) and independence. The change from $M_3$ to $M_1$ removes $A\cup N$, so it drops sure losses, and its net weight is $\delta-w(K)+w(N)>0$; so $M_1\succeq_\omega M_3$. This contradicts the three-model condition as in Case 2.
+
+(a) The reverse change has negative net weight, so it is not approved. (b) Both directions are approved, so both net weights are $\ge0$; they are opposite, so both are $0$.
+\end{proof}
+
+\begin{theorem}\label{thm:monetary}
+Assume (M1), (M2), (M3a) and (M3b), and let a ranking satisfy comparability of errors, no weightless errors and continuity at $\omega$. Put $c_\omega\coloneqq\bigl(\int|g(\omega)|\,d\mu(g)\bigr)^{-1}$, a positive real number. The following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item consolidation and splitting hold at $\omega$;
+\item $w_\omega(U)=c_\omega\int_U|g(\omega)|\,d\mu(g)$ for every model $U$;
+\item $n_\omega(A,B)=c_\omega\,d_\omega(A,B)$ for every change $(A,B)$: the weighing is ordinary payoff, up to the positive unit $c_\omega$.
+\end{enumerate}
+Under (b), consolidation and splitting hold with $\Cor_\omega\sgt_\omega\Cre_\omega$. The implications (b)$\Rightarrow$(a) and (b)$\Leftrightarrow$(c) do not use (M3b).
+\end{theorem}
+\begin{proof}
+$c_\omega$ is finite and positive: $\int|g(\omega)|\,d\mu\le\int\|g\|\,d\mu<\infty$ by (M1), and $|g(\omega)|>0$ a.e.\ by Lemma~\ref{lem:errors}(b), while $\mu(E)\ge\mu(I)>0$.
+
+(b)$\Rightarrow$(c): (b) says $f_\omega=c_\omega|g(\omega)|$ a.e., so $\psi_\omega(g)=c_\omega g(\omega)$ a.e., and Theorem~\ref{thm:repr}(b) gives $n_\omega(A,B)=c_\omega(m(A)(\omega)-m(B)(\omega))$. (c)$\Rightarrow$(b): the change $\ch_\omega(U,\varnothing)$ has net weight $w_\omega(U)$, and its payoff gain is $\int_U|g(\omega)|\,d\mu$, since it adds $U\cap\Ep_\omega$ and removes $U\cap\Em_\omega$.
+
+(b)$\Rightarrow$(a), with strict conclusions. Let $G_1$, $G_2$, $G_3$, $t$ and $\kappa$ be as in Definition~\ref{def:shape}, and $a_i\coloneqq t^{-1}\int_{G_i}g(\omega)\,d\mu(g)$, which is finite by (M1). For consolidation, $g_3(\omega)\ge g_1(\omega)+g_2(\omega)+\kappa$ for all $g_i\in G_i$; averaging over $g_3\in G_3$, then over $g_2\in G_2$, then over $g_1\in G_1$ gives $a_3\ge a_1+a_2+\kappa$. By (c), the change withdrawing $G_1\cup G_2$ and introducing $G_3$ has net weight $c_\omega t(a_3-a_1-a_2)\ge c_\omega t\kappa>0$, so $\Cor_\omega\sgt_\omega\Cre_\omega$. Splitting is the same with $a_1+a_2\ge a_3+\kappa$.
+
+(a)$\Rightarrow$(b). Write $\psi\coloneqq\psi_\omega$; it is integrable, positive a.e.\ on $\Ep_\omega$ and negative a.e.\ on $\Em_\omega$. By (M3b) every ball is non-null. For $y\in E$ and $r>0$ let $\overline s_r(y)\coloneqq\esssup_{B(y,r)}\psi$ and $\underline s_r(y)\coloneqq\essinf_{B(y,r)}\psi$, with respect to $\mu$; so $-\infty<\overline s_r(y)\le+\infty$, $-\infty\le \underline s_r(y)<+\infty$, $\underline s_r(y)\le \overline s_r(y)$, and for real $\alpha<\overline s_r(y)$ and $\beta>\underline s_r(y)$ the sets $B(y,r)\cap\{\psi>\alpha\}$ and $B(y,r)\cap\{\psi<\beta\}$ are non-null. If $B(y,r)\subseteq\Ep_\omega$, then $\overline s_r(y)\ge \underline s_r(y)\ge0$. By Theorem~\ref{thm:repr}(b), $\Cor_\omega\sge_\omega\Cre_\omega$ for a change $(A',B')$ means $\int_{A'}\psi\ge\int_{B'}\psi$.
+
+\emph{Step 1 (consolidation).} Let $x,h,y\in E$ and $\kappa>0$ with $y-x-h\ge\kappa\one$, and $0<r<\kappa/3$. Then $\overline s_r(x)<\infty$, $\overline s_r(h)<\infty$, $\underline s_r(y)>-\infty$ and $\overline s_r(x)+\overline s_r(h)\le \underline s_r(y)$. Indeed, let $\alpha_1<\overline s_r(x)$, $\alpha_2<\overline s_r(h)$ and $\beta>\underline s_r(y)$ be real. The sets $T_1\coloneqq B(x,r)\cap\{\psi>\alpha_1\}$, $T_2\coloneqq B(h,r)\cap\{\psi>\alpha_2\}$ and $T_3\coloneqq B(y,r)\cap\{\psi<\beta\}$ are non-null; let $t\coloneqq\min_i\mu(T_i)/3$. By Lemma~\ref{lem:atomless}(b) choose $G_1\subseteq T_1$, $G_2\subseteq T_2\setminus G_1$ and $G_3\subseteq T_3\setminus(G_1\cup G_2)$, each of mass $t$. For $g_i\in G_i$, $g_3-g_1-g_2\ge y-x-h-3r\one\ge(\kappa-3r)\one$. Consolidation gives $\int_{G_3}\psi\ge\int_{G_1}\psi+\int_{G_2}\psi$, so $\beta t>\int_{G_3}\psi\ge\int_{G_1}\psi+\int_{G_2}\psi>(\alpha_1+\alpha_2)t$. Thus $\alpha_1+\alpha_2<\beta$ for all such reals, which gives the claim.
+
+\emph{Step 2 (splitting).} Let $x+h-y\ge\kappa\one$ and $0<r<\kappa/3$. Then $\overline s_r(y)<\infty$, $\underline s_r(x)>-\infty$, $\underline s_r(h)>-\infty$ and $\overline s_r(y)\le \underline s_r(x)+\underline s_r(h)$. The proof is that of Step 1, with $T_1\coloneqq B(x,r)\cap\{\psi<\beta_1\}$, $T_2\coloneqq B(h,r)\cap\{\psi<\beta_2\}$, $T_3\coloneqq B(y,r)\cap\{\psi>\alpha\}$, $g_1+g_2-g_3\ge(\kappa-3r)\one$, and splitting, which gives $(\beta_1+\beta_2)t>\int_{G_1}\psi+\int_{G_2}\psi\ge\int_{G_3}\psi>\alpha t$.
+
+\emph{Step 3 (local limits).} $\overline s_r(y)$ decreases and $\underline s_r(y)$ increases as $r\downarrow0$; let $\bar\psi(y)$ and $\underline\psi(y)$ be the limits. Step 1 with $(x,h,y)\coloneqq(y,0,y+\one)$ gives $\bar\psi(y)<\infty$, and Step 1 with $(x,h,y)\coloneqq(y/2-\one,y/2-\one,y)$ gives $\underline\psi(y)>-\infty$; and $\underline\psi\le\bar\psi$. If $\|y'-y\|<r/2$, then $B(y',r/2)\subseteq B(y,r)$, so $\bar\psi(y')\le \overline s_r(y)$; hence $\bar\psi$ is upper semicontinuous, and likewise $\underline\psi$ is lower semicontinuous; both are Borel. Let $q$ be rational and $R\coloneqq\{g:\psi(g)>q>\bar\psi(g)\}$. Let $\mathfrak B$ be the countable family of balls with centres in a fixed countable dense subset of $E$ and rational radii, and $N$ the union of the members of $\mathfrak B$ that meet $R$ in a null set; $R\cap N$ is null. If $R$ were non-null, take $g\in R\setminus N$. Each $B(g,r)$ contains a member of $\mathfrak B$ containing $g$, which meets $R$ in a non-null set; so $B(g,r)\cap\{\psi>q\}$ is non-null, $\overline s_r(g)\ge q$ for all $r$, and $\bar\psi(g)\ge q$, contradicting $g\in R$. So $R$ is null, and $\psi\le\bar\psi$ a.e.; likewise $\psi\ge\underline\psi$ a.e.
+
+\emph{Step 4 (monotonicity in the payoff at $\omega$).} If $x(\omega)<y(\omega)$, then $\bar\psi(x)\le\underline\psi(y)$. Put $d\coloneqq y(\omega)-x(\omega)$ and $h\coloneqq y-x-(d/2)\one$. For $r<d/2$, $B(h,r)\subseteq\Ep_\omega$, so $\overline s_r(h)\ge0$. Step 1 with $\kappa=d/2$ gives $\overline s_r(x)\le \overline s_r(x)+\overline s_r(h)\le \underline s_r(y)$ for $r<d/6$; let $r\downarrow0$.
+
+\emph{Step 5 (one nondecreasing function).} For $s\in\R$ put $M(s)\coloneqq\inf\{\underline\psi(y):y(\omega)>s\}$. Then $\underline\psi(y)\ge M(s)$ when $y(\omega)>s$, and by Step 4, $\bar\psi(x)\le M(s)$ when $x(\omega)<s$. So $\bar\psi((s-1)\one)\le M(s)\le\underline\psi((s+1)\one)$, and $M$ is real-valued. $M$ is nondecreasing, and right-continuous, since $\{y:y(\omega)>s\}=\bigcup_{s'>s}\{y:y(\omega)>s'\}$. $M\ge0$ on $(0,\infty)$: if $y(\omega)>s>0$, then $B(y,r)\subseteq\Ep_\omega$ for small $r$, so $\underline\psi(y)\ge0$. By Step 3, for a.e.\ $g$: $\psi(g)\le\bar\psi(g)\le M(s)$ for every $s>g(\omega)$, and $\psi(g)\ge\underline\psi(g)\ge M(s)$ for every $s<g(\omega)$; hence $M(g(\omega)-)\le\psi(g)\le M(g(\omega))$.
+
+\emph{Step 6 (additivity).} Let $\Gamma$ be the countable set of discontinuity points of $M$. If $a,b,a+b\notin\Gamma$, then $M(a+b)=M(a)+M(b)$. For $c>a+b$, Step 1 with $(x,h,y)\coloneqq(a\one,b\one,c\one)$, after $r\downarrow0$, gives $\bar\psi(a\one)+\bar\psi(b\one)\le\underline\psi(c\one)$. By Step 5, $\bar\psi(a\one)\ge\underline\psi(a\one)\ge M(a-)=M(a)$, similarly $\bar\psi(b\one)\ge M(b)$, and $\underline\psi(c\one)\le\bar\psi(c\one)\le M(c)$. So $M(a)+M(b)\le M(c)$ for all $c>a+b$, and $M(a)+M(b)\le M(a+b)$ by right-continuity. For $c<a+b$, Step 2 with $(x,h,y)\coloneqq(a\one,b\one,c\one)$ gives $\bar\psi(c\one)\le\underline\psi(a\one)+\underline\psi(b\one)$, and Step 5 gives $M(c-)\le\bar\psi(c\one)$, $\underline\psi(a\one)\le M(a)$ and $\underline\psi(b\one)\le M(b)$. Letting $c\uparrow a+b$ gives $M(a+b)=M((a+b)-)\le M(a)+M(b)$.
+
+\emph{Step 7 (linearity).} Let $T_0$ be the set of $t\ne0$ with $qt\notin\Gamma$ for every nonzero rational $q$; its complement is countable, so $T_0$ is dense. Let $t\in T_0$. Step 6 with $(a,b)=(t,t)$, then $((n-1)t,t)$, gives $M(nt)=nM(t)$ for $n\ge1$; applied to $t/n\in T_0$ this gives $M((k/n)t)=(k/n)M(t)$ for positive integers $k,n$; and Step 6 with $(a,b)=(2qt,-qt)$ gives $M(-qt)=-qM(t)$ for rational $q>0$. Fix $t_0\in T_0\cap(0,\infty)$ and put $l\coloneqq M(t_0)/t_0\ge0$. For $t\in T_0\cap(0,\infty)$ and rationals $0<r_1<t/t_0<r_2$, monotonicity gives $r_1M(t_0)\le M(t)\le r_2M(t_0)$, so $M(t)=lt$; for $t\in T_0\cap(-\infty,0)$, $M(t)=-M(-t)=lt$. As $T_0$ is dense and $M$ is nondecreasing, $M(s)=ls$ for every $s\in\R$.
+
+\emph{Step 8.} By Step 5, $\psi(g)=l\,g(\omega)$ for a.e.\ $g$. So $f_\omega=l|g(\omega)|$ a.e., and $w_\omega(E)=1$ gives $l=c_\omega$. This is (b).
+\end{proof}
+
+\begin{corollary}\label{cor:payoff}
+Assume (M1), (M2), (M3a) and (M3b), and let $L$ satisfy the individual axioms. At every world $\omega$, $n_\omega(A,B)=c_\omega d_\omega(A,B)$ for every change. If $Y\succeq_\omega X$, then $m(Y)(\omega)\ge m(X)(\omega)$; if moreover $m(Y)(\omega)>m(X)(\omega)$, then $Y\succ_\omega X$.
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:monetary} gives the first claim, and Theorem~\ref{thm:noworse} the rest, since $c_\omega>0$.
+\end{proof}
+
+\begin{remark}\label{rem:neutral}
+Consolidation and splitting together make a wrong acceptance that loses $a$ at $\omega$ exactly as serious as a wrong rejection that forgoes $a$ there. This commission neutrality is a substantive assumption about the value of guidance. It does not restrict which targets are covered under this construction, because targets are protected by target admissibility and by the refusals of Section~\ref{sec:existence}, not by being favoured by the weighing.
+\end{remark}
+\endgroup
+
+\begingroup\color{red}
+\section{Local completion and its consequences}\label{sec:local}
+
+\begin{lemma}\label{lem:extension}
+Assume (M2) and (M3a). Let $L$ satisfy the individual axioms, let $\omega$ be a world, let $(A,B)$ be a change with $\Cor_\omega(A,B)\sgt_\omega\Cre_\omega(A,B)$, and put $L^+\coloneqq L^+(A,B,\omega)$. Then $L^+$ has the same weighing of errors as $L$ at every world, and it satisfies the individual axioms.
+\end{lemma}
+\begin{proof}
+By Theorem~\ref{thm:repr}, $n_\omega(A,B)>0$. If $(A,B)$ drops sure losses, $L$ approves it at $\omega$ (Theorem~\ref{thm:repr}(c)), hence by independence for every realising pair, and $L^+=L$. Otherwise, the only change whose verdict at $\omega$ differs between $L$ and $L^+$ is $(A,B)$, which does not drop sure losses; so by Lemma~\ref{lem:context}(a) the weighings agree at $\omega$, and at the other worlds nothing changes. Hence the axioms on the weighing, consolidation and splitting hold for $L^+$. Reflexivity holds as $L\subseteq L^+$; independence holds since $(A,B)$ is approved at $\omega$ for every realising pair and every other change keeps its verdicts.
+
+\emph{Strict guidance.} Let $X\ne Y$ with the change from $X$ to $Y$ guided at a world $\eta$. Then $Y\succeq_\eta X$ in $L\subseteq L^+$. If $X\succeq^+_\eta Y$, this comparison is new, so $\eta=\omega$ and the change from $Y$ to $X$ is $(A,B)$. But a non-null change guided at $\omega$ corrects a non-null set and creates a null one, so it has positive net weight, and its reverse $(A,B)$ has negative net weight, a contradiction.
+
+\emph{Three-model condition.} At $\eta\ne\omega$, $L^+$ agrees with $L$. Let $X\succeq^+_\omega Y\succeq^+_\omega Z$ and $Z\succ^+_\omega X$. Each of the comparisons $X\succeq^+_\omega Y$, $Y\succeq^+_\omega Z$, $Z\succeq^+_\omega X$ approves a change whose net weight is $\ge0$ if the comparison is in $L$ (Theorem~\ref{thm:noworse}) and $>0$ if it is new; by Theorem~\ref{thm:repr}(b) the three net weights sum to $0$. So all are $0$, and none of the three comparisons is new. As $X\succeq^+_\omega Z$ fails and $L\subseteq L^+$, $X\succeq_\omega Z$ fails; so $X\succeq_\omega Y\succeq_\omega Z$ and $Z\succ_\omega X$ in $L$, contrary to the three-model condition for $L$.
+\end{proof}
+
+\begin{lemma}\label{lem:hullharm}
+Assume (M1), (M2), (M3a) and (M3b). Let $L$ satisfy the individual axioms, and let $C$ be an almost coherent model that is undominated under $L$. Let $(A,B)$ be a change with $A\subseteq H(B)$ a.e.\ and $d_\omega(A,B)>0$. Then $C$ is undominated under $L^+\coloneqq L^+(A,B,\omega)$.
+\end{lemma}
+\begin{proof}
+By Corollary~\ref{cor:payoff}, $n_\omega(A,B)=c_\omega d_\omega(A,B)>0$, so Lemma~\ref{lem:extension} applies, and $L^+$ satisfies the individual axioms. Suppose $Y$ dominates $C$ under $L^+$. Then $C\succeq^+_\eta Y$ fails at some world $\eta$, and so does $C\succeq_\eta Y$, as $L\subseteq L^+$. Since $Y$ does not dominate $C$ under $L$, some comparison $Y\succeq^+_{\eta'}C$ is not in $L$; so $\eta'=\omega$ and $(Y\setminus C,C\setminus Y)=(A,B)$, so $B\subseteq C$ a.e.\ and $A\cap C$ is null. By Lemma~\ref{lem:identify}(b), $C=D_Q$ a.e.\ for a credal set $Q$, and Lemma~\ref{lem:hull}(c) gives $H(B)\subseteq D_Q$. So $A\subseteq H(B)\subseteq C$ a.e., and $A$ is null. Then $d_\omega(A,B)=-m(B)(\omega)>0$, so $B$ is not null. Corollary~\ref{cor:payoff} for $L^+$ gives, at every world $\eta$, $m(Y)(\eta)\ge m(C)(\eta)$, that is, $m(B)(\eta)\le0$. Take $q\in Q$. Then $q\ge0$ on $D_Q\supseteq B$ (Lemma~\ref{lem:DQ}(a)) and $\{q=0\}$ is null by (M2), so $q(m(B))=\int_Bq\,d\mu>0$. But $m(B)\le0$ pointwise and $q$ is positive, so $q(m(B))\le0$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:strict}
+Assume (M1), (M2), (M3a) and (M3b). Let $\Pc\subseteq\C$ be nonempty (for instance $\Pc=\{T\}$) and $L\in\Lc(\Pc)$. Let $(A,B)$ be a change with $A\subseteq H(B)$ a.e.\ and $m(A)(\omega)>m(B)(\omega)$. Then $Y\succ_\omega X$ for every pair $(X,Y)$ realising $(A,B)$.
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{cor:payoff}, $\Cor_\omega\sgt_\omega\Cre_\omega$. By Lemmas~\ref{lem:extension} and~\ref{lem:hullharm}, $L^+(A,B,\omega)$ satisfies the individual axioms and leaves every member of $\Pc$ undominated. Local completion therefore gives that $L$ approves $(A,B)$ at $\omega$, and by independence $Y\succeq_\omega X$ for every realising pair. The reverse change has $d_\omega<0$, so $X\succeq_\omega Y$ fails by Corollary~\ref{cor:payoff}.
+\end{proof}
+
+\begin{lemma}\label{lem:portfolio}
+For a model $B$, let $\ess(B)\coloneqq\{b\in E:\mu(B\cap B(b,r))>0\text{ for every }r>0\}$, and let $\Pi(B)$ be the set of gambles $a$ for which there are $k\ge0$, $b_1,\dots,b_k\in\ess(B)$, $t_1,\dots,t_k\ge0$ and $\varepsilon>0$ with $a\ge\sum_{i\le k}t_ib_i+\varepsilon\one$.
+\begin{enumerate}[label=(\alph*)]
+\item $B\setminus\ess(B)$ is null, and a state $q$ lies in $Q_B$ if and only if $q\ge0$ on $\ess(B)$.
+\item $\Pi(B)=D^\circ_{Q_B}$ if $B$ is consistent, and $\Pi(B)=E$ otherwise.
+\item Assume (M2). Then $\Pi(B)=H(B)$ a.e. So a change $(A,B)$ has $A\subseteq H(B)$ a.e.\ if and only if almost every added gamble exceeds some finite nonnegative portfolio of gambles in the essential support of the removed set by a sure margin.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $\mathfrak B$ be as in the proof of Theorem~\ref{thm:monetary}. Each $b\notin\ess(B)$ lies in a member of $\mathfrak B$ that meets $B$ in a null set; there are countably many such members, so $B\setminus\ess(B)$ is null. If $q\ge0$ on $\ess(B)$, then $B\cap\{q<0\}\subseteq B\setminus\ess(B)$ is null. If $q\in Q_B$ and $q(b)<0$ for some $b\in\ess(B)$, the open set $\{q<0\}$ contains a ball $B(b,r)$, and $B\cap B(b,r)\subseteq B\cap\{q<0\}$ is null, a contradiction.
+
+(b) Let $B$ be consistent, $a\in\Pi(B)$ as above and $q\in Q_B$. By (a), $q(a)\ge\sum_it_iq(b_i)+\varepsilon\ge\varepsilon$; as the minimum is attained, $P_{Q_B}(a)\ge\varepsilon>0$. So $\Pi(B)\subseteq D^\circ_{Q_B}$. Conversely, $\Pi(B)$ is an open convex cone (a margin $\varepsilon$ survives perturbations of norm below $\varepsilon/2$) containing $D^\circ_S$ and $tb+s\one$ for $b\in\ess(B)$, $t\ge0$, $s>0$. Let $a\notin\Pi(B)$. The separation argument in the proof of Lemma~\ref{lem:identify}(a), with $\Pi(B)$ in place of $V$, gives a state $q$ with $q(a)\le0$ and $q(v)\ge0$ for $v\in\Pi(B)$. Then $q(tb+s\one)\ge0$ for $b\in\ess(B)$ and $t,s>0$, so $q(b)\ge0$, and $q\in Q_B$ by (a). So $B$ is consistent and $P_{Q_B}(a)\le0$. Hence $\Pi(B)=E$ if $B$ is inconsistent, and $D^\circ_{Q_B}\subseteq\Pi(B)$ otherwise.
+
+(c) By (b) and Lemma~\ref{lem:identify}(b), since $H(B)=D_{Q_B}=D^\circ_{Q_B}$ a.e.\ for consistent $B$.
+\end{proof}
+
+\begin{remark}\label{rem:maximal}
+Local completion is maximality relative to strictly improving extensions: a member of $\Lc(T)$ cannot be enlarged by a comparison whose corrected errors are more serious than its created errors, added at its world in every common context required by independence, without violating an individual axiom or letting $T$ be dominated.
+\end{remark}
+\endgroup
+
+\section{Strict selection, then the LDG argument}\label{sec:selection}
+
+\begin{definition}[Finite lists of inequalities]\label{def:lists}
+Fix a norm-dense sequence $(h_k)_{k\ge1}$ in $E$. A \emph{finite list} is a finite sequence $\ell=((k_1,a_1),\dots,(k_n,a_n))$, $n\ge0$, of pairs of a positive integer $k_i$ and a rational $a_i$; each pair is an \emph{inequality} of $\ell$. Put
+\[
+P(\ell)\coloneqq\{q\in S:q(h_{k_i})\ge a_i\text{ for }1\le i\le n\},
+\]
+so that the empty list gives $S$. The finite lists $\ell$ with $P(\ell)\ne\varnothing$ form a countable set containing the empty list; enumerate them, with repetitions allowed, as $\ell_1,\ell_2,\dots$, and put $P_j\coloneqq P(\ell_j)$. Each $P_j$ is a credal set. An inequality $(k,a)$ has a \emph{strict margin on} a credal set $Q$ if $P_Q(h_k)>a$. {\color{red}The credal sets $P_j$ are the sets of states cut out by finitely many rational inequalities.}
+\end{definition}
+
+\begin{lemma}\label{lem:approx}
+Let $Q$ be a credal set. There are indices $j_1,j_2,\dots$ such that:
+\begin{enumerate}[label=(\alph*)]
+\item $P_{j_{n+1}}\subseteq P_{j_n}$ for every $n$, and $\bigcap_nP_{j_n}=Q$;
+\item every inequality of $\ell_{j_n}$ has a strict margin on $Q$;
+\item for each $n$ there is $\lambda_n\in(0,1)$ with $(1-\lambda_n)Q+\lambda_nS\subseteq P_{j_n}$;
+\item $D_{P_{j_n}}\subseteq D_{P_{j_{n+1}}}\subseteq D_Q$ for every $n$, and $\bigcup_nD_{P_{j_n}}=D_Q$. Under (M1),
+\[\int_{D_Q\setminus D_{P_{j_n}}}\|g\|\,d\mu(g)\to0\qquad(n\to\infty).\]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{Separating inequalities.} Let $r\in S\setminus Q$. The space $E^\ast$ with the weak-$\ast$ topology is locally convex, and its continuous linear functionals are the evaluations $\psi\mapsto\psi(h)$, $h\in E$~\cite[Theorem~3.10]{Rudin}. Separating the compact convex set $Q$ from the closed convex set $\{r\}$~\cite[Theorem~3.4]{Rudin} gives $h\in E$ with $r(h)<P_Q(h)$. Put $\eta\coloneqq(P_Q(h)-r(h))/3$ and choose $k$ with $\|h_k-h\|<\eta$. States have norm $1$ and $P_Q$ is $1$-Lipschitz, so $r(h_k)<r(h)+\eta$ and $P_Q(h_k)>P_Q(h)-\eta$; hence $r(h_k)<P_Q(h_k)-\eta$. Choose a rational $a$ with $r(h_k)<a<P_Q(h_k)$. The inequality $(k,a)$ has a strict margin on $Q$, and $W_r\coloneqq\{s\in S:s(h_k)<a\}$ is a weak-$\ast$ open set containing $r$.
+
+\emph{The lists.} Let $d$ be a metric for $S$ (Lemma~\ref{lem:states}(a)) and $U_n\coloneqq\{s\in S:\min_{q\in Q}d(s,q)<1/n\}$. These sets are open, and $\bigcap_nU_n=Q$ as $Q$ is closed. The compact set $S\setminus U_n$ is covered by the sets $W_r$, $r\in S\setminus U_n$, so by finitely many of them; let $\ell'_n$ be the list of their inequalities (empty if $S\setminus U_n=\varnothing$). Let $\ell^{(n)}$ be the concatenation $\ell'_1\ell'_2\cdots\ell'_n$. Each inequality of $\ell^{(n)}$ has a strict margin on $Q$, so $Q\subseteq P(\ell^{(n)})$; in particular $P(\ell^{(n)})\ne\varnothing$, and $\ell^{(n)}=\ell_{j_n}$ for some index $j_n$. This is (b). As the lists extend one another, $P_{j_{n+1}}\subseteq P_{j_n}$. If $s\notin U_i$ for some $i\le n$, then $s\in W_r$ for an inequality $(k,a)$ of $\ell'_i$, so $s(h_k)<a$ and $s\notin P_{j_n}$; hence $P_{j_n}\subseteq U_n$. So $Q\subseteq\bigcap_nP_{j_n}\subseteq\bigcap_nU_n=Q$, which is (a).
+
+(c) Let $\ell_{j_n}=((k_i,a_i))_{i\le N}$. If $N=0$, take $\lambda_n\coloneqq1/2$. Otherwise put $\varepsilon_i\coloneqq P_Q(h_{k_i})-a_i>0$ and $\lambda_n\coloneqq\min\bigl\{\tfrac12,\ \min_i\varepsilon_i/(2\|h_{k_i}\|+1)\bigr\}$. For $q\in Q$ and $s\in S$,
+\[
+\bigl((1-\lambda_n)q+\lambda_ns\bigr)(h_{k_i})=q(h_{k_i})+\lambda_n\bigl(s(h_{k_i})-q(h_{k_i})\bigr)\ge a_i+\varepsilon_i-2\lambda_n\|h_{k_i}\|>a_i .
+\]
+
+(d) The inclusions $Q\subseteq P_{j_{n+1}}\subseteq P_{j_n}$ and Lemma~\ref{lem:DQ}(b) give the first claim. Every $g\gneq0$ lies in each $D_{P_{j_n}}$. Let $P_Q(g)>0$, and suppose that each $P_{j_n}$ contains some $s_n$ with $s_n(g)\le0$. As $S$ is compact and metrizable, a subsequence converges to some $s$. For each $m$, $s_n\in P_{j_m}$ for $n\ge m$, and $P_{j_m}$ is closed, so $s\in P_{j_m}$; hence $s\in Q$ by (a), and $s(g)\le0$, contradicting $P_Q(g)>0$. So $g\in D^\circ_{P_{j_n}}$ for some $n$, and $\bigcup_nD_{P_{j_n}}=D_Q$. Under (M1), $\one_{D_Q\setminus D_{P_{j_n}}}\|g\|$ decreases pointwise to $0$ and is dominated by $\|g\|$, so the integrals tend to $0$ by dominated convergence.
+\end{proof}
+
+\begin{definition}[The fixed assignments]\label{def:assignments}
+For every index $j$ and state $q$ put
+\[
+b^j_q\coloneqq D_{P_j}\cap\{q>0\}.
+\]
+$\Delta$ is the set of finitely additive probabilities on $\Omega$: functions $p:2^\Omega\to[0,1]$ with $p(\Omega)=1$ and $p(A\cup B)=p(A)+p(B)$ whenever $A\cap B=\varnothing$. It carries the coarsest topology making $p\mapsto p(A)$ continuous for every $A\subseteq\Omega$. For $p\in\Delta$ put $p_\omega\coloneqq p(\{\omega\})$; $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. For $p\in\Delta$ and $h\in\ell^\infty(\Omega)$, the expectation $E_ph$ is $\sum_{i=1}^na_ip(A_i)$ if $h=\sum_{i=1}^na_i\one_{A_i}$ for a partition $A_1,\dots,A_n$ of $\Omega$, and in general $E_ph\coloneqq\lim_kE_ph_k$ for any sequence of such functions $h_k$ with $\|h_k-h\|\to0$~\cite{LDG}. The \emph{state induced by $p$} is $\hat p:E\to\R$, $\hat p(h)\coloneqq E_ph$. For every index $j$ and $p\in\Delta$, the \emph{assigned model} is
+\[
+c^j_p\coloneqq b^j_{\hat p}=D_{P_j}\cap\{\hat p>0\}.
+\]
+These data are fixed independently of the rival model {\color{red}and of the ranking. The assigned model $c^j_p$ accepts the gambles that every member of $P_j$, and also $\hat p$, expects to gain.}
+\end{definition}
+
+\begin{lemma}\label{lem:assigned}
+Assume (M1) and (M2), and fix an index $j$.
+\begin{enumerate}[label=(\alph*)]
+\item Each $b^j_q$ is an almost coherent model.
+\item $q(m(b^j_q))=\int_{D_{P_j}}q^+\,d\mu$ for every $q\in S$.
+\item The map $q\mapsto m(b^j_q)$ is continuous from $S$, with the weak-$\ast$ topology, to $E$, with the norm.
+\item The map $p\mapsto\hat p$ is continuous from $\Delta$ into $S$, and $\hat p=\sum_{\omega\in F}p_\omega\delta_\omega$ whenever $p(F)=1$ for a finite $F\subseteq\Omega$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) $D_{P_j}$ is Borel (Lemma~\ref{lem:DQ}(a)) and $\{q>0\}$ is open, so $b^j_q$ is a model. It is almost coherent by Lemma~\ref{lem:identify}(c).
+(b) $q(m(b^j_q))=\int_{D_{P_j}\cap\{q>0\}}q(g)\,d\mu(g)$, and $q^+=q\,\one_{\{q>0\}}$.
+(c) As $S$ is metrizable, it suffices to consider $q_n\to q$. Then
+\[
+\bigl\|m(b^j_{q_n})-m(b^j_q)\bigr\|\le\int_{D_{P_j}}\bigl|\one_{\{q_n>0\}}(g)-\one_{\{q>0\}}(g)\bigr|\,\|g\|\,d\mu(g).
+\]
+For $g\notin\{q=0\}$, $q_n(g)\to q(g)\ne0$, so the indicators agree for large $n$; $\{q=0\}$ is null by (M2) applied to $\{q\}$. The integrand is dominated by $\|g\|$, which is integrable by (M1), so the right side tends to $0$.
+(d) For functions $h=\sum_ia_i\one_{A_i}$, passing to a common refinement of two partitions and using additivity shows that $E_ph$ does not depend on the partition; on these functions $E_p$ is linear and monotone, and $E_p\one=1$, so $|E_ph-E_ph'|\le\|h-h'\|$. Every $h\in\ell^\infty(\Omega)$ is the uniform limit of the functions $\lfloor kh\rfloor/k$, which take finitely many values. So the limit defining $E_ph$ exists and does not depend on the sequence, and $E_p$ is linear, positive and normalised on $\ell^\infty(\Omega)$. Hence $\hat p$ is a state. For $h=\sum_ia_i\one_{A_i}$, $p\mapsto E_ph$ is a finite combination of the continuous maps $p\mapsto p(A_i)$. For bounded $h$, $|E_ph-E_ph_k|\le\|h-h_k\|$ for every $p$, so $p\mapsto E_ph$ is a uniform limit of continuous functions, hence continuous. As the weak-$\ast$ topology is the coarsest making each $q\mapsto q(h)$, $h\in E$, continuous, $p\mapsto\hat p$ is continuous. If $p(F)=1$, then for $A\subseteq\Omega$, $p(A\setminus F)\le p(\Omega\setminus F)=0$, so $p(A)=\sum_{\omega\in A\cap F}p_\omega$ by additivity. Hence $E_ph=\sum_{\omega\in F}p_\omega h(\omega)$, first for functions with finitely many values and then for all bounded $h$; that is, $\hat p=\sum_{\omega\in F}p_\omega\delta_\omega$.
+\end{proof}
+
+{\color{red}We restate the definitions and results of~\cite{LDG} that are used, in the present notation.}
+
+\begin{definition}[Countable selection {\cite{LDG}}]\label{def:selection}
+Let $L$ be a ranking and $\J\subseteq\M$. $L$ satisfies \emph{countable selection on $\J$} if there are models $c^j_p$, for $j\in\mathbb N=\{1,2,\ldots\}$ and $p\in\Delta$ (the \emph{assigned models}), such that for every $x\in\J$ there exist an index $j$ and closed sets $A_\omega(x)\subseteq\Delta$, $\omega\in\Omega$, satisfying:
+\begin{enumerate}[label=\textbf{(F\arabic*)},leftmargin=3.2em]
+\item \emph{Comparison}: $c^j_p\succeq_\omega x$ whenever $p\in A_\omega(x)$. The assigned model performs at least as well as $x$ at that world.
+\item \emph{Support coverage}: every finitely supported $p\in\Delta$ lies in $A_\omega(x)$ for some $\omega$ with $p_\omega>0$. Every probability concentrated on finitely many worlds has such a comparison at a world to which it gives positive probability.
+\end{enumerate}
+The assigned models are fixed independently of $x$; only $j$ and the closed sets may depend on $x$. {\color{red}The comparisons in (F1) are \emph{strict} if $x\succeq_\omega c^j_p$ fails whenever $p\in A_\omega(x)$.}
+\end{definition}
+
+\begin{theorem}\label{thm:LDGgeneral}
+\emph{(\cite[Theorem~3.5]{LDG}.)} Let $L$ satisfy countable selection on $\J$, and let $x\in\J$, with index $j$ and closed sets satisfying (F1) and (F2). Then $\bigcap_{\omega\in\Omega}A_\omega(x)\ne\varnothing$, and $c^j_p$ weakly dominates $x$ for every $p$ in this intersection.
+\end{theorem}
+
+\begingroup\color{red}
+\begin{lemma}\label{lem:LDGnotie}
+\emph{(\cite[Lemma~3.7]{LDG}.)} Under the hypotheses of Theorem~\ref{thm:LDGgeneral}, consider the condition
+\begin{equation}
+\text{for every }p\in\textstyle\bigcap_{\omega\in\Omega}A_\omega(x)\text{ there is a world }\omega\text{ at which }x\succeq_\omega c^j_p\text{ fails.}\tag{F3}\label{eq:F3}
+\end{equation}
+\begin{enumerate}[label=(\alph*)]
+\item If (F3) holds, then $c^j_p$ dominates $x$ for every $p\in\bigcap_{\omega\in\Omega}A_\omega(x)$, and this intersection is nonempty.
+\item If no assigned model is tied at every world with $x$, then (F3) holds.
+\item If the comparisons in (F1) are strict, then (F3) holds.
+\end{enumerate}
+\end{lemma}
+\endgroup
+
+\begin{definition}[LDG assumptions {\cite{LDG}}]\label{def:LDGassumptions}
+Let $\Lf$ be a family of rankings. A model is \emph{irrational} if every $L\in\Lf$ has a model dominating it, and \emph{rationally permissible} if it is undominated under some $L\in\Lf$. Every ranking here evaluates all of $\M$. The LDG assumptions are:
+\begin{itemize}[leftmargin=3.4em,labelsep=0.5em]
+\item[\textbf{(E)}] Every model is evaluable by some $L\in\Lf$. Every model is assessed.
+\item[\textbf{(A)}] Every $C\in\C$ belongs to $\C_L$ for some $L\in\Lf$. Each almost coherent model survives at least one ranking.
+\item[\textbf{(S)}] Each $L\in\Lf$ satisfies countable selection on $\M\setminus\C$. One fixed countable family of assignments handles all incoherent models.
+\begingroup\color{red}
+\item[\textbf{(T)}] For each $L\in\Lf$, the assigned models in (S) can be chosen so that every incoherent model $x$ has an index $j$ and closed sets $A_\omega(x)$ satisfying (F1), (F2) and \eqref{eq:F3}. At every common point of these sets, there is a world at which $x$ does not perform at least as well as the assigned model.
+\endgroup
+\end{itemize}
+Conditions (S) and (T) apply to an individual ranking by taking $\Lf=\{L\}$.
+\end{definition}
+
+\begin{theorem}\label{thm:LDGargument}
+\emph{(\cite[Theorem~4.4, parts (a) and (d)]{LDG}.)}
+\begin{enumerate}[label=(\alph*)]
+\item {\color{red}If a ranking $L$ satisfies (S) and (T), every incoherent model is dominated under $L$ by an assigned model, and $\U_L=\C_L$.}
+\item[(d)] If $\Lf$ satisfies (A), (S) and (T), the rationally permissible models are exactly the almost coherent ones, and the irrational models exactly the incoherent ones.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lem:gap}
+Assume (M1) and (M2). For every incoherent model $X$ there are a consistent model $Z\subseteq X$ and $\gamma>0$ such that
+\[
+\int_{H(Z)}q^+\,d\mu-q\bigl(m(X)\bigr)\ge\gamma\qquad\text{for every }q\in S.
+\]
+\end{lemma}
+\begin{proof}
+\emph{$X$ consistent.} Put $Z\coloneqq X$ and $G\coloneqq H(X)=D_{Q_X}$. By Lemma~\ref{lem:hull}(b), $X\subseteq G$ a.e., so, for every $q\in S$,
+\[
+\varphi(q)\coloneqq\int_Gq^+\,d\mu-q(m(X))=\int_{G\setminus X}q^+\,d\mu+\int_X(q^+-q)\,d\mu\ge0 .
+\]
+If $\varphi(q)=0$, then $q\le0$ a.e.\ on $G\setminus X$ and $q\ge0$ a.e.\ on $X$; as $\{q=0\}$ is null by (M2), $X=G\cap\{q>0\}$ a.e. But $G\cap\{q>0\}$ is almost coherent by Lemma~\ref{lem:identify}(c), while $X$ is not. So $\varphi>0$ on $S$. If $q_n\to q$, then $q_n(g)\to q(g)$ for every $g$, and $|q_n(g)|\le\|g\|$, which is integrable by (M1); dominated convergence gives $\varphi(q_n)\to\varphi(q)$. As $S$ is compact and metrizable, $\varphi$ attains a minimum $\gamma>0$.
+
+\emph{$X$ inconsistent.} Put $f(q)\coloneqq\int_X\min(q(g),0)\,d\mu(g)$. As above, $f$ is continuous on $S$, by dominated convergence with bound $\|g\|$. Also $f(q)=0$ exactly when $X\cap\{q<0\}$ is null, that is, when $q\in Q_X=\varnothing$; so $f<0$ on $S$. Let $q_0$ maximise $f$ on the compact set $S$, and put $\beta\coloneqq-f(q_0)>0$,
+\[
+Z\coloneqq X\cap\{q_0>0\},\qquad X^-\coloneqq X\cap\{q_0<0\}.
+\]
+$X\cap\{q_0=0\}$ is null by (M2), so $m(X)=m(Z)+m(X^-)$; and $q_0(m(X^-))=\int_{X^-}q_0\,d\mu=f(q_0)=-\beta$.
+
+\emph{The derivative toward a world.} Fix $\omega$ and put $q_t\coloneqq(1-t)q_0+t\delta_\omega\in S$ for $0<t\le1$. Then $q_t(g)=q_0(g)+t(g(\omega)-q_0(g))$. Since $s\mapsto\min(s,0)$ is $1$-Lipschitz,
+\[
+\Bigl|\frac{\min(q_t(g),0)-\min(q_0(g),0)}t\Bigr|\le|g(\omega)-q_0(g)|\le2\|g\| .
+\]
+As $t\downarrow0$, the quotient tends to $g(\omega)-q_0(g)$ if $q_0(g)<0$ and to $0$ if $q_0(g)>0$, being eventually equal to these values. The exceptional set $\{q_0=0\}$ is null and the same for every $\omega$. By dominated convergence along any sequence $t_n\downarrow0$, using (M1),
+\[
+\lim_n\frac{f(q_{t_n})-f(q_0)}{t_n}=\int_{X^-}\bigl(g(\omega)-q_0(g)\bigr)\,d\mu(g)=m(X^-)(\omega)-q_0(m(X^-)).
+\]
+Maximality of $q_0$ makes every quotient nonpositive, so $m(X^-)(\omega)\le q_0(m(X^-))=-\beta$, for every world $\omega$.
+
+\emph{The gap.} $q_0>0$ on $Z$, so $q_0\in Q_Z$ and $Z$ is consistent; $Z\subseteq H(Z)$ a.e.\ by Lemma~\ref{lem:hull}(b). For every $q\in S$, $\int_{H(Z)}q^+\,d\mu\ge\int_Zq^+\,d\mu\ge q(m(Z))$, and $m(X^-)\le-\beta\one$ gives $q(m(X^-))\le-\beta$. Hence
+\[
+\int_{H(Z)}q^+\,d\mu-q(m(X))\ge q(m(Z))-q(m(Z))-q(m(X^-))\ge\beta .
+\]
+Take $\gamma\coloneqq\beta$.
+\end{proof}
+
+\begin{lemma}\label{lem:choice}
+Assume (M1) and (M2). Let $X$ be incoherent, and let $Z$ and $\gamma$ be as in Lemma~\ref{lem:gap}. There is an index $j$ such that, for every $q\in S$, with $b_q\coloneqq b^j_q$:
+\begin{enumerate}[label=(\alph*)]
+\item the change from $X$ to $b_q$, which adds $A_q\coloneqq b_q\setminus X$ and removes $B_q\coloneqq X\setminus b_q$, satisfies $A_q\subseteq H(B_q)$;
+\item $q\bigl(m(b_q)-m(X)\bigr)>\gamma/2$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Put $Q\coloneqq Q_Z$, a credal set, and $G\coloneqq H(Z)=D_Q$. Apply Lemma~\ref{lem:approx} to $Q$, and choose $n$ with
+\[
+e\coloneqq\int_{G\setminus D_{P_{j_n}}}\|g\|\,d\mu(g)<\gamma/2 .
+\]
+Put $j\coloneqq j_n$, $P\coloneqq P_j$ and $\lambda\coloneqq\lambda_n$. Then $(1-\lambda)Q+\lambda S\subseteq P$, so $D_P\subseteq D_{(1-\lambda)Q+\lambda S}$ by Lemma~\ref{lem:DQ}(b), and Lemma~\ref{lem:trim}, with $N\coloneqq D_P$, gives $H(Z\setminus D_P)=H(Z)=G$. Also $D_P\subseteq D_Q=G$, as $Q\subseteq P$.
+
+(a) Since $b_q\subseteq D_P$ and $Z\subseteq X$, we have $Z\setminus D_P\subseteq X\setminus D_P\subseteq X\setminus b_q$. By Lemma~\ref{lem:hull}(d),
+\[
+A_q\subseteq b_q\subseteq D_P\subseteq G=H(Z\setminus D_P)\subseteq H(X\setminus D_P)\subseteq H(X\setminus b_q)=H(B_q).
+\]
+(b) By Lemma~\ref{lem:assigned}(b), $D_P\subseteq G$ and $q^+(g)\le\|g\|$,
+\[
+q(m(b_q))=\int_{D_P}q^+\,d\mu\ge\int_Gq^+\,d\mu-\int_{G\setminus D_P}\|g\|\,d\mu\ge q(m(X))+\gamma-e,
+\]
+and $\gamma-e>\gamma/2$.
+\end{proof}
+
+\begin{lemma}\label{lem:witnesses}
+Under the hypotheses of Lemma~\ref{lem:choice}, with its index $j$, put $\kappa\coloneqq\gamma/2$,
+\[
+K_\omega(X)\coloneqq\bigl\{q\in S:m(b^j_q)(\omega)-m(X)(\omega)\ge \kappa\bigr\}\qquad(\omega\in\Omega),
+\]
+and $A_\omega(X)\coloneqq\{p\in\Delta:\hat p\in K_\omega(X)\}$. {\color{red}These sets are closed and satisfy (F2) for $X$ at $j$, with the assigned models $c^j_p$; they are defined through the payoff margin $\kappa$ alone, without reference to any ranking. For $p\in A_\omega(X)$, the change from $X$ to $c^j_p$ adds gambles in the hull of the removed ones and has payoff gain $\ge\kappa$ at $\omega$.} Every $p\in\bigcap_\omega A_\omega(X)$ satisfies $m(c^j_p)(\omega)\ge m(X)(\omega)+\kappa$ at every world.
+\end{lemma}
+\begin{proof}
+\emph{Closedness.} By Lemma~\ref{lem:assigned}(c) and $|x(\omega)|\le\|x\|$, $q\mapsto m(b^j_q)(\omega)$ is continuous on $S$; so $K_\omega(X)$ is closed. $A_\omega(X)$ is closed, as the inverse image of $K_\omega(X)$ under the continuous map $p\mapsto\hat p$ (Lemma~\ref{lem:assigned}(d)).
+
+\emph{(F2).} Let $p\in\Delta$ with $p(F)=1$ for a finite $F\subseteq\Omega$, and put $q\coloneqq\hat p$. By Lemma~\ref{lem:assigned}(d), $q(x)=\sum_{\omega\in F}p_\omega x(\omega)$ for $x\in E$, and Lemma~\ref{lem:choice}(b) gives
+\[
+\sum_{\omega\in F}p_\omega\bigl[m(b^j_q)(\omega)-m(X)(\omega)\bigr]>\kappa=\sum_{\omega\in F}p_\omega\,\kappa .
+\]
+So some $\omega\in F$ with $p_\omega>0$ has $m(b^j_q)(\omega)-m(X)(\omega)>\kappa$, that is, $q\in K_\omega(X)$ and $p\in A_\omega(X)$.
+
+{\color{red}\emph{The changes.} For $p\in A_\omega(X)$ and $q\coloneqq\hat p$, the change from $X$ to $c^j_p=b^j_q$ is $(A_q,B_q)$, with $A_q\subseteq H(B_q)$ by Lemma~\ref{lem:choice}(a), and $d_\omega(A_q,B_q)=m(c^j_p)(\omega)-m(X)(\omega)\ge\kappa$.}
+
+\emph{The margin.} If $p\in\bigcap_\omega A_\omega(X)$, then $\hat p\in\bigcap_\omega K_\omega(X)$, so $m(c^j_p)(\omega)=m(b^j_{\hat p})(\omega)\ge m(X)(\omega)+\kappa$ at every world by definition of the sets $K_\omega(X)$.
+\end{proof}
+
+\begingroup\color{red}
+\begin{theorem}\label{thm:selection}
+Assume (M1), (M2), (M3a) and (M3b). Let $\Pc\subseteq\C$ be nonempty and $L\in\Lc(\Pc)$. Let $X$ be incoherent, with $j$, $\kappa$ and $A_\omega(X)$ as in Lemma~\ref{lem:witnesses}.
+\begin{enumerate}[label=(\alph*)]
+\item $c^j_p\succ_\omega X$ for every world $\omega$ and every $p\in A_\omega(X)$; so (F1) holds, with strict comparisons.
+\item $L$ satisfies (S) and (T), with the assigned models of Definition~\ref{def:assignments}.
+\item $\bigcap_\omega A_\omega(X)\ne\varnothing$, and for every $p$ in this intersection the assigned model $N\coloneqq c^j_p$ is almost coherent, dominates $X$, and satisfies $m(N)(\omega)\ge m(X)(\omega)+\kappa$ at every world.
+\item $\U_L=\C_L$; every model undominated under $L$ is almost coherent.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) By Lemma~\ref{lem:witnesses}, the change from $X$ to $c^j_p$ adds gambles in the hull of the removed ones and has payoff gain at least $\kappa>0$ at $\omega$. Theorem~\ref{thm:strict} gives $c^j_p\succ_\omega X$.
+
+(b) The dependency is as follows. The application supplies the fixed assigned models (Definition~\ref{def:assignments}), and, for each incoherent $X$, the index $j$ and the closed sets $A_\omega(X)$ with support coverage (F2) (Lemmas~\ref{lem:gap}, \ref{lem:choice} and~\ref{lem:witnesses}); these steps do not involve $L$. The ranking enters only through (a), which gives (F1) with strict comparisons. So $L$ satisfies (S). Lemma~\ref{lem:LDGnotie}(c) turns strict (F1) into (F3), which gives (T).
+
+(c) The models $c^j_p$ are almost coherent by Lemma~\ref{lem:assigned}(a). LDG supplies the common point and hence dominance: by Lemma~\ref{lem:LDGnotie}(a), which rests on Theorem~\ref{thm:LDGgeneral}, the intersection is nonempty and every $c^j_p$ in it dominates $X$. The margin is Lemma~\ref{lem:witnesses}.
+
+(d) Theorem~\ref{thm:LDGargument}(a), with (b).
+\end{proof}
+\endgroup
+
+\begingroup\color{red}
+\section{Existence for each target, and the family conclusion}\label{sec:existence}
+
+\begin{definition}[Target-improving changes and refusal worlds]\label{def:refusal}
+Assume (M1), and let $\Pc\subseteq\C$ be nonempty. A change $(A,B)$ is \emph{target-improving} for $\Pc$ if it applies to some $C\in\Pc$ and $d_\eta(A,B)>0$ at every world $\eta$. Fix the countable set $\Omega_0$ of Lemma~\ref{lem:states}(e) and an enumeration $\omega_1,\omega_2,\dots$ of it (with repetitions if $\Omega_0$ is finite). If a change is not guided at some world of $\Omega_0$, its \emph{refusal world} $r(A,B)$ is $\omega_k$ for the least $k$ such that the change is not guided at $\omega_k$. A target-improving change is one that some target could make and that would raise payoff at every world; its refusal world is the first listed world at which it is not guided.
+\end{definition}
+
+\begin{lemma}\label{lem:refusal}
+Assume (M1) and (M2). Every target-improving change for $\Pc$ has a refusal world. The refusal world depends only on the change, up to null sets, and not on $\Pc$.
+\end{lemma}
+\begin{proof}
+Let $(A,B)$ apply to $C\in\Pc$ and have $d_\eta(A,B)>0$ at every world. If it were guided at every world of $\Omega_0$, Lemma~\ref{lem:guided} would give $A\subseteq C$ a.e.\ and $B\cap C$ null; as $A\cap C$ is null and $B\subseteq C$ a.e., both $A$ and $B$ would be null, and $d_\eta(A,B)=0$. Guidance at $\omega_k$ depends only on $A$ and $B$ up to null sets.
+\end{proof}
+
+\begin{definition}[The rankings $L_\Pc$]\label{def:LP}
+Assume (M1) and (M2), and let $\Pc\subseteq\C$ be nonempty. The ranking $L_\Pc$ is defined by: $Y\succeq_\eta X$ if and only if $X=Y$ a.e., or both $d_\eta(A,B)>0$ and it is not the case that $(A,B)$ is target-improving for $\Pc$ and $\eta=r(A,B)$, where $(A,B)$ is the change from $X$ to $Y$. Write $L_T\coloneqq L_{\{T\}}$. $L_\Pc$ accepts every change that raises payoff at a world, except that each target-improving change is refused at its refusal world.
+\end{definition}
+
+\begin{proposition}\label{prop:LP}
+Assume (M1), (M2) and (M3a), and let $\Pc\subseteq\C$ be nonempty. Then $L_\Pc$:
+\begin{enumerate}[label=(\alph*)]
+\item is reflexive and satisfies independence;
+\item satisfies strict guidance;
+\item satisfies finite-chain consistency, hence the three-model condition, and ties no two distinct models at any world;
+\item approves a change that drops sure losses at $\eta$ if and only if $d_\eta>0$; its weighing of errors at $\eta$ is $w_\eta=c_\eta|g(\eta)|\mu$; and it satisfies comparability of errors, no weightless errors, continuity, consolidation and splitting;
+\item leaves every member of $\Pc$ undominated;
+\item satisfies local completion relative to $\Pc$.
+\end{enumerate}
+Hence $L_\Pc\in\Lc(\Pc)$, and $L_T\in\Lc(T)$ for every $T\in\C$.
+\end{proposition}
+\begin{proof}
+(a) The definition depends only on the change from $X$ to $Y$ up to null sets, by Lemma~\ref{lem:refusal}; and $X=X$ a.e.
+
+(b) Let $X\ne Y$ with the change $(A,B)$ from $X$ to $Y$ guided at $\eta$. As $|g(\eta)|>0$ a.e.\ (Lemma~\ref{lem:errors}(b)), $d_\eta(A,B)=\int_{A\cup B}|g(\eta)|\,d\mu>0$. If the change is target-improving, $r(A,B)$ is a world at which it is not guided, so $\eta\ne r(A,B)$. Hence $Y\succeq_\eta X$. The reverse change has $d_\eta<0$ and $X\ne Y$, so $X\succeq_\eta Y$ fails.
+
+(c) If $Y\succeq_\eta X$ and $X\ne Y$, then $m(Y)(\eta)>m(X)(\eta)$; so distinct models are not tied, and $Y\succ_\eta X$ means $Y\succeq_\eta X$ with $Y\ne X$. Let $X_{i-1}\succeq_\eta X_i$ for $1\le i\le k$ and $X_k\succ_\eta X_0$. Then $m(X_{i-1})(\eta)\ge m(X_i)(\eta)$ for each $i$, and $m(X_k)(\eta)>m(X_0)(\eta)$, which is impossible.
+
+(d) Let $C\in\Pc$, so $C=D_Q$ a.e.\ for a credal set $Q$. If $g\in I$, then $g\gneq0$ fails and $P_Q(g)\le\sup_\Omega g<0$ by Lemma~\ref{lem:states}(b); so $D_Q\cap I=\varnothing$ and $\mu(C\cap I)=0$. A change that applies to $C$ therefore has $\mu(B\cap I)=0$; so no change that drops sure losses is target-improving, and such a change, being non-null, is approved at $\eta$ if and only if $d_\eta>0$. Let $\nu_\eta(U)\coloneqq\int_U|g(\eta)|\,d\mu$. It is finite by (M1); it has the same null sets as $\mu$, as $|g(\eta)|>0$ a.e.; and it is atomless, since a non-null $U$ contains $U'$ with $U'$ and $U\setminus U'$ non-null by (M3a). For every change, $d_\eta(A,B)=\nu_\eta(\Cor_\eta)-\nu_\eta(\Cre_\eta)$, by splitting $A$ and $B$ along $\Ep_\eta$ and $\Em_\eta$. Lemma~\ref{lem:reading} gives the representation $w_\eta=\nu_\eta/\nu_\eta(E)=c_\eta\nu_\eta$ and the three axioms on the weighing. Theorem~\ref{thm:monetary}, (b)$\Rightarrow$(a), which does not use (M3b), gives consolidation and splitting.
+
+(e) Suppose $Y$ dominates $C\in\Pc$. Then $Y\ne C$, and $Y\succeq_\eta C$ at every world gives $d_\eta>0$ at every world for the change $(A,B)\coloneqq(Y\setminus C,C\setminus Y)$. This change applies to $C$, so it is target-improving, and $Y\succeq_\eta C$ fails at $\eta=r(A,B)$, a contradiction.
+
+(f) Let $(A,B)$ satisfy $\Cor_\omega\sgt_\omega\Cre_\omega$ and not be approved at $\omega$. By (d), $d_\omega(A,B)>0$, so by definition $(A,B)$ is target-improving for $\Pc$ and $\omega=r(A,B)$. Let it apply to $C\in\Pc$, and put $Y\coloneqq(C\setminus B)\cup A$, so that $(C,Y)$ realises $(A,B)$. In $L^+\coloneqq L^+(A,B,\omega)$, $Y\succeq^+_\omega C$; at every $\eta\ne\omega$, $\eta\ne r(A,B)$ and $d_\eta>0$, so $Y\succeq_\eta C$. At every world $C\succeq^+_\eta Y$ fails: the change from $Y$ to $C$ is $(B,A)$, which has $d_\eta<0$ and is not the non-null change $(A,B)$. So $Y$ dominates $C$ under $L^+$, $L^+$ fails target admissibility relative to $\Pc$, and local completion places no demand on $(A,B)$ at $\omega$.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Assume (M1), (M2), (M3a) and (M3b). For every almost coherent model $T$:
+\begin{enumerate}[label=(\alph*)]
+\item $\Lc(T)\ne\varnothing$; it contains $L_T$.
+\item Every $L\in\Lc(T)$ leaves $T$ undominated and has properties (a)--(d) of Theorem~\ref{thm:selection}: strict (F1), (S) and (T) with the fixed assigned models, $\U_L=\C_L$, and, for every incoherent $X$, an almost coherent assigned model $N$ that dominates $X$ with $\inf_{\omega}\bigl(m(N)(\omega)-m(X)(\omega)\bigr)>0$.
+\item Let $\Lc\coloneqq\bigcup_{T\in\C}\Lc(T)$, or more generally let $\Lf\subseteq\Lc$ contain at least one member of $\Lc(T)$ for every $T\in\C$. Then $\Lf$ satisfies (E), (A), (S) and (T). So the rationally permissible models are exactly the almost coherent ones, the irrational models are exactly the incoherent ones, and every incoherent model is dominated under every member of $\Lf$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) Proposition~\ref{prop:LP} with $\Pc=\{T\}$.
+(b) $T$ is undominated by target admissibility. The rest is Theorem~\ref{thm:selection} with $\Pc=\{T\}$.
+(c) (E) holds because every ranking evaluates every model. (A): for $T\in\C$, some $L\in\Lf\cap\Lc(T)$ leaves $T$ undominated, so $T\in\C_L$. (S) and (T) hold for every member by (b). Theorem~\ref{thm:LDGargument}(d) gives the classification, and (b) gives the dominators.
+\end{proof}
+
+\begin{corollary}\label{cor:universal}
+Assume (M1), (M2), (M3a) and (M3b), and take $\Pc\coloneqq\C$ (universal coherent admissibility). Then $\Lc(\C)\ne\varnothing$, as it contains $L_\C$. Every $L\in\Lc(\C)$ has $\U_L=\C_L=\C$, and every incoherent model is dominated under $L$ by an almost coherent assigned model, which is itself undominated. The family $\{L\}$ satisfies (E), (A), (S) and (T).
+\end{corollary}
+\begin{proof}
+Proposition~\ref{prop:LP} gives $L_\C\in\Lc(\C)$. For $L\in\Lc(\C)$, target admissibility gives $\C_L=\C$, and Theorem~\ref{thm:selection} gives $\U_L=\C_L$, (S), (T) and almost coherent, hence undominated, dominators. (E) is immediate, and (A) holds as $\C_L=\C$.
+\end{proof}
+\endgroup
+
+\section{Suitable measures}\label{sec:measures}
+
+\begin{lemma}\label{lem:measures}
+There is a Borel probability measure on $E$ satisfying (M1), (M2), {\color{red}(M3a) and (M3b)}.
+\end{lemma}
+\begin{proof}
+Let $(f_k)_{k\ge1}$ be norm-dense in $E$, put $w_k\coloneqq c\,2^{-k}/(1+\|f_k\|)$ with $c>0$ chosen so that $\sum_kw_k=1$, and let $\tau$ be a standard normal random variable, which has a strictly positive continuous density and $\mathbb E|\tau|<\infty$. Let $\nu_k$ be the law of $f_k+\tau\one$, the image of the law of $\tau$ under the continuous map $t\mapsto f_k+t\one$, and $\mu\coloneqq\sum_kw_k\nu_k$, a Borel probability measure.
+(M1): $\int\|g\|\,d\nu_k\le\|f_k\|+\mathbb E|\tau|$, and $\sum_kw_k(\|f_k\|+\mathbb E|\tau|)\le c\sum_k2^{-k}+\mathbb E|\tau|<\infty$.
+(M2): by Lemma~\ref{lem:states}(c), $P_Q(f_k+t\one)=P_Q(f_k)+t$, so $\nu_k\{P_Q=0\}=\Pr(\tau=-P_Q(f_k))=0$ for every credal set $Q$ and every $k$.
+(M3b): a nonempty open set contains a ball $B(g,r)$; choose $k$ with $\|f_k-g\|<r/2$; then $|\tau|<r/2$ implies $f_k+\tau\one\in B(g,r)$, so $\mu(B(g,r))\ge w_k\Pr(|\tau|<r/2)>0$.
+{\color{red}(M3a): fix $\omega_0\in\Omega$. For every $s\in\R$, $\mu\{g:g(\omega_0)=s\}=\sum_kw_k\Pr(\tau=s-f_k(\omega_0))=0$. Let $U$ be measurable with $\mu(U)>0$, and $F(s)\coloneqq\mu(U\cap\{g:g(\omega_0)<s\})$. $F$ is nondecreasing and continuous (its right limit at $s$ is $\mu(U\cap\{g(\omega_0)\le s\})=F(s)$), with limits $0$ and $\mu(U)$ at $\mp\infty$; so some $s$ has $F(s)=\mu(U)/2$, and $\mu$ is atomless. The set $I$ is open and contains $-\one$, so $\mu(I)>0$ by (M3b).}
+\end{proof}
+
+\begingroup\color{red}
+\paragraph{Limitations.}
+Local completion is maximality relative to strictly improving extensions (Remark~\ref{rem:maximal}). The theorem does not establish the admissibility premise: target admissibility is assumed. It is condition (A) of~\cite{LDG} imposed on each ranking, and through local completion it shapes that ranking's verdicts. The proof uses that premise together with the mathematical properties of the models assumed admissible, namely that an almost coherent model $D_Q$ contains the hull of each of its subsets and that each $q\in Q$ is positive almost everywhere on it (Lemma~\ref{lem:hullharm}). Under consolidation and splitting the weight of a gamble at $\omega$ depends only on $g(\omega)$, so weighings that depend on the whole gamble are excluded (Theorem~\ref{thm:monetary}), and a wrong acceptance weighs exactly as much as a wrong rejection of the same size (Remark~\ref{rem:neutral}). The measure conditions are restrictive: if $\mu(I)=0$, then $U\sge_\omega V$ for all $U,V$ and no weightless errors fails; and (M3b) is used to derive ordinary payoff.
+\endgroup
+
+\begin{thebibliography}{9}
+\bibitem{DiestelUhl} J.~Diestel and J.~J. Uhl. \emph{Vector Measures}. American Mathematical Society, 1977.
+\bibitem{LDG} J.~Konek. Coherence and dominance under general rankings. Manuscript, 2026.
+\bibitem{Rudin} W.~Rudin. \emph{Functional Analysis}, 2nd edition. McGraw-Hill, New York, 1991.
+\bibitem{Villegas} {\color{red}C.~Villegas. On qualitative probability $\sigma$-algebras. \emph{Annals of Mathematical Statistics}, 35:1787--1796, 1964.}
+\end{thebibliography}
+\end{document}

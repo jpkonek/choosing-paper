@@ -1,0 +1,569 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{axiom}[1]{\par\medskip\noindent\textbf{Axiom #1.}\ \itshape}{\par\medskip}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\K}{\mathfrak K}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\bd}{\partial}
+\newcommand{\cor}{\mathrm{cor}}
+\newcommand{\sil}{\mathrm{sil}}
+\newcommand{\wro}{\mathrm{wro}}
+\newcommand{\con}{\mathrm{con}}
+\newcommand{\AV}{\mathrm{AV}}
+\newcommand{\WSL}{\mathrm{WSL}}
+\newcommand{\CONC}{\mathrm{CONC}}
+\newcommand{\GU}{\mathrm{G}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and Dominance for Sets of Desirable Gambles}
+\author{Jason Konek}
+\date{}
+
+\begin{document}
+\maketitle
+
+% Abstract reserved for the author.
+
+\section{Setting}\label{sec:setting}
+
+\begin{definition}[Gambles]\label{def:gambles}
+Let $\Omega$ be a nonempty set. Let $E$ be a closed linear subspace of the space of bounded real functions on $\Omega$, with the norm $\|g\|\coloneqq\sup_{\omega\in\Omega}|g(\omega)|$, such that $E$ is separable and the constant function $\one$ belongs to $E$. Elements of $E$ are \emph{gambles}. For $g,h\in E$ write $g\ge h$ if $g(\omega)\ge h(\omega)$ for every $\omega\in\Omega$. Put
+\[
+E_+\coloneqq\{g\in E:g\ge0\},\qquad E_{++}\coloneqq\{g\in E:\inf_{\Omega}g>0\},\qquad E_{--}\coloneqq -E_{++}.
+\]
+Elements of $E_{++}$ are \emph{uniformly positive} and elements of $E_{--}$ are \emph{uniformly negative}. For $c\in E$ and $r>0$, $B(c,r)\coloneqq\{g\in E:\|g-c\|<r\}$. For $A\subseteq E$, $-A\coloneqq\{-g:g\in A\}$; $A$ is \emph{symmetric} if $A=-A$. For a set $R\subseteq E$, $\interior R$ and $\bd R$ denote its interior and boundary.
+\end{definition}
+
+\begin{definition}[Judgments and problem classes]\label{def:judgments}
+For options $a,b$ of a binary decision problem with $a-b=g\in E$, the gamble $g$ is the \emph{judgment} that $a$ is preferred to $b$, and $-g$ is the judgment that $b$ is preferred to $a$. For $g\in E$, the \emph{problem class} of $g$ is the set $[g]\coloneqq\{g,-g\}$; it indexes all binary problems whose option difference is $g$ or $-g$. A set of problem classes is represented by the symmetric set of gambles that is the union of its members.
+\end{definition}
+
+\begin{definition}[Frequency measure]\label{def:frequency}
+$\mu$ is a finite Borel measure on $E$ that is \emph{symmetric}: $\mu(-A)=\mu(A)$ for every Borel $A$. For a symmetric measurable $A\subseteq E$, $\pi(A)\coloneqq\tfrac12\mu(A)$ is the frequency of the problem classes contained in $A$. For a measurable $A$ with $A\cap(-A)=\varnothing$, $\mu(A)=\pi(A\cup(-A))$ is the frequency of the problem classes that meet $A$. ``Measurable'' means measurable for the completion of $\mu$, and ``null'' means of $\mu$-measure zero.
+\end{definition}
+
+\begin{definition}[Models]\label{def:models}
+A \emph{model} is a measurable set $X\subseteq E$, two models being identified when their symmetric difference is null. $\M$ is the set of models. For a model $X$:
+\begin{gather*}
+U(X)\coloneqq\{g\in X:-g\notin X\},\qquad K(X)\coloneqq\{g\in X:-g\in X\},\\
+S(X)\coloneqq\{g\in E:g\notin X,\ -g\notin X\}.
+\end{gather*}
+For every $a,b$ with $a-b=g$, $g\in U(X)$ means that $a$ alone is recommended; $g\in S(X)$ means that both options remain available; and $g\in K(X)$ means that neither remains available. $S(X)$ and $K(X)$ are symmetric.
+\end{definition}
+
+\begin{definition}[Responses at a world]\label{def:responses}
+Fix $\omega\in\Omega$ and $g\in E$ with $g(\omega)\ne0$. Let $g^\omega$ be the element of $[g]$ with $g^\omega(\omega)>0$. The \emph{response} of a model $X$ to $[g]$ at $\omega$ is
+\[
+\rho_\omega(X,g)\coloneqq
+\begin{cases}
+\cor &\text{if } g^\omega\in X,\ -g^\omega\notin X,\\
+\sil &\text{if } g^\omega\notin X,\ -g^\omega\notin X,\\
+\wro &\text{if } g^\omega\notin X,\ -g^\omega\in X,\\
+\con &\text{if } g^\omega\in X,\ -g^\omega\in X.
+\end{cases}
+\]
+$\rho_\omega(X,g)=\rho_\omega(X,-g)$. 
+\end{definition}
+
+\begin{definition}[Changed classes, distance]\label{def:changed}
+For models $X,Y$ put
+\[
+P(X,Y)\coloneqq (X\triangle Y)\cup -(X\triangle Y),
+\]
+the symmetric set of judgments whose problem classes receive different responses from $X$ and $Y$. For a symmetric measurable $A$, the models $X$ and $X'$ \emph{agree on $A$} if $(X\triangle X')\cap A$ is null. For models $X,Y$,
+\[
+d(X,Y)\coloneqq\int_{X\triangle Y}\bigl(1+\|g\|\bigr)\,d\mu(g).
+\]
+For a measurable $A\subseteq E$ put $\nu(A)\coloneqq2\int_A\|g\|\,d\mu(g)$.
+\end{definition}
+
+\begin{definition}[Coherence]\label{def:coherence}
+A set $D\subseteq E$ is \emph{coherent} if:
+\begin{enumerate}[label=(C\arabic*)]
+\item $g\in D$ for every $g\in E_+\setminus\{0\}$;
+\item $g\notin D$ for every $g\in E$ with $g\le0$;
+\item $\lambda g\in D$ for every $g\in D$ and $\lambda>0$;
+\item $g+h\in D$ for every $g,h\in D$.
+\end{enumerate}
+A model $X$ is \emph{almost coherent} if there is a coherent $D$ with $X\triangle D$ null. $\C$ is the set of almost coherent models.
+\end{definition}
+
+\section{The frequency measure}\label{sec:measure}
+
+\begin{definition}[Hypotheses on $\mu$]\label{def:hypotheses}
+\begin{enumerate}[label=(M\arabic*)]
+\item $\mu$ is a finite symmetric Borel measure on $E$ without atoms, and $\mu(B(c,r))>0$ for every $c\in E$ and $r>0$.
+\item $\int_E\|g\|\,d\mu(g)<\infty$.
+\item For every measurable $A$ with $\mu(A)>0$: $\inf_{\omega\in\Omega}\int_A|g(\omega)|\,d\mu(g)>0$.
+\item $\mu(\bd R)=0$ for every closed convex $R\subseteq E$ with $E_+\subseteq R$, $R+E_+\subseteq R$ and $R\cap E_{--}=\varnothing$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}\label{lem:hyperplane}
+Under (M3), $\{g\in E:g(\omega)=0\}$ is null for every $\omega\in\Omega$.
+\end{lemma}
+\begin{proof}
+Let $A\coloneqq\{g:g(\omega)=0\}$. Then $\int_A|g(\omega)|\,d\mu=0$, so $\inf_{\omega'}\int_A|g(\omega')|\,d\mu=0$. By (M3), $\mu(A)=0$.
+\end{proof}
+
+\begin{lemma}\label{lem:detecting}
+There is a countable set $W\subseteq\Omega$ with $\sup_{w\in W}g(w)=\sup_{\omega\in\Omega}g(\omega)$ for every $g\in E$. Consequently, for every $g\in E$: if $g(\omega)>0$ for some $\omega\in\Omega$, then $g(w)>0$ for some $w\in W$.
+\end{lemma}
+\begin{proof}
+Let $(v_j)_{j\in\N}$ be dense in $E$. For $j,k\in\N$ choose $\omega_{j,k}\in\Omega$ with $v_j(\omega_{j,k})>\sup_\Omega v_j-1/k$, and let $W\coloneqq\{\omega_{j,k}:j,k\in\N\}$. Let $g\in E$ and $\varepsilon>0$. Choose $j$ with $\|g-v_j\|<\varepsilon$ and $k$ with $1/k<\varepsilon$. Then
+\[
+\sup_Wg\ \ge\ g(\omega_{j,k})\ >\ v_j(\omega_{j,k})-\varepsilon\ >\ \sup_\Omega v_j-2\varepsilon\ \ge\ \sup_\Omega g-3\varepsilon.
+\]
+Since $\varepsilon$ is arbitrary and $W\subseteq\Omega$, $\sup_Wg=\sup_\Omega g$. If $g(\omega)>0$ then $\sup_Wg>0$, so $g(w)>0$ for some $w\in W$.
+\end{proof}
+
+\begin{lemma}\label{lem:extraction}
+Assume (M1). Let $A_1,\dots,A_k$ be measurable and $m_1,\dots,m_k>0$ with $\sum_{i=1}^km_i\le\min_i\mu(A_i)$. Then there are pairwise disjoint measurable $B_i\subseteq A_i$ with $\mu(B_i)=m_i$.
+\end{lemma}
+\begin{proof}
+Suppose $B_1,\dots,B_{i-1}$ have been chosen. Then $\mu\bigl(A_i\setminus(B_1\cup\dots\cup B_{i-1})\bigr)\ge\mu(A_i)-\sum_{l<i}m_l\ge m_i$. Since $\mu$ has no atoms, this set has a measurable subset $B_i$ with $\mu(B_i)=m_i$.
+\end{proof}
+
+\begin{lemma}\label{lem:separable}
+Assume (M1) and (M2). Then $d$ is a finite metric on $\M$, and $(\M,d)$ is separable. Moreover, for all models $X,Y$:
+\[
+\mu\bigl(P(X,Y)\bigr)\le2\mu(X\triangle Y)\le2d(X,Y),\qquad \nu\bigl(P(X,Y)\bigr)\le4\,d(X,Y).
+\]
+\end{lemma}
+\begin{proof}
+Let $\lambda$ be the finite Borel measure $\lambda(A)\coloneqq\int_A(1+\|g\|)\,d\mu$; finiteness is (M2). Then $d(X,Y)=\lambda(X\triangle Y)$, and $\lambda$ and $\mu$ have the same null sets, so $d$ is a metric on $\M$. Let $\mathcal B$ be a countable base of the separable metric space $E$, and $\mathcal A$ the algebra generated by $\mathcal B$, which is countable. The class of Borel sets $A$ such that for every $\varepsilon>0$ some $A'\in\mathcal A$ has $\lambda(A\triangle A')<\varepsilon$ is a $\sigma$-algebra containing $\mathcal B$, hence contains every Borel set. Every measurable set differs from a Borel set by a null set. So $\mathcal A$ is dense in $(\M,d)$. By symmetry of $\mu$,
+\begin{gather*}
+\mu(P(X,Y))\le\mu(X\triangle Y)+\mu(-(X\triangle Y))=2\mu(X\triangle Y),\\
+\nu(P(X,Y))\le2\int_{X\triangle Y}\|g\|\,d\mu+2\int_{-(X\triangle Y)}\|g\|\,d\mu=4\int_{X\triangle Y}\|g\|\,d\mu,
+\end{gather*}
+and both right-hand sides are at most $2d(X,Y)$ and $4d(X,Y)$ respectively.
+\end{proof}
+
+\begin{proposition}\label{prop:existence-measure}
+There is a measure satisfying (M1)--(M4).
+\end{proposition}
+\begin{proof}
+Let $(v_j)_{j\in\N}$ be dense in $E$, and $a_j\coloneqq c_0\,2^{-j}/(1+\|v_j\|)$ with $c_0>0$ such that $\sum_ja_j=1$. Let $N,\sigma,\zeta$ be independent random variables with $\Pr(N=j)=a_j$, $\Pr(\sigma=1)=\Pr(\sigma=-1)=\tfrac12$, and $\zeta$ real with a density $\phi$ that is continuous, everywhere positive, symmetric ($\phi(z)=\phi(-z)$), and satisfies $\int|z|\phi(z)\,dz<\infty$. Let $\mu$ be the law of $\xi\coloneqq\sigma v_N+\zeta\one$. For each $(j,s)$ the map $z\mapsto sv_j+z\one$ is continuous, so $\xi$ is a random element of $E$ and $\mu$ is a Borel probability measure.
+
+(M1) \emph{Symmetry}: $-\xi=(-\sigma)v_N+(-\zeta)\one$, and $(N,-\sigma,-\zeta)$ has the law of $(N,\sigma,\zeta)$. \emph{No atoms}: for fixed $(j,s)$ and $h\in E$, $sv_j+z\one=h$ for at most one $z$, so $\Pr(\xi=h)=0$. A finite Borel measure on a separable metric space without point masses has no atoms: if $A$ were an atom, then for each $n$ one of countably many balls of radius $1/n$ covering $E$ would meet $A$ in a set of measure $\mu(A)$, and the intersection of these sets would be a single point of measure $\mu(A)$. \emph{Positivity on balls}: given $c\in E$ and $r>0$, choose $j$ with $\|v_j-c\|<r/2$; then $\Pr(\xi\in B(c,r))\ge\Pr(N=j,\sigma=1,|\zeta|<r/2)>0$.
+
+(M2) $\int\|g\|\,d\mu\le\sum_ja_j\|v_j\|+\int|z|\phi(z)\,dz<\infty$.
+
+(M3) Let $\mu(A)>0$. Since $\mu=\sum_{j,s}\tfrac{a_j}2\,\mu_{j,s}$, where $\mu_{j,s}$ is the law of $sv_j+\zeta\one$, each $\mu_{j,s}\ll\mu$ extends to the completion of $\mu$; there are $j,s$ with $\mu_{j,s}(A)>0$. Put $v\coloneqq sv_j$, $b\coloneqq a_j/2$ and $A_0\coloneqq\{z\in\R:v+z\one\in A\}$, so $\int_{A_0}\phi>0$. Define $F(\alpha)\coloneqq\int_{A_0}|\alpha+z|\phi(z)\,dz$ for $\alpha\in\R$. $F$ is finite and continuous by dominated convergence, since $|\alpha+z|\le|\alpha|+|z|$. $F(\alpha)>0$ for every $\alpha$, since the integrand is positive except at $z=-\alpha$ and $\int_{A_0}\phi>0$. Hence $\kappa\coloneqq\min_{|\alpha|\le\|v\|}F(\alpha)>0$. For every $\omega$,
+\[
+\int_A|g(\omega)|\,d\mu(g)\ \ge\ b\int_{A_0}|v(\omega)+z|\phi(z)\,dz\ =\ bF(v(\omega))\ \ge\ b\kappa.
+\]
+
+(M4) Let $R$ be as in (M4). Fix $v\in E$ and put $T_v\coloneqq\{z\in\R:v+z\one\in R\}$. If $z>\|v\|$ then $v+z\one\in E_{++}\subseteq R$; if $z<-\|v\|$ then $v+z\one\in E_{--}$, so $v+z\one\notin R$. $T_v$ is closed since $R$ is closed, and $z\in T_v$, $z'>z$ imply $z'\in T_v$ since $R+E_+\subseteq R$. Hence $T_v=[\alpha(v),\infty)$ for some $\alpha(v)\in\R$. If $z>\alpha(v)$ and $\|w\|<z-\alpha(v)$, then $v+z\one+w\ge v+\alpha(v)\one$, so $v+z\one+w\in R$; thus $v+z\one\in\interior R$. If $z<\alpha(v)$ then $v+z\one$ lies in the open set $E\setminus R$. So $\{z:v+z\one\in\bd R\}\subseteq\{\alpha(v)\}$, and $\mu_{j,s}(\bd R)=0$ for every $(j,s)$, because $\zeta$ has a density. Hence $\mu(\bd R)=0$.
+\end{proof}
+
+\section{Rankings and the dominance argument}\label{sec:ldg}
+
+\begin{definition}[Rankings and dominance]\label{def:rankings}
+A \emph{ranking} $L$ is a family $(\preceq_\omega)_{\omega\in\Omega}$ of binary relations on $\M$. $Y\preceq_\omega X$ reads: $Y$ is at least as good as $X$ at $\omega$. Its asymmetric part is
+\[
+Y\prec_\omega X\quad:\Longleftrightarrow\quad Y\preceq_\omega X\ \text{ and not }\ X\preceq_\omega Y .
+\]
+$Y$ \emph{dominates} $X$ under $L$ if $Y\preceq_\omega X$ for every $\omega\in\Omega$ and $X\not\preceq_\omega Y$ for some $\omega\in\Omega$. $X$ is \emph{undominated} under $L$ if no model dominates it. $\U_L$ is the set of undominated models and $\C_L\coloneqq\C\cap\U_L$. No property of the relations $\preceq_\omega$ is assumed.
+\end{definition}
+
+\begin{definition}[Countable selection; {\cite[Definitions~2.2 and~3.2]{LDG}}]\label{def:selection}
+$\Delta$ is the set of functions $p:2^\Omega\to[0,1]$ with $p(\Omega)=1$ and $p(A\cup B)=p(A)+p(B)$ whenever $A\cap B=\varnothing$, with the subspace topology inherited from $[0,1]^{2^\Omega}$; $p_\omega\coloneqq p(\{\omega\})$, and $p$ is \emph{finitely supported} if $p(F)=1$ for a finite $F\subseteq\Omega$. A ranking $L$ satisfies \emph{countable selection on $\mathcal I\subseteq\M$} if there are models $c^j_p\in\M$, $j\in\N$, $p\in\Delta$, such that for every $x\in\mathcal I$ there are $j\in\N$ and closed sets $A_\omega(x)\subseteq\Delta$, $\omega\in\Omega$, with
+\begin{align}
+&\forall\omega\in\Omega\ \forall p\in A_\omega(x):\ c^j_p\preceq_\omega x;\tag{F1}\\
+&\forall p\in\Delta\text{ finitely supported}\ \exists\omega\in\Omega:\ p_\omega>0\text{ and }p\in A_\omega(x).\tag{F2}
+\end{align}
+For a family $\Lf$ of rankings:
+\begin{itemize}[leftmargin=3em]
+\item[(E)] every model is evaluated by some $L\in\Lf$ (here every ranking evaluates every model);
+\item[(A)] $\C=\bigcup_{L\in\Lf}\C_L$;
+\item[(S)] every $L\in\Lf$ satisfies countable selection on $\M\setminus\C$;
+\item[(T)] for every $L\in\Lf$ the models $c^j_p$ in (S) can be chosen so that each $x\in\M\setminus\C$ has $j$ and closed sets $A_\omega(x)$ satisfying (F1), (F2) and
+\begin{equation}
+\forall p\in\textstyle\bigcap_{\omega\in\Omega}A_\omega(x)\ \exists\omega\in\Omega:\ x\not\preceq_\omega c^j_p.\tag{F3}
+\end{equation}
+\end{itemize}
+A model $m$ is \emph{rationally permissible} relative to $\Lf$ if $m\in\U_L$ for some $L\in\Lf$, and \emph{irrational} otherwise.
+\end{definition}
+
+
+\begin{theorem}[{\cite[Theorem~3.3(d)]{LDG}}]\label{thm:ldg}
+Let $\C^\ast\subseteq\M$ be any class of models, and read (A), (S) and (T) with $\C^\ast$ in place of $\C$. If a family $\Lf$ of rankings satisfies (A), (S) and (T), then the rationally permissible models are exactly the members of $\C^\ast$, and the irrational models are exactly the members of $\M\setminus\C^\ast$.
+\end{theorem}
+
+\section{Axioms}\label{sec:axioms}
+
+Throughout, $t>1$ is fixed. All set equalities and inclusions between models and between sets of judgments are understood up to null sets.
+
+\begin{definition}[Required comparisons of responses]\label{def:required}
+Put
+\begin{gather*}
+\mathcal W=\{(\sil,\cor),(\wro,\cor),(\wro,\sil),
+(\con,\cor),(\con,\sil),(\con,\wro)\},\\
+\mathcal S=\mathcal W\setminus\{(\con,\wro)\}.
+\end{gather*}
+A transition $(b,a)$, from $b$ to $a$, is \emph{required weak} if it belongs to $\mathcal W$ and \emph{required strict} if it belongs to $\mathcal S$.
+\end{definition}
+
+\begin{axiom}{G (Guidance)}
+For all models $X,Y$ and every $\omega\in\Omega$:
+\begin{enumerate}[label=(\roman*)]
+\item if, for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$, $(\rho_\omega(X,g),\rho_\omega(Y,g))$ is a required weak transition, then $Y\preceq_\omega X$;
+\item if moreover $\mu(P(X,Y))>0$ and, for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$, $(\rho_\omega(X,g),\rho_\omega(Y,g))$ is a required strict transition, then $Y\prec_\omega X$.
+\end{enumerate}
+\end{axiom}
+\noindent At a given world, a change that moves responses up the order correct, silent, wrong, confused is at least as good there, and strictly better if no changed response moves only from confused to wrong.
+
+\begin{definition}[Averaging instance]\label{def:AV}
+$(X,Z)$ is an \emph{averaging instance} if there are $f_1,f_2,h\in E$, $r>0$, $\varepsilon>0$, $m>0$ and measurable sets $G_1,G_2,H$ with
+\begin{gather*}
+G_1\subseteq U(X)\cap B(f_1,r),\quad G_2\subseteq U(X)\cap B(f_2,r),\quad G_1\cap G_2=\varnothing,\\
+H\subseteq S(X)\cap B(h,r),\quad \mu(G_1)=\mu(G_2)=m,\quad \mu(H)=2m,\\
+r<\|h\|,\quad h\ge\tfrac12(f_1+f_2)+(\varepsilon+2r)\one,
+\end{gather*}
+and $Z=(X\setminus(G_1\cup G_2))\cup H$.
+\end{definition}
+
+\begin{axiom}{AV (Averaging)}
+If $(X,Z)$ is an averaging instance, then $Z\prec_\omega X$ for every $\omega\in\Omega$.
+\end{axiom}
+\noindent Replacing two equally frequent sets of recommendations near $f_1$ and $f_2$ by recommendations of twice that frequency, on silent problems, near a gamble uniformly above their average makes the advice strictly better at every world.
+
+\begin{definition}[Weighted sure-loss withdrawal instance]\label{def:WSL}
+$(X,Z)$ is a \emph{weighted sure-loss withdrawal instance} if there are $k\in\N$, $f_1,\dots,f_k\in E$, $r>0$, $\varepsilon>0$, $m_1,\dots,m_k>0$ and pairwise disjoint measurable sets $G_1,\dots,G_k$ with
+\[
+G_i\subseteq U(X)\cap B(f_i,r),\quad \mu(G_i)=m_i,\quad \sum_{i=1}^km_if_i\le-\Bigl(\varepsilon+r\sum_{i=1}^km_i\Bigr)\one,
+\]
+and $Z=X\setminus(G_1\cup\dots\cup G_k)$.
+\end{definition}
+
+\begin{axiom}{WSL (Weighted sure-loss withdrawal)}
+If $(X,Z)$ is a weighted sure-loss withdrawal instance, then $Z\prec_\omega X$ for every $\omega\in\Omega$.
+\end{axiom}
+\noindent Withdrawing sets of recommendations whose frequency-weighted sum is uniformly negative makes the advice strictly better at every world.
+
+\begin{definition}[Concentration instance]\label{def:CONC}
+$(X,Z)$ is a \emph{concentration instance} (for the fixed $t>1$) if there are $f,h\in E$, $r>0$, $\varepsilon>0$, $m>0$ and measurable sets $G,H$ with
+\begin{gather*}
+G\subseteq U(X)\cap B(f,r),\quad H\subseteq S(X)\cap B(h,r),\quad \mu(G)=m,\quad \mu(H)=m/t,\\
+r<\|h\|,\quad h\ge tf+\bigl(\varepsilon+(t+1)r\bigr)\one,
+\end{gather*}
+and $Z=(X\setminus G)\cup H$.
+\end{definition}
+
+\begin{axiom}{CONC (Concentration)}
+If $(X,Z)$ is a concentration instance, then $Z\prec_\omega X$ for every $\omega\in\Omega$.
+\end{axiom}
+\noindent Replacing recommendations near $f$ by recommendations of $1/t$ times the frequency, on silent problems, near a gamble uniformly above $tf$ makes the advice strictly better at every world.
+
+\begin{axiom}{I (Independence)}
+For all models $X,Y,X',Y'$: if $P(X,Y)=P(X',Y')\eqqcolon P$, $X$ and $X'$ agree on $P$, and $Y$ and $Y'$ agree on $P$, then for every $\omega\in\Omega$
+\[
+Y\preceq_\omega X\iff Y'\preceq_\omega X'\qquad\text{and}\qquad X\preceq_\omega Y\iff X'\preceq_\omega Y'.
+\]
+\end{axiom}
+\noindent The comparison of two models at a world depends only on which problem classes they treat differently and on how each treats those classes.
+
+\begin{definition}[Required improvements]\label{def:J}
+For models $X,Z$:
+\begin{enumerate}[label=(\alph*)]
+\item $J_\GU(X,Z)$ holds if $\mu(P(X,Z))>0$ and, for every $\omega\in\Omega$ and almost every $g\in P(X,Z)$ with $g(\omega)\ne0$, $(\rho_\omega(X,g),\rho_\omega(Z,g))$ is a required strict transition;
+\item $J(X,Z)$ holds if $J_\GU(X,Z)$ holds or $(X,Z)$ is an averaging, a weighted sure-loss withdrawal or a concentration instance.
+\end{enumerate}
+\end{definition}
+
+\begin{axiom}{UR (Uniform robustness)}
+For all models $X,Z$ with $J(X,Z)$ there is $\delta>0$ such that for every model $Y$:
+\[
+d(Y,Z)<\delta\ \Longrightarrow\ Y\prec_\omega X\ \text{ for every }\omega\in\Omega.
+\]
+\end{axiom}
+\noindent If a change is required by Guidance at every world, or by Averaging, Weighted sure-loss withdrawal or Concentration, then every sufficiently small alteration of its result is still strictly better at every world, with one bound on the size of the alteration for all worlds.
+
+\begin{definition}\label{def:class}
+$\K_t$ is the class of rankings satisfying Axioms G, AV, WSL, CONC, I and UR.
+\end{definition}
+
+\section{Classification}\label{sec:classification}
+
+\begin{theorem}\label{thm:classification}
+Assume (M1)--(M4). If $X\in\M$ and there is no $Z\in\M$ with $J(X,Z)$, then $X\in\C$.
+\end{theorem}
+
+\begin{proof}
+Put $U=U(X)$, $S=S(X)$ and $K=K(X)$. For measurable $A$, define
+\[
+R_A=\{h\in E:\mu(A\cap B(h,r))>0\text{ for every }r>0\}.
+\]
+$R_A$ is closed and $\mu(A\setminus R_A)=0$: its complement is a union of members $B$ of a countable base with $\mu(A\cap B)=0$. Put $R=R_U$.
+
+\emph{Initial consequences.} The following changes satisfy $J_\GU(X,Z)$ whenever the indicated set has positive measure:
+\[
+\begin{array}{c|c}
+\text{set}&Z\\\hline
+K&X\setminus K\\
+A=E_{++}\setminus U&(X\setminus(-A))\cup A\\
+A=U\cap E_{--}&X\setminus A
+\end{array}
+\]
+Their responses change, respectively, from confused to silent, from any non-correct response to correct, and from wrong to silent, at every world. Lemma~\ref{lem:hyperplane} handles equal payoffs. Thus all three sets are null and $X=U$ almost everywhere. Full support gives $E_{++}\subseteq R$ and $R\cap E_{--}=\varnothing$. Closedness and $g+n^{-1}\one\to g$ for $g\in E_+$ give $E_+\subseteq R$, including $0\in R$.
+
+\emph{Local claim.} Let $(\alpha_1,\ldots,\alpha_k)$ be either $(\tfrac12,\tfrac12)$ or $(t)$, let $f_i\in R$, and suppose
+\[
+h\ne0,\qquad h\ge\sum_{i=1}^k\alpha_if_i+\eta\one,\qquad\eta>0.
+\]
+Then some $r>0$ satisfies $\mu(B(h,r)\setminus U)=0$; in particular $h\in R$.
+
+Choose $0<r<\|h\|$ with $(1+\sum_i\alpha_i)r<\eta/2$. Each $U\cap B(f_i,r)$ has positive measure. If $B(h,r)\setminus U$ has positive measure, then, since $K$ is null, one of the following holds.
+\begin{enumerate}[label=(\roman*)]
+\item $S\cap B(h,r)$ has positive measure. Choose disjoint $G_i\subseteq U\cap B(f_i,r)$ and $H\subseteq S\cap B(h,r)$ with
+\[
+\mu(G_i)=m\alpha_i,\qquad \mu(H)=m,
+\]
+where $m>0$ is small enough that Lemma~\ref{lem:extraction} applies to all the displayed sets. If $\alpha=(\tfrac12,\tfrac12)$, these give an averaging instance with frequency parameter $m/2$ and margin $\eta-2r>0$. If $\alpha=(t)$, they give a concentration instance with withdrawn frequency $mt$ and margin $\eta-(t+1)r>0$. Both contradict the hypothesis.
+\item $(-U)\cap B(h,r)$ has positive measure. By symmetry $U\cap B(-h,r)$ has positive measure. Lemma~\ref{lem:extraction}, for sufficiently small $m>0$, gives disjoint $G_i\subseteq U\cap B(f_i,r)$ of measures $m\alpha_i$ and $H\subseteq U\cap B(-h,r)$ of measure $m$. Their centres satisfy
+\[
+\sum_i m\alpha_i f_i-mh\le-m\eta\one
+=-\left[m\left(\eta-(1+\sum_i\alpha_i)r\right)
+       +rm(1+\sum_i\alpha_i)\right]\one.
+\]
+This is a weighted sure-loss withdrawal instance with positive margin $m(\eta-(1+\sum_i\alpha_i)r)$, again a contradiction.
+\end{enumerate}
+This proves the claim. Its use of Lemma~\ref{lem:extraction} allows repeated centres and overlapping balls; $U\cap(-U)=\varnothing$, and $r<\|h\|$ excludes opposite judgments from $H$ in case (i).
+
+\emph{Convexity and order.} Apply the claim with $\alpha=(\tfrac12,\tfrac12)$ and $h=(f_1+f_2)/2+n^{-1}\one$. If $h=0$ it already belongs to $R$. Closedness gives $(f_1+f_2)/2\in R$. Iteration gives every dyadic convex combination, and taking limits gives convexity. Taking $f_1=f_2=f$ and $h=f+e+n^{-1}\one$, $e\in E_+$, gives $R+E_+\subseteq R$ in the same way.
+
+\emph{Scaling.} For $f\in R$, use $\alpha=(t)$ and $h=tf+n^{-1}\one$. Such $h$ cannot be zero, since otherwise $f\in E_{--}$. The claim and closedness give $tf\in R$. Thus $t^jR\subseteq R$ for all $j\in\mathbb N$. For $\lambda>0$, choose $t^j\ge\lambda$ and use
+\[
+\lambda f=\frac{\lambda}{t^j}t^jf+\left(1-\frac{\lambda}{t^j}\right)0\in R.
+\]
+Hence $R$ is a convex cone.
+
+\emph{Equality almost everywhere.} $E_{++}\subseteq\interior R$, and (M4) gives $\mu(\bd R)=0$, so $\mu(U\setminus\interior R)=0$. If $h\in\interior R$, then $h\ne0$, since an interior neighbourhood of $0$ would contain a uniformly negative gamble. Choose $\eta>0$ with $f=h-\eta\one\in R$. The local claim for $(f,f)$ supplies a neighbourhood of $h$ whose complement in $U$ is null. A countable subcover of these neighbourhoods covers $\interior R$, so $\mu(\interior R\setminus U)=0$.
+
+Let $D=\interior R\cup(E_+\setminus\{0\})$. It satisfies (C1). No $g\le0$ is interior to $R$, since then $g-\varepsilon\one\in R\cap E_{--}$ for sufficiently small $\varepsilon>0$; this gives (C2). For $\lambda>0$, the homeomorphism $g\mapsto\lambda g$ maps $R$ onto itself and hence its interior onto itself, giving (C3). Convexity and (C3) give closure of $\interior R$ under addition. Moreover $\interior R+E_+\subseteq\interior R$, because $B(g,r)\subseteq R$ implies $B(g+e,r)\subseteq R+E_+\subseteq R$. Together with closure of $E_+\setminus\{0\}$ under addition, this gives (C4). Finally,
+\[
+X=U\quad\text{a.e.},\qquad U=\interior R\quad\text{a.e.},\qquad
+D\setminus\interior R\subseteq\bd R.
+\]
+Thus $X\triangle D$ is null.
+\end{proof}
+
+\begin{lemma}\label{lem:noJ}
+Assume (M1)--(M3). If $T\in\C$, there is no $Z\in\M$ with $J(T,Z)$.
+\end{lemma}
+
+\begin{proof}
+Let $D$ be coherent with $T\triangle D$ null. By (C2) and (C4), $g\in D$ and $-g\in D$ cannot both hold, since $g+(-g)=0\le0$. Up to null sets, $U(T)=D$ and $K(T)=\varnothing$.
+
+\emph{Averaging.} Suppose $(T,Z)$ is an averaging instance with data as in Definition~\ref{def:AV}. Since $\mu(G_i)>0$ and $G_i\subseteq U(T)$, there are $f_1'\in G_1\cap D$ and $f_2'\in G_2\cap D$. For $h'\in H$: $h'\ge h-r\one\ge\frac12(f_1+f_2)+(\varepsilon+r)\one\ge\frac12(f_1'+f_2')+\varepsilon\one$, because $f_i'\le f_i+r\one$. By (C3), (C4) and (C1), $h'=\frac12f_1'+\frac12f_2'+(h'-\frac12(f_1'+f_2'))\in D$. So $H\subseteq D$, and $H\subseteq S(T)$ forces $\mu(H)=0$, a contradiction.
+
+\emph{Weighted sure-loss withdrawal.} With data as in Definition~\ref{def:WSL}, choose $f_i'\in G_i\cap D$. Then $\sum_im_if_i'\le\sum_im_i(f_i+r\one)\le-\varepsilon\one$, so $\sum_im_if_i'\le0$, while $\sum_im_if_i'\in D$ by (C3), (C4). This contradicts (C2).
+
+\emph{Concentration.} With data as in Definition~\ref{def:CONC}, choose $f'\in G\cap D$. For $h'\in H$: $h'\ge h-r\one\ge tf+(\varepsilon+tr)\one\ge tf'+\varepsilon\one$, so $h'=tf'+(h'-tf')\in D$. Thus $H\subseteq D$, a contradiction as before.
+
+\emph{$J_\GU$.} Suppose $J_\GU(T,Z)$, and let $W$ be as in Lemma~\ref{lem:detecting}. For each $w\in W$ let $N_w$ be the null set of $g\in P(T,Z)$ for which $g(w)=0$ or $(\rho_w(T,g),\rho_w(Z,g))$ is not a required strict transition. Let $N\coloneqq\bigcup_{w\in W}N_w\cup\bigl((T\triangle D)\cup-(T\triangle D)\bigr)$, a null set. Since $\mu(P(T,Z))>0$, there is $g\in P(T,Z)\setminus N$, with $g\ne0$. Then $T\cap[g]=D\cap[g]$, and the response of $T$ to $[g]$ strictly improves at every $w\in W$.
+\begin{itemize}
+\item If $D\cap[g]=\{g'\}$: by (C2), $g'(\omega)>0$ for some $\omega$, so $g'(w)>0$ for some $w\in W$ (Lemma~\ref{lem:detecting}). Then $\rho_w(T,g)=\cor$, and no required transition has source $\cor$.
+\item If $D\cap[g]=\varnothing$: by (C1), neither $g$ nor $-g$ lies in $E_+\setminus\{0\}$, and $g\ne0$, so $g$ takes a strictly positive and a strictly negative value. By Lemma~\ref{lem:detecting} there are $w_1,w_2\in W$ with $g(w_1)>0>g(w_2)$. $\rho_w(T,g)=\sil$ for every $w$. If $Z\cap[g]=\{g\}$ then $\rho_{w_2}(Z,g)=\wro$; if $Z\cap[g]=\{-g\}$ then $\rho_{w_1}(Z,g)=\wro$; if $Z\cap[g]=[g]$ then $\rho_{w_1}(Z,g)=\con$. In each case $(\sil,\rho_w(Z,g))\notin\mathcal S$ at some $w\in W$.
+\end{itemize}
+Both cases contradict the choice of $g$.
+\end{proof}
+
+\section{Existence and protection}\label{sec:existence}
+
+Assume (M1)--(M4).
+
+\begin{definition}\label{def:Phi}
+For this construction define the auxiliary order $\cor\rhd\sil\rhd\wro\rhd\con$. For $X\in\M$, $\omega\in\Omega$ and $g\in E$ put
+\[
+\varphi_\omega(g;X)\coloneqq g(\omega)\one_{U(X)}(g)-|g(\omega)|\one_{K(X)}(g),\qquad \Phi_\omega(X)\coloneqq\int_E\varphi_\omega(g;X)\,d\mu(g),
+\]
+which is finite by (M2). For $X,Z\in\M$ put $\Gamma_\omega(X,Z)\coloneqq\Phi_\omega(Z)-\Phi_\omega(X)$ and $\gamma(X,Z)\coloneqq\inf_{\omega\in\Omega}\Gamma_\omega(X,Z)$.
+\end{definition}
+
+\begin{lemma}\label{lem:Phi}
+Let $X,Y\in\M$ and $\omega\in\Omega$.
+\begin{enumerate}[label=(\alph*)]
+\item For every symmetric measurable $A\supseteq P(X,Y)$,
+\[
+\Phi_\omega(Y)-\Phi_\omega(X)=\int_A\bigl(\varphi_\omega(g;Y)-\varphi_\omega(g;X)\bigr)d\mu(g)=\tfrac12\int_A\bigl(v_\omega(g;Y)-v_\omega(g;X)\bigr)d\mu(g),
+\]
+where $v_\omega(g;X)\coloneqq\varphi_\omega(g;X)+\varphi_\omega(-g;X)$ equals $|g(\omega)|$, $0$, $-|g(\omega)|$, $-2|g(\omega)|$ according as $\rho_\omega(X,g)$ is $\cor$, $\sil$, $\wro$, $\con$ (for $g(\omega)\ne0$).
+\item $|\Phi_\omega(Y)-\Phi_\omega(X)|\le\nu(P(X,Y))$.
+\item If $\mu(P(X,Y))>0$ and $\rho_\omega(Y,g)\rhd\rho_\omega(X,g)$ for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$, then
+\[
+\Phi_\omega(Y)-\Phi_\omega(X)\ge\tfrac12\int_{P(X,Y)}|g(\omega)|\,d\mu(g)>0.
+\]
+\item If $J_\GU(X,Y)$, then $\gamma(X,Y)\ge\frac12\inf_{\omega}\int_{P(X,Y)}|g(\omega)|\,d\mu(g)>0$.
+\item If $(X,Y)$ is an averaging, weighted sure-loss withdrawal or concentration instance with data as in Definitions~\ref{def:AV}--\ref{def:CONC}, then $\gamma(X,Y)\ge 2m\varepsilon$, $\varepsilon$, $m\varepsilon/t$ respectively. In particular $J(X,Y)$ implies $\gamma(X,Y)>0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Off $P(X,Y)$ the two integrands agree. On symmetric $A$, symmetry of $\mu$ gives $\int_A\varphi_\omega(-g;X)\,d\mu=\int_A\varphi_\omega(g;X)\,d\mu$, and similarly for $Y$. For $s=|g(\omega)|>0$, the definition of $\varphi_\omega$ gives
+\[
+\begin{array}{c|rrrr}
+\rho_\omega(X,g)&\cor&\sil&\wro&\con\\\hline
+\varphi_\omega(g^\omega;X)&s&0&0&-s\\
+\varphi_\omega(-g^\omega;X)&0&0&-s&-s\\
+v_\omega(g;X)&s&0&-s&-2s
+\end{array}
+\]
+which proves the claimed values and identities.
+
+(b) For every $g$, $\varphi_\omega(g;\cdot)\in[-|g(\omega)|,|g(\omega)|]$, so by (a) with $A=P(X,Y)$, $|\Phi_\omega(Y)-\Phi_\omega(X)|\le\int_{P(X,Y)}2|g(\omega)|\,d\mu\le\nu(P(X,Y))$.
+
+(c) By the values in (a), each step up in $\rhd$ raises $v_\omega$ by at least $|g(\omega)|$. Apply (a) with $A=P(X,Y)$. The integral is positive because $|g(\omega)|>0$ almost everywhere (Lemma~\ref{lem:hyperplane}) and $\mu(P(X,Y))>0$.
+
+(d) Each required strict transition is a step up in $\rhd$. Apply (c) at every $\omega$, and (M3) to $A=P(X,Y)$.
+
+(e) Consider an averaging instance. Since $G_i\subseteq U(X)$, $-g\notin X$ for $g\in G_i$. Since $H\subseteq S(X)$ and $r<\|h\|$, we have $H\cap(-H)=\varnothing$ (if $g,-g\in B(h,r)$ then $2\|h\|\le\|h-g\|+\|h+g\|<2r$), $H\cap(-G_i)=\varnothing$ (if $-g\in G_i$ then $-g\in X$, so $g\notin S(X)$) and $H\cap G_i=\varnothing$. Hence for $g\in G_1\cup G_2$: $\varphi_\omega(g;X)=g(\omega)$, $\varphi_\omega(g;Y)=0$; for $g\in H$: $\varphi_\omega(g;X)=0$, $\varphi_\omega(g;Y)=g(\omega)$; and $\varphi_\omega(g;X)=\varphi_\omega(g;Y)=0$ for $g\in-(G_1\cup G_2\cup H)$. By (a),
+\begin{align*}
+\Gamma_\omega(X,Y)&=\int_Hg(\omega)\,d\mu-\int_{G_1}g(\omega)\,d\mu-\int_{G_2}g(\omega)\,d\mu\\
+&\ge2m(h(\omega)-r)-m(f_1(\omega)+r)-m(f_2(\omega)+r)\ge2m\varepsilon,
+\end{align*}
+using $|g(\omega)-c(\omega)|\le\|g-c\|$ and the inequality of Definition~\ref{def:AV}. For a weighted sure-loss withdrawal instance, similarly $\Gamma_\omega=-\sum_i\int_{G_i}g(\omega)\,d\mu\ge-\sum_im_i(f_i(\omega)+r)\ge\varepsilon$. For a concentration instance, $\Gamma_\omega=\int_Hg(\omega)\,d\mu-\int_Gg(\omega)\,d\mu\ge\frac mt(h(\omega)-r)-m(f(\omega)+r)\ge\frac mt\bigl(tf(\omega)+\varepsilon+tr\bigr)-mf(\omega)-mr=\frac{m\varepsilon}t$. These bounds hold for every $\omega$. The last sentence follows with (d).
+\end{proof}
+
+\begin{definition}[The ranking $L^\ast$]\label{def:R}
+For models $X,Y$ and $\omega\in\Omega$, let $Y\preceq^\ast_\omega X$ hold if and only if one of the following holds:
+\begin{enumerate}[label=(L\arabic*)]
+\item $X\triangle Y$ is null;
+\item $\mu(P(X,Y))>0$ and $\rho_\omega(Y,g)\rhd\rho_\omega(X,g)$ for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$;
+\item there is $Z\in\M$ such that $J(X,Z)$, $P(X,Z)\subseteq P(X,Y)$ and $\nu(P(Y,Z))<\frac14\gamma(X,Z)$.
+\end{enumerate}
+Condition (L3) does not depend on $\omega$. $L^\ast$ denotes the ranking $(\preceq^\ast_\omega)_{\omega\in\Omega}$.
+\end{definition}
+
+\begin{lemma}\label{lem:monotone}
+For all $X,Y\in\M$ and $\omega\in\Omega$: if $Y\preceq^\ast_\omega X$ then $\Phi_\omega(Y)\ge\Phi_\omega(X)$; if (L2) or (L3) holds then $\Phi_\omega(Y)>\Phi_\omega(X)$. Consequently $Y\prec^\ast_\omega X$ if and only if $Y\preceq^\ast_\omega X$ and $X\triangle Y$ is not null.
+\end{lemma}
+\begin{proof}
+Under (L1), $\Phi_\omega(Y)=\Phi_\omega(X)$. Under (L2), Lemma~\ref{lem:Phi}(c). Under (L3), by Lemma~\ref{lem:Phi}(b) and~(e),
+\begin{align*}
+\Phi_\omega(Y)-\Phi_\omega(X)&=\Gamma_\omega(X,Z)+\bigl(\Phi_\omega(Y)-\Phi_\omega(Z)\bigr)\\
+&\ge\gamma(X,Z)-\nu(P(Y,Z))>\tfrac34\gamma(X,Z)>0.
+\end{align*}
+If $Y\preceq^\ast_\omega X$ and $X\triangle Y$ is not null, then (L2) or (L3) holds, so $\Phi_\omega(Y)>\Phi_\omega(X)$; then $X\preceq^\ast_\omega Y$ would give $\Phi_\omega(X)\ge\Phi_\omega(Y)$, which is false. If $X\triangle Y$ is null, $X\preceq^\ast_\omega Y$ by (L1).
+\end{proof}
+
+\begin{lemma}\label{lem:uniform}
+If (L3) holds for $(X,Y)$, there is $\delta>0$ such that (L3) holds for $(X,Y')$ for every $Y'\in\M$ with $d(Y',Y)<\delta$.
+\end{lemma}
+
+\begin{proof}
+Let $Z$ satisfy (L3) for $(X,Y)$, $\gamma\coloneqq\gamma(X,Z)>0$ and $\eta\coloneqq\frac14\gamma-\nu(P(Y,Z))>0$. Let $Y'\in\M$ with $d(Y',Y)<\delta$, where $\delta$ is fixed below. Put $\Sigma\coloneqq P(X,Z)\setminus P(X,Y')$, a symmetric set. If $g\in\Sigma$, then $g\in P(X,Y)$, so $g$ or $-g$ lies in $X\triangle Y$, and neither lies in $X\triangle Y'$; hence $g$ or $-g$ lies in $Y\triangle Y'$. Thus $\Sigma\subseteq P(Y,Y')$, and by Lemma~\ref{lem:separable}
+\[
+\mu(\Sigma)\le2\delta,\qquad \nu(\Sigma)\le4\delta.\tag{1}
+\]
+We construct $Z'$ with $J(X,Z')$, $P(X,Z')\subseteq P(X,Z)\setminus\Sigma$, and $\nu(P(Z,Z'))\le\kappa\delta$, where $\kappa$ depends only on $Z$.
+
+\emph{Case $J_\GU(X,Z)$.} Let $Z'\coloneqq(Z\setminus\Sigma)\cup(X\cap\Sigma)$. Then $Z'$ agrees with $Z$ off $\Sigma$ and with $X$ on $\Sigma$, so $P(X,Z')=P(X,Z)\setminus\Sigma$ and $P(Z,Z')\subseteq\Sigma$; $\nu(P(Z,Z'))\le4\delta$. For every $\omega$ and almost every $g\in P(X,Z')$ with $g(\omega)\ne0$, $\rho_\omega(Z',g)=\rho_\omega(Z,g)$, so the transition is required strict. By Lemma~\ref{lem:Phi}(b), $\gamma(X,Z')\ge\gamma-4\delta$; if $4\delta<\gamma$, then $\gamma(X,Z')>0$, hence $\mu(P(X,Z'))>0$ and $J_\GU(X,Z')$. Put $\kappa\coloneqq4$.
+
+\emph{Case of an averaging, weighted sure-loss withdrawal or concentration instance.} Let $A_1,\dots,A_n$ be its sets ($G_1,G_2,H$; or $G_1,\dots,G_k$; or $G,H$), with measures $m_\ell\coloneqq\mu(A_\ell)$, $m_{\min}\coloneqq\min_\ell m_\ell$, $M_{\mathrm{tot}}\coloneqq\sum_\ell m_\ell$, centres $c_\ell$, and $M_0\coloneqq\max_\ell\|c_\ell\|+r$. Then $P(X,Z)=\bigcup_\ell(A_\ell\cup-A_\ell)$. Let $2\delta<m_{\min}$ and $\theta\coloneqq1-2\delta/m_{\min}\in(0,1)$. Since $\mu(A_\ell\cap\Sigma)\le2\delta$ by (1),
+\[
+\mu(A_\ell\setminus\Sigma)\ge m_\ell-2\delta\ge m_\ell-2\delta\,\tfrac{m_\ell}{m_{\min}}=\theta m_\ell,
+\]
+so (M1) gives measurable $A_\ell'\subseteq A_\ell\setminus\Sigma$ with $\mu(A_\ell')=\theta m_\ell$. Replacing each $A_\ell$ by $A'_\ell$ and keeping all centres and $r$ gives an instance of the same type: for averaging and concentration the inequalities of Definitions~\ref{def:AV} and~\ref{def:CONC} involve only centres and $r$, and the measures are $\theta m,\theta m,2\theta m$ and $\theta m,\theta m/t$; for weighted sure-loss withdrawal, $\sum_i\theta m_if_i\le-(\theta\varepsilon+r\sum_i\theta m_i)\one$. Let $Z'$ be the result of this instance applied to $X$. Then $J(X,Z')$, and $P(X,Z')=\bigcup_\ell(A'_\ell\cup-A'_\ell)\subseteq P(X,Z)\setminus\Sigma$ because $\Sigma$ is symmetric. $P(Z,Z')=\bigcup_\ell\bigl((A_\ell\setminus A'_\ell)\cup-(A_\ell\setminus A'_\ell)\bigr)$, on which $\|g\|<M_0$, and $\mu(A_\ell\setminus A'_\ell)=(1-\theta)m_\ell=2\delta m_\ell/m_{\min}$. Hence
+\[
+\nu(P(Z,Z'))\le2M_0\cdot2\sum_\ell(1-\theta)m_\ell=\frac{8M_0M_{\mathrm{tot}}}{m_{\min}}\,\delta\eqqcolon\kappa\delta.
+\]
+
+\emph{Both cases.} By Lemma~\ref{lem:Phi}(b), $\Gamma_\omega(X,Z')\ge\Gamma_\omega(X,Z)-\nu(P(Z,Z'))$ for every $\omega$, so $\gamma(X,Z')\ge\gamma-\kappa\delta$. Since $P(Y',Z')\subseteq P(Y',Y)\cup P(Y,Z)\cup P(Z,Z')$ and by Lemma~\ref{lem:separable},
+\[
+\nu(P(Y',Z'))\le4\delta+\nu(P(Y,Z))+\kappa\delta.
+\]
+Also $P(X,Z')\subseteq P(X,Z)\setminus\Sigma\subseteq P(X,Y')$ by the definition of $\Sigma$. Choose $\delta>0$ with $\kappa\delta<\gamma$, $2\delta<m_{\min}$ in the second case, and $4\delta+\frac54\kappa\delta<\eta$. Then
+\[
+\nu(P(Y',Z'))\le\tfrac14\gamma-\eta+4\delta+\kappa\delta<\tfrac14(\gamma-\kappa\delta)\le\tfrac14\gamma(X,Z'),
+\]
+so $Z'$ satisfies (L3) for $(X,Y')$.
+\end{proof}
+
+\begin{theorem}\label{thm:R-in-class}
+$L^\ast\in\K_t$.
+\end{theorem}
+
+\begin{proof}
+\emph{Axiom G.} (i) Let the hypothesis hold at $\omega$. If $\mu(P(X,Y))=0$ then (L1). Otherwise, for almost every $g\in P(X,Y)$ with $g(\omega)\ne0$ the responses differ (Definition~\ref{def:changed}), and every $(b,a)\in\mathcal W$ has $a\rhd b$ in the auxiliary order; so (L2) holds. (ii) Then (L2) holds and $X\triangle Y$ is not null, so $Y\prec^\ast_\omega X$ by Lemma~\ref{lem:monotone}.
+
+\emph{Axioms AV, WSL, CONC.} For an instance $(X,Z)$, $J(X,Z)$ holds, and $Z$ itself satisfies (L3) for $(X,Z)$, since $\nu(P(Z,Z))=0<\frac14\gamma(X,Z)$ by Lemma~\ref{lem:Phi}(e). So $Z\preceq^\ast_\omega X$ for every $\omega$; $X\triangle Z\supseteq G_1$ (or $G$) is not null, so $Z\prec^\ast_\omega X$ by Lemma~\ref{lem:monotone}.
+
+\emph{Axiom I.} Let $X,Y,X',Y'$ and $P$ be as in Axiom I. It suffices to show $Y\preceq^\ast_\omega X\Rightarrow Y'\preceq^\ast_\omega X'$; the converse follows by exchanging the primed and unprimed models, and the second equivalence by exchanging the roles of $X$ and $Y$ and of $X'$ and $Y'$, since the hypotheses are symmetric in these roles. (L1): $X\triangle Y\subseteq P$ is null iff $P$ is null iff $X'\triangle Y'$ is null. (L2): the condition refers only to $P$ and to the responses of $X$ and $Y$ to classes in $P$, which coincide with those of $X'$ and $Y'$ almost everywhere on $P$. (L3): let $Z$ satisfy (L3) for $(X,Y)$, put $Q\coloneqq P(X,Z)\subseteq P$, and let $Z'\coloneqq(X'\setminus Q)\cup(Z\cap Q)$. Then $Z'$ agrees with $X'$ off $Q$ and with $Z$ on $Q$, and $X'$ agrees with $X$ on $Q$; hence $P(X',Z')=Q$ and $X',Z'$ give the same responses on $Q$ as $X,Z$. Every condition defining $J$ refers only to $Q$, to these responses, and to subsets of $Q$ lying in $U(\cdot)$ or $S(\cdot)$ of the first model; so $J(X',Z')$, and $Z'$ is obtained from $X'$ by the same sets as $Z$ from $X$. By Lemma~\ref{lem:Phi}(a) with $A=Q$, $\Gamma_\omega(X',Z')=\Gamma_\omega(X,Z)$ for every $\omega$, so $\gamma(X',Z')=\gamma(X,Z)$. Off $P$, $Y=X=Z$ and $Y'=X'=Z'$; on $P$, $Y'$ agrees with $Y$ and $Z'$ with $Z$; so $P(Y',Z')=P(Y,Z)$. Finally $P(X',Z')=Q\subseteq P=P(X',Y')$. Hence $Z'$ satisfies (L3) for $(X',Y')$.
+
+\emph{Axiom UR.} Let $J(X,Z)$. Then $Z$ satisfies (L3) for $(X,Z)$. By Lemma~\ref{lem:uniform} there is $\delta>0$ such that (L3) holds for $(X,Y)$ whenever $d(Y,Z)<\delta$. For such $Y$, $Y\preceq^\ast_\omega X$ for every $\omega$, and $\Phi_\omega(Y)>\Phi_\omega(X)$ by Lemma~\ref{lem:monotone}, so $X\triangle Y$ is not null and $Y\prec^\ast_\omega X$ for every $\omega$.
+\end{proof}
+
+\begin{theorem}\label{thm:protection}
+Every $T\in\C$ is undominated under $L^\ast$.
+\end{theorem}
+
+\begin{proof}
+Suppose $Y$ dominates $T$ under $L^\ast$. Then $T\triangle Y$ is not null, since otherwise $T\preceq^\ast_\omega Y$ for every $\omega$ by (L1). By Lemma~\ref{lem:noJ}, (L3) fails for $(T,Y)$. Hence (L2) holds for $(T,Y)$ at every $\omega\in\Omega$. As in the proof of Lemma~\ref{lem:noJ}, $K(T)$ is null, so $\rho_\omega(T,g)\ne\con$ for almost every $g$. A pair $(b,a)$ with $a\rhd b$ and $b\ne\con$ belongs to $\mathcal S$. Hence, for every $\omega$ and almost every $g\in P(T,Y)$ with $g(\omega)\ne0$, $(\rho_\omega(T,g),\rho_\omega(Y,g))$ is a required strict transition; and $\mu(P(T,Y))>0$. So $J_\GU(T,Y)$ holds, contradicting Lemma~\ref{lem:noJ}.
+\end{proof}
+
+\section{The main theorem}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+Assume (M1)--(M4) and fix $t>1$. Then $\K_t$ is nonempty. Fix any sequence $(d_j)$ dense in $(\M,d)$ and set $c^j_p=d_j$ for all $j\in\mathbb N$ and $p\in\Delta$.
+\begin{enumerate}[label=(\alph*)]
+\item For every $L\in\K_t$ and $X\notin\C$, some $d_j$ is strictly better than $X$ at every world. These fixed assignments satisfy (F1)--(F3) on $\M\setminus\C$.
+\item Every family $\Lf\subseteq\K_t$ containing $L^\ast$ satisfies (E), (A), (S) and (T). Its rationally permissible models are exactly the almost coherent models.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:R-in-class} gives $L^\ast\in\K_t$. For $X\notin\C$, Theorem~\ref{thm:classification} gives $Z$ with $J(X,Z)$, and Axiom UR supplies a nonempty open ball of simultaneous strict dominators. Lemma~\ref{lem:separable} and \cite[Corollary~2.7]{LDG} give (a). Explicitly, choose $d_j$ in that ball and put $A_\omega(X)=\Delta$ for every $\omega$.
+
+Every ranking evaluates every model, giving (E). Theorem~\ref{thm:protection} gives $\C_{L^\ast}=\C$, hence (A); part (a) gives (S) and (T). Apply Theorem~\ref{thm:ldg}.
+\end{proof}
+
+\section{Models without concentration}\label{sec:convex}
+
+\begin{definition}\label{def:convex-coherent}
+A model $X$ is \emph{convex-coherent} if there is a closed convex $R\subseteq E$ with $E_+\subseteq R$, $R+E_+\subseteq R$, $R\cap E_{--}=\varnothing$ and $X\triangle\interior R$ null. $\C^0$ is the set of convex-coherent models. $J^0(X,Z)$ holds if $J_\GU(X,Z)$ holds or $(X,Z)$ is an averaging or a weighted sure-loss withdrawal instance. $\K^0$ is the class of rankings satisfying Axioms G, AV, WSL, I, and Axiom UR with $J^0$ in place of $J$.
+\end{definition}
+
+\begin{theorem}\label{thm:convex}
+Assume (M1)--(M4).
+\begin{enumerate}[label=(\alph*)]
+\item If there is no $Z$ with $J^0(X,Z)$, then $X\in\C^0$.
+\item If $T\in\C^0$, there is no $Z$ with $J^0(T,Z)$.
+\item Let $L^0$ be defined as in Definition~\ref{def:R} with $J^0$ in place of $J$. Then $L^0\in\K^0$, and every $T\in\C^0$ is undominated under $L^0$.
+\item For every family $\Lf\subseteq\K^0$ with $L^0\in\Lf$, conditions (E), (A), (S) and (T) hold with $\C^0$ in place of $\C$, and the rationally permissible models are exactly the convex-coherent models.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Use the proof of Theorem~\ref{thm:classification} with only $\alpha=(\tfrac12,\tfrac12)$ in the local claim and omit the scaling step. Its initial consequences, convexity, upward closure and equality almost everywhere do not use concentration. They give $X=\interior R$ almost everywhere for a closed convex $R$ satisfying the conditions in Definition~\ref{def:convex-coherent}.
+
+(b) Let $R$ be as in Definition~\ref{def:convex-coherent} and $T\triangle\interior R$ null. $\interior R$ contains no $g\le0$, since otherwise $g-\varepsilon\one\in R\cap E_{--}$ for small $\varepsilon>0$, and $g,-g\in\interior R$ would give $0=\frac12g+\frac12(-g)\in\interior R$; so $K(T)$ is null and $U(T)=\interior R$ up to null sets. \emph{Averaging}: choose $f_i'\in G_i\cap\interior R$; for $h'\in H$, $h'\ge\frac12(f_1'+f_2')+\varepsilon\one$, and $\frac12(f'_1+f'_2)\in\interior R$, so $h'\in\interior R$ by $\interior R+E_+\subseteq\interior R$; hence $H\subseteq\interior R$ and $\mu(H)=0$, a contradiction. \emph{Weighted sure-loss withdrawal}: with $f'_i\in G_i\cap\interior R$ and $M\coloneqq\sum_im_i$, $a\coloneqq\sum_i\frac{m_i}{M}f_i'\in\interior R$ by convexity, and $a\le-\frac{\varepsilon}{M}\one$, contradicting $R\cap E_{--}=\varnothing$. \emph{$J_\GU$}: $E_+$ is closed and $\interior E_+=E_{++}$, since $B(g,\inf g)\subseteq E_+$ for $g\in E_{++}$, and $g-\tau\one\notin E_+$ for every $\tau>0$ if $g\in E_+$ and $\inf g=0$. By (M4) applied to $E_+$, $\bd E_+=E_+\setminus E_{++}$ is null, and $E_{++}\subseteq\interior R$. Proceed as in the proof of Lemma~\ref{lem:noJ}, with $\interior R$ in place of $D$, adding $\bd E_+\cup-\bd E_+$ to $N$. If $\interior R\cap[g]=\{g'\}$, then $g'\not\le0$, so $g'(w)>0$ for some $w\in W$. If $\interior R\cap[g]=\varnothing$, then $g\notin E_{++}$ and $-g\notin E_{++}$, and $g,-g\notin\bd E_+$, so neither $g$ nor $-g$ lies in $E_+$: $g$ takes a strictly positive and a strictly negative value. The rest of that proof applies verbatim.
+
+(c) The proofs of Lemmas~\ref{lem:Phi}, \ref{lem:monotone}, \ref{lem:uniform} and Theorem~\ref{thm:R-in-class} use only the clauses of $J$ that define $J^0$ when $J^0$ replaces $J$, and so hold for $L^0$. The proof of Theorem~\ref{thm:protection} with (b) in place of Lemma~\ref{lem:noJ}, and with $K(T)$ null by (b), gives the protection.
+
+(d) (S) and (T) with $\C^0$ in place of $\C$: By (a) and Axiom UR for $J^0$, each $X\notin\C^0$ has a nonempty open ball of simultaneous strict dominators. Lemma~\ref{lem:separable} and \cite[Corollary~2.7]{LDG} give (F1)--(F3), with fixed assignments $c^j_p=d_j$ from a dense sequence. (A) with $\C^0$: $\C^0\cap\U_{L^0}=\C^0$ by (c). (E) holds since every ranking is defined on $\M$. Theorem~\ref{thm:ldg} with $\C^\ast\coloneqq\C^0$ gives the conclusion.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{LDG} J.~Konek, \emph{Dominance Generalised} (countable selection version), manuscript, 4 November 2026.
+\end{thebibliography}
+
+\end{document}

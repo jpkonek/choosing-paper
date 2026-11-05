@@ -1,0 +1,648 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Rescaled Credal Families and Coherent Admissibility},hypertexnames=false}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dH}{d_{\mathrm H}}
+\newcommand{\Pc}{\mathcal P}
+\newcommand{\Cc}{\mathcal C}
+\newcommand{\Mc}{\mathcal M}
+\newcommand{\Uc}{\mathcal U}
+\newcommand{\Ac}{\mathcal A}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\sd}{\mathbin{\triangle}}
+\newcommand{\lp}{\underline{p}}
+\newcommand{\up}{\overline{p}}
+\newcommand{\gneqz}{\gneq 0}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Rescaled Credal Families and Coherent Admissibility}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Setting}\label{sec:setting}
+
+\paragraph{Worlds and gambles.}
+Fix $n\ge2$ and the worlds $\Omega=[n]\coloneqq\{1,\dots,n\}$. For $S\subseteq[n]$ put $S^c\coloneqq[n]\setminus S$. A \emph{gamble} is a vector $g\in\R^n$; $g_i$ is its payoff at world $i$. For $g,h\in\R^n$ let $g\cdot h\coloneqq\sum_kg_kh_k$, $\|g\|_1\coloneqq\sum_k|g_k|$, $\|g\|_\infty\coloneqq\max_k|g_k|$, and let $g*h$ be the componentwise product, $(g*h)_k\coloneqq g_kh_k$. We write $g\ge h$ if $g_k\ge h_k$ for all $k$, and $g\gneqz$ if $g\ge0$ and $g\ne0$. Let $\one\coloneqq(1,\dots,1)$ and let $e_i$ be the $i$th unit vector.
+
+\paragraph{Probabilities and credal sets.}
+Let $\Delta\coloneqq\{p\in\R^n:p\ge0,\ \sum_kp_k=1\}$, $\supp p\coloneqq\{k:p_k>0\}$, $p(S)\coloneqq\sum_{k\in S}p_k$, $u\coloneqq\one/n$,
+\[
+\Delta_S\coloneqq\{p\in\Delta:\supp p\subseteq S\},\qquad \Delta^\circ_S\coloneqq\{p\in\Delta:\supp p=S\},\qquad \operatorname{int}\Delta\coloneqq\Delta^\circ_{[n]}.
+\]
+So $\Delta^\circ_S$ is the relative interior of the face $\Delta_S$. A \emph{credal set} is a nonempty, closed, convex $K\subseteq\Delta$. For a credal set $K$, $g\in\R^n$ and $i\in[n]$ put
+\[
+\varphi_K(g)\coloneqq\min_{m\in K}m\cdot g,\qquad \lp_K(i)\coloneqq\min_{m\in K}m_i,\qquad \up_K(i)\coloneqq\max_{m\in K}m_i ,
+\]
+and let $\dH(K,K')$ be the Hausdorff distance between credal sets with respect to $\|\cdot\|_1$:
+\[
+\dH(K,K')\coloneqq\max\Big\{\max_{m\in K}\min_{m'\in K'}\|m-m'\|_1,\ \max_{m'\in K'}\min_{m\in K}\|m-m'\|_1\Big\}.
+\]
+
+\paragraph{Coherence.}
+A set $D\subseteq\R^n$ is a \emph{coherent set of desirable gambles} if
+\begin{enumerate}[label=(D\arabic*),leftmargin=3em]
+\item $0\notin D$;
+\item $g\in D$ whenever $g\gneqz$;
+\item $\lambda g\in D$ whenever $g\in D$ and $\lambda>0$;
+\item $g+h\in D$ whenever $g,h\in D$.
+\end{enumerate}
+For a credal set $K$ let $D_K\coloneqq\{g:\varphi_K(g)>0\}\cup\{g:g\gneqz\}$.
+
+\paragraph{Measure and models.}
+$\mu$ is a Borel probability measure on $\R^n$, and the same letter denotes its completion. A set is \emph{null} if it is measurable for the completion and has measure $0$. For sets $Y,Z$, $Y\sd Z\coloneqq(Y\setminus Z)\cup(Z\setminus Y)$; $Y\subseteq Z$ \emph{a.e.}\ means that $Y\setminus Z$ is null; $Y\approx Z$ means that $Y\sd Z$ is null. A \emph{model} is a subset of $\R^n$ that is measurable for the completion of $\mu$. A model $X$ is \emph{almost coherent} if $X\approx D$ for some coherent set of desirable gambles $D$, and \emph{incoherent} otherwise. Let $\Cc$ be the set of almost coherent models.
+
+\paragraph{Errors.}
+Let $G_i\coloneqq\{g:g_i>0\}$. The \emph{error set} of a model $X$ at world $i$ is $E_i(X)\coloneqq X\sd G_i$, and
+\[
+X\le_iY\quad:\Longleftrightarrow\quad E_i(X)\subseteq E_i(Y)\text{ a.e.}
+\]
+For nonempty $T\subseteq[n]$ let $G_T^+\coloneqq\{g:g_k>0\text{ for all }k\in T\}$ and $G_T^-\coloneqq\{g:g_k\le0\text{ for all }k\in T\}$. For $i\ne j$ let $W_{ij}\coloneqq\{g:g_i>0\ge g_j\}$ and $W^\circ_{ij}\coloneqq\{g:g_i>0>g_j\}$; the latter is open.
+
+\paragraph{Measure conditions.}
+For $g\in\R^n$ let $t(g)\coloneqq\frac1n\sum_kg_k$ and $h(g)\coloneqq g-t(g)\one$, so that $g=h(g)+t(g)\one$ and $\sum_kh(g)_k=0$. We consider the following conditions; each result states which of them it uses.
+\begin{itemize}[leftmargin=3.2em]
+\item[(M1)] $\int\|g\|_\infty\,d\mu(g)<\infty$. \emph{The measure has a finite first moment.}
+\item[(M2)] $\mu\{g:\varphi_K(g)=0\}=0$ for every credal set $K$. \emph{Indifference boundaries are null.}
+\item[(M3)] $\mu(O)>0$ for every nonempty open $O\subseteq\R^n$. \emph{The measure has full support.}
+\item[(M5)] There is $c_\mu<\infty$ such that for all Borel $a:\R^n\to\R$ and $b:\R^n\to[0,\infty)$,
+\[
+\mu\big\{g:|t(g)-a(h(g))|\le b(h(g))\big\}\le2c_\mu\int b(h(g))\,d\mu(g).
+\]
+\emph{Along every line of gambles that differ by a constant amount, the measure has a bounded density.}
+\end{itemize}
+(M1) and (M2) are the conditions of these names in~\cite{App}. There, (M3) asks for full support of the diffuse part of $\mu$, because atoms are allowed. By Lemma~\ref{lem:measures}(a), (M5) excludes atoms, so under (M5) that condition is the plain full support stated here. Under (M1) and (M5) put
+\[
+C_\mu\coloneqq\max\Big\{2,\ 8c_\mu\int\|h(g)\|_\infty\,d\mu(g)\Big\}.
+\]
+It is finite, since $\|h(g)\|_\infty\le\|g\|_\infty+|t(g)|\le2\|g\|_\infty$.
+
+\begin{lemma}\label{lem:measures}
+\begin{enumerate}[label=(\alph*)]
+\item If $\mu$ satisfies (M5), then $\mu$ has no atoms and satisfies (M2).
+\item The standard Gaussian measure satisfies (M1), (M3) and (M5), with $c_\mu=\sqrt{n/(2\pi)}$.
+\item Fix $\omega_0\in[n]$, let $E_0\coloneqq\{g:g_{\omega_0}=0\}$, let $(g_k)_{k\ge1}$ be dense in $E_0$, and let $w_k>0$ with $\sum_kw_k=1$ and $\sum_kw_k\|g_k\|_\infty<\infty$. Put $\nu\coloneqq\sum_k\frac{w_k}2(\delta_{g_k}+\delta_{-g_k})$, let $\lambda$ be the standard normal law on $\R$, and let $\mu$ be the image of $\nu\otimes\lambda$ under $\Phi(g,s)\coloneqq g+s\one$. This is the measure of~\cite[Lemma~4.3]{App}, specialised to finitely many worlds. It satisfies (M1), (M3) and (M5), with $c_\mu=1/\sqrt{2\pi}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) If $\mu\{g_0\}>0$, apply (M5) with $a\equiv t(g_0)$ and $b\equiv0$: then $\mu\{g_0\}\le\mu\{g:t(g)=t(g_0)\}\le0$, a contradiction. Let $K$ be a credal set. Since $m\cdot\one=1$ for $m\in\Delta$, $\varphi_K(g)=\varphi_K(h(g))+t(g)$. So $\{\varphi_K=0\}=\{g:t(g)=-\varphi_K(h(g))\}$. The function $a\coloneqq-\varphi_K$ is continuous, hence Borel, so (M5) with $b\equiv0$ gives $\mu\{\varphi_K=0\}=0$.
+
+(b) The Gaussian density is positive, which gives (M3), and (M1) holds since $\int\|g\|_\infty\,d\mu\le\sum_k\int|g_k|\,d\mu=n\sqrt{2/\pi}$. Let $g$ have law $\mu$, so its coordinates are independent standard normal. Then $t(g)$ and the coordinates of $h(g)$ are jointly normal, and $\operatorname{Cov}(t(g),h(g)_k)=\operatorname{Cov}(t(g),g_k)-\operatorname{Var}(t(g))=\frac1n-\frac1n=0$. So $t(g)$ is independent of $h(g)$. Also $t(g)$ is normal with mean $0$ and variance $\frac1n$, so its law $\nu_t$ has density at most $\sqrt{n/(2\pi)}$. For Borel $a,b$, independence and Fubini's theorem give
+\[
+\mu\{|t-a\circ h|\le b\circ h\}=\int\nu_t\big(I(g)\big)\,d\mu(g)\le2\sqrt{\tfrac n{2\pi}}\int b(h(g))\,d\mu(g),
+\]
+where $I(g)\coloneqq[a(h(g))-b(h(g)),\,a(h(g))+b(h(g))]$ has length $2b(h(g))$.
+
+(c) Since $h(g+s\one)=h(g)$ and $t(g+s\one)=t(g)+s$, Tonelli's theorem gives, for Borel $a,b$,
+\[
+\mu\{|t-a\circ h|\le b\circ h\}=\int\lambda\{s:|t(g)+s-a(h(g))|\le b(h(g))\}\,d\nu(g)\le\frac{2}{\sqrt{2\pi}}\int b(h(g))\,d\nu(g),
+\]
+since the standard normal density is at most $1/\sqrt{2\pi}$. Again by Tonelli, $\int b(h(g'))\,d\mu(g')=\iint b(h(g+s\one))\,d\lambda(s)\,d\nu(g)=\int b(h(g))\,d\nu(g)$. This is (M5) with $c_\mu=1/\sqrt{2\pi}$. For (M1), $\int\|g'\|_\infty\,d\mu(g')\le\int\|g\|_\infty\,d\nu(g)+\int|s|\,d\lambda(s)=\sum_kw_k\|g_k\|_\infty+\sqrt{2/\pi}<\infty$. For (M3), $\Phi:E_0\times\R\to\R^n$ is a linear bijection, hence a homeomorphism. Let $O\ne\varnothing$ be open. Then $\Phi^{-1}(O)$ contains a product $V\times I$ of nonempty open sets. Some $g_k$ lies in $V$ by density, so $\nu(V)\ge w_k/2>0$, and $\lambda(I)>0$. Hence $\mu(O)\ge\nu(V)\lambda(I)>0$.
+\end{proof}
+
+\section{Results used from LDG}\label{sec:ldg}
+
+We use the framework of~\cite{LDG}, with its convention that $X\preceq_\omega Y$ means that $X$ is \emph{at least as good as} $Y$ at $\omega$. The application paper~\cite{App} writes $\succeq$ for this. We restate what we use.
+
+\begin{definition}[Rankings]\label{def:ranking}
+Let $\Mc$ be the set of all models. A \emph{ranking} $L$ consists of a nonempty set $\Mc_L\subseteq\Mc$ of models \emph{evaluable} by $L$ and, for each world $\omega$, a binary relation $\preceq_\omega$ on $\Mc_L$. No property of the relations is assumed. Write $X\prec_\omega Y$ if $X\preceq_\omega Y$ and not $Y\preceq_\omega X$. Models $X,Y$ are \emph{tied at $\omega$} if $X\preceq_\omega Y$ and $Y\preceq_\omega X$. Fix a ranking.
+\begin{itemize}[leftmargin=*]
+\item $Y$ \emph{weakly dominates} $X$ if $Y\preceq_\omega X$ at every world.
+\item $X$ and $Y$ are \emph{tied at every world} if each weakly dominates the other.
+\item $Y$ \emph{dominates} $X$ if $Y$ weakly dominates $X$ and they are not tied at every world.
+\item $Y$ \emph{strictly dominates $X$ at every world} if $Y\prec_\omega X$ at every world.
+\end{itemize}
+A model is \emph{undominated} if no model dominates it; $\Uc_L$ is the set of undominated models, and $\Cc_L\coloneqq\Cc\cap\Uc_L$ is the set of \emph{undominated coherent models} of $L$. A set $\Ac$ of models is \emph{closed under ties} if every model tied at every world with a member of $\Ac$ belongs to $\Ac$; $L$ is \emph{closed under ties} if $\Cc_L$ is. For $S\subseteq[n]$, a model $c$ is \emph{competitive on $S$} if every model $X$ has some $\omega\in S$ with $c\preceq_\omega X$. Strict dominance at every world and competitiveness are not notions of~\cite{LDG}; they are used here only as tools.
+\end{definition}
+
+The class $\Cc$ of coherent models in the sense of~\cite{LDG} is, throughout this note, the class of almost coherent models.
+
+\begin{theorem}[{\cite[Theorem~2.2]{LDG}}]\label{thm:finite}
+Let $\Omega$ be finite and let $L$ be any ranking. Suppose that for each $p\in\Delta$ there is an assigned model $c_p$, not necessarily coherent or undominated, and for each model $X$ and world $\omega$ there is a closed set $A_\omega(X)\subseteq\Delta$, such that: (i) $c_p\preceq_\omega X$ for every $p\in A_\omega(X)$; (ii) for every model $X$ and every $p\in\Delta$ there is some $\omega\in\supp p$ with $p\in A_\omega(X)$. Then for each model $X$ some $p$ lies in every $A_\omega(X)$, and the model assigned to any such $p$ weakly dominates $X$.
+\end{theorem}
+
+\begin{corollary}[{\cite[Corollary~2.3]{LDG}}]\label{cor:closed-choice}
+Let $\Omega$ be finite. Suppose that for each $p\in\Delta$ there is an assigned model $c_p$, not necessarily coherent or undominated, such that every model $X$ has some $\omega\in\supp p$ with $c_p\preceq_\omega X$, and that for every model $X$ and world $\omega$ the set $\{p:c_p\preceq_\omega X\}$ is closed. Then every model is weakly dominated by some $c_p$.
+\end{corollary}
+
+\begin{definition}[{The assumptions of~\cite[Definition~3.3]{LDG}}]\label{def:ESAT}
+Let $\Lf$ be a family of rankings.
+\begin{itemize}[leftmargin=2.4em]
+\item[\textbf{(E)}] Every model in $\Mc$ is evaluable by some ranking in $\Lf$.
+\item[\textbf{(A)}] Every coherent model belongs to $\Cc_L$ for some $L\in\Lf$.
+\item[\textbf{(S)}] For each $L\in\Lf$, the hypotheses of Theorem~\ref{thm:finite}, of Corollary~\ref{cor:closed-choice}, or of \cite[Theorem~2.4]{LDG} hold, with every assigned model $c_p$, or selected model $c_\theta$, in $\Cc_L$.
+\item[\textbf{(T)}] Every $L\in\Lf$ is closed under ties.
+\end{itemize}
+\end{definition}
+
+The third option in (S), \cite[Theorem~2.4]{LDG}, is designed for infinitely many worlds. Like Theorem~\ref{thm:finite} and Corollary~\ref{cor:closed-choice}, its conclusion is that every model is weakly dominated by some selected model. Only this conclusion of it is used below, in Corollary~\ref{cor:obstruction}.
+
+\begin{definition}[{Dominance principle, \cite[Definition~3.1]{LDG}}]
+For a family $\Lf$ of rankings, a model is \emph{irrational} if, under every ranking in $\Lf$ that evaluates it, some model dominates it. It is \emph{rationally permissible} if it is undominated under some ranking in $\Lf$ that evaluates it.
+\end{definition}
+
+\begin{theorem}[{\cite[Theorem~3.4]{LDG}}]\label{thm:argument}
+Let $\Lf$ satisfy (E), (A), (S) and (T). Then the rationally permissible models are exactly the coherent ones, and the irrational models are exactly the incoherent ones. Moreover, for each $L\in\Lf$, every incoherent model in $\Mc_L$ is dominated by a member of $\Cc_L$, and $\Uc_L=\Cc_L$. Every incoherent model is dominated under at least one ranking in $\Lf$.
+\end{theorem}
+
+\begin{definition}[Guidance]\label{def:guidance}
+For models $X,Y$, the \emph{change from $X$ to $Y$} adds $A\coloneqq Y\setminus X$ and removes $B\coloneqq X\setminus Y$. It is \emph{guided at} world $\omega$ if $A\subseteq\{g:g_\omega>0\}$ a.e.\ and $B\subseteq\{g:g_\omega<0\}$ a.e. A ranking that evaluates every model may satisfy:
+\begin{itemize}[leftmargin=3.2em]
+\item[(A1)] If $X\not\approx Y$ and the change from $X$ to $Y$ is guided at every world, then $Y\prec_\omega X$ at every world $\omega$. \emph{A non-null change guided at each world makes the model strictly better at each world.}
+\item[(A1$^*$)] For every world $\omega$: if $E_\omega(Y)\subseteq E_\omega(X)$ a.e.\ and $\mu(E_\omega(X)\setminus E_\omega(Y))>0$, then $Y\prec_\omega X$. \emph{A non-null reduction of the errors at a world makes the model strictly better at that world.}
+\end{itemize}
+\end{definition}
+
+(A1) is the guidance axiom of~\cite{App}, written in the present convention. By Lemma~\ref{lem:guidance}, under (M2) the hypothesis of (A1$^*$) at $\omega$ says exactly that the change from $X$ to $Y$ is non-null and guided at $\omega$. So (A1$^*$) is the world-by-world form of (A1): it asks a change guided at a single world to make the model strictly better at that world, while (A1) asks this only of changes guided at every world. Lemma~\ref{lem:guidance} shows that (A1$^*$) implies (A1).
+
+\section{Facts that do not involve a ranking}\label{sec:facts}
+
+\begin{lemma}\label{lem:F}
+Let $K,K'$ be credal sets, $g,h\in\R^n$, $s\in\R$, $\lambda\ge0$, $i\in[n]$, and $X,Y$ models.
+\begin{enumerate}[label=(F\arabic*),leftmargin=3em]
+\item $\varphi_K(g+s\one)=\varphi_K(g)+s$, $\varphi_K(\lambda g)=\lambda\varphi_K(g)$, $\varphi_K(g+h)\ge\varphi_K(g)+\varphi_K(h)$, and $g\le h$ implies $\varphi_K(g)\le\varphi_K(h)$.
+\item $|\varphi_K(g)|\le\|g\|_\infty$, $|\varphi_K(g)-\varphi_K(h)|\le\|g-h\|_\infty$ and $|\varphi_K(g)-\varphi_{K'}(g)|\le\dH(K,K')\|g\|_\infty$.
+\item $D_K$ is a Borel coherent set of desirable gambles, and $\{\varphi_K>0\}\subseteq D_K\subseteq\{\varphi_K\ge0\}$. In particular, $\varphi_K(g)<0$ implies $g\notin D_K$.
+\item Under (M2), $D_K\approx\{\varphi_K>0\}$.
+\item $E_i(X)\sd E_i(Y)=X\sd Y$. Moreover, $X\le_iY$ if and only if $Y\cap G_i\subseteq X$ a.e.\ and $X\setminus G_i\subseteq Y$ a.e. If $X\le_iY$, then $\mu(E_i(Y)\setminus E_i(X))=\mu(X\sd Y)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(F1) $m\cdot\one=1$ for $m\in\Delta$; a minimum of a sum is at least the sum of the minima; and $m\ge0$ for $m\in K$.
+
+(F2) For $m\in\Delta$, $|m\cdot g|\le\|m\|_1\|g\|_\infty=\|g\|_\infty$ and $|m\cdot g-m\cdot h|\le\|g-h\|_\infty$; take minima over $m\in K$. For the third bound pick $m\in K$ with $m\cdot g=\varphi_K(g)$ and $m'\in K'$ with $\|m-m'\|_1\le\dH(K,K')$. Then $\varphi_{K'}(g)\le m'\cdot g\le m\cdot g+\|m'-m\|_1\|g\|_\infty\le\varphi_K(g)+\dH(K,K')\|g\|_\infty$. Exchange $K$ and $K'$.
+
+(F3) If $g\gneqz$ then $\varphi_K(g)\ge0$, which gives the inclusions. (D1): $\varphi_K(0)=0$ and $0\not\gneqz$. (D2) holds by definition. (D3) follows from (F1), since $\lambda g\gneqz$ if and only if $g\gneqz$. (D4): if $g,h\gneqz$ then $g+h\gneqz$; otherwise one of $\varphi_K(g),\varphi_K(h)$ is positive and the other nonnegative, so $\varphi_K(g+h)>0$ by (F1). $D_K$ is Borel, since $\{\varphi_K>0\}$ is open by (F2) and $\{g:g\gneqz\}=[0,\infty)^n\setminus\{0\}$.
+
+(F4) By (F3), $D_K\sd\{\varphi_K>0\}\subseteq\{\varphi_K=0\}$.
+
+(F5) Symmetric difference is associative and commutative, so $(X\sd G_i)\sd(Y\sd G_i)=X\sd Y$. On $G_i$, $E_i(Z)\cap G_i=G_i\setminus Z$; off $G_i$, $E_i(Z)\setminus G_i=Z\setminus G_i$. Hence
+\[
+E_i(X)\setminus E_i(Y)=\big((Y\cap G_i)\setminus X\big)\cup\big((X\setminus G_i)\setminus Y\big),
+\]
+which is null if and only if both parts are null. If $E_i(X)\setminus E_i(Y)$ is null, then $\mu(E_i(Y)\setminus E_i(X))=\mu(E_i(X)\sd E_i(Y))=\mu(X\sd Y)$.
+\end{proof}
+
+\begin{lemma}\label{lem:guidance}
+Assume (M2). For models $X,Y$ and a world $\omega$, the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item the change from $X$ to $Y$ is guided at $\omega$, and $X\not\approx Y$;
+\item $E_\omega(Y)\subseteq E_\omega(X)$ a.e., and $\mu(E_\omega(X)\setminus E_\omega(Y))>0$.
+\end{enumerate}
+Consequently, a ranking that evaluates every model and satisfies (A1$^*$) also satisfies (A1).
+\end{lemma}
+
+\begin{proof}
+Let $A\coloneqq Y\setminus X$ and $B\coloneqq X\setminus Y$. By (F5), $E_\omega(Y)\subseteq E_\omega(X)$ a.e.\ if and only if $X\cap G_\omega\subseteq Y$ a.e.\ and $Y\setminus G_\omega\subseteq X$ a.e., that is, if and only if $B\cap G_\omega$ and $A\setminus G_\omega$ are null. Since $\{g:g_\omega=0\}=\{\varphi_{\{e_\omega\}}=0\}$ is null by (M2), this holds if and only if $A\subseteq\{g_\omega>0\}$ a.e.\ and $B\subseteq\{g_\omega<0\}$ a.e., which is guidance at $\omega$. Under either condition, $\mu(E_\omega(X)\setminus E_\omega(Y))=\mu(X\sd Y)$ by (F5), which is positive if and only if $X\not\approx Y$. For the last claim, if $X\not\approx Y$ and the change is guided at every world, then (2) holds at every world, and (A1$^*$) gives $Y\prec_\omega X$ at every world.
+\end{proof}
+
+\begin{lemma}\label{lem:minimal}
+Let $D$ be a coherent set of desirable gambles, and $X$ a model with $E_i(X)\subseteq E_i(D)$ a.e.\ for every $i\in[n]$. Then $X\approx D$.
+\end{lemma}
+
+\begin{proof}
+By (F5), $D\cap G_i\setminus X$ and $X\setminus(G_i\cup D)$ are null for every $i$. If $g\in D\setminus X$ lies in no $D\cap G_i\setminus X$, then $g_i\le0$ for all $i$. But $D$ contains no $g\le0$: $0\notin D$ by (D1), and if $g\le0$, $g\ne0$ and $g\in D$, then $-g\gneqz$, so $-g\in D$ by (D2) and $0\in D$ by (D4). So $D\setminus X\subseteq\bigcup_i(D\cap G_i\setminus X)$ is null. If $g\in X\setminus D$ lies in no $X\setminus(G_i\cup D)$, then $g_i>0$ for all $i$, so $g\in D$ by (D2), which is impossible. So $X\setminus D\subseteq\bigcup_iX\setminus(G_i\cup D)$ is null.
+\end{proof}
+
+\begin{lemma}\label{lem:coherent}
+Let $D$ be a coherent set of desirable gambles and $M\coloneqq\{m\in\Delta:m\cdot g\ge0\text{ for all }g\in D\}$. Then $M$ is a credal set and $\{\varphi_M>0\}\subseteq D\subseteq\{\varphi_M\ge0\}$. Under (M2), $D$ is a model and $D\approx D_M$.
+\end{lemma}
+
+\begin{proof}
+$M$ is closed and convex, as an intersection of $\Delta$ with closed half-spaces. Let $C$ be the closure of $D$. By (D3) and (D4), $C$ is closed under addition and multiplication by positive scalars, so it is a closed convex cone, and $0\in C$ since $se_1\in D$ for $s>0$. No $g$ with all $g_k<0$ lies in $C$: such $g$ has a neighbourhood of nonzero vectors $\le0$, and $D$ contains none of these (see the proof of Lemma~\ref{lem:minimal}).
+
+\emph{Separation.} Let $x\notin C$. Choose $c\in C$ nearest to $x$ in Euclidean distance and put $w\coloneqq c-x\ne0$. For $y\in C$ and $0<s\le1$, $c+s(y-c)\in C$, so $\|w+s(y-c)\|^2\ge\|w\|^2$. Expanding, dividing by $s$ and letting $s\to0$ gives $w\cdot(y-c)\ge0$. With $y=0$ and $y=2c$ this gives $w\cdot c=0$. Hence $w\cdot y\ge0$ for $y\in C$, and $w\cdot x=w\cdot(c-w)=-\|w\|^2<0$. Since $e_k\in D$, $w_k\ge0$; as $w\ne0$, $m\coloneqq w/\sum_kw_k\in M$ and $m\cdot x<0$.
+
+With $x=-\one$ this gives $M\ne\varnothing$, so $M$ is a credal set. The inclusion $D\subseteq\{\varphi_M\ge0\}$ is the definition of $M$. Let $\varphi_M(g)=2\varepsilon>0$ and $x\coloneqq g-\varepsilon\one$. Then $\varphi_M(x)=\varepsilon>0$ by (F1), so $x\in C$ by the separation step. Choose $x'\in D$ with $\|x'-x\|_\infty<\varepsilon$. Every coordinate of $g-x'$ is positive, so $g-x'\in D$ by (D2), and $g=x'+(g-x')\in D$ by (D4).
+
+Under (M2), $D\setminus\{\varphi_M>0\}\subseteq\{\varphi_M=0\}$ is null and $\{\varphi_M>0\}$ is open, so $D$ is measurable for the completion of $\mu$. Both $D$ and $D_M$ differ from $\{\varphi_M>0\}$ by subsets of $\{\varphi_M=0\}$ (by (F3) for $D_M$), so $D\approx D_M$.
+\end{proof}
+
+\begin{lemma}\label{lem:injective}
+Assume (M3). If $K\ne K'$ are credal sets, then $D_K\not\approx D_{K'}$.
+\end{lemma}
+
+\begin{proof}
+Say $m\in K\setminus K'$. Since $K'$ is compact and convex, there is $g$ with $m\cdot g<\varphi_{K'}(g)$. Let $s\coloneqq-\frac12(m\cdot g+\varphi_{K'}(g))$ and $g'\coloneqq g+s\one$. By (F1), $\varphi_K(g')\le m\cdot g'<0<\varphi_{K'}(g')$. By (F2) the set $\{\varphi_K<0<\varphi_{K'}\}$ is open; it contains $g'$, and by (F3) it lies in $D_{K'}\setminus D_K$. By (M3) it is not null.
+\end{proof}
+
+\begin{lemma}\label{lem:endpoints}
+Let $X,Y,Z$ be models and $i\ne j$.
+\begin{enumerate}[label=(\alph*)]
+\item If $X\le_iY$ and $X\le_jZ$, then $Y\cap W_{ij}\subseteq Z$ a.e.\ and $Z\cap W_{ji}\subseteq Y$ a.e.
+\item Assume (M3). If $K,H$ are credal sets with $X\le_iD_K$ and $X\le_jD_H$, then $\lp_K(i)\le\lp_H(i)$ and $\up_K(i)\le\up_H(i)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) By (F5), $Y\cap G_i\subseteq X$, $X\setminus G_i\subseteq Y$, $Z\cap G_j\subseteq X$ and $X\setminus G_j\subseteq Z$, all a.e. Since $W_{ij}\subseteq G_i\setminus G_j$, $Y\cap W_{ij}\subseteq X\cap W_{ij}\subseteq X\setminus G_j\subseteq Z$ a.e. Since $W_{ji}\subseteq G_j\setminus G_i$, $Z\cap W_{ji}\subseteq X\cap W_{ji}\subseteq X\setminus G_i\subseteq Y$ a.e.
+
+(b) By (a), $D_K\cap W_{ij}\subseteq D_H$ a.e.\ and $D_H\cap W_{ji}\subseteq D_K$ a.e. Suppose $\lp_K(i)>\lp_H(i)$ and choose $s$ strictly between them; then $0<s<1$. The gamble $g\coloneqq e_i-s\one$ has $g_i=1-s>0>-s=g_j$ and, by (F1), $\varphi_K(g)=\lp_K(i)-s>0>\lp_H(i)-s=\varphi_H(g)$. By (F2), $\{g'\in W^\circ_{ij}:\varphi_K(g')>0>\varphi_H(g')\}$ is open; it contains $g$, so it is not null by (M3); and by (F3) it lies in $(D_K\cap W_{ij})\setminus D_H$. This is a contradiction. Suppose $\up_K(i)>\up_H(i)$ and choose $s$ strictly between them; then $0<s<1$. The gamble $g\coloneqq s\one-e_i$ has $g_j=s>0>s-1=g_i$, and $\varphi_H(g)=s-\up_H(i)>0>s-\up_K(i)=\varphi_K(g)$. The same argument, with the roles of $(K,i)$ and $(H,j)$ exchanged, contradicts $D_H\cap W_{ji}\subseteq D_K$ a.e.
+\end{proof}
+
+\section{Cover rankings}\label{sec:cover}
+
+A \emph{family} is a map $p\mapsto K_p$ from $\Delta$ to credal sets. Write $\varphi_p\coloneqq\varphi_{K_p}$ and $D_p\coloneqq D_{K_p}$. For a model $X$ and $i\in[n]$, say that $p$ \emph{covers $X$ at $i$} if $X\le_iD_p$, and let
+\[
+\Pc_i(X)\coloneqq\{p\in\Delta:X\le_iD_p\},\qquad T(X)\coloneqq\{i\in[n]:\Pc_i(X)\ne\varnothing\}.
+\]
+Consider the conditions:
+\begin{itemize}[leftmargin=3.6em]
+\item[\textbf{(CC)}] For every model $X$, all $i\ne j$, $p\in\Pc_i(X)$ and $q\in\Pc_j(X)$: $p_i\le q_i$.
+\item[\textbf{(Lip)}] There is $A\ge0$ with $\dH(K_p,K_q)\le A\|p-q\|_1$ for all $p,q\in\Delta$.
+\item[\textbf{(Dom)}] There is $B\ge0$ with $\up_{K_p}(i)\le Bp_i$ for all $p\in\Delta$ and $i\in[n]$.
+\end{itemize}
+(CC) says that covers of one model at two different worlds are ordered at the first world. (Dom) forces $B\ge1$, since for $m\in K_p$, $1=\sum_im_i\le\sum_i\up_{K_p}(i)\le B$.
+
+\begin{definition}[Cover loss]\label{def:loss}
+Assume (M1), (M5), (Lip) and (Dom), with constants $A,B$. Put $\kappa\coloneqq2nC_\mu(A+2B)$, which is positive, and fix $0<\eta<1/(n\kappa)$. For a model $X$ and $i\in[n]$ let
+\[
+L(X,i)\coloneqq\begin{cases}
+\inf\big\{1-p_i-\eta\,\mu\big(E_i(D_p)\setminus E_i(X)\big):p\in\Pc_i(X)\big\}&\text{if }i\in T(X),\\[2pt]
+2+\mu(E_i(X))&\text{if }i\notin T(X).
+\end{cases}
+\]
+The \emph{cover ranking} of the family has $\Mc_L=\Mc$ and $X\preceq_iY$ if and only if $L(X,i)\le L(Y,i)$. We write $L(X)\coloneqq(L(X,1),\dots,L(X,n))$.
+\end{definition}
+
+\begin{lemma}\label{lem:thin}
+Assume (M1) and (M5). For every credal set $K$ and $\delta\ge0$,
+\[
+\mu\{g:|\varphi_K(g)|\le\delta\|g\|_\infty\}\le C_\mu\delta.
+\]
+Consequently, $\mu(D_K\sd D_{K'})\le C_\mu\,\dH(K,K')$ for all credal sets $K,K'$.
+\end{lemma}
+
+\begin{proof}
+If $\delta>\frac12$, the bound is at least $1$, since $C_\mu\ge2$. Let $\delta\le\frac12$, and write $t=t(g)$, $h=h(g)$. By (F1), $\varphi_K(g)=\varphi_K(h)+t$, and by (F2), $|\varphi_K(h)|\le\|h\|_\infty$. So
+\[
+\|g\|_\infty\le\|h\|_\infty+|t|\le2\|h\|_\infty+|t+\varphi_K(h)|.
+\]
+If $|\varphi_K(g)|\le\delta\|g\|_\infty$, then $(1-\delta)|t+\varphi_K(h)|\le2\delta\|h\|_\infty$, so $|t+\varphi_K(h)|\le4\delta\|h\|_\infty$. Apply (M5) with the continuous functions $a\coloneqq-\varphi_K$ and $b\coloneqq4\delta\|\cdot\|_\infty$:
+\[
+\mu\{|\varphi_K|\le\delta\|\cdot\|_\infty\}\le\mu\{|t-a\circ h|\le b\circ h\}\le8c_\mu\delta\int\|h(g)\|_\infty\,d\mu(g)\le C_\mu\delta.
+\]
+For the second claim, by Lemma~\ref{lem:measures}(a) and (F4), up to a null set $D_K\sd D_{K'}$ consists of gambles $g$ with $\varphi_K(g)>0\ge\varphi_{K'}(g)$ or $\varphi_{K'}(g)>0\ge\varphi_K(g)$. For such $g$, $|\varphi_K(g)|\le|\varphi_K(g)-\varphi_{K'}(g)|\le\dH(K,K')\|g\|_\infty$ by (F2). Apply the first claim with $\delta\coloneqq\dH(K,K')$.
+\end{proof}
+
+\begin{lemma}\label{lem:faces}
+Assume (M1), (M5) and (Dom). Let $T\subseteq[n]$ be nonempty and $q\in\Delta$. Then
+\[
+\mu(G_T^+\setminus D_q)\le2nC_\mu B\,q(T^c)\qquad\text{and}\qquad\mu(D_q\cap G_T^-)\le2nC_\mu B\,q(T^c).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\varepsilon\coloneqq Bq(T^c)$. If $\varepsilon>\frac12$, both bounds exceed $nC_\mu\ge1$. Let $\varepsilon\le\frac12$. For $m\in K_q$, (Dom) gives $m(T^c)\le\sum_{k\in T^c}\up_{K_q}(k)\le\varepsilon$, so $m(T)\ge1-\varepsilon$ and $|\sum_{k\in T^c}m_kg_k|\le\varepsilon\|g\|_\infty$.
+
+Let $g\in G_T^+\setminus D_q$ and $\gamma\coloneqq\min_{k\in T}g_k>0$. Then $\varphi_q(g)\le0$, so $m\cdot g\le0$ for some $m\in K_q$, and $0\ge m\cdot g\ge(1-\varepsilon)\gamma-\varepsilon\|g\|_\infty$. So $\gamma\le\frac{\varepsilon}{1-\varepsilon}\|g\|_\infty\le2\varepsilon\|g\|_\infty$.
+
+Let $g\in D_q\cap G_T^-$ with $g_k\ne0$ for all $k$; by (M2), which holds by Lemma~\ref{lem:measures}(a), applied to the credal sets $\{e_k\}$, this excludes a null set. Let $\gamma\coloneqq\min_{k\in T}|g_k|>0$. Then $g_k<0$ for $k\in T$, so $g\not\gneqz$ and $\varphi_q(g)>0$. For any $m\in K_q$, $0<m\cdot g\le-(1-\varepsilon)\gamma+\varepsilon\|g\|_\infty$, so $\gamma<2\varepsilon\|g\|_\infty$.
+
+In both cases, up to a null set, $g\in\bigcup_{k\in T}\{g:|g_k|\le2\varepsilon\|g\|_\infty\}$. Lemma~\ref{lem:thin} with $K=\{e_k\}$, for which $\varphi_K(g)=g_k$, bounds the measure of each of these sets by $2C_\mu\varepsilon$, and $|T|\le n$.
+\end{proof}
+
+\begin{lemma}\label{lem:attain}
+Assume (M1), (M5) and (Lip). For every model $X$ and $i\in[n]$, $\Pc_i(X)$ is closed, and if it is nonempty, the infimum defining $L(X,i)$ is attained.
+\end{lemma}
+
+\begin{proof}
+For $p,p'\in\Delta$, $E_i(D_p)\sd E_i(D_{p'})=D_p\sd D_{p'}$ by (F5), which has measure at most $C_\mu A\|p-p'\|_1$ by Lemma~\ref{lem:thin} and (Lip). Since $|\mu(Y\setminus Z)-\mu(Y\setminus Z')|\le\mu(Z\sd Z')$ and $|\mu(Z\setminus Y)-\mu(Z'\setminus Y)|\le\mu(Z\sd Z')$, the maps $p\mapsto\mu(E_i(X)\setminus E_i(D_p))$ and $p\mapsto\mu(E_i(D_p)\setminus E_i(X))$ are continuous on $\Delta$. $\Pc_i(X)$ is the zero set of the first, so it is closed, hence compact, and the function minimised in Definition~\ref{def:loss} is continuous on it.
+\end{proof}
+
+\begin{lemma}\label{lem:budget}
+Assume (M1), (M5), (CC), (Lip) and (Dom). Let $X$ be a model with $T\coloneqq T(X)\ne\varnothing$. For each $i\in T$ choose $p^i\in\Pc_i(X)$, and put
+\[
+\rho\coloneqq1-\sum_{i\in T}p^i_i,\qquad s_i\coloneqq\mu\big(E_i(D_{p^i})\setminus E_i(X)\big).
+\]
+Then:
+\begin{enumerate}[label=(\roman*)]
+\item $\rho\ge0$, and $p^j(T^c)\le\rho$ and $\|p^i-p^j\|_1\le2\rho$ for all $i,j\in T$;
+\item $s_j\le\kappa\rho$ for all $j\in T$;
+\item $\sum_{i\in T}(p^i_i+\eta s_i)\le1-(1-n\kappa\eta)\rho$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Fix $j\in T$. Since $1=p^j_j+\sum_{k\in T\setminus\{j\}}p^j_k+p^j(T^c)$,
+\begin{equation}\label{eq:rho}
+\rho=p^j(T^c)+\sum_{k\in T\setminus\{j\}}\big(p^j_k-p^k_k\big).
+\end{equation}
+By (CC), applied to $p^k\in\Pc_k(X)$ and $p^j\in\Pc_j(X)$ with $k\ne j$, every term is nonnegative. So $\rho\ge0$ and $p^j(T^c)\le\rho$. Let $i,j\in T$. For $k\in T$, both $p^i_k-p^k_k$ and $p^j_k-p^k_k$ are nonnegative (one is $0$ if $k\in\{i,j\}$), so $|p^i_k-p^j_k|\le(p^i_k-p^k_k)+(p^j_k-p^k_k)$. For $k\notin T$, $|p^i_k-p^j_k|\le p^i_k+p^j_k$. Summing over $k$ and using~\eqref{eq:rho} for $i$ and for $j$ gives $\|p^i-p^j\|_1\le2\rho$.
+
+(ii) Fix $j\in T$. Let $g\in E_j(D_{p^j})\setminus E_j(X)$, and assume that $g$ lies in no $E_i(X)\setminus E_i(D_{p^i})$, $i\in T$; this excludes a null set.
+\begin{itemize}[leftmargin=*]
+\item If $g_j>0$, then $g\in X\setminus D_{p^j}$. If $g_i\le0$ for some $i\in T$, then $g\in X\setminus G_i\subseteq E_i(X)$, so $g\in E_i(D_{p^i})$, so $g\in D_{p^i}$; thus $g\in D_{p^i}\setminus D_{p^j}$ with $i\ne j$. Otherwise $g\in G_T^+\setminus D_{p^j}$.
+\item If $g_j\le0$, then $g\in D_{p^j}\setminus X$. If $g_i>0$ for some $i\in T$, then $g\in G_i\setminus X\subseteq E_i(X)$, so $g\in E_i(D_{p^i})$, so $g\notin D_{p^i}$; thus $g\in D_{p^j}\setminus D_{p^i}$ with $i\ne j$. Otherwise $g\in D_{p^j}\cap G_T^-$.
+\end{itemize}
+By Lemma~\ref{lem:thin}, (Lip), Lemma~\ref{lem:faces} and (i),
+\[
+s_j\le\sum_{i\in T\setminus\{j\}}\mu(D_{p^i}\sd D_{p^j})+\mu(G_T^+\setminus D_{p^j})+\mu(D_{p^j}\cap G_T^-)
+\le(n-1)C_\mu A\cdot2\rho+2\cdot2nC_\mu B\rho\le\kappa\rho .
+\]
+
+(iii) $\sum_{i\in T}p^i_i=1-\rho$, and by (ii), $\sum_{i\in T}s_i\le|T|\kappa\rho\le n\kappa\rho$.
+\end{proof}
+
+\begin{theorem}\label{thm:cover}
+Assume (M1) and (M5), and let $p\mapsto K_p$ be a family satisfying (CC), (Lip) and (Dom). Let $L$ be its cover loss. Then:
+\begin{enumerate}[label=(\alph*)]
+\item $L$ takes values in $[0,1]\cup[2,3]$. If $E_i(X)\subseteq E_i(Y)$ a.e., then $L(X,i)\le L(Y,i)$; if moreover $\mu(E_i(Y)\setminus E_i(X))>0$, then $L(X,i)<L(Y,i)$. If $X\approx Y$, then $L(X)=L(Y)$.
+\item $L(D_q,i)=1-q_i$ for all $q\in\Delta$ and $i\in[n]$.
+\item For every $q\in\Delta$, $D_q$ is competitive on $\supp q$.
+\item For every model $X$ and $i\in[n]$, $\{q\in\Delta:D_q\preceq_iX\}=\{q\in\Delta:q_i\ge1-L(X,i)\}$, which is closed.
+\item If a model $X$ weakly dominates $D_q$, then $X\approx D_q$.
+\item Every model $X$ is weakly dominated by some $D_q$, and is dominated by some $D_q$ unless $X\approx D_p$ for some $p\in\Delta$.
+\item If $X\not\approx D_p$ for every $p\in\Delta$, then some $D_q$ strictly dominates $X$ at every world.
+\end{enumerate}
+\end{theorem}
+
+Full support (M3) is not assumed here. It enters only through the verification of (CC) for particular families.
+
+\begin{proof}
+By Lemma~\ref{lem:attain}, for $i\in T(X)$,
+\[
+1-L(X,i)=\max\{p_i+\eta\mu(E_i(D_p)\setminus E_i(X)):p\in\Pc_i(X)\}.
+\]
+
+\emph{Step 1. For every model $X$: $0\le L(X,i)\le1$ for $i\in T(X)$, $2\le L(X,i)\le3$ for $i\notin T(X)$, and}
+\begin{equation}\label{eq:budget}
+\sum_{i\in T(X)}\big(1-L(X,i)\big)\le1,
+\end{equation}
+\emph{with equality only if $X\approx D_p$ for some $p\in\Delta$.} For $i\notin T(X)$, $L(X,i)=2+\mu(E_i(X))\in[2,3]$. Let $T(X)\ne\varnothing$, and for $i\in T(X)$ choose $p^i$ attaining the maximum. Since $n\kappa\eta<1$, Lemma~\ref{lem:budget}(iii) gives~\eqref{eq:budget}. Each term of~\eqref{eq:budget} is at least $p^i_i\ge0$, so each lies in $[0,1]$. If equality holds, Lemma~\ref{lem:budget}(iii) gives $(1-n\kappa\eta)\rho\le0$, so $\rho=0$. By Lemma~\ref{lem:budget}(i), all $p^i$ equal one $p$, and by Lemma~\ref{lem:budget}(ii), $s_i=0$ for $i\in T(X)$. Fix $i\in T(X)$: then $E_i(X)\subseteq E_i(D_p)$ a.e.\ and $E_i(D_p)\subseteq E_i(X)$ a.e., so $X\sd D_p=E_i(X)\sd E_i(D_p)$ is null by (F5).
+
+(a) The range is Step 1. Let $F\coloneqq E_i(X)$ and $H\coloneqq E_i(Y)$ with $F\subseteq H$ a.e. If $p\in\Pc_i(Y)$, then $F\subseteq H\subseteq E_i(D_p)$ a.e., so $p\in\Pc_i(X)$ and $\mu(E_i(D_p)\setminus F)=\mu(E_i(D_p)\setminus H)+\mu(H\setminus F)$. So $\Pc_i(Y)\subseteq\Pc_i(X)$, and if $\Pc_i(Y)\ne\varnothing$, then $L(X,i)\le L(Y,i)-\eta\mu(H\setminus F)$. If $\Pc_i(Y)=\varnothing\ne\Pc_i(X)$, then $L(X,i)\le1<2\le L(Y,i)$. If both are empty, then $L(Y,i)=2+\mu(H)=L(X,i)+\mu(H\setminus F)$. In every case $L(X,i)\le L(Y,i)$, strictly if $\mu(H\setminus F)>0$, since $\eta>0$. If $X\approx Y$, then $E_i(X)\sd E_i(Y)=X\sd Y$ is null, and the claim applies in both directions.
+
+(b) $q\in\Pc_i(D_q)$ for every $i$, with $\mu(E_i(D_q)\setminus E_i(D_q))=0$. So $L(D_q,i)\le1-q_i$ and $T(D_q)=[n]$. By~\eqref{eq:budget}, $1\ge\sum_i(1-L(D_q,i))\ge\sum_iq_i=1$, so $L(D_q,i)=1-q_i$ for every $i$.
+
+(c) Suppose $L(Y,i)<1-q_i$ for all $i\in\supp q$. Then $\supp q\subseteq T(Y)$, and by Step 1, $\sum_{i\in T(Y)}(1-L(Y,i))\ge\sum_{i\in\supp q}(1-L(Y,i))>\sum_{i\in\supp q}q_i=1$, contradicting~\eqref{eq:budget}.
+
+(d) This is (b).
+
+(e) Let $L(X,i)\le1-q_i$ for all $i$. Then $T(X)=[n]$ and $\sum_i(1-L(X,i))\ge1$. By~\eqref{eq:budget}, equality holds throughout, so $L(X,i)=1-q_i$ for all $i$, and $X\approx D_p$ for some $p$ by Step 1. By (a) and (b), $1-p_i=L(D_p,i)=L(X,i)=1-q_i$, so $p=q$.
+
+(f) Let $a_i\coloneqq\max\{0,1-L(X,i)\}$. By Step 1, $a_i=1-L(X,i)$ for $i\in T(X)$, $a_i=0$ otherwise, and $\sum_ia_i\le1$. Put $q\coloneqq a+\frac1n(1-\sum_ka_k)\one\in\Delta$. By (b), $L(D_q,i)=1-q_i\le1-a_i\le L(X,i)$ for all $i$, so $D_q$ weakly dominates $X$. If $L(D_q)=L(X)$, then $X$ weakly dominates $D_q$, so $X\approx D_q$ by (e). Hence if $X\not\approx D_p$ for all $p$, then $D_q$ dominates $X$.
+
+(g) Let $a$ be as in (f). If $\sum_ia_i=1$, then $T(X)\ne\varnothing$ and equality holds in~\eqref{eq:budget}, so $X\approx D_p$ for some $p$ by Step 1. So $\sum_ia_i<1$, and $q$ from (f) has $q_i>a_i\ge1-L(X,i)$, so $L(D_q,i)<L(X,i)$, at every $i$.
+\end{proof}
+
+\begin{corollary}\label{cor:single}
+Under the hypotheses of Theorem~\ref{thm:cover}, regard the cover ranking $L$ as a ranking in the sense of Definition~\ref{def:ranking}, with $\Mc_L=\Mc$ and $\Cc$ the almost coherent models. Then:
+\begin{enumerate}[label=(\roman*)]
+\item $\Cc_L=\Uc_L=\{X:X\approx D_p\text{ for some }p\in\Delta\}$;
+\item the hypotheses of Corollary~\ref{cor:closed-choice} hold with $c_p\coloneqq D_p\in\Cc_L$, so (S) holds for $L$;
+\item $L$ is closed under ties;
+\item every model outside $\Cc_L$, incoherent or almost coherent, is strictly dominated at every world by some $D_q$;
+\item $L$ satisfies (A1$^*$), and hence (A1).
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Each $D_p$ is a coherent set of desirable gambles by (F3), so every $X\approx D_p$ is almost coherent. (i) Let $X\approx D_p$, and suppose $Y$ dominates $X$. By (a), $L(X)=L(D_p)$, so $Y$ weakly dominates $D_p$, so $Y\approx D_p$ by (e), and $L(Y)=L(X)$ by (a). Then $X$ and $Y$ are tied at every world, a contradiction. So $X\in\Uc_L$, and $X\in\Cc$. By (f), no other model is undominated. (ii) This is (b)--(d) of Theorem~\ref{thm:cover} together with (i). (iii) If $Y$ is tied at every world with $X\in\Cc_L$, $X\approx D_p$, then $L(Y)=L(X)=L(D_p)$, so $Y$ weakly dominates $D_p$, so $Y\approx D_p$ by (e), and $Y\in\Cc_L$ by (i). (iv) This is (g) and (i). (v) (A1$^*$) is the strict part of (a), and (A1) follows by Lemma~\ref{lem:guidance}, since (M2) holds by Lemma~\ref{lem:measures}(a).
+\end{proof}
+
+\begin{remark}\label{rem:exact}
+For the rankings of this note, the conditions hold for almost coherence but not for coherence itself. Suppose the coherent class were the exact one: the coherent sets of desirable gambles, all of which are models by Lemma~\ref{lem:coherent}. Then $D_p\in\Cc_L$ for every $p$, by (F3) and Corollary~\ref{cor:single}(i). Under (M5), $\{0\}$ is null by Lemma~\ref{lem:measures}(a), so $Y\coloneqq D_p\cup\{0\}\approx D_p$ is tied with $D_p$ at every world by Theorem~\ref{thm:cover}(a). But $Y$ violates (D1), so it is not coherent and not in $\Cc_L$. Hence (T) fails. In fact $Y$ is undominated and incoherent in this exact sense, so the conclusion of Theorem~\ref{thm:argument} also fails.
+\end{remark}
+
+\section{The rescaled family}\label{sec:rescaled}
+
+Throughout this section $M\subseteq\operatorname{int}\Delta$ is a credal set and $\delta\coloneqq\min_{m\in M}\min_km_k$, which is positive because $M$ is compact. For $p\in\Delta$ and $m\in M$, $p\cdot m\ge\delta\sum_kp_k=\delta>0$. Put
+\[
+F_p(m)\coloneqq\frac{p*m}{p\cdot m},\qquad K_p\coloneqq\{F_p(m):m\in M\}.
+\]
+This is the \emph{rescaled family} of $M$.
+
+\begin{proposition}\label{prop:rescaled}
+\begin{enumerate}[label=(\roman*)]
+\item Each $K_p$ is a credal set, $K_u=M$, $K_{e_i}=\{e_i\}$, and $K_p\subseteq\Delta^\circ_{\supp p}$. For every $p\in\Delta$ and $g\in\R^n$, $\varphi_{K_p}(g)$ and $\varphi_M(p*g)$ have the same sign ($-$, $0$ or $+$). For $m,m'\in M$, $F_p$ maps the segment $[m,m']$ onto the segment $[F_p(m),F_p(m')]$.
+\item (Lip) holds with $A=2/\delta$.
+\item (Dom) holds with $B=1/\delta$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $F_p(m)\ge0$ and its coordinates sum to $1$, so $F_p(m)\in\Delta$. $F_p$ is continuous on $M$, so $K_p$ is nonempty and compact. Let $m,m'\in M$ and $m_\lambda\coloneqq(1-\lambda)m+\lambda m'$ for $\lambda\in[0,1]$. Then
+\[
+F_p(m_\lambda)=\frac{(1-\lambda)\,p*m+\lambda\,p*m'}{(1-\lambda)\,p\cdot m+\lambda\,p\cdot m'}=(1-\theta(\lambda))F_p(m)+\theta(\lambda)F_p(m'),
+\]
+where $\theta(\lambda)\coloneqq\lambda\,(p\cdot m')/\big((1-\lambda)\,p\cdot m+\lambda\,p\cdot m'\big)$.
+$\theta$ is continuous on $[0,1]$ with $\theta(0)=0$ and $\theta(1)=1$, so it takes every value in $[0,1]$. Hence $F_p$ maps $[m,m']$ onto $[F_p(m),F_p(m')]$, and $K_p$ is convex. Since $u*m=m/n$ and $u\cdot m=1/n$, $F_u(m)=m$, so $K_u=M$. Since $e_i*m=m_ie_i$ and $e_i\cdot m=m_i$, $K_{e_i}=\{e_i\}$. $F_p(m)_k=p_km_k/(p\cdot m)$ is positive if and only if $p_k>0$, so $K_p\subseteq\Delta^\circ_{\supp p}$. Finally, $F_p(m)\cdot g=m\cdot(p*g)/(p\cdot m)$ and $p\cdot m>0$. So $\varphi_{K_p}(g)>0$ if and only if $m\cdot(p*g)>0$ for all $m\in M$, if and only if $\varphi_M(p*g)>0$, the minima being attained; and $\varphi_{K_p}(g)<0$ if and only if $m\cdot(p*g)<0$ for some $m\in M$, if and only if $\varphi_M(p*g)<0$.
+
+(ii) Fix $m\in M$ and $p,q\in\Delta$. For each $k$,
+\[
+F_p(m)_k-F_q(m)_k=\frac{m_k\big[p_k(q\cdot m-p\cdot m)+(p_k-q_k)(p\cdot m)\big]}{(p\cdot m)(q\cdot m)}.
+\]
+Summing absolute values over $k$, and using $\sum_km_kp_k=p\cdot m$, $|(q-p)\cdot m|\le\|p-q\|_1$ and $\sum_km_k|p_k-q_k|\le\|p-q\|_1$ (as $m_k\le1$),
+\[
+\|F_p(m)-F_q(m)\|_1\le\frac{|q\cdot m-p\cdot m|}{q\cdot m}+\frac{\sum_km_k|p_k-q_k|}{q\cdot m}\le\frac{2\|p-q\|_1}{q\cdot m}\le\frac{2}{\delta}\|p-q\|_1.
+\]
+Every point $F_p(m)$ of $K_p$ is thus within $\frac2\delta\|p-q\|_1$ of the point $F_q(m)$ of $K_q$, and conversely. So $\dH(K_p,K_q)\le\frac2\delta\|p-q\|_1$.
+
+(iii) $\up_{K_p}(i)=\max_{m\in M}p_im_i/(p\cdot m)\le p_i/\delta$, since $m_i\le1$ and $p\cdot m\ge\delta$.
+\end{proof}
+
+\begin{remark}\label{rem:U}
+Consider the condition (U): if $p_i>q_i$ then $\up_{K_p}(i)>\up_{K_q}(i)$. Under (M3), (U) implies (CC) by Lemma~\ref{lem:endpoints}(b), since covers $p\in\Pc_i(X)$ and $q\in\Pc_j(X)$ satisfy $\up_{K_p}(i)\le\up_{K_q}(i)$. The rescaled family need not satisfy (U), so (CC) is verified directly in Proposition~\ref{prop:cc}. Let $n=3$, $M=\{(0.3,0.05,0.65)\}$, $p=(0.4,0,0.6)$ and $q=(0.3,0.7,0)$. Then $p*m=(0.12,0,0.39)$ and $q*m=(0.09,0.035,0)$, so
+\[
+\up_{K_p}(1)=\tfrac{0.12}{0.51}\approx0.235<0.72=\tfrac{0.09}{0.125}=\up_{K_q}(1),
+\]
+although $p_1>q_1$.
+\end{remark}
+
+\begin{proposition}\label{prop:cc}
+Assume (M3). Let $i\ne j$ and $p,q\in\Delta$ with $D_{K_p}\cap W_{ij}\subseteq D_{K_q}$ a.e. Then $p_i\le q_i$. Consequently, the rescaled family satisfies (CC).
+\end{proposition}
+
+\begin{proof}
+The consequence follows from Lemma~\ref{lem:endpoints}(a): if $p\in\Pc_i(X)$ and $q\in\Pc_j(X)$, then $D_{K_p}\cap W_{ij}\subseteq D_{K_q}$ a.e. We may assume $p_i>0$.
+
+\emph{Setup.} We claim that there is no $g\in W_{ij}$ with $\varphi_M(p*g)>0>\varphi_M(q*g)$. Suppose $g$ is one. For $\varepsilon>0$ let $g'\coloneqq g-\varepsilon e_j$. Then $g'_i=g_i>0>g'_j$. By (F1), $q*g'\le q*g$ gives $\varphi_M(q*g')\le\varphi_M(q*g)<0$, and by (F2), $\varphi_M(p*g')\ge\varphi_M(p*g)-\varepsilon>0$ for small $\varepsilon$. By (F2) the set $U\coloneqq\{x\in W^\circ_{ij}:\varphi_M(p*x)>0>\varphi_M(q*x)\}$ is open, and it contains $g'$, so $\mu(U)>0$ by (M3). By Proposition~\ref{prop:rescaled}(i), every $x\in U$ has $\varphi_{K_p}(x)>0>\varphi_{K_q}(x)$, so $x\in D_{K_p}\setminus D_{K_q}$ by (F3). Hence $U\subseteq(D_{K_p}\cap W_{ij})\setminus D_{K_q}$, which is null. This contradiction proves the claim. In each step below we exhibit such a $g$ under a hypothesis, which refutes the hypothesis.
+
+\emph{Step 1: $\supp q\subseteq\supp p$.} Suppose $q_l>0=p_l$. Then $l\ne i$. Take $g\coloneqq e_i/p_i-s\,e_l$ with $s>q_i/(p_iq_l\delta)$. Then $g_i=1/p_i>0$ and $g_j\le0$, so $g\in W_{ij}$. Also $p*g=e_i$, so $\varphi_M(p*g)=\min_{m\in M}m_i\ge\delta>0$. And $q*g=(q_i/p_i)e_i-sq_le_l$, so for every $m\in M$, $m\cdot(q*g)\le q_i/p_i-sq_l\delta<0$; thus $\varphi_M(q*g)<0$.
+
+\emph{Step 2.} Let $S\coloneqq\supp p$ and $d_k\coloneqq q_k/p_k$ for $k\in S$, $d_k\coloneqq0$ for $k\notin S$. We claim $d_i\ge d_l$ for all $l\in S$. Suppose $d_l>d_i$ for some $l\in S$; then $l\ne i$. Let $\varepsilon\coloneqq0$ if $l=j$ or $j\notin S$. Otherwise ($l\ne j\in S$) fix $\varepsilon$ with
+\[
+0<\varepsilon<\min\Big\{\frac\delta2,\ \frac{(d_l-d_i)\delta}{d_l+d_j}\Big\}.
+\]
+For $s\ge0$ let $h^s\coloneqq e_i-\varepsilon e_j-s\,e_l$, and let $g^s_k\coloneqq h^s_k/p_k$ for $k\in S$ and $g^s_k\coloneqq0$ for $k\notin S$. Since $h^s$ vanishes off $S$, $p*g^s=h^s$. By Step 1, $q_k=0$ off $S$, so $q*g^s=d*h^s$. Also $g^s_i=1/p_i>0$, and $g^s_j$ equals $-s/p_j$ if $j=l$, $-\varepsilon/p_j$ if $l\ne j\in S$, and $0$ if $j\notin S$. So $g^s\in W_{ij}$.
+
+Let $s^*\coloneqq\min_{m\in M}(m_i-\varepsilon m_j)/m_l$, attained at some $m^*\in M$. Since $m_i-\varepsilon m_j\ge\delta-\varepsilon\ge\delta/2$ and $m_l\le1$, $s^*\ge\delta/2>0$. For $0\le s<s^*$ and $m\in M$, $m_i-\varepsilon m_j-sm_l\ge m_l(s^*-s)\ge\delta(s^*-s)$, so
+\[
+\varphi_M(p*g^s)=\varphi_M(h^s)\ge\delta(s^*-s)>0.
+\]
+Let $f(s)\coloneqq m^*\cdot(d*h^s)=d_im^*_i-\varepsilon d_jm^*_j-s\,d_lm^*_l$, which is affine in $s$. Using $s^*m^*_l=m^*_i-\varepsilon m^*_j$,
+\[
+f(s^*)=(d_i-d_l)m^*_i+\varepsilon(d_l-d_j)m^*_j\le-(d_l-d_i)\delta+\varepsilon(d_l+d_j)<0,
+\]
+by the choice of $\varepsilon$ (if $\varepsilon=0$ the second term vanishes). By continuity, $f(s)<0$ for some $s\in(0,s^*)$. For this $s$, $\varphi_M(q*g^s)\le f(s)<0<\varphi_M(p*g^s)$, and $g\coloneqq g^s\in W_{ij}$.
+
+\emph{Step 3.} By Steps 1 and 2, $1=\sum_{l\in S}q_l=\sum_{l\in S}p_ld_l\le d_i\sum_{l\in S}p_l=d_i$. So $q_i\ge p_i$.
+\end{proof}
+
+\begin{corollary}\label{cor:rescaled}
+Assume (M1), (M3) and (M5), and let $M\subseteq\operatorname{int}\Delta$ be a credal set. The rescaled family of $M$ satisfies (CC), (Lip) with $A=2/\delta$ and (Dom) with $B=1/\delta$. So Theorem~\ref{thm:cover} and Corollary~\ref{cor:single} apply to its cover ranking, with $\kappa=8nC_\mu/\delta$. In particular, (S) holds with $c_p=D_{K_p}$, and $c_u=D_M$.
+\end{corollary}
+
+\begin{proof}
+Lemma~\ref{lem:measures}(a) gives (M2). Apply Propositions~\ref{prop:rescaled} and~\ref{prop:cc}. Then $\kappa=2nC_\mu(2/\delta+2/\delta)$.
+\end{proof}
+
+\section{Targets that touch the boundary}\label{sec:boundary}
+
+\begin{proposition}\label{prop:reach}
+The credal sets $K^M_p$, for $M\subseteq\operatorname{int}\Delta$ a credal set, $K^M$ its rescaled family and $p\in\Delta$, are exactly the credal sets $M'$ all of whose members have the same support. Hence a model is $\approx D_{K^M_p}$ for some such $M$ and $p$ if and only if it is $\approx D_{M'}$ for such an $M'$. In particular, under (M3) the models $D_\Delta$ and $D_{\mathrm{conv}\{e_1,u\}}$ are not $\approx D_{K^M_p}$ for any credal $M\subseteq\operatorname{int}\Delta$ and $p\in\Delta$.
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:rescaled}(i), all members of $K^M_p$ have support $\supp p$. Conversely, let every member of $M'$ have support $S$. If $S=[n]$, take $M\coloneqq M'$ and $p\coloneqq u$. Otherwise let $w$ be uniform on $S^c$, fix $0<\varepsilon<1$, and let $M\coloneqq\{(1-\varepsilon)m'+\varepsilon w:m'\in M'\}$, a credal set. Every coordinate of its members is positive: on $S$ it is $(1-\varepsilon)m'_k>0$, and on $S^c$ it is $\varepsilon/|S^c|$. So $M\subseteq\operatorname{int}\Delta$. Let $p$ be uniform on $S$. For $m=(1-\varepsilon)m'+\varepsilon w$, $p*m=\frac{1-\varepsilon}{|S|}m'$ and $p\cdot m=\frac{1-\varepsilon}{|S|}$, so $F_p(m)=m'$ and $K^M_p=M'$. The statement about models follows. Finally, $\Delta$ and $\mathrm{conv}\{e_1,u\}$ contain both $e_1$ and $u$, whose supports differ, so neither equals any $K^M_p$, and Lemma~\ref{lem:injective} gives the last claim.
+\end{proof}
+
+So rescaled families of interior targets cannot reach every coherent model, and some targets must touch the boundary. For such targets the rescaled family can fail. For $M=\Delta$ the formula $F_p(m)$ still makes sense whenever $p\cdot m>0$, and $\{F_p(m):m\in\Delta,\ p\cdot m>0\}=\Delta_{\supp p}$. Indeed, every $F_p(m)$ is supported in $\supp p$, and $x\in\Delta_{\supp p}$ equals $F_p(m)$ for $m$ proportional to $x_k/p_k$ on $\supp p$ and $0$ elsewhere. So the rescaled family of $\Delta$ assigns $c_p=D_{\Delta_{\supp p}}$. By (F4), under (M2), $D_{\Delta_S}\approx G_S^+$, since $\varphi_{\Delta_S}(g)=\min_{k\in S}g_k$. For $n=2$ the assigned models are $D_\Delta$ (interior $p$), $D_{\{e_1\}}\approx G_1$ and $D_{\{e_2\}}\approx G_2$.
+
+\begin{proposition}\label{prop:obstruction}
+Assume (M3). Let $R\coloneqq\{g:g_1>0,\ g_k\le0\text{ for all }k\ge2\}$, $N\coloneqq R\cap\{g:g_1>1\}$ and
+\[
+X\coloneqq\big(G_1\cap(G_2\cup\dots\cup G_n)\big)\cup N .
+\]
+For every nonempty $S\subseteq[n]$ there is a world $\omega$ with $X\le_\omega G_S^+$ and $X\not\approx G_S^+$. Consequently, under any ranking with $\Mc_L=\Mc$ that satisfies (A1$^*$), no model $Y\approx G_S^+$, for any nonempty $S$, weakly dominates $X$.
+\end{proposition}
+
+\begin{proof}
+Let $P\coloneqq G_1\cap(G_2\cup\dots\cup G_n)$. Then $G_1$ is the disjoint union of $P$ and $R$, and $X\subseteq G_1$. We use the criterion of (F5): $X\le_\omega Y$ if and only if $Y\cap G_\omega\subseteq X$ a.e.\ and $X\setminus G_\omega\subseteq Y$ a.e. Non-nullity of the open sets below is (M3).
+
+\emph{Case $S\ne\{1\}$; take $\omega=1$.} $X\setminus G_1=\varnothing$. $S$ contains some $k\ge2$, so every $g\in G_S^+\cap G_1$ has $g_1>0$ and $g_k>0$, and lies in $P\subseteq X$. So $X\le_1G_S^+$. If $1\notin S$, then $G_S^+\cap\{g_1<0\}$ is open, nonempty and disjoint from $X$. If $1\in S$, then $N$ is disjoint from $G_S^+$ (its members have $g_k\le0$ for some $k\in S$) and contains the nonempty open set $\{g:g_1>1,\ g_k<0\text{ for }k\ge2\}$. Either way $X\not\approx G_S^+$.
+
+\emph{Case $S=\{1\}$; take $\omega=2$.} $G_{\{1\}}^+=G_1$. $G_1\cap G_2\subseteq P\subseteq X$, and $X\setminus G_2\subseteq X\subseteq G_1$. So $X\le_2G_1$. And $G_1\setminus X=R\setminus N$ contains the nonempty open set $\{g:0<g_1<1,\ g_k<0\text{ for }k\ge2\}$, so $X\not\approx G_1$.
+
+For the consequence, let $Y\approx G_S^+$ and take $\omega$ as above. By (F5), $E_\omega(Y)\approx E_\omega(G_S^+)$, so $X\le_\omega Y$ and, by (F5) again, $\mu(E_\omega(Y)\setminus E_\omega(X))=\mu(X\sd Y)>0$. By (A1$^*$), $X\prec_\omega Y$, so $Y\preceq_\omega X$ fails.
+\end{proof}
+
+For $n=2$, $R=W_{12}$, and under (M2) $X\approx D_\Delta\cup N$ with $N=W_{12}\cap\{g_1>1\}$. Under any ranking satisfying (A1$^*$), $D_\Delta\preceq_1X$, $G_1\preceq_2X$ and $G_2\preceq_1X$ all fail.
+
+\begin{corollary}\label{cor:obstruction}
+Assume (M2) and (M3), and let $n\ge2$. No ranking with $\Mc_L=\Mc$ that satisfies (A1$^*$) satisfies the hypotheses of Theorem~\ref{thm:finite}, Corollary~\ref{cor:closed-choice} or \cite[Theorem~2.4]{LDG} with all assigned or selected models in $\{Y:Y\approx D_{\Delta_S}\text{ for some nonempty }S\}$. In particular, (S) cannot hold with the assigned models $c_p=D_{\Delta_{\supp p}}$ given by rescaling $M=\Delta$.
+\end{corollary}
+
+\begin{proof}
+Each of the three results concludes that every model is weakly dominated by an assigned or selected model. Since $D_{\Delta_S}\approx G_S^+$, Proposition~\ref{prop:obstruction} gives a model that no such model weakly dominates.
+\end{proof}
+
+\begin{remark}\label{rem:A1-only}
+Corollary~\ref{cor:obstruction} needs the world-by-world axiom (A1$^*$). Under (A1) alone, (S) and (T) can hold with $c_p=D_{\Delta_{\supp p}}$. Assume (M2), let $G^{++}\coloneqq G^+_{[n]}$ and $G^{--}\coloneqq\{g:g_k<0\text{ for all }k\}$, and for a model $X$ put
+\[
+\ell(X)\coloneqq\mu(G^{++}\setminus X)+\mu(X\cap G^{--}),\qquad
+\iota(X)\coloneqq\begin{cases}0&\text{if }X\approx G_S^+\text{ for some nonempty }S,\\1&\text{otherwise.}\end{cases}
+\]
+Let $\Mc_L\coloneqq\Mc$ and, at every world $\omega$, let $X\preceq_\omega Y$ if and only if $\sigma(X)\le\sigma(Y)$, where $\sigma\coloneqq\ell+3\iota$.
+
+\emph{(A1) holds.} Let $X\not\approx Y$, and let the change from $X$ to $Y$, adding $A$ and removing $B$, be guided at every world. Then $A\subseteq G^{++}$ a.e.\ and $B\subseteq G^{--}$ a.e. Since $A\cap X=\varnothing$, $B\subseteq X$ and $G^{++}\cap G^{--}=\varnothing$, this gives $\mu(G^{++}\setminus Y)=\mu(G^{++}\setminus X)-\mu(A)$ and $\mu(Y\cap G^{--})=\mu(X\cap G^{--})-\mu(B)$. So $\ell(Y)=\ell(X)-\mu(X\sd Y)<\ell(X)$. If $\iota(X)=0$, then $\ell(X)=\ell(G_S^+)=0$ for some $S$, since $G^{++}\subseteq G_S^+$ and $G_S^+\cap G^{--}=\varnothing$; so no such $Y$ exists. If $\iota(X)=1$, then $\sigma(Y)\le\ell(Y)+3<\ell(X)+3=\sigma(X)$, so $Y\prec_\omega X$ at every world.
+
+\emph{(S) holds, via Corollary~\ref{cor:closed-choice}.} Every $g\in G^{++}$ has $g\gneqz$, so $G^{++}\subseteq D_{\Delta_S}$. Every $g\in G^{--}$ has $\varphi_{\Delta_S}(g)=\min_{k\in S}g_k<0$ and $g\not\gneqz$, so $D_{\Delta_S}\cap G^{--}=\varnothing$. Hence $\ell(D_{\Delta_S})=0$, and $\iota(D_{\Delta_S})=0$ because $D_{\Delta_S}\approx G_S^+$. So $\sigma(c_p)=0\le\sigma(X)$ for every model $X$. Thus $c_p\preceq_\omega X$ for all $X$ and $\omega$, $c_p$ is competitive on $\supp p$, and every set $\{p:c_p\preceq_\omega X\}$ equals $\Delta$, which is closed. A model that weakly dominates $c_p$ has $\sigma=0$ and is tied with $c_p$, so $c_p$ is undominated; it is coherent by (F3). So $c_p\in\Cc_L$.
+
+\emph{(T) holds.} A model with $\sigma>0$ is strictly dominated at every world by any $c_p$. A model with $\sigma=0$ has $\iota=0$, so it is $\approx G_S^+\approx D_{\Delta_S}$ for some $S$. Hence it is almost coherent, and it is undominated since $\sigma\ge0$. So $\Uc_L=\Cc_L=\{X:\sigma(X)=0\}$. A model tied at every world with a member of $\Cc_L$ has $\sigma=0$, so it lies in $\Cc_L$.
+\end{remark}
+
+\begin{example}\label{ex:cc-fails}
+Let $n=3$ and $M\coloneqq\mathrm{conv}\{e_1,e_2,u\}$. For interior $p$, $p\cdot m>0$ for all $m\in\Delta$, so $K_p\coloneqq\{F_p(m):m\in M\}$ is defined. By the segment property of Proposition~\ref{prop:rescaled}(i), whose proof only uses $p\cdot m>0$ on $M$, $K_p=\mathrm{conv}\{F_p(e_1),F_p(e_2),F_p(u)\}=\mathrm{conv}\{e_1,e_2,p\}$: the triangle $M$ is the union of the segments $[e_1,x]$, $x\in[e_2,u]$, and $F_p$ maps these onto the segments $[e_1,y]$, $y\in[e_2,p]$. Any extension of this family to the boundary of $\Delta$ violates (CC), under (M2). Indeed, since $e_1,e_2\in K_p$, $\varphi_{K_p}(g)\le\min\{g_1,g_2\}$, so $D_{K_p}\subseteq(G_1\cap G_2)\cup\{g\gneqz\}$. Let $p,q$ be interior and $X\coloneqq D_{K_p}\cup D_{K_q}$. Then $D_{K_p}\cap G_1\subseteq X$, and $X\setminus G_1\subseteq\{g:g_1=0\}$, which is null by (M2). So $X\le_1D_{K_p}$ by (F5); likewise $X\le_2D_{K_q}$. (CC) would give $p_1\le q_1$ for all interior $p,q$, which is false.
+\end{example}
+
+For targets $M\not\subseteq\operatorname{int}\Delta$ we use a homothetic family instead. Let $M$ be any credal set, $\ell\coloneqq(\lp_M(i))_i$, $v\coloneqq(\up_M(i))_i$, $\Lambda\coloneqq\sum_i\ell_i$ and $V\coloneqq\sum_iv_i$. If $M$ is not a singleton, then $\Lambda<1<V$: for $m\in M$, $\ell\le m\le v$, so $\Lambda\le1\le V$, and $\Lambda=1$ would force $m=\ell$ for every $m\in M$, and likewise for $V$. In that case put
+\[
+\lambda\coloneqq\frac{1-\Lambda}{V-\Lambda}\in(0,1),\qquad r\coloneqq(1-\lambda)\ell+\lambda v,\qquad d\coloneqq r-\ell=\lambda(v-\ell)\ge0 .
+\]
+Then $d\ne0$, since $\Lambda<V$. If $M=\{m\}$, put $\lambda\coloneqq\frac12$, $r\coloneqq m$ and $d\coloneqq0$. In both cases $r\in\Delta$, since $r\ge0$ and $\sum_kr_k=\Lambda+\lambda(V-\Lambda)=1$. Let
+\[
+\theta(p)\coloneqq\min\Big\{1,\ \min_{k:d_k>0}\frac{p_k}{d_k}\Big\},\qquad K_p\coloneqq\{p+\theta(p)(m-r):m\in M\},
+\]
+with the inner minimum $+\infty$ if $d=0$. This is the \emph{homothetic family} of $M$. If $d\ne0$ let $\delta_M\coloneqq\min\{d_k:d_k>0\}$.
+
+\begin{proposition}\label{prop:homothetic}
+Let $M$ be a credal set and $K$ its homothetic family.
+\begin{enumerate}[label=(\roman*)]
+\item Each $K_p$ is a credal set, $K_r=M$, and $(1-\lambda)\lp_{K_p}(i)+\lambda\up_{K_p}(i)=p_i$ for all $p$ and $i$.
+\item (Dom) holds with $B=1/\lambda$.
+\item (Lip) holds with $A=1+2/\delta_M$ if $M$ is not a singleton, and with $A=1$ if it is.
+\item Under (M3), (CC) holds.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $K_p$ is an affine image of $M$, so it is nonempty, compact and convex, and its points have coordinate sum $1$ since $\sum_km_k=\sum_kr_k=1$. As $\theta(p)\ge0$, $\lp_{K_p}=p+\theta(p)(\ell-r)=p-\theta(p)d$ and $\up_{K_p}=p+\theta(p)(v-r)$. If $d_k>0$ then $\theta(p)d_k\le p_k$, and if $d_k=0$ then $\lp_{K_p}(k)=p_k$; so $\lp_{K_p}\ge0$ and $K_p\subseteq\Delta$. Since $r_k-d_k=\ell_k\ge0$, $\theta(r)=1$ and $K_r=M$. Finally $(1-\lambda)\lp_{K_p}+\lambda\up_{K_p}=p+\theta(p)\big((1-\lambda)\ell+\lambda v-r\big)=p$.
+
+(ii) By (i), $\lambda\up_{K_p}(i)\le p_i$, since $\lp_{K_p}(i)\ge0$.
+
+(iii) If $M=\{m\}$, then $\theta\equiv1$ and $K_p=\{p\}$, so $\dH(K_p,K_q)=\|p-q\|_1$. Otherwise each map $p\mapsto p_k/d_k$ with $d_k>0$ satisfies $|p_k/d_k-q_k/d_k|\le\|p-q\|_1/\delta_M$, and a minimum of finitely many such maps and the constant $1$ satisfies the same bound, so $|\theta(p)-\theta(q)|\le\|p-q\|_1/\delta_M$. Pairing $p+\theta(p)(m-r)$ with $q+\theta(q)(m-r)$, and using $\|m-r\|_1\le2$, gives $\dH(K_p,K_q)\le\|p-q\|_1+2|\theta(p)-\theta(q)|\le(1+2/\delta_M)\|p-q\|_1$.
+
+(iv) Let $p\in\Pc_i(X)$ and $q\in\Pc_j(X)$ with $i\ne j$. By Lemma~\ref{lem:endpoints}(b), $\lp_{K_p}(i)\le\lp_{K_q}(i)$ and $\up_{K_p}(i)\le\up_{K_q}(i)$. By (i), $p_i\le q_i$.
+\end{proof}
+
+\section{The class of rankings and the dominance argument}\label{sec:class}
+
+\begin{definition}[The class $\Lf$]\label{def:class}
+Assume (M1), (M3) and (M5). For each credal set $M$, let $K^M$ be the rescaled family of $M$ if $M\subseteq\operatorname{int}\Delta$, and the homothetic family of $M$ otherwise, and let $p_M\coloneqq u$ in the first case and $p_M\coloneqq r$ in the second. Let $A_M,B_M$ be the constants of Corollary~\ref{cor:rescaled} or Proposition~\ref{prop:homothetic}, $\kappa_M\coloneqq2nC_\mu(A_M+2B_M)$, fix $0<\eta_M<1/(n\kappa_M)$, and let $L^M$ be the cover ranking of $K^M$ with $\eta=\eta_M$. Put $\Lf\coloneqq\{L^M:M\text{ a credal set}\}$.
+\end{definition}
+
+\begin{theorem}\label{thm:class}
+Assume (M1), (M3) and (M5). Then for every credal set $M$, $K^M$ satisfies (CC), (Lip) and (Dom), and $K^M_{p_M}=M$. The class $\Lf$ satisfies (E), (A), (S) and (T) of Definition~\ref{def:ESAT}, with the almost coherent models as coherent class.
+\end{theorem}
+
+\begin{proof}
+(M2) holds by Lemma~\ref{lem:measures}(a). The first claim is Corollary~\ref{cor:rescaled} with Proposition~\ref{prop:rescaled}(i), or Proposition~\ref{prop:homothetic}. So Theorem~\ref{thm:cover} and Corollary~\ref{cor:single} apply to each $L^M$.
+
+(E) Every $L^M$ has $\Mc_{L^M}=\Mc$.
+
+(A) Let $X$ be almost coherent, $X\approx D$ with $D$ a coherent set of desirable gambles, and let $M$ be the credal set of Lemma~\ref{lem:coherent}. Then $X\approx D\approx D_M=D_{K^M_{p_M}}$. By Corollary~\ref{cor:single}(i) for $L^M$, $X\in\Cc_{L^M}$.
+
+(S) For each $L^M$, Corollary~\ref{cor:single}(ii) gives the hypotheses of Corollary~\ref{cor:closed-choice}, with $c_p=D_{K^M_p}\in\Cc_{L^M}$.
+
+(T) Corollary~\ref{cor:single}(iii).
+\end{proof}
+
+\begin{corollary}\label{cor:conclusion}
+Assume (M1), (M3) and (M5). Then:
+\begin{enumerate}[label=(\roman*)]
+\item the rationally permissible models for $\Lf$ are exactly the almost coherent ones, and the irrational models are exactly the incoherent ones;
+\item for every credal set $M$, $\Uc_{L^M}=\Cc_{L^M}=\{X:X\approx D_{K^M_p}\text{ for some }p\}$, and every model outside this set, almost coherent or not, is strictly dominated at every world by some $D_{K^M_q}$;
+\item every ranking in $\Lf$ satisfies (A1$^*$) and (A1).
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) is Theorem~\ref{thm:argument} with Theorem~\ref{thm:class}. (ii) and (iii) are Corollary~\ref{cor:single}(i), (iv) and (v).
+\end{proof}
+
+\begin{remark}\label{rem:rest}
+Each relation $\preceq_\omega$ of a ranking in $\Lf$ is induced by a real-valued function. In the present convention, the three-model condition and transitivity through ties of~\cite{App} read:
+\begin{itemize}[leftmargin=3.2em]
+\item[(A2)] there are no $\omega$, $X$, $Y$, $Z$ with $X\preceq_\omega Y$, $Y\preceq_\omega Z$ and $Z\prec_\omega X$;
+\item[(A3)] if $Z$ and $X$ are tied at $\omega$ and $Y\preceq_\omega Z$, then $Y\preceq_\omega X$.
+\end{itemize}
+Both hold trivially: $L(X,\omega)\le L(Y,\omega)\le L(Z,\omega)<L(X,\omega)$ is impossible, and $L(Z,\omega)=L(X,\omega)$ with $L(Y,\omega)\le L(Z,\omega)$ gives $L(Y,\omega)\le L(X,\omega)$. The consolidation axiom (A4) of~\cite{App} is not checked here. Infinitely many worlds are not treated.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{LDG} J.~Konek. Coherence and dominance under general rankings. Manuscript, 2026.
+\bibitem{App} J.~Konek. Coherence and accuracy for sets of desirable gambles. Manuscript, 2026.
+\end{thebibliography}
+
+\end{document}
