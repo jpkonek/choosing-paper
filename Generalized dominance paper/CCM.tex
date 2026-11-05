@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\G}{\mathcal G}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and Dominance under General Rankings}
+\author{Jason Konek and Catrin Campbell-Moore}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+\section{Core result}
+We first state the Fan--KKM lemma in our setting.
+
+\begin{theorem}[Fan--KKM]
+	Let $X$ be a Hausdorff topological vector space, let
+	$Y \subseteq X$ be compact and convex, and let
+	$\varnothing \neq V \subseteq Y$.
+	Suppose $\Phi \colon V \rightrightarrows Y$ satisfies:
+	\begin{itemize}
+		\item \textbf{Closed values.}
+		For every $v \in V$, the set $\Phi(v)$ is closed in $Y$.
+		
+		\item \textbf{KKM covering.}
+		For every finite convex combination
+		$x = \sum_{i=1}^n \lambda_i v_i$ of points in $V$,
+		there is some $i$ with $\lambda_i>0$ such that
+		\[
+		x \in \Phi(v_i).
+		\]
+	\end{itemize}
+	Then
+	\[
+	\bigcap_{v \in V} \Phi(v) \neq \varnothing.
+	\]
+\end{theorem}
+
+Now the application:
+
+\begin{corollary}
+	Let $W$ be a nonempty set, and let $P$ be the space of
+	finitely additive probabilities on $\wp(W)$, equipped with
+	the topology of pointwise convergence on events.
+	Let $M$ be a set, let $\succeq_w$ be a comparison relation
+	on $M$ for each $w \in W$, and let $c \colon P \to M$.
+	Suppose:
+	\begin{itemize}
+		\item \textbf{Closedness.}
+		For every $m \in M$ and $w \in W$, the set
+		\[
+		\{p \in P : c(p) \succeq_w m\}
+		\]
+		is closed in $P$.
+		
+		\item \textbf{Coherent Admissibility (for Finitely Supported Probs on their Support).}
+		For every finitely supported $p \in P$ and every
+		$m \in M$, there is some $w \in \operatorname{supp}(p)$
+		such that
+		\[
+		c(p) \succeq_w m.
+		\]
+	\end{itemize}
+	Then, for every $m \in M$, there exists $p \in P$ such that
+	\[
+	c(p) \succeq_w m
+	\qquad \text{for every } w \in W.
+	\]
+\end{corollary}
+
+\begin{proof}
+	Equip $X = ba(2^W)$ with the topology of pointwise
+	convergence on events. This is a Hausdorff topological
+	vector space, and $P$ is a compact convex subset.
+	
+	Fix $m \in M$. Apply the Fan--KKM lemma to the vertices
+	$D = \{\delta_w : w \in W\} \subseteq P$, defining
+	\[
+	\Phi(\delta_w)
+	= \{p \in P : c(p) \succeq_w m\}.
+	\]
+	These sets are closed by assumption.
+	
+	Every finite convex combination of vertices,
+	\[
+	p = \sum_{i=1}^n \lambda_i \delta_{w_i},
+	\qquad \lambda_i > 0,
+	\qquad \sum_{i=1}^n \lambda_i = 1,
+	\]
+	is a finitely supported probability. By coherent admissiblity, $c(p) \succeq_{w_i} m$ for some $i$, so
+	$p \in \Phi(\delta_{w_i})$. Thus $\Phi$ satisfies
+	the KKM covering condition.
+	
+	The Fan--KKM lemma gives
+	\[
+	\bigcap_{w \in W} \Phi(\delta_w) \neq \varnothing,
+	\]
+	which is the desired conclusion.
+\end{proof}
+
+\begin{remark}
+	If each $\succeq_w$ is total, Coherent Admissibility
+	is equivalent to the following condition:
+	for every finitely supported probability $p$,
+	there is no model $m \in M$ which strictly dominates $p$ on its support, that is:
+	\[
+	m \succ_w c(p)
+	\qquad\text{for every }w\in\supp(p).
+	\]
+\end{remark}
+
+\end{document}
+\begin{corollary}[Families of rankings]
+	Let $W$ be a nonempty set, let $P$ be the space of
+	finitely additive probabilities on $2^W$ with the
+	topology of pointwise convergence on events, and
+	let $\mathfrak L$ be a family of rankings.
+	
+	Each ranking $L$ has a nonempty domain $M_L$ and
+	comparison relations $\succeq_w^L$ for $w\in W$.
+	Suppose that, for each $L\in\mathfrak L$, there is
+	a selection $c_L\colon P\to M_L$ satisfying:
+	\begin{enumerate}
+		\item For every $m\in M_L$ and $w\in W$, the set
+		\[
+		\{p\in P:c_L(p)\succeq_w^L m\}
+		\]
+		is closed.
+		\item For every finitely supported $p\in P$
+		and every $m\in M_L$, there is some
+		$w\in\supp(p)$ such that
+		\[
+		c_L(p)\succeq_w^L m.
+		\]
+	\end{enumerate}
+	Then, under each ranking $L$, every model in $M_L$
+	is weakly dominated by a model in the range of $c_L$.
+	
+	Fix a class $C$ of coherent models, and write
+	$U_L$ for the undominated models under $L$ and
+	$C_L=C\cap U_L$.
+	Suppose additionally that, for every $L$:
+	\begin{enumerate}
+		\item the range of $c_L$ is contained in $C_L$;
+		\item $C_L$ is closed under ties at every world.
+	\end{enumerate}
+	Then $U_L=C_L$, and every model in $M_L\setminus C_L$
+	is dominated by a member of $C_L$.
+	
+	If every model is evaluated by some ranking, and
+	every coherent model belongs to $C_L$ for some $L$,
+	the models undominated under at least one ranking
+	that evaluates them are exactly the coherent models.
+	Every incoherent model is dominated under every
+	ranking that evaluates it.
+\end{corollary}
+
+\begin{proof}
+	Fix $L$ and apply the preceding theorem to $c_L$.
+	Every $m\in M_L$ is therefore weakly dominated by
+	some $a$ in the range of $c_L$.
+	
+	Under the additional assumptions, $a\in C_L$.
+	If $m$ is undominated, it must be tied at every
+	world with $a$. Closure under ties gives $m\in C_L$.
+	Hence $U_L\subseteq C_L$, and the reverse inclusion
+	holds by definition.
+	
+	If $m\notin C_L$, it cannot be tied at every world
+	with $a$, so $a$ dominates $m$.
+	
+	Consequently, any model undominated under some
+	ranking is coherent. Conversely, every coherent
+	model belongs to $C_L$ for some $L$ and is therefore
+	undominated under that ranking.
+\end{proof}
+\end{document}
