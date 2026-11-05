@@ -1,8 +1,30 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper,margin=27mm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,comment}
+\usepackage{tikz}
+\usepackage{comment}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage[most]{tcolorbox}
+\usepackage[font=small,labelfont=bf]{caption}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+
+
+\colorlet{wone}{blue!70!black}
+\colorlet{wtwo}{orange!85!black}
+\colorlet{wthree}{green!50!black}
+\colorlet{aone}{blue!22}
+\colorlet{atwo}{orange!32}
+\colorlet{athree}{green!22}
+
+\newtcolorbox{stmt}[1]{enhanced,breakable,colback=white,colframe=black!55,boxrule=0.5pt,arc=1pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt,fonttitle=\bfseries\small,coltitle=black,colbacktitle=black!8,title={#1}}
+\DeclareRobustCommand{\stp}[1]{\tikz[baseline=(n.base)]\node[circle,draw,inner sep=0.7pt,minimum size=11pt,font=\scriptsize\bfseries](n){#1};}
+\newenvironment{steps}{\begin{enumerate}[label=\stp{\arabic*},leftmargin=*,itemsep=2pt]}{\end{enumerate}}
+
+
+
 \hypersetup{pdftitle={Coherence and Dominance under General Rankings}}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -15,6 +37,8 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 
+\newcommand{\F}{\mathcal F}
+\newcommand{\G}{\mathcal G}
 \newcommand{\M}{\mathcal M}
 \newcommand{\C}{\mathcal C}
 \newcommand{\U}{\mathcal U}
@@ -100,35 +124,70 @@ Now choose a reasonable ranking $L\in\mathfrak L$. By definition $\C_L\subseteq\
 
 
 
-\section{Probabilities and the KKM lemma}\label{sec:probabilities}
+\section{Important lemmas}\label{sec:lemmas}
 
-\begin{definition}[Probabilities]\label{def:prob}
-For a finite nonempty $F\subseteq\Omega$, $\Delta_F\coloneqq\{p\in[0,1]^F:\sum_{\omega\in F}p_\omega=1\}$ with the Euclidean topology, and $\supp p\coloneqq\{\omega\in F:p_\omega>0\}$. For $\omega\in F$, $\delta_\omega\in\Delta_F$ has coordinate $1$ at $\omega$ and $0$ elsewhere.
+\subsection{Finitely additive probability}\label{sec:prob}
 
-$\Delta$ is the set of \emph{finitely additive probabilities} on $\Omega$: functions $p:2^\Omega\to[0,1]$ with $p(\Omega)=1$ and $p(A\cup B)=p(A)+p(B)$ whenever $A\cap B=\varnothing$. It carries the topology inherited from the product space $[0,1]^{2^\Omega}$, that is, the coarsest topology making each $p\mapsto p(A)$ continuous. For $p\in\Delta$ put $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$. $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. A member of $\Delta$ need not be countably additive, and need not give positive mass to any singleton. Each $p\in\Delta_F$ is identified with the member $A\mapsto\sum_{\omega\in A\cap F}p_\omega$ of $\Delta$.
+For any finite nonempty set of worlds $F\subseteq\Omega$, let $\Delta_F\coloneqq\{p\in[0,1]^F:\sum_{\omega\in F}p_\omega=1\}$ be the set of probability mass functions on $F$ equipped with the Euclidean topology. Let $p_\omega\coloneqq p(\{\omega\})$. Let $\supp p\coloneqq\{\omega\in F:p_\omega>0\}$ be the \textit{support of p}, \textit{i.e.}, the set of worlds in $F$ that have positive probability relative to $p$. Let $\delta_\omega\in\Delta_F$ be the indicator function which gives probability $1$ to $\omega$ and $0$ to every other world.
 
-For $p\in\Delta$ and bounded $h:\Omega\to\mathbb R$: if $h=\sum_{i=1}^ka_i\mathbf 1_{A_i}$ for a partition $A_1,\dots,A_k$ of $\Omega$, then $E_ph\coloneqq\sum_ia_ip(A_i)$; in general $E_ph\coloneqq\lim_jE_ph_j$ for any such functions $h_j$ with $\sup_\Omega|h_j-h|\to0$.
+Let $\Delta$ be the set of \emph{finitely additive probabilities} on the power set of $\Omega$, $2^\Omega$. 
+
+\begin{definition}\label{def:finitely-additive-probability}
+A map $p:2^\Omega\to[0,1]$ is a \emph{finitely additive probability function} iff:
+\begin{enumerate}[label=\textup{(FA\arabic*)}]
+  \item $p(\Omega)=1$;
+  \item $p(E)\geq p(\varnothing)$;
+  \item if $E\cap F=\varnothing$, then $p(E\cup F)=p(E)+p(F)$.
+\end{enumerate}
 \end{definition}
+
+$\Delta$ comes equipped with the product topology. Just as with probability mass functions, let $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$.  $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Finitely additive probabilities need not be countably additive, need not be finitely supported, and indeed need not give positive probability to any world. For any finite $F\subseteq\Omega$ and probability mass function $p\in\Delta_F$, we can use $p$ to generate a unique finitely additive probability $2^\Omega$ in the obvious way, \textit{viz.}, $p(A):=\sum_{\omega\in A\cap F}p_\omega$.
+
+
+Walley (1991: Theorems~3.2.2--3.2.3) shows that any finitely additive probability generates a unique \textit{finitely additive expectation} and vice versa. Let $\G$ be the set of all ``gambles'' or bounded random variables $g:\Omega\to\mathbb R$.
+
+
+\begin{definition}\label{def:finitely-additive-expectation}
+A map $P\colon\G\to\mathbb R$ is a \textit{finitely additive expectation} or \textit{linear prevision} iff:
+\begin{enumerate}[label=\textup{(LNP\arabic*)}]
+  \item $P(\mathbf{1}_\Omega)=1$;
+  \item if $f\leq g$ (\textit{i.e.}, $f(\omega)\leq g(\omega)$ for all $\omega\in\Omega$) then $P(f)\leq P(g)$;
+  \item $P(cf)=c\,P(f)$ for all $c>0$;
+  \item $P(f+g)=P(f)+P(g)$.
+\end{enumerate}
+\end{definition}
+
+A \emph{simple gamble} is a gamble of the form $f=\sum_{i=1}^{n}\alpha_i\,\mathbf{1}_{E_i}$ where $E_1,\ldots,E_n$ partition $\Omega$. For a finitely additive probability $p$, the expectation of a simple gamble is defined as:
+\[
+  E_p(f) \;:=\; \sum_{i=1}^{n}\alpha_i\,p(E_i).
+\]
+This suffices to fix the value of the unique linear prevision $E_p$ generated by $p$ for \textit{any} gamble. In general, $E_p(f)=\lim_jE_p(f_j)$ for any sequence of simple gambles $f_j\to f$.
+
+
+There are a few well-known facts about finitely additive probabilities that we will need later and state here without proof.
+
 
 \begin{lemma}\label{lem:prob}
 \leavevmode
 \begin{enumerate}[label=(\alph*)]
 \item $\Delta$ is compact.
-\item For every finite nonempty $F\subseteq\Omega$, the identification $\iota_F:\Delta_F\to\Delta$ is continuous and injective and preserves supports. Its image is $\{p\in\Delta:p(F)=1\}$. If $\Omega$ is finite, $\iota_\Omega$ is a homeomorphism onto $\Delta$.
-\item For bounded $h$, $E_ph$ is well defined, $\inf_\Omega h\le E_ph\le\sup_\Omega h$, $h\mapsto E_ph$ is linear, and $p\mapsto E_ph$ is continuous on $\Delta$. If $p(F)=1$ for a finite $F$, then $E_ph=\sum_{\omega\in F}p_\omega h(\omega)$.
+\item For every finite nonempty $F\subseteq\Omega$, let $\iota_F:\Delta_F\to\Delta$ defined by $\iota_F(p)(A):=\sum_{\omega\in A\cap F}p_\omega$. Then $\iota_F$ is continuous, injective and preserves supports, \textit{i.e.}, $\supp p = \supp \iota_F(p)$. Its image is $\{p\in\Delta:p(F)=1\}$. If $\Omega$ is finite, $\iota_\Omega$ is a homeomorphism onto $\Delta$.
+\item For any $g\in\G$, the map $p\mapsto E_p(g)$ is continuous. 
 \end{enumerate}
 \end{lemma}
-\begin{proof}
-(a) $[0,1]^{2^\Omega}$ is compact by Tychonoff's theorem. $\Delta$ is the intersection of the sets $\{p:p(\Omega)=1\}$ and $\{p:p(A\cup B)-p(A)-p(B)=0\}$ for disjoint $A,B$, each the inverse image of a point under a continuous function, hence closed. A closed subset of a compact space is compact.
 
-(b) Each value $\sum_{\omega\in A\cap F}p_\omega$ is continuous in $p\in\Delta_F$, so $\iota_F$ is continuous. It preserves each $p_\omega$, $\omega\in F$, and gives mass $0$ to every other world; so it is injective and preserves supports, and its values give $F$ probability $1$. Conversely let $p\in\Delta$ with $p(F)=1$. Additivity makes $p$ monotone, so $p(A\setminus F)\le p(\Omega\setminus F)=0$ for every $A$, and $p(A)=p(A\cap F)=\sum_{\omega\in A\cap F}p_\omega$. If $\Omega$ is finite every $p\in\Delta$ has $p(\Omega)=1$, and the inverse $p\mapsto(p_\omega)_\omega$ is continuous.
 
-(c) For simple $h$, refining partitions shows that $E_ph$ does not depend on the partition; $E_p$ is linear and monotone on simple functions with $E_p\mathbf 1=1$, so $|E_ph-E_ph'|\le\sup_\Omega|h-h'|$. For bounded $h$ the simple functions $\lfloor jh\rfloor/j$ converge uniformly to $h$, so the limit exists and does not depend on the sequence; bounds and linearity pass to the limit. For simple $h$, $p\mapsto E_ph$ is a finite combination of the continuous maps $p\mapsto p(A_i)$; for bounded $h$ it is a uniform limit of continuous functions, hence continuous. If $p(F)=1$, (b) gives the formula for simple $h$, and limits give it for bounded $h$.
-\end{proof}
 
-\begin{lemma}[Knaster--Kuratowski--Mazurkiewicz {\cite{KKM1929}}]\label{lem:kkm}
+\subsection{KKM lemma}\label{sec:kkm}
+
+The theorem that drives the general dominance argument is a seminal result of Knaster--Kuratowski--Mazurkiewicz {\cite{KKM1929}}.
+
+\begin{lemma}\label{lem:kkm}
 Let $F$ be finite and nonempty, and let $(A_\omega)_{\omega\in F}$ be closed subsets of $\Delta_F$ such that every $p\in\Delta_F$ lies in $A_\omega$ for some $\omega\in\supp p$. Then $\bigcap_{\omega\in F}A_\omega\ne\varnothing$.
 \end{lemma}
+
+
+\begin{comment}
 \begin{proof}
 The hypothesis at $\delta_\omega$ gives $\delta_\omega\in A_\omega$, so each $A_\omega$ is nonempty and compact. Define
 \[
@@ -136,6 +195,58 @@ d_\omega(p)\coloneqq\min_{q\in A_\omega}\|p-q\|,\qquad s(p)\coloneqq\sum_{\omega
 \]
 $\Psi:\Delta_F\to\Delta_F$ is continuous. At a Brouwer fixed point $p$, $p_\omega s(p)=d_\omega(p)$ for every $\omega$. Choose $\omega$ with $p_\omega>0$ and $p\in A_\omega$. Then $d_\omega(p)=0$, so $s(p)=0$, so every $d_\omega(p)=0$ and $p\in\bigcap_{\omega\in F}A_\omega$.
 \end{proof}
+\end{comment}
+
+
+
+
+
+Consider, for example, 
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{scope}[yshift=1.2cm]
+ \fill[aone] (0,0.08) rectangle (2.4,0.32);
+ \fill[atwo] (1.6,-0.32) rectangle (4,-0.08);
+ \draw[very thick] (0,0) -- (4,0);
+ \fill[wone] (0,0) circle (2.2pt); \fill[wtwo] (4,0) circle (2.2pt);
+ \node[below left] at (0,0) {$\delta_1$};
+ \node[below right] at (4,0) {$\delta_2$};
+ \node[above] at (1.0,0.32) {$A_1$};
+ \node[below] at (3.0,-0.32) {$A_2$};
+ \draw[dashed] (1.6,0.6) -- (1.6,-0.6);
+ \draw[dashed] (2.4,0.6) -- (2.4,-0.6);
+ \node[above] at (2,0.6) {\small $A_1\cap A_2$};
+ \node at (2,-1.9) {(a)};
+\end{scope}
+\begin{scope}[xshift=6cm]
+ \coordinate (d1) at (0,0); \coordinate (d2) at (4,0); \coordinate (d3) at (2,3.46);
+ \coordinate (e12) at (1.7,0); \coordinate (e23) at (3.1,1.557); \coordinate (e13) at (1,1.73);
+ \coordinate (c) at (2.1,1.2);
+ \fill[aone] (d1)--(e12)--(c)--(e13)--cycle;
+ \fill[atwo] (d2)--(e23)--(c)--(e12)--cycle;
+ \fill[athree] (d3)--(e13)--(c)--(e23)--cycle;
+ \draw[very thick] (d1)--(d2)--(d3)--cycle;
+ \draw (e12)--(c) (e23)--(c) (e13)--(c);
+ \fill[wone] (d1) circle (2.2pt); \fill[wtwo] (d2) circle (2.2pt); \fill[wthree] (d3) circle (2.2pt);
+ \node[below left] at (d1) {$\delta_1$};
+ \node[below right] at (d2) {$\delta_2$};
+ \node[above] at (d3) {$\delta_3$};
+ \node at (1.15,0.65) {$A_1$};
+ \node at (2.95,0.45) {$A_2$};
+ \node at (2.05,2.15) {$A_3$};
+ \fill (c) circle (1.8pt) node[below right=1pt] {$p^*$};
+ \node at (2,-0.7) {(b)};
+\end{scope}
+\end{tikzpicture}
+\caption{The hypothesis of Lemma 2.1: $\delta_\omega\in A_\omega$; each face is covered by the sets indexed by its vertices. (a) $|F|=2$. (b) $|F|=3$.}
+\label{fig:kkm}
+\end{figure}
+
+
+
+
 
 
 \section{The selection theorem}\label{sec:selection}
