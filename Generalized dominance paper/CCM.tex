@@ -37,25 +37,19 @@
 We first state the Fan--KKM lemma in our setting.
 
 \begin{theorem}[Fan--KKM]
-	Let $X$ be a Hausdorff topological vector space, let
-	$Y \subseteq X$ be compact and convex, and let
+	Let $Y$ be a compact and convex subset of a Hausdorff topological vector space, and let
 	$\varnothing \neq V \subseteq Y$.
-	Suppose $\Phi \colon V \rightrightarrows Y$ satisfies:
+	Suppose $\psi \colon V \rightrightarrows Y$ satisfies:
 	\begin{itemize}
 		\item \textbf{Closed values.}
-		For every $v \in V$, the set $\Phi(v)$ is closed in $Y$.
+		For every $v \in V$, the set $\psi(v)$ is closed in $Y$.
 		
 		\item \textbf{KKM covering.}
-		For every finite convex combination
-		$x = \sum_{i=1}^n \lambda_i v_i$ of points in $V$,
-		there is some $i$ with $\lambda_i>0$ such that
-		\[
-		x \in \Phi(v_i).
-		\]
+		For every finitely suppored probability, $p$, on $V$, there is some $w\in\supp(p)$ with $p\in \psi(w)$. 
 	\end{itemize}
 	Then
 	\[
-	\bigcap_{v \in V} \Phi(v) \neq \varnothing.
+	\bigcap_{v \in V} \psi(v) \neq \varnothing.
 	\]
 \end{theorem}
 
@@ -99,7 +93,7 @@ Now the application:
 	Fix $m \in M$. Apply the Fan--KKM lemma to the vertices
 	$D = \{\delta_w : w \in W\} \subseteq P$, defining
 	\[
-	\Phi(\delta_w)
+	\psi(\delta_w)
 	= \{p \in P : c(p) \succeq_w m\}.
 	\]
 	These sets are closed by assumption.
@@ -111,12 +105,12 @@ Now the application:
 	\qquad \sum_{i=1}^n \lambda_i = 1,
 	\]
 	is a finitely supported probability. By coherent admissiblity, $c(p) \succeq_{w_i} m$ for some $i$, so
-	$p \in \Phi(\delta_{w_i})$. Thus $\Phi$ satisfies
+	$p \in \psi(\delta_{w_i})$. Thus $\psi$ satisfies
 	the KKM covering condition.
 	
 	The Fan--KKM lemma gives
 	\[
-	\bigcap_{w \in W} \Phi(\delta_w) \neq \varnothing,
+	\bigcap_{w \in W} \psi(\delta_w) \neq \varnothing,
 	\]
 	which is the desired conclusion.
 \end{proof}
