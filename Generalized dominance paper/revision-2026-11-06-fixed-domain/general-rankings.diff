@@ -1,0 +1,219 @@
+--- ../papers-2026-11-06/general-rankings.tex	2026-11-06 07:53:04.220863000 +0000
++++ general-rankings.tex	2026-11-06 08:08:34.843526492 +0000
+@@ -3,6 +3,8 @@
+ \usepackage[T1]{fontenc}
+ \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem,comment}
+ \usepackage{tikz}
++\usepackage{xcolor}
++\newcommand{\chg}[1]{{\color{red}#1}}
+ \usepackage{comment}
+ \usetikzlibrary{arrows.meta,calc}
+ \usepackage[most]{tcolorbox}
+@@ -76,7 +78,7 @@
+ 
+ 
+ 
+-A \emph{ranking} $L$ consists of a nonempty set $\M_L\subseteq\M$, whose members are the models \emph{evaluable} by $L$, and a family of binary relations $\preceq_\omega$ on $\M_L$, one for each $\omega\in\Omega$. These relations measure how well a model performs at a given task in a world. We say that $m\preceq_\omega m'$ just in case $m$ performs at least as well as $m'$ at $\omega$. For example, if $\M$ is a set of decision models which make recommendations about how to choose, then $m\preceq_\omega m'$ might reflect the fact that $m$ does a better job guiding choice than $m'$ at $\omega$. We will not assume anything about what sort of task is at issue, or what dimension(s) of evaluation these relations reflect. For general $\M$ (ice cream cones, holiday packages, etc.), the relations $\preceq_\omega$ just capture some way in which the options are better or worse at a world $\omega$.
++\chg{A \emph{ranking} $L=(\preceq_\omega)_{\omega\in\Omega}$ is a family of binary relations on $\M$, one for each $\omega\in\Omega$.} These relations measure how well a model performs at a given task in a world. We say that $m\preceq_\omega m'$ just in case $m$ performs at least as well as $m'$ at $\omega$. For example, if $\M$ is a set of decision models which make recommendations about how to choose, then $m\preceq_\omega m'$ might reflect the fact that $m$ does a better job guiding choice than $m'$ at $\omega$. We will not assume anything about what sort of task is at issue, or what dimension(s) of evaluation these relations reflect. For general $\M$ (ice cream cones, holiday packages, etc.), the relations $\preceq_\omega$ just capture some way in which the options are better or worse at a world $\omega$.
+ 
+ As usual, the asymmetric part of a relation $\preceq_\omega$ is given by
+ \[
+@@ -84,34 +86,31 @@
+ \]
+ Models $m$ and $m'$ are \emph{equivalent} if $m\preceq_\omega m'$ and $m'\preceq_\omega m$ for every $\omega$. At the outset, we do not assume anything about these relations (completeness, transitivity, reflexivity, etc.).
+ 
+-For any ranking $L$ and any models $c,m\in\M_L$, we say that $c$ \emph{dominates} $m$ if
++For any ranking $L$ and any models $c,m\in\chg{\M}$, we say that $c$ \emph{dominates} $m$ if
+ \[
+ (\forall\omega\in\Omega)\ c\preceq_\omega m\qquad\text{and}\qquad(\exists\omega\in\Omega)\ m\not\preceq_\omega c .
+ \]
+-We say that $m$ is \emph{undominated under $L$} if no $c\in\M_L$ dominates it. $\U_L$ is the set of models in $\M_L$ undominated under $L$.
++We say that $m$ is \emph{undominated under $L$} if no $c\in\chg{\M}$ dominates it. $\U_L$ is the set of models in $\chg{\M}$ undominated under $L$.
+ 
+-Let $\Lf$ be a putatively complete class of reasonable rankings. It contains all and only the ``reasonable'' rankings of models in $\M$. A model $m\in\M$ is
++Let $\Lf$ be a \chg{nonempty family of rankings on $\M$: a} putatively complete class of reasonable rankings. It contains all and only the ``reasonable'' rankings of models in $\M$. A model $m\in\M$ is
+ \begin{align*}
+ &\text{\emph{rationally permissible} (relative to $\Lf$)}&&\text{if }(\exists L\in\Lf)\ m\in\U_L;\\
+-&\text{\emph{irrational} (relative to $\Lf$)}&&\text{if }(\forall L\in\Lf)\ \bigl[m\in\M_L\Rightarrow m\notin\U_L\bigr].
++&\text{\emph{irrational} (relative to $\Lf$)}&&\text{if }(\forall L\in\Lf)\ \chg{m\notin\U_L}.
+ \end{align*}
+ That is, a model is rationally permissible if there is \textit{some} reasonable way of measuring performance which makes it come out undominated. It is irrational if \textit{every} reasonable way of measuring performance makes it come out dominated.
+ 
+ 
+-In what follows, we will make a few assumptions about the class $\Lf$ of reasonable rankings. Firstly, we assume that the reasonable rankings collectively evaluate every model.
+-\begin{enumerate}[label=\textbf{(E)},leftmargin=*]
+-\item \textbf{Evaluability.} $\M=\bigcup_{L\in\mathfrak L}\M_L$.
+-\end{enumerate}
++In what follows, we will make a few assumptions about the class $\Lf$ of reasonable rankings.
+ 
+-Next, we assume that there is some class $\C\subseteq\M$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. We do not assume anything substantive about coherence. It is just a special status that a model can have. Any model that is not coherent is \emph{incoherent}. 
++\chg{Firstly}, we assume that there is some class $\C\subseteq\M$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. We do not assume anything substantive about coherence. It is just a special status that a model can have. Any model that is not coherent is \emph{incoherent}. 
+ 
+ 
+-Thirdly, for each reasonable ranking $L\in\mathfrak L$, we assume that there is a nonempty, maximal class of evaluable ``coherent'' models, $\C_L\subseteq\C\cap\M_L$, which $L$ deems ``not obviously suboptimal'' in the sense of being \textit{undominated}.
++\chg{Secondly}, for each reasonable ranking $L\in\mathfrak L$, we assume that there is a nonempty, maximal class of ``coherent'' models, $\C_L\subseteq\chg{\C}$, which $L$ deems ``not obviously suboptimal'' in the sense of being \textit{undominated}.
+ \begin{enumerate}[label=\textbf{(LA)},leftmargin=*]
+ \item \textbf{Ranking-specific admissibility.} $\C_L\coloneqq \C\cap\U_L\neq\varnothing$.
+ \end{enumerate}
+ 
+-Fourthly, the rankings $L\in\mathfrak L$ collectively render \textit{all} coherent models undominated.
++\chg{Thirdly}, the rankings $L\in\mathfrak L$ collectively render \textit{all} coherent models undominated.
+ \begin{enumerate}[label=\textbf{(CA)},leftmargin=*]
+ \item \textbf{Coherent admissibility.} $\C=\bigcup_{L\in\mathfrak L}\C_L$.
+ \end{enumerate}
+@@ -201,7 +200,6 @@
+ 
+ 
+ 
+-Consider, for example, 
+ 
+ \begin{figure}[ht]
+ \centering
+@@ -252,7 +250,7 @@
+ \section{The selection theorem}\label{sec:selection}
+ 
+ \begin{definition}[Selection data]\label{def:selection-data}
+-Let $L$ be a ranking and $x\in\M_L$. \emph{Selection data for $x$} consist of a map $c:\Delta\to\M_L$, whose values $c(p)$ are the \emph{candidates}, and closed sets $A_\omega\subseteq\Delta$, $\omega\in\Omega$, such that:
++Let $L$ be a ranking and $x\in\chg{\M}$. \emph{Selection data for $x$} consist of a map $c:\Delta\to\chg{\M}$, whose values $c(p)$ are the \emph{candidates}, and closed sets $A_\omega\subseteq\Delta$, $\omega\in\Omega$, such that:
+ \begin{enumerate}[label=(S\arabic*),leftmargin=3em]
+ \item\label{S1} for every $\omega\in\Omega$ and every $p\in A_\omega$: $c(p)\preceq_\omega x$;
+ \item\label{S2} for every finitely supported $p\in\Delta$ there is $\omega\in\Omega$ with $p_\omega>0$ and $p\in A_\omega$;
+@@ -261,7 +259,7 @@
+ \end{definition}
+ 
+ \begin{theorem}[Selection theorem]\label{thm:selection}
+-Let $\Omega$ be any nonempty set, $L$ any ranking and $x\in\M_L$. If selection data for $x$ exist, then $\bigcap_\omega A_\omega\ne\varnothing$, and $c(p)$ dominates $x$ for every $p\in\bigcap_\omega A_\omega$.
++Let $\Omega$ be any nonempty set, $L$ any ranking and $x\in\chg{\M}$. If selection data for $x$ exist, then $\bigcap_\omega A_\omega\ne\varnothing$, and $c(p)$ dominates $x$ for every $p\in\bigcap_\omega A_\omega$.
+ \end{theorem}
+ \begin{proof}
+ Let $G\subseteq\Omega$ be finite and nonempty, and $\iota_G$ as in Lemma~\ref{lem:prob}(b). The sets $\iota_G^{-1}(A_\omega)$, $\omega\in G$, are closed in $\Delta_G$. Let $\lambda\in\Delta_G$. Then $\iota_G(\lambda)$ is finitely supported, so by \ref{S2} some $\omega$ has $\iota_G(\lambda)_\omega>0$ and $\iota_G(\lambda)\in A_\omega$. Since $\iota_G$ preserves supports, $\omega\in\supp\lambda\subseteq G$ and $\lambda\in\iota_G^{-1}(A_\omega)$. By Lemma~\ref{lem:kkm}, $\bigcap_{\omega\in G}\iota_G^{-1}(A_\omega)$ contains a point $\lambda^*$, and $\iota_G(\lambda^*)\in\bigcap_{\omega\in G}A_\omega$. So the closed sets $A_\omega$ have the finite intersection property. If $\bigcap_\omega A_\omega$ were empty, the open sets $\Delta\setminus A_\omega$ would cover the compact space $\Delta$ (Lemma~\ref{lem:prob}(a)); finitely many would cover it, and the corresponding finite intersection would be empty. Hence there is $p\in\bigcap_\omega A_\omega$. By \ref{S1}, $c(p)\preceq_\omega x$ for every $\omega$, and by \ref{S3} there is $\omega$ with $x\not\preceq_\omega c(p)$.
+@@ -288,72 +286,69 @@
+ \end{proof}
+ 
+ \begin{definition}[Fixed and countable selection]
+-For $I\subseteq\M_L$, \emph{fixed selection} means that there exists a map $c:\Delta\to\M_L$ such that every $x\in I$ has selection data with candidate map $c$. \emph{Countable selection} means that there exists a sequence $(c^j)_{j\in\mathbb N}$ of such maps such that every $x\in I$ has selection data with candidate map $c^j$ for some $j$.
++For $I\subseteq\chg{\M}$, \emph{fixed selection} means that there exists a map $c:\Delta\to\chg{\M}$ such that every $x\in I$ has selection data with candidate map $c$. \emph{Countable selection} means that there exists a sequence $(c^j)_{j\in\mathbb N}$ of such maps such that every $x\in I$ has selection data with candidate map $c^j$ for some $j$.
+ \end{definition}
+ 
+ \begin{theorem}[Complete-class theorem]\label{thm:complete-class}
+-Let $\Lf$ be a family of rankings and consider:
++Let $\Lf$ be a \chg{nonempty} family of rankings and consider:
+ \begin{enumerate}
+-\item[(X)] \emph{Exclusion}: for every $L\in\Lf$ and every incoherent $x\in\M_L$, selection data for $x$ exist;
+-\item[(A)] \emph{Coherent coverage}: for every $c\in\C$ there is $L\in\Lf$ with $c\in\M_L$ and $c\in\U_L$;
+-\item[(E)] \emph{Evaluability}: $\M=\bigcup_{L\in\Lf}\M_L$.
++\item[(X)] \emph{Exclusion}: for every $L\in\Lf$ and every incoherent $x\in\chg{\M}$, selection data for $x$ exist;
++\item[(A)] \emph{Coherent coverage}: for every $c\in\C$ there is $L\in\Lf$ with $c\in\U_L$\chg{.}
+ \end{enumerate}
+ \begin{enumerate}[label=(\alph*)]
+-\item Under (X), every incoherent model is dominated under every ranking in $\Lf$ that evaluates it; so every incoherent model is irrational, and $\U_L=\C_L$ for every $L\in\Lf$.
++\item Under (X), every incoherent model is dominated under every ranking in $\Lf$; so every incoherent model is irrational, and $\U_L=\C_L$ for every $L\in\Lf$.
+ \item Under (X) and (A), the rationally permissible models are exactly the coherent models, and the irrational models are exactly the incoherent models.
+-\item Under (X) and (E), every incoherent model is dominated under at least one ranking in $\Lf$.
+ \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+-(a) Let $L\in\Lf$ and $x\in\M_L$ incoherent. By (X) and Theorem~\ref{thm:selection}, $x$ is dominated under $L$, so $x\notin\U_L$; as $L$ was arbitrary, $x$ is irrational. Hence $\U_L\subseteq\C\cap\U_L=\C_L\subseteq\U_L$.
++(a) Let $L\in\Lf$ and $x\in\chg{\M}$ incoherent. By (X) and Theorem~\ref{thm:selection}, $x$ is dominated under $L$, so $x\notin\U_L$; as $L$ was arbitrary, $x$ is irrational. Hence $\U_L\subseteq\C\cap\U_L=\C_L\subseteq\U_L$.
+ (b) By (a) no incoherent model is permissible; by (A) every coherent model is. Permissible and irrational are complementary.
+-(c) By (E) an incoherent $x$ lies in some $\M_L$, and by (a) it is dominated under $L$.
+ \end{proof}
+ 
+ \section{Applications to accuracy}\label{sec:applications}
+ 
+-In this section a ranking is given by a \emph{loss} $\ell:\M_L\times\Omega\to[0,\infty]$, with $m\preceq_\omega m'$ iff $\ell(m,\omega)\le\ell(m',\omega)$. A function $f$ from a topological space to $[0,\infty]$ is \emph{lower semicontinuous} if $\{z:f(z)\le a\}$ is closed for every real $a$. For finite $\Omega$ write $E_p\ell(m,\cdot)\coloneqq\sum_\omega p_\omega\ell(m,\omega)$ with $0\cdot\infty=0$.
++In this section a ranking is given by a \emph{loss} $\ell:\chg{\M}\times\Omega\to[0,\infty]$, with $m\preceq_\omega m'$ iff $\ell(m,\omega)\le\ell(m',\omega)$. A function $f$ from a topological space to $[0,\infty]$ is \emph{lower semicontinuous} if $\{z:f(z)\le a\}$ is closed for every real $a$. For finite $\Omega$ write $E_p\ell(m,\cdot)\coloneqq\sum_\omega p_\omega\ell(m,\omega)$ with $0\cdot\infty=0$.
+ 
+ \begin{lemma}[Selection data for losses]\label{lem:loss-one-stage}
+-Let $L$ be given by a loss $\ell$, and let $p\mapsto c_p$ be a map $\Delta\to\M_L$ such that:
++Let $L$ be given by a loss $\ell$, and let $p\mapsto c_p$ be a map $\Delta\to\chg{\M}$ such that:
+ \begin{enumerate}[label=(\roman*)]
+ \item for every $\omega$, $p\mapsto\ell(c_p,\omega)$ is lower semicontinuous on $\Delta$;
+-\item for every $m\in\M_L$ and every finitely supported $p$, some $\omega$ with $p_\omega>0$ has $\ell(c_p,\omega)\le\ell(m,\omega)$.
++\item for every $m\in\chg{\M}$ and every finitely supported $p$, some $\omega$ with $p_\omega>0$ has $\ell(c_p,\omega)\le\ell(m,\omega)$.
+ \end{enumerate}
+-Let $x\in\M_L$, $c(p)\coloneqq c_p$ and $A_\omega\coloneqq\{p\in\Delta:\ell(c_p,\omega)\le\ell(x,\omega)\}$. Then \ref{S1} and \ref{S2} hold. If no $c_p$ is tied at every world with $x$, then \ref{S3} holds, and some $c_p$ dominates $x$.
++Let $x\in\chg{\M}$, $c(p)\coloneqq c_p$ and $A_\omega\coloneqq\{p\in\Delta:\ell(c_p,\omega)\le\ell(x,\omega)\}$. Then \ref{S1} and \ref{S2} hold. If no $c_p$ is tied at every world with $x$, then \ref{S3} holds, and some $c_p$ dominates $x$.
+ \end{lemma}
+ \begin{proof}
+ $A_\omega$ is closed by (i), and equals $\Delta$ if $\ell(x,\omega)=\infty$. \ref{S1} is the definition of $A_\omega$, and \ref{S2} is (ii) with $m=x$. \ref{S3} follows from Lemma~\ref{lem:S3}(a). Apply Theorem~\ref{thm:selection}.
+ \end{proof}
+ 
+-In each application below, the complete-class conclusion is Theorem~\ref{thm:complete-class} for the one-ranking family $\Lf=\{L\}$ with $\M_L=\M$: (X) follows from Lemma~\ref{lem:loss-one-stage} and (A) from the stated protection argument.
++In each application below, the complete-class conclusion is Theorem~\ref{thm:complete-class} for the one-ranking family $\Lf=\{L\}$: (X) follows from Lemma~\ref{lem:loss-one-stage} and (A) from the stated protection argument.
+ 
+ The protection argument covers every candidate. In Propositions~\ref{prop:proper}, \ref{prop:probabilism}, \ref{prop:updating} and~\ref{prop:chance}, each candidate $c_p$ is coherent and is proved to be undominated. In Proposition~\ref{prop:updating} this is proved directly for every coherent strategy; it is not derived from Bayes optimality under the probability $q$ used for coverage. So $c_p\in\C\cap\U_L$ for every $p\in\Delta$. By Corollary~\ref{cor:undominated-dominators}, in each application every incoherent model is dominated by a coherent model that is itself undominated, namely $c_p$ for any $p\in\bigcap_\omega A_\omega$.
+ 
+ \subsection{Proper losses on finitely many worlds}
+ 
+ \begin{proposition}[{\cite{Predd2009,Pettigrew2022}}]\label{prop:proper}
+-Let $\Omega$ be finite, let $\ell$ be a loss on $\M_L$, and let $p\mapsto c_p$ map $\Delta$ onto $\C\subseteq\M_L$. Suppose each $c_p$ is the unique Bayes model for $p$, that is, $E_p\ell(c_p,\cdot)<E_p\ell(m,\cdot)$ for every $m\ne c_p$, and $p\mapsto\ell(c_p,\omega)$ is lower semicontinuous for every $\omega$. Then every incoherent model is dominated by some $c_p$, every coherent model is undominated, and $\{L\}$ satisfies (X), (A) and (E).
++Let $\Omega$ be finite, let $\ell$ be a loss on $\chg{\M}$, and let $p\mapsto c_p$ map $\Delta$ onto $\C\subseteq\chg{\M}$. Suppose each $c_p$ is the unique Bayes model for $p$, that is, $E_p\ell(c_p,\cdot)<E_p\ell(m,\cdot)$ for every $m\ne c_p$, and $p\mapsto\ell(c_p,\omega)$ is lower semicontinuous for every $\omega$. Then every incoherent model is dominated by some $c_p$, every coherent model is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
+ \end{proposition}
+ \begin{proof}
+-If $\M_L$ is a singleton $\{c\}$, then $c$ is coherent and there is nothing to prove. Otherwise $E_p\ell(c_p,\cdot)<\infty$ for every $p$, since $E_p\ell(c_p,\cdot)<E_p\ell(m,\cdot)$ for some $m$.
++If $\chg{\M}$ is a singleton $\{c\}$, then $c$ is coherent and there is nothing to prove. Otherwise $E_p\ell(c_p,\cdot)<\infty$ for every $p$, since $E_p\ell(c_p,\cdot)<E_p\ell(m,\cdot)$ for some $m$.
+ 
+ \emph{Weak dominators of $c_p$.} If $m\preceq_\omega c_p$ for every $\omega$, then $E_p\ell(m,\cdot)\le E_p\ell(c_p,\cdot)$, so $m=c_p$ by uniqueness. Hence no model dominates $c_p$, which gives (A) since the map is onto $\C$. Hence also no $c_p$ is tied at every world with an incoherent model, since such a model would weakly dominate $c_p$.
+ 
+-\emph{Coverage.} Let $m\in\M_L$ and $p\in\Delta$ (every $p$ is finitely supported, by Lemma~\ref{lem:prob}(b)). If $\ell(c_p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then, as $E_p\ell(c_p,\cdot)$ is finite, $E_p\ell(m,\cdot)<E_p\ell(c_p,\cdot)$, contradicting Bayes optimality. This is Lemma~\ref{lem:loss-one-stage}(ii), and (i) is assumed. For incoherent $x$, Lemma~\ref{lem:loss-one-stage} gives selection data; this is (X). (E) holds with $\M=\M_L$.
++\emph{Coverage.} Let $m\in\chg{\M}$ and $p\in\Delta$ (every $p$ is finitely supported, by Lemma~\ref{lem:prob}(b)). If $\ell(c_p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then, as $E_p\ell(c_p,\cdot)$ is finite, $E_p\ell(m,\cdot)<E_p\ell(c_p,\cdot)$, contradicting Bayes optimality. This is Lemma~\ref{lem:loss-one-stage}(ii), and (i) is assumed. For incoherent $x$, Lemma~\ref{lem:loss-one-stage} gives selection data; this is (X).
+ \end{proof}
+ 
+ \subsection{Probabilism on arbitrary domains}
+ 
+-Let $\Omega$ be arbitrary, $\M_L=[0,1]^{2^\Omega}$ with the product topology, and $\C\coloneqq\Delta$, with the topology inherited from $\M_L$. For $q\in\Delta$ and $f:\Omega\to[0,\infty]$ put $E_qf\coloneqq\sup_{k\in\mathbb N}E_q(f\wedge k)$. Applying Lemma~\ref{lem:prob}(c) to $f\wedge k$ and taking increasing limits gives, with $0\cdot\infty=0$,
++Let $\Omega$ be arbitrary, $\chg{\M}=[0,1]^{2^\Omega}$ with the product topology, and $\C\coloneqq\Delta$, with the topology inherited from $\chg{\M}$. For $q\in\Delta$ and $f:\Omega\to[0,\infty]$ put $E_qf\coloneqq\sup_{k\in\mathbb N}E_q(f\wedge k)$. Applying Lemma~\ref{lem:prob}(c) to $f\wedge k$ and taking increasing limits gives, with $0\cdot\infty=0$,
+ \begin{gather*}
+ E_{ap+(1-a)q}f=aE_pf+(1-a)E_qf\quad(0<a<1),\\
+ p(F)=1,\ F\text{ finite}\ \Longrightarrow\ E_pf=\textstyle\sum_{\omega\in F}p_\omega f(\omega),
+ \end{gather*}
+-and $f\le f'$ implies $E_qf\le E_qf'$. The loss $\ell$ is \emph{quasi-strictly proper} if $E_q\ell(q,\cdot)\le E_q\ell(m,\cdot)$ for all $q\in\C$ and $m\in\M_L$, strictly whenever $m\notin\C$.
++and $f\le f'$ implies $E_qf\le E_qf'$. The loss $\ell$ is \emph{quasi-strictly proper} if $E_q\ell(q,\cdot)\le E_q\ell(m,\cdot)$ for all $q\in\C$ and $m\in\chg{\M}$, strictly whenever $m\notin\C$.
+ 
+ \begin{proposition}[{\cite{Nielsen2023}}]\label{prop:probabilism}
+-If $\ell$ is quasi-strictly proper and each $q\mapsto\ell(q,\omega)$ is lower semicontinuous on $\Delta$, then every incoherent model is dominated by a member of $\Delta$, every member of $\Delta$ is undominated, and $\{L\}$ satisfies (X), (A) and (E).
++If $\ell$ is quasi-strictly proper and each $q\mapsto\ell(q,\omega)$ is lower semicontinuous on $\Delta$, then every incoherent model is dominated by a member of $\Delta$, every member of $\Delta$ is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
+ \end{proposition}
+ \begin{proof}
+ \emph{Finiteness.} For $q\in\C$, $E_q\ell(q,\cdot)<E_q\ell(m_0,\cdot)\le\infty$ for the incoherent $m_0\equiv0$, so $E_q\ell(q,\cdot)<\infty$.
+@@ -366,7 +361,7 @@
+ 
+ \emph{Ties.} If an incoherent $m$ were tied at every world with $q\in\C$, then $E_q\ell(m,\cdot)=E_q\ell(q,\cdot)$, contradicting strict propriety against incoherent models.
+ 
+-\emph{Coverage.} Put $c_p\coloneqq p$ for $p\in\Delta$; Lemma~\ref{lem:loss-one-stage}(i) is the hypothesis. Let $p(F)=1$ for a finite $F$ and $m\in\M_L$. Then $E_p\ell(p,\cdot)=\sum_{\omega\in F}p_\omega\ell(p,\omega)<\infty$, so $\ell(p,\omega)<\infty$ for $\omega\in\supp p$. If $\ell(p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then $E_p\ell(m,\cdot)=\sum_{\omega\in\supp p}p_\omega\ell(m,\omega)<E_p\ell(p,\cdot)$, contradicting propriety. This is Lemma~\ref{lem:loss-one-stage}(ii); Lemma~\ref{lem:loss-one-stage} and the tie argument give (X).
++\emph{Coverage.} Put $c_p\coloneqq p$ for $p\in\Delta$; Lemma~\ref{lem:loss-one-stage}(i) is the hypothesis. Let $p(F)=1$ for a finite $F$ and $m\in\chg{\M}$. Then $E_p\ell(p,\cdot)=\sum_{\omega\in F}p_\omega\ell(p,\omega)<\infty$, so $\ell(p,\omega)<\infty$ for $\omega\in\supp p$. If $\ell(p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then $E_p\ell(m,\cdot)=\sum_{\omega\in\supp p}p_\omega\ell(m,\omega)<E_p\ell(p,\cdot)$, contradicting propriety. This is Lemma~\ref{lem:loss-one-stage}(ii); Lemma~\ref{lem:loss-one-stage} and the tie argument give (X).
+ \end{proof}
+ 
+ \subsection{Conditional updating}
+@@ -377,7 +372,7 @@
+ \]
+ 
+ \begin{proposition}[{\cite{Briggs2020,Nielsen2021}}]\label{prop:updating}
+-Every incoherent strategy is dominated by a coherent one, every coherent strategy is undominated, and $\{L\}$ satisfies (X), (A) and (E).
++Every incoherent strategy is dominated by a coherent one, every coherent strategy is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
+ \end{proposition}
+ \begin{proof}
+ \emph{Weak dominators of a coherent strategy.} Let $(c,a)$ be coherent and $(c',a')$ weakly dominate it. For each $j$, $\sum_{\omega\in E_j}c_\omega J(a'_j,\omega)=c(E_j)E_{a_j}J(a'_j,\cdot)\ge c(E_j)E_{a_j}J(a_j,\cdot)$, using $c(\{\omega\})=c(E_j)a_j(\{\omega\})$ for $\omega\in E_j$. With $E_cJ(c',\cdot)\ge E_cJ(c,\cdot)$, this gives $E_c\ell((c',a'),\cdot)\ge E_c\ell((c,a),\cdot)$, while weak dominance gives $\le$. As all quantities are finite, $E_cJ(c',\cdot)=E_cJ(c,\cdot)$, so $c'=c$. Cancelling the common term $\alpha J(c,\omega)$, weak dominance gives $J(a'_j,\omega)\le J(a_j,\omega)$ for $\omega\in E_j$. Taking expectations under $a_j$, which is concentrated on $E_j$, gives $E_{a_j}J(a'_j,\cdot)\le E_{a_j}J(a_j,\cdot)$, so $a'_j=a_j$; this includes cells with $c(E_j)=0$. Hence coherent strategies are undominated, which is (A), and no incoherent strategy is tied at every world with a coherent one.
+@@ -395,10 +390,10 @@
+ 
+ \subsection{Chance dominance}
+ 
+-Let $W$ be finite, $\mathcal K\subseteq\Delta_W$ nonempty, and $\Theta\coloneqq\cl(\operatorname{conv}\mathcal K)$ (Euclidean closure). Let $\M_L=[0,1]^{\mathcal F}$ for a set of events $\mathcal F\subseteq2^W$, identify $\theta\in\Delta_W$ with $(\theta(A))_{A\in\mathcal F}$, and let $\C$ be the set of credences induced by members of $\Theta$. Let $I:\M_L\times W\to[0,\infty)$ be such that each $\theta\in\Delta_W$ uniquely minimises $c\mapsto E_\theta I(c)\coloneqq\sum_w\theta(w)I(c,w)$ over $\M_L$, and $\theta\mapsto I(\theta,w)$ is lower semicontinuous on $\Theta$. The worlds of the ranking are the members of $\mathcal K$, and $c\preceq_\kappa d$ iff $E_\kappa I(c)\le E_\kappa I(d)$, for $\kappa\in\mathcal K$ \cite[Chapter~10]{Pettigrew2016}.
++Let $W$ be finite, $\mathcal K\subseteq\Delta_W$ nonempty, and $\Theta\coloneqq\cl(\operatorname{conv}\mathcal K)$ (Euclidean closure). Let $\chg{\M}=[0,1]^{\mathcal F}$ for a set of events $\mathcal F\subseteq2^W$, identify $\theta\in\Delta_W$ with $(\theta(A))_{A\in\mathcal F}$, and let $\C$ be the set of credences induced by members of $\Theta$. Let $I:\chg{\M}\times W\to[0,\infty)$ be such that each $\theta\in\Delta_W$ uniquely minimises $c\mapsto E_\theta I(c)\coloneqq\sum_w\theta(w)I(c,w)$ over $\chg{\M}$, and $\theta\mapsto I(\theta,w)$ is lower semicontinuous on $\Theta$. The worlds of the ranking are the members of $\mathcal K$, and $c\preceq_\kappa d$ iff $E_\kappa I(c)\le E_\kappa I(d)$, for $\kappa\in\mathcal K$ \cite[Chapter~10]{Pettigrew2016}.
+ 
+ \begin{proposition}\label{prop:chance}
+-Every credence outside $\C$ is dominated by a member of $\C$, every member of $\C$ is undominated, and $\{L\}$ satisfies (X), (A) and (E).
++Every credence outside $\C$ is dominated by a member of $\C$, every member of $\C$ is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
+ \end{proposition}
+ \begin{proof}
+ \emph{Weak dominators of $\theta\in\Theta$.} If $m$ weakly dominates $\theta$, the function $\kappa\mapsto E_\kappa I(m)-E_\kappa I(\theta)$ is affine and continuous on $\Delta_W$ and nonpositive on $\mathcal K$, hence on $\Theta$. At $\kappa=\theta$, unique minimisation forces $m=\theta$. This gives (A), and excludes ties at every world between members of $\C$ and other credences.
+@@ -411,7 +406,7 @@
+ \subsection{Tie exclusion is needed}
+ 
+ \begin{example}\label{ex:ties}
+-Let $\Omega=\{1,2\}$, $\M_L=[0,1]^2$, $\C=\Delta$, and $\ell(x,1)=(1-x_1+x_2)^2$, $\ell(x,2)=(1+x_1-x_2)^2$. With $d\coloneqq x_1-x_2\in[-1,1]$, $\ell(x,1)$ is decreasing and $\ell(x,2)$ increasing in $d$. So models with different $d$ are incomparable, and $x$ is tied at every world with the probability $((1+d)/2,(1-d)/2)$. No model is dominated. Put $c_p\coloneqq p$: $E_p\ell(x,\cdot)=p_1(1-d)^2+p_2(1+d)^2$ is minimised at $d=p_1-p_2$, so (ii) of Lemma~\ref{lem:loss-one-stage} holds, and (i) holds by continuity. For incoherent $x$ the candidates and sets of Lemma~\ref{lem:loss-one-stage} satisfy \ref{S1} and \ref{S2}, but \ref{S3} fails, and the conclusion of Theorem~\ref{thm:selection} fails.
++Let $\Omega=\{1,2\}$, $\chg{\M}=[0,1]^2$, $\C=\Delta$, and $\ell(x,1)=(1-x_1+x_2)^2$, $\ell(x,2)=(1+x_1-x_2)^2$. With $d\coloneqq x_1-x_2\in[-1,1]$, $\ell(x,1)$ is decreasing and $\ell(x,2)$ increasing in $d$. So models with different $d$ are incomparable, and $x$ is tied at every world with the probability $((1+d)/2,(1-d)/2)$. No model is dominated. Put $c_p\coloneqq p$: $E_p\ell(x,\cdot)=p_1(1-d)^2+p_2(1+d)^2$ is minimised at $d=p_1-p_2$, so (ii) of Lemma~\ref{lem:loss-one-stage} holds, and (i) holds by continuity. For incoherent $x$ the candidates and sets of Lemma~\ref{lem:loss-one-stage} satisfy \ref{S1} and \ref{S2}, but \ref{S3} fails, and the conclusion of Theorem~\ref{thm:selection} fails.
+ \end{example}
+ 
+ \bibliographystyle{plain}

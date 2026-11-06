@@ -1,0 +1,30 @@
+--- ../papers-2026-11-06/desirable-gambles.tex	2026-11-06 07:52:27.651189000 +0000
++++ desirable-gambles.tex	2026-11-06 08:08:34.844479141 +0000
+@@ -2,7 +2,8 @@
+ \usepackage[a4paper,margin=27mm]{geometry}
+ \usepackage[T1]{fontenc}
+ \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+-\usepackage{xr-hyper,needspace}
++\usepackage{xr-hyper,needspace,xcolor}
++\newcommand{\chg}[1]{{\color{red}#1}}
+ \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+ \externaldocument[GR-]{general-rankings}
+ \hypersetup{pdftitle={Coherence and Dominance for Desirable Gambles}}
+@@ -174,7 +175,7 @@
+ 
+ \section{Axioms}\label{sec:axioms}
+ 
+-A ranking in this paper is a ranking in the sense of \cite[Definition~\ref{GR-def:ranking}]{KonekGR} with $\M_L=\M$: $Y\preceq_\omega X$ reads ``$Y$ is at least as good as $X$ at world $\omega$'', and $\prec_\omega$ is its asymmetric part. Put
++A ranking in this paper is \chg{a family of binary relations on $\M$, as in \cite[\S\ref{GR-sec:framework}]{KonekGR}}: $Y\preceq_\omega X$ reads ``$Y$ is at least as good as $X$ at world $\omega$'', and $\prec_\omega$ is its asymmetric part. Put
+ \begin{gather*}
+ \mathcal W\coloneqq\{(\sil,\cor),(\wro,\cor),(\wro,\sil),(\con,\cor),(\con,\sil),(\con,\wro)\},\\
+ \mathcal S\coloneqq\mathcal W\setminus\{(\con,\wro)\}.
+@@ -384,7 +385,7 @@
+ \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+-(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. (c) Apply Theorem~\ref{GR-thm:complete-class} of \cite{KonekGR} with $\C$ the almost coherent models: (X) holds by Theorem~\ref{thm:exclusion}, (A) by hypothesis (and by (a) when $\Lrep\in\Lf$), and (E) because every ranking evaluates every model and $\Lf$ is nonempty: $\C$ is nonempty (for any $p\in\Delta$, $\{g:E_pg>0\}\cup(E_+\setminus\{0\})$ is coherent), so the hypothesis supplies a member of $\Lf$.
++(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. (c) Apply Theorem~\ref{GR-thm:complete-class} of \cite{KonekGR} with $\C$ the almost coherent models: (X) holds by Theorem~\ref{thm:exclusion}, (A) by hypothesis (and by (a) when $\Lrep\in\Lf$), and \chg{$\Lf$ is nonempty, as that theorem requires}: $\C$ is nonempty (for any $p\in\Delta$, $\{g:E_pg>0\}\cup(E_+\setminus\{0\})$ is coherent), so the hypothesis supplies a member of $\Lf$.
+ \end{proof}
+ 
+ \bibliographystyle{plain}
