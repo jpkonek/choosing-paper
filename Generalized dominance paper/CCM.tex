@@ -45,7 +45,7 @@ We first state the Fan--KKM lemma in our setting.
 		For every $v \in V$, the set $\psi(v)$ is closed in $Y$.
 		
 		\item \textbf{KKM covering.}
-		For every finitely suppored probability, $p$, on $V$, there is some $w\in\supp(p)$ with $p\in \psi(w)$. 
+		For every finitely suppored probability, $p$, on $V$, there is some $w\in\supp(p)$ with $E_p[V]\in \psi(w)$. 
 	\end{itemize}
 	Then
 	\[
@@ -85,34 +85,42 @@ Now the application:
 	\]
 \end{corollary}
 
+
 \begin{proof}
-	Equip $X = ba(2^W)$ with the topology of pointwise
-	convergence on events. This is a Hausdorff topological
-	vector space, and $P$ is a compact convex subset.
+	Regard $P$ as a subset of the Hausdorff topological vector
+	space $\mathbb{R}^{\wp(W)}$, equipped with the product topology.
+	This induces precisely the topology of pointwise convergence
+	on events. Moreover, $P$ is convex and is a closed subset of
+	the compact space $[0,1]^{\wp(W)}$: normalisation and finite
+	additivity are closed conditions. Thus $P$ is compact.
 	
-	Fix $m \in M$. Apply the Fan--KKM lemma to the vertices
-	$D = \{\delta_w : w \in W\} \subseteq P$, defining
+	Fix $m \in M$. We apply the Fan--KKM lemma with $Y=P$ and
+	\[
+	V=\{\delta_w : w\in W\},
+	\]
+	where $\delta_w(A)=1$ if $w\in A$ and $0$ otherwise. Define
 	\[
 	\psi(\delta_w)
-	= \{p \in P : c(p) \succeq_w m\}.
+	=\{p\in P : c(p)\succeq_w m\}.
 	\]
-	These sets are closed by assumption.
+	Each $\psi(\delta_w)$ is closed by the closedness assumption.
 	
-	Every finite convex combination of vertices,
-	\[
-	p = \sum_{i=1}^n \lambda_i \delta_{w_i},
-	\qquad \lambda_i > 0,
-	\qquad \sum_{i=1}^n \lambda_i = 1,
-	\]
-	is a finitely supported probability. By coherent admissiblity, $c(p) \succeq_{w_i} m$ for some $i$, so
-	$p \in \psi(\delta_{w_i})$. Thus $\psi$ satisfies
-	the KKM covering condition.
+	To verify the KKM covering condition, let $p$ be a finitely
+	supported probability on $W$. 
+	By coherent admissibility, there is some $w\in\supp(p)$
+	such that $c(p)\succeq_w m$. Thus
+	$\delta_w\in\supp(\mu)$ and $p\in\psi(\delta_w)$,
+	which establishes the KKM covering condition.
 	
-	The Fan--KKM lemma gives
+	The Fan--KKM lemma therefore yields
 	\[
-	\bigcap_{w \in W} \psi(\delta_w) \neq \varnothing,
+	\varnothing\neq
+	\bigcap_{w\in W}\psi(\delta_w)
+	=
+	\{p\in P : c(p)\succeq_w m
+	\text{ for every }w\in W\}.
 	\]
-	which is the desired conclusion.
+	This proves the claim.
 \end{proof}
 
 \begin{remark}
