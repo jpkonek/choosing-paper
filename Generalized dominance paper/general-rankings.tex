@@ -100,18 +100,10 @@ For any ranking $L$ and any models $c,m\in\M$, we say that $c$ \emph{dominates} 
 \]
 We say that $m$ is \emph{undominated under $L$} if no $c\in\M$ dominates it. $\U_L$ is the set of models in $\M$ undominated under $L$.
 
-Let $\Lf$ be a putatively complete class of reasonable rankings. It contains all and only the reasonable rankings of models in $\M$. (To reiterate, we assume nothing substantive about what makes a ranking reasonable.) A model $m\in\M$ is
-\begin{align*}
-&\text{\emph{rationally permissible} (relative to $\Lf$)}&&\text{if }(\exists L\in\Lf)\ m\in\U_L;\\
-&\text{\emph{irrational} (relative to $\Lf$)}&&\text{if }(\forall L\in\Lf)\ m\notin\U_L.
-\end{align*}
-That is, a model is rationally permissible if there is \textit{some} reasonable way of measuring performance which makes it come out undominated. It is irrational if \textit{every} reasonable way of measuring performance makes it come out dominated.
+Let $\Lf$ be a putatively complete class of reasonable rankings. It contains all and only the reasonable rankings of models in $\M$. In what follows, we will make a few minimal assumptions about this class. Firstly, we assume that there is some nonempty set $\C\subseteq\M$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. We do not assume anything substantive about coherence. It is just a special status that a model can have. Any model that is not coherent is incoherent. 
 
 
-In what follows, we will make a few assumptions about the class $\Lf$ of reasonable rankings. Firstly, we assume that there is some class $\C\subseteq\M$ of ``coherent'' models that are ``not obviously suboptimal'' at the relevant task. We do not assume anything substantive about coherence. It is just a special status that a model can have. Any model that is not coherent is incoherent. 
-
-
-Secondly, for each reasonable ranking $L\in\mathfrak L$, we assume that there is a nonempty, maximal class of coherent models, $\C_L\subseteq\C$, which $L$ deems ``not obviously suboptimal'' in the sense of being \textit{undominated}.
+Secondly, we assume that each ranking recognises this special status by treating them as \textit{undominated}, at least for some privileged subset of coherent models. More carefully, for each reasonable ranking $L\in\mathfrak L$,  we assume that there is a nonempty, maximal class of coherent models, $\C_L\subseteq\C$, which is undominated under $L$.
 \begin{enumerate}[label=\textbf{(LA)},leftmargin=*]
 \item \textbf{Ranking-specific admissibility.} $\C_L\coloneqq \C\cap\U_L\neq\varnothing$.
 \end{enumerate}
@@ -127,45 +119,33 @@ Now choose a reasonable ranking $L\in\mathfrak L$. By definition $\C_L\subseteq\
 
 
 
+\section{Fan-KKM theorem}\label{sec:kkm}
 
-
-\section{Important lemmas}\label{sec:lemmas}
-
-\subsection{Finitely additive probability}\label{sec:prob}
-
-For any finite nonempty set of worlds $F\subseteq\Omega$, let $\Delta_F\coloneqq\{p\in[0,1]^F:\sum_{\omega\in F}p_\omega=1\}$ be the set of probability mass functions on $F$ equipped with the Euclidean topology. Let $\supp p\coloneqq\{\omega\in F:p_\omega>0\}$ be the \textit{support of p}, \textit{i.e.}, the set of worlds in $F$ that have positive probability relative to $p$. Let $\delta_\omega\in\Delta_F$ be the indicator function which gives probability $1$ to $\omega$ and $0$ to every other world.
-
-Let $\Delta$ be the set of \emph{finitely additive probabilities} on the power set of $\Omega$, $2^\Omega$. 
-
-\begin{definition}\label{def:finitely-additive-probability}
-A map $p:2^\Omega\to[0,1]$ is a \emph{finitely additive probability function} iff:
-\begin{enumerate}[label=\textup{(FA\arabic*)}]
-  \item $p(\Omega)=1$;
-  \item $p(E)\geq p(\varnothing)$;
-  \item if $E\cap F=\varnothing$, then $p(E\cup F)=p(E)+p(F)$.
-\end{enumerate}
-\end{definition}
-
-$\Delta$ comes equipped with the product topology. Just as with probability mass functions, let $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$.  $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Finitely additive probabilities need not be countably additive, need not be finitely supported, and indeed need not give positive probability to any world. For any finite $F\subseteq\Omega$ and probability mass function $p\in\Delta_F$, we can use $p$ to generate a unique finitely additive probability on $2^\Omega$ in the obvious way, \textit{viz.}, $p(A):=\sum_{\omega\in A\cap F}p_\omega$.
-
-
-The space $\Delta$ is a compact subset of the Hausdorff topological vector space $\mathbb R^{2^\Omega}$: it is the closed subset of the compact product $[0,1]^{2^\Omega}$ determined by normalisation and finite additivity. For $\omega\in\Omega$, write $\delta_\omega(A)=1$ if $\omega\in A$ and $0$ otherwise. The finitely supported probabilities are precisely the finite convex combinations of these point masses.
-
-
-\subsection{KKM lemma}\label{sec:kkm}
-
-The theorem that drives the general dominance argument is a seminal result of Knaster--Kuratowski--Mazurkiewicz {\cite{KKM1929}}.
-
-\begin{lemma}\label{lem:kkm}
-Let $F$ be finite and nonempty, and let $(A_\omega)_{\omega\in F}$ be closed subsets of $\Delta_F$ such that every $p\in\Delta_F$ lies in $A_\omega$ for some $\omega\in\supp p$. Then $\bigcap_{\omega\in F}A_\omega\ne\varnothing$.
-\end{lemma}
+The general dominance argument is trivial application of a seminal result by Fan and Knaster--Kuratowski--Mazurkiewicz \cite[Theorem~17.46]{AliprantisBorder2006}.
 
 
 
 
 
 
-Consider, for example, the set of probability mass functions $\Delta_\Omega$ on the three world sample space $\Omega=\{\omega_1,\omega_2,\omega_3\}$. We can picture $\Delta_\Omega$ as a triangle plot. The sets $A_{\omega_1}$, $A_{\omega_2}$ and $A_{\omega_3}$ are each closed sets of probability mass functions (each one contains all of its boundary points). And each probability mass function $p$ lies in a set $A_{\omega_i}$ which is such that $p$ assigns positive mass to $\omega_i$. For example, $\delta_1$ lies in $A_{\omega_1}$ and also assigns probability 1 to $\omega_1$. Lemma~\ref{lem:kkm} then guarantees there is some probability mass function $p^*$ that lies in the intersection of these three sets.
+
+%Fan's extension applies to arbitrary sets of worlds \cite[Theorem~17.46]{AliprantisBorder2006}.
+
+\begin{theorem}[Fan--KKM]\label{thm:fan-kkm}
+Let $D$ be a nonempty subset of a Hausdorff topological vector space $V$. Suppose $\Psi$ assigns to each $d\in D$ a closed subset $\Psi(d)\subseteq V$, at least one of which is compact, and for every finite nonempty $F\subseteq D$,
+\[
+\operatorname{conv}F\subseteq\bigcup_{d\in F}\Psi(d).
+\]
+Then $\bigcap_{d\in D}\Psi(d)$ is nonempty and compact.
+\end{theorem}
+
+
+To get a feel for what theorem~\ref{thm:fan-kkm} says, consider a three world sample space $\Omega=\{\omega_1,\omega_2,\omega_3\}$. Let $V=\mathbb R^{\Omega}$ be the set of all real-valued functions $f:\Omega\rightarrow\mathbb R$ equipped with the product topology. This is a Hausdorff topological vector space. Let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of indicator functions $\delta_{\omega_i}$ which put probability 1 on $\omega_i$ and probability 0 on all other worlds. Then $\operatorname{conv}D$ is $\Delta_\Omega$, the set of probability mass functions on $\Omega$. We can picture $\Delta_\Omega$ as a triangle plot. Finally, let $\Psi(\delta_{\omega_i})=A_{\omega_i}$. The sets $A_{\omega_1}$, $A_{\omega_2}$ and $A_{\omega_3}$ are each closed (and compact) sets of probability mass functions. Given these choices of $V$, $D$ and $\Psi$, the condition that for every finite nonempty $F\subseteq D$,
+\[
+\operatorname{conv}F\subseteq\bigcup_{d\in F}\Psi(d):=\bigcup_{\delta_{\omega_i}\in F}A_{\omega_i},
+\]
+is equivalent to saying that each probability mass function $p\in\Delta_\Omega$ lies in a set $A_{\omega_i}$ which is such that $p$ assigns positive mass to $\omega_i$. For example, $\delta_1$ lies in $A_{\omega_1}$ and also assigns probability 1 to $\omega_1$. Theorem~\ref{thm:fan-kkm} then guarantees there is some probability mass function $p^*$ that lies in the intersection of these three sets.
+
 
 
 \begin{figure}[ht]
@@ -196,83 +176,112 @@ Consider, for example, the set of probability mass functions $\Delta_\Omega$ on 
 
 
 
+In this little example, $\Omega$ is finite. But in general $\Omega$ is an arbitrary (possibly infinite) set of worlds. To apply theorem~\ref{thm:fan-kkm} in this more general setting, we will let $V=\mathbb R^{2^\Omega}$ be the set of all real-valued functions $f:2^\Omega\rightarrow\mathbb R$ on the power set of $\Omega$, $2^\Omega$, once again equipped with the product topology. This too is a Hausdorff topological vector space. And we will let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of finitely additive probability functions $\delta_{\omega_i}$ which put probability 1 on $\{\omega_i\}$ and probability 0 on any other singleton. Then $\operatorname{conv}D$ is the set of all finitely additive probabilities, $\Delta$.
 
 
-Fan's extension applies to arbitrary sets of worlds \cite[Theorem~17.46]{AliprantisBorder2006}.
 
-\begin{theorem}[Fan--KKM]\label{thm:fan-kkm}
-Let $D$ be a nonempty subset of a Hausdorff topological vector space $V$. Suppose $\Psi$ assigns to each $d\in D$ a closed subset $\Psi(d)\subseteq V$, at least one of which is compact, and for every finite nonempty $F\subseteq D$,
-\[
-\operatorname{conv}F\subseteq\bigcup_{d\in F}\Psi(d).
-\]
-Then $\bigcap_{d\in D}\Psi(d)$ is nonempty and compact.
-\end{theorem}
+\begin{definition}\label{def:finitely-additive-probability}
+A map $p:2^\Omega\to[0,1]$ is a \emph{finitely additive probability function} iff:
+\begin{enumerate}[label=\textup{(FA\arabic*)}]
+  \item $p(\Omega)=1$;
+  \item $p(E)\geq p(\varnothing)$;
+  \item if $E\cap F=\varnothing$, then $p(E\cup F)=p(E)+p(F)$.
+\end{enumerate}
+\end{definition}
 
-\section{The selection theorem}\label{sec:selection}
+
+Let $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$.  $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Finitely additive probabilities need not be countably additive, finitely supported, and indeed need not give positive probability to any world.
+
+
+
+
+
+\section{The general dominance argument}\label{sec:gen-dom}
 
 \begin{definition}\label{def:selection}\label{def:selection-data}
-Let $L$ be a ranking and $m\in\M$. A \textit{KKM-selection} for $m$ is a map $s^m:\Delta\to\M$ which selects a model $s^m(p)$ for each $p\in\Delta$ and a family of closed subsets $(A^m_\omega)_{\omega\in\Omega}$ of $\Delta$ such that:
+Let $L\in\mathfrak L$ be a ranking and $m\in\M$ be a model. A \textit{KKM-selection} for $m$ is a map $s^m:\Delta\to\M$ which selects a model $s^m(p)$ for each probability $p\in\Delta$ and a family of closed subsets $(A^m_\omega)_{\omega\in\Omega}$ of $\Delta$ such that:
 \begin{enumerate}[label=(S\arabic*),leftmargin=3em]
-\item\label{S1} for every $\omega\in\Omega$ and every $p\in A^m_\omega$: $s^m(p)\preceq_\omega m$;
+\item\label{S1} for every $\omega\in\Omega$ and every $p\in A^m_\omega$ we have $s^m(p)\preceq_\omega m$;
 \item\label{S2} for every finitely supported $p\in\Delta$ there is $\omega\in\Omega$ with $p_\omega>0$ and $p\in A^m_\omega$;
 \item\label{S3} for every $p\in\bigcap_{\omega\in\Omega}A^m_\omega$ there is $\omega\in\Omega$ with $m\not\preceq_\omega s^m(p)$.
 \end{enumerate}
 \end{definition}
 
-In what follows, we will drop the superscripts and denote the selection map $s:\Delta\to\M$ and family of closed subsets $(A_\omega)_{\omega\in\Omega}$ of $\Delta$. But bear in mind that KKM-selections may vary from model to model. 
+In what follows, we drop the superscripts and treat KKM-selections as pairs involving a map $s:\Delta\to\M$ and family $(A_\omega)_{\omega\in\Omega}$. But bear in mind that KKM-selections may vary from model to model. 
 
 
-\begin{theorem}[Selection theorem]\label{thm:selection}
+\begin{theorem}\label{thm:selection}
 Let $\Omega$ be any nonempty set, $L$ any ranking and $m\in\M$. If $s$ and $(A_\omega)_{\omega\in\Omega}$ form a KKM-selection for $m$, then $\bigcap_\omega A_\omega\ne\varnothing$, and $s(p)$ dominates $m$ for every $p\in\bigcap_\omega A_\omega$.
 \end{theorem}
 \begin{proof}
-In the Hausdorff topological vector space $\mathbb R^{2^\Omega}$, put $D\coloneqq\{\delta_\omega:\omega\in\Omega\}$ and $\Psi(\delta_\omega)\coloneqq A_\omega$. Each value is compact, hence closed in the ambient space, since it is closed in compact $\Delta$. For every finite nonempty $F\subseteq\Omega$, condition \ref{S2} gives
+Let $V\coloneqq\mathbb R^{2^\Omega}$, $D\coloneqq\{\delta_\omega:\omega\in\Omega\}$ and $\Psi(\delta_\omega)\coloneqq A_\omega$. Each $A_\omega$ is a closed subset of the compact space $\Delta$ and hence is itself compact. For every finite nonempty $F\subseteq\Omega$, $\operatorname{conv}\{\delta_\omega:\omega\in F\}=\{p\in\Delta:p(F)=1\}$. Condition \ref{S2} ensures that for each $p\in\Delta$ with $p(F)=1$, there is some $\omega\in F$ with $p_\omega>0$ and $p\in A_\omega$. This entails
 \[
 \operatorname{conv}\{\delta_\omega:\omega\in F\}
 \subseteq\bigcup_{\omega\in F}A_\omega.
 \]
-Theorem~\ref{thm:fan-kkm} therefore gives $\bigcap_\omega A_\omega\ne\varnothing$. At every $p$ in this intersection, \ref{S1} and \ref{S3} imply that $s(p)$ dominates $m$.
+Theorem~\ref{thm:fan-kkm} therefore gives us $\bigcap_\omega A_\omega\ne\varnothing$. For every $p$ in this intersection, \ref{S1} and \ref{S3} imply that $s(p)$ dominates $m$.
 \end{proof}
 
-The candidates in Definition~\ref{def:selection} are arbitrary, so the dominator that Theorem~\ref{thm:selection} produces may itself be dominated. When the candidates are known to be undominated, the theorem gives more.
 
-\begin{corollary}[Undominated dominators]\label{cor:undominated-dominators}
-Let $s$ and $(A_\omega)_{\omega\in\Omega}$ be a KKM-selection for $m$, and suppose $s(p)\in\U_L$ for every $p\in\bigcap_{\omega\in\Omega}A_\omega$. Then $m$ has an undominated dominator: $s(p)$ for any $p\in\bigcap_\omega A_\omega$. If moreover $s(p)\in\C$ for every such $p$, then $m$ is dominated by a member of $\C\cap\U_L$. Both hypotheses hold if $s(p)\in\C\cap\U_L$ for every $p\in\Delta$.
-\end{corollary}
-\begin{proof}
-By Theorem~\ref{thm:selection}, $\bigcap_\omega A_\omega\neq\varnothing$ and $s(p)$ dominates $m$ for every $p$ in it. By hypothesis $s(p)\in\U_L$, and in the second case $s(p)\in\C\cap\U_L$.
-\end{proof}
 
-\begin{lemma}[Sufficient conditions for (S3)]\label{lem:S3}
-Let $m\in\M$, and let $s$ and closed sets $A_\omega$ satisfy \ref{S1} for $m$. Then \ref{S3} holds if either
-\begin{enumerate}[label=(\alph*)]
-\item no candidate $s(p)$ is tied with $m$ at every world; or
-\item $m\not\preceq_\omega s(p)$ whenever $p\in A_\omega$.
+Theorem~\ref{thm:selection} is the heart of the general dominance argument. To complete it, we need a \textit{dominance principle} connecting the rational status of a model with facts about dominance. We assume:
+\begin{enumerate}[label=\textbf{(D)},leftmargin=*]
+\item \textbf{Dominance.} A model $m\in\M$ is
+\begin{align*}
+&\text{\emph{rationally permissible} (relative to $\Lf$)}&&\text{if }(\exists L\in\Lf)\ m\in\U_L;\\
+&\text{\emph{irrational} (relative to $\Lf$)}&&\text{if }(\forall L\in\Lf)\ m\notin\U_L.
+\end{align*}
 \end{enumerate}
-\end{lemma}
-\begin{proof}
-Let $p\in\bigcap_\omega A_\omega$; by \ref{S1}, $s(p)\preceq_\omega m$ for every $\omega$. (a) If also $m\preceq_\omega s(p)$ for every $\omega$, the two would be tied at every world. (b) Take any $\omega$.
-\end{proof}
+That is, a model is rationally permissible if there is \textit{some} reasonable way of measuring performance which makes it come out undominated. It is irrational if \textit{every} reasonable way of measuring performance makes it come out dominated.
 
-\begin{definition}[Fixed and countable selection]
-For $I\subseteq\chg{\M}$, \emph{fixed selection} means that there exists a map $s:\Delta\to\chg{\M}$ such that every $m\in I$ has a KKM-selection with selection map $s$. \emph{Countable selection} means that there exists a sequence $(s^j)_{j\in\mathbb N}$ of such maps such that every $m\in I$ has a KKM-selection with selection map $s^j$ for some $j$.
-\end{definition}
 
-\begin{theorem}[Complete-class theorem]\label{thm:complete-class}
-Let $\Lf$ be a \chg{nonempty} family of rankings and consider:
+
+
+%This says that it is irrational to use a model $m$ for a given purpose or task if on \textit{any} reasonable way of measuring good performance at that task (any $L\in\mathfrak L$), there is some alternative $m_L^\prime$ that dominates it, in the sense that it could not possibly do worse and might do better (according to $L$); moreover the alternative does not itself suffer this defect (it is undominated, \textit{i.e.}, $m_L^\prime\in\U_L$). On the flip side, it is rationally permissible to use a model for a purpose if there is \textit{some} reasonable way of measuring good performance that renders $m$ free of the defect of domination. Of course, some particular evaluator (a single forecaster or decision-maker, a governmental organisation, etc.) might care about some ways of measuring good performance and not others. In that case, we must tailor $\mathfrak L$ appropriately.
+
+
+
+With this dominance principle in hand, we can provide a general recipe for how to argue that all coherent models are rationally permissible and all incoherent models are irrational.
+\begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*]
+\item $\Lf$ satisfies (LA), (CA) and
 \begin{enumerate}
-\item[(X)] \emph{Exclusion}: for every $L\in\Lf$ and every incoherent $m\in\chg{\M}$, a KKM-selection for $m$ exists;
-\item[(A)] \emph{Coherent coverage}: for every $c\in\C$ there is $L\in\Lf$ with $c\in\U_L$\chg{.}
+\item[(S)] for every $L\in\Lf$ and every incoherent $m\in\M\setminus\C$, there is a KKM-selection for $m$.
 \end{enumerate}
-\begin{enumerate}[label=(\alph*)]
-\item Under (X), every incoherent model is dominated under every ranking in $\Lf$; so every incoherent model is irrational, and $\U_L=\C_L$ for every $L\in\Lf$.
-\item Under (X) and (A), the rationally permissible models are exactly the coherent models, and the irrational models are exactly the incoherent models.
+\item \textbf{Dominance} (D).
+\item Theorem~\ref{thm:selection}.
+\item[\textbf{(C)}] The rationally permissible models are exactly the coherent models, and the irrational models are exactly the incoherent models.
 \end{enumerate}
-\end{theorem}
-\begin{proof}
-(a) Let $L\in\Lf$ and $m\in\chg{\M}$ incoherent. By (X) and Theorem~\ref{thm:selection}, $m$ is dominated under $L$, so $m\notin\U_L$; as $L$ was arbitrary, $m$ is irrational. Hence $\U_L\subseteq\C\cap\U_L=\C_L\subseteq\U_L$.
-(b) By (a) no incoherent model is permissible; by (A) every coherent model is. Permissible and irrational are complementary.
-\end{proof}
+
+
+
+
+A few remarks are in order before we argue that this is the common core that drives all (or most) extant variants of dominance arguments. Firstly, nothing in Definition~\ref{def:selection} guarantees that the selected models $s(p)$ are undominated. So the dominator that Theorem~\ref{thm:selection} produces may itself be dominated. If our selection maps always yield models $s(p)$ that are undominated, then Theorem~\ref{thm:selection} yields the following corollary.
+
+
+
+\begin{corollary}\label{cor:undominated-dominators}
+Let $s$ and $(A_\omega)_{\omega\in\Omega}$ be a KKM-selection for $m$, and suppose $s(p)\in\U_L$ for every $p\in\Delta$. Then $m$ has an undominated dominator.
+\end{corollary}
+%\begin{proof}
+%By Theorem~\ref{thm:selection}, $\bigcap_\omega A_\omega\neq\varnothing$ and $s(p)$ dominates $m$ for every $p$ in it. By hypothesis $s(p)\in\U_L$, and in the second case $s(p)\in\C\cap\U_L$.
+%\end{proof}
+
+Secondly, it is worth noting that \ref{S3} holds automatically for any KKM selection which satisfies the following strengthening of \ref{S1}:
+\begin{enumerate}[label=(S\arabic*$^\prime$),leftmargin=3em]
+\item\label{S1'} for every $\omega\in\Omega$ and every $p\in A_\omega$ we have $s(p)\prec_\omega m$.
+\end{enumerate}
+\noindent Similarly, \ref{S3} holds if no selected model $s(p)$ is equivalent to $m$.
+
+
+Finally, theorem~\ref{thm:fan-kkm} allows KKM-selections to vary from model to model. But many extant dominance argument do not make use of this flexibility. They establish that there is a single selection map $s:\Delta\to\M$ such that every incoherent model has a KKM-selection with that same fixed selection map $s$. A generalisation of this \emph{fixed selection} approach allows a countable sequence $(s^j)_{j\in\mathbb N}$ of such selection maps such that every incoherent model has a KKM-selection with selection map $s^j$ for some $j$.
+
+
+
+
+
+
+
+
 
 \section{Applications to accuracy}\label{sec:applications}
 
