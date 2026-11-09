@@ -27,9 +27,17 @@
 \newcommand{\supp}{\operatorname{supp}}
 \setlist{itemsep=1pt,topsep=3pt}
 
-\title{Coherence and Dominance under General Rankings}
+\title{Accuracy Dominance Results}
 \author{Jason Konek and Catrin Campbell-Moore}
 \date{October 2026}
+
+
+
+%CCM added
+
+
+\usepackage[textsize=footnotesize,obeyFinal,backgroundcolor=white,bordercolor=gray!20,linecolor=gray!20]{todonotes} % use "\PassOptionsToPackage{disable}{todonotes}" to disable in a document
+
 
 \begin{document}
 \maketitle
@@ -134,19 +142,60 @@ Now the application:
 	\]
 \end{remark}
 
+\subsection{Generalisations}
+\subsection{?}
+\begin{theorem}
+	The selection $c(p)$ can depend on the fixed model we are considering, $m^*$. 
+\end{theorem}
+\begin{theorem}
+	$c$ can be a correspondence rather than a map; but then we'd need to define $\psi$ to include all of the objects in $c(p)$ having the specified property (being at least as good as the $m^*$). So it's that set which needs to be closed and for the KKM covering property to hold.  
+\end{theorem}
+This is what is used in the Wald application. 
+
+
 \section{Applications}
 \subsection{Strictly proper scoring rules}
-Suppose $L$ is a loss function on credence functions, possibily taking value $-\infty$. 
+Suppose $L$ is a loss function on credence functions, possibily taking value $\infty$. 
+
 Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$. 
+
 \begin{lemma}
 	If $L$ is weakly proper, then \ref{ass:CA} holds. 
 	
 	If $L$ is continuous, then \ref{ass:cl} holds.
 	
-	So, for a weakly proper continuous scoring rule, non-probabilities are at best tied in accuracy. 
+	So, for a weakly proper continuous scoring rule, non-probabilities are at best tied. 
 	
 	If, in addition, $L$ is strictly proper, then every non-probability is actually dominated. 
 \end{lemma}
+
+
+\subsection{Wald}
+\begin{theorem}
+	A version of Wald theorem. 
+	
+	If $\U:\mathcal{O}\times \Omega \to \Re$ is Bayes existing and Bayes continuous (as defined in Choosing Paper), then every option which is not-Bayes is dominated. \todo{we only get weak dominance, it doesn't give us the theorem from our paper}
+	
+	If $\Omega$ is finite, then the non-Bayes options are uniformly dominaned, and hence also strictly dominated. 
+\end{theorem}
+\begin{proof}Fix $o^*$. Let $c\rightrightarrows \mathcal{O}$ select the Bayes options for $p$. 
+	
+	Let $\psi(w)=\{p : \U(o,w)\geq \U(o^*,w)\text{ for all $o\in c(p)$}\}$.
+	
+	
+	
+	Bayes continuity then gives us that each $\psi(w)$ is closed. 
+	
+	KKM covering holds by ?? 
+	
+	That gives that there's some $p$ for which $\U(o,w)\geq \U*(o^*,w)$ for all $o$ Bayes for $p$ and all worlds. 
+	
+	So either $o^*$ is itself Bayes for $p$, or it is weakly dominated.
+	
+	
+	For $\Omega$ finite, we find some small enough gap (seems we choose it using a divergence!)
+	
+\end{proof}
 
 \end{document}
 
