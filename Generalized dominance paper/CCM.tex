@@ -40,13 +40,13 @@ We first state the Fan--KKM lemma in our setting.
 	Let $Y$ be a compact and convex subset of a Hausdorff topological vector space, and let
 	$\varnothing \neq V \subseteq Y$.
 	Suppose $\psi \colon V \rightrightarrows Y$ satisfies:
-	\begin{itemize}
+	\begin{enumerate}
 		\item \textbf{Closed values.}
 		For every $v \in V$, the set $\psi(v)$ is closed in $Y$.
 		
 		\item \textbf{KKM covering.}
 		For every finitely suppored probability, $p$, on $V$, there is some $w\in\supp(p)$ with $E_p[V]\in \psi(w)$. 
-	\end{itemize}
+	\end{enumerate}
 	Then
 	\[
 	\bigcap_{v \in V} \psi(v) \neq \varnothing.
@@ -62,22 +62,22 @@ Now the application:
 	Let $M$ be a set, let $\succeq_w$ be a comparison relation
 	on $M$ for each $w \in W$, and let $c \colon P \to M$.
 	Suppose:
-	\begin{itemize}
-		\item \textbf{Closedness.}
+	\begin{enumerate}
+		\item\label{ass:cl} \textbf{Closedness.}
 		For every $m \in M$ and $w \in W$, the set
 		\[
 		\{p \in P : c(p) \succeq_w m\}
 		\]
 		is closed in $P$.
 		
-		\item \textbf{Coherent Admissibility (for Finitely Supported Probs on their Support).}
+		\item \label{ass:CA}\textbf{Coherent Admissibility (for Finitely Supported Probs on their Support).}
 		For every finitely supported $p \in P$ and every
 		$m \in M$, there is some $w \in \operatorname{supp}(p)$
 		such that
 		\[
 		c(p) \succeq_w m.
 		\]
-	\end{itemize}
+	\end{enumerate}
 	Then, for every $m \in M$, there exists $p \in P$ such that
 	\[
 	c(p) \succeq_w m
@@ -134,7 +134,23 @@ Now the application:
 	\]
 \end{remark}
 
+\section{Applications}
+\subsection{Strictly proper scoring rules}
+Suppose $L$ is a loss function on credence functions, possibily taking value $-\infty$. 
+Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$. 
+\begin{lemma}
+	If $L$ is weakly proper, then \ref{ass:CA} holds. 
+	
+	If $L$ is continuous, then \ref{ass:cl} holds.
+	
+	So, for a weakly proper continuous scoring rule, non-probabilities are at best tied in accuracy. 
+	
+	If, in addition, $L$ is strictly proper, then every non-probability is actually dominated. 
+\end{lemma}
+
 \end{document}
+
+
 \begin{corollary}[Families of rankings]
 	Let $W$ be a nonempty set, let $P$ be the space of
 	finitely additive probabilities on $2^W$ with the
