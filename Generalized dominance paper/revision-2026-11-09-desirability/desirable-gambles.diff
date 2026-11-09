@@ -1,0 +1,111 @@
+--- "/mnt/user-data/uploads/Generalized dominance paper/desirable-gambles.tex"	2026-11-09 10:58:22.441589654 +0000
++++ desirable-gambles.tex	2026-11-09 11:00:28.202481811 +0000
+@@ -4,6 +4,8 @@
+ \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+ \usepackage{xr-hyper,needspace,xcolor}
+ \newcommand{\chg}[1]{{\color{red}#1}}
++\newcommand{\chgb}[1]{{\color{violet}#1}}
++\newenvironment{chgblockb}{\color{violet}}{}
+ \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+ \externaldocument[GR-]{general-rankings}
+ \hypersetup{pdftitle={Coherence and Dominance for Desirable Gambles}}
+@@ -48,7 +50,7 @@
+ 
+ \section{Setting}\label{sec:setting}
+ 
+-Rankings, dominance, finitely additive probabilities, selection data and rational permissibility are as in \cite{KonekGR}. \chg{The general results used are the selection theorem (Theorem~\ref{GR-thm:selection}), Lemma~\ref{GR-lem:prob} and dominance principle (D) in \S\ref{GR-sec:gen-dom} of that paper.} In particular $\Delta$ is the compact space of finitely additive probabilities on $\Omega$, $p_\omega\coloneqq p(\{\omega\})$, and $E_pg$ is the expectation of a bounded function $g$; $p\mapsto E_pg$ is continuous, $g\mapsto E_pg$ is linear and monotone with $|E_pg|\le\sup_\Omega|g|$, and $E_pg=\sum_{\omega\in F}p_\omega g(\omega)$ if $p(F)=1$ for a finite $F$.
++Rankings, dominance, finitely additive probabilities, \chgb{KKM-selections} and rational permissibility are as in \cite{KonekGR}. \chg{The general results used are the selection theorem (Theorem~\ref{GR-thm:selection}), Lemma~\ref{GR-lem:prob} and dominance principle (D) in \S\ref{GR-sec:gen-dom} of that paper.} In particular $\Delta$ is the compact space of finitely additive probabilities on $\Omega$, $p_\omega\coloneqq p(\{\omega\})$, and $E_pg$ is the expectation of a bounded function $g$; $p\mapsto E_pg$ is continuous, $g\mapsto E_pg$ is linear and monotone with $|E_pg|\le\sup_\Omega|g|$, and $E_pg=\sum_{\omega\in F}p_\omega g(\omega)$ if $p(F)=1$ for a finite $F$.
+ 
+ \begin{definition}[Worlds and gambles]\label{def:gambles}
+ Let $\Omega$ be a nonempty set. Let $E$ be a closed linear subspace of the space of bounded real functions on $\Omega$, with the norm $\|g\|\coloneqq\sup_{\omega}|g(\omega)|$, such that $E$ is separable and the constant function $\one$ belongs to $E$. Elements of $E$ are \emph{gambles}. Write $g\ge h$ if $g(\omega)\ge h(\omega)$ for every $\omega$, and
+@@ -275,51 +277,56 @@
+ (a) $A\subseteq S(X)$ and $G(w)\subseteq U(X)$ are disjoint, $A\cap(-A)=\varnothing$ because either $A=\varnothing$ or $A\subseteq B(h,r)$ with $r<\|h\|$, and $Y_w\setminus X=A$, $X\setminus Y_w=G(w)$. (b) If $N=0$, $[0,1]^0$ is a singleton and $b=\tilde b=0$. If $N\ge1$, $\|b(w)-b(w')\|\le(\max_k\|f_k\|+r)M\sum_k|w_k-w'_k|$, and $\|\int_{F_k(s)}g\,d\mu-sf_k\|\le rs$. (c) If $m>0$, every $h'\in A$ has $\|h'-h\|<r$, so $mh'(\omega)\ge m(h(\omega)-r)=\theta(w)(\omega)+b(w)(\omega)\ge b(w)(\omega)+\delta$. If $m=0$, then $A=\varnothing$ and $b(w)(\omega)=-\theta(w)(\omega)\le-\delta$.
+ \end{proof}
+ 
+-For $\eta>0$ and $p\in\Delta$ define
++\begin{chgblockb}
++For $\kappa>0$ and $p\in\Delta$ define
+ \[
+-w_k(p)\coloneqq\min\Bigl\{1,\max\Bigl\{0,-\frac{M\,E_pf_k}{2\eta}\Bigr\}\Bigr\}\qquad(k=1,\dots,N).
++w_k(p)\coloneqq\min\Bigl\{1,\max\Bigl\{0,-\frac{E_pf_k}{\kappa}\Bigr\}\Bigr\}\qquad(k=1,\dots,N).
+ \]
+-It is the unique minimiser over $[0,1]^N$ of $\Psi_p(w)\coloneqq E_p\tilde b(w)+\eta\sum_kw_k^2=\sum_k(Mw_kE_pf_k+\eta w_k^2)$, a sum of strictly convex one-variable quadratics, and it is continuous on $\Delta$ because each $p\mapsto E_pf_k$ is.
++Then $p\mapsto w(p)$ is continuous on $\Delta$, because each $p\mapsto E_pf_k$ is; $w_k(p)E_pf_k\le0$ for every $k$; and $w_k(p)=1$ whenever $E_pf_k\le-\kappa$. Since $E_p\tilde b(w)=M\sum_kw_kE_pf_k$, it follows that
++\begin{equation}\label{eq:withdrawal-bounds}
++E_p\tilde b(w(p))\le0\quad\text{for every }p,\qquad E_p\tilde b(w(p))\le-M\kappa\quad\text{whenever }E_pf_k\le-\kappa\text{ for some }k.
++\end{equation}
++\end{chgblockb}
+ 
+ \begin{theorem}[Coverage]\label{thm:coverage}
+-Assume (M1)--(M3). Let $X\notin\C$ with $K(X)$ null. Then there are a family of withdrawal sets, additions $A$, $\eta>0$ and $\delta>0$ such that $E_p\theta(w(p))\ge2\delta$ for every $p\in\Delta$. In particular, for every finitely supported $p$ some $\omega$ with $p_\omega>0$ has $\theta(w(p))(\omega)\ge2\delta$.
++Assume (M1)--(M3). Let $X\notin\C$ with $K(X)$ null. Then there are a family of withdrawal sets, additions $A$, \chgb{$\kappa>0$} and $\delta>0$ such that\chgb{, with $w$ defined from this $\kappa$,} $E_p\theta(w(p))\ge2\delta$ for every $p\in\Delta$. In particular, for every finitely supported $p$ some $\omega$ with $p_\omega>0$ has $\theta(w(p))(\omega)\ge2\delta$.
+ \end{theorem}
+ \begin{proof}
+-\emph{Case I: $\Pi_X=\varnothing$.} Every $p\in\Delta$ has some $f\in R_{U(X)}$ with $E_pf<0$, a condition open in $p$. By compactness of $\Delta$ there are $f_1,\dots,f_N\in R_{U(X)}$ and $\kappa>0$ with $\max_k(-E_pf_k)\ge\kappa$ for every $p$. Take $A=\varnothing$, $r\coloneqq\kappa/(4N)$, $M\coloneqq\min_k\mu(U(X)\cap B(f_k,r))/N>0$, pieces $F_k$ by Lemma~\ref{lem:split}(b), and $\eta\coloneqq M\kappa/4$. For $p$ and $k$ attaining the maximum, $E_p\tilde b(w(p))\le\Psi_p(w(p))\le\Psi_p(e_k)=ME_pf_k+\eta\le-M\kappa+\eta$, where $e_k$ is the $k$th unit allocation. By monotonicity of $E_p$ and Lemma~\ref{lem:allocations}(b), $E_p\theta(w(p))=-E_pb(w(p))\ge M\kappa-\eta-rMN\ge M\kappa/2$. Put $\delta\coloneqq M\kappa/4$.
++\emph{Case I: $\Pi_X=\varnothing$.} Every $p\in\Delta$ has some $f\in R_{U(X)}$ with $E_pf<0$, a condition open in $p$. By compactness of $\Delta$ there are $f_1,\dots,f_N\in R_{U(X)}$ and $\kappa>0$ with $\max_k(-E_pf_k)\ge\kappa$ for every $p$. Take $A=\varnothing$, $r\coloneqq\kappa/(4N)$, $M\coloneqq\min_k\mu(U(X)\cap B(f_k,r))/N>0$, and pieces $F_k$ by Lemma~\ref{lem:split}(b). \chgb{Every $p$ has some $k$ with $E_pf_k\le-\kappa$, so $E_p\tilde b(w(p))\le-M\kappa$ by \eqref{eq:withdrawal-bounds}.} By monotonicity of $E_p$ and Lemma~\ref{lem:allocations}(b), $E_p\theta(w(p))=-E_pb(w(p))\ge \chgb{M\kappa-rMN=3M\kappa/4}$. Put $\delta\coloneqq M\kappa/4$.
+ 
+ \emph{Case II: $\Pi_X\ne\varnothing$.} By Lemma~\ref{lem:silent}, choose $h\in S(X)\cap D_X\cap R_{S(X)\cap D_X}$, and put $3\beta\coloneqq\min_{p\in\Pi_X}E_ph>0$. Let $O\coloneqq\{p\in\Delta:E_ph>\beta\}$, open, and $Q\coloneqq\Delta\setminus O$, a compact set disjoint from $\Pi_X$.
+ 
+-\emph{Subcase $Q=\varnothing$.} Take $N=0$ (no withdrawals; $M$ and $\eta$ play no role, say $M=\eta=1$), $r\coloneqq\min\{\beta/2,\|h\|/2\}$, and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m>0$. Then $E_p\theta=m(E_ph-r)\ge m\beta/2$ for every $p$; put $\delta\coloneqq m\beta/4$.
++\emph{Subcase $Q=\varnothing$.} Take $N=0$ (no withdrawals; $M$ and \chgb{$\kappa$} play no role, say \chgb{$M=\kappa=1$}), $r\coloneqq\min\{\beta/2,\|h\|/2\}$, and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m>0$. Then $E_p\theta=m(E_ph-r)\ge m\beta/2$ for every $p$; put $\delta\coloneqq m\beta/4$.
+ 
+ \emph{Subcase $Q\ne\varnothing$.} Every $p\in Q$ lies outside $\Pi_X$, so has some $f\in R_{U(X)}$ with $E_pf<0$; by compactness there are $f_1,\dots,f_N\in R_{U(X)}$ and $\kappa>0$ with $\max_k(-E_pf_k)\ge\kappa$ for $p\in Q$. Put $\gamma\coloneqq\kappa/(4(\|h\|+1))$ and fix $r$ with
+ \[
+ r\le\min\Bigl\{1,\ \frac\beta2,\ \frac{\kappa}{4N},\ \frac{\gamma\beta}{4N}\Bigr\},\qquad r<\|h\|.
+ \]
+-Then put $M\coloneqq\min\{\min_k\mu(U(X)\cap B(f_k,r))/N,\ \mu(S(X)\cap D_X\cap B(h,r))/\gamma\}>0$, $m\coloneqq\gamma M$ and $\eta\coloneqq M\kappa/4$, and choose $F_k$ and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m$ by Lemma~\ref{lem:split}. Note $rMN\le\gamma M\beta/4=m\beta/4$ and $rMN\le M\kappa/4$. By monotonicity of $E_p$, $E_pb(w)\le E_p\tilde b(w)+rMN$ and $E_p(h-r\one)=E_ph-r$.
+-For $p\in O$: $E_p\tilde b(w(p))\le\Psi_p(w(p))\le\Psi_p(0)=0$, so
++Then put $M\coloneqq\min\{\min_k\mu(U(X)\cap B(f_k,r))/N,\ \mu(S(X)\cap D_X\cap B(h,r))/\gamma\}>0$, \chgb{and} $m\coloneqq\gamma M$, and choose $F_k$ and $A\subseteq S(X)\cap D_X\cap B(h,r)$ with $\mu(A)=m$ by Lemma~\ref{lem:split}. Note $rMN\le\gamma M\beta/4=m\beta/4$ and $rMN\le M\kappa/4$. By monotonicity of $E_p$, $E_pb(w)\le E_p\tilde b(w)+rMN$ and $E_p(h-r\one)=E_ph-r$.
++For $p\in O$: \chgb{$E_p\tilde b(w(p))\le0$ by \eqref{eq:withdrawal-bounds}}, so
+ \[
+ E_p\theta(w(p))\ge m(E_ph-r)-rMN\ge m\beta/2-m\beta/4=m\beta/4.
+ \]
+-For $p\in Q$, with $k$ attaining $\max_k(-E_pf_k)$: $E_p\tilde b(w(p))\le\Psi_p(e_k)\le-M\kappa+\eta$, so
++For $p\in Q$\chgb{, some $k$ has $E_pf_k\le-\kappa$, so $E_p\tilde b(w(p))\le-M\kappa$ by \eqref{eq:withdrawal-bounds}, and}
+ \[
+-E_p\theta(w(p))\ge-m(\|h\|+r)+M\kappa-\eta-rMN\ge-\tfrac{M\kappa}4+M\kappa-\tfrac{M\kappa}4-\tfrac{M\kappa}4=\tfrac{M\kappa}4.
++E_p\theta(w(p))\ge-m(\|h\|+r)+M\kappa-rMN\ge\chgb{-\tfrac{M\kappa}4+M\kappa-\tfrac{M\kappa}4=\tfrac{M\kappa}2}.
+ \]
+-Put $2\delta\coloneqq\min\{m\beta/4,M\kappa/4\}$.
++Put $2\delta\coloneqq\min\{m\beta/4,\chgb{M\kappa/2}\}$.
+ 
+ In every case $E_p\theta(w(p))\ge2\delta$ for every $p\in\Delta$. If $p(F)=1$ for a finite $F$, then $E_p\theta(w(p))=\sum_{\omega\in F}p_\omega\theta(w(p))(\omega)$ and $\sum_{\omega\in F}p_\omega=1$, so some $\omega$ with $p_\omega>0$ has $\theta(w(p))(\omega)\ge2\delta$.
+ \end{proof}
+ 
+ \begin{theorem}[Exclusion]\label{thm:exclusion}
+-Assume (M1)--(M3) and let $L$ be a ranking satisfying Axioms G and Rep. For every $X\in\M\setminus\C$ there are selection data for $X$ under $L$ in the sense of \cite[Definition~\ref{GR-def:selection-data}]{KonekGR}. Consequently some model $Y$ satisfies $Y\prec_\omega X$ for every $\omega$; in particular $Y$ dominates $X$ under $L$.
++Assume (M1)--(M3) and let $L$ be a ranking satisfying Axioms G and Rep. For every $X\in\M\setminus\C$ there is a \chgb{KKM-selection} for $X$ under $L$ in the sense of \cite[Definition~\ref{GR-def:selection}]{KonekGR}. Consequently some model $Y$ satisfies $Y\prec_\omega X$ for every $\omega$; in particular $Y$ dominates $X$ under $L$.
+ \end{theorem}
+ \begin{proof}
+-\emph{Confusion.} If $K(X)$ has positive measure, let $Z\coloneqq X\setminus K(X)$. Every changed response moves from confused to silent at every world, so Axiom G(ii) gives $Z\prec_\omega X$ for every $\omega$. Take $c(p)\coloneqq Z$ and $A_\omega\coloneqq\Delta$; \ref{GR-S1}--\ref{GR-S3} are immediate.
++\emph{Confusion.} If $K(X)$ has positive measure, let $Z\coloneqq X\setminus K(X)$. Every changed response moves from confused to silent at every world, so Axiom G(ii) gives $Z\prec_\omega X$ for every $\omega$. Take \chgb{$s(p)\coloneqq Z$} and $A_\omega\coloneqq\Delta$; \ref{GR-S1}--\ref{GR-S3} are immediate.
+ 
+-\emph{Otherwise} $K(X)$ is null. Take the withdrawal sets, additions, $\eta$ and $\delta$ of Theorem~\ref{thm:coverage}, and put
++\emph{Otherwise} $K(X)$ is null. Take the withdrawal sets, additions, \chgb{$\kappa$} and $\delta$ of Theorem~\ref{thm:coverage}, and put
+ \[
+-c(p)\coloneqq Y_{w(p)},\qquad A_\omega\coloneqq\{p\in\Delta:\theta(w(p))(\omega)\ge\delta\}.
++\chgb{s(p)}\coloneqq Y_{w(p)},\qquad A_\omega\coloneqq\{p\in\Delta:\theta(w(p))(\omega)\ge\delta\}.
+ \]
+-Each $A_\omega$ is closed, since $p\mapsto w(p)$ is continuous on $\Delta$ and $w\mapsto\theta(w)(\omega)$ is continuous by Lemma~\ref{lem:allocations}(b). For \ref{GR-S1}: if $p\in A_\omega$, then Lemma~\ref{lem:allocations}(a),(c) and Axiom Rep give $c(p)\prec_\omega X$. \ref{GR-S2} is Theorem~\ref{thm:coverage}. \chg{\ref{GR-S3} holds because the comparisons in \ref{GR-S1} are strict.} By Theorem~\ref{GR-thm:selection} of \cite{KonekGR} there is $p^*\in\bigcap_\omega A_\omega$, and $Y\coloneqq c(p^*)$ satisfies $Y\prec_\omega X$ for every $\omega$.
++Each $A_\omega$ is closed, since $p\mapsto w(p)$ is continuous on $\Delta$ and $w\mapsto\theta(w)(\omega)$ is continuous by Lemma~\ref{lem:allocations}(b). For \ref{GR-S1}: if $p\in A_\omega$, then Lemma~\ref{lem:allocations}(a),(c) and Axiom Rep give \chgb{$s(p)$}$\prec_\omega X$. \ref{GR-S2} is Theorem~\ref{thm:coverage}. \chg{\ref{GR-S3} holds because the comparisons in \ref{GR-S1} are strict.} By Theorem~\ref{GR-thm:selection} of \cite{KonekGR} there is $p^*\in\bigcap_\omega A_\omega$, and $Y\coloneqq\chgb{s(p^*)}$ satisfies $Y\prec_\omega X$ for every $\omega$.
+ \end{proof}
+ 
+ \section{Protection and the complete-class theorem}\label{sec:protection}
+@@ -339,7 +346,7 @@
+ \end{enumerate}
+ \end{lemma}
+ \begin{proof}
+-(a) The integrands $\varphi_\omega(\cdot;X)$ and $\varphi_\omega(\cdot;Y)$ agree off the symmetric set $P(X,Y)$, and symmetry of $\mu$ gives $\int_P\varphi_\omega(-g;\cdot)\,d\mu=\int_P\varphi_\omega(g;\cdot)\,d\mu$. The values of $v_\omega$ follow from the definitions, as $g(\omega)\ne0$ almost everywhere (Lemma~\ref{lem:hyperplane}). (b) Each step up in $\rhd$ raises $v_\omega$ by at least $|g(\omega)|$, which is positive almost everywhere. (c) Recall $Y=(X\setminus W)\cup A$ with $A\subseteq S(X)$, $A\cap(-A)$ null and $W\subseteq U(X)$; we show $U(Y)=(U(X)\setminus W)\cup A$ and $K(Y)=K(X)$ up to null sets. If $g\in A$, then $-g\notin X$ and (almost surely) $-g\notin A$, so $g\in U(Y)$. If $g\in X\setminus W$, then $-g\in A$ is impossible (it would give $g\notin X$), so $-g\in Y$ iff $-g\in X\setminus W$; and $-g\in W$ is impossible, since then $-g\in U(X)$ would give $g\notin X$. Hence $g\in U(Y)$ iff $g\in U(X)$, and $g\in K(Y)$ iff $g\in K(X)$. Conversely $U(X)\setminus W\subseteq X\setminus W\subseteq Y$, and $K(X)\subseteq X\setminus W$ since $W\subseteq U(X)$. Then $\Phi_\omega(Y)-\Phi_\omega(X)=\int_Ag(\omega)\,d\mu-\int_Wg(\omega)\,d\mu$.
++(a) The integrands $\varphi_\omega(\cdot;X)$ and $\varphi_\omega(\cdot;Y)$ agree off the symmetric set $P(X,Y)$, and symmetry of $\mu$ gives $\int_P\varphi_\omega(-g;\cdot)\,d\mu=\int_P\varphi_\omega(g;\cdot)\,d\mu$. The values of $v_\omega$ follow from the definitions, as $g(\omega)\ne0$ almost everywhere (Lemma~\ref{lem:hyperplane}). (b) Each step up in $\rhd$ raises $v_\omega$ by at least $|g(\omega)|$, which is positive almost everywhere. (c) \chgb{The classes of $A$ are silent in $X$ and those of $W$ are uniquely accepted, so they are distinct, and $A\cap(-A)$ is null. A replacement therefore changes unique recommendations to silence on the withdrawn classes, and silence to unique recommendations on the added classes, and changes nothing else. Hence $U(Y)=(U(X)\setminus W)\cup A$ and $K(Y)=K(X)$ up to null sets, and substitution gives the identity.}
+ \end{proof}
+ 
+ \begin{definition}[The replacement ranking $\Lrep$]\label{def:Lrep}
+@@ -385,7 +392,7 @@
+ \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+-(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. \chg{For (c), every incoherent model is dominated under every member of $\Lf$ by (b), while every almost coherent model is undominated under some member by hypothesis. Dominance principle (D) of \cite[\S\ref{GR-sec:gen-dom}]{KonekGR} therefore gives the claimed characterisation.}
++(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. \chg{For (c), every incoherent model is dominated under every member of $\Lf$ by (b), while every almost coherent model is undominated under some member by hypothesis. Dominance principle (D) of \cite[\S\ref{GR-sec:gen-dom}]{KonekGR} therefore gives the claimed characterisation.} \chgb{This is the inference from (CA), (S) and (D) in \cite[\S\ref{GR-sec:gen-dom}]{KonekGR}. It does not use (LA): the theorem does not show that every member of $\K$, or of $\Lf$, leaves some almost coherent model undominated.}
+ \end{proof}
+ 
+ \bibliographystyle{plain}
