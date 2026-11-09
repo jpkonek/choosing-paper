@@ -42,69 +42,115 @@
 \begin{document}
 \maketitle
 \section{Core result}
-We first state the Fan--KKM lemma in our setting.
 
+We use the following probability formulation of the
+Fan--KKM lemma.
 
-\begin{theorem}[Fan--KKM (Applied to probabilities)]
-
-	Let $W$ be a nonempty set, and let $P$ be the space of
-	finitely additive probabilities on $\wp(W)$, equipped with
-	the topology of pointwise convergence on events.
-	
-	Suppose $\psi \colon W \rightrightarrows P$ satisfies:
+\begin{theorem}[Fan--KKM for probabilities]
+	Let $W$ be a nonempty set, and let $P$ be the space
+	of finitely additive probabilities on $\wp(W)$,
+	equipped with the topology of pointwise convergence
+	on events.
+	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
 	\begin{enumerate}
 		\item \textbf{Closed values.}
-		For every $w\in W$, the set $\psi(w)$ is closed in $P$.
+		For every $w\in W$, the set $\psi(w)$ is
+		closed in $P$.
 		
 		\item \textbf{KKM covering.}
-		For every \emph{finitely-suppored} probability, $p$, on $V$, there is some $w\in\supp(p)$ with $p\in \psi(w)$. 
+		For every finitely supported $p\in P$, there
+		is some $w\in\supp(p)$ such that
+		$
+		p\in\psi(w).
+		$
 	\end{enumerate}
 	Then
 	\[
-	\bigcap_{v \in V} \psi(v) \neq \varnothing.
-	\]
+	\bigcap_{w\in W}\psi(w)\neq\varnothing.
+	\] and it is compact. 
 \end{theorem}
 
-I think it is actually equivalent to the normal Fan-KKM, at least applied to a compact space already: Take $\psi(w)=\{p: E_p[V]\in \psi_0(w)\}$
-
-
-
-
-\begin{theorem}[Usual Fan--KKM, restricted to an already compact space]
-	Let $Y$ be a compact and convex subset of a Hausdorff topological vector space, and let
-	$\varnothing \neq V \subseteq Y$.
-	Suppose $\psi \colon V \rightrightarrows Y$ satisfies:
-	\begin{enumerate}
-		\item \textbf{Closed values.}
-		For every $v \in V$, the set $\psi(v)$ is closed in $Y$.
-		
-		\item \textbf{KKM covering.}
-		For every finitely suppored probability, $p$, on $V$, there is some $w\in\supp(p)$ with $E_p[V]\in \psi(w)$. 
-	\end{enumerate}
-	Then
-	\[
-	\bigcap_{v \in V} \psi(v) \neq \varnothing.
-	\]
-\end{theorem}
-
-Or peraps simply state it even more applied already (do we ever need an application that's not this?)
+\begin{color}{gray}
 In appendix:
-\begin{proof}
-	Using: 
-	
+This formulation is equivalent to the following compact
+version of the usual Fan--KKM lemma.
 
+\begin{theorem}[Fan--KKM on a compact convex space]
+	Let $Y$ be a compact convex subset of a Hausdorff
+	topological vector space, and let
+	$\varnothing\neq V\subseteq Y$.
+	Suppose $\phi\colon V\rightrightarrows Y$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $v\in V$, the set $\phi(v)$ is
+		closed in $Y$.
+		
+		\item \textbf{KKM covering.}
+		For every finite convex combination
+		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $V$,
+		there is some $i$ with $\lambda_i>0$ such that
+		\[
+		x\in\phi(v_i).
+		\]
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\]
+\end{theorem}
+
+\begin{proof}[Equivalence of the formulations]
+	To derive the probability formulation from the usual
+	formulation, regard $P$ as a subset of
+	$\mathbb R^{\wp(W)}$ with the product topology.
+	It is convex and is closed in the compact cube
+	$[0,1]^{\wp(W)}$, since normalisation and finite
+	additivity are closed conditions. Thus $P$ is
+	compact and convex.
 	
-	We just let $Y=P$, observing that it is compact in the product topology on $\Re^{\wp(W)}$.
+	Take the vertices to be
+	$V=\{\delta_w:w\in W\}$, and set
+	$\phi(\delta_w)=\psi(w)$.
+	Finite convex combinations of these vertices are
+	precisely the finitely supported probabilities
+	on $W$. The hypotheses and conclusion therefore
+	agree.
 	
+	Conversely, fix a nonempty finite set $F\subseteq V$.
+	Let $\Delta_F$ be the probability simplex on $F$.
+	The barycentre map
+	\[
+	B_F\colon\Delta_F\to Y,
+	\qquad
+	B_F(p)=\sum_{v\in F}p(v)v,
+	\]
+	is continuous. For each $v\in F$, define
+	\[
+	\phi_F(v)=B_F^{-1}(\phi(v)).
+	\]
+	These sets are closed in $\Delta_F$ and satisfy
+	the probability covering condition. Applying the
+	probability formulation with $W=F$ gives
+	\[
+	\bigcap_{v\in F}\phi_F(v)\neq\varnothing.
+	\]
+	The barycentre of any point in this intersection
+	belongs to every $\phi(v)$ with $v\in F$.
+	
+	Thus the closed subsets $\phi(v)$ of $Y$ have
+	the finite intersection property. Compactness of
+	$Y$ yields
+	\[
+	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\]
 \end{proof}
+\end{color}
+
 
 
 Now the application:
 
 \begin{corollary}
-	Let $W$ be a nonempty set, and let $P$ be the space of
-	finitely additive probabilities on $\wp(W)$, equipped with
-	the topology of pointwise convergence on events.
 	Let $M$ be a set, let $\succeq_w$ be a comparison relation
 	on $M$ for each $w \in W$, and let $c \colon P \to M$.
 	Suppose:
@@ -131,44 +177,21 @@ Now the application:
 	\]
 \end{corollary}
 
-
 \begin{proof}
-	Regard $P$ as a subset of the Hausdorff topological vector
-	space $\mathbb{R}^{\wp(W)}$, equipped with the product topology.
-	This induces precisely the topology of pointwise convergence
-	on events. Moreover, $P$ is convex and is a closed subset of
-	the compact space $[0,1]^{\wp(W)}$: normalisation and finite
-	additivity are closed conditions. Thus $P$ is compact.
-	
-	Fix $m \in M$. We apply the Fan--KKM lemma with $Y=P$ and
+	Fix $m\in M$ and define
 	\[
-	V=\{\delta_w : w\in W\},
+	\psi(w)=\{p\in P:c(p)\succeq_w m\}.
 	\]
-	where $\delta_w(A)=1$ if $w\in A$ and $0$ otherwise. Define
+	Closedness gives closed values, and Coherent
+	Admissibility gives the KKM covering condition.
+	The probability formulation of Fan--KKM therefore
+	yields
 	\[
-	\psi(\delta_w)
-	=\{p\in P : c(p)\succeq_w m\}.
+	\bigcap_{w\in W}\psi(w)\neq\varnothing.
 	\]
-	Each $\psi(\delta_w)$ is closed by the closedness assumption.
-	
-	To verify the KKM covering condition, let $p$ be a finitely
-	supported probability on $W$. 
-	By coherent admissibility, there is some $w\in\supp(p)$
-	such that $c(p)\succeq_w m$. Thus
-	$\delta_w\in\supp(\mu)$ and $p\in\psi(\delta_w)$,
-	which establishes the KKM covering condition.
-	
-	The Fan--KKM lemma therefore yields
-	\[
-	\varnothing\neq
-	\bigcap_{w\in W}\psi(\delta_w)
-	=
-	\{p\in P : c(p)\succeq_w m
-	\text{ for every }w\in W\}.
-	\]
-	This proves the claim.
+	Any probability in this intersection has the
+	required property.
 \end{proof}
-
 \begin{remark}
 	If each $\succeq_w$ is total, Coherent Admissibility
 	is equivalent to the following condition:
