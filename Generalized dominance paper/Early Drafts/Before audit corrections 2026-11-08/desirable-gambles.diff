@@ -1,0 +1,29 @@
+--- before/desirable-gambles.tex
++++ after/desirable-gambles.tex
+@@ -48,7 +48,7 @@
+ 
+ \section{Setting}\label{sec:setting}
+ 
+-Rankings, dominance, finitely additive probabilities, selection data and rational permissibility are as in \cite{KonekGR}. The general results used are the selection theorem (Theorem~\ref{GR-thm:selection}), Lemma~\ref{GR-lem:S3}, Lemma~\ref{GR-lem:prob} and the complete-class theorem (Theorem~\ref{GR-thm:complete-class}) of that paper. In particular $\Delta$ is the compact space of finitely additive probabilities on $\Omega$, $p_\omega\coloneqq p(\{\omega\})$, and $E_pg$ is the expectation of a bounded function $g$; $p\mapsto E_pg$ is continuous, $g\mapsto E_pg$ is linear and monotone with $|E_pg|\le\sup_\Omega|g|$, and $E_pg=\sum_{\omega\in F}p_\omega g(\omega)$ if $p(F)=1$ for a finite $F$.
++Rankings, dominance, finitely additive probabilities, selection data and rational permissibility are as in \cite{KonekGR}. \chg{The general results used are the selection theorem (Theorem~\ref{GR-thm:selection}), Lemma~\ref{GR-lem:prob} and dominance principle (D) in \S\ref{GR-sec:gen-dom} of that paper.} In particular $\Delta$ is the compact space of finitely additive probabilities on $\Omega$, $p_\omega\coloneqq p(\{\omega\})$, and $E_pg$ is the expectation of a bounded function $g$; $p\mapsto E_pg$ is continuous, $g\mapsto E_pg$ is linear and monotone with $|E_pg|\le\sup_\Omega|g|$, and $E_pg=\sum_{\omega\in F}p_\omega g(\omega)$ if $p(F)=1$ for a finite $F$.
+ 
+ \begin{definition}[Worlds and gambles]\label{def:gambles}
+ Let $\Omega$ be a nonempty set. Let $E$ be a closed linear subspace of the space of bounded real functions on $\Omega$, with the norm $\|g\|\coloneqq\sup_{\omega}|g(\omega)|$, such that $E$ is separable and the constant function $\one$ belongs to $E$. Elements of $E$ are \emph{gambles}. Write $g\ge h$ if $g(\omega)\ge h(\omega)$ for every $\omega$, and
+@@ -319,7 +319,7 @@
+ \[
+ c(p)\coloneqq Y_{w(p)},\qquad A_\omega\coloneqq\{p\in\Delta:\theta(w(p))(\omega)\ge\delta\}.
+ \]
+-Each $A_\omega$ is closed, since $p\mapsto w(p)$ is continuous on $\Delta$ and $w\mapsto\theta(w)(\omega)$ is continuous by Lemma~\ref{lem:allocations}(b). For \ref{GR-S1}: if $p\in A_\omega$, then Lemma~\ref{lem:allocations}(a),(c) and Axiom Rep give $c(p)\prec_\omega X$. \ref{GR-S2} is Theorem~\ref{thm:coverage}. \ref{GR-S3} holds by \cite[Lemma~\ref{GR-lem:S3}(b)]{KonekGR}, since the comparisons in \ref{GR-S1} are strict. By Theorem~\ref{GR-thm:selection} of \cite{KonekGR} there is $p^*\in\bigcap_\omega A_\omega$, and $Y\coloneqq c(p^*)$ satisfies $Y\prec_\omega X$ for every $\omega$.
++Each $A_\omega$ is closed, since $p\mapsto w(p)$ is continuous on $\Delta$ and $w\mapsto\theta(w)(\omega)$ is continuous by Lemma~\ref{lem:allocations}(b). For \ref{GR-S1}: if $p\in A_\omega$, then Lemma~\ref{lem:allocations}(a),(c) and Axiom Rep give $c(p)\prec_\omega X$. \ref{GR-S2} is Theorem~\ref{thm:coverage}. \chg{\ref{GR-S3} holds because the comparisons in \ref{GR-S1} are strict.} By Theorem~\ref{GR-thm:selection} of \cite{KonekGR} there is $p^*\in\bigcap_\omega A_\omega$, and $Y\coloneqq c(p^*)$ satisfies $Y\prec_\omega X$ for every $\omega$.
+ \end{proof}
+ 
+ \section{Protection and the complete-class theorem}\label{sec:protection}
+@@ -385,7 +385,7 @@
+ \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+-(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. (c) Apply Theorem~\ref{GR-thm:complete-class} of \cite{KonekGR} with $\C$ the almost coherent models: (X) holds by Theorem~\ref{thm:exclusion}, (A) by hypothesis (and by (a) when $\Lrep\in\Lf$), and \chg{$\Lf$ is nonempty, as that theorem requires}: $\C$ is nonempty (for any $p\in\Delta$, $\{g:E_pg>0\}\cup(E_+\setminus\{0\})$ is coherent), so the hypothesis supplies a member of $\Lf$.
++(a) is Theorem~\ref{thm:Lrep}. (b) is Theorem~\ref{thm:exclusion}. \chg{For (c), every incoherent model is dominated under every member of $\Lf$ by (b), while every almost coherent model is undominated under some member by hypothesis. Dominance principle (D) of \cite[\S\ref{GR-sec:gen-dom}]{KonekGR} therefore gives the claimed characterisation.}
+ \end{proof}
+ 
+ \bibliographystyle{plain}

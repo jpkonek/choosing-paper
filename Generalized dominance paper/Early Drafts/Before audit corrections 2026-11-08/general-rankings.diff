@@ -1,0 +1,209 @@
+--- before/general-rankings.tex
++++ after/general-rankings.tex
+@@ -113,7 +113,7 @@
+ \item \textbf{Coherent admissibility.} $\C=\bigcup_{L\in\mathfrak L}\C_L$.
+ \end{enumerate}
+ 
+-Now choose a reasonable ranking $L\in\mathfrak L$. By definition $\C_L\subseteq\U_L$. That is, the coherent undominated models (relative to $L$) are undominated. Given coherent admissibility (CA), this entails that every coherent model is rationally permissible. But (LA) does \textit{not} rule out the possibility that additional, incoherent models are undominated as well, and hence also rationally permissible. That is, we do not simply \textit{assume} that incoherent models are defective, in the sense of being dominated relative to all reasonable rankings. The job of the dominance argument below is to \textit{prove} this stronger claim given one additional assumption.
++Now choose a reasonable ranking $L\in\mathfrak L$. By definition $\C_L\subseteq\U_L$. That is, the coherent undominated models (relative to $L$) are undominated. Given coherent admissibility (CA), this entails that every coherent model is rationally permissible \chg{in the sense of (D) below}. But (LA) does \textit{not} rule out the possibility that additional, incoherent models are undominated as well, and hence also rationally permissible. That is, we do not simply \textit{assume} that incoherent models are defective, in the sense of being dominated relative to all reasonable rankings. The job of the dominance argument below is to \textit{prove} this stronger claim given one additional assumption.
+ 
+ 
+ 
+@@ -121,7 +121,7 @@
+ 
+ \section{Fan-KKM theorem}\label{sec:kkm}
+ 
+-The general dominance argument is trivial application of a seminal result by Fan and Knaster--Kuratowski--Mazurkiewicz \cite[Theorem~17.46]{AliprantisBorder2006}.
++The general dominance argument is \chg{a} trivial application of a seminal result by Fan and Knaster--Kuratowski--Mazurkiewicz \cite[Theorem~17.46]{AliprantisBorder2006}.
+ 
+ 
+ 
+@@ -170,13 +170,14 @@
+  \fill (c) circle (1.8pt) node[below right=1pt] {$p^*$};
+ \end{scope}
+ \end{tikzpicture}
++\caption{\chg{The Fan--KKM covering condition on a three-world simplex.}}
+ \label{fig:kkm}
+ \end{figure}
+ 
+ 
+ 
+ 
+-In this little example, $\Omega$ is finite. But in general $\Omega$ is an arbitrary (possibly infinite) set of worlds. To apply theorem~\ref{thm:fan-kkm} in this more general setting, we will let $V=\mathbb R^{2^\Omega}$ be the set of all real-valued functions $f:2^\Omega\rightarrow\mathbb R$ on the power set of $\Omega$, $2^\Omega$, once again equipped with the product topology. This too is a Hausdorff topological vector space. And we will let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of finitely additive probability functions $\delta_{\omega_i}$ which put probability 1 on $\{\omega_i\}$ and probability 0 on any other singleton. Then $\operatorname{conv}D$ is the set of all finitely additive probabilities, $\Delta$.
++In this little example, $\Omega$ is finite. But in general $\Omega$ is an arbitrary (possibly infinite) set of worlds. To apply theorem~\ref{thm:fan-kkm} in this more general setting, we will let $V=\mathbb R^{2^\Omega}$ be the set of all real-valued functions $f:2^\Omega\rightarrow\mathbb R$ on the power set of $\Omega$, $2^\Omega$, once again equipped with the product topology. This too is a Hausdorff topological vector space. And we will let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of finitely additive probability functions $\delta_{\omega_i}$ which put probability 1 on $\{\omega_i\}$ and probability 0 on any other singleton. \chg{Then $\operatorname{conv}D$ is the set of finitely supported probabilities, a subset of the set $\Delta$ of all finitely additive probabilities.}
+ 
+ 
+ 
+@@ -190,6 +191,8 @@
+ \end{definition}
+ 
+ 
++\chg{Equip $\Delta$ with the subspace topology inherited from $V=\mathbb R^{2^\Omega}$. It is a closed subset of $[0,1]^{2^\Omega}$, since (FA1)--(FA3) are equalities and inequalities between finitely many coordinates. Thus $\Delta$ is compact by Tychonoff's theorem and closed in the Hausdorff space $V$.}
++
+ Let $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$.  $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Finitely additive probabilities need not be countably additive, finitely supported, and indeed need not give positive probability to any world.
+ 
+ 
+@@ -214,7 +217,7 @@
+ Let $\Omega$ be any nonempty set, $L$ any ranking and $m\in\M$. If $s$ and $(A_\omega)_{\omega\in\Omega}$ form a KKM-selection for $m$, then $\bigcap_\omega A_\omega\ne\varnothing$, and $s(p)$ dominates $m$ for every $p\in\bigcap_\omega A_\omega$.
+ \end{theorem}
+ \begin{proof}
+-Let $V\coloneqq\mathbb R^{2^\Omega}$, $D\coloneqq\{\delta_\omega:\omega\in\Omega\}$ and $\Psi(\delta_\omega)\coloneqq A_\omega$. Each $A_\omega$ is a closed subset of the compact space $\Delta$ and hence is itself compact. For every finite nonempty $F\subseteq\Omega$, $\operatorname{conv}\{\delta_\omega:\omega\in F\}=\{p\in\Delta:p(F)=1\}$. Condition \ref{S2} ensures that for each $p\in\Delta$ with $p(F)=1$, there is some $\omega\in F$ with $p_\omega>0$ and $p\in A_\omega$. This entails
++Let $V\coloneqq\mathbb R^{2^\Omega}$, $D\coloneqq\{\delta_\omega:\omega\in\Omega\}$ and $\Psi(\delta_\omega)\coloneqq A_\omega$. Each $A_\omega$ is a closed subset of the compact space $\Delta$ and hence is itself compact \chg{and closed in $V$}. For every finite nonempty $F\subseteq\Omega$, $\operatorname{conv}\{\delta_\omega:\omega\in F\}=\{p\in\Delta:p(F)=1\}$. Condition \ref{S2} ensures that for each $p\in\Delta$ with $p(F)=1$, there is some $\omega\in F$ with $p_\omega>0$ and $p\in A_\omega$. This entails
+ \[
+ \operatorname{conv}\{\delta_\omega:\omega\in F\}
+ \subseteq\bigcup_{\omega\in F}A_\omega.
+@@ -226,10 +229,10 @@
+ 
+ Theorem~\ref{thm:selection} is the heart of the general dominance argument. To complete it, we need a \textit{dominance principle} connecting the rational status of a model with facts about dominance. We assume:
+ \begin{enumerate}[label=\textbf{(D)},leftmargin=*]
+-\item \textbf{Dominance.} A model $m\in\M$ is
++\item\label{principle:dominance} \textbf{Dominance.} A model $m\in\M$ is
+ \begin{align*}
+-&\text{\emph{rationally permissible} (relative to $\Lf$)}&&\text{if }(\exists L\in\Lf)\ m\in\U_L;\\
+-&\text{\emph{irrational} (relative to $\Lf$)}&&\text{if }(\forall L\in\Lf)\ m\notin\U_L.
++&\text{\emph{rationally permissible} (relative to $\Lf$)}&&\text{\chg{iff} }(\exists L\in\Lf)\ m\in\U_L;\\
++&\text{\emph{irrational} (relative to $\Lf$)}&&\text{\chg{iff} }(\forall L\in\Lf)\ m\notin\U_L.
+ \end{align*}
+ \end{enumerate}
+ That is, a model is rationally permissible if there is \textit{some} reasonable way of measuring performance which makes it come out undominated. It is irrational if \textit{every} reasonable way of measuring performance makes it come out dominated.
+@@ -245,12 +248,14 @@
+ \begin{enumerate}[label=\textbf{(P\arabic*)},leftmargin=*]
+ \item $\Lf$ satisfies (LA), (CA) and
+ \begin{enumerate}
+-\item[(S)] for every $L\in\Lf$ and every incoherent $m\in\M\setminus\C$, there is a KKM-selection for $m$.
++\item[(S)]\label{condition:selection} for every $L\in\Lf$ and every incoherent $m\in\M\setminus\C$, there is a KKM-selection for $m$.
+ \end{enumerate}
+ \item \textbf{Dominance} (D).
+ \item Theorem~\ref{thm:selection}.
+-\item[\textbf{(C)}] The rationally permissible models are exactly the coherent models, and the irrational models are exactly the incoherent models.
+-\end{enumerate}
++\item[\textbf{(C)}]\label{conclusion:complete-class} The rationally permissible models are exactly the coherent models, and the irrational models are exactly the incoherent models.
++\end{enumerate}
++
++\chg{The inference to (C) uses (CA), (S) and (D); it does not require (LA).}
+ 
+ 
+ 
+@@ -262,9 +267,9 @@
+ \begin{corollary}\label{cor:undominated-dominators}
+ Let $s$ and $(A_\omega)_{\omega\in\Omega}$ be a KKM-selection for $m$, and suppose $s(p)\in\U_L$ for every $p\in\Delta$. Then $m$ has an undominated dominator.
+ \end{corollary}
+-%\begin{proof}
+-%By Theorem~\ref{thm:selection}, $\bigcap_\omega A_\omega\neq\varnothing$ and $s(p)$ dominates $m$ for every $p$ in it. By hypothesis $s(p)\in\U_L$, and in the second case $s(p)\in\C\cap\U_L$.
+-%\end{proof}
++\begin{proof}
++\chg{By Theorem~\ref{thm:selection}, some $s(p)$ dominates $m$; by hypothesis, $s(p)\in\U_L$.}
++\end{proof}
+ 
+ Secondly, it is worth noting that \ref{S3} holds automatically for any KKM selection which satisfies the following strengthening of \ref{S1}:
+ \begin{enumerate}[label=(S\arabic*$^\prime$),leftmargin=3em]
+@@ -273,7 +278,7 @@
+ \noindent Similarly, \ref{S3} holds if no selected model $s(p)$ is equivalent to $m$.
+ 
+ 
+-Finally, theorem~\ref{thm:fan-kkm} allows KKM-selections to vary from model to model. But many extant dominance argument do not make use of this flexibility. They establish that there is a single selection map $s:\Delta\to\M$ such that every incoherent model has a KKM-selection with that same fixed selection map $s$. A generalisation of this \emph{fixed selection} approach allows a countable sequence $(s^j)_{j\in\mathbb N}$ of such selection maps such that every incoherent model has a KKM-selection with selection map $s^j$ for some $j$.
++Finally, \chg{Definition~\ref{def:selection}} allows KKM-selections to vary from model to model. But many extant dominance argument do not make use of this flexibility. They establish that there is a single selection map $s:\Delta\to\M$ such that every incoherent model has a KKM-selection with that same fixed selection map $s$. A generalisation of this \emph{fixed selection} approach allows a countable sequence $(s^j)_{j\in\mathbb N}$ of such selection maps such that every incoherent model has a KKM-selection with selection map $s^j$ for some $j$.
+ 
+ 
+ 
+@@ -310,24 +315,24 @@
+ Let $m\in\chg{\M}$ and put $A_\omega\coloneqq\{p\in\Delta:\ell(s(p),\omega)\le\ell(m,\omega)\}$. Then \ref{S1} and \ref{S2} hold. If no $s(p)$ is tied at every world with $m$, then \ref{S3} holds, and some $s(p)$ dominates $m$.
+ \end{lemma}
+ \begin{proof}
+-$A_\omega$ is closed by (i), and equals $\Delta$ if $\ell(m,\omega)=\infty$. \ref{S1} is the definition of $A_\omega$, and \ref{S2} is (ii) for this $m$. \ref{S3} follows from Lemma~\ref{lem:S3}(a). Apply Theorem~\ref{thm:selection}.
+-\end{proof}
+-
+-In each application below, the complete-class conclusion is Theorem~\ref{thm:complete-class} for the one-ranking family $\Lf=\{L\}$: (X) follows from Lemma~\ref{lem:loss-one-stage} and (A) from the stated protection argument.
++$A_\omega$ is closed by (i), and equals $\Delta$ if $\ell(m,\omega)=\infty$. \ref{S1} is the definition of $A_\omega$, and \ref{S2} is (ii) for this $m$. \chg{At a common point, $s(p)$ is at least as good as $m$ at every world; the absence of a tie therefore gives \ref{S3}.} Apply Theorem~\ref{thm:selection}.
++\end{proof}
++
++\chg{In each application below, the complete-class conclusion is (C) in \S\ref{sec:gen-dom}, under (D), for the one-ranking family $\Lf=\{L\}$: (S) follows from Lemma~\ref{lem:loss-one-stage}, and (LA) and (CA) follow from the stated protection argument.}
+ 
+ The protection argument covers every candidate. In Propositions~\ref{prop:proper}, \ref{prop:probabilism}, \ref{prop:updating} and~\ref{prop:chance}, each candidate $s(p)$ is coherent and is proved to be undominated. In Proposition~\ref{prop:updating} this is proved directly for every coherent strategy; it is not derived from Bayes optimality under the probability $q$ used for coverage. So $s(p)\in\C\cap\U_L$ for every $p\in\Delta$. By Corollary~\ref{cor:undominated-dominators}, in each application every incoherent model is dominated by a coherent model that is itself undominated, namely $s(p)$ for any $p\in\bigcap_\omega A_\omega$.
+ 
+ \subsection{Proper losses on finitely many worlds}
+ 
+ \begin{proposition}[{\cite{Predd2009,Pettigrew2022}}]\label{prop:proper}
+-Let $\Omega$ be finite, let $\ell$ be a loss on $\chg{\M}$, and let $p\mapsto s(p)$ map $\Delta$ onto $\C\subseteq\chg{\M}$. Suppose each $s(p)$ is the unique Bayes model for $p$, that is, $E_p\ell(s(p),\cdot)<E_p\ell(m,\cdot)$ for every $m\ne s(p)$, and $p\mapsto\ell(s(p),\omega)$ is lower semicontinuous for every $\omega$. Then every incoherent model is dominated by some $s(p)$, every coherent model is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
++Let $\Omega$ be finite, let $\ell$ be a loss on $\chg{\M}$, and let $p\mapsto s(p)$ map $\Delta$ onto $\C\subseteq\chg{\M}$. Suppose each $s(p)$ is the unique Bayes model for $p$, that is, $E_p\ell(s(p),\cdot)<E_p\ell(m,\cdot)$ for every $m\ne s(p)$, and $p\mapsto\ell(s(p),\omega)$ is lower semicontinuous for every $\omega$. Then every incoherent model is dominated by some $s(p)$, every coherent model is undominated, and $\{L\}$ satisfies \chg{(S), (LA) and (CA)}.
+ \end{proposition}
+ \begin{proof}
+ If $\chg{\M}$ is a singleton $\{c\}$, then $c$ is coherent and there is nothing to prove. Otherwise $E_p\ell(s(p),\cdot)<\infty$ for every $p$, since $E_p\ell(s(p),\cdot)<E_p\ell(m,\cdot)$ for some $m$.
+ 
+-\emph{Weak dominators of $s(p)$.} If $m\preceq_\omega s(p)$ for every $\omega$, then $E_p\ell(m,\cdot)\le E_p\ell(s(p),\cdot)$, so $m=s(p)$ by uniqueness. Hence no model dominates $s(p)$, which gives (A) since the map is onto $\C$. Hence also no $s(p)$ is tied at every world with an incoherent model, since such a model would weakly dominate $s(p)$.
+-
+-\emph{Coverage.} Let $m\in\chg{\M}$ and $p\in\Delta$ (every $p$ is finitely supported). If $\ell(s(p),\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then, as $E_p\ell(s(p),\cdot)$ is finite, $E_p\ell(m,\cdot)<E_p\ell(s(p),\cdot)$, contradicting Bayes optimality. This is Lemma~\ref{lem:loss-one-stage}(ii), and (i) is assumed. For incoherent $m$, Lemma~\ref{lem:loss-one-stage} gives a KKM-selection; this is (X).
++\emph{Weak dominators of $s(p)$.} If $m\preceq_\omega s(p)$ for every $\omega$, then $E_p\ell(m,\cdot)\le E_p\ell(s(p),\cdot)$, so $m=s(p)$ by uniqueness. Hence no model dominates $s(p)$, which gives \chg{(CA)} since the map is onto $\C$. Hence also no $s(p)$ is tied at every world with an incoherent model, since such a model would weakly dominate $s(p)$.
++
++\emph{Coverage.} Let $m\in\chg{\M}$ and $p\in\Delta$ (every $p$ is finitely supported). If $\ell(s(p),\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then, as $E_p\ell(s(p),\cdot)$ is finite, $E_p\ell(m,\cdot)<E_p\ell(s(p),\cdot)$, contradicting Bayes optimality. This is Lemma~\ref{lem:loss-one-stage}(ii), and (i) is assumed. For incoherent $m$, Lemma~\ref{lem:loss-one-stage} gives a KKM-selection; this is \chg{(S)}.
+ \end{proof}
+ 
+ \subsection{Probabilism on arbitrary domains}
+@@ -339,13 +344,15 @@
+ \end{gather*}
+ and $f\le f'$ implies $E_qf\le E_qf'$. The loss $\ell$ is \emph{quasi-strictly proper} if $E_q\ell(q,\cdot)\le E_q\ell(m,\cdot)$ for all $q\in\C$ and $m\in\chg{\M}$, strictly whenever $m\notin\C$.
+ 
+-\begin{proposition}[{\cite{Nielsen2023}}]\label{prop:probabilism}
+-If $\ell$ is quasi-strictly proper and each $q\mapsto\ell(q,\omega)$ is lower semicontinuous on $\Delta$, then every incoherent model is dominated by a member of $\Delta$, every member of $\Delta$ is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
++\chg{The next result gives the protection conclusion of \cite[Theorem~2]{Nielsen2023} and a weaker form of its Theorem~1, under weaker regularity assumptions. Nielsen obtains strict improvement at every world; the conclusion here is dominance as defined in \S\ref{sec:framework}.}
++
++\begin{proposition}\label{prop:probabilism}
++If $\ell$ is quasi-strictly proper and each $q\mapsto\ell(q,\omega)$ is lower semicontinuous on $\Delta$, then every incoherent model is dominated by a member of $\Delta$, every member of $\Delta$ is undominated, and $\{L\}$ satisfies \chg{(S), (LA) and (CA)}.
+ \end{proposition}
+ \begin{proof}
+ \emph{Finiteness.} For $q\in\C$, $E_q\ell(q,\cdot)<E_q\ell(m_0,\cdot)\le\infty$ for the incoherent $m_0\equiv0$, so $E_q\ell(q,\cdot)<\infty$.
+ 
+-\emph{(A).} Suppose $m$ dominates $q\in\C$, with $\ell(m,w)<\ell(q,w)$; in particular $\ell(m,w)<\infty$. Weak dominance and monotonicity give $E_q\ell(m,\cdot)\le E_q\ell(q,\cdot)$, and propriety gives equality, so $E_q\ell(m,\cdot)=E_q\ell(q,\cdot)<\infty$. For $k\ge2$ put $q_k\coloneqq(1-1/k)q+\delta_w/k\in\C$. Propriety at $q_k$ and at $q$ gives
++\emph{\chg{(CA).}} Suppose $m$ dominates $q\in\C$, with $\ell(m,w)<\ell(q,w)$; in particular $\ell(m,w)<\infty$. Weak dominance and monotonicity give $E_q\ell(m,\cdot)\le E_q\ell(q,\cdot)$, and propriety gives equality, so $E_q\ell(m,\cdot)=E_q\ell(q,\cdot)<\infty$. For $k\ge2$ put $q_k\coloneqq(1-1/k)q+\delta_w/k\in\C$. Propriety at $q_k$ and at $q$ gives
+ \[
+ \tfrac1k\ell(q_k,w)+(1-\tfrac1k)E_q\ell(q,\cdot)\le E_{q_k}\ell(q_k,\cdot)\le E_{q_k}\ell(m,\cdot)=\tfrac1k\ell(m,w)+(1-\tfrac1k)E_q\ell(q,\cdot).
+ \]
+@@ -353,7 +360,7 @@
+ 
+ \emph{Ties.} If an incoherent $m$ were tied at every world with $q\in\C$, then $E_q\ell(m,\cdot)=E_q\ell(q,\cdot)$, contradicting strict propriety against incoherent models.
+ 
+-\emph{Coverage.} Put $s(p)\coloneqq p$ for $p\in\Delta$; Lemma~\ref{lem:loss-one-stage}(i) is the hypothesis. Let $p(F)=1$ for a finite $F$ and $m\in\chg{\M}$. Then $E_p\ell(p,\cdot)=\sum_{\omega\in F}p_\omega\ell(p,\omega)<\infty$, so $\ell(p,\omega)<\infty$ for $\omega\in\supp p$. If $\ell(p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then $E_p\ell(m,\cdot)=\sum_{\omega\in\supp p}p_\omega\ell(m,\omega)<E_p\ell(p,\cdot)$, contradicting propriety. This is Lemma~\ref{lem:loss-one-stage}(ii); Lemma~\ref{lem:loss-one-stage} and the tie argument give (X).
++\emph{Coverage.} Put $s(p)\coloneqq p$ for $p\in\Delta$; Lemma~\ref{lem:loss-one-stage}(i) is the hypothesis. Let $p(F)=1$ for a finite $F$ and $m\in\chg{\M}$. Then $E_p\ell(p,\cdot)=\sum_{\omega\in F}p_\omega\ell(p,\omega)<\infty$, so $\ell(p,\omega)<\infty$ for $\omega\in\supp p$. If $\ell(p,\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then $E_p\ell(m,\cdot)=\sum_{\omega\in\supp p}p_\omega\ell(m,\omega)<E_p\ell(p,\cdot)$, contradicting propriety. This is Lemma~\ref{lem:loss-one-stage}(ii); Lemma~\ref{lem:loss-one-stage} and the tie argument give \chg{(S)}.
+ \end{proof}
+ 
+ \subsection{Conditional updating}
+@@ -364,10 +371,10 @@
+ \]
+ 
+ \begin{proposition}[{\cite{Briggs2020,Nielsen2021}}]\label{prop:updating}
+-Every incoherent strategy is dominated by a coherent one, every coherent strategy is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
++Every incoherent strategy is dominated by a coherent one, every coherent strategy is undominated, and $\{L\}$ satisfies \chg{(S), (LA) and (CA)}.
+ \end{proposition}
+ \begin{proof}
+-\emph{Weak dominators of a coherent strategy.} Let $(c,a)$ be coherent and $(c',a')$ weakly dominate it. For each $j$, $\sum_{\omega\in E_j}c_\omega J(a'_j,\omega)=c(E_j)E_{a_j}J(a'_j,\cdot)\ge c(E_j)E_{a_j}J(a_j,\cdot)$, using $c(\{\omega\})=c(E_j)a_j(\{\omega\})$ for $\omega\in E_j$. With $E_cJ(c',\cdot)\ge E_cJ(c,\cdot)$, this gives $E_c\ell((c',a'),\cdot)\ge E_c\ell((c,a),\cdot)$, while weak dominance gives $\le$. As all quantities are finite, $E_cJ(c',\cdot)=E_cJ(c,\cdot)$, so $c'=c$. Cancelling the common term $\alpha J(c,\omega)$, weak dominance gives $J(a'_j,\omega)\le J(a_j,\omega)$ for $\omega\in E_j$. Taking expectations under $a_j$, which is concentrated on $E_j$, gives $E_{a_j}J(a'_j,\cdot)\le E_{a_j}J(a_j,\cdot)$, so $a'_j=a_j$; this includes cells with $c(E_j)=0$. Hence coherent strategies are undominated, which is (A), and no incoherent strategy is tied at every world with a coherent one.
++\emph{Weak dominators of a coherent strategy.} Let $(c,a)$ be coherent and $(c',a')$ weakly dominate it. For each $j$, $\sum_{\omega\in E_j}c_\omega J(a'_j,\omega)=c(E_j)E_{a_j}J(a'_j,\cdot)\ge c(E_j)E_{a_j}J(a_j,\cdot)$, using $c(\{\omega\})=c(E_j)a_j(\{\omega\})$ for $\omega\in E_j$. With $E_cJ(c',\cdot)\ge E_cJ(c,\cdot)$, this gives $E_c\ell((c',a'),\cdot)\ge E_c\ell((c,a),\cdot)$, while weak dominance gives $\le$. As all quantities are finite, $E_cJ(c',\cdot)=E_cJ(c,\cdot)$, so $c'=c$. Cancelling the common term $\alpha J(c,\omega)$, weak dominance gives $J(a'_j,\omega)\le J(a_j,\omega)$ for $\omega\in E_j$. Taking expectations under $a_j$, which is concentrated on $E_j$, gives $E_{a_j}J(a'_j,\cdot)\le E_{a_j}J(a_j,\cdot)$, so $a'_j=a_j$; this includes cells with $c(E_j)=0$. Hence coherent strategies are undominated, which is \chg{(CA)}, and no incoherent strategy is tied at every world with a coherent one.
+ 
+ \emph{Assignment.} Put $\eta\coloneqq1/(2k)$, $x_+\coloneqq\max\{x,0\}$, and fix $w_j\in\Delta$ with $w_j(E_j)=1$. For $p\in\Delta$ let $p|_{E_j}(A)\coloneqq p(A\cap E_j)$ and
+ \[
+@@ -377,7 +384,7 @@
+ 
+ \emph{Lower semicontinuity.} $p\mapsto\ell(s(p),\omega)$ is a positive combination of $J(\cdot,\omega)$, lower semicontinuous on $\Delta$, composed with continuous maps into $\Delta$, hence lower semicontinuous.
+ 
+-\emph{Coverage.} $s(p)$ is Bayes for $q$: for any strategy $(c',a')$, $E_qJ(c',\cdot)\ge E_qJ(q,\cdot)$, and for each $j$ with $\lambda_j>0$, $\sum_{\omega\in E_j}q_\omega J(a'_j,\omega)=\lambda_jE_{r_j}J(a'_j,\cdot)\ge\lambda_jE_{r_j}J(r_j,\cdot)$, while cells with $\lambda_j=0$ contribute nothing. If $\ell(s(p),\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then the same holds on $\supp q$, and finiteness of $J$ gives $E_q\ell(m,\cdot)<E_q\ell(s(p),\cdot)$, a contradiction. Lemma~\ref{lem:loss-one-stage} gives (X).
++\emph{Coverage.} $s(p)$ is Bayes for $q$: for any strategy $(c',a')$, $E_qJ(c',\cdot)\ge E_qJ(q,\cdot)$, and for each $j$ with $\lambda_j>0$, $\sum_{\omega\in E_j}q_\omega J(a'_j,\omega)=\lambda_jE_{r_j}J(a'_j,\cdot)\ge\lambda_jE_{r_j}J(r_j,\cdot)$, while cells with $\lambda_j=0$ contribute nothing. If $\ell(s(p),\omega)>\ell(m,\omega)$ for every $\omega\in\supp p$, then the same holds on $\supp q$, and finiteness of $J$ gives $E_q\ell(m,\cdot)<E_q\ell(s(p),\cdot)$, a contradiction. Lemma~\ref{lem:loss-one-stage} gives \chg{(S)}.
+ \end{proof}
+ 
+ \subsection{Chance dominance}
+@@ -385,14 +392,14 @@
+ Let $W$ be finite, $\mathcal K\subseteq\Delta_W$ nonempty, and $\Theta\coloneqq\cl(\operatorname{conv}\mathcal K)$ (Euclidean closure). Let $\chg{\M}=[0,1]^{\mathcal F}$ for a set of events $\mathcal F\subseteq2^W$, identify $\theta\in\Delta_W$ with $(\theta(A))_{A\in\mathcal F}$, and let $\C$ be the set of credences induced by members of $\Theta$. Let $I:\chg{\M}\times W\to[0,\infty)$ be such that each $\theta\in\Delta_W$ uniquely minimises $c\mapsto E_\theta I(c)\coloneqq\sum_w\theta(w)I(c,w)$ over $\chg{\M}$, and $\theta\mapsto I(\theta,w)$ is lower semicontinuous on $\Theta$. The worlds of the ranking are the members of $\mathcal K$, and $c\preceq_\kappa d$ iff $E_\kappa I(c)\le E_\kappa I(d)$, for $\kappa\in\mathcal K$ \cite[Chapter~10]{Pettigrew2016}.
+ 
+ \begin{proposition}\label{prop:chance}
+-Every credence outside $\C$ is dominated by a member of $\C$, every member of $\C$ is undominated, and $\{L\}$ satisfies \chg{(X) and (A)}.
++Every credence outside $\C$ is dominated by a member of $\C$, every member of $\C$ is undominated, and $\{L\}$ satisfies \chg{(S), (LA) and (CA)}.
+ \end{proposition}
+ \begin{proof}
+-\emph{Weak dominators of $\theta\in\Theta$.} If $m$ weakly dominates $\theta$, the function $\kappa\mapsto E_\kappa I(m)-E_\kappa I(\theta)$ is affine and continuous on $\Delta_W$ and nonpositive on $\mathcal K$, hence on $\Theta$. At $\kappa=\theta$, unique minimisation forces $m=\theta$. This gives (A), and excludes ties at every world between members of $\C$ and other credences.
++\emph{Weak dominators of $\theta\in\Theta$.} If $m$ weakly dominates $\theta$, the function $\kappa\mapsto E_\kappa I(m)-E_\kappa I(\theta)$ is affine and continuous on $\Delta_W$ and nonpositive on $\mathcal K$, hence on $\Theta$. At $\kappa=\theta$, unique minimisation forces $m=\theta$. This gives \chg{(CA)}, and excludes ties at every world between members of $\C$ and other credences.
+ 
+ \emph{Assignment.} Here $\Delta$ is the set of finitely additive probabilities on $\mathcal K$. For $p\in\Delta$ let $\bar p(w)\coloneqq E_p[\kappa\mapsto\kappa(w)]$; by Lemma~\ref{lem:prob} $p\mapsto\bar p$ is continuous. Moreover $\bar p\in\Theta$: otherwise separation of $\bar p$ from the closed convex set $\Theta$ gives $a\in\mathbb R^W$ with $\sum_wa_w\bar p(w)>\sup_{\theta\in\Theta}\sum_wa_w\theta(w)$, while linearity and the upper bound in Lemma~\ref{lem:prob} give $\sum_wa_w\bar p(w)=E_p[\kappa\mapsto\sum_wa_w\kappa(w)]\le\sup_{\kappa\in\mathcal K}\sum_wa_w\kappa(w)$. Put $s(p)\coloneqq\bar p\in\C$. For $\kappa\in\mathcal K$, $p\mapsto E_\kappa I(s(p))=\sum_w\kappa(w)I(\bar p,w)$ is a finite nonnegative combination of lower semicontinuous functions composed with a continuous map into $\Theta$, hence lower semicontinuous.
+ 
+-\emph{Coverage.} If $p(F)=1$ for a finite $F\subseteq\mathcal K$, then $\bar p=\sum_{\kappa\in F}p_\kappa\kappa$ and $\sum_{\kappa\in F}p_\kappa E_\kappa I(c)=E_{\bar p}I(c)$ for every $c$. If $E_\kappa I(s(p))>E_\kappa I(m)$ for every $\kappa\in\supp p$, then $E_{\bar p}I(m)<E_{\bar p}I(s(p))$, contradicting Bayes optimality of $\bar p$. Lemma~\ref{lem:loss-one-stage} gives (X); the set of worlds $\mathcal K$ may be infinite.
++\emph{Coverage.} If $p(F)=1$ for a finite $F\subseteq\mathcal K$, then $\bar p=\sum_{\kappa\in F}p_\kappa\kappa$ and $\sum_{\kappa\in F}p_\kappa E_\kappa I(c)=E_{\bar p}I(c)$ for every $c$. If $E_\kappa I(s(p))>E_\kappa I(m)$ for every $\kappa\in\supp p$, then $E_{\bar p}I(m)<E_{\bar p}I(s(p))$, contradicting Bayes optimality of $\bar p$. Lemma~\ref{lem:loss-one-stage} gives \chg{(S)}; the set of worlds $\mathcal K$ may be infinite.
+ \end{proof}
+ 
+ \subsection{Tie exclusion is needed}
