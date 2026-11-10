@@ -151,7 +151,7 @@ version of the usual Fan--KKM lemma.
 Now the application:
 
 \begin{corollary}
-	Let $M$ be a set, let $\succeq_w$ be a comparison relation
+	Let $M$ be a nonempty set, let $\succeq_w$ be a comparison relation
 	on $M$ for each $w \in W$, and let $c \colon P \to M$.
 	Suppose:
 	\begin{enumerate}
@@ -175,6 +175,7 @@ Now the application:
 	c(p) \succeq_w m
 	\qquad \text{for every } w \in W.
 	\]
+	The set of such $p$ is also compact. 
 \end{corollary}
 
 \begin{proof}
@@ -204,14 +205,22 @@ Now the application:
 \end{remark}
 
 \subsection{Generalisations}
-\subsection{?}
 \begin{theorem}
 	The selection $c(p)$ can depend on the fixed model we are considering, $m^*$. 
 \end{theorem}
 \begin{theorem}
-	$c$ can be a correspondence rather than a map; but then we'd need to define $\psi$ to include all of the objects in $c(p)$ having the specified property (being at least as good as the $m^*$). So it's that set which needs to be closed and for the KKM covering property to hold.  
+	The selection $c$ may also be a nonempty-valued
+	correspondence. In that case, define
+	\[
+	\psi_{m^*}(w)
+	=
+	\{p:\text{every }m\in c(p)
+	\text{ satisfies }m\succeq_w m^*\}.
+	\]
+	If these sets are closed and satisfy the KKM covering
+	condition, then there is some $m$ (take any in $c(p)$) which is at least as good as $m^*$ at every world.
 \end{theorem}
-This is what is used in the Wald application. 
+
 
 
 \section{Applications}
@@ -227,37 +236,228 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	
 	So, for a weakly proper continuous scoring rule, non-probabilities are at best tied. 
 	
-	If, in addition, $L$ is strictly proper, then every non-probability is actually dominated. 
+	If, in addition, $L$ is strictly proper, then every non-probability is actually Pareto-dominated. 
 \end{lemma}
 
 
 \subsection{Wald}
-\begin{theorem}
-	A version of Wald theorem. 
+\begin{theorem}[A version of Wald's theorem]
+	Let $\Omega$ be nonempty, and let
+	$\U\colon\mathcal O\times\Omega\to\mathbb R$
+	assign each option a bounded utility profile.
+	Let $P$ be the finitely additive probabilities
+	on $\wp(\Omega)$, equipped with the topology
+	of pointwise convergence on events.
 	
-	If $\U:\mathcal{O}\times \Omega \to \Re$ is Bayes existing and Bayes continuous (as defined in Choosing Paper), then every option which is not-Bayes is dominated. \todo{we only get weak dominance, it doesn't give us the theorem from our paper}
+%	Write $B(p)$ for the options that
+%	are Bayes for $p$ and are not Pareto-dominated
+%	by any option in $\mathcal O$.
+	\[
+	B(p)
+	\coloneqq
+	\{o\in\mathcal O:
+	o\text{ is Bayes for }p
+	\text{ and is Pareto-undominated}\}.
+	\]
+	Here Pareto domination means weak improvement
+	at every world and strict improvement somewhere.
 	
-	If $\Omega$ is finite, then the non-Bayes options are uniformly dominaned, and hence also strictly dominated. 
+	Suppose:
+	\begin{enumerate}
+		
+		\item \textbf{Undominated Bayes continuity.}
+		For every benchmark $o^*$, world $w$, and net
+		$p_\alpha\to p$, if
+		\[
+		\U(o,w)\ge\U(o^*,w)
+		\qquad
+		\text{for every $\alpha$ and every }
+		o\in B(p_\alpha),
+		\]
+		then
+		\[
+		\U(o,w)\ge\U(o^*,w)
+		\qquad
+		\text{for every }o\in B(p).
+		\]
+		
+		\item \textbf{Undominated Bayes existence.}
+		For every $p\in P$,
+		$B(p)\neq\varnothing$.
+	\end{enumerate}
+	
+	Then every option is weakly improved upon at
+	every world by a Pareto-undominated Bayes option.
+	Consequently, every option that is not Bayes
+	for any prior is Pareto-dominated by a
+	Pareto-undominated Bayes option.
 \end{theorem}
-\begin{proof}Fix $o^*$. Let $c\rightrightarrows \mathcal{O}$ select the Bayes options for $p$. 
+
+Actually, we can use the original theorem as we have a lemma: the assumptions make $B(p)$ a singleton. 
+\begin{proof}
+	Fix $o^*$ and define
+	\[
+	\psi(w)=
+	\{p\in P:\U(o,w)\ge\U(o^*,w)
+	\text{ for every }o\in B(p)\}.
+	\]
+	Undominated Bayes continuity makes each $\psi(w)$
+	closed.
 	
-	Let $\psi(w)=\{p : \U(o,w)\geq \U(o^*,w)\text{ for all $o\in c(p)$}\}$.
+	For KKM covering, first observe that all members
+	of $B(p)$ have the same utility profile.
+	Indeed, take $a,b\in B(p)$, fix $w$, and let
+	\[
+	p_n=(1-1/n)p+(1/n)\delta_w.
+	\]
+	For every $o\in B(p_n)$, Bayes optimality gives
+	\[
+	0\le E_{p_n}[\U(o)-\U(b)]
+	\le \frac1n[\U(o,w)-\U(b,w)],
+	\]
+	where the second inequality follows because
+	$b$ is Bayes for $p$.
+	Thus every member of $B(p_n)$ performs at least
+	as well as $b$ at $w$. Continuity gives the same
+	conclusion for every member of $B(p)$.
+	Interchanging $a$ and $b$ proves profile equality.
 	
+	Now take a finitely supported $p$. Choose
+	$o\in B(p)$. Bayes optimality gives
+	$E_p[\U(o)-\U(o^*)]\ge0$, so some
+	$w\in\supp(p)$ satisfies
+	$\U(o,w)\ge\U(o^*,w)$.
+	Profile equality makes this true for every
+	member of $B(p)$, so $p\in\psi(w)$.
 	
+	Fan--KKM gives a prior $p^*$ belonging to every
+	$\psi(w)$. Choose $o'\in B(p^*)$, possible by Undominated Bayes existanece 
+	Then $o'$ is Pareto-undominated and weakly improves
+	upon $o^*$ at every world.
 	
-	Bayes continuity then gives us that each $\psi(w)$ is closed. 
-	
-	KKM covering holds by ?? 
-	
-	That gives that there's some $p$ for which $\U(o,w)\geq \U*(o^*,w)$ for all $o$ Bayes for $p$ and all worlds. 
-	
-	So either $o^*$ is itself Bayes for $p$, or it is weakly dominated.
-	
-	
-	For $\Omega$ finite, we find some small enough gap (seems we choose it using a divergence!)
-	
+	If $o^*$ is not Bayes for any prior, it cannot
+	tie everywhere with $o'$, since that would make
+	it Bayes for $p^*$. Hence $o'$ Pareto-dominates $o^*$.
 \end{proof}
 
+We then seem to use divergence stuff to get the uniform dominance stuff...
+
+
+\begin{color}{blue}\begin{proposition}[Weak improvement by a Bayes option]
+		Let $\Omega$ be finite and nonempty, let
+		$\U\colon\mathcal O\times\Omega\to\mathbb R$,
+		and let $P$ be the probability simplex on $\Omega$.
+		Write $B(p)$ for the options Bayes for $p$.
+		
+		Suppose $B(p)\neq\varnothing$ for every $p\in P$,
+		and that, for every benchmark $m$ and world $w$,
+		the set
+		\[
+		\{p\in P:\U(o,w)\ge\U(m,w)
+		\text{ for every }o\in B(p)\}
+		\]
+		is closed.
+		
+		Then every option is weakly improved upon at every
+		world by a Bayes option. Moreover, every Bayes option
+		is Pareto-undominated. Consequently, every non-Bayes
+		option is Pareto-dominated by a Bayes option.
+	\end{proposition}
+	
+	\begin{proof}
+		First, all options Bayes for the same prior have
+		identical utility profiles. Take $a,b\in B(p)$,
+		fix $w$, and put
+		\[
+		p_n=(1-1/n)p+(1/n)\delta_w.
+		\]
+		For every $o\in B(p_n)$, Bayes optimality gives
+		\[
+		(1-1/n)\bigl[E_p\U(o)-E_p\U(b)\bigr]
+		+\frac1n\bigl[\U(o,w)-\U(b,w)\bigr]\ge0.
+		\]
+		The first bracket is nonpositive, so
+		$\U(o,w)\ge\U(b,w)$. By closedness, this holds
+		for every $o\in B(p)$, including $a$.
+		Interchanging $a$ and $b$ gives equality.
+		
+		Fix a benchmark $m$ and define
+		\[
+		\psi(w)=
+		\{p\in P:\U(o,w)\ge\U(m,w)
+		\text{ for every }o\in B(p)\}.
+		\]
+		These sets are closed. For each $p$, Bayes
+		optimality gives some $w\in\supp(p)$ where
+		a Bayes option performs at least as well as $m$.
+		Since all Bayes options for $p$ have the same
+		profile, $p\in\psi(w)$. Fan--KKM therefore gives
+		a prior whose Bayes options weakly improve upon
+		$m$ at every world.
+		
+		If an option $b$ weakly improves upon
+		$a\in B(p)$ everywhere, then $b\in B(p)$.
+		Profile equality forces them to tie everywhere.
+		Thus every Bayes option is Pareto-undominated.
+		
+		Finally, a non-Bayes benchmark cannot tie everywhere
+		with its Bayes weak improver, since that would make
+		it Bayes for the same prior. It is therefore
+		Pareto-dominated.
+	\end{proof}
+	
+	\begin{proposition}[Uniform strict dominance]
+		Assume the preceding hypotheses. Suppose additionally
+		that, for every world $w$ and real threshold $r$,
+		the set
+		\[
+		\{p\in P:\U(o,w)\ge r
+		\text{ for every }o\in B(p)\}
+		\]
+		is closed.
+		
+		Then every non-Bayes option is uniformly strictly
+		dominated by a Pareto-undominated Bayes option.
+	\end{proposition}
+	
+	\begin{proof}
+		Fix a non-Bayes option $m$. Define
+		\[
+		D_m(p)=
+		\sup_{o\in\mathcal O}E_p[\U(o)-\U(m)].
+		\]
+		Bayes existence makes this supremum finite
+		and attained. Since $m$ is never Bayes,
+		$D_m(p)>0$ for every $p$.
+		
+		As a supremum of continuous functions of $p$,
+		$D_m$ is lower semicontinuous. Compactness gives
+		\[
+		\nu=\min_{p\in P}D_m(p)>0.
+		\]
+		Define
+		\[
+		\psi_\nu(w)=
+		\{p\in P:\U(o,w)\ge\U(m,w)+\nu
+		\text{ for every }o\in B(p)\}.
+		\]
+		These sets are closed by the additional assumption.
+		
+		For every $p$, a Bayes option has expected
+		advantage $D_m(p)\ge\nu$. Hence it improves
+		upon $m$ by at least $\nu$ at some world
+		in $\supp(p)$. All Bayes options for $p$
+		have the same profile, so $p\in\psi_\nu(w)$.
+		Fan--KKM gives a prior $p^*$ whose Bayes
+		options satisfy
+		\[
+		\U(o,w)\ge\U(m,w)+\nu
+		\qquad\text{for every }w\in\Omega.
+		\]
+		These options are Pareto-undominated by
+		the preceding proposition.
+	\end{proof}
+\end{color}
 \end{document}
 
 
