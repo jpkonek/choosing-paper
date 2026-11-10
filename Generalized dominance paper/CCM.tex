@@ -234,12 +234,168 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	
 	If $L$ is continuous, then \ref{ass:cl} holds.
 	
-	So, for a weakly proper continuous scoring rule, non-probabilities are at best tied. 
+	So, for a weakly proper continuous scoring rule, non-probabilities are Pareto-dominated by, or have the same loss profile as, a probability function. 
 	
 	If, in addition, $L$ is strictly proper, then every non-probability is actually Pareto-dominated. 
 \end{lemma}
 
-
+\begin{color}{blue}
+	\subsection{Proper loss functions}
+	
+	Let $W$ be nonempty, and let $P$ be the finitely additive
+	probabilities on $\wp(W)$, equipped with the topology
+	of pointwise convergence on events. Let $M\supseteq P$
+	be a set of credence functions, and let
+	\[
+	L\colon M\times W\to[0,\infty]
+	\]
+	be a loss function.
+	
+	We say that $L$ is \emph{proper} if
+	\[
+	E_p[L(p,\cdot)]\le E_p[L(m,\cdot)]
+	\qquad(p\in P,\ m\in M),
+	\]
+	and \emph{strictly proper} if the inequality is strict
+	whenever $m\neq p$.
+	
+	\begin{proposition}[Weak improvement under proper losses]
+		Suppose $L$ is proper and:
+		\begin{enumerate}
+			\item For every finitely supported $p\in P$,
+			\[
+			E_p[L(p,\cdot)]<\infty.
+			\]
+			\item For every world $w$, the map
+			$p\mapsto L(p,w)$ is lower semicontinuous.
+		\end{enumerate}
+		Then, for every $m\in M$, there is a probability
+		$p\in P$ such that
+		\[
+		L(p,w)\le L(m,w)
+		\qquad\text{for every }w\in W.
+		\]
+		The set of such probabilities is nonempty and compact.
+		
+		Consequently, every non-probabilistic report is
+		either Pareto-dominated by a probability or has
+		the same loss profile as a probability.
+		
+		If $L$ is strictly proper, every probability is
+		Pareto-undominated, and every non-probabilistic
+		report is Pareto-dominated by a probability.
+	\end{proposition}
+	
+	\begin{proof}
+		Apply the preceding corollary with $c(p)=p$ and
+		\[
+		m'\succeq_w m
+		\quad\Longleftrightarrow\quad
+		L(m',w)\le L(m,w).
+		\]
+		
+		For closedness, fix $m$ and $w$. If $L(m,w)$
+		is finite, the comparison set
+		\[
+		\{p:L(p,w)\le L(m,w)\}
+		\]
+		is closed by lower semicontinuity. If
+		$L(m,w)=\infty$, the comparison set is all of $P$.
+		
+		For coherent admissibility, take a finitely
+		supported $p$ and a benchmark $m$. If
+		\[
+		L(m,w)<L(p,w)
+		\qquad\text{for every }w\in\supp(p),
+		\]
+		finite support and finite truthful expected loss
+		would give
+		\[
+		E_p[L(m,\cdot)]<E_p[L(p,\cdot)],
+		\]
+		contradicting propriety. Hence some world in
+		$\supp(p)$ satisfies $L(p,w)\le L(m,w)$.
+		
+		The corollary gives the required probability.
+		Its possible witnesses form a closed subset
+		of compact $P$, so that set is compact.
+		
+		Under strict propriety, no report distinct from
+		a probability $p$ can weakly improve its loss
+		everywhere: that would contradict
+		\[
+		E_p[L(p,\cdot)]<E_p[L(m,\cdot)].
+		\]
+		Thus every probability is Pareto-undominated.
+		Likewise, a non-probabilistic benchmark cannot
+		have the same loss profile as its probabilistic
+		weak improver. The improvement must therefore
+		be strict somewhere.
+	\end{proof}
+	
+	\begin{proposition}[Uniform dominance with finitely many worlds]
+		Suppose $W$ is finite, $L$ is strictly proper,
+		and $L(p,w)$ is finite for every $p\in P$ and
+		$w\in W$. Suppose also that $p\mapsto L(p,w)$
+		is lower semicontinuous for every $w$.
+		
+		Let $m\in M\setminus P$ have finite loss at every
+		world. Then there are $p^*\in P$ and $\nu>0$ such that
+		\[
+		L(p^*,w)\le L(m,w)-\nu
+		\qquad\text{for every }w\in W.
+		\]
+		In particular, $m$ is uniformly strictly dominated
+		by a Pareto-undominated probability.
+	\end{proposition}
+	
+	\begin{proof}
+		Define the optimal expected loss
+		\[
+		H(p)=E_p[L(p,\cdot)].
+		\]
+		Propriety gives
+		\[
+		H(p)=\inf_{q\in P}E_p[L(q,\cdot)].
+		\]
+		For each fixed $q$, its expected loss is continuous
+		in $p$, since $W$ is finite and $L(q,w)$ is finite.
+		Thus $H$ is upper semicontinuous.
+		
+		The expected advantage of $p$ over $m$ is
+		\[
+		D_m(p)=E_p[L(m,\cdot)]-H(p).
+		\]
+		It is lower semicontinuous, and strict propriety
+		makes it strictly positive everywhere.
+		Compactness of $P$ therefore gives
+		\[
+		\nu=\min_{p\in P}D_m(p)>0.
+		\]
+		
+		For each world $w$, define
+		\[
+		\psi_m(w)=
+		\{p\in P:L(p,w)\le L(m,w)-\nu\}.
+		\]
+		These sets are closed by lower semicontinuity.
+		
+		For every $p\in P$,
+		\[
+		\sum_{w\in\supp(p)}
+		p(w)\bigl[L(m,w)-L(p,w)\bigr]\ge\nu.
+		\]
+		Hence some $w\in\supp(p)$ satisfies
+		$L(p,w)\le L(m,w)-\nu$.
+		This is the KKM covering condition.
+		
+		Fan--KKM supplies
+		$p^*\in\bigcap_{w\in W}\psi_m(w)$,
+		giving the stated uniform improvement.
+		Strict propriety makes $p^*$ Pareto-undominated
+		by the preceding proposition.
+	\end{proof}
+\end{color}
 \subsection{Wald}
 \begin{theorem}[A version of Wald's theorem]
 	Let $\Omega$ be nonempty, and let
@@ -259,8 +415,7 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	o\text{ is Bayes for }p
 	\text{ and is Pareto-undominated}\}.
 	\]
-	Here Pareto domination means weak improvement
-	at every world and strict improvement somewhere.
+
 	
 	Suppose:
 	\begin{enumerate}
