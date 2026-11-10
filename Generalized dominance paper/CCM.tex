@@ -294,19 +294,11 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 \end{theorem}
 
 Actually, we can use the original theorem as we have a lemma: the assumptions make $B(p)$ a singleton. 
-\begin{proof}
-	Fix $o^*$ and define
-	\[
-	\psi(w)=
-	\{p\in P:\U(o,w)\ge\U(o^*,w)
-	\text{ for every }o\in B(p)\}.
-	\]
-	Undominated Bayes continuity makes each $\psi(w)$
-	closed.
-	
-	For KKM covering, first observe that all members
+\begin{lemma}
+	all members
 	of $B(p)$ have the same utility profile.
-	Indeed, take $a,b\in B(p)$, fix $w$, and let
+\end{lemma}
+\begin{proof}Take $a,b\in B(p)$, fix $w$, and let
 	\[
 	p_n=(1-1/n)p+(1/n)\delta_w.
 	\]
@@ -321,23 +313,51 @@ Actually, we can use the original theorem as we have a lemma: the assumptions ma
 	as well as $b$ at $w$. Continuity gives the same
 	conclusion for every member of $B(p)$.
 	Interchanging $a$ and $b$ proves profile equality.
-	
-	Now take a finitely supported $p$. Choose
-	$o\in B(p)$. Bayes optimality gives
-	$E_p[\U(o)-\U(o^*)]\ge0$, so some
-	$w\in\supp(p)$ satisfies
-	$\U(o,w)\ge\U(o^*,w)$.
-	Profile equality makes this true for every
-	member of $B(p)$, so $p\in\psi(w)$.
-	
-	Fan--KKM gives a prior $p^*$ belonging to every
-	$\psi(w)$. Choose $o'\in B(p^*)$, possible by Undominated Bayes existanece 
-	Then $o'$ is Pareto-undominated and weakly improves
-	upon $o^*$ at every world.
-	
-	If $o^*$ is not Bayes for $p^*$, it cannot
-	tie everywhere with $o'$. Hence $o'$ Pareto-dominates $o^*$.
 \end{proof}
+%\begin{proof}
+%	Fix $o^*$ and define
+%	\[
+%	\psi(w)=
+%	\{p\in P:\U(o,w)\ge\U(o^*,w)
+%	\text{ for every }o\in B(p)\}.
+%	\]
+%	Undominated Bayes continuity makes each $\psi(w)$
+%	closed.
+%	
+%	For KKM covering, first observe that all members
+%	of $B(p)$ have the same utility profile.
+%	Indeed, take $a,b\in B(p)$, fix $w$, and let
+%	\[
+%	p_n=(1-1/n)p+(1/n)\delta_w.
+%	\]
+%	For every $o\in B(p_n)$, Bayes optimality gives
+%	\[
+%	0\le E_{p_n}[\U(o)-\U(b)]
+%	\le \frac1n[\U(o,w)-\U(b,w)],
+%	\]
+%	where the second inequality follows because
+%	$b$ is Bayes for $p$.
+%	Thus every member of $B(p_n)$ performs at least
+%	as well as $b$ at $w$. Continuity gives the same
+%	conclusion for every member of $B(p)$.
+%	Interchanging $a$ and $b$ proves profile equality.
+%	
+%	Now take a finitely supported $p$. Choose
+%	$o\in B(p)$. Bayes optimality gives
+%	$E_p[\U(o)-\U(o^*)]\ge0$, so some
+%	$w\in\supp(p)$ satisfies
+%	$\U(o,w)\ge\U(o^*,w)$.
+%	Profile equality makes this true for every
+%	member of $B(p)$, so $p\in\psi(w)$.
+%	
+%	Fan--KKM gives a prior $p^*$ belonging to every
+%	$\psi(w)$. Choose $o'\in B(p^*)$, possible by Undominated Bayes existanece 
+%	Then $o'$ is Pareto-undominated and weakly improves
+%	upon $o^*$ at every world.
+%	
+%	If $o^*$ is not Bayes for $p^*$, it cannot
+%	tie everywhere with $o'$. Hence $o'$ Pareto-dominates $o^*$.
+%\end{proof}
 
 We then seem to use divergence stuff to get the uniform dominance stuff...
 
