@@ -203,10 +203,14 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:d(p)\succeq_w m\}$. We could have i
 %	\end{itemize}
 %\end{lemma}
 
-Now, this KKM condition obviously follows from, for example, weak propriety: for every finitely additive probability $p$, $\Exp_p[\l(p)]\geq\Exp_p[\l(m)]$. It would also follow from other evaluation functions, such as risk-weighted expectations, so long as they have the following property: 
+Now, this KKM condition obviously follows from, for example, weak propriety: for every finitely additive probability $p$, $\Exp_p[\l(p)]\geq\Exp_p[\l(m)]$. It would also follow from other evaluation functions, such as risk-weighted expectations, so long as they have the following respecting dominance type property: 
 	\begin{itemize}
-	\item For fs $p$, if $E_p[X]\geq E_p[Y]$ then there is some $w\in\supp(p)$ such that  $X(w)\geq Y(w)$.
+	\item For fs $p$, if $E_p[X]\geq E_p[Y]$ then there is some $w\in\supp(p)$ such that $X(w)\geq Y(w)$.
+	\item If it's all totally ordered:\\
+	For fs $p$, If $X(w)< Y(w)$ for all $w\in\supp(p)$, then $E_p[X]<E_p[Y]$. 
 \end{itemize}
+Note that it's only for the finitely supported ones. Even standard Expected value doesn't satisfy this for \emph{all} fa probs: Bayes options can still be strictly dominated (atlhgough not unifromly dominated), but it does for the fs ones. 
+
 So we also know that $r$-proper continuous functions are sufficient for a dominance argument for probabilism. 
 
 
@@ -259,7 +263,8 @@ Some Bregman type stuff involved in the proof. Here we really do use something l
 \begin{theorem}
 	Suppose $E_p$ is a evaluation function of random variables such that ??
 	\begin{itemize}
-		\item $p\mapsto E_p$ is continuous. 
+		\item Perhaps we need: $p\mapsto E_p$ is continuous. 
+		\item ?
 	\end{itemize}
 	
 	If $\l$ is weakly $E$-proper and lower semi-continuous, then non-probabilities are strictly dominated. 
@@ -310,7 +315,7 @@ It just depends on being able to find a selection satisfying the conditions of \
 \begin{proposition}
 	If $\C\subseteq \M$ is a class of models and $\succeq_w$ are orderings on $\M$
 	
-	Say that $s: P\to \M$ is a KKM-selection when 
+	Say that $s: P\to \M$ is a KKM-selection when JUST RESTATING THE ORIGINAL!
 	\begin{itemize}
 		\item For each $w$, $\{p : s(p)\succeq_w m\}$ is closed.
 %		\begin{itemize}
@@ -323,7 +328,7 @@ It just depends on being able to find a selection satisfying the conditions of \
 
 
 
-\subsection{Conditional Updating}
+\subsection{Conditionalisation}
 
 \subsection{Chance Dominance}
 
@@ -351,7 +356,11 @@ If $O$ is closed and convex, then $o$ is Bayes iff it is non-dominated.
 	For fs probability $p$, let $s(p)$ be an option corresponding to $\sum_w p(w) o_w$. Since $\O$ is convex, this can be chosen. And for finitely additive $p$, let $p_\alpha$ be a net of finitely supporoted probabilities which converge to $p_\alpha$. Let $o_p=\lim o_{p_\alpha}$, possible as $O$ is closed. 
 	\todo{only the fs ones!!}
 	
-	Then $\{p\in P: o_p\geq_w o^*\}$ is closed. IS IT????
+	Then $\{p\in P: o_p\geq_w o^*\}$ is closed. PROOF??
+	
+	And for all $p$ there is some $w$ for which it's better than $o^*$. This depends on our particular choice of $o_w$. 
+	
+	So by the KK	
 
 \end{proof}
 
