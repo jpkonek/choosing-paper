@@ -1,20 +1,27 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper]{geometry}
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+%\hypersetup{pdftitle={Coherence and Dominance under General Rankings},hypertexnames=false}
+
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{sublemma}{Sublemma}[theorem]
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+
+
+
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\M}{\mathcal M}
@@ -25,15 +32,18 @@
 \newcommand{\Lf}{\mathfrak L}
 \newcommand{\one}{\mathbf 1}
 \newcommand{\supp}{\operatorname{supp}}
-\setlist{itemsep=1pt,topsep=3pt}
+\newcommand{\Exp}{\operatorname{Exp}}
+%\setlist{itemsep=1pt,topsep=3pt}
 
 \title{Accuracy Dominance Results}
 \author{Jason Konek and Catrin Campbell-Moore}
-\date{October 2026}
+
 
 
 
 %CCM added
+\usepackage{cleveref}
+\newenvironment{AIwritten}{\begin{color}{blue}}{\end{color}}
 
 
 \usepackage[textsize=footnotesize,obeyFinal,backgroundcolor=white,bordercolor=gray!20,linecolor=gray!20]{todonotes} % use "\PassOptionsToPackage{disable}{todonotes}" to disable in a document
@@ -43,10 +53,14 @@
 \maketitle
 \section{Core result}
 
+%\begin{definition}
+%	$P$ is the space of finitely additive probabilities on $\wp(W)$. 
+%\end{definition}
+
 We use the following probability formulation of the
 Fan--KKM lemma.
 
-\begin{theorem}[Fan--KKM for probabilities]
+\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}
 	Let $W$ be a nonempty set, and let $P$ be the space
 	of finitely additive probabilities on $\wp(W)$,
 	equipped with the topology of pointwise convergence
@@ -70,8 +84,415 @@ Fan--KKM lemma.
 	\] and it is compact. 
 \end{theorem}
 
-\begin{color}{gray}
-In appendix:
+
+
+
+Now an application: 
+$\succeq_w$ is a relation on some set $M$ representing  ``at least as good as in $w$'', 
+the conclusion of the theorem says that for every model there is some special kind of object (which are mapped to by the function $s$) which is guaranteed to be at least as good as it. If in addition we have assumptions which imply that there cannot be ties between a space of 
+
+\begin{corollary}\label{thm:dom}
+	Let $M$ be a nonempty set, let $\succeq_w$ be a comparison relation
+	on $M$ for each $w \in W$, and let $s \colon P \to M$.
+	Suppose:
+	\begin{enumerate}
+		\item\label{ass:cl} \textbf{Closedness.}
+		For every $m \in M$ and $w \in W$, the set
+		\[
+		\{p \in P : s(p) \succeq_w m\}
+		\]
+		is closed in $P$.
+		
+		\item \label{ass:KKM}\textbf{KKM covering.}
+		For every finitely supported $p \in P$ and every
+		$m \in M$, there is some $w \in \operatorname{supp}(p)$
+		such that
+		\[
+		s(p) \succeq_w m.
+		\]
+	\end{enumerate}
+	Then, for every $m \in M$, there exists some $p \in P$ such that:
+	\[
+	s(p) \succeq_w m
+	\qquad \text{for every } w \in W.
+	\]
+	The set of such $p$ is also compact. 
+\end{corollary}
+
+\begin{proof}
+	Fix $m\in M$ and define
+	\[
+	\psi(w)=\{p\in P:s(p)\succeq_w m\}.
+	\]
+	Closedness gives closed values, and Coherent
+	Admissibility gives the KKM covering condition.
+	The probability formulation of Fan--KKM therefore
+	yields
+	\[
+	\bigcap_{w\in W}\psi(w)\neq\varnothing.
+	\]
+	Any probability in this intersection has the
+	required property.
+\end{proof}
+\begin{remark}
+	If each $\succeq_w$ is total, Coherent Admissibility
+	is equivalent to the following condition:
+	for every finitely supported probability $p$,
+	there is no model $m \in M$ which strictly dominates $p$ on its support, that is:
+	\[
+	m \succ_w s(p)
+	\qquad\text{for every }w\in\supp(p).
+	\]
+\end{remark}
+
+\subsection{Generalisations}
+\begin{theorem}
+	The selection $s(p)$ can depend on the fixed model we are considering, $m^*$: $s_{m^*}(p)$
+\end{theorem}
+This is useful, for example, when the space which is being considered is unbounded. (E.g.~Wald). 
+
+\begin{theorem}
+	The selection $s$ may also be a nonempty-valued
+	correspondence. In that case, define
+	\[
+	\psi_{m^*}(w)
+	=
+	\{p:\text{every }m\in s(p)
+	\text{ satisfies }m\succeq_w m^*\}.
+	\]
+	If these sets are closed and satisfy the KKM covering
+	condition, then there is some $m$ (take any in $s(p)$) which is at least as good as $m^*$ at every world.
+\end{theorem}
+In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:d(p)\succeq_w m\}$. We could have instead selected $\psi_m$ to be closed subsets of this, so long as the KKM covering condition still holds. 
+\begin{theorem}
+	The conclusion of \cref{thm:dom} holds if we can select sets $\psi_m(w)\subseteq \Delta$ which satisfy the conditions of \cref{thm:KKM} such that for every $w$, $\psi_m(w)\subseteq\{p: s(p)\succeq_w m\}$. 
+\end{theorem}
+
+
+
+\section{Applications}
+
+\subsection{Dominance argument for probabilistic coherence}
+%Suppose $M$ is a class of models containing probabilities. For example, $M=\R^{\mathsf{Propns}}$. And suppose $\succeq_w$ is an ordering on $M$ for each $w$. 
+\begin{proposition}
+	Suppose $P\subseteq\M$ and $\succeq_w$ is an ordering on $\M$ such that:
+	\begin{itemize}
+		\item For all fs probs and models $m$, there is some $w\in\supp(p)$ in which $p$ is at least as good as $m$. 
+		\begin{itemize}
+			\item If $\succeq_w$ are total, this is to say that for fs probs there is no $m$ which is $p$-surely strictly better than $p$: fs probs are not strictly dominated on their support. 
+		\end{itemize}
+		\item For all models $m$, $\{p\text{ probability} : p\succeq_w m\}$ is closed. 
+		\begin{itemize}
+			\item For example, each $\succeq_w$ is generated by a continuous (or lower semi-continuous) loss function.
+		\end{itemize}
+	\end{itemize}
+	Then non-probabilities are Pareto-dominated by, or have the same loss profile as, a probability function. 
+	
+	If, in addition, there can be no probabilistic $p$ and non-prbabilistic $m$ which are tied at every world, then in fact, every non-probability is Pareto-dominated. 
+\end{proposition}
+\begin{proof}
+	Just let $s(p)=p$ and we have exactly the conditions. 
+\end{proof}
+
+%Let's describe some other sufficient conditions for the KKM
+%\begin{lemma}
+%	If $\succeq$ is a total ordering, then the KKM condition can be replaced with:
+%	\begin{itemize}
+%		\item  For all finitely additive probs, there is no model $m$ which is $p$-surely better than $p$. \\
+%		That is, $p$ is not strictly dominated on its support. 
+%	\end{itemize}
+%\end{lemma}
+
+Now, this KKM condition obviously follows from, for example, weak propriety: for every finitely additive probability $p$, $\Exp_p[\l(p)]\geq\Exp_p[\l(m)]$. It would also follow from other evaluation functions, such as risk-weighted expectations, so long as they have the following property: 
+	\begin{itemize}
+	\item For fs $p$, if $E_p[X]\geq E_p[Y]$ then there is some $w\in\supp(p)$ such that  $X(w)\geq Y(w)$.
+\end{itemize}
+So we also know that $r$-proper continuous functions are sufficient for a dominance argument for probabilism. 
+
+
+%
+%\begin{lemma}The following are sufficient for the covering part:
+%	
+%	Suppose $\succ_w$ is total.
+%	
+%	For all finitely supported probability functions, there is no model $m$ which is $p$-surely better than $c(p)$. That is, $p$ is not strictly dominated $\underline{on its support}$
+%	
+%	Suppose $\succ_w$ is generated by $\l:\M\times\Omega\to \R\cup\{\infty\}$.
+%	$\l$ is weakly proper on finitely additive probabilities. That is, for every finitely additive probability $p$, $\Exp_p[L(p)]\geq\Exp_p[L(m)]$. 
+%	
+%	That's because this entails that there is some $w\in \supp(p)$ such that $L(p,w)\leq L(m,w)$. 
+%	
+%	In fact, other more general evaluation functions, such as risk-weighted expected values, would equally work, so long as they have this property: $E$ is a \emph{sensible evaluation} when:
+%	\begin{itemize}
+%		\item If $p$ is finitely additive and $E_p[X]\geq E_p[Y]$ then there is some $w\in\supp(p)$ such that  $X(w)\geq Y(w)$.
+%	\end{itemize}
+%	
+%	Then, we ask that $\Lf$ be weakly $E$-proper on finitely additive probabilities. 
+%\end{lemma}
+
+Note that the condition that the world be in the support of $p$ is substantive and important. Simply imposing a simple form of Joyce's Coherent Admissibility is not sufficient: 
+\begin{itemize}
+	\item All finitely additive probability functions are not strictly dominated. 
+\end{itemize}
+If $\delta_w$ is not strictly dominated because $\delta_w\succeq_{w^*}m$, but $\delta_w\prec_w m$, then the conditions are not satisfied. Being not dominated on the support requires that $\delta_w\succ_w m$. 
+
+%\subsection{Evaluated objects don't include probabilities}
+%Often what we are evaluating aren't themselves probabilities. 
+
+\subsubsection{Infinite domains}
+Note that there is no restriction in this theorem to $\Omega$ being finite. 
+
+There are known challenges with applying accuracy considerations on arbitrary domains. It is impossible to get a real valued loss function which is strictly proper: there are just too many coherent models to expect comparisons to be reflected in the reals. This challenge has been made easier as we direclty work with orderings rather than real-valued loss functions. 
+
+Note that if the ordering satisfies ?? properties, then it is reflected by a loss function onto a field, and if it also satisfies Archimeanicity, it can be seen as a real-valued loss function. 
+
+There is an outstanding question, however: for an arbitrary $\Omega$, is there a ranking which has the properties for the application of the theorem?
+
+Note also that it strengthens the theorem of Nielson \todo{does it??}
+
+\subsubsection{Strict Dominance}
+
+That merely obtains Perato-dominance of the non-probabilities. The standard conclusion of the accuracy argument is that they are \emph{strictly} dominated. 
+
+Some Bregman type stuff involved in the proof. Here we really do use something like propriety (although risk would do too); and probably it depends on finitely many worlds. 
+
+\begin{theorem}
+	Suppose $E_p$ is a evaluation function of random variables such that ??
+	\begin{itemize}
+		\item $p\mapsto E_p$ is continuous. 
+	\end{itemize}
+	
+	If $\l$ is weakly $E$-proper and lower semi-continuous, then non-probabilities are strictly dominated. 
+\end{theorem}
+\begin{proof}
+	Fix non-probability $m$. 
+	
+	Define \[D_m(p)=E_p[\l(m)]-E_p[\l(p)]\]
+	
+	This is everywhere strictly positive, by strict propriety, and is lower semicontinuous.\todo{justify}
+	Since $P$ is compact, $D_m$ obtains its infimum on $P$, so we have: 
+	\[
+	\nu=\min_{p\in P}D_m(p)>0.
+	\]
+	
+	For each world $w$, define
+	\[
+	\psi_m(w)=
+	\{p\in P:\l(p,w)\le \l(m,w)-\nu\}.
+	\]
+	These sets are closed by lower semicontinuity.
+	
+	For every fs $p$
+	\[D_m(p)=E_p[\l(m)]-E_p[\l(p)]=
+	\sum_{w\in\supp(p)}
+	p(w)\bigl[\l(m,w)-\l(p,w)\bigr]\ge\nu.
+	\]
+	Hence, for some $w\in\supp(p)$ we have \[\l(m,w)-\l(p,w)\ge\nu.
+	\] that is, $p\in \psi_m(w)$. 
+	This is the KKM covering condition.
+	
+	Fan--KKM supplies
+	$p^*\in\bigcap_{w\in W}\psi_m(w)$,
+	giving the stated uniform improvement.
+	Strict propriety makes $p^*$ Pareto-undominated
+	by the preceding proposition.
+	
+\end{proof}
+
+\subsection{Working with a different class}
+
+We can easily work with a class of models which doesn't itself contan $P$, or embed $P$ in $\M$ in a non-identity way. 
+
+It just depends on being able to find a selection satisfying the conditions of \cref{thm:dom}
+
+
+
+\begin{proposition}
+	If $\C\subseteq \M$ is a class of models and $\succeq_w$ are orderings on $\M$
+	
+	Say that $s: P\to \M$ is a KKM-selection when 
+	\begin{itemize}
+		\item For each $w$, $\{p : s(p)\succeq_w m\}$ is closed.
+%		\begin{itemize}
+%			\item $p\mapsto \l(s(p),w)$ is lower semicontinuous. 
+%		\end{itemize}
+		\item For finitely supported probabilities, $p$, there is no $m$ which is $p$-surely better than $s(p)$.  
+	\end{itemize}
+\end{proposition}
+
+
+
+
+\subsection{Conditional Updating}
+
+\subsection{Chance Dominance}
+
+We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts evaluating choices. Or different possible chance functions. 
+
+Then $P$ is the space of probabilistic weights over these different experts.
+
+Suppose $M$ is 
+
+
+
+\subsection{Wald}
+
+Wald's theorem shows that an option is Bayes iff it is not dominated. However it usually assumes that the space of options includes mixed options. Instead of assuming mixed options, we can assume we have a form of continuity, then use this KKM theorem. This obtains more or less the result from Choosing how to Choose. 
+
+\begin{theorem}
+Let $\Omega$ be nonempty, and let
+$\U\colon O\times\Omega\to\mathbb R$
+assign each option a bounded utility profile.
+If $O$ is closed and convex, then $o$ is Bayes iff it is non-dominated.
+\end{theorem}
+\begin{proof}
+	Fix $o^*\in O$. Let $o_w\in O$ have $\U(o_w,w)\geq \U(o,w)$.
+	
+	For fs probability $p$, let $s(p)$ be an option corresponding to $\sum_w p(w) o_w$. Since $\O$ is convex, this can be chosen. And for finitely additive $p$, let $p_\alpha$ be a net of finitely supporoted probabilities which converge to $p_\alpha$. Let $o_p=\lim o_{p_\alpha}$, possible as $O$ is closed. 
+	\todo{only the fs ones!!}
+	
+	Then $\{p\in P: o_p\geq_w o^*\}$ is closed. IS IT????
+
+\end{proof}
+
+\begin{theorem}[A version of Wald's theorem]
+	Let $\Omega$ be nonempty, and let
+	$\U\colon\mathcal O\times\Omega\to\mathbb R$
+	assign each option a bounded utility profile.
+	Let $P$ be the finitely additive probabilities
+	on $\wp(\Omega)$, equipped with the topology
+	of pointwise convergence on events.
+	
+%	Write $B(p)$ for the options that
+%	are Bayes for $p$ and are not Pareto-dominated
+%	by any option in $\mathcal O$.
+	\[
+	B(p)
+	\coloneqq
+	\{o\in\mathcal O:
+	o\text{ is Bayes for }p
+	\text{ and is Pareto-undominated}\}.
+	\]
+
+	
+	Suppose:
+	\begin{enumerate}
+		
+		\item \textbf{Bayes continuity.}
+		For every benchmark $o^*$, world $w$, and net
+		$p_\alpha\to p$, if
+		\[
+		\U(o,w)\ge\U(o^*,w)
+		\qquad
+		\text{for every $\alpha$ and every }
+		o\in B(p_\alpha),
+		\]
+		then
+		\[
+		\U(o,w)\ge\U(o^*,w)
+		\qquad
+		\text{for every }o\in B(p).
+		\]
+		
+		\item \textbf{Bayes existence.}
+		For every $p\in P$,
+		$B(p)\neq\varnothing$.
+	\end{enumerate}
+	
+	Then every option is weakly improved upon at
+	every world by a Pareto-undominated Bayes option.
+	Consequently, every option that is not Bayes
+	for any prior is Pareto-dominated by a
+	Pareto-undominated Bayes option.
+\end{theorem}
+
+It would  be sufficient to assume continuity and existence but where we change $B$ to be: 
+\[
+B(p)
+\coloneqq
+\{o\in\mathcal O:
+o\text{ is Bayes for }p\}.
+\]
+\begin{proof}
+	
+
+\begin{sublemma}
+	All members
+	of $B(p)$ have the same utility profile.
+\end{sublemma}
+\begin{proof}Take $a,b\in B(p)$, fix $w$, and let
+	\[
+	p_n=(1-1/n)p+(1/n)\delta_w.
+	\]
+	For every $o\in B(p_n)$, Bayes optimality gives
+	\[
+	0\le E_{p_n}[\U(o)-\U(b)]
+	\le \frac1n[\U(o,w)-\U(b,w)],
+	\]
+	where the second inequality follows because
+	$b$ is Bayes for $p$.
+	Thus every member of $B(p_n)$ performs at least
+	as well as $b$ at $w$. Continuity gives the same
+	conclusion for every member of $B(p)$.
+	Interchanging $a$ and $b$ proves profile equality.
+\end{proof}
+\end{proof}
+%\begin{proof}
+%	Fix $o^*$ and define
+%	\[
+%	\psi(w)=
+%	\{p\in P:\U(o,w)\ge\U(o^*,w)
+%	\text{ for every }o\in B(p)\}.
+%	\]
+%	Undominated Bayes continuity makes each $\psi(w)$
+%	closed.
+%	
+%	For KKM covering, first observe that all members
+%	of $B(p)$ have the same utility profile.
+%	Indeed, take $a,b\in B(p)$, fix $w$, and let
+%	\[
+%	p_n=(1-1/n)p+(1/n)\delta_w.
+%	\]
+%	For every $o\in B(p_n)$, Bayes optimality gives
+%	\[
+%	0\le E_{p_n}[\U(o)-\U(b)]
+%	\le \frac1n[\U(o,w)-\U(b,w)],
+%	\]
+%	where the second inequality follows because
+%	$b$ is Bayes for $p$.
+%	Thus every member of $B(p_n)$ performs at least
+%	as well as $b$ at $w$. Continuity gives the same
+%	conclusion for every member of $B(p)$.
+%	Interchanging $a$ and $b$ proves profile equality.
+%	
+%	Now take a finitely supported $p$. Choose
+%	$o\in B(p)$. Bayes optimality gives
+%	$E_p[\U(o)-\U(o^*)]\ge0$, so some
+%	$w\in\supp(p)$ satisfies
+%	$\U(o,w)\ge\U(o^*,w)$.
+%	Profile equality makes this true for every
+%	member of $B(p)$, so $p\in\psi(w)$.
+%	
+%	Fan--KKM gives a prior $p^*$ belonging to every
+%	$\psi(w)$. Choose $o'\in B(p^*)$, possible by Undominated Bayes existanece 
+%	Then $o'$ is Pareto-undominated and weakly improves
+%	upon $o^*$ at every world.
+%	
+%	If $o^*$ is not Bayes for $p^*$, it cannot
+%	tie everywhere with $o'$. Hence $o'$ Pareto-dominates $o^*$.
+%\end{proof}
+
+We then seem to use divergence stuff to get the uniform dominance stuff...
+
+
+
+\appendix
+
+\section{Proof of KKM Theorem}
+\label{appendix:KKMthm} 
+
+
+
 This formulation is equivalent to the following compact
 version of the usual Fan--KKM lemma.
 
@@ -98,7 +519,8 @@ version of the usual Fan--KKM lemma.
 	\bigcap_{v\in V}\phi(v)\neq\varnothing.
 	\]
 \end{theorem}
-
+\begin{AIwritten}
+	
 \begin{proof}[Equivalence of the formulations]
 	To derive the probability formulation from the usual
 	formulation, regard $P$ as a subset of
@@ -144,93 +566,34 @@ version of the usual Fan--KKM lemma.
 	\bigcap_{v\in V}\phi(v)\neq\varnothing.
 	\]
 \end{proof}
-\end{color}
+
+\end{AIwritten}
+\newpage
+\color{red}
+\part{DELETE}
 
 
 
-Now the application:
-
-\begin{corollary}
-	Let $M$ be a nonempty set, let $\succeq_w$ be a comparison relation
-	on $M$ for each $w \in W$, and let $c \colon P \to M$.
-	Suppose:
-	\begin{enumerate}
-		\item\label{ass:cl} \textbf{Closedness.}
-		For every $m \in M$ and $w \in W$, the set
-		\[
-		\{p \in P : c(p) \succeq_w m\}
-		\]
-		is closed in $P$.
-		
-		\item \label{ass:CA}\textbf{Coherent Admissibility (for Finitely Supported Probs on their Support).}
-		For every finitely supported $p \in P$ and every
-		$m \in M$, there is some $w \in \operatorname{supp}(p)$
-		such that
-		\[
-		c(p) \succeq_w m.
-		\]
-	\end{enumerate}
-	Then, for every $m \in M$, there exists $p \in P$ such that
-	\[
-	c(p) \succeq_w m
-	\qquad \text{for every } w \in W.
-	\]
-	The set of such $p$ is also compact. 
-\end{corollary}
-
-\begin{proof}
-	Fix $m\in M$ and define
-	\[
-	\psi(w)=\{p\in P:c(p)\succeq_w m\}.
-	\]
-	Closedness gives closed values, and Coherent
-	Admissibility gives the KKM covering condition.
-	The probability formulation of Fan--KKM therefore
-	yields
-	\[
-	\bigcap_{w\in W}\psi(w)\neq\varnothing.
-	\]
-	Any probability in this intersection has the
-	required property.
-\end{proof}
-\begin{remark}
-	If each $\succeq_w$ is total, Coherent Admissibility
-	is equivalent to the following condition:
-	for every finitely supported probability $p$,
-	there is no model $m \in M$ which strictly dominates $p$ on its support, that is:
-	\[
-	m \succ_w c(p)
-	\qquad\text{for every }w\in\supp(p).
-	\]
-\end{remark}
-
-\subsection{Generalisations}
-\begin{theorem}
-	The selection $c(p)$ can depend on the fixed model we are considering, $m^*$. 
-\end{theorem}
-\begin{theorem}
-	The selection $c$ may also be a nonempty-valued
-	correspondence. In that case, define
-	\[
-	\psi_{m^*}(w)
-	=
-	\{p:\text{every }m\in c(p)
-	\text{ satisfies }m\succeq_w m^*\}.
-	\]
-	If these sets are closed and satisfy the KKM covering
-	condition, then there is some $m$ (take any in $c(p)$) which is at least as good as $m^*$ at every world.
-\end{theorem}
 
 
+\subsection{Coherent Admissibility for a different class}
 
-\section{Applications}
+\begin{conjecture}
+	Suppose $\C$ is a class of models, with a topology. And suppose that the probabilities can be continuously embedded in $\C$, that is, there some continuous $s:P\to\C$\todo{that's always the case: just map them all to a single member of $\C$. Then the relevant sets will be closed.}. If $\succeq_w$ is generated by a continouous loss function on $\M$ where members of $\C$ are not strictly dominated. Then any $m\in \M\setminus \C$ are Pareto-dominated by, or have the same loss profile as, some member of $\C$. 
+\end{conjecture}
+
+No, this is false. It's important that the dominator is on the support. Otherwise we can just map them all to a single member of $\C$. 
+Note that we certainly need
+\[s(\delta_w)\succeq_w m^*\]
+
+
 \subsection{Strictly proper scoring rules}
 Suppose $L$ is a loss function on credence functions, possibily taking value $\infty$. 
 
 Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$. 
 
 \begin{lemma}
-	If $L$ is weakly proper, then \ref{ass:CA} holds. 
+	If $L$ is weakly proper, then \ref{ass:KKM} holds. 
 	
 	If $L$ is continuous, then \ref{ass:cl} holds.
 	
@@ -239,7 +602,7 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	If, in addition, $L$ is strictly proper, then every non-probability is actually Pareto-dominated. 
 \end{lemma}
 
-\begin{color}{blue}
+\begin{AIwritten}
 	\subsection{Proper loss functions}
 	
 	Let $W$ be nonempty, and let $P$ be the finitely additive
@@ -287,7 +650,7 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	\end{proposition}
 	
 	\begin{proof}
-		Apply the preceding corollary with $c(p)=p$ and
+		Apply the preceding corollary with $s(p)=p$ and
 		\[
 		m'\succeq_w m
 		\quad\Longleftrightarrow\quad
@@ -395,127 +758,11 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 		Strict propriety makes $p^*$ Pareto-undominated
 		by the preceding proposition.
 	\end{proof}
-\end{color}
-\subsection{Wald}
-\begin{theorem}[A version of Wald's theorem]
-	Let $\Omega$ be nonempty, and let
-	$\U\colon\mathcal O\times\Omega\to\mathbb R$
-	assign each option a bounded utility profile.
-	Let $P$ be the finitely additive probabilities
-	on $\wp(\Omega)$, equipped with the topology
-	of pointwise convergence on events.
-	
-%	Write $B(p)$ for the options that
-%	are Bayes for $p$ and are not Pareto-dominated
-%	by any option in $\mathcal O$.
-	\[
-	B(p)
-	\coloneqq
-	\{o\in\mathcal O:
-	o\text{ is Bayes for }p
-	\text{ and is Pareto-undominated}\}.
-	\]
+\end{AIwritten}
 
-	
-	Suppose:
-	\begin{enumerate}
-		
-		\item \textbf{Undominated Bayes continuity.}
-		For every benchmark $o^*$, world $w$, and net
-		$p_\alpha\to p$, if
-		\[
-		\U(o,w)\ge\U(o^*,w)
-		\qquad
-		\text{for every $\alpha$ and every }
-		o\in B(p_\alpha),
-		\]
-		then
-		\[
-		\U(o,w)\ge\U(o^*,w)
-		\qquad
-		\text{for every }o\in B(p).
-		\]
-		
-		\item \textbf{Undominated Bayes existence.}
-		For every $p\in P$,
-		$B(p)\neq\varnothing$.
-	\end{enumerate}
-	
-	Then every option is weakly improved upon at
-	every world by a Pareto-undominated Bayes option.
-	Consequently, every option that is not Bayes
-	for any prior is Pareto-dominated by a
-	Pareto-undominated Bayes option.
-\end{theorem}
 
-Actually, we can use the original theorem as we have a lemma: the assumptions make $B(p)$ a singleton. 
-\begin{lemma}
-	all members
-	of $B(p)$ have the same utility profile.
-\end{lemma}
-\begin{proof}Take $a,b\in B(p)$, fix $w$, and let
-	\[
-	p_n=(1-1/n)p+(1/n)\delta_w.
-	\]
-	For every $o\in B(p_n)$, Bayes optimality gives
-	\[
-	0\le E_{p_n}[\U(o)-\U(b)]
-	\le \frac1n[\U(o,w)-\U(b,w)],
-	\]
-	where the second inequality follows because
-	$b$ is Bayes for $p$.
-	Thus every member of $B(p_n)$ performs at least
-	as well as $b$ at $w$. Continuity gives the same
-	conclusion for every member of $B(p)$.
-	Interchanging $a$ and $b$ proves profile equality.
-\end{proof}
-%\begin{proof}
-%	Fix $o^*$ and define
-%	\[
-%	\psi(w)=
-%	\{p\in P:\U(o,w)\ge\U(o^*,w)
-%	\text{ for every }o\in B(p)\}.
-%	\]
-%	Undominated Bayes continuity makes each $\psi(w)$
-%	closed.
-%	
-%	For KKM covering, first observe that all members
-%	of $B(p)$ have the same utility profile.
-%	Indeed, take $a,b\in B(p)$, fix $w$, and let
-%	\[
-%	p_n=(1-1/n)p+(1/n)\delta_w.
-%	\]
-%	For every $o\in B(p_n)$, Bayes optimality gives
-%	\[
-%	0\le E_{p_n}[\U(o)-\U(b)]
-%	\le \frac1n[\U(o,w)-\U(b,w)],
-%	\]
-%	where the second inequality follows because
-%	$b$ is Bayes for $p$.
-%	Thus every member of $B(p_n)$ performs at least
-%	as well as $b$ at $w$. Continuity gives the same
-%	conclusion for every member of $B(p)$.
-%	Interchanging $a$ and $b$ proves profile equality.
-%	
-%	Now take a finitely supported $p$. Choose
-%	$o\in B(p)$. Bayes optimality gives
-%	$E_p[\U(o)-\U(o^*)]\ge0$, so some
-%	$w\in\supp(p)$ satisfies
-%	$\U(o,w)\ge\U(o^*,w)$.
-%	Profile equality makes this true for every
-%	member of $B(p)$, so $p\in\psi(w)$.
-%	
-%	Fan--KKM gives a prior $p^*$ belonging to every
-%	$\psi(w)$. Choose $o'\in B(p^*)$, possible by Undominated Bayes existanece 
-%	Then $o'$ is Pareto-undominated and weakly improves
-%	upon $o^*$ at every world.
-%	
-%	If $o^*$ is not Bayes for $p^*$, it cannot
-%	tie everywhere with $o'$. Hence $o'$ Pareto-dominates $o^*$.
-%\end{proof}
 
-We then seem to use divergence stuff to get the uniform dominance stuff...
-
+\section{Wald}
 
 \begin{color}{blue}\begin{proposition}[Weak improvement by a Bayes option]
 		Let $\Omega$ be finite and nonempty, let
@@ -632,7 +879,10 @@ We then seem to use divergence stuff to get the uniform dominance stuff...
 		the preceding proposition.
 	\end{proof}
 \end{color}
-\end{document}
+
+
+
+\section{Families}
 
 
 \begin{corollary}[Families of rankings]
