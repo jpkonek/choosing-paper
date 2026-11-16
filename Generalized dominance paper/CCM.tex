@@ -60,6 +60,7 @@
 We use the following probability formulation of the
 Fan--KKM lemma.
 
+
 \begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}
 	Let $W$ be a nonempty set, and let $P$ be the space
 	of finitely additive probabilities on $\wp(W)$,
@@ -83,8 +84,31 @@ Fan--KKM lemma.
 	\bigcap_{w\in W}\psi(w)\neq\varnothing.
 	\] and it is compact. 
 \end{theorem}
+Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}.
 
-
+\todo[inline]{Hum, this statement directly for probs now isn't simple for chance-dominance... How to best state it?}
+\begin{color}{violet}
+	Trying out a new version of it:
+\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}:
+	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
+	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $w\in W$, the set $\psi(w)$ is
+		closed in $P$.
+		
+		\item \textbf{KKM covering.}
+		For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
+		$
+		\iota(p)\in\psi(w).
+		$
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{w\in W}\psi(w)\neq\varnothing.
+	\] and it is compact. 
+\end{theorem}
+\end{color}
 
 
 Now an application: 
@@ -322,18 +346,21 @@ It just depends on being able to find a selection satisfying the conditions of \
 
 Estimate function of random variables. 
 
-We clearly have a natural $s$ selecting expectation function, although interestingly this is not uniquely defined when the r.v. can be unbounded, so not sure if that's hard to do in a continuous way? 
+We clearly have a natural $s$ selecting expectation function, although interestingly this is not uniquely defined when the r.v. can be unbounded, so not sure if that's hard to do in a continuous way? Question: why in the original theorem using probabilities not, say, linear previsions immediately? The KKM theorem applies in that space too...
 
 Then what do the KKM and closedness principles look like? 
 
 Surely like the probability stuff, something like coherent, which makes sense? 
 
 \subsubsection{Risk-weighted?}
-Hum...? $s$ maps probabilities to risk-weighted expectations. It's continuous. 
+$s$ maps probabilities to risk-weighted expectations. It's continuous. 
 
+If we find a continuous scoring rule where $p$ evaluates that $REU_p$ is not $p$-dominated, then this would generate an argument for risk weighted expected utility. 
 
+Open question whether that is possible. 
 
- 
+For r-proper scoring rules for credence, it is $EU_p=p$ which maximses $REU_p$. Is ones credences the risk-weighted estimate of truth? 
+
 
 \subsection{Conditionalisation}
 
@@ -528,10 +555,95 @@ We then seem to use divergence stuff to get the uniform dominance stuff...
 \section{Proof of KKM Theorem}
 \label{appendix:KKMthm} 
 
+\begin{AIwritten}
+	
+\begin{theorem}[Fan--KKM for probability weights]
+	\label{thm:KKM}
+	Let $W$ be nonempty and let $P$ be a compact
+	Hausdorff space. Suppose each finitely supported
+	probability weight $p$ over $W$ is assigned a point
+	$\iota(p)\in P$, and that, for every nonempty finite
+	$F\subseteq W$, the restriction
+	\[
+	\iota|_{\Delta_F}\colon\Delta_F\to P
+	\]
+	is continuous, where $\Delta_F$ has its usual
+	Euclidean topology.
+	
+	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		Each $\psi(w)$ is closed in $P$.
+		
+		\item \textbf{KKM covering.}
+		For every finitely supported probability
+		weight $p$ over $W$, some $w\in\supp(p)$
+		satisfies
+		\[
+		\iota(p)\in\psi(w).
+		\]
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{w\in W}\psi(w)
+	\]
+	is nonempty and compact.
+\end{theorem}
 
+\begin{proof}
+	Fix a nonempty finite $F\subseteq W$ and define,
+	for each $w\in F$,
+	\[
+	A_w=\{p\in\Delta_F:\iota(p)\in\psi(w)\}.
+	\]
+	These sets are closed in $\Delta_F$, hence compact.
+	The covering assumption gives the usual KKM
+	condition on every face of $\Delta_F$.
+	Applying Fan--KKM with vertices
+	$\{\delta_w:w\in F\}$ therefore yields
+	\[
+	\bigcap_{w\in F}A_w\neq\varnothing.
+	\]
+	The image under $\iota$ of any point in this
+	intersection belongs to every $\psi(w)$
+	with $w\in F$.
+	
+	Thus the closed sets $\psi(w)$ have the finite
+	intersection property. Compactness of $P$ gives
+	their nonempty total intersection, which is
+	itself closed in $P$ and hence compact.
+\end{proof}
 
-This formulation is equivalent to the following compact
-version of the usual Fan--KKM lemma.
+\end{AIwritten}
+%This formulation is equivalent to the following compact
+%version of the usual Fan--KKM lemma.
+
+\begin{theorem}[Fan--KKM]
+	Let $X$ be a Hausdorff
+	topological vector space, and let
+	$\varnothing\neq V\subseteq X$.
+	Suppose $\phi\colon V\rightrightarrows X$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $v\in V$, the set $\phi(v)$ is
+		closed in $X$.
+		
+		\item \textbf{KKM covering.}
+		For every finite convex combination
+		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $V$,
+		there is some $i$ with $\lambda_i>0$ such that
+		\[
+		x\in\phi(v_i).
+		\]
+		
+		\item \textbf{Compact.} At least one $\phi(v)$ is compact. 
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\]
+\end{theorem}
+
 
 \begin{theorem}[Fan--KKM on a compact convex space]
 	Let $Y$ be a compact convex subset of a Hausdorff
