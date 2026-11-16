@@ -175,9 +175,11 @@ To get a feel for what theorem~\ref{thm:fan-kkm} says, consider a three world sa
 \]
 is equivalent to saying that each probability mass function $p\in\Delta_\Omega$ lies in a set $A_{\omega_i}$ which is such that $p$ assigns positive mass to $\omega_i$. For example, $\delta_{\omega_1}$ lies in $A_{\omega_1}$ and also assigns probability 1 to $\omega_1$. Theorem~\ref{thm:fan-kkm} then guarantees there is some probability mass function $p^*$ that lies in the intersection of these three sets.
 
-In this little example, $\Omega$ is finite. But in general $\Omega$ is an arbitrary (possibly infinite) set of worlds. To apply theorem~\ref{thm:fan-kkm} in this more general setting, we will let $V=\mathbb R^{2^\Omega}$ be the set of all real-valued functions $f:2^\Omega\rightarrow\mathbb R$ on the power set of $\Omega$, $2^\Omega$, once again equipped with the product topology. This too is a Hausdorff topological vector space. And we will let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of \textit{finitely additive probability functions} $\delta_{\omega_i}$ which put probability 1 on $\{\omega_i\}$ and probability 0 on any other singleton. 
+In this little example, $\Omega$ is finite. But in general $\Omega$ is an arbitrary (possibly infinite) set of worlds. To apply theorem~\ref{thm:fan-kkm} in this more general setting, we will let $V=\mathbb R^{2^\Omega}$ be the set of all real-valued functions $f:2^\Omega\rightarrow\mathbb R$ on the power set of $\Omega$, $2^\Omega$, once again equipped with the product topology. This too is a Hausdorff topological vector space. And we will let $D\coloneqq\{\delta_{\omega_i}:\omega_i\in\Omega\}$ be the set of finitely additive probability functions $\delta_{\omega_i}$ which put probability 1 on $\{\omega_i\}$ and probability 0 on any other singleton. 
 
 
+
+\begin{comment}
 \begin{definition}\label{def:finitely-additive-probability}
 A map $p:2^\Omega\to[0,1]$ is a \emph{finitely additive probability function} iff:
 \begin{enumerate}[label=\textup{(FA\arabic*)}]
@@ -186,7 +188,7 @@ A map $p:2^\Omega\to[0,1]$ is a \emph{finitely additive probability function} if
   \item if $E\cap F=\varnothing$, then $p(E\cup F)=p(E)+p(F)$.
 \end{enumerate}
 \end{definition}
-
+\end{comment}
 
 Let $\Delta$ be the set of all finitely additive probabilities equipped with the subspace topology inherited from $V=\mathbb R^{2^\Omega}$. $\Delta$ is compact (by Tychonoff's theorem) and closed in $V$. Let $p_\omega\coloneqq p(\{\omega\})$ and $\supp p\coloneqq\{\omega:p_\omega>0\}$.  $p$ is \emph{finitely supported} if $p(F)=1$ for some finite $F\subseteq\Omega$. Given our choices of $V$ and $D$, $\operatorname{conv}D$ is the set of finitely supported probabilities.
 
@@ -204,7 +206,7 @@ Let $L\in\mathfrak L$ be a ranking and $m\in\M$ be a model. A \textit{KKM-select
 \begin{enumerate}[label=(S\arabic*),leftmargin=3em]
 \item\label{S1} for every $\omega\in\Omega$ and every $p\in A^m_\omega$ we have $s^m(p)\preceq_\omega m$;
 \item\label{S2} for every finitely supported $p\in\Delta$ there is $\omega\in\Omega$ with $p_\omega>0$ and $p\in A^m_\omega$;
-\item\label{S3} for every $p\in\bigcap_{\omega\in\Omega}A^m_\omega$ there is $\omega\in\Omega$ with $m\not\preceq_\omega s^m(p)$.
+\item\label{S3} for every $p\in\Delta$ there is $\omega\in\Omega$ with $m\not\preceq_\omega s^m(p)$.
 \end{enumerate}
 \end{definition}
 
