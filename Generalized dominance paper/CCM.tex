@@ -86,29 +86,50 @@ Fan--KKM lemma.
 \end{theorem}
 Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}.
 
-\todo[inline]{Hum, this statement directly for probs now isn't simple for chance-dominance... How to best state it?}
-\begin{color}{violet}
-	Trying out a new version of it:
-\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}:
-	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
-	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
-	\begin{enumerate}
-		\item \textbf{Closed values.}
-		For every $w\in W$, the set $\psi(w)$ is
-		closed in $P$.
-		
-		\item \textbf{KKM covering.}
-		For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
-		$
-		\iota(p)\in\psi(w).
-		$
-	\end{enumerate}
-	Then
-	\[
-	\bigcap_{w\in W}\psi(w)\neq\varnothing.
-	\] and it is compact. 
-\end{theorem}
-\end{color}
+%\todo[inline]{Hum, this statement directly for probs now isn't simple for chance-dominance... How to best state it?}
+%\begin{color}{violet}
+%	Trying out a new version of it:
+%\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}:
+%	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
+%	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
+%	\begin{enumerate}
+%		\item \textbf{Closed values.}
+%		For every $w\in W$, the set $\psi(w)$ is
+%		closed in $P$.
+%		
+%		\item \textbf{KKM covering.}
+%		For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
+%		$
+%		\iota(p)\in\psi(w).
+%		$
+%	\end{enumerate}
+%	Then
+%	\[
+%	\bigcap_{w\in W}\psi(w)\neq\varnothing.
+%	\] and it is compact. 
+%\end{theorem}
+%
+%
+%\begin{theorem}
+%	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
+%Suppose $\psi\colon W\rightrightarrows P$ satisfies:
+%\begin{enumerate}
+%	\item \textbf{Closed values.}
+%	For every $w\in W$, the set $\psi(w)$ is
+%	closed in $P$.
+%	
+%	\item \textbf{KKM covering.}
+%	For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
+%	$
+%	\iota(p)\in\psi(w).
+%	$
+%\end{enumerate}
+%Then
+%\[
+%\bigcap_{w\in W}\psi(w)\neq\varnothing.
+%\] and it is compact. 
+%\end{theorem}
+%\end{color}
 
 
 Now an application: 
@@ -162,6 +183,57 @@ the conclusion of the theorem says that for every model there is some special ki
 	If each $\succeq_w$ is total, the condition is just to say that fs probs there is no $m$ which is $p$-surely strictly better than $s(p)$. 
 \end{remark}
 
+\subsection{Removing reference to $s$ on limits}
+
+\begin{theorem}
+	Let $W$ be nonempty, let $M$ be a Hausdorff
+	topological space, and let $\succeq_w$ be a
+	comparison relation on $M$ for each $w\in W$.
+	Let
+	\[
+	s_0\colon\mathrm{FSP}(W)\to M,
+	\]
+	and fix a benchmark $m^*\in M$.
+	
+	Suppose:
+	\begin{enumerate}
+		
+		\item The set
+		\[
+		K=\overline{s_0(\mathrm{FSP}(W))}
+		\]
+		is compact.
+		
+		\item For every $w\in W$, the set
+		\[
+		\{m\in K:m\succeq_w m^*\}
+		\]
+		is closed in $K$.
+		
+		\item For every nonempty finite $F\subseteq W$
+		and $w\in F$, the set
+		\[
+		\{p\in\Delta_F:s_0(p)\succeq_w m^*\}
+		\]
+		is closed in $\Delta_F$.
+		\item For every $p\in\mathrm{FSP}(W)$,
+		some $w\in\supp(p)$ satisfies
+		\[
+		s_0(p)\succeq_w m^*.
+		\]
+	\end{enumerate}
+	Then there is an $m\in K$ such that
+	\[
+	m\succeq_w m^*
+	\qquad\text{for every }w\in W.
+	\]
+	In particular, $m$ is the limit of a net of
+	models selected by $s_0$.
+\end{theorem}
+
+Proof in 
+\cref{appendix:removinglims}
+
 \subsection{Generalisations}
 \begin{theorem}
 	The selection $s(p)$ can depend on the fixed model we are considering, $m^*$: $s_{m^*}(p)$
@@ -188,8 +260,12 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 
 
 \section{Applications}
+\subsection{Dominance argument for probabilistic coherence}
+
 
 \subsection{Dominance argument for probabilistic coherence}
+
+\todo{even in the normal case this isn't right: we typically don't assume the whole algebra!}
 %Suppose $M$ is a class of models containing probabilities. For example, $M=\R^{\mathsf{Propns}}$. And suppose $\succeq_w$ is an ordering on $M$ for each $w$. 
 \begin{proposition}
 	Suppose $P\subseteq\M$ and $\succeq_w$ is an ordering on $\M$ such that:
@@ -278,13 +354,7 @@ That merely obtains Perato-dominance of the non-probabilities. The standard conc
 Some Bregman type stuff involved in the proof. Here we really do use something like propriety (although risk would do too); and probably it depends on finitely many worlds. 
 
 \begin{theorem}
-	Suppose $E_p$ is a evaluation function of random variables such that ??
-	\begin{itemize}
-		\item Perhaps we need: $p\mapsto E_p$ is continuous. 
-		\item ?
-	\end{itemize}
-	
-	If $\l$ is weakly $E$-proper and lower semi-continuous, then non-probabilities are strictly dominated. 
+	If $\l$ is weakly proper and lower semi-continuous, then non-probabilities are at best tied with some probability; and if it is quasi-strictly proper then non-probabilities are are Perato-dominated. 
 \end{theorem}
 \begin{proof}
 	Fix non-probability $m$. 
@@ -320,6 +390,16 @@ Some Bregman type stuff involved in the proof. Here we really do use something l
 	by the preceding proposition.
 	
 \end{proof}
+	\begin{remark}
+	The argument also works with evaluations other
+	than ordinary expectation. It suffices that they
+	are translation invariant, respect comparisons
+	on finite supports, and vary continuously with
+	the probability for each random variable. 
+	Propriety must then be understood relative to
+	those evaluations. See Appendix~\ref{app:evaluations}.
+\end{remark}
+
 
 \subsection{Working with a different class}
 
@@ -372,7 +452,7 @@ Suppose that $M$ is a space over which we have orderings $\succeq_k$ for experts
 
 Then $P$ is the space of probabilistic weights over these different experts. 
 
-Then we map $P$ into $M$.
+Then we map $P$ into $M$. In the credence setting, we map it to the probabilistic expectation of th
 
 We map each $\delta_k$ to a point in $M$ which is optimal according to $k$.
 
@@ -387,12 +467,30 @@ Then we might investigate whether.
 \end{itemize}
 This would follow, for example, from it being generated by a proper loss function. 
 
-
-
-
 \todo[inline]{What's underlying the chance expectation results? It's just convex hull, right? The question though is whether it always looks like ``take the convex hull''. Perhaps not!}
 
 
+\subsection{Chance Domaince}
+
+We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts. Or different possible chance functions. 
+
+The possible experts are a non-empty set, $\mathcal{K}$. 
+
+$P$ is then the space of probabilistic weights over the experts. So, in the theorem, we have $W=\mathcal{K}$.
+
+Then $M$ is the space over which we have orderings $\succeq_k$ for experts, $k$.
+
+In the chance-dominance result, this is credence functions, some $\R^{Propositions}$ where each proposition is a subset not of the $W$ as in the set of experts, but $\Omega$ now the sample space, or set of ``possible worlds''. 
+
+We then need $s:P\to M$. 
+Suppose each $k$ is conceived of already to be a point in $M$, then $P$ can just be the induced point by taking weighted averages. Giving the closure of the convex hull. 
+
+Suppose that the orderings are
+\begin{itemize}
+	\item Generated continuously
+	\item For each fs probability $p$ over $\mathcal{K}$, $s(p)$ is not $p$-dominated. 
+\end{itemize}
+Then we have that points not in the closed convex hull are 
 
 \subsection{Wald}
 
@@ -547,6 +645,14 @@ o\text{ is Bayes for }p\}.
 %\end{proof}
 
 We then seem to use divergence stuff to get the uniform dominance stuff...
+
+
+
+\section{Quantifying over different orderings}
+
+Suppose we have some setup like this. But we have a set of different orderings. 
+
+
 
 
 
@@ -716,6 +822,191 @@ We then seem to use divergence stuff to get the uniform dominance stuff...
 	\]
 \end{proof}
 
+\end{AIwritten}
+
+
+
+
+
+\section{Strict dominance}
+\label{appendix:strdom}
+\begin{AIwritten}
+	
+	% Main text
+	
+	\begin{theorem}[Uniform dominance]
+		Let $W$ be nonempty, and let $P$ be the finitely
+		additive probabilities on $\wp(W)$, equipped with
+		the topology of pointwise convergence on events.
+		Let $M\supseteq P$, and suppose
+		$l\colon M\times W\to\mathbb R$ assigns each
+		report a bounded loss profile.
+		
+		Suppose $l$ is proper, with
+		\[
+		E_p[l(p,\cdot)]<E_p[l(m,\cdot)]
+		\qquad
+		\text{whenever }p\in P\text{ and }m\notin P,
+		\]
+		and that $p\mapsto l(p,w)$ is lower
+		semicontinuous for every $w$.
+		
+		Then every non-probabilistic report $m$ is
+		uniformly strictly dominated by a probability:
+		there are $p^*\in P$ and $\nu>0$ such that
+		\[
+		l(p^*,w)\le l(m,w)-\nu
+		\qquad\text{for every }w\in W.
+		\]
+	\end{theorem}
+	
+	
+	\begin{proof}
+		Fix $m\notin P$ and define
+		\[
+		D_m(p)=E_p[l(m,\cdot)]-E_p[l(p,\cdot)].
+		\]
+		By propriety,
+		\[
+		D_m(p)=
+		\sup_{q\in P}
+		\bigl(E_p[l(m,\cdot)]-E_p[l(q,\cdot)]\bigr).
+		\]
+		For each fixed bounded function $f$, the map
+		$p\mapsto E_p[f]$ is continuous: this holds for
+		simple functions by pointwise convergence on events,
+		and extends to bounded functions by uniform
+		approximation. Thus $D_m$ is a supremum of
+		continuous functions and is lower semicontinuous.
+		
+		Since $D_m$ is strictly positive and $P$ is compact,
+		\[
+		\nu=\min_{p\in P}D_m(p)>0.
+		\]
+		Define
+		\[
+		\psi_m(w)=
+		\{p\in P:l(p,w)\le l(m,w)-\nu\}.
+		\]
+		Each $\psi_m(w)$ is closed by lower semicontinuity.
+		
+		For every finitely supported $p$,
+		\[
+		\sum_{w\in\supp(p)}
+		p(w)\bigl[l(m,w)-l(p,w)\bigr]
+		=D_m(p)\ge\nu.
+		\]
+		Hence some $w\in\supp(p)$ has
+		$l(m,w)-l(p,w)\ge\nu$.
+		This is the KKM covering condition.
+		
+		Fan--KKM supplies a probability belonging to every
+		$\psi_m(w)$, giving the required uniform improvement.
+	\end{proof}
+	
+	\begin{remark}
+		The argument also works with evaluations other
+		than ordinary expectation. It suffices that they
+		are translation invariant, respect comparisons
+		on finite supports, and vary continuously with
+		the probability for each fixed loss profile.
+		Propriety must then be understood relative to
+		those evaluations. See Appendix~\ref{app:evaluations}.
+	\end{remark}
+	
+	
+	% Appendix
+	
+	\subsection{General evaluations}\label{app:evaluations}
+	
+	Retain the setting of the uniform dominance theorem,
+	but replace ordinary expectation with evaluations
+	$E_p$ assigning finite real values to bounded functions.
+	Assume:
+	\begin{enumerate}
+		\item \textbf{Support monotonicity.}
+		For every finitely supported $p$, if
+		$f(w)\le g(w)$ throughout $\supp(p)$, then
+		$E_p[f]\le E_p[g]$.
+		
+		\item \textbf{Translation invariance.}
+		For every bounded $f$ and real constant $a$,
+		\[
+		E_p[f+a]=E_p[f]+a.
+		\]
+		
+		\item \textbf{Fixed-profile continuity.}
+		For every random variable $X$, the map
+		$p\mapsto E_p[X]$ is continuous.\\In fact, we just need this for $l(m,\cdot)$. 
+	\end{enumerate}
+	
+	Assume propriety and its strictness against
+	non-probabilistic reports hold for these evaluations.
+	
+	The lower semicontinuity argument is unchanged:
+	propriety expresses $D_m$ as a supremum of
+	fixed-profile differences, which are continuous by
+	assumption. Compactness again gives
+	$\nu=\min_pD_m(p)>0$.
+	
+	Only the support calculation changes.
+	If a finitely supported $p$ satisfied
+	\[
+	l(m,w)-l(p,w)<\nu
+	\qquad\text{for every }w\in\supp(p),
+	\]
+	then
+	\[
+	d=\max_{w\in\supp(p)}
+	\bigl[l(m,w)-l(p,w)\bigr]<\nu.
+	\]
+	Support monotonicity and translation invariance yield
+	\[
+	E_p[l(m,\cdot)]
+	\le E_p[l(p,\cdot)+d]
+	=E_p[l(p,\cdot)]+d,
+	\]
+	contradicting $D_m(p)\ge\nu$.
+	Thus the KKM covering condition still holds.
+	The remainder of the proof is unchanged.
+
+\end{AIwritten}
+
+
+\section{Removing limits}\label{appendix:removinglims}
+
+\begin{AIwritten}
+	
+	\begin{proof}
+		For each $w\in W$, put
+		\[
+		H_w=\{m\in K:m\succeq_w m^*\}.
+		\]
+		These sets are closed in compact $K$.
+		
+		Fix a nonempty finite $F\subseteq W$.
+		On $\Delta_F$, define
+		\[
+		A_w=\{p\in\Delta_F:s_0(p)\succeq_w m^*\}
+		\qquad(w\in F).
+		\]
+		These sets are closed, and the support assumption
+		gives the KKM covering condition. Hence some
+		$p_F\in\Delta_F$ belongs to every $A_w$.
+		Consequently,
+		\[
+		s_0(p_F)\in\bigcap_{w\in F}H_w.
+		\]
+		
+		Thus the sets $H_w$ have the finite intersection
+		property. Compactness gives
+		\[
+		\bigcap_{w\in W}H_w\neq\varnothing.
+		\]
+		Any member of this intersection has the required
+		comparisons and belongs to the closure of the
+		range of $s_0$.
+	\end{proof}
 \end{AIwritten}
 \newpage
 \color{red}
