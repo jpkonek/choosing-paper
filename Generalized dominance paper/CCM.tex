@@ -46,6 +46,8 @@
 \usepackage{cleveref}
 \usepackage{stmaryrd}
 
+\newcommand{\given}{\,:\,}
+
 
 \newenvironment{AIwritten}{\begin{color}{blue}}{\end{color}}
 
@@ -64,7 +66,42 @@
 We use the following probability formulation of the
 Fan--KKM lemma.
 
-
+\begin{color}{red}
+	
+	Let $W$ be a non-empty set. 
+	
+	$\mathrm{FSP}(W)$ are the set of finitely supported probability weights on $W$. That is, there is some $w_1,\ldots,w_n\in W$ with $p(w_i)$ non-negative and summing to 1. 
+	
+	Let $P$ be a compact Hausdorff parameter space
+	containing $\mathrm{FSP}(W)$, such that the inclusion
+	$\Delta_F\hookrightarrow P$ is continuous for
+	every nonempty finite $F\subseteq W$
+	
+	In our standard applications, $P$ will be the class of all finitely additive probability functions on $W$ with the topology of pointwise convergence. It is compact. 
+	
+	\begin{theorem}
+		Suppose $\psi\colon W\rightrightarrows P$ satisfies:
+		\begin{enumerate}
+			\item \textbf{Closed values.}
+			For every $w\in W$, the set $\psi(w)$ is
+			closed in $P$.
+			
+			\item \textbf{KKM covering.}
+			For every finitely supported $p\in P$, there
+			is some $w\in\supp(p)$ such that
+			$
+			p\in\psi(w).
+			$
+		\end{enumerate}
+		Then
+		\[
+		\bigcap_{w\in W}\psi(w)\neq\varnothing.
+		\] and it is compact. 
+		\end{theorem}
+	
+	
+	 
+\end{color}
 \begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}
 	Let $W$ be a nonempty set, and let $P$ be the space
 	of finitely additive probabilities on $\wp(W)$,
@@ -213,6 +250,14 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 	condition, then there is some $m$ (take any in $s(p)$) which is at least as good as $m^*$ at every world.
 \end{theorem}
 
+\begin{theorem}
+	The class $P$ can be any compact Hausdorff parameter space
+	containing $\mathrm{FSP}(W)$, such that the inclusion
+	$\Delta_F\hookrightarrow P$ is continuous for
+	every nonempty finite $F\subseteq W$.
+\end{theorem}
+
+
 
 \begin{color}{red}
 	
@@ -280,8 +325,8 @@ Proof in
 
 \subsection{Dominance argument for probabilistic coherence}
 
-\todo{even in the normal case this isn't right: we typically don't assume the whole algebra!}
-%Suppose $M$ is a class of models containing probabilities. For example, $M=\R^{\mathsf{Propns}}$. And suppose $\succeq_w$ is an ordering on $M$ for each $w$. 
+
+Suppose $M$ is a class of models which in fact contains probabilities directly. For example, it is the space of credence functions defined on the whole $\wp{W}$. And suppose $\succeq_w$ is an ordering on $M$ for each $w$. 
 \begin{proposition}
 	Suppose $P\subseteq\M$ and $\succeq_w$ is an ordering on $\M$ such that:
 	\begin{itemize}
@@ -296,7 +341,15 @@ Proof in
 	\end{itemize}
 	Then non-probabilities are Pareto-dominated by, or have the same loss profile as, a probability function. 
 	
-	If, in addition, there can be no probabilistic $p$ and non-prbabilistic $m$ which are tied at every world, then in fact, every non-probability is Pareto-dominated. 
+	If, in addition, 
+	\begin{itemize}
+		\item there can be no probabilistic $p$ and non-prbabilistic $m$ which are tied at every world
+	\end{itemize}
+	Then in fact, every non-probability is Pareto-dominated. 
+	
+	If, in addition, \begin{itemize}
+		\item Probability functions are not dominated. 
+	\end{itemize} Then we know that something is dominated iff it is non-probabilistic. And if it is probabilistic, then it is dominated by something which is not itself dominated. 
 \end{proposition}
 \begin{proof}
 	Just let $s(p)=p$ and we have exactly the conditions. 
@@ -353,22 +406,26 @@ If $\delta_w$ is not strictly dominated because $\delta_w\succeq_{w^*}m$, but $\
 
 \subsubsection{Infinite $\Omega$}
 \todo[inline]{Make clear the difference between $\Omega$ infinite and infinite $\agenda$. Having this section here confuses it?}
-Note that there is no restriction in this theorem to $\Omega$ being finite. 
+Note that there is no restriction in this theorem to the space of possible outcomes, $\Omega$, being finite. 
 
+The difficulty is, however, when there are infinitely many components of a credence function which need to be evaluated, that is, when the space of propositions over which the credence functions are defined is infinite, that is, when its domain is infinite. 
 There are known challenges with applying accuracy considerations on arbitrary domains. It is impossible to get a real valued loss function which is strictly proper: there are just too many coherent models to expect comparisons to be reflected in the reals. This challenge has been made easier as we direclty work with orderings rather than real-valued loss functions. 
 
 Note that if the ordering satisfies ?? properties, then it is reflected by a loss function onto a field, and if it also satisfies Archimeanicity, it can be seen as a real-valued loss function. 
 
 There is an outstanding question, however: for an arbitrary $\Omega$, is there a ranking which has the properties for the application of the theorem?
 
-%\begin{remark}
-%	Let $c_1\succeq_wc_2$ iff $c_1\succeq_w^Fc_2$ for finite $F\subseteq \agenda$. 
-%	And suppose each $\succeq_w^F$ is continuous and strictly proper, for example, it's Brier score. 
-%	
-%	Take any $p$ and $c$. 
-%	We want to find some $w$ where $p\succeq_w c$. 	
-%	
-%\end{remark}
+\begin{remark}
+	Let $c_1\succeq_wc_2$ iff $c_1\succeq_w^Fc_2$ for finite $F\subseteq \agenda$. 
+	And suppose each $\succeq_w^F$ is continuous and strictly proper, for example, it's Brier score. 
+	
+	Take any $p$ and $c$. 	Is $\{p \given p\succeq_w c\}$ closed? 
+	Suppose $p_\alpha$ is a net of probabilities with each $p^\alpha\succeq_w c$. That is, on every finite
+	
+	
+	We want to find some $w$ where $p\succeq_w c$. 	This requires some $w$ such that for all $F$, $p\succeq_w^F c$. That's tantamount to saying that at world $w$ $p$ is at least as good as $c$ on every proposition. Switch of quantifiers. 
+	
+\end{remark}
 
 Note also that it strengthens the theorem of Nielson \todo{does it??}
 
@@ -440,7 +497,7 @@ There is a very natural $s$ to use here: $s(p)(A)=p(A)$ for all $A\in \agenda$; 
 Suppose $W$ is a nonempty set and $M=[0,1]^\agenda$ for some $\agenda\subseteq \wp(W)$.
 
 \begin{definition}
-	$c$ is probabilistic iff there is some $p$ on $\wp(W)$ with $c=p\upharpoonright_\agenda$. 
+	$c$ is probabilistic iff there is some probabilistic $p$ on $\wp(W)$ with $c=p\upharpoonright_\agenda$. 
 \end{definition}
 
 
@@ -497,29 +554,148 @@ $$\sum_\phi \ell(l(\phi),\underline{v}(\phi))+\ell(u(\phi),\overline{v}(\phi))$$
 We might have hoped to use a really partial ordering here, for example by scoring the lower and upper independently and combining by unanimity. But then the probabilistic $(.2,.8)$ is incomparable to a non-probabilistic benchmark, say $(.3,.5)$, in every possible world.  
 
 
-\subsection{Infinities}
-
-What if the score of $w$ is in fact infinitely bad. But for any finite valued model, we can use $s$ to select bounded nice things around $m^*$. 
+%\subsection{Infinities}
+%
+%What if the score of $w$ is in fact infinitely bad. But for any finite valued model, we can use $s$ to select bounded nice things around $m^*$. 
 
 
 \subsection{Estimation as Expectation}
-
+\subsubsection{Bounded random variables}
 Estimate function of random variables. 
 
-We clearly have a natural $s$ selecting expectation function, although interestingly this is not uniquely defined when the r.v. can be unbounded, so not sure if that's hard to do in a continuous way? Question: why in the original theorem using probabilities not, say, linear previsions immediately? The KKM theorem applies in that space too...
+Let $\mathcal{V}$ be a collection of bounded random variables
 
-Then what do the KKM and closedness principles look like? 
+An estimation function is $e:\mathcal{V}\to \R$. 
 
-Surely like the probability stuff, something like coherent, which makes sense? 
+\newcommand{\Ests}{\mathsf{Ests}}
+$\Ests$ is the collection of estimation functions. 
+
+If $p$ is a probability, then there is a unique  $\Exp_p$ estimation function
+
+\begin{theorem}
+	If 
+	\begin{itemize}
+		\item 
+		For every $e^*\in E$ and $w\in W$, \[\{p\colon\Exp_p \succeq_w e\}\] is closed.
+		\begin{itemize}
+			\item For example, $\succeq_w$ is generated by a lower semi-continuous loss function. 
+		\end{itemize}
+		\item For every fs $p$ and $e^*\in E$, there is some $w\in\supp(p)$ such that $\Exp_p\succeq_w e$. 
+		\begin{itemize}
+			\item That is they are not strictly dominated on their support (if it's total)
+			\item E.g., the measure is weakly proper for fs probs. 
+		\end{itemize}
+		Then, for every $e^*$ there is some $p$ such that $\Exp_p$ either Pareto dominates it or is guaranteed to be equally good as $e^*$. 
+		
+		If, in addition, 
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	Just let $s(p)=\Exp_p$ and apply the theorem. 	
+\end{proof}
+We could also phrase the outcome of this without reference to $p$, but instead observe that $\{\Exp_p : p\text{ prob}\}$ are exactly the linear previsions. It is thus a dominance argument for being a linear prevision. 
+\begin{itemize}
+	\item linearity
+	\item non-negativity
+\end{itemize}
+
 
 \subsubsection{Risk-weighted?}
-$s$ maps probabilities to risk-weighted expectations. It's continuous. 
 
-If we find a continuous scoring rule where $p$ evaluates that $REU_p$ is not $p$-dominated, then this would generate an argument for risk weighted expected utility. 
+Does this mean that risk-weighted expectations are irrational?
+The details are all in the axioms ensuring that expectations according to probability $p$ are not dominated on their support. 
+If instead one could argue for evaluations which ensures that \emph{risk-weighted} expectations according to probability $p$ and risk-profile $r$ are not dominated on the support of $p$, then we instead get an argument for being an $r$-expectation function. 
 
-Open question whether that is possible. 
+\begin{theorem}Fix a risk profile $r$. 
+	If $\succeq_w$ is a relation on estimation functions such that:
+	\begin{itemize}
+		\item For every $e^*$,  $\{p \given RExp_p^r\succeq_w e^*\}$ is closed
+		\begin{itemize}
+			\item as $p\mapsto RExp_p^r$ is continous, it suffices to require that $\{e\given e\succeq_w e^*\}$ is closed. 
+			\item For example, if the ordering on estimation functions is generated by a lower semicontinuoius loss function. 
+		\end{itemize}
+		\item For every $p$ and $e^*$, there is some $w\in\supp(p)$ such that $RExp_p^r\succeq_w e^*$. 
+	\end{itemize}
+	If, in addition, 
+	\begin{itemize}
+		\item there can be no ties between $r$-expectations and those which are not,
+	\end{itemize} then in fact those which are not $r$-expectations are dominated. 
+\end{theorem}
+\begin{proof}
+	Just take $s(p)=RExp_p^r$ and apply the theorem. 
+\end{proof}
 
-For r-proper scoring rules for credence, it is $EU_p=p$ which maximses $REU_p$. Is ones credences the risk-weighted estimate of truth? 
+If we think the right way of evaluating estimation functions is by $\succeq$ having these properties, then we obtain a dominance argument for being a risk-weighted expected value. 
+
+\begin{remark}
+It is also worth noting that these conditions can be jointly satisfied. 
+
+Assume $W$ is finite. 
+	
+Here's a way to consturct such a scoring rule: use a ``decoding'' function which removes the effect of $r$. 
+We know how to do that for functions which do have the form of $RExp_p^r$: 
+For an estimation function $e$, let $q(e)$ be a probability function given by 
+\[q(e)(w)=r^{-1}(e(\mathbb{I}_{w}))\]
+
+Observe that $\{RExp_p^r\given p\in P\}$ is compact, as it a continuous function of $p$. 
+So we can define $\delta(e)=\inf\{d_{\infty}(e,RExp_p^r)\given p\in P\}$ observing that $\delta(e)>0$ iff $e$ is not $RExp_p$. 
+
+We can then put \[L(e,w)=\mathsf{Brier}(e,w)+\delta(e)\] 
+
+It's continuous so long as $r$ was. 
+
+KKM-covering: for each $p$, $RExp_p^r$ maximises $\Exp_p(e)$ by strict propriety of Brier score. So it is not dominated on its support. 
+\end{remark}
+
+These conditions refer to the risk profile $r$. 
+
+We might have instead have hoped for an argument for being a risk-weighted expectation function without pinning down a fixed risk-profile. 
+If instead, we can narrow down to a class of rankings which includes different rankings satisfying these conditions for different risk profiles then we get a dominance argument for being some risk-weighted expectation function, without specifying which: 7
+
+If $e$ is not a risk-weighted estimator, for any values of $r$ or $p$, then for every ranking, it is dominated. But those which are risk-weighted estimators do not have this same flaw: there is some evaluator on which they are not dominated. 
+
+\subsubsection{Unbounded random variables}
+Estimate function of random variables. 
+
+Let $\mathcal{V}=\R^W$, the collection of all random variables, including unbounded ones. 
+
+An estimation function is $e:\mathcal{V}\to \R\cup\{-\infty,+\infty\}$. 
+
+
+$\Ests$ is the collection of estimation functions. 
+
+If $p$ is a fs probability, then $\Exp_p$ is an estimation function \[\Exp_p[V]=\sum_{w\in\supp(p)}V(w)\]
+
+$e$ is a linear prevision if: 
+\begin{itemize}
+	\item linearity
+	\item non-negativity
+	\item ..
+\end{itemize}
+
+Observe that the class of linear previsions is compact Hausdoff topological space into which the fs probabilities on each finite $F\subseteq W$ are continuously included. We wil thus use this version of the KKM theorem and directly work with the linear previsions as our parameter space. 
+
+\begin{theorem}
+	Let $P$ be the class of linear previsions. 
+	If 
+	\begin{itemize}
+		\item \textbf{Closedness} 
+		For every $e^*\in E$ and $w\in W$, \[\{p\in P: p\succeq_w e\}\] is closed.
+		\item \textbf{KKM covering} For every fs $p$ and $e^*\in E$, there is some $w\in\supp(p)$ such that $\Exp_p\succeq_w e$. 
+		\begin{itemize}
+			\item That is they are not strictly dominated on their support (if it's total)
+			\item E.g., the measure is weakly proper for fs probs. 
+		\end{itemize}
+		Then, for every $e^*$ there is some linear prevision $p$ which either Pareto dominates it or is guaranteed to be equally good as $e^*$. 
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	We just put $s(p)=p$, as our parameter space is already the linear previsions. 
+	
+	We then just need the fact that this class is compact. 
+\end{proof}
+
+
 
 
 \subsection{Conditionalisation}
@@ -548,7 +724,7 @@ $m=(c,(a_E)_{E\in\mathcal{E}})$ consisting of a prior credence and a plan to ado
 		\end{itemize}
 	\end{itemize}
 	
-	For every $m\in M$, there is a conditionalisation plan which Pareto-dominates, or has the same loss profile as, $m$. 
+	Then, for every $m\in M$, there is a conditionalisation plan which Pareto-dominates, or has the same loss profile as, $m$. 
 	
 	If, in addition, there can be no conditionalisation plan and non-conditionalisation plan which are tied at every world, then in fact, every non-conditionalisation plan is Pareto-dominated. 
 \end{theorem}
@@ -1509,7 +1685,597 @@ Suppose we have some setup like this. But we have a set of different orderings.
 	\end{proof}
 \end{AIwritten}
 
+\begin{AIwritten}
+\section{Estimation}
 
+%\begin{theorem}[Dominance by a linear prevision]
+%	Let $W$ be nonempty, and let $\mathcal V$ be a
+%	linear space of real-valued random variables on $W$
+%	containing the constant function $\one$.
+%	Let $\Ests=\mathbb R^{\mathcal V}$, equipped with
+%	the topology of pointwise convergence.
+%	
+%	For each finitely supported probability $p$ on $W$,
+%	define
+%	\[
+%	\Exp_p[V]
+%	=
+%	\sum_{w\in\supp(p)}p(w)V(w).
+%	\]
+%	Let $\succeq_w$ be a comparison relation on $\Ests$
+%	for each $w\in W$, and fix a benchmark
+%	$e^*\in\Ests$.
+%	
+%	Suppose:
+%	\begin{enumerate}
+%		\item \textbf{Closedness.}
+%		For every $w\in W$, the set
+%		\[
+%		H_w=\{e\in\Ests:e\succeq_w e^*\}
+%		\]
+%		is closed in $\Ests$.
+%		
+%		\item \textbf{Local compactness condition.}
+%		There is a nonempty finite $F_0\subseteq W$
+%		such that the set
+%		\[
+%		\{\Exp_p:p\in\mathrm{FSP}(W),\
+%		\Exp_p\succeq_w e^*
+%		\text{ for every }w\in F_0\}
+%		\]
+%		has compact closure in $\Ests$.
+%		
+%		\item \textbf{KKM covering.}
+%		For every $p\in\mathrm{FSP}(W)$, there is
+%		some $w\in\supp(p)$ such that
+%		\[
+%		\Exp_p\succeq_w e^*.
+%		\]
+%	\end{enumerate}
+%	
+%	Then there is a positive, normalised linear
+%	prevision $e$ on $\mathcal V$ such that
+%	\[
+%	e\succeq_w e^*
+%	\qquad\text{for every }w\in W.
+%	\]
+%	Moreover, $e$ belongs to the pointwise closure
+%	of $\{\Exp_p:p\in\mathrm{FSP}(W)\}$.
+%\end{theorem}
+%
+%\begin{proof}
+%	Let
+%	\[
+%	C=\overline{
+%		\{\Exp_p:p\in\mathrm{FSP}(W),\
+%		\Exp_p\in\bigcap_{w\in F_0}H_w\}
+%	}.
+%	\]
+%	By assumption, $C$ is compact.
+%	
+%	Fix any finite $F\subseteq W$, and put
+%	$G=F\cup F_0$.
+%	The map
+%	\[
+%	\Delta_G\longrightarrow\Ests,
+%	\qquad p\longmapsto\Exp_p,
+%	\]
+%	is continuous, since each coordinate
+%	$p\mapsto\Exp_p[V]$ is a finite linear sum.
+%	Consequently, for each $w\in G$, the set
+%	\[
+%	A_w=\{p\in\Delta_G:\Exp_p\succeq_w e^*\}
+%	\]
+%	is closed in $\Delta_G$.
+%	
+%	The covering assumption gives the KKM covering
+%	condition on every face of $\Delta_G$.
+%	Thus the finite-simplex KKM lemma supplies
+%	$p_G\in\bigcap_{w\in G}A_w$.
+%	In particular,
+%	\[
+%	\Exp_{p_G}\in C\cap\bigcap_{w\in F}H_w.
+%	\]
+%	
+%	Hence the closed subsets $C\cap H_w$ of compact
+%	$C$ have the finite intersection property.
+%	Choose
+%	\[
+%	e\in C\cap\bigcap_{w\in W}H_w.
+%	\]
+%	This gives the required worldwise comparisons.
+%	
+%	Finally, every $\Exp_p$ is positive, normalised,
+%	and linear. These properties are preserved under
+%	pointwise limits in $\mathbb R^{\mathcal V}$:
+%	\[
+%	e(\alpha V+\beta U)=\alpha e(V)+\beta e(U),
+%	\qquad e(\one)=1,
+%	\qquad V\ge0\Longrightarrow e(V)\ge0.
+%	\]
+%	Thus $e$ is a linear prevision.
+%\end{proof}
+
+
+\begin{theorem}[Dominance by an extended prevision]
+	Let $W$ be nonempty, and let $\mathcal V$ be a
+	linear space of real-valued random variables on $W$
+	containing the constant function $\one$.
+	Equip
+	\[
+	\Ests=\overline{\mathbb R}^{\mathcal V}
+	\]
+	with the product of the order topologies.
+	
+	For each finitely supported probability $p$ on $W$,
+	define
+	\[
+	\Exp_p[V]
+	=
+	\sum_{w\in\supp(p)}p(w)V(w),
+	\]
+	and put
+	\[
+	K=\overline{
+		\{\Exp_p:p\in\mathrm{FSP}(W)\}
+	}.
+	\]
+	
+	Let $\succeq_w$ be a comparison relation on $\Ests$
+	for each $w\in W$, and fix $e^*\in\Ests$.
+	Suppose:
+	\begin{enumerate}
+		\item \textbf{Closedness.}
+		For every $w\in W$, the set
+		\[
+		H_w=\{e\in K:e\succeq_w e^*\}
+		\]
+		is closed in $K$.
+		
+		\item \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$, some
+		$w\in\supp(p)$ satisfies
+		\[
+		\Exp_p\succeq_w e^*.
+		\]
+	\end{enumerate}
+	
+	Then there is an $e\in K$ such that
+	\[
+	e\succeq_w e^*
+	\qquad\text{for every }w\in W.
+	\]
+	In particular, $e$ is a pointwise limit of
+	finitely supported expectations and satisfies:
+	\begin{enumerate}
+		\item $e(\one)=1$;
+		\item $V\ge0$ implies $e(V)\ge0$;
+		\item $e(\alpha V)=\alpha e(V)$ for
+		$\alpha\ne0$, and $e(0)=0$;
+		\item $e(U+V)=e(U)+e(V)$ whenever the
+		right-hand side is defined.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	The space $\Ests$ is compact Hausdorff by
+	Tychonoff's theorem, so its closed subset $K$
+	is compact.
+	
+	Fix a nonempty finite $F\subseteq W$.
+	The map
+	\[
+	\iota_F:\Delta_F\to K,
+	\qquad p\mapsto\Exp_p,
+	\]
+	is continuous: each coordinate is a finite
+	linear sum of the probability weights.
+	
+	For $w\in F$, put
+	\[
+	A_w=\iota_F^{-1}(H_w).
+	\]
+	These sets are closed in $\Delta_F$.
+	The covering assumption gives the KKM covering
+	condition on every face of $\Delta_F$.
+	Hence some $p_F\in\Delta_F$ satisfies
+	\[
+	\Exp_{p_F}\in\bigcap_{w\in F}H_w.
+	\]
+	
+	Thus the closed subsets $H_w$ of compact $K$
+	have the finite intersection property.
+	Consequently,
+	\[
+	\bigcap_{w\in W}H_w\ne\varnothing.
+	\]
+	Choose $e$ in this intersection.
+	
+	Since $e\in K$, it is a pointwise limit of
+	finitely supported expectations.
+	Normalisation, positivity, and homogeneity
+	pass to the limit. Additivity passes to the
+	limit whenever the sum of the limiting values
+	is defined in $\overline{\mathbb R}$.
+\end{proof}
+
+
+\section{General Thm}
+\begin{theorem}[Fan--KKM with a compact target]
+	Let $W$ be nonempty, let $K$ be a compact Hausdorff
+	space, and let
+	\[
+	\iota:\mathrm{FSP}(W)\to K
+	\]
+	be continuous on each finite simplex $\Delta_F$.
+	
+	Suppose $\psi:W\rightrightarrows K$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $w\in W$, $\psi(w)$ is closed in $K$.
+		
+		\item \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$, there is
+		some $w\in\supp(p)$ such that
+		\[
+		\iota(p)\in\psi(w).
+		\]
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{w\in W}\psi(w)
+	\]
+	is nonempty and compact.
+\end{theorem}
+
+\begin{proof}
+	Fix a nonempty finite $F\subseteq W$.
+	For each $w\in F$, let
+	\[
+	A_w=\{p\in\Delta_F:\iota(p)\in\psi(w)\}.
+	\]
+	These sets are closed in $\Delta_F$.
+	The covering assumption gives the KKM condition
+	on every face of $\Delta_F$.
+	The finite-simplex KKM lemma therefore gives
+	\[
+	\bigcap_{w\in F}A_w\ne\varnothing.
+	\]
+	Applying $\iota$ shows that
+	$\bigcap_{w\in F}\psi(w)\ne\varnothing$.
+	
+	Thus the closed sets $\psi(w)$ have the finite
+	intersection property. Compactness of $K$ gives
+	a nonempty total intersection, which is itself
+	closed and hence compact.
+\end{proof}
+
+
+\begin{theorem}[Fan--KKM]\label{thm:KKM}
+	Let $W$ be nonempty, let $K$ be a compact Hausdorff
+	space, and let
+	\[
+	\iota:\mathrm{FSP}(W)\to K
+	\]
+	be continuous on every finite simplex $\Delta_F$.
+	
+	Suppose $\psi:W\rightrightarrows K$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $w\in W$, $\psi(w)$ is closed in $K$.
+		
+		\item \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$, there is
+		some $w\in\supp(p)$ such that
+		\[
+		\iota(p)\in\psi(w).
+		\]
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{w\in W}\psi(w)
+	\]
+	is nonempty and compact.
+\end{theorem}
+
+
+
+
+\section{Core result}
+
+Let $W$ be a nonempty set. Write $\mathrm{FSP}(W)$
+for the finitely supported probability weights on $W$.
+For each nonempty finite $F\subseteq W$, let
+\[
+\Delta_F=\{p\in\mathrm{FSP}(W):\supp(p)\subseteq F\},
+\]
+equipped with its usual Euclidean topology.
+
+We use the following formulation of the Fan--KKM lemma.
+The compact space $\Theta$ consists of \emph{parameter points}.
+The map $\iota$ assigns a parameter point to each
+finitely supported probability weight.
+
+\begin{theorem}[Fan--KKM]\label{thm:KKM}
+	Let $W$ be nonempty, let $\Theta$ be a compact Hausdorff
+	space, and let
+	\[
+	\iota:\mathrm{FSP}(W)\to \Theta
+	\]
+	be continuous on every finite simplex $\Delta_F$.
+	Suppose $\psi:W\rightrightarrows \Theta$ satisfies:
+	\begin{enumerate}
+		\item \textbf{Closed values.}
+		For every $w\in W$, $\psi(w)$ is closed in $\Theta$.
+		
+		\item \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$, there is some
+		$w\in\supp(p)$ such that
+		\[
+		\iota(p)\in\psi(w).
+		\]
+	\end{enumerate}
+	Then
+	\[
+	\bigcap_{w\in W}\psi(w)
+	\]
+	is nonempty and compact.
+\end{theorem}
+
+\begin{proof}
+	Fix a nonempty finite $F\subseteq W$.
+	For each $w\in F$, define
+	\[
+	A_w=\{p\in\Delta_F:\iota(p)\in\psi(w)\}.
+	\]
+	These sets are closed in $\Delta_F$.
+	For every nonempty $G\subseteq F$ and $p\in\Delta_G$,
+	the covering assumption supplies some
+	$w\in\supp(p)\subseteq G$ with $p\in A_w$.
+	Thus
+	\[
+	\Delta_G\subseteq\bigcup_{w\in G}A_w.
+	\]
+	The finite-simplex KKM lemma therefore gives
+	\[
+	\bigcap_{w\in F}A_w\ne\varnothing.
+	\]
+	The image under $\iota$ of any point in this
+	intersection belongs to every $\psi(w)$ with $w\in F$.
+	
+	Hence the closed sets $\psi(w)$ have the finite
+	intersection property. Compactness of $\Theta$ gives
+	a nonempty total intersection. This intersection
+	is closed in $\Theta$ and therefore compact.
+\end{proof}
+
+\begin{remark}[Probability parameter points]
+	The probability formulation is recovered by taking
+	$\Theta=P$, the finitely additive probabilities on
+	$\wp(W)$ with the topology of pointwise convergence
+	on events, and setting $\iota(p)=p$.
+	
+	Indeed, $P$ is a closed subset of the compact
+	Hausdorff cube $[0,1]^{\wp(W)}$, since normalisation
+	and finite additivity are closed conditions.
+	The inclusion of each finite simplex into $P$
+	is continuous.
+\end{remark}
+
+\subsection{Dominance}
+
+Let $M$ be a set of models, with $m\succeq_w m^*$
+representing that $m$ is at least as good as $m^*$
+at world $w$.
+A selection $s:\Theta\to M$ assigns a model to each
+parameter point. Thus
+\[
+s(\iota(p))
+\]
+is the model selected at the parameter point
+associated with the probability weight $p$.
+
+Only the parameter space $\Theta$ needs a topology.
+No topology on $M$, and no continuity of $s$,
+is assumed.
+
+
+Let $\Theta$ be a compact Hausdorff parameter space
+containing $\mathrm{FSP}(W)$, such that the inclusion
+$\Delta_F\hookrightarrow\Theta$ is continuous for
+every nonempty finite $F\subseteq W$
+
+
+\begin{corollary}[Dominance]\label{thm:dom}
+	Let $W$ be nonempty, let $\Theta$ be a compact Hausdorff
+	space, and let
+	\[
+	\iota:\mathrm{FSP}(W)\to \Theta
+	\]
+	be continuous on every finite simplex $\Delta_F$.
+	
+	Let $M$ be nonempty, let $\succeq_w$ be a comparison
+	relation on $M$ for each $w\in W$, and let
+	$s:\Theta\to M$.
+	Suppose:
+	\begin{enumerate}
+		\item\label{ass:cl} \textbf{Closedness.}
+		For every benchmark $m^*\in M$ and $w\in W$,
+		the set of parameter points
+		\[
+		\{\theta\in \Theta:s(\theta)\succeq_w m^*\}
+		\]
+		is closed in $\Theta$.
+		
+		\item\label{ass:KKM} \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$ and every
+		benchmark $m^*\in M$, there is some
+		$w\in\supp(p)$ such that
+		\[
+		s(\iota(p))\succeq_w m^*.
+		\]
+	\end{enumerate}
+	Then, for every $m^*\in M$, there is some $\theta\in \Theta$
+	such that
+	\[
+	s(\theta)\succeq_w m^*
+	\qquad\text{for every }w\in W.
+	\]
+	The set of such parameter points $\theta$ is nonempty
+	and compact.
+\end{corollary}
+
+\begin{proof}
+	Fix $m^*\in M$ and define
+	\[
+	\psi(w)=\{\theta\in \Theta:s(\theta)\succeq_w m^*\}.
+	\]
+	Closedness gives closed values, and
+	\ref{ass:KKM} gives KKM covering.
+	Apply \cref{thm:KKM}.
+\end{proof}
+
+\begin{remark}
+	If each $\succeq_w$ is total, KKM covering says
+	that no model is strictly better than
+	$s(\iota(p))$ at every world in $\supp(p)$.
+	
+	If each $\succeq_w$ is a total preorder, the
+	conclusion says that every model is either
+	Pareto-dominated by a selected model or tied
+	with it at every world. For partial relations,
+	the conclusion is simply weak improvement
+	at every world.
+\end{remark}
+
+\subsection{Generalisations}
+
+\paragraph{Benchmark-dependent selections.}
+For each fixed benchmark $m^*$, we may use a different
+selection
+\[
+s_{m^*}:\Theta\to M.
+\]
+It suffices that the closedness and covering assumptions
+hold for comparisons of $s_{m^*}(\theta)$ with that benchmark.
+The conclusion is then
+\[
+s_{m^*}(\theta)\succeq_w m^*
+\qquad\text{for every }w\in W
+\]
+for some $\theta\in \Theta$.
+
+\paragraph{Closed comparison subsets.}
+For each benchmark $m^*$, it suffices to find closed sets
+\[
+\psi_{m^*}(w)
+\subseteq
+\{\theta\in \Theta:s(\theta)\succeq_w m^*\}
+\]
+such that, for every $p\in\mathrm{FSP}(W)$, some
+$w\in\supp(p)$ satisfies
+\[
+\iota(p)\in\psi_{m^*}(w).
+\]
+By \cref{thm:KKM}, their intersection is nonempty.
+Every parameter point in this intersection selects
+a model weakly improving $m^*$ at every world.
+
+\paragraph{Set-valued selections.}
+The selection may instead be a nonempty-valued
+correspondence $S:\Theta\rightrightarrows M$.
+For a fixed benchmark $m^*$, define
+\[
+\psi_{m^*}(w)=
+\{\theta\in \Theta:
+m\succeq_w m^*
+\text{ for every }m\in S(\theta)\}.
+\]
+If these sets are closed and satisfy KKM covering,
+then there is some $\theta\in \Theta$ such that
+\[
+m\succeq_w m^*
+\qquad
+\text{for every }m\in S(\theta)
+\text{ and every }w\in W.
+\]
+Since $S(\theta)$ is nonempty, any of its members gives
+the required worldwise improvement.
+
+
+
+\begin{theorem}[KKM dominance]\label{thm:dom}
+	Let $W$ be nonempty, let $\Theta$ be a Hausdorff
+	space of parameter points, and let $M$ be a
+	nonempty set of models.
+	Let
+	\[
+	\iota:\mathrm{FSP}(W)\to \Theta,
+	\qquad s:\Theta\to M,
+	\]
+	and let $\succeq_w$ be a comparison relation on $M$
+	for each $w\in W$.
+	
+	Fix a benchmark $m^*\in M$, and write
+	\[
+	H_w=\{\theta\in \Theta:s(\theta)\succeq_w m^*\}.
+	\]
+	Suppose:
+	\begin{enumerate}
+		\item \textbf{Closedness.}
+		Each $H_w$ is closed in $\Theta$.
+		For every nonempty finite $F\subseteq W$
+		and $w\in F$, the set
+		\[
+		\{p\in\Delta_F:\iota(p)\in H_w\}
+		\]
+		is closed in $\Delta_F$.
+		
+		\item \textbf{KKM covering.}
+		For every $p\in\mathrm{FSP}(W)$, some
+		$w\in\supp(p)$ satisfies
+		\[
+		\iota(p)\in H_w.
+		\]
+		
+		\item \textbf{Compactness.}
+		For some nonempty finite $F_0\subseteq W$,
+		the set
+		\[
+		C=\overline{
+			\{\iota(p):p\in\mathrm{FSP}(W),\
+			\iota(p)\in\bigcap_{w\in F_0}H_w\}
+		}
+		\]
+		is compact.
+	\end{enumerate}
+	Then some $\theta\in C$ satisfies
+	\[
+	s(\theta)\succeq_w m^*
+	\qquad\text{for every }w\in W.
+	\]
+\end{theorem}
+
+\begin{proof}
+	Fix a finite $F\subseteq W$, and put $G=F\cup F_0$.
+	On $\Delta_G$, the closed sets
+	\[
+	A_w=\{p\in\Delta_G:\iota(p)\in H_w\},
+	\qquad w\in G,
+	\]
+	satisfy the KKM covering condition.
+	The finite-simplex KKM lemma supplies
+	$p_G\in\bigcap_{w\in G}A_w$. Hence
+	\[
+	\iota(p_G)\in C\cap\bigcap_{w\in F}H_w.
+	\]
+	The closed subsets $C\cap H_w$ of compact $C$
+	therefore have the finite intersection property.
+	Any point in their total intersection gives
+	the required conclusion.
+\end{proof}
+
+\end{AIwritten}
 \end{document}
 \newpage
 \color{red}
@@ -1892,4 +2658,7 @@ Let $m'\succeq_w m$ when $L(m',w)\leq L(m,w)$.
 	model belongs to $C_L$ for some $L$ and is therefore
 	undominated under that ranking.
 \end{proof}
+
+
+
 \end{document}
