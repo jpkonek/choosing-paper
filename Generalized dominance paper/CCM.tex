@@ -65,43 +65,6 @@
 
 We use the following probability formulation of the
 Fan--KKM lemma.
-
-\begin{color}{red}
-	
-	Let $W$ be a non-empty set. 
-	
-	$\mathrm{FSP}(W)$ are the set of finitely supported probability weights on $W$. That is, there is some $w_1,\ldots,w_n\in W$ with $p(w_i)$ non-negative and summing to 1. 
-	
-	Let $P$ be a compact Hausdorff parameter space
-	containing $\mathrm{FSP}(W)$, such that the inclusion
-	$\Delta_F\hookrightarrow P$ is continuous for
-	every nonempty finite $F\subseteq W$
-	
-	In our standard applications, $P$ will be the class of all finitely additive probability functions on $W$ with the topology of pointwise convergence. It is compact. 
-	
-	\begin{theorem}
-		Suppose $\psi\colon W\rightrightarrows P$ satisfies:
-		\begin{enumerate}
-			\item \textbf{Closed values.}
-			For every $w\in W$, the set $\psi(w)$ is
-			closed in $P$.
-			
-			\item \textbf{KKM covering.}
-			For every finitely supported $p\in P$, there
-			is some $w\in\supp(p)$ such that
-			$
-			p\in\psi(w).
-			$
-		\end{enumerate}
-		Then
-		\[
-		\bigcap_{w\in W}\psi(w)\neq\varnothing.
-		\] and it is compact. 
-		\end{theorem}
-	
-	
-	 
-\end{color}
 \begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}
 	Let $W$ be a nonempty set, and let $P$ be the space
 	of finitely additive probabilities on $\wp(W)$,
@@ -125,7 +88,7 @@ Fan--KKM lemma.
 	\bigcap_{w\in W}\psi(w)\neq\varnothing.
 	\] and it is compact. 
 \end{theorem}
-Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}.
+Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}. The fundamentally important property needed for this theorem is that $P$ is compact. For example, if we let $P$ be the $\sigma$-additive probability functions, the theorem would fail. It needs to be able to take limits through any sequence of finitely supported probability functions. 
 
 %\todo[inline]{Hum, this statement directly for probs now isn't simple for chance-dominance... How to best state it?}
 %\begin{color}{violet}
@@ -167,11 +130,11 @@ Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}.
 %\end{enumerate}
 %Then
 %\[
+
 %\bigcap_{w\in W}\psi(w)\neq\varnothing.
 %\] and it is compact. 
 %\end{theorem}
 %\end{color}
-
 
 Now an application: 
 $\succeq_w$ is a relation on some set $M$ representing  ``at least as good as in $w$'', 
