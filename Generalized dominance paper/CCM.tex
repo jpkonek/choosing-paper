@@ -214,7 +214,7 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 \end{theorem}
 
 \begin{theorem}
-	The class $P$ can be any compact Hausdorff parameter space
+	The set $P$ can be any compact Hausdorff space
 	containing $\mathrm{FSP}(W)$, such that the inclusion
 	$\Delta_F\hookrightarrow P$ is continuous for
 	every nonempty finite $F\subseteq W$.
@@ -372,18 +372,20 @@ If $\delta_w$ is not strictly dominated because $\delta_w\succeq_{w^*}m$, but $\
 Note that there is no restriction in this theorem to the space of possible outcomes, $\Omega$, being finite. 
 
 The difficulty is, however, when there are infinitely many components of a credence function which need to be evaluated, that is, when the space of propositions over which the credence functions are defined is infinite, that is, when its domain is infinite. 
+
 There are known challenges with applying accuracy considerations on arbitrary domains. It is impossible to get a real valued loss function which is strictly proper: there are just too many coherent models to expect comparisons to be reflected in the reals. This challenge has been made easier as we direclty work with orderings rather than real-valued loss functions. 
 
-Note that if the ordering satisfies ?? properties, then it is reflected by a loss function onto a field, and if it also satisfies Archimeanicity, it can be seen as a real-valued loss function. 
+%Note that if the ordering satisfies ?? properties, then it is reflected by a loss function onto a field, and if it also satisfies Archimeanicity, it can be seen as a real-valued loss function. 
 
-There is an outstanding question, however: for an arbitrary $\Omega$, is there a ranking which has the properties for the application of the theorem?
+There is an outstanding question, however: for an arbitrary $\Omega$, is there a ranking which has the properties for the application of the theorem.
+Yes, and trivially so: we could just use a loss function giving $0$ at every world to those which are theselves probabilities, and $1$ to those which are not. What's interesting is if it satisfies other desirable properties such as truth-directedness. For example, Snow Zhang shows that there are no comparative relations which are strictly truth directed and strongly extensional. 
 
 \begin{remark}
 	Let $c_1\succeq_wc_2$ iff $c_1\succeq_w^Fc_2$ for finite $F\subseteq \agenda$. 
 	And suppose each $\succeq_w^F$ is continuous and strictly proper, for example, it's Brier score. 
 	
-	Take any $p$ and $c$. 	Is $\{p \given p\succeq_w c\}$ closed? 
-	Suppose $p_\alpha$ is a net of probabilities with each $p^\alpha\succeq_w c$. That is, on every finite
+	Take any $p$ and $c$. 	Is $\{p \given p\succeq_w c\}$ closed? Yes, I believe so. 
+%	Suppose $p_\alpha$ is a net of probabilities with each $p^\alpha\succeq_w c$. That is, on every finite
 	
 	
 	We want to find some $w$ where $p\succeq_w c$. 	This requires some $w$ such that for all $F$, $p\succeq_w^F c$. That's tantamount to saying that at world $w$ $p$ is at least as good as $c$ on every proposition. Switch of quantifiers. 
@@ -588,34 +590,37 @@ If instead one could argue for evaluations which ensures that \emph{risk-weighte
 	Just take $s(p)=RExp_p^r$ and apply the theorem. 
 \end{proof}
 
-If we think the right way of evaluating estimation functions is by $\succeq$ having these properties, then we obtain a dominance argument for being a risk-weighted expected value. 
+If we think the right way of evaluating estimation functions is by a ranking which has these properties, then we obtain a dominance argument for $r$-expectations. 
 
-\begin{remark}
-It is also worth noting that these conditions can be jointly satisfied. 
 
-Assume $W$ is finite. 
-	
-Here's a way to consturct such a scoring rule: use a ``decoding'' function which removes the effect of $r$. 
-We know how to do that for functions which do have the form of $RExp_p^r$: 
-For an estimation function $e$, let $q(e)$ be a probability function given by 
-\[q(e)(w)=r^{-1}(e(\mathbb{I}_{w}))\]
-
-Observe that $\{RExp_p^r\given p\in P\}$ is compact, as it a continuous function of $p$. 
-So we can define $\delta(e)=\inf\{d_{\infty}(e,RExp_p^r)\given p\in P\}$ observing that $\delta(e)>0$ iff $e$ is not $RExp_p$. 
-
-We can then put \[L(e,w)=\mathsf{Brier}(e,w)+\delta(e)\] 
-
-It's continuous so long as $r$ was. 
-
-KKM-covering: for each $p$, $RExp_p^r$ maximises $\Exp_p(e)$ by strict propriety of Brier score. So it is not dominated on its support. 
-\end{remark}
+%\begin{remark}
+%It is also worth noting that these conditions can be jointly satisfied. 
+%
+%Assume $W$ is finite. 
+%	
+%Here's a way to consturct such a scoring rule: use a ``decoding'' function which removes the effect of $r$. 
+%We know how to do that for functions which do have the form of $RExp_p^r$: 
+%For an estimation function $e$, let $q(e)$ be a probability function given by 
+%\[q(e)(w)=r^{-1}(e(\mathbb{I}_{w}))\]
+%
+%Observe that $\{RExp_p^r\given p\in P\}$ is compact, as it a continuous function of $p$. 
+%So we can define $\delta(e)=\inf\{d_{\infty}(e,RExp_p^r)\given p\in P\}$ observing that $\delta(e)>0$ iff $e$ is not $RExp_p$. 
+%
+%We can then put \[L(e,w)=\mathsf{Brier}(q(e),w)+\delta(e)\] 
+%
+%It's continuous so long as $r$ was. 
+%
+%KKM-covering: for each $p$, $RExp_p^r$ maximises $\Exp_p(e)$ by strict propriety of Brier score. So it is not dominated on its support. 
+%\end{remark}
 
 These conditions refer to the risk profile $r$. 
 
 We might have instead have hoped for an argument for being a risk-weighted expectation function without pinning down a fixed risk-profile. 
-If instead, we can narrow down to a class of rankings which includes different rankings satisfying these conditions for different risk profiles then we get a dominance argument for being some risk-weighted expectation function, without specifying which: 7
-
-If $e$ is not a risk-weighted estimator, for any values of $r$ or $p$, then for every ranking, it is dominated. But those which are risk-weighted estimators do not have this same flaw: there is some evaluator on which they are not dominated. 
+If instead, we can narrow down to a class of rankings which includes different rankings satisfying these conditions for different risk profiles then we get a dominance argument for being some risk-weighted expectation function, without specifying which:
+\begin{itemize}
+	\item If $e$ is not a risk-weighted estimator, for any values of $r$ or $p$, then for every ranking, it is dominated. 
+	\item But those which are risk-weighted estimators do not have this same flaw: there is some evaluator on which they are not dominated. 
+\end{itemize}
 
 \subsubsection{Unbounded random variables}
 Estimate function of random variables. 
@@ -830,7 +835,9 @@ If $O$ is closed and convex, then $o$ is Bayes iff it is non-dominated.
 \end{theorem}
 \todo[inline]{No, this is the wrong proof, no connection to Bayes. But I don't think our other argument which uses Bayes existing is needed, as it probably applies when the options are unbounded. }
 \begin{proof}
-	Fix $o^*\in O$. Let $o_w\in O$ have $\U(o_w,w)\geq \U(o,w)$.
+	Fix $o^*\in O$ which is not Bayes. For every $w\in W$, is not Bayes for $\delta_w$, so there are $o_w\in O$ with $U(o_w,w)\succ_w U(o^*,w)$. 
+	
+	Let $s(p)$ be a member of the closed convex hull of $\{o_w\given w\}$ which is Bayes for $p$, possible as $o_w$ are compact. 
 	
 	For fs probability $p$, let $s(p)$ be an option corresponding to $\sum_w p(w) o_w$. Since $O$ is convex, this can be chosen. And for finitely additive $p$, let $p_\alpha$ be a net of finitely supporoted probabilities which converge to $p_\alpha$. Let $o_p=\lim o_{p_\alpha}$, possible as $O$ is closed. 
 	\todo{only the fs ones!!}
