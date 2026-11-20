@@ -36,7 +36,7 @@
 \newcommand{\Exp}{\operatorname{Exp}}
 %\setlist{itemsep=1pt,topsep=3pt}
 
-\title{Accuracy Dominance Results}
+\title{Dominance Generalised}
 \author{Jason Konek and Catrin Campbell-Moore}
 
 
@@ -57,127 +57,154 @@
 
 \begin{document}
 \maketitle
+
+\section{Dominance Arguments}
+
+We pin down certain ways of measuring goodness of objects in some class, $M$, at different points, usually at each possible world. So we have comparative relations $\succeq_w$ on $M$ for each $w$. We don't assume anything about the structure of these relations yet. 
+
+
+%If $m$ is dominated, and the ranking which deems it so is a legitimate ranking, then $m$ is taken to be irrational. 
+%If we merely identify a class of legitimate rankings and some objects are dominated on some rankings and not on others, there are differences that one can say about the rationality status, and this will depend on how we understand the various legitimate rankings to apply, but at least they don't have the 
+
+
+
+In this paper we are not providing arguments for particular rankings but instead identifying a central tool for giving dominance arguments and the properties of the rankings which are required to obtain such a dominance result. It encompasses most of the applications of accuracy dominance results in the literature and hopefully pave the way for new applications. 
+
+In particular, we highlight the merely instrumental role of strict propriety and replace it with something much more general involving dominance type considerations: finitely supported probabilities must not be dominated on their support. And we highlight how this parallel assumption is obtained in a whole class of applications where it is not credence functions themselves which are being evaluated. 
+
+
+Since we usually identify rankings by spelling out axioms, we typically cannot pin down a unique ranking. 
+If $m$ is dominated on every legitimate ranking, then it is flawed and irrational. What though about models whose status differs on different legitimate rankings? 
+As defended in Konek, we will take them to be rational, at least they don't have this flaw. This does not play much of a role in the paper, as in most applications, all legitimate rankings agree about what the class of dominated models are. 
+
+
 \section{Core result}
 
 %\begin{definition}
 %	$P$ is the space of finitely additive probabilities on $\wp(W)$. 
 %\end{definition}
 
-We use the following probability formulation of the
-Fan--KKM lemma.
-\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}
-	Let $W$ be a nonempty set, and let $P$ be the space
-	of finitely additive probabilities on $\wp(W)$,
-	equipped with the topology of pointwise convergence
-	on events.
-	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
-	\begin{enumerate}
-		\item \textbf{Closed values.}
-		For every $w\in W$, the set $\psi(w)$ is
-		closed in $P$.
+
+
+
+\subsection{Preliminaries}
+\newcommand{\Probs}{P}
+\newcommand{\FSP}{\mathrm{FSP}}
+\begin{AIwritten}
+	\begin{definition}
+		Let $W$ be a nonempty set. 
+		A topological space $\Probs$
+		\emph{contains the finitely supported probabilities} on $W$ if it
+		is equipped with an injection
+		\[
+		i:\mathrm{FSP}(W)\longrightarrow\Probs
+		\]
+		whose restriction to $\Delta_F$ is continuous for each
+		nonempty finite $F\subseteq W$, where $\Delta_F$ is the
+		simplex of probabilities supported on $F$, with its usual
+		Euclidean topology.
 		
-		\item \textbf{KKM covering.}
-		For every finitely supported $p\in P$, there
-		is some $w\in\supp(p)$ such that
-		$
-		p\in\psi(w).
-		$
-	\end{enumerate}
-	Then
-	\[
-	\bigcap_{w\in W}\psi(w)\neq\varnothing.
-	\] and it is compact. 
-\end{theorem}
-Equivalence to the usual theorem is shown in \cref{appendix:KKMthm}. The fundamentally important property needed for this theorem is that $P$ is compact. For example, if we let $P$ be the $\sigma$-additive probability functions, the theorem would fail. It needs to be able to take limits through any sequence of finitely supported probability functions. 
-
-%\todo[inline]{Hum, this statement directly for probs now isn't simple for chance-dominance... How to best state it?}
-%\begin{color}{violet}
-%	Trying out a new version of it:
-%\begin{theorem}[Fan--KKM for probabilities]\label{thm:KKM}:
-%	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
-%	Suppose $\psi\colon W\rightrightarrows P$ satisfies:
-%	\begin{enumerate}
-%		\item \textbf{Closed values.}
-%		For every $w\in W$, the set $\psi(w)$ is
-%		closed in $P$.
-%		
-%		\item \textbf{KKM covering.}
-%		For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
-%		$
-%		\iota(p)\in\psi(w).
-%		$
-%	\end{enumerate}
-%	Then
-%	\[
-%	\bigcap_{w\in W}\psi(w)\neq\varnothing.
-%	\] and it is compact. 
-%\end{theorem}
-%
-%
-%\begin{theorem}
-%	Let $P$ be a compact subset of a Hausdorff topological space. Suppose $W$ is a non-empty set and there is a continuous function $\iota$ from finitely supported probability weights on $W$ into $P$. 
-%Suppose $\psi\colon W\rightrightarrows P$ satisfies:
-%\begin{enumerate}
-%	\item \textbf{Closed values.}
-%	For every $w\in W$, the set $\psi(w)$ is
-%	closed in $P$.
-%	
-%	\item \textbf{KKM covering.}
-%	For all finitely supported probability weights, $p$, over $W$, there is some $w\in\supp(p)$ with 
-%	$
-%	\iota(p)\in\psi(w).
-%	$
-%\end{enumerate}
-%Then
-%\[
-
-%\bigcap_{w\in W}\psi(w)\neq\varnothing.
-%\] and it is compact. 
-%\end{theorem}
-%\end{color}
-
+		We identify each $p\in\mathrm{FSP}(W)$ with its image $i(p)$
+		and henceforth write $\mathrm{FSP}(W)\subseteq\Probs$.
+		Under this identification, the support of $i(p)$ is
+		$\operatorname{supp}(p)$.
+	\end{definition}
+\end{AIwritten}
+\subsection{Mathematical Theorem}
+Our theorem will apply to \emph{compact} spaces which contain the finitely supported probabilities. 
+A standard example is the finitely additive probability functions, a subspace of $\R^{\wp(W)}$. 
+Another example we will use is the space of linear previsions. 
+Note that the $\sigma$-additive probability functions is not a compact space, so our theorems won't apply. 
+\begin{AIwritten}
+	\begin{theorem}[KKM for $\Probs$]
+		Let $W$ be a nonempty set and let $\Probs$ be a compact space
+		containing the finitely supported probabilities on $W$.
+		Suppose $\psi\colon W\rightrightarrows\Probs$ satisfies
+		\begin{enumerate}
+			\item \textbf{Closed values.}
+			For every $w\in W$, the set $\psi(w)$ is closed in $\Probs$.
+			
+			\item \textbf{KKM covering.}
+			For every $p\in\mathrm{FSP}(W)$, there is some
+			$w\in\operatorname{supp}(p)$ such that $p\in\psi(w)$.
+		\end{enumerate}
+		Then $\bigcap_{w\in W}\psi(w)$ is nonempty and compact.
+	\end{theorem}
+	
+	\begin{proof}
+		Fix a nonempty finite set $F\subseteq W$. For each $w\in F$,
+		the set $\Delta_F\cap\psi(w)$ is closed in the usual simplex
+		topology on $\Delta_F$, by continuity of the inclusion
+		$\Delta_F\to\Probs$. For each nonempty $J\subseteq F$, every
+		$p\in\Delta_J$ has support contained in $J$. The covering
+		condition therefore gives
+		\[
+		\Delta_J\subseteq\bigcup_{w\in J}(\Delta_F\cap\psi(w)).
+		\]
+		By the finite simplex KKM lemma,
+		$\Delta_F\cap\bigcap_{w\in F}\psi(w)\neq\varnothing$.
+		
+		Thus the closed sets $\psi(w)$ have the finite intersection
+		property. By compactness of $\Probs$, their intersection is
+		nonempty. It is compact because it is closed in $\Probs$.
+	\end{proof}
+	
+\end{AIwritten}
+\subsection{The application to dominance arguments}
 Now an application: 
 $\succeq_w$ is a relation on some set $M$ representing  ``at least as good as in $w$'', 
 the conclusion of the theorem says that for every model there is some special kind of object (those which are mapped to by the function $s$) which is guaranteed to be at least as good as it. 
-%If in addition we have assumptions which imply that there cannot be ties between a space of 
 
-\begin{corollary}\label{thm:dom}
-	Let $M$ be a nonempty set, let $\succeq_w$ be a comparison relation
-	on $M$ for each $w \in W$, and let $s \colon P \to M$.
-	Suppose:
+\begin{corollary}
+	Let $M$ be a nonempty set. 
+	Let $W$ be a non-empty set with $\succeq_w$ a comparison relation on $M$, for each $w\in W$. 
+	
+	Suppose $\Probs$ is a compact space
+	containing the finitely supported probabilities on $W$ ans $s:\Probs\to M$. 
+	
+	Suppose: 
 	\begin{enumerate}
-		\item\label{ass:cl} \textbf{Closedness.}
-		For every $m \in M$ and $w \in W$, the set
-		\[
-		\{p \in P : s(p) \succeq_w m\}
-		\]
-		is closed in $P$.
-		
-		\item \label{ass:KKM}\textbf{KKM covering.}
-		For every finitely supported $p \in P$ and every
-		$m \in M$, 
-%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
-		there is some $w \in \operatorname{supp}(p)$
-		such that
-		\[
-		s(p) \succeq_w m.
-		\]
+		\item For each $m\in M$ and $w\in W$, the set \[\{p\in \Probs\given s(p)\succeq_w m\}\] is closed.
+		\item For every $p\in\FSP$, there is some $w\in\supp(p)$ such that $$s(p)\succeq_w m$$
 	\end{enumerate}
-	Then, for every $m \in M$, there exists some $p \in P$ such that:
-	\[
-	s(p) \succeq_w m
-	\qquad \text{for every } w \in W.
-	\]
-	The set of such $p$ is also compact. 
+	Then for every $m\in M$, there is some $p\in \Probs$ such that 
+		\[
+		s(p)\succeq_w m
+		\text{ for every }w\in W
+		\] Moreover, the set of such $p$ is compact. 
+		
+
+
+	If $R\subseteq M$ is such that \begin{itemize}
+		\item $s(P)\subseteq R$ and
+		\item  there can be no ties between members of $R$ and those outside of $R$\footnote{This is like the quasi propriety type weakening} 
+	\end{itemize}then members outside of $R$ must be dominated. 
+	
+	If, in addition, \begin{itemize}
+		\item the objects in $R$ cannot be dominated
+	\end{itemize}, then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
 \end{corollary}
+
+\begin{AIwritten}
+	
+	\begin{proof}
+		Fix $m\in M$ and define
+		\[
+		\psi(w)=\{p\in\Probs : s(p)\succeq_w m\}.
+		\]
+		By (1), each $\psi(w)$ is closed in $\Probs$. By (2), every
+		$p\in\mathrm{FSP}(W)$ belongs to $\psi(w)$ for some
+		$w\in\operatorname{supp}(p)$. The KKM theorem therefore
+		implies that $\bigcap_{w\in W}\psi(w)$ is nonempty and compact.
+	\end{proof}
+	
+\end{AIwritten}
 
 \begin{proof}
 	Fix $m\in M$ and define
 	\[
 	\psi(w)=\{p\in P:s(p)\succeq_w m\}.
 	\]
-	Closedness gives closed values, and Coherent
-	Admissibility gives the KKM covering condition.
 	The probability formulation of Fan--KKM therefore
 	yields
 	\[
@@ -219,7 +246,72 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 	$\Delta_F\hookrightarrow P$ is continuous for
 	every nonempty finite $F\subseteq W$.
 \end{theorem}
+\begin{theorem}
+	Suppose $P$ is a compact Hausdorff topological space, and $\iota:\mathrm{FSP}(W)\to P$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
+	
+	Suppose there is $s\colon P\to M$ such that:
+	\begin{enumerate}
+		\item\label{ass:cl} \textbf{Closedness.}
+		For every $m^* \in M$ and $w \in W$, the set
+		\[
+		\{p\in P\given s(p)\succeq_w m^*\}
+		\]
+		is closed in $M$.
+		
+		\item \label{ass:KKM}\textbf{KKM covering.}
+		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
+		$m \in M$, 
+		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
+		there is some $w \in \operatorname{supp}(p)$
+		such that
+		\[
+		s(\iota(p)) \succeq_w m.
+		\]
+	\end{enumerate}
+	Then, for every $m \in M$, there exists some $p\in P$ such that:
+	\[
+	s(p) \succeq_w m
+	\qquad \text{for every } w \in W.
+	\]
+	The set of such $p$ is also compact. 
+\end{theorem}
+\begin{proof}
+	content...
+\end{proof}
 
+
+\begin{theorem}
+	Suppose $M$ is a Hausdorff space, and $s:\mathrm{FSP}(W)\to M$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
+	Suppose also that $$C=\mathsf{closure}(s(\mathrm{FSP}(W)))$$ is compact in $M$. 
+	If:
+	\begin{enumerate}
+		\item\label{ass:cl} \textbf{Closedness.}
+		For every $m^* \in M$ and $w \in W$, the set
+		\[
+		\{ m\in C\given m\succeq_w m^*\}
+		\]
+		is closed in $M$.
+		
+		\item \label{ass:KKM}\textbf{KKM covering.}
+		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
+		$m \in M$, 
+		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
+		there is some $w \in \operatorname{supp}(p)$
+		such that
+		\[
+		s(p) \succeq_w m.
+		\]
+	\end{enumerate}
+	Then, for every $m \in M$, there exists some $c\in C$ such that:
+	\[
+	c \succeq_w m
+	\qquad \text{for every } w \in W.
+	\]
+	The set of such $p$ is also compact. 
+\end{theorem}
+\begin{proof}
+	content...
+\end{proof}
 
 
 \begin{color}{red}
@@ -285,6 +377,8 @@ Proof in
 \end{color}
 
 \section{Applications}
+
+Our different applications are simply identifying particular $M$ and criteria on the ordering which imply the existence of a suitable $s$ supporting a dominance argument for various rationality criteria. 
 
 \subsection{Dominance argument for probabilistic coherence}
 
@@ -395,7 +489,7 @@ Yes, and trivially so: we could just use a loss function giving $0$ at every wor
 Note also that it strengthens the theorem of Nielson \todo{does it??}
 
 \subsubsection{Strict Dominance}
-
+\todo[inline]{Move to end?}
 That merely obtains Perato-dominance of the non-probabilities. The standard conclusion of the accuracy argument is that they are \emph{strictly} dominated. 
 
 Some Bregman type stuff involved in the proof. Here we really do use something like propriety (although risk would do too); and probably it depends on finitely many worlds. 
@@ -447,25 +541,25 @@ Some Bregman type stuff involved in the proof. Here we really do use something l
 	those evaluations. See Appendix~\ref{app:evaluations}.
 \end{remark}
 
-\subsection{Credence functions on an agenda}
+
+
+
+\subsection{Credence functions on any agenda}
 
 Often we are not evaluating credence functions which have an opinion about every possible event. Instead they are defined as $c:\agenda\to\R$, where $\agenda$ is some subset of $\wp(W)$. It could also be not conceived of as events, subsets of $W$, but instead sentences in some language, which are satisfied in some worlds, so describe a subset of $W$.
-
 
 We now just make the dual role of $P$ clear: they are probabilities over $W$, but what is evaluated are different: credence functions, which have a close connection to probabilities over $W$. 
 
 There is then important content in the selection function $s:P\to M$. 
 
-There is a very natural $s$ to use here: $s(p)(A)=p(A)$ for all $A\in \agenda$; or in the sentence formalism, $s(p)(\phi)=p(\llbracket \phi\rrbracket)$. 
+There is a very natural $s$ to use here: $s(p)(A)=p(A)$ for all $A\in \agenda$; or in the sentence formalism, $s(p)(\phi)=p(\llbracket \phi\rrbracket)$. \todo[inline]{there's something nice about the sentence formalism that we need to explicitly refer to $s$. I think we should use that case!}
 
-	
+
 Suppose $W$ is a nonempty set and $M=[0,1]^\agenda$ for some $\agenda\subseteq \wp(W)$.
 
 \begin{definition}
-	$c$ is probabilistic iff there is some probabilistic $p$ on $\wp(W)$ with $c=p\upharpoonright_\agenda$. 
+	$c$ is probabilistic iff there is some probabilistic $p$ on $\wp(W)$ with $c=s(p)$. 
 \end{definition}
-
-
 
 \begin{proposition}
 	Suppose $\succeq_w$ is an ordering on $\M$ such that:
@@ -474,7 +568,7 @@ Suppose $W$ is a nonempty set and $M=[0,1]^\agenda$ for some $\agenda\subseteq \
 		\begin{itemize}
 			\item For example, each $\succeq_w$ is generated by a continuous (or lower semi-continuous) loss function.
 		\end{itemize}
-		\item For all $m$ and all $c$, if $p$ is finitely supported probability and is an extension of $c$, then there is $w\in \supp(p)$ such that $c\succeq_w m$.
+		\item For all $m$ and all $c$, if $p$ is finitely supported probability such that $s(p)=c$, then there is $w\in \supp(p)$ such that $c\succeq_w m$.
 		\begin{itemize}
 			\item If $\succeq_w$ are total, this is to say that the finitely supported probability functions give credence functions which are not almost-surely strictly dominated (on the support of the probability function). 
 		\end{itemize}
@@ -483,13 +577,45 @@ Suppose $W$ is a nonempty set and $M=[0,1]^\agenda$ for some $\agenda\subseteq \
 	
 	If, in addition, there can be no probabilistic $p$ and non-prbabilistic $m$ which are tied at every world, then in fact, every non-probability is Pareto-dominated. 
 \end{proposition}
-\begin{proof}
-	Just let $s(p)=p\upharpoonright_\agenda$, observing that it is continuous. 
-\end{proof}
+
+
 
 \subsection{Non-classical probabilism}
-
 We could also consider non-classical probability functions. Now $W$ are the possible points of evaluation, associated with omniscient credence functions which need not satisfy the classical laws of probability, and $s(p)$ is a $p$-weighted average of the omniscient points. 
+
+$v_w\in M$ be an ``omniscent model'' at world $w$. 
+
+Williams applies this where $M=\R^{Sent}$ too. But it could also apply where, for example, each sentence obtains two real values, as is argued for in Janda. It works in any Hausdorff topological vector space. 
+
+What we're going to get out is a accuracy dominance argument for being in the convex hull of the omniscient models. 
+
+This is delicate, however, once $W$ can be infinite, in which case we would only obtain a dominance argument for being in the closure of the convex hull of the omniscient models. This might not itself be compact if the omniscient points are unbounded in $M$ (assuming $M$ is locally compact), resulting in issues defining expectations. 
+
+\todo[inline]{This is now so general it seems to encompass the linear previsions stuff. Too general? I want to apply it to the upper-lower pairs, but that's sich a simple application for this super generality. }
+
+\begin{theorem}
+	Suppose $M$ be a complete Hausdorff locally convex vector space. 
+	
+	Let $v_w\in M$ be an ``omniscent model'' at world $w$. 
+	
+	Suppose that $W$ is finite, or that the closure of $\{v_w\given w \in W\}$ is compact (in most real product spaces this is just requiring the set of omniscint models to be bounded in each coordinate.)
+	
+	Let $s(p):=\sum_w p(w) v_w$ for finitely supported $p$, well defined by the vector space structure of $M$.
+	\todo{I'm just copying the general stuff!}
+	If \begin{itemize}
+		\item For every $m$ and every $w$, $\{p\given s(p)\succeq_w m\}$ is closed. \begin{itemize}
+			\item For example it is generated by a lower semi-continuous loss function on models. 
+		\end{itemize}
+		\item For every $m$ and every fs $p$, there is some $w\in\supp(p)$ such that $s(p)\succeq_w m$. 
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	We use the parameter space $C:=closure(\{convexhull(\{omniscients\})\})$. It is compact 
+\end{proof}
+This is for example obtained by a version of propriety: For every fs $p$, $\Exp_p[L(m)]$ is minimised at $m=s(p)$. 
+
+These omniscent objects need not themselves be in $\R^\mathcal{F}$, so long as they live in a Hausdorff 
+
 
 
 
@@ -615,11 +741,11 @@ If we think the right way of evaluating estimation functions is by a ranking whi
 
 These conditions refer to the risk profile $r$. 
 
-We might have instead have hoped for an argument for being a risk-weighted expectation function without pinning down a fixed risk-profile. 
+%We might have instead have hoped for an argument for being a risk-weighted expectation function without pinning down a fixed risk-profile. 
 If instead, we can narrow down to a class of rankings which includes different rankings satisfying these conditions for different risk profiles then we get a dominance argument for being some risk-weighted expectation function, without specifying which:
 \begin{itemize}
-	\item If $e$ is not a risk-weighted estimator, for any values of $r$ or $p$, then for every ranking, it is dominated. 
-	\item But those which are risk-weighted estimators do not have this same flaw: there is some evaluator on which they are not dominated. 
+	\item If $e$ is not a risk-weighted estimator, for any values of $r$ or $p$, then it is dominated on every ranking.
+	\item But those which are risk-weighted estimators do not have this same flaw: there is some ranking on which they are not dominated. 
 \end{itemize}
 
 \subsubsection{Unbounded random variables}
@@ -994,8 +1120,11 @@ Suppose we have some setup like this. But we have a set of different orderings.
 \section{Proof of KKM Theorem}
 \label{appendix:KKMthm} 
 
+
+\newpage 
 \begin{AIwritten}
-	
+
+
 \begin{theorem}[Fan--KKM for probability weights]
 	\label{thm:KKM}
 	Let $W$ be nonempty and let $P$ be a compact
@@ -1060,26 +1189,26 @@ Suppose we have some setup like this. But we have a set of different orderings.
 \begin{theorem}[Fan--KKM]
 	Let $X$ be a Hausdorff
 	topological vector space, and let
-	$\varnothing\neq V\subseteq X$.
-	Suppose $\phi\colon V\rightrightarrows X$ satisfies:
+	$\varnothing\neq D\subseteq X$.
+	Suppose $\phi\colon D\rightrightarrows X$ satisfies:
 	\begin{enumerate}
 		\item \textbf{Closed values.}
-		For every $v\in V$, the set $\phi(v)$ is
+		For every $d\in D$, the set $\phi(d)$ is
 		closed in $X$.
 		
 		\item \textbf{KKM covering.}
 		For every finite convex combination
-		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $V$,
+		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $D$,
 		there is some $i$ with $\lambda_i>0$ such that
 		\[
 		x\in\phi(v_i).
 		\]
 		
-		\item \textbf{Compact.} At least one $\phi(v)$ is compact. 
+		\item \textbf{Compact.} At least one $\phi(d)$ is compact. 
 	\end{enumerate}
 	Then
 	\[
-	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\bigcap_{d\in D}\phi(d)\neq\varnothing.
 	\]
 \end{theorem}
 
@@ -1087,16 +1216,16 @@ Suppose we have some setup like this. But we have a set of different orderings.
 \begin{theorem}[Fan--KKM on a compact convex space]
 	Let $Y$ be a compact convex subset of a Hausdorff
 	topological vector space, and let
-	$\varnothing\neq V\subseteq Y$.
-	Suppose $\phi\colon V\rightrightarrows Y$ satisfies:
+	$\varnothing\neq D\subseteq Y$.
+	Suppose $\phi\colon D\rightrightarrows Y$ satisfies:
 	\begin{enumerate}
 		\item \textbf{Closed values.}
-		For every $v\in V$, the set $\phi(v)$ is
+		For every $d\in D$, the set $\phi(d)$ is
 		closed in $Y$.
 		
 		\item \textbf{KKM covering.}
 		For every finite convex combination
-		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $V$,
+		$x=\sum_{i=1}^n\lambda_i v_i$ of points in $D$,
 		there is some $i$ with $\lambda_i>0$ such that
 		\[
 		x\in\phi(v_i).
@@ -1104,7 +1233,7 @@ Suppose we have some setup like this. But we have a set of different orderings.
 	\end{enumerate}
 	Then
 	\[
-	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\bigcap_{d\in D}\phi(d)\neq\varnothing.
 	\]
 \end{theorem}
 \begin{AIwritten}
@@ -1119,39 +1248,39 @@ Suppose we have some setup like this. But we have a set of different orderings.
 	compact and convex.
 	
 	Take the vertices to be
-	$V=\{\delta_w:w\in W\}$, and set
+	$D=\{\delta_w:w\in W\}$, and set
 	$\phi(\delta_w)=\psi(w)$.
 	Finite convex combinations of these vertices are
 	precisely the finitely supported probabilities
 	on $W$. The hypotheses and conclusion therefore
 	agree.
 	
-	Conversely, fix a nonempty finite set $F\subseteq V$.
+	Conversely, fix a nonempty finite set $F\subseteq D$.
 	Let $\Delta_F$ be the probability simplex on $F$.
 	The barycentre map
 	\[
 	B_F\colon\Delta_F\to Y,
 	\qquad
-	B_F(p)=\sum_{v\in F}p(v)v,
+	B_F(p)=\sum_{d\in F}p(d)d,
 	\]
-	is continuous. For each $v\in F$, define
+	is continuous. For each $d\in F$, define
 	\[
-	\phi_F(v)=B_F^{-1}(\phi(v)).
+	\phi_F(d)=B_F^{-1}(\phi(d)).
 	\]
 	These sets are closed in $\Delta_F$ and satisfy
 	the probability covering condition. Applying the
 	probability formulation with $W=F$ gives
 	\[
-	\bigcap_{v\in F}\phi_F(v)\neq\varnothing.
+	\bigcap_{d\in F}\phi_F(d)\neq\varnothing.
 	\]
 	The barycentre of any point in this intersection
-	belongs to every $\phi(v)$ with $v\in F$.
+	belongs to every $\phi(d)$ with $d\in F$.
 	
-	Thus the closed subsets $\phi(v)$ of $Y$ have
+	Thus the closed subsets $\phi(d)$ of $Y$ have
 	the finite intersection property. Compactness of
 	$Y$ yields
 	\[
-	\bigcap_{v\in V}\phi(v)\neq\varnothing.
+	\bigcap_{d\in D}\phi(d)\neq\varnothing.
 	\]
 \end{proof}
 
@@ -2245,6 +2374,63 @@ the required worldwise improvement.
 	the required conclusion.
 \end{proof}
 
+\end{AIwritten}
+
+\section{Non-classical}
+\begin{AIwritten}
+	\subsection{Non-classical probabilism}
+	
+	In the classical case, an omniscient credence function assigns
+	$1$ to each true sentence and $0$ to each false sentence. In the
+	non-classical case, let $v_w(A)$ be the value assigned to $A$
+	by the omniscient report at $w$. The semantics determines the
+	available reports $v_w\in\mathbb R^{\mathsf{Sent}}$. A finitely
+	supported probability $p$ on $W$ induces the report
+	\[
+	s(p)(A)=\sum_{w\in\operatorname{supp}(p)} p(w)v_w(A).
+	\]
+	We take the probabilistic reports to be the pointwise closure
+	of these averages. The argument also allows several coordinates
+	per sentence, as the example below illustrates.
+	
+	\begin{theorem}[Accuracy improvement for non-classical reports]
+		Let $W$ be nonempty and let $v_w\in\mathbb R^I$ for each $w\in W$.
+		Suppose that $\{v_w(i):w\in W\}$ is bounded for each $i\in I$.
+		Let
+		\[
+		C=\overline{\operatorname{conv}}\{v_w:w\in W\},
+		\]
+		where the closure is taken in the product topology. Fix a
+		report $m\in\mathbb R^I$ and suppose that
+		\begin{enumerate}
+			\item for each $w\in W$, the set
+			$\{c\in C:c\succeq_w m\}$ is closed in $C$;
+			\item for each finitely supported probability $p$ on $W$,
+			there is some $w\in\operatorname{supp}(p)$ such that
+			$s(p)\succeq_w m$, where $s(p)=\sum_w p(w)v_w$.
+		\end{enumerate}
+		Then there is some $c\in C$ such that $c\succeq_w m$
+		for every $w\in W$.
+	\end{theorem}
+	
+	\begin{proof}
+		For each $i$, choose a closed bounded interval containing all
+		the $v_w(i)$. The product of these intervals is compact and
+		contains $C$, so $C$ is compact. The map $p\mapsto s(p)$ is
+		continuous on each finite probability simplex, since it is
+		continuous at every coordinate. Condition~2 gives the KKM
+		covering condition, and condition~1 gives closed comparison
+		sets. The result follows from Fan--KKM.
+	\end{proof}
+	
+	\paragraph{Upper--lower pairs.}
+	Take $I=\mathsf{Sent}\times\{-,+\}$. At a LP
+	valuation $w$, the omniscient report for $A$ is $(1,1)$ if
+	$A$ is true, $(0,0)$ if $A$ is false, and $(0,1)$ if $A$
+	is neither and $(1,0)$ if $A$ is both. The two coordinates of $s(p)$ at $A$ are
+	therefore the probability that $A$ is true and the probability
+	that $A$ is not false.  The same
+	$p$ supplies both coordinates for every sentence.
 \end{AIwritten}
 \end{document}
 \newpage
