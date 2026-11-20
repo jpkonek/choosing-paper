@@ -113,11 +113,18 @@ As defended in Konek, we will take them to be rational, at least they don't have
 \end{AIwritten}
 \subsection{Mathematical Theorem}
 Our theorem will apply to \emph{compact} spaces which contain the finitely supported probabilities. 
-A standard example is the finitely additive probability functions, a subspace of $\R^{\wp(W)}$. 
-Another example we will use is the space of linear previsions. 
-Note that the $\sigma$-additive probability functions is not a compact space, so our theorems won't apply. 
+\begin{proposition}
+	The following are all compact spaces which contain the finitely supported probabilities on $W$:
+	\begin{itemize}
+		\item the finitely additive probability functions, a subspace of $\R^{\wp(W)}$ (with the product topology). 
+		\item linear previsions on bounded gambles (with the sup-norm topology); 
+		\item  extended-real valued linear previsions on unbounded gambles (with the product topology). 
+	\end{itemize}
+\end{proposition}
+
+Note that the $\sigma$-additive probability functions is not a compact space (unless $W$ is finite), so our theorems will not apply. 
 \begin{AIwritten}
-	\begin{theorem}[KKM for $\Probs$]
+	\begin{theorem}[KKM-ish]
 		Let $W$ be a nonempty set and let $\Probs$ be a compact space
 		containing the finitely supported probabilities on $W$.
 		Suppose $\psi\colon W\rightrightarrows\Probs$ satisfies
@@ -161,7 +168,7 @@ the conclusion of the theorem says that for every model there is some special ki
 	Let $W$ be a non-empty set with $\succeq_w$ a comparison relation on $M$, for each $w\in W$. 
 	
 	Suppose $\Probs$ is a compact space
-	containing the finitely supported probabilities on $W$ ans $s:\Probs\to M$. 
+	containing the finitely supported probabilities on $W$ and $s:\Probs\to M$. 
 	
 	Suppose: 
 	\begin{enumerate}
@@ -178,12 +185,12 @@ the conclusion of the theorem says that for every model there is some special ki
 
 	If $R\subseteq M$ is such that \begin{itemize}
 		\item $s(P)\subseteq R$ and
-		\item  there can be no ties between members of $R$ and those outside of $R$\footnote{This is like the quasi propriety type weakening} 
+		\item  there can be no ties between members of $R$ and those outside of $R$\footnote{This is like the quasi propriety type weakening of Pruss, or is it Nielson?} 
 	\end{itemize}then members outside of $R$ must be dominated. 
 	
 	If, in addition, \begin{itemize}
 		\item the objects in $R$ cannot be dominated
-	\end{itemize}, then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
+	\end{itemize} then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
 \end{corollary}
 
 \begin{AIwritten}
@@ -197,6 +204,7 @@ the conclusion of the theorem says that for every model there is some special ki
 		$p\in\mathrm{FSP}(W)$ belongs to $\psi(w)$ for some
 		$w\in\operatorname{supp}(p)$. The KKM theorem therefore
 		implies that $\bigcap_{w\in W}\psi(w)$ is nonempty and compact.
+	
 	\end{proof}
 	
 \end{AIwritten}
@@ -241,45 +249,46 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 	condition, then there is some $m$ (take any in $s(p)$) which is at least as good as $m^*$ at every world.
 \end{theorem}
 
-\begin{theorem}
-	The set $P$ can be any compact Hausdorff space
-	containing $\mathrm{FSP}(W)$, such that the inclusion
-	$\Delta_F\hookrightarrow P$ is continuous for
-	every nonempty finite $F\subseteq W$.
-\end{theorem}
-\begin{theorem}
-	Suppose $P$ is a compact Hausdorff topological space, and $\iota:\mathrm{FSP}(W)\to P$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
-	
-	Suppose there is $s\colon P\to M$ such that:
-	\begin{enumerate}
-		\item\label{ass:cl} \textbf{Closedness.}
-		For every $m^* \in M$ and $w \in W$, the set
-		\[
-		\{p\in P\given s(p)\succeq_w m^*\}
-		\]
-		is closed in $M$.
-		
-		\item \label{ass:KKM}\textbf{KKM covering.}
-		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
-		$m \in M$, 
-		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
-		there is some $w \in \operatorname{supp}(p)$
-		such that
-		\[
-		s(\iota(p)) \succeq_w m.
-		\]
-	\end{enumerate}
-	Then, for every $m \in M$, there exists some $p\in P$ such that:
-	\[
-	s(p) \succeq_w m
-	\qquad \text{for every } w \in W.
-	\]
-	The set of such $p$ is also compact. 
-\end{theorem}
-\begin{proof}
-	content...
-\end{proof}
+%\begin{theorem}
+%	The set $P$ can be any compact Hausdorff space
+%	containing $\mathrm{FSP}(W)$, such that the inclusion
+%	$\Delta_F\hookrightarrow P$ is continuous for
+%	every nonempty finite $F\subseteq W$.
+%\end{theorem}
+%\begin{theorem}
+%	Suppose $P$ is a compact Hausdorff topological space, and $\iota:\mathrm{FSP}(W)\to P$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
+%	
+%	Suppose there is $s\colon P\to M$ such that:
+%	\begin{enumerate}
+%		\item\label{ass:cl} \textbf{Closedness.}
+%		For every $m^* \in M$ and $w \in W$, the set
+%		\[
+%		\{p\in P\given s(p)\succeq_w m^*\}
+%		\]
+%		is closed in $M$.
+%		
+%		\item \label{ass:KKM}\textbf{KKM covering.}
+%		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
+%		$m \in M$, 
+%		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
+%		there is some $w \in \operatorname{supp}(p)$
+%		such that
+%		\[
+%		s(\iota(p)) \succeq_w m.
+%		\]
+%	\end{enumerate}
+%	Then, for every $m \in M$, there exists some $p\in P$ such that:
+%	\[
+%	s(p) \succeq_w m
+%	\qquad \text{for every } w \in W.
+%	\]
+%	The set of such $p$ is also compact. 
+%\end{theorem}
+%\begin{proof}
+%	content...
+%\end{proof}
 
+One interesting case is when we use $M$ and $s$ itself to provide the compact space $\Probs$ which contains the finitely supported probabilities on $W$. 
 
 \begin{theorem}
 	Suppose $M$ is a Hausdorff space, and $s:\mathrm{FSP}(W)\to M$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
@@ -311,7 +320,22 @@ In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have i
 	The set of such $p$ is also compact. 
 \end{theorem}
 \begin{proof}
-	content...
+\begin{AIwritten}
+
+			Fix $m\in M$. For each nonempty finite $F\subseteq W$,
+			apply the finite simplex KKM lemma to the closed sets
+			\[
+			A_w=\{p\in\Delta_F : s(p)\succeq_w m\}
+			\qquad(w\in F).
+			\]
+			Condition (2) gives the covering condition on each face of
+			$\Delta_F$. Thus some $p\in\Delta_F$ belongs to every $A_w$,
+			so $s(p)\succeq_w m$ for every $w\in F$. The closed sets
+			$\{c\in C : c\succeq_w m\}$ therefore have the finite
+			intersection property. Their intersection is nonempty by
+			compactness of $C$, and is compact because it is closed in $C$.
+
+\end{AIwritten}
 \end{proof}
 
 
