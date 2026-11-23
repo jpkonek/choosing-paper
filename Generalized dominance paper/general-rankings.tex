@@ -275,7 +275,7 @@ Secondly, it is worth noting that \ref{S3} holds automatically for any KKM selec
 \noindent Similarly, \ref{S3} holds if no selected model $s(p)$ is equivalent to $m$.
 
 
-Finally, definition~\ref{def:selection} allows KKM-selections to vary from model to model. But many extant dominance argument do not make use of this flexibility. They establish that there is a single selection map $s:\Delta\to\M$ such that every incoherent model has a KKM-selection with that same fixed selection map $s$. %A generalisation of this \emph{fixed selection} approach allows a countable sequence $(s^j)_{j\in\mathbb N}$ of such selection maps such that every incoherent model has a KKM-selection with selection map $s^j$ for some $j$.
+Finally, definition~\ref{def:selection} allows KKM-selections to vary from model to model. But many extant dominance argument do not make use of this flexibility. They establish that there is a single selection map $s:\Delta\to\M$ such that every incoherent model has a KKM-selection with that same fixed selection map $s$. \chg{Section~\ref{sec:lindley} gives an application whose selection map depends on the model, and in which no selection taking Bayes models as values works (Example~\ref{ex:lindley}).} %A generalisation of this \emph{fixed selection} approach allows a countable sequence $(s^j)_{j\in\mathbb N}$ of such selection maps such that every incoherent model has a KKM-selection with selection map $s^j$ for some $j$.
 
 
 
@@ -315,7 +315,7 @@ Let $m\in\chg{\M}$ and put $A_\omega\coloneqq\{p\in\Delta:\ell(s(p),\omega)\le\e
 $A_\omega$ is closed by (i), and equals $\Delta$ if $\ell(m,\omega)=\infty$. \ref{S1} is the definition of $A_\omega$, and \ref{S2} is (ii) for this $m$. \chg{At a common point, $s(p)$ is at least as good as $m$ at every world; the absence of a tie therefore gives \ref{S3}.} Apply Theorem~\ref{thm:selection}.
 \end{proof}
 
-\chg{In each numerical application below, the complete-class conclusion is (C) in \S\ref{sec:gen-dom}, under (D), for the one-ranking family $\Lf=\{L\}$: (S) follows from Lemma~\ref{lem:loss-one-stage}\chgb{ (in \S\ref{sec:probabilism}, from Proposition~\ref{prop:probabilism})}, and (LA) and (CA) follow from the stated protection argument.}
+\chg{In each numerical application below other than \S\ref{sec:lindley}, the complete-class conclusion is (C) in \S\ref{sec:gen-dom}, under (D), for the one-ranking family $\Lf=\{L\}$: (S) follows from Lemma~\ref{lem:loss-one-stage}\chgb{ (in \S\ref{sec:probabilism}, from Proposition~\ref{prop:probabilism})}, and (LA) and (CA) follow from the stated protection argument.}
 
 The protection argument covers every candidate. In Propositions~\ref{prop:proper}, \ref{prop:updating} and~\ref{prop:chance}\chgb{ and Corollary~\ref{cor:probabilism}}, each candidate $s(p)$ is coherent and is proved to be undominated. In Proposition~\ref{prop:updating} this is proved directly for every coherent strategy; it is not derived from Bayes optimality under the probability $q$ used for coverage. So $s(p)\in\C\cap\U_L$ for every $p\in\Delta$. By Corollary~\ref{cor:undominated-dominators}, in each of these numerical applications every incoherent model is dominated by a coherent model that is itself undominated, namely $s(p)$ for any $p\in\bigcap_\omega A_\omega$.
 
@@ -486,6 +486,62 @@ Every credence outside $\C$ is dominated by a member of $\C$, every member of $\
 
 \emph{Coverage.} If $p(F)=1$ for a finite $F\subseteq\mathcal K$, then $\bar p=\sum_{\kappa\in F}p_\kappa\kappa$ and $\sum_{\kappa\in F}p_\kappa E_\kappa I(c)=E_{\bar p}I(c)$ for every $c$. If $E_\kappa I(s(p))>E_\kappa I(m)$ for every $\kappa\in\supp p$, then $E_{\bar p}I(m)<E_{\bar p}I(s(p))$, contradicting Bayes optimality of $\bar p$. Lemma~\ref{lem:loss-one-stage} gives \chg{(S)}; the set of worlds $\mathcal K$ may be infinite.
 \end{proof}
+
+\begin{chgblockb}
+\subsection{A model-dependent selection}\label{sec:lindley}
+
+Lindley~\cite{Lindley1982} shows that, for any sufficiently regular score, every undominated report becomes a probability after a fixed transformation. We treat unconditional events.
+
+Let $\Omega$ be finite and $E_1,\dots,E_n\subseteq\Omega$. For each $i$, let $I_i$ be a compact interval and $f_i\colon I_i\times\{0,1\}\to\mathbb R$ with $f_i(\cdot,0)$ and $f_i(\cdot,1)$ continuously differentiable. Suppose there are $x^i_F<x^i_T$ in the interior of $I_i$ such that $f_i(\cdot,0)$ is strictly decreasing left of $x^i_F$ and strictly increasing right of it, $f_i(\cdot,1)$ is strictly decreasing left of $x^i_T$ and strictly increasing right of it, and
+\[
+D_i\coloneqq f_i'(\cdot,0)-f_i'(\cdot,1)>0\quad\text{on }B_i\coloneqq[x^i_F,x^i_T].
+\]
+Let $\M=\prod_iI_i$, $\ell(x,\omega)\coloneqq\sum_{i=1}^nf_i(x_i,\mathbf 1_{E_i}(\omega))$, and $x\preceq_\omega y$ iff $\ell(x,\omega)\le\ell(y,\omega)$. Write $E_p\ell(x,\cdot)\coloneqq\sum_\omega p_\omega\ell(x,\omega)$, and $\nabla$ for gradients in $x$. Lindley's transform is $P_i\coloneqq f_i'(\cdot,0)/D_i$ on $B_i$. With $B\coloneqq\prod_iB_i$, the coherent reports are those whose transforms are probabilities:
+\[
+\C\coloneqq\{x\in B:\ \text{some }q\in\Delta\text{ has }P_i(x_i)=q(E_i)\text{ for every }i\}.
+\]
+
+\begin{proposition}[{\cite[Theorem~1]{Lindley1982}}]\label{prop:lindley}
+For every $m\in\M\setminus\C$ there are $y\in\M$ and $\nu>0$ such that $\ell(y,\omega)\le\ell(m,\omega)-\nu$ for every $\omega\in\Omega$.
+\end{proposition}
+\begin{proof}
+If $m\notin B$, let $y$ replace each $m_i\notin B_i$ by the nearest point of $B_i$. This lowers both $f_i(m_i,0)$ and $f_i(m_i,1)$, so $y$ is strictly better than $m$ at every world; take $\nu\coloneqq\min_\omega(\ell(m,\omega)-\ell(y,\omega))$.
+
+Let $m\in B\setminus\C$, and let $g(p)\coloneqq\nabla E_p\ell(m,\cdot)$ for $p\in\Delta$. On $B_i$, $f_i'(\cdot,0)=P_iD_i$ and $f_i'(\cdot,1)=(P_i-1)D_i$, so
+\[
+g_i(p)=p(E_i)f_i'(m_i,1)+(1-p(E_i))f_i'(m_i,0)=D_i(m_i)\bigl(P_i(m_i)-p(E_i)\bigr).
+\]
+As $m\notin\C$, $g(p)\ne0$ for every $p$. Since $g$ is continuous on the compact set $\Delta$, $c\coloneqq\min_p|g(p)|>0$ and $G\coloneqq\max_p|g(p)|<\infty$. Since $B$ lies in the interior of $\M$ and each $\nabla\ell(\cdot,\omega)$ is uniformly continuous on $\M$, there is $\varepsilon>0$ such that every $z$ with $|z-m|\le\varepsilon G$ lies in $\M$ and has $|\nabla\ell(z,\omega)-\nabla\ell(m,\omega)|\le c/2$ for every $\omega$. Put
+\[
+s(p)\coloneqq m-\varepsilon g(p)\qquad(p\in\Delta).
+\]
+By the mean value theorem, for some $z$ between $m$ and $s(p)$,
+\[
+E_p\ell(m,\cdot)-E_p\ell(s(p),\cdot)=\varepsilon\,\nabla E_p\ell(z,\cdot)\cdot g(p)\ge\varepsilon\bigl(|g(p)|^2-\tfrac c2|g(p)|\bigr)\ge\tfrac12\varepsilon c^2.
+\]
+The left side is continuous in $p$, so $\nu\coloneqq\min_p\bigl(E_p\ell(m,\cdot)-E_p\ell(s(p),\cdot)\bigr)>0$. Put
+\[
+A_\omega\coloneqq\{p\in\Delta:\ell(s(p),\omega)\le\ell(m,\omega)-\nu\}.
+\]
+These sets are closed, \ref{S1'} holds, and hence \ref{S1} and \ref{S3} hold. For \ref{S2}, $\sum_\omega p_\omega\bigl(\ell(m,\omega)-\ell(s(p),\omega)\bigr)\ge\nu$ yields $\omega$ with $p_\omega>0$ and $p\in A_\omega$. By Theorem~\ref{thm:selection}, $y\coloneqq s(p)$ for any $p\in\bigcap_\omega A_\omega$ is as required.
+\end{proof}
+
+The selection map depends on $m$: $s(p)$ moves $m$ a small step in the direction of steepest descent of its $p$-expected loss. Theorem~\ref{thm:selection} supplies a single $p$ for which this step improves $m$ at every world. The next example shows that selections whose values are Bayes models can fail, whether fixed or dependent on $m$.
+
+\begin{example}\label{ex:lindley}
+Let $n=2$, $\Omega=\{0,1\}^2$, $E_i=\{\omega:\omega_i=1\}$, $I_i=[-3,3]$ and $f_1=f_2=f$, where $f(x,e)=x^4/16-3x^2/8+(\tfrac12-e)x$~\cite[Comment~2]{Lindley1982}. Then $f'(x,0)=(x-1)^2(x+2)/4$, $f'(x,1)=(x-2)(x+1)^2/4$ and $D_i\equiv1$, so the assumptions hold with $x^i_F=-2$ and $x^i_T=2$.
+
+Let $K$ be the set of minimisers of $h_t\coloneqq tf(\cdot,1)+(1-t)f(\cdot,0)$ over $I_i$, for $t\in[0,1]$. By the first step of the proof above, $K\subseteq[-2,2]$, so each $c\in K$ solves $c^3-3c=-4a$ with $a\coloneqq\frac12-t$. If $a>0$, then $c<0$, since $h_t(-c)=h_t(c)-2ac$; so $c<-\sqrt3$. Symmetrically $c>\sqrt3$ if $a<0$, and $c=\pm\sqrt3$ if $a=0$. Thus $|c|\ge\sqrt3$ on $K$. Moreover, $K$ is compact, being the projection of the closed set of pairs $(t,c)$ with $c$ minimising $h_t$.
+
+Put $b\coloneqq\frac32$. On $[-2,2]$, $f(\cdot,1)$ is strictly decreasing and $f(\cdot,0)$ strictly increasing. So every $c\in K$ has $f(c,e)>f(b,e)$ for some $e$, and $\gamma\coloneqq\min_{c\in K}\max_e\bigl(f(c,e)-f(b,e)\bigr)>0$. Choose $\delta\in(0,1)$ with $f(2+\delta,1)-f(2,1)<\gamma$, and put $m\coloneqq(2+\delta,b)\notin\C$.
+
+Every Bayes model $c=(c_1,c_2)$, for any $p\in\Delta$, has $c_2\in K$. Take $e$ with $f(c_2,e)-f(b,e)\ge\gamma$, and put $\omega\coloneqq(1,e)$. Since $f(c_1,1)\ge f(2,1)$,
+\[
+\ell(c,\omega)-\ell(m,\omega)=\bigl(f(c_1,1)-f(2+\delta,1)\bigr)+\bigl(f(c_2,e)-f(b,e)\bigr)>0.
+\]
+So no Bayes model is at least as good as $m$ at every world. By Theorem~\ref{thm:selection}, no KKM-selection for $m$ takes only Bayes models as values. Yet $m$ is dominated, by Proposition~\ref{prop:lindley}.
+\end{example}
+\end{chgblockb}
 
 \subsection{Tie exclusion is needed}
 
