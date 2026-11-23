@@ -45,8 +45,14 @@
 %CCM added
 \usepackage{cleveref}
 \usepackage{stmaryrd}
+\usetikzlibrary{arrows.meta}
+
 
 \newcommand{\given}{\,:\,}
+
+
+\newcommand{\FSP}{\mathrm{FSP}}
+\newcommand{\closure}{\mathsf{closure}}
 
 
 \newenvironment{AIwritten}{\begin{color}{blue}}{\end{color}}
@@ -81,16 +87,469 @@ As defended in Konek, we will take them to be rational, at least they don't have
 
 \section{Core result}
 
+
+
+\subsection{Finite $W$}
+
+\subsubsection{Preliminaries: Finitely Supported Probabilities}
+
+\begin{definition}
+For a finite nonempty set $W$,
+\[
+\Delta_W
+:= \left\{p\in\mathbb{R}^W :
+p(w)\geq 0 \text{ for all } w\in W,\quad
+\sum_{w\in W}p(w)=1\right\},
+\]
+with the topology inherited from $\mathbb{R}^W$.
+
+For $p\in \Delta$, $\operatorname{supp}(p):=\{w\in W:p(w)>0\}$
+\end{definition}
+
+These are probability mass functions. 
+
+%
+%Its vertices are the point masses $\delta_w$, one for each $w\in W$.
+%
+%For each nonempty $S\subseteq W$, the face spanned by the vertices
+%indexed by $S$ is
+%\[
+%\operatorname{conv}\{\delta_w:w\in S\}
+%= \{p\in\Delta_W:\operatorname{supp}(p)\subseteq S\},
+%\]
+%where $\operatorname{supp}(p)=\{w\in W:p(w)>0\}$.
+%
+%\begin{theorem}[KKM lemma]
+%	Suppose $W$ is a finite nonempty set and
+%	$\psi:W\rightrightarrows\Delta_W$ assigns a closed subset of
+%	$\Delta_W$ to each $w\in W$. If
+%	\[
+%	\operatorname{conv}\{\delta_w:w\in S\}
+%	\subseteq \bigcup_{w\in S}\psi(w)
+%	\qquad\text{for every nonempty } S\subseteq W,
+%	\]
+%	then $\bigcap_{w\in W}\psi(w)$ is nonempty.
+%\end{theorem}
+%
+%The face-covering condition is equivalent to requiring that for every
+%$p\in\Delta_W$ there is some $w\in\operatorname{supp}(p)$ such that
+%$p\in\psi(w)$. In one direction, apply the face-covering condition to
+%$S=\operatorname{supp}(p)$. In the other direction, if $p$ lies in the
+%face indexed by $S$, then $\operatorname{supp}(p)\subseteq S$, so any
+%such $w$ belongs to $S$.
+	
+
+\subsubsection{Mathematical theorem}
+
+The following is a version of the well-known Knaster–Kuratowski–Mazurkiewicz (KKM) lemma. We have stated it directly in terms of probabilities to already be closer to our inteded domain of applications. The proof that it follows from the standard KKM lemma, along with a statement of that, is in the appendix. 
+
+\begin{theorem}[KKM]
+	Suppose $W$ is a finite nonempty set.
+	Suppose $\psi:W\rightrightarrows \Delta_W$ satisfies:\begin{itemize}
+	\item \textbf{Closed} For every $w$, $\psi(w)$ is closed in $\Delta_W$
+	\item \textbf{KKM covering} For every $p\in \Delta_W$, there is some $w\in\supp(p)$ such that $p\in\psi(w)$.
+\end{itemize}
+Then there is some $p\in \Delta_W$ such that for all $w\in W$, $p\in\psi(w)$. Moreover, the set of such $p$ is compact.
+\end{theorem}
+
+
+\subsubsection{Application to dominance}
+
+$\succeq_w$ is a relation on some set $M$ representing  ``at least as good as in $w$''.
+the conclusion of the theorem says that for every model there is some special kind of object (those which are mapped to by the function $s$) which is guaranteed to be at least as good as it. 
+
 %\begin{definition}
-%	$P$ is the space of finitely additive probabilities on $\wp(W)$. 
+%	$m$ is dominated by $m'$ iff \begin{itemize}
+%		\item for all $w\in W$, $m\succeq_w m'$, and
+%		\item for some $w\in W$, $m'\not\succeq_w m$. 
+%	\end{itemize}
 %\end{definition}
 
 
+\begin{corollary}
+	Suppose $W$ is a finite nonempty set.
+	
+	Suppose $M$ is a nonempty set and $s:\Delta_W\to M$.
+	Let $\succeq_w$ be a comparative relation on $M$ for each $w\in W$.
+	
+	If
+	\begin{itemize}
+		\item \textbf{Closed} For every $m\in M$ and $w\in W$,
+		\[
+		\{p\in\Delta_W\given s(p)\succeq_w m\}
+		\]
+		is closed in $\Delta_W$.
+		
+		\item \textbf{KKM covering} For every $p\in\Delta_W$ and
+		$m\in M$, there is some $w\in\supp(p)$ such that
+		\[
+		s(p)\succeq_w m.
+		\]
+	\end{itemize}
+	Then for every $m\in M$, there is some $p\in\Delta_W$ such that
+	\[
+	s(p)\succeq_w m
+	\text{ for every }w\in W.
+	\]
+	Moreover, the set of such $p$ is compact.
+	
+	If $R\subseteq M$ is such that
+	\begin{itemize}
+		\item $s(\Delta_W)\subseteq R$ and
+		\item There can be no everywhere-ties between members of $R$
+		and those outside of $R$:\footnote{This is like the quasi
+			propriety type weakening of Pruss, or is it Nielson?} \\
+		If $r\in R$ and $m\in M\setminus R$, and for all $w$
+		$m\succeq_w r$, then there is some $w$ such that
+		$r\not\succeq_w m$.
+	\end{itemize}
+	then members outside of $R$ must be dominated.
+	
+	If, in addition,
+	\begin{itemize}
+		\item the objects in $R$ cannot be dominated
+	\end{itemize}
+	then $m$ is in $R$ iff it is undominated, and those that are
+	not in $R$ are dominated by something which is undominated.
+\end{corollary}
+
+\begin{proposition}[Sufficient conditions for KKM]
+		If $\succeq_w$ is total, the KKM covering is just to say that for all probabilities $p$, there is no model which is $p$-surely strictly better than $s(p)$.		
+		
+		If $\succeq_w$ is generated by a loss function, then this follows from weak $s$-propriety: 
+		for every $p$, $\Exp_p[\l(s(p))]\geq\Exp_p[\l(m)]$. 
+	
+		
+		It would also follow from other evaluation functions, such as risk-weighted expectations, so long as they have the following respecting dominance type property: 
+		\begin{itemize}
+			\item For $p\in\Delta$, if $E_p[X]\geq E_p[Y]$ then there is some $w\in\supp(p)$ such that $X(w)\geq Y(w)$.
+			\item If it's all totally ordered:\\
+			For fs $p$, If $X(w)< Y(w)$ for all $w\in\supp(p)$, then $E_p[X]<E_p[Y]$. 
+		\end{itemize}
+		
+		If the loss function is \emph{strictly} $s$-proper, then putting $R=s(\Delta)$, we get everything in the theorem except closure. 
+\end{proposition}
+
+\begin{proposition}[Sufficient condition for Closed]
+	If $\succeq_w$ is generated by a loss function, then \textbf{Closed} holds if $p\mapsto L(s(p),w)$ is continuous, or even lower semicontinuous. For example, because $M$ is endowed with a topology on which $s$ is continuous and $L(\cdot,w)$ is also continuous for each $w$.  
+\end{proposition}
+
+\subsubsection{Generalisations}
+\begin{theorem}
+	The selection $s(p)$ can depend on the fixed model we are considering, $m^*$: $s_{m^*}(p)$
+\end{theorem}
+%This is useful, for example, when the space which is being considered is unbounded. (E.g.~Wald). 
+
+In \cref{thm:dom} we let $\psi_{m^*}(w)=\{p\in P:s(p)\succeq_w m^*\}$. We could have instead selected $\psi_{m^*}$ to be closed subsets of this, so long as the KKM covering condition still holds. 
+\begin{theorem}
+	The conclusion of \cref{thm:dom} holds if we can select sets $\psi_{m^*}(w)\subseteq P$ which satisfy the conditions of \cref{thm:KKM} such that for every $w$, $\psi_{m^*}(w)\subseteq\{p: s(p)\succeq_w m^*\}$. 
+\end{theorem}
+
+\begin{theorem}
+	The selection $s$ may also be a nonempty-valued
+	correspondence. In that case, define
+	\[
+	\psi_{m^*}(w)
+	=
+	\{p:\text{every }m\in s(p)
+	\text{ satisfies }m\succeq_w m^*\}.
+	\]
+	If these sets are closed and satisfy the KKM covering
+	condition, then there is some $m$ (take any in $s(p)$) which is at least as good as $m^*$ at every world.
+\end{theorem}
+
+%\begin{theorem}
+%	The set $P$ can be any compact Hausdorff space
+%	containing $\mathrm{FSP}(W)$, such that the inclusion
+%	$\Delta_F\hookrightarrow P$ is continuous for
+%	every nonempty finite $F\subseteq W$.
+%\end{theorem}
+%\begin{theorem}
+%	Suppose $P$ is a compact Hausdorff topological space, and $\iota:\mathrm{FSP}(W)\to P$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
+%	
+%	Suppose there is $s\colon P\to M$ such that:
+%	\begin{enumerate}
+	%		\item\label{ass:cl} \textbf{Closedness.}
+	%		For every $m^* \in M$ and $w \in W$, the set
+	%		\[
+	%		\{p\in P\given s(p)\succeq_w m^*\}
+	%		\]
+	%		is closed in $M$.
+	%		
+	%		\item \label{ass:KKM}\textbf{KKM covering.}
+	%		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
+	%		$m \in M$, 
+	%		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
+	%		there is some $w \in \operatorname{supp}(p)$
+	%		such that
+	%		\[
+	%		s(\iota(p)) \succeq_w m.
+	%		\]
+	%	\end{enumerate}
+%	Then, for every $m \in M$, there exists some $p\in P$ such that:
+%	\[
+%	s(p) \succeq_w m
+%	\qquad \text{for every } w \in W.
+%	\]
+%	The set of such $p$ is also compact. 
+%\end{theorem}
+%\begin{proof}
+%	content...
+%\end{proof}
 
 
+\subsection{Infinite $W$}
+
+
+\subsubsection{Preliminaries: Finitely Supported Probabilities}
+\begin{definition}
+Let $W$ be a nonempty set. For $p\in[0,1]^W$, define
+$$\operatorname{supp}(p):=\{w\in W:p(w)>0\}$$ The set of finitely
+supported probabilities on $W$ is
+\[
+\mathrm{FSP}
+:= \left\{p\in[0,1]^W \;\middle|\;
+\operatorname{supp}(p)\text{ is finite and }
+\sum_{w\in\operatorname{supp}(p)}p(w)=1
+\right\}.
+\]
+
+For each finite nonempty $F\subseteq W$, let $\Delta_F$ be the simplex
+of probabilities supported in $F$:
+\[
+\Delta_F
+:= \{p\in\mathrm{FSP}:\operatorname{supp}(p)\subseteq F\}.
+\]
+Restriction to $F$ identifies $\Delta_F$ with the standard simplex
+$\{q\in[0,1]^F:\sum_{w\in F}q(w)=1\}$. We equip $\Delta_F$ with
+the Euclidean topology under this identification. With $\Delta_F$
+defined as a subset of $\mathrm{FSP}$, we have
+\[
+\mathrm{FSP}
+= \bigcup_{\substack{\varnothing\ne F\subseteq W\\ F\text{ finite}}}
+\Delta_F.
+\]
+\end{definition}
+
+\subsubsection{Mathematical theorem}
+
+Using compactness, the following extension of the KKM result applies in infinite settings:
+\begin{theorem}
+	Suppose $W$ is a nonempty set, and $\Theta$ is a compact space with $\sigma:\FSP\to \Theta$ continuous on each $\Delta_F$. 
+	
+	Suppose $\psi:W\rightrightarrows \Theta$ satisfies:\begin{itemize}
+		\item \textbf{Closed} For every $w$, $\psi(w)$ is closed in $\Theta$
+		\item \textbf{KKM covering} For every $p\in \FSP$, there is some $w\in\supp(p)$ such that $p\in\psi(w)$.
+	\end{itemize}
+	Then there is some $\theta\in\Theta$ such that for all $w\in W$, $\theta\in\psi(w)$. Moreover, the set of such $\theta$ is compact.
+\end{theorem}
+\begin{proof}
+	Fix a finite $F\subseteq W$, then by the standard KKM, there is some $\theta\in \bigcap_{w\in F}\psi(w)$. 
+	
+	Thus, $\{\psi(w)\given w\in W\}$ is a collectionof closed sets with the finite intersection property, and so has non-empty intersection by compactness. 
+\end{proof}
+
+\subsubsection{Application to dominance results}
+
+\begin{center}
+	\begin{tikzpicture}[
+		>=stealth,
+		every node/.style={inner sep=3pt},
+		caption/.style={font=\small, text=black!65}
+		]
+		\node (fsp) at (0,0)   {$\FSP$};
+		\node (theta) at (4,0) {$\Theta$};
+		\node (models) at (8,0) {$M$};
+		
+		\node[caption, above=4pt] at (fsp.north)
+		{Fin supp probs};
+		\node[caption, above=4pt] at (theta.north)
+		{Compact space};
+		\node[caption, above=4pt] at (models.north)
+		{Models};
+		
+		\draw[->, thick] (fsp.east)
+		-- node[above] {$\sigma$ cts} (theta.west);
+		\draw[->, thick] (theta.east)
+		-- node[above] {$c$} (models.west);
+		
+		\draw[->, black!55] (fsp.south east)
+		.. controls +(1.4,-1.1) and +(-1.4,-1.1) ..
+		node[below, text=black] {$c\circ \sigma$} (models.south west);
+	\end{tikzpicture}
+\end{center}
+
+\begin{corollary}
+	Suppose $W$ is a nonempty set, and $\Theta$ is a compact space with $\sigma:\FSP\to \Theta$ continuous on each $\Delta_F$. 
+	
+	Suppose $M$ is a nonempty set and $c:\Theta\to M$. We have $\succeq_w$ is a comparative relation on a nonempty set $M$, for each $w\in W$. 
+	
+	If \begin{itemize}
+		\item \textbf{Closed} For every $m\in M$ and $w$, \[\{\theta\in\Theta\given c(\theta)\succeq_w m\}\] is closed
+		\item \textbf{KKM covering} For every $p\in \FSP$ and $m\in M$, there is some $w\in\supp(p)$ such that $$c(\sigma(p))\succeq_w m$$
+	\end{itemize}
+	Then there is some $\theta\in\Theta$ such that 
+	\[
+	c(\theta)\succeq_w m
+	\text{ for every }w\in W
+	\] 
+	Moreover, the set of such $\theta$ is compact.
+
+	If $R\subseteq M$ is such that:
+	\begin{itemize}
+		\item $c(\Theta)\subseteq R$ and
+		\item There can be no everywhere-ties between members of $R$ and those outside of $R$:\footnote{This is like the quasi propriety type weakening of Pruss, or is it Nielson?} \\
+		If $r\in R$ and $m\in M\setminus R$, and for all $w$ $m\succeq_w r$, then there is some $w$ such that $r\not\succeq_w m$.
+	\end{itemize}then members outside of $R$ must be dominated. 
+	
+	If, in addition, \begin{itemize}
+		\item the objects in $R$ cannot be dominated
+	\end{itemize} then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
+\end{corollary}
+
+Propriety is used to get KKM covering. Importantly, then, we see that it is only needed for finitely-supported probabilities. 
+
+
+
+\subsubsection{Version via $M$}
+
+
+
+One version of this theorem is to identify $\Theta$ with a subspace of $M$. This requires $M$ to have a topology and $s:\FSP\to M$, and $\closure(s(FSP))$ is compact. 
+
+\begin{center}
+	\begin{tikzpicture}[
+		map/.style={-{Stealth}, thick},
+		inclusion/.style={{Hooks[right]}-{Stealth}, thick},
+		caption/.style={font=\small, text=black!65}
+		]
+		
+		% (1) Compact closure in M
+		\node (fsp1) at (0,0) {$\FSP$};
+		\node (theta1) at (6,1.15)
+		{$\Theta=\overline{s(\FSP)}^{\,M}$};
+		\node (m1) at (8,-.2) {$M$};
+		
+		\draw[map] (fsp1) -- node[above, sloped]
+		{$s$ cts} (theta1);
+		\draw[inclusion] (theta1) -- (m1);
+		
+	\end{tikzpicture}
+\end{center}
+
+
+\begin{corollary}
+	Suppose $W$ is a nonempty set. Suppose $M$ is a topological space.
+	
+	Suppose $\succeq_w$ is a comparative relation on a nonempty set $M$, for each $w\in W$. 
+	
+	And suppose $s:\FSP\to M$ is continuous on each finite $\Delta_F$. Let $$\Theta=\overline{s(\FSP)}^{\,M}$$
+	
+	If \begin{itemize}
+		\item \textbf{Closed} For every $m\in M$ and $w$, \[\{\theta\in\Theta\given \theta\succeq_w m\}\] is closed
+		\item \textbf{KKM covering} For every $p\in \FSP$ and $m\in M$, there is some $w\in\supp(p)$ such that $$s(p)\succeq_w m$$
+	\end{itemize}
+	Then there is some $\theta\in\Theta$ such that 
+	\[
+	s(\theta)\succeq_w m
+	\text{ for every }w\in W
+	\] 
+	Moreover, the set of such $\theta$ is compact.
+	
+	If $R\subseteq M$ is such that:
+	\begin{itemize}
+		\item $s(\Theta)\subseteq R$ and
+		\item There can be no everywhere-ties between members of $R$ and those outside of $R$:\footnote{This is like the quasi propriety type weakening of Pruss, or is it Nielson?} \\
+		If $r\in R$ and $m\in M\setminus R$, and for all $w$ $m\succeq_w r$, then there is some $w$ such that $r\not\succeq_w m$.
+	\end{itemize}then members outside osf $R$ must be dominated. 
+	
+	If, in addition, \begin{itemize}
+		\item the objects in $R$ cannot be dominated
+	\end{itemize} then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
+\end{corollary}
+
+\subsubsection{Version via embedding $\FSP$ in a compact space}
+
+Another version is where we take $\Theta$ to itself be a compact space including $\FSP$. This can either be the space of finitely additive probabilities or the space of linear previsions for bounded gambles, or the space of exteded-valued linear previsions for unbounded gambles. Then $s:\Theta\to M$. Note that it cannot be the sigma-additive probabilities, as this is not compact. 
+
+
+\begin{center}
+	\begin{tikzpicture}[
+		map/.style={-{Stealth}, thick},
+		inclusion/.style={{Hooks[right]}-{Stealth}, thick},
+		caption/.style={font=\small, text=black!65}
+		]
+		
+		% (2) Compactification of FSP
+		\node (fsp2) at (0,-2.4) {$\FSP$};
+		\node (theta2) at (2,-1.25) {$\Theta$};
+		\node[caption, above=2pt] at (theta2)
+		{Fin Add Probs};
+		\node (m2) at (8,-2.4) {$M$};
+		
+		\draw[inclusion] (fsp2) -- node[above, sloped] {} (theta2);
+		\draw[map] (theta2) -- node[above, sloped] {$s$} (m2);
+	\end{tikzpicture}
+\end{center}
+
+
+\begin{corollary}
+	Suppose $W$ is a nonempty set, and $\Theta$ is a compact space with $\sigma:\FSP\to \Theta$ continuous on each $\Delta_F$. Suppose that $\sigma$ is injective. We identify each $p\in \FSP$ with a member of $\Theta$. 
+	
+	Suppose $M$ is a nonempty set and $s:\Theta\to M$. We have $\succeq_w$ is a comparative relation on a nonempty set $M$, for each $w\in W$. 
+	
+	If \begin{itemize}
+		\item \textbf{Closed} For every $m\in M$ and $w$, \[\{\theta\in\Theta\given s(\theta)\succeq_w m\}\] is closed
+		\item \textbf{KKM covering} For every $p\in \FSP$ and $m\in M$, there is some $w\in\supp(p)$ such that $$s(p)\succeq_w m$$
+	\end{itemize}
+	Then there is some $\theta\in\Theta$ such that 
+	\[
+	s(\theta)\succeq_w m
+	\text{ for every }w\in W
+	\] 
+	Moreover, the set of such $\theta$ is compact.
+	
+	If $R\subseteq M$ is such that:
+	\begin{itemize}
+		\item $s(\Theta)\subseteq R$ and
+		\item There can be no everywhere-ties between members of $R$ and those outside of $R$:\footnote{This is like the quasi propriety type weakening of Pruss, or is it Nielson?} \\
+		If $r\in R$ and $m\in M\setminus R$, and for all $w$ $m\succeq_w r$, then there is some $w$ such that $r\not\succeq_w m$.
+	\end{itemize}then members outside of $R$ must be dominated. 
+	
+	If, in addition, \begin{itemize}
+		\item the objects in $R$ cannot be dominated
+	\end{itemize} then $m$ is in $R$ iff it is dominated, and those that are not in $R$ are dominated by something which is not itself dominated. 
+\end{corollary}
+
+\subsubsection{Relation to the finite result}
+
+If $W$ is finite, then this reduces to the special case, putting $\Theta=\FSP$, which is clearly compact, and $s:\FSP\to M$.
+
+\begin{center}
+	\begin{tikzpicture}[
+		map/.style={-{Stealth}, thick},
+		inclusion/.style={{Hooks[right]}-{Stealth}, thick},
+		caption/.style={font=\small, text=black!65}
+		]
+		
+		% (2) Compactification of FSP
+		\node (fsp2) at (0,-2.4) {$\FSP$};
+		\node (m2) at (5,-2.4) {$M$};
+		
+		\draw[map] (fsp2) -- node[above, sloped] {$s$} (m2);
+	\end{tikzpicture}
+\end{center}
+
+
+
+\begin{color}{red}
 \subsection{Preliminaries}
 \newcommand{\Probs}{P}
-\newcommand{\FSP}{\mathrm{FSP}}
+\begin{definition}
+	When $W$ is finite, a probability is characterised by a probability mass function. 
+	
+	When $W$ is infinite, a finitely supported probability is a probability on some finite $F\subseteq W$.  $\supp(p)$ is .... $\Delta_F$ is the collection of such probabilities on $F$, and $FSP$ is the collection of all such finitely supported probabiltiies. 
+\end{definition}
 \begin{AIwritten}
 	\begin{definition}
 		Let $W$ be a nonempty set. 
@@ -225,181 +684,9 @@ the conclusion of the theorem says that for every model there is some special ki
 \begin{remark}
 	If each $\succeq_w$ is total, the condition is just to say that fs probs there is no $m$ which is $p$-surely strictly better than $s(p)$. 
 \end{remark}
-\subsection{Generalisations}
-\begin{theorem}
-	The selection $s(p)$ can depend on the fixed model we are considering, $m^*$: $s_{m^*}(p)$
-\end{theorem}
-%This is useful, for example, when the space which is being considered is unbounded. (E.g.~Wald). 
-
-In \cref{thm:dom} we let $\psi_m(w)=\{p\in P:s(p)\succeq_w m\}$. We could have instead selected $\psi_m$ to be closed subsets of this, so long as the KKM covering condition still holds. 
-\begin{theorem}
-	The conclusion of \cref{thm:dom} holds if we can select sets $\psi_m(w)\subseteq P$ which satisfy the conditions of \cref{thm:KKM} such that for every $w$, $\psi_m(w)\subseteq\{p: s(p)\succeq_w m\}$. 
-\end{theorem}
-
-\begin{theorem}
-	The selection $s$ may also be a nonempty-valued
-	correspondence. In that case, define
-	\[
-	\psi_{m^*}(w)
-	=
-	\{p:\text{every }m\in s(p)
-	\text{ satisfies }m\succeq_w m^*\}.
-	\]
-	If these sets are closed and satisfy the KKM covering
-	condition, then there is some $m$ (take any in $s(p)$) which is at least as good as $m^*$ at every world.
-\end{theorem}
-
-%\begin{theorem}
-%	The set $P$ can be any compact Hausdorff space
-%	containing $\mathrm{FSP}(W)$, such that the inclusion
-%	$\Delta_F\hookrightarrow P$ is continuous for
-%	every nonempty finite $F\subseteq W$.
-%\end{theorem}
-%\begin{theorem}
-%	Suppose $P$ is a compact Hausdorff topological space, and $\iota:\mathrm{FSP}(W)\to P$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
-%	
-%	Suppose there is $s\colon P\to M$ such that:
-%	\begin{enumerate}
-%		\item\label{ass:cl} \textbf{Closedness.}
-%		For every $m^* \in M$ and $w \in W$, the set
-%		\[
-%		\{p\in P\given s(p)\succeq_w m^*\}
-%		\]
-%		is closed in $M$.
-%		
-%		\item \label{ass:KKM}\textbf{KKM covering.}
-%		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
-%		$m \in M$, 
-%		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
-%		there is some $w \in \operatorname{supp}(p)$
-%		such that
-%		\[
-%		s(\iota(p)) \succeq_w m.
-%		\]
-%	\end{enumerate}
-%	Then, for every $m \in M$, there exists some $p\in P$ such that:
-%	\[
-%	s(p) \succeq_w m
-%	\qquad \text{for every } w \in W.
-%	\]
-%	The set of such $p$ is also compact. 
-%\end{theorem}
-%\begin{proof}
-%	content...
-%\end{proof}
-
-One interesting case is when we use $M$ and $s$ itself to provide the compact space $\Probs$ which contains the finitely supported probabilities on $W$. 
-
-\begin{theorem}
-	Suppose $M$ is a Hausdorff space, and $s:\mathrm{FSP}(W)\to M$ continuous on each finite $\Delta_F\subseteq\mathrm{FSP}(W)$. 
-	Suppose also that $$C=\mathsf{closure}(s(\mathrm{FSP}(W)))$$ is compact in $M$. 
-	If:
-	\begin{enumerate}
-		\item\label{ass:cl} \textbf{Closedness.}
-		For every $m^* \in M$ and $w \in W$, the set
-		\[
-		\{ m\in C\given m\succeq_w m^*\}
-		\]
-		is closed in $M$.
-		
-		\item \label{ass:KKM}\textbf{KKM covering.}
-		For every finitely supported $p \in \mathrm{FSP}(W)$ and every
-		$m \in M$, 
-		%		$s(p)$ is at least as good as $m$ at some $w\in\supp(p)$: 
-		there is some $w \in \operatorname{supp}(p)$
-		such that
-		\[
-		s(p) \succeq_w m.
-		\]
-	\end{enumerate}
-	Then, for every $m \in M$, there exists some $c\in C$ such that:
-	\[
-	c \succeq_w m
-	\qquad \text{for every } w \in W.
-	\]
-	The set of such $p$ is also compact. 
-\end{theorem}
-\begin{proof}
-\begin{AIwritten}
-
-			Fix $m\in M$. For each nonempty finite $F\subseteq W$,
-			apply the finite simplex KKM lemma to the closed sets
-			\[
-			A_w=\{p\in\Delta_F : s(p)\succeq_w m\}
-			\qquad(w\in F).
-			\]
-			Condition (2) gives the covering condition on each face of
-			$\Delta_F$. Thus some $p\in\Delta_F$ belongs to every $A_w$,
-			so $s(p)\succeq_w m$ for every $w\in F$. The closed sets
-			$\{c\in C : c\succeq_w m\}$ therefore have the finite
-			intersection property. Their intersection is nonempty by
-			compactness of $C$, and is compact because it is closed in $C$.
-
-\end{AIwritten}
-\end{proof}
-
-
-\begin{color}{red}
-	
-\subsection{Removing reference to $s$ on limits}
-
-For this one, we also take a topology on $M$ and then define $s(p)$ for infinitely supported $p$. 
-
-\begin{theorem}
-	Let $W$ be nonempty, let $M$ be a Hausdorff
-	topological space, and let $\succeq_w$ be a
-	comparison relation on $M$ for each $w\in W$.
-	Let
-	\[
-	s_0\colon\mathrm{FSP}(W)\to M,
-	\]
-	and fix a benchmark $m^*\in M$.
-	
-	Suppose:
-	\begin{enumerate}
-		\item There is a nonempty finite $F_0\subseteq W$ such that
-		the set
-		\[
-		\{s_0(p):p\in\mathrm{FSP}(W),\
-		s_0(p)\succeq_w m^*
-		\text{ for every }w\in F_0\}
-		\]
-		has compact closure in $M$.
-		
-		\item For every $w\in W$, the set
-		\[
-		\{m\in M:m\succeq_w m^*\}
-		\]
-		is closed in $M$.
-		
-		\item For every nonempty finite $F\subseteq W$
-		and $w\in F$, the set
-		\[
-		\{p\in\Delta_F:s_0(p)\succeq_w m^*\}
-		\]
-		is closed in $\Delta_F$.
-		
-		\item For every $p\in\mathrm{FSP}(W)$,
-		some $w\in\supp(p)$ satisfies
-		\[
-		s_0(p)\succeq_w m^*.
-		\]
-	\end{enumerate}
-	Then there is an $m\in K$ such that
-	\[
-	m\succeq_w m^*
-	\qquad\text{for every }w\in W.
-	\]
-	In particular, $m$ is the limit of a net of
-	models selected by $s_0$.
-\end{theorem}
-
-Proof in 
-\cref{appendix:removinglims}
-
-
-
 \end{color}
+
+\color{black}
 
 \section{Applications}
 
@@ -889,7 +1176,7 @@ Instead, we will map each conditionalisation plan $r$ to a probability function 
 	
 	
 	
-	For $p$ a probability on $\Omega$ we define $s(p)=(c^p,(a^p_E)_{E\in\mathcal{E}})$ as follows:
+%	For $p$ a probability on $\Omega$ we define $s(p)=(c^p,(a^p_E)_{E\in\mathcal{E}})$ as follows:
 	
 	Fix a threshold $0<t<\frac{1}{n}$. 
 	
@@ -2456,6 +2743,244 @@ the required worldwise improvement.
 	therefore the probability that $A$ is true and the probability
 	that $A$ is not false.  The same
 	$p$ supplies both coordinates for every sentence.
+\end{AIwritten}
+
+
+
+
+\begin{AIwritten}
+	\section{Core result}
+	
+	\subsection{Finite sets of worlds}
+	
+	Let $W$ be a nonempty finite set. We identify probabilities on $W$
+	with their probability mass functions. These form the simplex
+	\[
+	\Delta_W
+	=
+	\left\{p\in[0,1]^W \given \sum_{w\in W}p(w)=1\right\},
+	\]
+	with its usual topology as a subset of $\R^W$. The support of $p$ is
+	$\supp(p)=\{w\in W\given p(w)>0\}$. For each nonempty $F\subseteq W$,
+	the probabilities with support contained in $F$ form the face
+	$\Delta_F$ of $\Delta_W$.
+	
+	Let $M$ be the set of models under consideration. A map
+	$s\colon\Delta_W\to M$ assigns a model to each probability.
+	
+	\[
+	\Delta_W \xrightarrow{\quad s\quad} M
+	\]
+	
+	\begin{theorem}[Finite case]
+		\label{thm:finite-dominance}
+		Let $W$ be a nonempty finite set, let $M$ be a nonempty set,
+		and let $\succeq_w$ be a relation on $M$ for each $w\in W$.
+		Let $s\colon\Delta_W\to M$. Suppose that for every $m\in M$,
+		\begin{enumerate}
+			\item \textbf{Closedness.}
+			For each $w\in W$, the set
+			$\{p\in\Delta_W\given s(p)\succeq_w m\}$ is closed in
+			$\Delta_W$.
+			
+			\item \textbf{Support condition.}
+			For every $p\in\Delta_W$, there is some $w\in\supp(p)$
+			such that $s(p)\succeq_w m$.
+		\end{enumerate}
+		Then for every $m\in M$, the set
+		\[
+		\{p\in\Delta_W\given
+		s(p)\succeq_w m \text{ for every }w\in W\}
+		\]
+		is nonempty and compact.
+	\end{theorem}
+	
+	\begin{proof}
+		Fix $m\in M$. For each $w\in W$, let
+		$A_w=\{p\in\Delta_W\given s(p)\succeq_w m\}$.
+		These sets are closed by assumption. For each nonempty
+		$F\subseteq W$, the support condition gives
+		\[
+		\Delta_F\subseteq\bigcup_{w\in F}A_w,
+		\]
+		since every $p\in\Delta_F$ has support contained in $F$.
+		The finite-simplex Knaster--Kuratowski--Mazurkiewicz (KKM)
+		lemma therefore gives $\bigcap_{w\in W}A_w\neq\varnothing$.
+		The intersection is compact because it is closed in $\Delta_W$.
+	\end{proof}
+	
+	\paragraph{From comparison to dominance.}
+	The theorem gives, for each $m\in M$, a model in $s(\Delta_W)$
+	that is at least as good as $m$ at every world. Suppose
+	$s(\Delta_W)\subseteq R\subseteq M$. If, for each $r\in R$ and
+	$m\in M\setminus R$, being at least as good as $m$ at every world
+	entails being strictly better at some world, then every model
+	outside $R$ is dominated by a model in $R$. Here $\succ_w$ is the
+	strict part of $\succeq_w$. One sufficient condition is that
+	$r\succeq_w m$ implies $r\succ_w m$ whenever $r\in R$ and
+	$m\notin R$.
+	
+	If every model in $R$ is itself undominated, then $R$ is exactly
+	the set of undominated models, and every model outside $R$ is
+	dominated by an undominated model.
+	
+	\subsection{Arbitrary sets of worlds}
+	
+	For an arbitrary nonempty set $W$, a finitely supported probability
+	on $W$ is a function $p\colon W\to[0,1]$ whose support
+	$\supp(p)=\{w\in W\given p(w)>0\}$ is finite and for which
+	$\sum_{w\in\supp(p)}p(w)=1$. We write $\FSP$ for the set of
+	finitely supported probabilities on $W$. For each nonempty finite
+	$F\subseteq W$, put
+	\[
+	\Delta_F=\{p\in\FSP\given \supp(p)\subseteq F\}.
+	\]
+	We give $\Delta_F$ its usual simplex topology by identifying each
+	of its elements with its restriction to $F$ in $\R^F$. We give
+	$\FSP$ the final topology induced by the inclusions
+	$\Delta_F\hookrightarrow\FSP$. Thus a map from $\FSP$ to a
+	topological space is continuous iff its restriction to each
+	$\Delta_F$ is continuous.
+	
+	The finite-simplex argument can still be applied to each finite
+	set of worlds. To obtain a single witness that works at every
+	world, we map $\FSP$ into a compact space $\Theta$. Compactness
+	then lets us pass from the finite intersections to the full
+	intersection.
+	
+	\begin{theorem}[KKM in a compact space]
+		\label{thm:compact-kkm}
+		Let $W$ be a nonempty set, let $\Theta$ be a compact space,
+		and let $f\colon\FSP\to\Theta$ be continuous. Suppose
+		$\psi\colon W\rightrightarrows\Theta$ satisfies
+		\begin{enumerate}
+			\item \textbf{Closedness.}
+			For each $w\in W$, the set $\psi(w)$ is closed in $\Theta$.
+			
+			\item \textbf{KKM covering.}
+			For every $p\in\FSP$, there is some $w\in\supp(p)$
+			such that $f(p)\in\psi(w)$.
+		\end{enumerate}
+		Then $\bigcap_{w\in W}\psi(w)$ is nonempty and compact.
+	\end{theorem}
+	
+	\begin{proof}
+		Fix a nonempty finite $F\subseteq W$. For each $w\in F$,
+		let $A_w=(f|_{\Delta_F})^{-1}(\psi(w))$, which is closed
+		in $\Delta_F$. For every nonempty $J\subseteq F$,
+		\[
+		\Delta_J\subseteq\bigcup_{w\in J}A_w
+		\]
+		by KKM covering. The finite-simplex KKM lemma gives
+		a point $p\in\bigcap_{w\in F}A_w$, so
+		$f(p)\in\bigcap_{w\in F}\psi(w)$.
+		
+		The closed sets $\psi(w)$ therefore have the finite
+		intersection property. Their full intersection is nonempty
+		by compactness of $\Theta$, and is compact because it is
+		closed in $\Theta$.
+	\end{proof}
+	
+	\subsection{Application to dominance}
+	
+	We use a map $g\colon\Theta\to M$ to associate a model with
+	each point of $\Theta$. For finitely supported $p$, the
+	associated model is $g(f(p))$.
+	
+	\[
+	\FSP \xrightarrow{\quad f\quad} \Theta
+	\xrightarrow{\quad g\quad} M
+	\]
+	
+	\begin{corollary}[General case]
+		\label{cor:general-dominance}
+		Let $W$ be a nonempty set, let $\Theta$ be a compact space,
+		and let $f\colon\FSP\to\Theta$ be continuous. Let $M$ be a
+		nonempty set, let $\succeq_w$ be a relation on $M$ for each
+		$w\in W$, and let $g\colon\Theta\to M$. Suppose that for
+		every $m\in M$,
+		\begin{enumerate}
+			\item \textbf{Closedness.}
+			For each $w\in W$, the set
+			$\{\theta\in\Theta\given g(\theta)\succeq_w m\}$ is
+			closed in $\Theta$.
+			
+			\item \textbf{Support condition.}
+			For every $p\in\FSP$, there is some $w\in\supp(p)$
+			such that $g(f(p))\succeq_w m$.
+		\end{enumerate}
+		Then for every $m\in M$, the set
+		\[
+		\{\theta\in\Theta\given
+		g(\theta)\succeq_w m \text{ for every }w\in W\}
+		\]
+		is nonempty and compact.
+	\end{corollary}
+	
+	\begin{proof}
+		Fix $m\in M$ and put
+		$\psi(w)=\{\theta\in\Theta\given g(\theta)\succeq_w m\}$.
+		The closedness and support conditions give, respectively,
+		the closedness and KKM covering hypotheses of
+		\cref{thm:compact-kkm}. The conclusion follows.
+	\end{proof}
+	
+	The same dominance consequences follow with $g(\Theta)$ in place
+	of $s(\Delta_W)$. The finite case is recovered by taking
+	$\Theta=\Delta_W$, $f$ to be the identity, and $g=s$.
+	
+	\subsubsection{Two choices of compact space}
+	
+	\paragraph{A compact closure in the model space.}
+	Suppose $M$ carries a topology and
+	$s\colon\FSP\to M$ is continuous. If
+	$\Theta=\overline{s(\FSP)}^{\,M}$ is compact, take $f$ to be
+	$s$ with codomain $\Theta$ and take $g$ to be the inclusion
+	$\Theta\hookrightarrow M$. The closedness condition in
+	\cref{cor:general-dominance} is then relative to $\Theta$.
+	
+	\paragraph{A compact space of probabilities.}
+	Take $\Theta$ to be the finitely additive probabilities on $W$,
+	with the topology of pointwise convergence on events. The
+	canonical inclusion $f\colon\FSP\hookrightarrow\Theta$ is continuous.
+	Indeed, on each $\Delta_F$, evaluation at an event $A\subseteq W$
+	is the finite sum $\sum_{w\in A\cap F}p(w)$. The map from
+	probabilities to models is now $s\colon\Theta\to M$, so $g=s$.
+	Equivalently, $\Theta$ can be presented as the space of linear
+	previsions on bounded gambles, with the topology of pointwise
+	convergence on gambles.
+	
+	\begin{center}
+		\begin{tikzpicture}[
+			map/.style={-{Stealth}, thick},
+			inclusion/.style={{Hooks[right]}-{Stealth}, thick},
+			caption/.style={font=\small, text=black!65}
+			]
+			\node (fsp1) at (0,0) {$\FSP$};
+			\node (theta1) at (5.7,1.15)
+			{$\Theta=\overline{s(\FSP)}^{\,M}$};
+			\node (m1) at (8,0) {$M$};
+			
+			\draw[map] (fsp1) -- node[above, sloped] {$f=s$} (theta1);
+			\draw[inclusion] (theta1) -- node[above, sloped] {$g$} (m1);
+			
+			\node (fsp2) at (0,-2.4) {$\FSP$};
+			\node (theta2) at (2.8,-1.25) {$\Theta$};
+			\node[caption, above=2pt] at (theta2.north)
+			{Finitely additive probabilities};
+			\node (m2) at (8,-2.4) {$M$};
+			
+			\draw[inclusion] (fsp2) -- node[above, sloped] {$f$} (theta2);
+			\draw[map] (theta2) -- node[above, sloped] {$g=s$} (m2);
+		\end{tikzpicture}
+	\end{center}
+	
+	A further choice is the pointwise closure of the finitely
+	supported expectation functions in $[-\infty,\infty]^{\R^W}$.
+	Here the inclusion sends $p$ to the function
+	$X\mapsto\Exp_p(X)$ on real-valued gambles. Each coordinate is
+	continuous on every finite simplex, and the closure is compact
+	in the product topology.
 \end{AIwritten}
 \end{document}
 \newpage
