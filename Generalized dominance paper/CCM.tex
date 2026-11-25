@@ -141,17 +141,17 @@ These are probability mass functions.
 
 \subsubsection{Mathematical theorem}
 
-The following is a version of the well-known Knaster–Kuratowski–Mazurkiewicz (KKM) lemma. We have stated it directly in terms of probabilities to already be closer to our inteded domain of applications. The proof that it follows from the standard KKM lemma, along with a statement of that, is in the appendix. 
+The following is a version of the well-known Knaster–Kuratowski–Mazurkiewicz (KKM) lemma. We have stated it directly in terms of probabilities to lend itself to our applications. The proof that it follows from the standard KKM lemma, along with a statement of that, is in the appendix. 
 
 \begin{theorem}[KKM]
 	Suppose $W$ is a finite nonempty set.
-	Suppose $\psi:W\rightrightarrows \Delta_W$ satisfies:\begin{itemize}
+	Suppose $\psi:W\rightrightarrows \Delta_W$ (that is, $\psi\colon W\rightarrow\wp(\Delta_W)$) satisfies:\begin{itemize}
 	\item \textbf{Closed} For every $w$, $\psi(w)$ is closed in $\Delta_W$
 	\item \textbf{KKM covering} For every $p\in \Delta_W$, there is some $w\in\supp(p)$ such that $p\in\psi(w)$.
 \end{itemize}
 Then there is some $p\in \Delta_W$ such that for all $w\in W$, $p\in\psi(w)$. Moreover, the set of such $p$ is compact.
 \end{theorem}
-
+The KKM covering condition requiring that $w\in\supp(p)$ is very important. It requires, for example, that $\delta_w\in \psi(w)$.
 
 \subsubsection{Application to dominance}
 
