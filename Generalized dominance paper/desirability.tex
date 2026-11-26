@@ -1,0 +1,465 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage{xcolor}
+\newcommand{\chg}[1]{{\color{red}#1}}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Coherence and Dominance for Desirable Gambles}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newenvironment{axiom}[1]{\par\medskip\noindent\textbf{#1.}\ \itshape}{\par\medskip}
+
+\newcommand{\M}{\mathcal M}
+\newcommand{\C}{\mathcal C}
+\newcommand{\U}{\mathcal U}
+\newcommand{\T}{\mathcal T}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Lf}{\mathfrak L}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\bd}{\partial}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\sat}{\operatorname{sat}}
+\newcommand{\conf}{\times}
+\setlist{itemsep=1pt,topsep=3pt}
+
+\title{Coherence and Dominance for Desirable Gambles}
+\author{Jason Konek}
+\date{}
+
+\begin{document}
+\maketitle
+
+% Abstract reserved for the author.
+
+\section{Setting}\label{sec:setting}
+
+Throughout, $\Omega\coloneqq\{1,\dots,n\}$ with $n\ge2$. Gambles are elements of $\R^n$; $g\le h$ is the coordinatewise order, $E_+\coloneqq\{g:g\ge0\}$, $\one\coloneqq(1,\dots,1)$, $e_i$ is the $i$-th unit vector, and $\Delta\coloneqq\{p\in E_+:\one\cdot p=1\}$ with relative interior $\interior\Delta$ and relative boundary $\bd\Delta$. $u\coloneqq\one/n$. For $p\in\Delta$, $\supp p\coloneqq\{i:p_i>0\}$. For $k\in\Omega$, $R_k:\R^n\to\R^n$ reverses the sign of the $k$-th coordinate.
+
+$\mu$ is a finite Borel measure on $\R^n$ with the same null sets as Lebesgue measure; \emph{null} means $\mu$-null. $\gamma$ is the standard Gaussian probability measure on $\R^n$. It has the same null sets as $\mu$ and is invariant under every $R_k$. \chg{\emph{Measurable} means Lebesgue measurable; $\mu$ and $\gamma$ denote the completions of the given measures, which are defined on the Lebesgue $\sigma$-algebra.}
+
+\begin{definition}[Coherence]\label{def:coherence}
+$D\subseteq\R^n$ is \emph{coherent} if (C1) $E_+\setminus\{0\}\subseteq D$; (C2) $g\notin D$ whenever $g\le0$; (C3) $\lambda g\in D$ whenever $g\in D$ and $\lambda>0$; (C4) $g+h\in D$ whenever $g,h\in D$. The \emph{credal set} of a coherent $D$ is $M_D\coloneqq\{q\in\Delta:q\cdot g\ge0\text{ for all }g\in D\}$. For $K\subseteq\Delta$ nonempty and compact, $D_K\coloneqq\{g:\min_{q\in K}q\cdot g>0\}\cup(E_+\setminus\{0\})$; $D_p\coloneqq D_{\{p\}}$.
+\end{definition}
+
+\begin{lemma}\label{lem:credal}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For $K\subseteq\Delta$ nonempty and compact, $D_K$ is coherent.
+\item For coherent $D$, $M_D$ is nonempty, closed and convex, and $D\triangle D_{M_D}$ is null.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) (C1) and (C3) are immediate. (C2): $g\le0$ gives $q\cdot g\le0$ for $q\in K$, and $g\notin E_+\setminus\{0\}$. (C4): $h_K(g)\coloneqq\min_{q\in K}q\cdot g$ is superadditive, and $h_K\ge0$ on $E_+$.
+
+(b) $\cl D$ is a closed convex cone containing $E_+$. It misses the open set $\{g<0\}$, since a point of $\cl D$ with all coordinates negative would be approached by points of $D$ with the same property, contrary to (C2). Its dual cone $D^\ast\coloneqq\{q:q\cdot g\ge0\ \forall g\in D\}$ lies in $E_+$ and is not $\{0\}$\chg{, since a closed convex cone other than $\R^n$ has a nonzero dual}, so $D^\ast$ is the cone over $M_D\neq\varnothing$, and $M_D$ is closed and convex. By bipolarity $\cl D=\{g:\min_{q\in M_D}q\cdot g\ge0\}$, so $\interior\cl D=\{g:\min_{q\in M_D}q\cdot g>0\}$. As $D$ is convex with nonempty interior, $\interior\cl D=\interior D\subseteq D\subseteq\cl D$. Since $E_+\subseteq\cl D$, both $D$ and $D_{M_D}$ lie between $\interior\cl D$ and $\cl D$, and $\bd\cl D$ is null, being the boundary of a convex set. \chg{(In particular every coherent set is Lebesgue measurable, although it need not be Borel.)}
+\end{proof}
+
+\begin{definition}[Models and responses]\label{def:models}
+A \emph{model} is a measurable $X\subseteq\R^n$, models being identified when their symmetric difference is null; $\M$ is the set of models. A model is \emph{almost coherent} if it is identified with a coherent set; $\C\subseteq\M$ is the set of almost coherent models. The \emph{response} of $X$ at $f\in\R^n\setminus\{0\}$ is
+\[
+r_X(f)\coloneqq\begin{cases}+&f\in X,\ -f\notin X,\\-&f\notin X,\ -f\in X,\\0&f\notin X,\ -f\notin X,\\\conf&f\in X,\ -f\in X.\end{cases}
+\]
+We identify $+,0,-$ with $1,0,-1$, order them by $-1<0<1$, and put $-\conf\coloneqq\conf$; then $r_X(-f)=-r_X(f)$. $X$ is \emph{unconfused} if $r_X\neq\conf$ a.e., \emph{regular} if $r_X=+$ a.e.\ on $\{f>0\}$, and \emph{$k$-blind} if $r_X(R_kf)=r_X(f)$ for a.e.\ $f$. The \emph{change set} of $X,Y$ is $C(X,Y)\coloneqq\{f:r_X(f)\neq r_Y(f)\}$, and $d(X,Y)\coloneqq\mu(C(X,Y))$. $C(X,Y)$ is null iff $X=Y$ in $\M$, so $d$ is a metric on $\M$. \chg{Conversely, every measurable $r:\R^n\setminus\{0\}\to\{1,0,-1,\conf\}$ with $r(-f)=-r(f)$ is the response of the model $\{f:r(f)\in\{1,\conf\}\}$; models are specified by their responses, up to null sets.}
+\end{definition}
+
+\begin{definition}[Status]\label{def:status}
+For $i\in\Omega$ and $f$ with $f_i\neq0$, the \emph{status} of $X$ at $f$ at world $i$ is $\sigma_i(X,f)\coloneqq\conf$ if $r_X(f)=\conf$ and $\sigma_i(X,f)\coloneqq\sgn(f_i)\,r_X(f)\in\{1,0,-1\}$ otherwise: $1$ is \emph{correct}, $0$ \emph{silent}, $-1$ \emph{wrong}, $\conf$ \emph{confused}. Statuses are ordered by $\conf<-1<0<1$. Note $\sigma_i(X,-f)=\sigma_i(X,f)$.
+\end{definition}
+
+\begin{definition}[Rankings and dominance]\label{def:rankings}
+A \emph{ranking} is a family $L=(\preceq_i)_{i\in\Omega}$ of binary relations on $\M$; $X\preceq_iY$ reads ``$X$ is at least as good as $Y$ at $i$''. $X\prec_iY$ means $X\preceq_iY$ and $Y\not\preceq_iX$; $X\sim_iY$ means $X\preceq_iY$ and $Y\preceq_iX$. $X$ \emph{dominates} $Y$ if $X\preceq_iY$ for every $i$ and $Y\not\preceq_jX$ for some $j$. $\U_L$ is the set of models dominated by no model.
+\end{definition}
+
+\begin{definition}[KKM-selection {\cite{KonekGR}}]\label{def:selection}
+Let $L$ be a ranking and $X\in\M$. A \emph{KKM-selection} for $X$ is a map $s:\Delta\to\M$ together with closed sets $A_1,\dots,A_n\subseteq\Delta$ such that
+\begin{enumerate}[label=(S\arabic*),leftmargin=3em]
+\item $s(p)\preceq_iX$ for every $i$ and every $p\in A_i$;
+\item every $p\in\Delta$ lies in $A_i$ for some $i\in\supp p$;
+\item for every $p\in\bigcap_iA_i$ there is $j$ with $X\not\preceq_js(p)$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}\label{thm:selection}
+\chg{\textup{\cite{KonekGR}}} If $(s,(A_i))$ is a KKM-selection for $X$, then $\bigcap_iA_i\neq\varnothing$ and $s(p)$ dominates $X$ for every $p\in\bigcap_iA_i$.
+\end{theorem}
+\begin{proof}
+By (S2), $\operatorname{conv}\{e_i:i\in I\}\subseteq\bigcup_{i\in I}A_i$ for every nonempty $I\subseteq\Omega$, so $\bigcap_iA_i\neq\varnothing$ by the KKM lemma \cite{KKM1929}. For $p$ in the intersection, (S1) and (S3) say that $s(p)$ dominates $X$.
+\end{proof}
+
+\section{Axioms}\label{sec:axioms}
+
+\begin{definition}[Sorting]\label{def:sorting}
+For $k\in\Omega$ and an unconfused model $X$, $\operatorname{sort}_k(X)$ is the model with response
+\[
+r(f)\coloneqq\begin{cases}\max\{r_X(f),r_X(R_kf)\}&f_k>0,\\\min\{r_X(f),r_X(R_kf)\}&f_k<0.\end{cases}
+\]
+This is well defined, since $r(-f)=-r(f)$\chg{; here $r_X$ is computed from a representative of $X$ with no confused responses, the null set $\{f_k=0\}$ is disregarded, and the result does not depend on the representative, since $R_k$ maps null sets to null sets}. An unconfused $X$ is \emph{$k$-monotone} if $r_X(f)\ge r_X(R_kf)$ for a.e.\ $f$ with $f_k>0$.
+\end{definition}
+
+The following conditions are imposed on a ranking $L$. Conditions \chg{(P), (G), (G$^+$),} (SM), (BP), (Comp) and (Cont) do not mention any model in particular. Conditions (Prot) and (Tie) refer to a designated set $\F\subseteq\M$.
+
+\begin{axiom}{(P) Preorder}
+Each $\preceq_i$ is reflexive and transitive.
+\end{axiom}
+\begin{axiom}{(G) Guidance}
+If $\sigma_i(X,f)>\sigma_i(Y,f)$ for a.e.\ $f\in C(X,Y)$, then $X\preceq_iY$.
+\end{axiom}
+\begin{axiom}{(G$^+$) Strict Guidance}
+\chg{If $\sigma_i(X,f)>\sigma_i(Y,f)$ for a.e.\ $f\in C(X,Y)$ and} $\{f\in C(X,Y):(\sigma_i(X,f),\sigma_i(Y,f))\neq(-1,\conf)\}$ is non-null, then $X\prec_iY$.
+\end{axiom}
+\begin{axiom}{(SM) Sorting monotonicity}
+Let $i\neq k$, let $X$ be unconfused and $Y$ be $k$-blind. If $X\prec_iY$, then $\operatorname{sort}_k(X)\prec_iY$.
+\end{axiom}
+\begin{axiom}{(BP) Blind parity}
+Any two $j$-blind, regular, unconfused models are tied at $j$.
+\end{axiom}
+\begin{axiom}{(Comp) Completeness}
+For all $i$, $X$, $Y$: $X\preceq_iY$ or $Y\preceq_iX$.
+\end{axiom}
+\begin{axiom}{(Cont) Lower continuity}
+For all $i$ and $Y$, $\{X:X\preceq_iY\}$ is $d$-closed.
+\end{axiom}
+\begin{axiom}{(Prot) Protection of $\F$}
+No member of $\F$ is dominated.
+\end{axiom}
+\begin{axiom}{(Tie) Tie exclusion for $\F$}
+If $Y\in\F$ and $X\sim_iY$ for every $i$, then $X\in\F$.
+\end{axiom}
+
+(G$^+$) is not used in \S\ref{sec:selection}. The ranking of \S\ref{sec:realisation} satisfies it, and also satisfies both halves of continuity.
+
+\section{Admissible families and selection}\label{sec:selection}
+
+\begin{definition}[Admissible family]\label{def:admissible}
+A map $\Phi:\Delta\to\M$ is \emph{admissible} if
+\begin{enumerate}[label=($\Phi$\arabic*),leftmargin=3em]
+\item $\Phi$ is continuous for $d$;
+\item $\Phi(p)\in\C$ for every $p$;
+\item $\Phi(p)$ is $k$-blind whenever $p\in\bd\Delta$ and $k\notin\supp p$.
+\end{enumerate}
+\end{definition}
+
+Every almost coherent model is regular and unconfused, by (C1), (C2) and (C4).
+
+\begin{lemma}\label{lem:compression}
+Let $X$ be unconfused and $k\neq k'$. Then $\operatorname{sort}_k(X)$ is $k$-monotone. If $X$ is $k'$-monotone, so is $\operatorname{sort}_k(X)$.
+\end{lemma}
+\begin{proof}
+The first claim is immediate from the definition. For the second, fix $f$ with $f_k,f_{k'}>0$, and write $a\coloneqq r_X(f)$, $b\coloneqq r_X(R_{k'}f)$, $c\coloneqq r_X(R_kf)$ and $e\coloneqq r_X(R_kR_{k'}f)$. Then $a\ge b$ and $c\ge e$. After sorting in direction $k$, the responses at $f$ and $R_{k'}f$ are $\max\{a,c\}$ and $\max\{b,e\}$, and those at $R_kf$ and $R_kR_{k'}f$ are $\min\{a,c\}$ and $\min\{b,e\}$. As $\max$ and $\min$ are monotone in each argument, $\max\{a,c\}\ge\max\{b,e\}$ and $\min\{a,c\}\ge\min\{b,e\}$. \chg{Every $g$ with $g_{k'}>0$ is $f$ or $R_kf$ for such an $f$, up to a null set, so these two inequalities are exactly the $k'$-monotonicity of $\operatorname{sort}_k(X)$.}
+\end{proof}
+
+\begin{lemma}\label{lem:face}
+Assume (P), (G), (SM) and (BP). Let $\varnothing\neq S\subseteq\Omega$ and $J\coloneqq\Omega\setminus S$. Let $Z$ be undominated, regular, unconfused and $k$-blind for every $k\in J$. Then no model $X$ satisfies $X\prec_iZ$ for every $i\in S$.
+\end{lemma}
+\begin{proof}
+Suppose $X\prec_iZ$ for every $i\in S$.
+
+\emph{Step 1.} Let $X_1$ be $X$ with every confused response replaced by $0$. Every changed status moves from $\conf$ to a higher status, so by (G) $X_1\preceq_iX$ for every $i$. By (P), $X_1\prec_iZ$ for every $i\in S$.
+
+\emph{Step 2.} Write $J=\{k_1,\dots,k_r\}$ and put $X_2\coloneqq\operatorname{sort}_{k_r}\circ\dots\circ\operatorname{sort}_{k_1}(X_1)$. Sorting preserves unconfusedness and $Z$ is $k$-blind for every $k\in J$, so $r$ applications of (SM) give $X_2\prec_iZ$ for every $i\in S$. By Lemma~\ref{lem:compression}, $X_2$ is $k$-monotone for every $k\in J$.
+
+\emph{Step 3.} Let $P\coloneqq\{f:f_i>0\ \forall i\in S\}$, and let $X_3$ have response $+$ on $P$, $-$ on $-P$, and $r_{X_2}$ elsewhere. On $P\cup-P$ each changed status at a world $i\in S$ becomes correct, so (G) and (P) give $X_3\prec_iZ$ for $i\in S$. $P$ is invariant under $R_k$ for $k\in J$, so $X_3$ is still $k$-monotone for $k\in J$. $X_3$ is unconfused, and regular since $\{f>0\}\subseteq P$.
+
+\emph{Step 4.} Fix $j\in J$. For $f$ with $f_j>0$ let $(a,b)\coloneqq(r_{X_3}(f),r_{X_3}(R_jf))$, so that $a\ge b$. Let $Y_j$ have response $c$ at both $f$ and $R_jf$, where
+\[
+c\coloneqq\begin{cases}a&a=b,\\ +&(a,b)=(+,0),\\ -&(a,b)=(0,-),\\ 0&(a,b)=(+,-).\end{cases}
+\]
+\chg{The point $-R_jf$ also has positive $j$-th coordinate, its pair is $(-b,-a)$, and the rule commutes with $(a,b)\mapsto(-b,-a)$; so the response of $Y_j$ is odd and $Y_j$ is a well-defined model.} It is $j$-blind and unconfused. It is regular, because $f>0$ implies $f,R_jf\in P$. At world $j$, on the changed classes: $(+,0)\mapsto(+,+)$ turns silent into wrong at $R_jf$; $(0,-)\mapsto(-,-)$ turns silent into wrong at $f$; $(+,-)\mapsto(0,0)$ turns correct into silent at both. So by (G), $X_3\preceq_jY_j$.
+
+\emph{Step 5.} By (BP), $Y_j\sim_jZ$. Hence $X_3\preceq_jZ$ for every $j\in J$ by (P), while $X_3\prec_iZ$ for every $i\in S$. So $X_3$ dominates $Z$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:main}
+Let $\Phi$ be admissible and $\F\coloneqq\Phi(\Delta)$. Let $L$ satisfy (P), (G), (SM), (BP), (Comp), (Cont), (Prot) and (Tie) for $\F$. Let $X\notin\F$ and put $A_i\coloneqq\{p\in\Delta:\Phi(p)\preceq_iX\}$. Then $(\Phi,(A_i))$ is a KKM-selection for $X$. Consequently, $X$ is dominated by $\Phi(p)$ for every $p\in\bigcap_iA_i$, and $\U_L=\F$.
+\end{theorem}
+\begin{proof}
+\emph{Closedness.} $A_i=\Phi^{-1}\{Y:Y\preceq_iX\}$ is closed by (Cont) and ($\Phi$1).
+
+(S1) holds by definition.
+
+(S2) Let $p\in\Delta$ and $S\coloneqq\supp p$. Suppose $p\notin A_i$ for every $i\in S$. By (Comp), $X\prec_i\Phi(p)$ for every $i\in S$. Now $Z\coloneqq\Phi(p)$ is regular and unconfused by ($\Phi$2), $k$-blind for $k\notin S$ by ($\Phi$3) (vacuously if $S=\Omega$), and undominated by (Prot). This contradicts Lemma~\ref{lem:face}.
+
+(S3) Let $p\in\bigcap_iA_i$. If $X\preceq_j\Phi(p)$ for every $j$, then $X\sim_j\Phi(p)$ for every $j$, and (Tie) gives $X\in\F$, a contradiction.
+
+Theorem~\ref{thm:selection} gives the domination. Hence $\U_L\subseteq\F$, and (Prot) gives $\F\subseteq\U_L$.
+\end{proof}
+
+\begin{corollary}\label{cor:vertices}
+If $\Phi$ is admissible, then $\Phi(e_i)=D_i\coloneqq\{g:g_i>0\}$ in $\M$ for every $i$.
+\end{corollary}
+\begin{proof}
+Let $Y\coloneqq\Phi(e_i)$. It is regular, unconfused and $k$-blind for every $k\neq i$. For a.e.\ $f$ with $f_i>0$ there is a composition $R$ of reflections $R_k$, $k\neq i$, with $Rf>0$, and then $r_Y(f)=r_Y(Rf)=+$. By oddness, $r_Y(f)=-$ for a.e.\ $f$ with $f_i<0$.
+\end{proof}
+
+\section{The radial family}\label{sec:radial}
+
+\begin{definition}[Radial family]\label{def:radial}
+Let $M\subseteq\Delta$ be nonempty, closed and convex. For $p\in\Delta$, put $a(p)\coloneqq n\min_ip_i$,
+\[
+K_p\coloneqq p+a(p)(M-u)=\{p+a(p)(m-u):m\in M\},\qquad \Phi_M(p)\coloneqq D_{K_p}.
+\]
+\end{definition}
+
+\begin{proposition}\label{prop:radial}
+Let $M\subseteq\Delta$ be nonempty, closed and convex.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $K_p\subseteq\Delta$. If $p=(1-t)u+tq$ with $q\in\bd\Delta$ and $t\in[0,1]$, then $K_p=(1-t)M+t\{q\}$. In particular $K_u=M$, and $K_p=\{p\}$ for $p\in\bd\Delta$.
+\item $\Phi_M$ is admissible.
+\item If $T$ is coherent and $M=M_T$, then $\Phi_M(u)=T$ in $\M$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(a) For $m\in M$, $p_i+a(p)(m_i-\tfrac1n)=(p_i-\min_jp_j)+n(\min_jp_j)m_i\ge0$, and the coordinates sum to $1$. If $p=(1-t)u+tq$ with $\min_jq_j=0$, then $\min_jp_j=(1-t)/n$, so $a(p)=1-t$ and $K_p=(1-t)u+tq+(1-t)(M-u)=(1-t)M+tq$.
+
+(b) ($\Phi$2) is Lemma~\ref{lem:credal}(a). ($\Phi$3): for $p\in\bd\Delta$, $\Phi_M(p)=\{g:p\cdot g>0\}\cup(E_+\setminus\{0\})$. If $p_k=0$, then $p\cdot R_kg=p\cdot g$, and the points where $R_k$ changes membership lie in $\{g:p\cdot g=0\}$, which is null\chg{ and symmetric; as $R_k(-g)=-R_kg$, the responses at $g$ and $R_kg$ agree off this set}.
+
+($\Phi$1): put $h_p(g)\coloneqq\min_{q\in K_p}q\cdot g$. Since $p\mapsto K_p$ is continuous in the Hausdorff metric, $p\mapsto h_p(g)$ is continuous for each $g$. If $g$ has no zero coordinate and $g\in E_+$, then $g>0$ and $h_p(g)>0$. Hence for such $g$, $g\in\Phi_M(p)$ iff $h_p(g)>0$. Since $h_p(g)+h_p(-g)\le0$, the response of $\Phi_M(p)$ at $g$ is $+$ if $h_p(g)>0$, $-$ if $h_p(-g)>0$, and $0$ otherwise. As $q\cdot\one=1$ for $q\in K_p$, $h_p(g+t\one)=h_p(g)+t$. So each line parallel to $\one$ meets $Z_p\coloneqq\{g:h_p(g)=0\text{ or }h_p(-g)=0\}$ in at most two points, and $Z_p$ is null by Fubini. Fix $p$. For $g\notin Z_p$ with no zero coordinate, the signs of $h_{p'}(\pm g)$ equal those of $h_p(\pm g)$ for $p'$ near $p$, and therefore so does the response. Since $\mu$ is finite, dominated convergence gives $d(\Phi_M(p'),\Phi_M(p))\to0$.
+
+(c) $\Phi_M(u)=D_{M_T}$, which equals $T$ in $\M$ by Lemma~\ref{lem:credal}(b).
+\end{proof}
+
+\section{Fibres}\label{sec:fibres}
+
+\begin{definition}[Fibre responses]\label{def:fibres}
+For $a\in(0,\infty)^n$ and $S\subseteq\Omega$ let $g_S(a)\coloneqq\sum_{l\in S}a_le_l-\sum_{l\notin S}a_le_l$. A \emph{fibre response} is a map $x:2^\Omega\to\{1,0,-1,\conf\}$ with $x(\Omega\setminus S)=-x(S)$. The fibre response of a model $X$ at $a$ is $X(a)(S)\coloneqq r_X(g_S(a))$; it is defined for a.e.\ $a$, independently of the representative of $X$ up to a null set of $a$\chg{; here and below, ``a.e.\ $a$'' refers to Lebesgue measure on $(0,\infty)^n$, equivalently to the law of $|f|$ under $\gamma$}. Every $f$ with no zero coordinate is $g_S(|f|)$ for $S=\{l:f_l>0\}$.
+
+For a fibre response $x$ and $m\in\Omega$:
+\begin{itemize}
+\item the \emph{status} of $S\ni m$ is $\mathrm{st}_m(x,S)\coloneqq x(S)$. The sets $S\ni m$ index the $N\coloneqq2^{n-1}$ classes $\{S,\Omega\setminus S\}$, and $\mathrm{st}_m(X(a),S)=\sigma_m(X,g_S(a))$;
+\item $x\le_my$ means $\mathrm{st}_m(x,S)\le\mathrm{st}_m(y,S)$ for every $S\ni m$\chg{, statuses being ordered by $\conf<-1<0<1$};
+\item $\bar x$ replaces $\conf$ by $0$, and $\chi(x)\coloneqq|\{S\ni m:x(S)=\conf\}|$ (independent of $m$);
+\item for unconfused $x$, $b_m(x)\coloneqq\sum_{S\ni m}x(S)$, and $x$ is \emph{$m$-neutral} if \chg{it is unconfused and} $b_m(x)=0$;
+\item $x$ is \emph{$m$-blind} if $x(S\cup\{m\})=x(S\setminus\{m\})$ for every $S$;
+\item for $k\in\Omega$ and unconfused $x$, $\operatorname{sort}_k(x)(S)\coloneqq\max\{x(S),x(S\setminus\{k\})\}$ if $k\in S$, and $\operatorname{sort}_k(x)(S)\coloneqq\min\{x(S\cup\{k\}),x(S)\}$ if $k\notin S$; this is again a fibre response.
+\end{itemize}
+$\T$ is the set of fibre responses that are unconfused, satisfy $x(\Omega)=1$, and are \emph{monotone}: $S\subseteq S'$ implies $x(S)\le x(S')$.
+\end{definition}
+
+\chg{Since $R_kg_S(a)=g_{S\triangle\{k\}}(a)$ and $g_S(a)_k>0$ iff $k\in S$,} $\operatorname{sort}_k(X)(a)=\operatorname{sort}_k(X(a))$, $X$ is $m$-blind iff $X(a)$ is $m$-blind for a.e.\ $a$, and $X$ is $k$-monotone iff $X(a)$ is fixed by $\operatorname{sort}_k$ for a.e.\ $a$. For $m\neq k$, $\operatorname{sort}_k$ acts on world-$m$ statuses by replacing, for every $A\ni m$ with $k\notin A$, the pair $(\mathrm{st}_m(x,A\cup\{k\}),\mathrm{st}_m(x,A))$ by its $(\max,\min)$; in particular it permutes world-$m$ statuses.
+
+\begin{lemma}\label{lem:fibres}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item If $X\in\C$, then $X(a)\in\T$ for a.e.\ $a$.
+\item For $y\in\T$ and $m\in\Omega$: $b_m(y)\ge0$, with equality iff $y$ is $m$-blind. Every $y\in\T$ fails to be $m$-neutral for some $m$.
+\item Every $m$-blind unconfused fibre response is $m$-neutral.
+\item $\operatorname{sort}_k(y)=y$ for $y\in\T$. For $m\neq k$ and unconfused $x$, $\operatorname{sort}_k(x)$ is unconfused and $b_m(\operatorname{sort}_k(x))=b_m(x)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) Let $X=D$ in $\M$ with $D$ coherent. \chg{Since $a\mapsto g_S(a)$ is the restriction of a linear isometry, preimages of null sets are null, so} $X(a)=D(a)$ for a.e.\ $a$. $D(a)(\Omega)=1$ by (C1) and (C2). $D(a)$ is unconfused, since $g,-g\in D$ would give $0\in D$ by (C4), against (C2). If $g\le g'$ and $g\in D$, then $g'\in D$ by (C1) and (C4), and likewise $-g'\in D$ implies $-g\in D$. Hence $D(a)$ is monotone.
+
+(b) For $B\subseteq\Omega\setminus\{m\}$, the complement of $B\cup\{m\}$ is $(\Omega\setminus\{m\})\setminus B$. Hence $\sum_{B}y(B)=-b_m(y)$, and
+\[
+b_m(y)=\tfrac12\sum_{B\subseteq\Omega\setminus\{m\}}\bigl(y(B\cup\{m\})-y(B)\bigr).
+\]
+Each summand is $\ge0$ by monotonicity, and all vanish iff $y$ is $m$-blind. If $y$ were $m$-blind for every $m$ it would be constant, but $y(\Omega)=1=-y(\varnothing)$.
+
+(c) The displayed identity holds for every unconfused $x$, and blindness makes each summand $0$.
+
+(d) Monotone responses are fixed by every $\max/\min$ exchange. The rest follows because, for $m\neq k$, $\operatorname{sort}_k$ permutes world-$m$ statuses.
+\end{proof}
+
+\section{The Shapley cost}\label{sec:shapley}
+
+Fix $n$. Let $W(k)\coloneqq\binom{n-1}{k}^{-1}$ for $0\le k\le n-1$, $w\coloneqq\min_kW(k)$, $Q\coloneqq\operatorname{lcm}_k\binom{n-1}{k}$, $\varepsilon\coloneqq1/(2nNQ)$, $\Gamma\coloneqq1/\varepsilon$ and $\Lambda\coloneqq\Gamma(n+1)+1$. Since every $\binom{n-1}{k}$ divides $Q$, we have $\varepsilon\le w$.
+
+\begin{definition}\label{def:cost}
+For an unconfused fibre response $x$ and $m\in\Omega$, the \emph{Shapley credit} is
+\[
+\psi_m(x)\coloneqq\sum_{S\ni m}W(|S|-1)\,x(S).
+\]
+\chg{This is $n$ times the Shapley value \cite{Shapley1953} of player $m$ in the game $S\mapsto\tfrac12(x(S)+1)$.} Further, let
+\[
+\Psi_m(x)\coloneqq\max\Bigl(\{\varepsilon b_m(x)\}\cup\{\psi_m(y)+\varepsilon(b_m(x)-b_m(y)):y\in\T,\ y\le_mx\}\Bigr).
+\]
+For an arbitrary fibre response $x$, the \emph{cost} at $m$ is $\kappa_m(x)\coloneqq-\Gamma\,\Psi_m(\bar x)+\Lambda\,\chi(x)$.
+\end{definition}
+
+\begin{lemma}\label{lem:SH}
+For unconfused $x$, $y$ and $m\in\Omega$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\sum_m\psi_m(x)=n\,x(\Omega)$;
+\item $\psi_m(x)=\tfrac12\sum_{B\subseteq\Omega\setminus\{m\}}W(|B|)\bigl(x(B\cup\{m\})-x(B)\bigr)$;
+\item if $x\le_my$, then $\psi_m(y)-\psi_m(x)\ge w\,(b_m(y)-b_m(x))$;
+\item if $y\in\T$, then $\psi_m(y)\ge w\,b_m(y)\ge0$;
+\item if $\pi$ is a uniformly random ordering of $\Omega$, $P_k$ is the set of its first $k$ elements and $k$ is the position of $m$, then $\psi_m(x)=\tfrac n2\,\mathbb E_\pi\bigl[x(P_k)-x(P_{k-1})\bigr]$;
+\item $|\psi_m(x)|\le n$, and $Q\,\psi_m(x)\in\mathbb Z$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(i) $\sum_m\psi_m(x)=\sum_{S\neq\varnothing}|S|\,W(|S|-1)\,x(S)$, and $|S|\,W(|S|-1)=|S|!\,(n-|S|)!/(n-1)!$ is invariant under $S\mapsto\Omega\setminus S$. For $\varnothing\neq S\neq\Omega$ the terms of $S$ and $\Omega\setminus S$ cancel, since $x(\Omega\setminus S)=-x(S)$. The term $S=\Omega$ is $n\,x(\Omega)$.
+
+(ii) As in the proof of Lemma~\ref{lem:fibres}(b), using $W(k)=W(n-1-k)$.
+
+(iii) \chg{$\psi_m(y)-\psi_m(x)=\sum_{S\ni m}W(|S|-1)\bigl(y(S)-x(S)\bigr)$, where every difference is $\ge0$ and every weight is $\ge w$; and $b_m(y)-b_m(x)$ is the unweighted sum of the same differences.}
+
+(iv) This follows from (ii), monotonicity and the identity in Lemma~\ref{lem:fibres}(b).
+
+(v) The set $B$ of predecessors of $m$ has probability $|B|!\,(n-1-|B|)!/n!=W(|B|)/n$. Apply (ii).
+
+(vi) $\sum_{S\ni m}W(|S|-1)=\sum_k\binom{n-1}{k}W(k)=n$, and each $Q\,W(k)$ is an integer.
+\end{proof}
+
+\begin{lemma}\label{lem:CH}
+Let $x$ be unconfused with $x(\Omega)=1$ and $x\notin\T$. Let $I\subseteq\Omega$, and for $m\in I$ let $y^m\in\T$ with $y^m\le_mx$. Then $\sum_{m\in I}\psi_m(y^m)\le n-1/Q$.
+\end{lemma}
+\begin{proof}
+Fix an ordering $\pi$, let $P_k$ be its first $k$ elements, and put $s_k\coloneqq x(P_k)$. Then $s_0=-1$ and $s_n=1$. Let $\underline s_k\coloneqq\max_{j<k}s_j$ and $\overline s_k\coloneqq\min_{j\ge k}s_j$.
+
+For $m=\pi_k\in I$ put $t_k\coloneqq y^m(P_k)-y^m(P_{k-1})$, which is $\ge0$ by monotonicity. Consider $j\ge k$. Then $m\in P_j$, so $y^m\le_mx$ gives $y^m(P_j)\le s_j$, and monotonicity gives $y^m(P_k)\le y^m(P_j)$. Now consider $j<k$. Then $m\in\Omega\setminus P_j$, so $y^m\le_mx$ gives $-y^m(P_j)\le-s_j$, and monotonicity gives $y^m(P_{k-1})\ge y^m(P_j)$. Hence $0\le t_k\le(\overline s_k-\underline s_k)^+$.
+
+Let $k_1<\dots<k_r$ be the positions with $\overline s_k>\underline s_k$. For $i<r$, $\underline s_{k_{i+1}}\ge s_{k_i}\ge\overline s_{k_i}$. Hence
+\[
+\sum_{i}(\overline s_{k_i}-\underline s_{k_i})=\overline s_{k_r}-\underline s_{k_1}-\sum_{i<r}(\underline s_{k_{i+1}}-\overline s_{k_i})\le s_n-s_0=2.\tag{$\ast$}
+\]
+
+Suppose the chain has a descent $s_j>s_{j+1}$. Then every $k\le j$ has $\overline s_k\le s_{j+1}$ and every $k>j$ has $\underline s_k\ge s_j$. If cut positions lie on both sides of $j$, the gap $\underline s_{k_{i+1}}-\overline s_{k_i}$ across $j$ is $\ge s_j-s_{j+1}>0$. If all cut positions lie at or before $j$, then $\overline s_{k_r}\le s_{j+1}<1$. If all lie after $j$, then $\underline s_{k_1}\ge s_j>-1$. If there is no cut, the sum is $0$. In every case $(\ast)$ is strict.
+
+Since $x\notin\T$, $x$ is not monotone. So $x(B)>x(B\cup\{l\})$ for some $B$ and $l\notin B$, and this is a descent of every chain through $B$ and $B\cup\{l\}$. By Lemma~\ref{lem:SH}(v), $\sum_{m\in I}\psi_m(y^m)=\tfrac n2\,\mathbb E_\pi\bigl[\sum_{k:\pi_k\in I}t_k\bigr]$. The expectation is $\le 2$, and it is $<2$ because a chain of probability $\ge1/n!$ has a strict inequality. Hence the sum is $<n$, and it lies in $Q^{-1}\mathbb Z$ by Lemma~\ref{lem:SH}(vi).
+\end{proof}
+
+\begin{lemma}\label{lem:cost}
+Let $S^\ast\coloneqq-n\Gamma$. Then:
+\begin{enumerate}[label=\textup{(K\arabic*)}]
+\item if $x\le_mx'$ and $x\neq x'$, then $\kappa_m(x')\le\kappa_m(x)-1$;
+\item $\sum_m\kappa_m(y)=S^\ast$ for $y\in\T$, and $\sum_m\kappa_m(x)\ge S^\ast+1$ for every fibre response $x\notin\T$;
+\item $\kappa_m(x)=0$ for every $m$-neutral $x$;
+\item $\kappa_m(\operatorname{sort}_k(x))\le\kappa_m(x)$ for every unconfused $x$ and $k\neq m$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{Values on $\T$.} For $y\in\T$, $\Psi_m(y)=\psi_m(y)$. The anchor $y$ itself gives $\psi_m(y)$. We have $\varepsilon b_m(y)\le w\,b_m(y)\le\psi_m(y)$. For $y'\in\T$ with $y'\le_my$, $\psi_m(y')+\varepsilon(b_m(y)-b_m(y'))\le\psi_m(y)$ by Lemma~\ref{lem:SH}(iii).
+
+\emph{Range.} For unconfused $x$, $-\varepsilon N\le\Psi_m(x)\le n+\varepsilon N$, since $|b_m|\le N$, $b_m(y)\ge0$ and $\psi_m\le n$. As $2\varepsilon N\le1$, the range of $\Gamma\Psi_m$ has length $\le\Gamma(n+1)=\Lambda-1$.
+
+(K1) First let $x,x'$ be unconfused, and put $\delta\coloneqq b_m(x')-b_m(x)\ge1$. Every anchor of $x$ is an anchor of $x'$, and every term in $\Psi_m$ grows by $\varepsilon\delta$. So $\kappa_m$ drops by at least $\Gamma\varepsilon\delta\ge1$.
+
+In general, a class confused in $x'$ is confused in $x$. Pass from $x$ to $x'$ in two stages. First change the classes not confused in $x$; this is the unconfused case for $\bar x$, so the cost drops by $\ge1$ if anything changes. Then remove the confusions one at a time. Each removal lowers $\Lambda\chi$ by $\Lambda$ and raises $-\Gamma\Psi_m$ by at most $\Lambda-1$.
+
+(K2) For $y\in\T$, $\sum_m\kappa_m(y)=-\Gamma\sum_m\psi_m(y)=S^\ast$ by Lemma~\ref{lem:SH}(i).
+
+Let $x\notin\T$ be unconfused with $x(\Omega)=1$. Let $I$ be the set of $m$ at which the maximum defining $\Psi_m(x)$ is attained at an anchor $y^m$. Each anchor term is $\le\psi_m(y^m)+\varepsilon N$, and each other term is $\le\varepsilon N$. By Lemma~\ref{lem:CH}, $\sum_m\Psi_m(x)\le n-1/Q+n\varepsilon N=n-1/(2Q)$. So $\sum_m\kappa_m(x)\ge S^\ast+\Gamma/(2Q)\ge S^\ast+1$.
+
+If $x$ is unconfused with $x(\Omega)\neq1$, no $y\in\T$ has $y\le_mx$, since the class $\Omega$ is correct for $y$ at every world. So $\sum_m\Psi_m(x)\le n\varepsilon N\le n-1/(2Q)$\chg{, and again $\sum_m\kappa_m(x)\ge S^\ast+1$}.
+
+If $x$ is confused, $\sum_m\kappa_m(x)=\sum_m\kappa_m(\bar x)+n\Lambda\chi(x)\ge S^\ast+n\Lambda$\chg{, since $\sum_m\kappa_m(\bar x)\ge S^\ast$ by the cases already treated}.
+
+(K3) Let \chg{$x$ be unconfused with} $b_m(x)=0$, and let $y\in\T$ with $y\le_mx$. Then $0\le b_m(y)\le b_m(x)=0$, so the statuses of $y$ and $x$ coincide and $y=x$. By Lemma~\ref{lem:fibres}(b), $y$ is $m$-blind, so $\psi_m(y)=0$ by Lemma~\ref{lem:SH}(ii). Every term of $\Psi_m(x)$ is therefore $0$.
+
+(K4) \chg{The pairs $\{A,A\cup\{k\}\}$ with $A\ni m$, $k\notin A$ are disjoint and $\operatorname{sort}_k$ acts on each separately, so $\operatorname{sort}_k(x)$ arises from $x$ by exchanges on one pair at a time.} It suffices to treat one exchange: $A\ni m$, $k\notin A$, with $\mathrm{st}_m(x,A\cup\{k\})=\ell<h=\mathrm{st}_m(x,A)$, the exchange producing $z$. Then $b_m(z)=b_m(x)$. If $y\in\T$ with $y\le_mx$, monotonicity gives $\mathrm{st}_m(y,A)\le\mathrm{st}_m(y,A\cup\{k\})\le\ell$, so $y\le_mz$. The anchors of $x$ are anchors of $z$ with the same terms, so $\Psi_m(z)\ge\Psi_m(x)$.
+\end{proof}
+
+\section{Realisation}\label{sec:realisation}
+
+\begin{definition}[The ranking $L_\F$]\label{def:witness}
+Let $\F\subseteq\C$ be nonempty and $d$-compact, and let $0<\theta<\tfrac12$. For $X,Y\in\M$ and $m\in\Omega$ put:
+\begin{align*}
+\ell_m(X)&\coloneqq\int\kappa_m(X(|f|))\,d\gamma(f),\\
+\rho(X,Y)&\coloneqq\gamma\{f:X(|f|)\neq Y(|f|)\},\qquad\rho_\F(X)\coloneqq\min_{Y\in\F}\rho(X,Y),\\
+\iota_m(X)&\coloneqq\gamma\{f:X(|f|)\text{ is not $m$-neutral}\},\\
+V_m(X)&\coloneqq\ell_m(X)+\theta\,\iota_m(X)\,\rho_\F(X).
+\end{align*}
+$L_\F$ is the ranking with $X\preceq_mY$ iff $V_m(X)\le V_m(Y)$.
+\end{definition}
+
+For a measurable $C$, let $\sat C\coloneqq\bigcup_{\eta\in\{\pm1\}^n}R_\eta C$, where $R_\eta$ reverses the coordinates $k$ with $\eta_k=-1$. Then $\gamma(\sat C)\le2^n\gamma(C)$. Moreover\chg{, for a.e.\ $f$,} $X(|f|)\neq Y(|f|)$ iff $f\in\sat C(X,Y)$, so $\rho(X,Y)=\gamma(\sat C(X,Y))$.
+
+\begin{lemma}\label{lem:lipschitz}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\rho$ is a \chg{metric on $\M$}, and $\rho(X,Y)\le 2^n\gamma(C(X,Y))$.
+\item The minimum defining $\rho_\F$ is attained.
+\item With $c\coloneqq\chg{\max_{m,x}\kappa_m(x)-\min_{m,x}\kappa_m(x)}$: $|\ell_m(X)-\ell_m(Y)|\le c\,\rho(X,Y)$, and
+\[|\iota_m(X)\rho_\F(X)-\iota_m(Y)\rho_\F(Y)|\le2\rho(X,Y).\]
+\item Each $V_m$ is $d$-continuous.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(a) is immediate from the above, since $\gamma$ and $\mu$ have the same null sets.
+
+(b) $Y\mapsto\rho(X,Y)$ is $1$-Lipschitz for $\rho$, and $\rho(Y,Y')\le2^n\gamma(C(Y,Y'))$. Since $\gamma\ll\mu$ with $\gamma$ finite, $\gamma(C)\to0$ as $\mu(C)\to0$. So the map is $d$-continuous on the $d$-compact set $\F$.
+
+(c) The integrands differ only on $\sat C(X,Y)$. For the product, use $\iota_m,\rho_\F\in[0,1]$, $|\iota_m(X)-\iota_m(Y)|\le\rho(X,Y)$ and $|\rho_\F(X)-\rho_\F(Y)|\le\rho(X,Y)$.
+
+(d) follows from (c), (a) and absolute continuity of $\gamma$ with respect to $\mu$.
+\end{proof}
+
+\begin{theorem}\label{thm:realisation}
+Let $\F\subseteq\C$ be nonempty and $d$-compact. Then $L_\F$ satisfies (P), (G), (G$^+$), (SM), (BP), (Comp), (Prot) and (Tie) for $\F$, and both $\{X:X\preceq_iY\}$ and $\{X:Y\preceq_iX\}$ are $d$-closed. Moreover:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item \chg{if there is $Y\in\F$ with $X\preceq_mY$ for every $m$, then $X\in\F$};
+\item \chg{if $\sigma_m(X,f)>\sigma_m(Y,f)$ for a.e.\ $f\in C(X,Y)$ and $C(X,Y)$ is non-null, then $X\prec_mY$};
+\item $V_m(\operatorname{sort}_k(X))\le V_m(X)$ for every unconfused $X$ and $k\neq m$;
+\item $V_j$ vanishes on every $j$-blind unconfused model.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(P) and (Comp) hold because the $V_m$ are real-valued. Closedness holds by Lemma~\ref{lem:lipschitz}(d).
+
+(G), (G$^+$) and (b). Suppose $\sigma_m(X,f)>\sigma_m(Y,f)$ for a.e.\ $f\in C\coloneqq C(X,Y)$. Then $Y(|f|)\le_mX(|f|)$ for a.e.\ $f$, \chg{with $Y(|f|)\neq X(|f|)$ exactly for a.e.\ $f\in\sat C$}. By (K1), $\ell_m(Y)-\ell_m(X)\ge\gamma(\sat C)=\rho(X,Y)$. With Lemma~\ref{lem:lipschitz}(c), $V_m(Y)-V_m(X)\ge(1-2\theta)\rho(X,Y)$. This is $\ge0$, and $>0$ whenever $C$ is non-null.
+
+(Prot). By (K2), $\sum_m\ell_m(X)\ge S^\ast$, with equality iff $X(a)\in\T$ for a.e.\ $a$. For $Y\in\F$, equality holds by Lemma~\ref{lem:fibres}(a), and $\rho_\F(Y)=0$. So $Y$ minimises $\sum_mV_m$. A dominator of $Y$ would have strictly smaller sum.
+
+(a) and (Tie). Let $Y\in\F$ with $V_m(X)\le V_m(Y)$ for every $m$. Then $\sum_mV_m(X)\le S^\ast$. So $X(a)\in\T$ for a.e.\ $a$, and $\iota_m(X)\rho_\F(X)=0$ for every $m$. By Lemma~\ref{lem:fibres}(b), the sets $\{a:X(a)\text{ is not $m$-neutral}\}$, $m\in\Omega$, cover a.e.\ $a$, so $\iota_m(X)>0$ for some $m$. Hence $\rho_\F(X)=0$, and $X\in\F$ by Lemma~\ref{lem:lipschitz}(a, b).
+
+(c) and (SM). Let $X$ be unconfused, $k\neq m$, and $X'\coloneqq\operatorname{sort}_k(X)$. Then:
+\begin{itemize}
+\item $\ell_m(X')\le\ell_m(X)$, by (K4);
+\item $\iota_m(X')=\iota_m(X)$, by Lemma~\ref{lem:fibres}(d);
+\item for $Y\in\F$, \chg{$Y(a)\in\T$ for a.e.\ $a$ by Lemma~\ref{lem:fibres}(a), and} $X(a)=Y(a)\in\T$ implies $X'(a)=Y(a)$, again by Lemma~\ref{lem:fibres}(d), so $\rho(X',Y)\le\rho(X,Y)$ and $\rho_\F(X')\le\rho_\F(X)$.
+\end{itemize}
+Hence $V_m(X')\le V_m(X)$, and $X\prec_mY$ implies $X'\prec_mY$ for every $Y$.
+
+(d) and (BP). If $X$ is $j$-blind and unconfused, a.e.\ fibre response is $j$-neutral by Lemma~\ref{lem:fibres}(c). So $\ell_j(X)=0$ by (K3), and $\iota_j(X)=0$.
+\end{proof}
+
+\section{Coherence}\label{sec:coherence}
+
+\begin{definition}\label{def:class}
+$\Lf$ is the class of rankings $L$ for which some admissible $\Phi_L$ has the following property: $L$ satisfies (P), (G), (SM), (BP), (Comp), (Cont), and (Prot) and (Tie) for $\Phi_L(\Delta)$.
+\end{definition}
+
+\begin{corollary}\label{cor:coherence}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For every $L\in\Lf$, $\U_L=\Phi_L(\Delta)\subseteq\C$. In particular, every model that is not almost coherent is dominated under every $L\in\Lf$, through the KKM-selection $(\Phi_L,(A_i))$ of Theorem~\ref{thm:main}.
+\item For every $T\in\C$ there is $L\in\Lf$ with $T\in\U_L$.
+\end{enumerate}
+Hence $\C\cap\U_L\neq\varnothing$ for every $L\in\Lf$, and $\C=\bigcup_{L\in\Lf}(\C\cap\U_L)$.
+\end{corollary}
+\begin{proof}
+(a) is Theorem~\ref{thm:main} with ($\Phi$2).
+
+(b) \chg{Let $T\in\C$; replacing $T$ by a coherent representative, we may assume $T$ coherent. Let} $M\coloneqq M_T$, and $\Phi\coloneqq\Phi_M$. By Proposition~\ref{prop:radial}, $\Phi$ is admissible and $\Phi(u)=T$. As a continuous image of $\Delta$, $\F\coloneqq\Phi(\Delta)$ is a nonempty $d$-compact subset of $\C$. By Theorem~\ref{thm:realisation}, $L_\F\in\Lf$ with $\Phi_{L_\F}\coloneqq\Phi$. By (Prot), $T\in\U_{L_\F}$.
+\end{proof}
+
+\section{The multiplicative family}\label{sec:multiplicative}
+
+\begin{proposition}\label{prop:rescaled}
+Let $T$ be coherent, and let $s_T(p)\coloneqq\{g:p\ast g\in T\}\cup(E_+\setminus\{0\})$, where $(p\ast g)_i\coloneqq p_ig_i$. Suppose $q_i=0$ for some $q\in M_T$ and some $i$. Let $H\coloneqq\{g:g_i>0>g_j\ \forall j\neq i\}$ and $X\coloneqq D_i\setminus\{g\in H:\|g\|<1\}$. \chg{Here $s_T$ depends on the coherent set $T$ itself, not only on its class in $\M$.} Then $X\notin\C$, and under every ranking satisfying (G$^+$), $X$ has no KKM-selection with map $s_T$.
+\end{proposition}
+\begin{proof}
+\emph{$X\notin\C$.} Suppose $X=D$ in $\M$ with $D$ coherent. By Fubini in polar coordinates, some unit $v\in H$ has $tv\in X\Leftrightarrow tv\in D$ for a.e.\ $t>0$. Membership of $tv$ in $D$ does not depend on $t$, by (C3), while $tv\in X$ iff $t\ge1$.
+
+\emph{$s_T(e_i)=D_i$ in $\M$.} $e_i\ast g=g_ie_i$ lies in $T$ iff $g_i>0$, by (C1) and (C2).
+
+\emph{$s_T(p)$ is worse than $X$ at $i$ for $p\in\interior\Delta$.} Let $g\in H$. Then $q\cdot(p\ast g)=\sum_{j\neq i}q_jp_jg_j<0$, so $p\ast g\notin T$; also $g\notin E_+$. So the response of $s_T(p)$ on $H$ is $0$ or $-$, and never $\conf$: since $g\mapsto p\ast g$ is an order-preserving linear bijection, $s_T(p)$ is coherent. At world $i$, $X$ is correct off $E\coloneqq\{g\in H:\|g\|<1\}$ and silent on $E$, and $s_T(p)$ is not correct on $H$. So every changed status of $X$ is higher, and $H\setminus E$ is changed. By (G$^+$), $X\prec_is_T(p)$.
+
+\emph{$D_i$ is worse than $X$ at $j\neq i$.} On $E$, $D_i$ is wrong at $j$ and $X$ is silent. Elsewhere they agree. By (G$^+$), $X\prec_jD_i$.
+
+\emph{Conclusion.} Let $(A_k)$ satisfy (S1) and (S2) for $s_T$ and $X$. Then $e_i\in A_i$ and $e_i\notin A_j$ for $j\neq i$. As the $A_j$ are closed, some neighbourhood $U$ of $e_i$ misses $\bigcup_{j\neq i}A_j$. By (S2), every interior $p\in U$ lies in $A_i$, so $s_T(p)\preceq_iX$. This is a contradiction.
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
