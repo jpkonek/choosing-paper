@@ -52,6 +52,7 @@
 
 
 \newcommand{\FSP}{\mathrm{FSP}}
+\newcommand{\FAP}{\mathrm{FAP}}
 \newcommand{\closure}{\mathsf{closure}}
 
 
@@ -405,38 +406,39 @@ Using compactness, the following extension of the KKM result applies in infinite
 	Then there is some $\theta\in\Theta$ such that for all $w\in W$, $\theta\in\psi(w)$. Moreover, the set of such $\theta$ is compact.
 \end{theorem}
 \begin{proof}
-	Fix a finite $F\subseteq W$, then by the standard KKM, there is some $\theta\in \bigcap_{w\in F}\psi(w)$. 
+	Fix a finite $F\subseteq W$, consider $\phi:F\rightrightarrows \Delta_F$ with $\phi(w)=\sigma^{-1}(\psi(w))=\{p\in\Delta_F\given \sigma(p)\in\psi(w)\}$. By continuity of $\sigma$, this is closed. And has the KKM covering property.  So there is some $p$ such that $\sigma(p)\in\psi(w)$ for all $w\in F$. This gives some $\theta\in \bigcap_{w\in F}\psi(w)$. 
 	
-	Thus, $\{\psi(w)\given w\in W\}$ is a collectionof closed sets with the finite intersection property, and so has non-empty intersection by compactness. 
+	Thus, $\{\psi(w)\given w\in W\}$ is a collection of closed sets with the finite intersection property, and so has non-empty intersection by compactness. 
 \end{proof}
 
 \subsubsection{Application to dominance results}
 
+
+
 \begin{center}
 	\begin{tikzpicture}[
-		>=stealth,
-		every node/.style={inner sep=3pt},
+		map/.style={-{Stealth}, thick},
 		caption/.style={font=\small, text=black!65}
 		]
-		\node (fsp) at (0,0)   {$\FSP$};
-		\node (theta) at (4,0) {$\Theta$};
-		\node (models) at (8,0) {$M$};
 		
-		\node[caption, above=4pt] at (fsp.north)
+		\node (fsp) at (0,0) {$\FSP$};
+		\node (theta) at (4,1.5)
+		{$\Theta$};
+		\node (m) at (8,0) {$M$};
+		\node[caption, below=4pt] at (fsp)
 		{Fin supp probs};
-		\node[caption, above=4pt] at (theta.north)
+		\node[caption, above=4pt] at (theta)
 		{Compact space};
-		\node[caption, above=4pt] at (models.north)
+		\node[caption, below=4pt] at (m)
 		{Models};
 		
-		\draw[->, thick] (fsp.east)
-		-- node[above] {$\sigma$ cts} (theta.west);
-		\draw[->, thick] (theta.east)
-		-- node[above] {$c$} (models.west);
+		\draw[map] (fsp) -- node[above, sloped]
+		{$\sigma$ cts} (theta);
+		\draw[map] (theta) -- node[above, sloped]
+		{$c$}  (m);
+	\draw[map,black!60] (fsp) -- node[below]
+{$c\circ \sigma$}  (m);
 		
-		\draw[->, black!55] (fsp.south east)
-		.. controls +(1.4,-1.1) and +(-1.4,-1.1) ..
-		node[below, text=black] {$c\circ \sigma$} (models.south west);
 	\end{tikzpicture}
 \end{center}
 
@@ -476,7 +478,7 @@ Propriety is used to get KKM covering. Importantly, then, we see that it is only
 
 
 
-One version of this theorem is to identify $\Theta$ with a subspace of $M$. This requires $M$ to have a topology and $s:\FSP\to M$, and $\closure(s(FSP))$ is compact. 
+One version of this theorem is to identify $\Theta$ with a subspace of $M$. This requires $M$ to have a topology and $s:\FSP\to M$, and $\closure(s(\FSP))$ is compact. 
 
 \begin{center}
 	\begin{tikzpicture}[
@@ -507,19 +509,19 @@ One version of this theorem is to identify $\Theta$ with a subspace of $M$. This
 	And suppose $s:\FSP\to M$ is continuous on each finite $\Delta_F$. Let $$\Theta=\overline{s(\FSP)}^{\,M}$$
 	
 	If \begin{itemize}
-		\item \textbf{Closed} For every $m\in M$ and $w$, \[\{\theta\in\Theta\given \theta\succeq_w m\}\] is closed
+		\item \textbf{Closed} For every $m\in M$ and $w$, \[\{\theta\in\Theta\given \theta\succeq_w m\}\] is closed in $\Theta$, or $M$.
 		\item \textbf{KKM covering} For every $p\in \FSP$ and $m\in M$, there is some $w\in\supp(p)$ such that $$s(p)\succeq_w m$$
 	\end{itemize}
 	Then there is some $\theta\in\Theta$ such that 
 	\[
-	s(\theta)\succeq_w m
+	\theta\succeq_w m
 	\text{ for every }w\in W
 	\] 
 	Moreover, the set of such $\theta$ is compact.
 	
 	If $R\subseteq M$ is such that:
 	\begin{itemize}
-		\item $s(\Theta)\subseteq R$ and
+		\item $\Theta\subseteq R$ and
 		\item There can be no everywhere-ties between members of $R$ and those outside of $R$:\footnote{This is like the quasi propriety type weakening of Pruss, or is it Nielson?} \\
 		If $r\in R$ and $m\in M\setminus R$, and for all $w$ $m\succeq_w r$, then there is some $w$ such that $r\not\succeq_w m$.
 	\end{itemize}then members outside osf $R$ must be dominated. 
@@ -602,14 +604,15 @@ If $W$ is finite, then this reduces to the special case, putting $\Theta=\FSP$, 
 \end{center}
 
 
-
-
-\section{Applications}
-
+\part{Applications}
 Our different applications are simply identifying particular $M$ and criteria on the ordering which imply the existence of a suitable $s$ supporting a dominance argument for various rationality criteria. 
 
+\section{Core application: dominance argument for probabilistic coherence.}
 
-\subsection{Dominance argument for probabilistic coherence}
+
+
+
+%\subsection{Dominance argument for probabilistic coherence}
 
 Here we are judging credence functions. 
 Fix $W$ and let $\agenda\subseteq W$. 
@@ -620,28 +623,72 @@ Alternatively, we might take $\agenda$ to be a set of sentences, with $\llbracke
 \begin{definition}
 	$p\in \R^{\wp(W)}$ is a finitely additive probability function if \ldots.
 \end{definition}
-\begin{proposition}
-	$FAP$ is a compact space including $FSP$, so we will make use of \cref{thm:FAP}
-\end{proposition}
+\begin{lemma}
+	$\FAP$ is a compact space including $\FSP$, so we will make use of \cref{thm:FAP}
+\end{lemma}
 
-There is a natural $s:FAP\to M$ where $$s(p)(A)=p(\llbracket A\rrbracket)$$
+There is a natural $s:\FAP\to M$ where $$s(p)(A)=p(\llbracket A\rrbracket)$$
 
 \begin{definition}
-	$c\in \R^\agenda$ is probabilistic if there is a finitely additive probability $p\in FAP$ such that $c=s(p)$. 
+	$c\in \R^\agenda$ is probabilistic if there is a finitely additive probability $p\in \FAP$ such that $c=s(p)$. 
 	
-	Let $R\subseteq M$ be the collection of probabilistic credence functions, that is $R=s(FAP)$. 
+	Let $R\subseteq M$ be the collection of probabilistic credence functions, that is $R=s(\FAP)$. 
 \end{definition}
 
 \begin{proposition}
 	If comparative evaluation is generated by a quasi-proper scoring rule which is continuous, then all the conditions of the theorems are satisfied. We thus have that non-probabilities are strictly dominated by probabilities, which are themselves not even weakly dominated. 
 \end{proposition}
 
-Propriety goes well-beyond the KKM conditions. They are only interested in dominance, albeit dominance on the support of $p$. This also means that the same would hold if we use other evaluation functions than expectations. For example, if we use a risk-weighted quasi-proper loss function. 
+Propriety goes well-beyond the KKM conditions. They are only interested in dominance, albeit dominance on the support of $p$. This also means that the same would hold if we use other evaluation functions than expectations. For example, if we use a risk-weighted quasi-proper loss function exactly the same argument would go through. 
+
+
+
+\section{Dominance argument for convex hulls}
+\subsection{Credence functions in non-classical logic}
+
+We could also consider non-classical probability functions. Now $W$ are the possible points of evaluation, associated with omniscient credence functions which need not satisfy the classical laws of probability, and $s(p)$ is a $p$-weighted average of the omniscient points. 
+
+$v_w\in M$ be an ``omniscent model'' at world $w$. 
+
+Williams argues that what we get is a dominance argument for being in the convex hull of the omniscient points. 
+
+This is right, when the measure has the properties of the $p$-weighted averages being not $p$-dominated. For example, when it is appropriately proper. 
+
+Williams applies this where $M=\R^{Sent}$ too. 
+But it could also apply where, for example, each sentence obtains two real values, as is argued for in Janda. It works in any Hausdorff topological vector space. 
+
+We get an argument for being in the closure of the convex hull of the omniscint models, which works so long as this is a compact set. 
+
+\subsection{Deference to Chance}
+
+Take the ``worlds'' to be objective chance functions. But the objects being evaluated are still credence functions, involving worlds. Again we have an argument for being in the closure of the convex ull of the objective chance functions. 
+
+\section{Estimation as expectation}
+
+Observation: for this section we can easily use either of the theorems. We can use the closure of the convex hull. Or we can take $\Theta$ to be the independent space consisting of these. 
+
+To encompass the risk-weighted ones, 
+
+
+\subsection{Bounded gambles}
+
+\subsection{Unbounded gambles}
+
+\subsection{Risk-weighted expectations}
+
+Map finitely supported probabilities to risk-weighted expected values. 
+The closure of this is compact (since it's a closed subset of a compact space). 
+
+So the theorem would apply. This depends, though, on whether one's ranking evaluates risk-weighted or the straight-up expectations to be the objects which are not dominated on the support. 
 
 
 
 
+\section{Conditionalisation}
 
+This is quite different to the others: there's no single obvious characterisation of $s(p)$ when some $p(E)=0$. Moreover, converging to probability $0$ from different directions can result in different required posteriors. 
+
+We will describe a continuous $s$ mapping each $p$ to a conditionalisation plan, but not a conditionalisation plan for $p$ itself, but for a different prior, one which assigns probability 0 to more events than $p$ does, ones below a threshold. 
 
 \newpage\color{red}
 
@@ -1062,6 +1109,57 @@ Observe that the class of linear previsions is compact Hausdoff topological spac
 
 
 
+\subsection{Chance Dominance}
+
+We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts. Or different possible chance functions. 
+
+Suppose that $M$ is a space over which we have orderings $\succeq_k$ for experts, $k$. 
+
+Then $P$ is the space of probabilistic weights over these different experts. 
+
+Then we map $P$ into $M$. In the credence setting, we map it to the probabilistic expectation of th
+
+We map each $\delta_k$ to a point in $M$ which is optimal according to $k$.
+
+If $M$ is itself a vector space, we could just map $P$ into the closed convex hull of the $\delta_k$, in the expected way. This will be continuous, so if the orderings are appropriately continuous then we'd get closeness. 
+\begin{itemize}
+	\item For each $k$, $\{p : s(p)\succeq_k m\}$ is closed.
+\end{itemize}
+%What properties of the orderings ensure that for every finitely supported $p$ over $\mathcal K$ and every $m$ there is some $k$ with $p\succeq_k m$. That sounds very much like $\succeq$ being generated by a `convex' loss function. 
+Then we might investigate whether. 
+\begin{itemize}
+	\item For finitely supported probability weights, $p$, over $\mathcal K$ there is no $m$ which is better than $s(p)$ according to all the members of $\mathcal K$ to which $p$ assigns positive weight. 
+\end{itemize}
+This would follow, for example, from it being generated by a proper loss function. 
+
+\todo[inline]{What's underlying the chance expectation results? It's just convex hull, right? The question though is whether it always looks like ``take the convex hull''. Perhaps not!}
+
+
+\subsection{Chance Domaince}
+
+We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts. Or different possible chance functions. 
+
+The possible experts are a non-empty set, $\mathcal{K}$. 
+
+$P$ is then the space of probabilistic weights over the experts. So, in the theorem, we have $W=\mathcal{K}$.
+
+Then $M$ is the space over which we have orderings $\succeq_k$ for experts, $k$.
+
+In the chance-dominance result, this is credence functions, some $\R^{Propositions}$ where each proposition is a subset not of the $W$ as in the set of experts, but $\Omega$ now the sample space, or set of ``possible worlds''. 
+
+We then need $s:P\to M$. 
+Suppose each $k$ is conceived of already to be a point in $M$, then $P$ can just be the induced point by taking weighted averages. Giving the closure of the convex hull. 
+
+Suppose that the orderings are
+\begin{itemize}
+	\item Generated continuously
+	\item For each fs probability $p$ over $\mathcal{K}$, $s(p)$ is not $p$-dominated. 
+\end{itemize}
+Then we have that points not in the closed convex hull are 
+
+
+
+
 \subsection{Conditionalisation}
 
 Fix a finite evidence partion of $\Omega$, $\mathcal{E}$. 
@@ -1072,11 +1170,11 @@ $M=([0,1]^{\agenda})\times ([0,1]^{\agenda})^n$, so
 $m=(c,(a_E)_{E\in\mathcal{E}})$ consisting of a prior credence and a plan to adopt credence $a_E$ if $E$ is learned.
 
 \begin{definition}
-	$(c,(a_E))$ is a \emph{conditionalisation plan for $p$} if:\begin{itemize}
+	$(c,(a_E))$ is a \emph{nearly conditionalisation plan for $p$} if:\begin{itemize}
 		\item $c$ is $p\upharpoonright_\agenda$
 		\item If $p(E)>0$ then $a_E=p(\cdot | E)=\frac{p(\cdot \cap E)}{p(E)}$
 	\end{itemize}
-		$(c,(a_E))$ is a \emph{sensible conditionalisation plan for $p$} if, in addition:\begin{itemize}
+		$(c,(a_E))$ is a \emph{conditionalisation plan for $p$} if, in addition:\begin{itemize}
 		\item If $p(E)=0$ then $a_E$ is probabilistic with $a_E(E)=1$. 
 	\end{itemize}
 \end{definition}
@@ -1175,54 +1273,6 @@ Instead, we will map each conditionalisation plan $r$ to a probability function 
 \end{proof}
 
 AI written details in \cref{appendix:cond}
-
-\subsection{Chance Dominance}
-
-We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts. Or different possible chance functions. 
-
-Suppose that $M$ is a space over which we have orderings $\succeq_k$ for experts, $k$. 
-
-Then $P$ is the space of probabilistic weights over these different experts. 
-
-Then we map $P$ into $M$. In the credence setting, we map it to the probabilistic expectation of th
-
-We map each $\delta_k$ to a point in $M$ which is optimal according to $k$.
-
-If $M$ is itself a vector space, we could just map $P$ into the closed convex hull of the $\delta_k$, in the expected way. This will be continuous, so if the orderings are appropriately continuous then we'd get closeness. 
-	\begin{itemize}
-	\item For each $k$, $\{p : s(p)\succeq_k m\}$ is closed.
-\end{itemize}
-%What properties of the orderings ensure that for every finitely supported $p$ over $\mathcal K$ and every $m$ there is some $k$ with $p\succeq_k m$. That sounds very much like $\succeq$ being generated by a `convex' loss function. 
-Then we might investigate whether. 
-	\begin{itemize}
-	\item For finitely supported probability weights, $p$, over $\mathcal K$ there is no $m$ which is better than $s(p)$ according to all the members of $\mathcal K$ to which $p$ assigns positive weight. 
-\end{itemize}
-This would follow, for example, from it being generated by a proper loss function. 
-
-\todo[inline]{What's underlying the chance expectation results? It's just convex hull, right? The question though is whether it always looks like ``take the convex hull''. Perhaps not!}
-
-
-\subsection{Chance Domaince}
-
-We have thought about $\succeq_w$ being orderings at ``worlds'', but they could just as easily be other evaluation points. For example, there are different experts. Or different possible chance functions. 
-
-The possible experts are a non-empty set, $\mathcal{K}$. 
-
-$P$ is then the space of probabilistic weights over the experts. So, in the theorem, we have $W=\mathcal{K}$.
-
-Then $M$ is the space over which we have orderings $\succeq_k$ for experts, $k$.
-
-In the chance-dominance result, this is credence functions, some $\R^{Propositions}$ where each proposition is a subset not of the $W$ as in the set of experts, but $\Omega$ now the sample space, or set of ``possible worlds''. 
-
-We then need $s:P\to M$. 
-Suppose each $k$ is conceived of already to be a point in $M$, then $P$ can just be the induced point by taking weighted averages. Giving the closure of the convex hull. 
-
-Suppose that the orderings are
-\begin{itemize}
-	\item Generated continuously
-	\item For each fs probability $p$ over $\mathcal{K}$, $s(p)$ is not $p$-dominated. 
-\end{itemize}
-Then we have that points not in the closed convex hull are 
 
 \subsection{Wald}
 
